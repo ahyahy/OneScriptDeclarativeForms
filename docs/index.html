@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
+		<link rel="stylesheet" type="text/css" href="theme.css">
+		<title>Главная</title>
+	</head>
+<body>
+
+<table style="text-align: left; width: 1000px; height: 816px; margin-left: auto; margin-right: auto; background-color: white;" border="0" cellpadding="2" cellspacing="2">
+	<tbody>
+    <tr>
+		<td style="vertical-align: top; font-weight: bold; text-align: center; font-style: italic; color: rgb(51, 51, 153);"><big><big><big>Декларативные формы<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></td>
+		<td style="width: 70px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="index.html"><button type="button">Главная</button></a><small><br></small></td>
+		<td style="width: 90px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="screenshot.html"><button type="button">Скриншоты</button></a><br></td>
+		<td style="width: 130px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="howworks.html"><button type="button">Как это работает</button></a><small><br></small></td>
+		<td style="width: 110px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="doc.html"><button type="button">Документация</button></a><small><br></small></td>
+		<td style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="down.html"><button type="button">Скачать</button></a><small><br></small></td>
+		<th style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top; font-weight: normal;"><a href="kont.html"><button type="button">Контакты</button></a><small><br></small></th>
+    </tr>
+    <tr>
+		<td colspan="7" rowspan="1" style="vertical-align: top; height: 747px; background-color: white;">
+		<hr style="border-color: lightgray;">
+		<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; Есть такой замечательный проект - сценарный язык <A href="https://oscript.io/" target="_blank">OneScript</A>. Для 
+		него можно написать библиотеку например на <B>C#</B> и расширить функционал языка. В своё время я так и сделал, написал 
+		<A href="https://infostart.ru/1c/articles/1617468/" target="_blank">библиотеку форм и дизайнер форм</A>. Формы работают в среде Windows и в среде Linux 
+		(благодаря библиотекам mono-complete). А вот на macOS возникли проблемы - отсутствие для последних версий 64-х битной версии <B>Mono</B>. Досадно. 
+		Но - мы не привыкли отступать! Занялся поиском способа создать формы для односкрипта, работающие на любой платформе. А что у нас работает на любой платформе? 
+		Ну конечно же браузер. Кстати такой успешный проект уже существует, посмотрите на разработку 
+		<A href="https://github.com/autumn-library/winow/" target="_blank">Минималистичный веб-сервер на нативном TCPСервер</A>.</p>
+		<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; А что если сделать немного по другому? Как говорится - Охота пуще неволи! Наметил цели.
+			<div style="margin-left: 40px;">
+				<li>Нужна программа с браузером в окне, но не браузер с нашей программой.</li>
+				<li>Нужен простой код создания и управления элементами и простая обработка событий. Что то вроде 
+<PRE class=code>
+	Кнопка1 = ДФ.Кнопка();
+	Кнопка1.Родитель = Форма1;
+	Кнопка1.Текст = "Кнопка";
+	Кнопка1.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка1_Нажатие");
+</PRE>
+				</li>
+				<li>Запуск на любой платформе где можно запустить браузер Chrome.</li>
+				<li>Избежать необходимости изучать дополнительные фреймворки.</li>
+				<li>Приложение должно работать в фоне, запускаться при старте системы и оффлайн.</li>
+				<li>Версия браузера определяется пользователем, а не системой.</li>
+				<li>Возможность создания меню, нескольких окон, иконки в трее (менюбаре), управление ими.</li>
+				<li>Возможность режима kiosk-mode (как в десктопных играх) и для создания презентаций в том числе.</li>
+			</div>
+		</p>
+		<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; Получились декларативные формы, десктопное приложение на базе веб-технологий, со всеми возможностями движка Chrome. За подробностями переходите 
+		в раздел <B>Как это работает</B>.</p>
+		<p style="margin-left: 40px;"></p>
+		</td>
+    </tr>
+	</tbody>
+</table>
+<br>
+<br>
+</body></html>
