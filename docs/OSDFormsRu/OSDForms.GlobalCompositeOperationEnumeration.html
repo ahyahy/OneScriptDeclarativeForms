@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Композиция Перечисление</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Композиция (GlobalCompositeOperation) Перечисление</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Описание</H4>
+<P>Указывает способ рисования нового изображения на существующем изображении.</P>
+<P>Новое изображение - это то, которое мы собираемся нарисовать. Существующее - то, которое уже нарисовано.</P>
+<H4 class=dtH4>Члены</H4>
+<DIV class=tablediv>
+<TABLE class=dtTABLE cellSpacing=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TH width="38%">Имя члена</TH>
+    <TH width="50%">Описание</TH>
+    <TH width="12%">Значение</TH></TR>
+  <TR vAlign=top>
+    <TD><B>Новое (Copy)</B></TD>
+    <TD>Отображается новое изображение. Существующее изображение игнорируется.</TD>
+    <TD>copy</TD></TR>
+  <TR vAlign=top>
+    <TD><B>НовоеВ (SourceIn)</B></TD>
+    <TD>Новое изображение в существующем изображении. Показана только та часть нового изображения, которая находится ВНУТРИ существующего изображения, а существующее изображение прозрачно.</TD>
+    <TD>source-in</TD></TR>
+  <TR vAlign=top>
+    <TD><B>НовоеВне (SourceOut)</B></TD>
+    <TD>Новое изображение вне существующего изображения. Показана только та часть нового изображения, которая находится ВНЕ существующего изображения, а существующее изображение прозрачно.</TD>
+    <TD>source-out</TD></TR>
+  <TR vAlign=top>
+    <TD><B>НовоеНад (SourceOver)</B></TD>
+    <TD>Новое изображение над существующим изображением. Это значение по умолчанию.</TD>
+    <TD>source-over</TD></TR>
+  <TR vAlign=top>
+    <TD><B>НовоеПоверх (SourceAtop)</B></TD>
+    <TD>Новое изображение поверх существующего изображения. Часть нового изображения, находящаяся за пределами существующего изображения, не отображается.</TD>
+    <TD>source-atop</TD></TR>
+  <TR vAlign=top>
+    <TD><B>Объединить (Xor)</B></TD>
+    <TD>Новое изображение объединяется с помощью исключающего ИЛИ с существующим изображением.</TD>
+    <TD>xor</TD></TR>
+  <TR vAlign=top>
+    <TD><B>Совместно (Lighter)</B></TD>
+    <TD>Отображается новое изображение и существующее изображение.</TD>
+    <TD>lighter</TD></TR>
+  <TR vAlign=top>
+    <TD><B>СуществующееВ (DestinationIn)</B></TD>
+    <TD>Существующее изображение отображается в новом изображении. Показана только та часть существующего изображения, которая находится ВНУТРИ нового изображения, а новое изображение прозрачно.</TD>
+    <TD>destination-in</TD></TR>
+  <TR vAlign=top>
+    <TD><B>СуществующееВне (DestinationOut)</B></TD>
+    <TD>Существующее изображение отображается вне нового изображения. Показана только та часть существующего изображения, которая находится ВНЕ нового изображения, а новое изображение прозрачно.</TD>
+    <TD>destination-out</TD></TR>
+  <TR vAlign=top>
+    <TD><B>СуществующееНад (DestinationOver)</B></TD>
+    <TD>Существующее изображение поверх нового изображения.</TD>
+    <TD>destination-over</TD></TR>
+  <TR vAlign=top>
+    <TD><B>СуществующееПоверх (DestinationAtop)</B></TD>
+    <TD>Существующее изображение поверх нового изображения. Часть существующего изображения, находящаяся за пределами нового изображения, не отображается.</TD>
+    <TD>destination-atop</TD></TR></TBODY></TABLE></DIV>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;OneScriptDeclarativeForms</A></P></DIV></BODY></HTML>

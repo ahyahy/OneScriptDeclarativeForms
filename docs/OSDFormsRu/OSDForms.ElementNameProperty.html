@@ -62,44 +62,6 @@
 </PRE>
 </details>
 <P></P>
-<details><summary>Тестовый код</summary>
-<P><PRE class=code>
-<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
-<hr style="border-color: lightgray;"><DIV id="cont2">
-Перем Кнопка1;
-
-Процедура Кнопка1_Нажатие() Экспорт
-	Сообщить("Кнопка1.Имя = " + Кнопка1.Имя + "  " + ТекущаяУниверсальнаяДатаВМиллисекундах());
-КонецПроцедуры
-
-ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
-ДФ = Новый ДекларативныеФормы();
-Форма1 = ДФ.Форма;
-
-Кнопка1 = ДФ.Кнопка();
-Кнопка1.Родитель = Форма1;
-Кнопка1.Текст = "Это Кнопка1";
-Кнопка1.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка1_Нажатие", Новый Структура("Поле1","ЧтоТоТам"));
-
-// СтрокаФункций сейчас выглядит так:
-// ДФ.СтрокаФункций = createElement("button", "dzfzke12lacy");setParent("dzfzke12lacy", "mainForm");setProperty("dzfzke12lacy", "innerText", "Это Кнопка1");setEventListener("dzfzke12lacy", "click");
-
-// createElement("button", "dzfzke12lacy"); - создание кнопки. Первый параметр - тип элемента, второй - уникальное имя элемента, сгенерированное при создании.
-// setParent("dzfzke12lacy", "mainForm"); - установка для кнопки родителя. Первый параметр - имя элемента, второй - имя его родителя.
-// и так далее.
-// Добавим вызов обработчика события Кнопка1_Нажатие, чтобы после загрузки формы у нас автоматически нажалась Кнопка1.
-ДФ.СтрокаФункций = ДФ.СтрокаФункций + "sendPost(""" + Кнопка1.Имя + "|||click"");";
-Сообщить("ДФ.СтрокаФункций = " + ДФ.СтрокаФункций);
-
-// Теперь СтрокаФункций выглядит так:
-// ДФ.СтрокаФункций = createElement("button", "dzfzke12lacy");setParent("dzfzke12lacy", "mainForm");setProperty("dzfzke12lacy", "innerText", "Это Кнопка1");setEventListener("dzfzke12lacy", "click");sendPost("dzfzke12lacy|||click");
-// sendPost("dzfzke12lacy|||click"); - Мы добавили функцию вызова обработчика события Кнопка1_Нажатие.
-
-Форма1.Открыть();
-</DIV>
-</PRE>
-</details>
-<P></P>
 <H4 class=dtH4>Смотрите также</H4>
 <P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A></P></DIV>
 <script>
@@ -125,30 +87,6 @@ window.onload = function () {
 		  document.execCommand('copy'); 
 		} catch(err) {} 
 		window.getSelection().removeRange(range2);
-        return false;
-    }
-	
-    var c = document.getElementById('select2');
-    c.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta3 = document.getElementById('cont2'); 
-		var range3 = document.createRange();
-		range3.selectNode(ta3); 
-		window.getSelection().addRange(range3); 
-        return false;
-    }
-	
-    var d = document.getElementById('copy2');
-    d.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta4 = document.getElementById('cont2'); 
-		var range4 = document.createRange();
-		range4.selectNode(ta4); 
-		window.getSelection().addRange(range4);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range4);
         return false;
     }
 }

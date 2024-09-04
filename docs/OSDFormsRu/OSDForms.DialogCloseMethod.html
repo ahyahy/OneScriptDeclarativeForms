@@ -19,99 +19,18 @@
 <P></P>
 <P></P>
 <H4 class=dtH4>Описание</H4>
-<P>Закрывает диалоговое окно.</P>
+<P>Закрывает диалог.</P>
 <H4 class=dtH4>Примечание</H4>
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-Диалог1.Закрыть();
+
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
-Перем Диалог1;
 
-Процедура Кнопка1_Нажатие() Экспорт
-	Диалог1.Показать();
-КонецПроцедуры
-
-Процедура Кнопка2_Нажатие() Экспорт
-	Диалог1.Закрыть();
-КонецПроцедуры
-
-ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
-ДФ = Новый ДекларативныеФормы();
-Форма1 = ДФ.Форма;
-Форма1.Заголовок = "Нажмите кнопку";
-Форма1.Ширина = 300;
-Форма1.Высота = 200;
-
-Кнопка1 = ДФ.Кнопка();
-Кнопка1.Родитель = Форма1;
-Кнопка1.Текст = "Нажми";
-Кнопка1.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка1_Нажатие");
-
-Диалог1 = ДФ.Диалог();
-Диалог1.Родитель = Форма1;
-Диалог1.ЦветФона = ДФ.Цвет("Бежевый");
-
-Абзац1 = ДФ.Абзац();
-Абзац1.Родитель = Диалог1;
-Абзац1.Текст = "Диалог";
-
-Кнопка2 = ДФ.Кнопка();
-Кнопка2.Родитель = Диалог1;
-Кнопка2.Текст = "Закрыть";
-Кнопка2.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка2_Нажатие");
-
-Форма1.Открыть();
-</DIV>
-</PRE>
-</details>
-<P></P>
-<details><summary>Тестовый код</summary>
-<P><PRE class=code>
-<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
-<hr style="border-color: lightgray;"><DIV id="cont2">
-Перем Диалог1;
-
-Процедура Кнопка1_Нажатие() Экспорт
-	Диалог1.Показать();
-КонецПроцедуры
-
-Процедура Кнопка2_Нажатие() Экспорт
-	Диалог1.Закрыть();
-КонецПроцедуры
-
-ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
-ДФ = Новый ДекларативныеФормы();
-Форма1 = ДФ.Форма;
-Форма1.Заголовок = "Нажмите кнопку";
-Форма1.Ширина = 300;
-Форма1.Высота = 200;
-
-Кнопка1 = ДФ.Кнопка();
-Кнопка1.Родитель = Форма1;
-Кнопка1.Текст = "Нажми";
-Кнопка1.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка1_Нажатие");
-
-Диалог1 = ДФ.Диалог();
-Диалог1.Родитель = Форма1;
-Диалог1.ЦветФона = ДФ.Цвет("Бежевый");
-
-Абзац1 = ДФ.Абзац();
-Абзац1.Родитель = Диалог1;
-Абзац1.Текст = "Диалог";
-
-Кнопка2 = ДФ.Кнопка();
-Кнопка2.Родитель = Диалог1;
-Кнопка2.Текст = "Закрыть";
-Кнопка2.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка2_Нажатие");
-
-ДФ.СообщитьОЗапускеФормы();
-
-Форма1.Открыть();
 </DIV>
 </PRE>
 </details>
@@ -141,30 +60,6 @@ window.onload = function () {
 		  document.execCommand('copy'); 
 		} catch(err) {} 
 		window.getSelection().removeRange(range2);
-        return false;
-    }
-	
-    var c = document.getElementById('select2');
-    c.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta3 = document.getElementById('cont2'); 
-		var range3 = document.createRange();
-		range3.selectNode(ta3); 
-		window.getSelection().addRange(range3); 
-        return false;
-    }
-	
-    var d = document.getElementById('copy2');
-    d.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta4 = document.getElementById('cont2'); 
-		var range4 = document.createRange();
-		range4.selectNode(ta4); 
-		window.getSelection().addRange(range4);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range4);
         return false;
     }
 }
