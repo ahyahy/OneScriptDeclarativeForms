@@ -1,7 +1,8 @@
-# OneScriptDeclarativeForms
-Декларативные формы для сценарного языка OneScript.
+![cover](https://github.com/user-attachments/assets/440c47da-16d8-4419-ae59-198b7898dfe5)
 
-Данная библиотека позволяет создать оконное приложение с браузером внутри. Браузер внутри окна - это значит нам будут доступны технологии html, javascript и css. Движок браузера - Chromium. Соответственно у нас будет кроссплатформенность. В основе десктопного приложения лежат три разработки. Это [OneScript](https://oscript.io/), [NW.JS](https://nwjs.io/) и [OneScriptClientServer](https://github.com/ahyahy/OneScriptClientServer).
+Декларативные формы для сценарного языка OneScript
+
+Данная библиотека позволяет создавать приложения с графическим интерфейсом (GUI), используя OneScript в качестве языка разработки
 
 OneScript дает возможность писать сценарии на языке 1С.
 
