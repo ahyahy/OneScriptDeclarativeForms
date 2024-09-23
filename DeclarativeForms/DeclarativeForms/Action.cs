@@ -19,12 +19,11 @@ namespace osdf
 
         [ContextProperty("ИмяМетода", "MethodName")]
         public string MethodName { get; set; }
-
+        
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter { get; set; }
 
         [ContextProperty("Сценарий", "Script")]
-        public IRuntimeContextInstance Script { get; set; }
-
+        public IRuntimeContextInstance Script { get; set; }				
     }
 }

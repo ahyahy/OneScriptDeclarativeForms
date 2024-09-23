@@ -3,22 +3,10 @@
     public class Mainjs
     {
         public static string mainjs = @"
-function onLoadDOM(event)
-{
-    sendPost('mainForm' + '|||' + 'loaded');
-    sendPost('ПриЗагрузке');
-	//верстаем
-
-}
 function funFromString(func)
 {
     let func2 = Function(func);
     func2();
-}
-function setEventListener(nameElement, nameEvent)
-{
-    const el = map.get(nameElement);
-    el.addEventListener(nameEvent, doEvent);
 }
 function setMenuItemClick(nameMenuItem)
 {
@@ -54,6 +42,14 @@ function doEvent(event)
         '|||X=' + event.clientX + 
         '|||Y=' + event.clientY);
     }
+    else if (event.type == 'input')
+    {
+        let value = event.target.value;
+        sendPost(
+        event.target.name + 
+        '|||' + event.type + 
+        '|||Value=' + value);
+    }
     else
     {
         sendPost(event.target.name + '|||' + event.type);
@@ -61,9 +57,22 @@ function doEvent(event)
 }
 function createElement(typeElement, nameElement)
 {
-    const el = document.createElement(typeElement);
+    var el;
+    if (typeElement == 'body')
+    {
+        el = document.getElementsByTagName('body')[0];
+    }
+    else
+    {
+        el = document.createElement(typeElement);
+    }
     el.name = nameElement;
     map.set(nameElement, el);
+}
+function setInputType(nameElement, typeElement)
+{
+    var el = map.get(nameElement);
+    el.type = typeElement;
 }
 function setParent(nameElement, nameparent)
 {
@@ -210,6 +219,46 @@ function setMenu(name)
     let menu = map.get(name);
     gui.Window.get().menu = menu;
 }
+function getProperty(nameElement, namePropertyObj, namePropertyElement, notStyleProperty)
+{
+    let res;
+    let el = map.get(nameElement);
+    try
+    {
+        if (namePropertyObj == 'parent')
+        {
+            if (el.parentElement == document.body)
+            {
+                res = 'mainForm';
+            }
+            else
+            {
+                res = el.parentElement.name;
+            }
+        }
+        else
+        {
+			if (notStyleProperty == 'true')
+			{
+				res = el[namePropertyElement];
+			}
+			else
+			{
+				res = el.style.getPropertyValue(namePropertyElement);
+			}
+        }
+		sendPost(
+		nameElement + 
+		'|||' + 'dgj3rqq550w4' + 
+		'|||' + namePropertyObj + 
+		'|||' + res + 
+		'|||' + notStyleProperty);
+	}
+	catch (err)
+    {
+        sendPost('!!! Ошибка:' + err.message);
+    }    
+}
 function setProperty(nameElement, nameProperty, valueProperty)
 {
     if (valueProperty == 'false')
@@ -229,96 +278,76 @@ function setAttribute(nameElement, nameAttribute, valueAttribute)
 {
     map.get(nameElement).style[nameAttribute] = valueAttribute;
 }
-function showDialog(nameElement)
+// Начало блока постоянного клиента.
+function processData(data)
 {
-    let el = map.get(nameElement);
-    el.show();
+	let fragment1 = 'HTTP/1.1 200 OK';
+	let fragment2 = 'Server: OneScriptDeclarativeForms';
+	let fragment3 = 'Content-Type: text/html; charset=utf-8';
+	var input = data.replace(fragment1, '').replace(fragment2, '').replace(fragment3, '').trim();
+	// alert('input = ' + input);
+	var fields = input.split(';');
+	for (var i = 0; i < fields.length; i++)
+	{
+		var item = fields[i];
+		if (item != '')
+		{
+			try
+			{
+				funFromString(item);
+			}
+			catch
+			{
+				return;
+			}    
+		}
+	}
 }
-function closeDialog(nameElement)
+var net = require('net'); // Импортируем сетевой модуль.
+function getConn() // Создаем TCP-клиент.
 {
-    let el = map.get(nameElement);
-    el.close();
+    var option = {host:'127.0.0.1', port: " + DeclarativeForms.port + @"}
+    // Создайте TCP-клиент.
+    var client = net.createConnection(option, function () {
+        // alert('Локальный адрес подключения : ' + client.localAddress + ':' + client.localPort);
+        // alert('Удаленный адрес подключения : ' + client.remoteAddress + ':' + client.remotePort);
+    });
+    // client.setTimeout(1000); // Отключение по таймауту нам не нужно. Один клиент должен быть постоянно на связи.
+    client.setEncoding('utf8');
+    // При получении сервер отправляет обратно данные.
+    client.on('data', function (data) {
+        // alert('Данные возврата сервера : ' + data);
+		processData(data);
+    });
+    // Если постоянный клиент почему то отключился, мы его снова подключим.
+    client.on('close',function () {
+        // alert('Сервер закрыл соединение.');
+		var nodeClient = getConn();
+		nodeClient.write('ConstantClient5du4fsjiwixxf');
+    });
+    client.on('end',function () {
+        // alert('Окончание передачи.');
+    });
+    client.on('timeout', function () {
+        // alert('Таймаут подключения клиента.');
+    });
+    client.on('error', function (err) {
+        // alert(JSON.stringify(err));
+    });
+    return client;
 }
-function doTestAttribute(nameElement, method, answer, objRus, methodRus)
-{
-    let res;
-    let el = map.get(nameElement);
-    try
-    {
-        if (method == 'parent')
-        {
-            if (el.parentElement == document.body)
-            {
-                res = 'mainForm';
-            }
-            else
-            {
-                res = el.parentElement.name;
-            }
-        }
-        else
-        {
-            res = el.style.getPropertyValue(method)
-        }
-        if (answer == objRus + '.' + methodRus + '=' + res)
-        {
-            sendPost(nameElement + ' ' + methodRus + ' = ' + res);
-        }
-        else
-        {
-            sendPost(nameElement + ' ' + methodRus + ' !!!');
-        }
-    }
-    catch (err)
-    {
-        sendPost('!!! Ошибка:' + err.message);
-    }    
-}
-function doTestProperty(nameElement, method, answer, objRus, methodRus)
-{
-    let res;
-    let el = map.get(nameElement);
-    try
-    {
-        if (method == 'parent')
-        {
-            if (el.parentElement == document.body)
-            {
-                res = 'mainForm';
-            }
-            else
-            {
-                res = el.parentElement.name;
-            }
-        }
-        else
-        {
-            res = el[method];
-        }
-        if (answer == objRus + '.' + methodRus + '=' + res)
-        {
-            sendPost(nameElement + ' ' + methodRus + ' = ' + res);
-        }
-        else
-        {
-            sendPost(nameElement + ' ' + methodRus + ' !!!');
-        }
-    }
-    catch (err)
-    {
-        sendPost('!!! Ошибка:' + err.message);
-    }    
-}
+// Создадим одного постоянно подключенного клиента.
+// По этому каналу мы в любом месте сможем послать команду форме из сценария.
+// Остальные клиенты создаются  только во время возникновения события.
+// При возникновении события посылается POST запрос серверу и по получении ответа соединение разрывается.
+// это же соединение будет постоянным и в случае разрыва произойдет переподключение.
+var nodeClient = getConn();
+nodeClient.write('ConstantClient5du4fsjiwixxf');
+// Конец блока постоянного клиента.
 
-//функции
-
-//////var win = nw.Window.get();
 var map = new Map();
 var gui = require('nw.gui');
-document.addEventListener('DOMContentLoaded', onLoadDOM);
-//код
-
+document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '|||' + 'loaded'); });
 ";
-
     }
 }

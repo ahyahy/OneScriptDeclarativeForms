@@ -567,6 +567,12 @@ namespace osdf
             get { return "rgb(248, 248, 255)"; }
         }
 
+        [ContextProperty("Прозрачный", "Transparent")]
+        public string Transparent
+        {
+            get { return "transparent"; }
+        }
+
         [ContextProperty("Пурпурный", "Purple")]
         public string Purple
         {

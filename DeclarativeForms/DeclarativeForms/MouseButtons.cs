@@ -1,7 +1,15 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.HostedScript.Library.Binary;
+using ScriptEngine.HostedScript.Library;
+using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System;
 
 namespace osdf
 {
@@ -44,19 +52,19 @@ namespace osdf
         [ContextProperty("Левая", "Left")]
         public string Left
         {
-            get { return "left"; }
+        	get { return "left"; }
         }
 
         [ContextProperty("Правая", "Right")]
         public string Right
         {
-            get { return "right"; }
+        	get { return "right"; }
         }
 
         [ContextProperty("Средняя", "Middle")]
         public string Middle
         {
-            get { return "middle"; }
+        	get { return "middle"; }
         }
     }
 }

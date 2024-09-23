@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
+using ScriptEngine.HostedScript.Library;
 
 namespace osdf
 {
@@ -13,6 +14,7 @@ namespace osdf
         private static IRuntimeContextInstance startupScript = DeclarativeForms.GlobalContext().StartupScript();
         private static string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
         public static Dictionary<string, object> props = new Dictionary<string, object>();
+        private static DfBody body = new DfBody();
 
         public DfForm()
         {
@@ -227,12 +229,6 @@ namespace osdf
             get { return loaded; }
             set { loaded = value; }
         }
-        [ContextProperty("loaded", "loaded")]
-        public DfAction Loaded2
-        {
-            get { return loaded; }
-            set { loaded = value; }
-        }
 
         [ContextMethod("Открыть", "Open")]
         public void Open()
@@ -266,6 +262,9 @@ namespace osdf
             string pathNW = DeclarativeForms._nw;
 
             System.Diagnostics.Process process = new System.Diagnostics.Process();
+
+            DeclarativeForms.process = process;
+
             process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
             process.StartInfo.FileName = "\u0022" + pathNW + "\u0022";
             process.StartInfo.Arguments = "\u0022" + pathStartupScript + separator;
@@ -287,6 +286,35 @@ namespace osdf
                 string strFunc = "setMenu(\u0022" + menu.Name + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
+        }
+
+        [ContextProperty("Контент", "Body")]
+        public DfBody Body
+        {
+            get { return body; }
+        }
+
+        private ArrayImpl children = new ArrayImpl();
+        [ContextProperty("Элементы", "Children")]
+        public ArrayImpl Children
+        {
+            get { return children; }
+        }
+
+        [ContextMethod("ДобавитьДочерний", "АppendChild")]
+        public IValue АppendChild(IValue p1)
+        {
+            string strFunc = "document.body.appendChild(map.get(\u0022" + ((dynamic)p1).Name + "\u0022));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            ((dynamic)p1).Parent = this;
+            return p1;
+        }
+		
+        [ContextMethod("УдалитьДочерний", "RemoveChild")]
+        public void RemoveChild(IValue p1)
+        {
+            string strFunc = "document.body.removeChild(map.get(\u0022" + ((dynamic)p1.AsObject()).Name + "\u0022));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
     }
 }

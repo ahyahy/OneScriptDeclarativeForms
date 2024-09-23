@@ -1,7 +1,15 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.HostedScript.Library.Binary;
+using ScriptEngine.HostedScript.Library;
+using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System;
 
 namespace osdf
 {
@@ -47,10 +55,8 @@ namespace osdf
             _list.Add(ValueFactory.Create(TableRowGroup));
             _list.Add(ValueFactory.Create(TableHeaderGroup));
             _list.Add(ValueFactory.Create(TableCaption));
-            _list.Add(ValueFactory.Create(Initial));
             _list.Add(ValueFactory.Create(TableColumn));
             _list.Add(ValueFactory.Create(Marker));
-            _list.Add(ValueFactory.Create(Inherit));
             _list.Add(ValueFactory.Create(TableFooterGroup));
             _list.Add(ValueFactory.Create(None));
             _list.Add(ValueFactory.Create(Grid));
@@ -63,133 +69,121 @@ namespace osdf
         [ContextProperty("Блок", "Block")]
         public string Block
         {
-            get { return "block"; }
+        	get { return "block"; }
         }
 
         [ContextProperty("Встроенный", "Inline")]
         public string Inline
         {
-            get { return "inline"; }
+        	get { return "inline"; }
         }
 
         [ContextProperty("ВстроенныйБлок", "InlineBlock")]
         public string InlineBlock
         {
-            get { return "inline-block"; }
+        	get { return "inline-block"; }
         }
 
         [ContextProperty("ВстроенныйГибкий", "InlineFlex")]
         public string InlineFlex
         {
-            get { return "inline-flex"; }
+        	get { return "inline-flex"; }
         }
 
         [ContextProperty("ВстроенныйСетка", "InlineGrid")]
         public string InlineGrid
         {
-            get { return "inline-grid"; }
+        	get { return "inline-grid"; }
         }
 
         [ContextProperty("ВстроенныйТаблица", "InlineTable")]
         public string InlineTable
         {
-            get { return "inline-table"; }
+        	get { return "inline-table"; }
         }
 
         [ContextProperty("Гибкий", "Flex")]
         public string Flex
         {
-            get { return "flex"; }
+        	get { return "flex"; }
         }
 
         [ContextProperty("ГруппаКолонокТаблицы", "TableColumnGroup")]
         public string TableColumnGroup
         {
-            get { return "table-column-group"; }
+        	get { return "table-column-group"; }
         }
 
         [ContextProperty("ГруппаСтрокТаблицы", "TableRowGroup")]
         public string TableRowGroup
         {
-            get { return "table-row-group"; }
+        	get { return "table-row-group"; }
         }
 
         [ContextProperty("ЗаголовокГруппыТаблицы", "TableHeaderGroup")]
         public string TableHeaderGroup
         {
-            get { return "table-header-group"; }
+        	get { return "table-header-group"; }
         }
 
         [ContextProperty("ЗаголовокТаблицы", "TableCaption")]
         public string TableCaption
         {
-            get { return "table-caption"; }
-        }
-
-        [ContextProperty("Исходный", "Initial")]
-        public string Initial
-        {
-            get { return "initial"; }
+        	get { return "table-caption"; }
         }
 
         [ContextProperty("КолонкаТаблицы", "TableColumn")]
         public string TableColumn
         {
-            get { return "table-column"; }
+        	get { return "table-column"; }
         }
 
         [ContextProperty("Маркер", "Marker")]
         public string Marker
         {
-            get { return "marker"; }
-        }
-
-        [ContextProperty("Наследуемый", "Inherit")]
-        public string Inherit
-        {
-            get { return "inherit"; }
+        	get { return "marker"; }
         }
 
         [ContextProperty("НижнийКолонтитулТаблицы", "TableFooterGroup")]
         public string TableFooterGroup
         {
-            get { return "table-footer-group"; }
+        	get { return "table-footer-group"; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public string None
         {
-            get { return "none"; }
+        	get { return "none"; }
         }
 
         [ContextProperty("Сетка", "Grid")]
         public string Grid
         {
-            get { return "grid"; }
+        	get { return "grid"; }
         }
 
         [ContextProperty("СписокЭлементов", "ListItem")]
         public string ListItem
         {
-            get { return "list-item"; }
+        	get { return "list-item"; }
         }
 
         [ContextProperty("СтрокаТаблицы", "TableRow")]
         public string TableRow
         {
-            get { return "table-row"; }
+        	get { return "table-row"; }
         }
 
         [ContextProperty("Таблица", "Table")]
         public string Table
         {
-            get { return "table"; }
+        	get { return "table"; }
         }
 
         [ContextProperty("ЯчейкаТаблицы", "TableCell")]
         public string TableCell
         {
-            get { return "table-cell"; }
+        	get { return "table-cell"; }
         }
     }
 }

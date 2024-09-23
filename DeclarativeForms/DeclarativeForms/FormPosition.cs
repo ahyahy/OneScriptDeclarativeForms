@@ -1,7 +1,15 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.HostedScript.Library.Binary;
+using ScriptEngine.HostedScript.Library;
+using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System;
 
 namespace osdf
 {
@@ -44,19 +52,19 @@ namespace osdf
         [ContextProperty("Мышь", "Mouse")]
         public string Mouse
         {
-            get { return "mouse"; }
+        	get { return "mouse"; }
         }
 
         [ContextProperty("НеУстановлено", "NotSet")]
         public string NotSet
         {
-            get { return "null"; }
+        	get { return "null"; }
         }
 
         [ContextProperty("Центр", "Center")]
         public string Center
         {
-            get { return "center"; }
+        	get { return "center"; }
         }
     }
 }

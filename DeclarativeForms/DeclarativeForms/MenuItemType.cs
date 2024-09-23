@@ -1,7 +1,15 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.HostedScript.Library.Binary;
+using ScriptEngine.HostedScript.Library;
+using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System;
 
 namespace osdf
 {
@@ -44,19 +52,19 @@ namespace osdf
         [ContextProperty("Разделитель", "Separator")]
         public string Separator
         {
-            get { return "separator"; }
+        	get { return "separator"; }
         }
 
         [ContextProperty("Стандартный", "Normal")]
         public string Normal
         {
-            get { return "normal"; }
+        	get { return "normal"; }
         }
 
         [ContextProperty("Флажок", "Checkbox")]
         public string Checkbox
         {
-            get { return "checkbox"; }
+        	get { return "checkbox"; }
         }
     }
 }

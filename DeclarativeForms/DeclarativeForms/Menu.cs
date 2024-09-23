@@ -41,7 +41,7 @@ namespace osdf
        [ContextMethod("Показать", "Popup")]
         public void Popup(int p1, int p2)
         {
-            //string strFunc = "doMenuInsert(name, submenuName, num)";
+            //string strFunc = "doMenuPopup(name, x, y)";
             string strFunc = "doMenuPopup(\u0022" + Name + "\u0022, \u0022" + p1 + "\u0022, \u0022" + p2 + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
