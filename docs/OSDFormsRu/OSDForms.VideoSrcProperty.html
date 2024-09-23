@@ -19,16 +19,29 @@
 <P>Тип: Строка.</P>
 <P>Возвращает или задает источник видео.</P>
 <H4 class=dtH4>Примечание</H4>
-<P></P>
+<P>Строка источника должна быть записана в формате URL.</P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Видео1.Источник = "file:///C:/444/Pic/sample.mp4";
+Видео1.Источник = "sample.mp4";
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
 
+Видео1 = ДФ.Видео();
+Видео1.Родитель = Форма1;
+Видео1.ТипВидео = ДФ.ТипВидео.ВидеоMp4;
+Видео1.Контролы = Истина;
+Видео1.Беззвучно = Ложь;
+// Видео1.Источник = "file:///C:/444/Pic/sample.mp4";
+Видео1.Источник = "sample.mp4";
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

@@ -22,13 +22,25 @@
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Точка1.Игрек = 30;
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.Ширина = 300;
+Форма1.Высота = 300;
 
+Точка1 = ДФ.Точка();
+Точка1.Икс = 20;
+Точка1.Игрек = 30;
+Сообщить("Точка1.Икс = " + Точка1.Икс);
+Сообщить("Точка1.Игрек = " + Точка1.Игрек);
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

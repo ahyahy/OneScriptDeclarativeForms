@@ -11,7 +11,7 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>СдвигИсточника.ПоложениеИкс&nbsp;(TransformOrigin.AxisX)&nbsp;Свойство</H1></DIV></DIV>
+<H1 class=dtH1>ТочкаСдвига.ПоложениеИкс&nbsp;(TransformOrigin.AxisX)&nbsp;Свойство</H1></DIV></DIV>
 <DIV id=nstext>
 <H4 class=dtH4>Использование</H4>
 <P>Чтение и запись.</P>
@@ -22,13 +22,27 @@
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+ТочкаСдвига1.ПоложениеИкс = 20;
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.Ширина = 300;
+Форма1.Высота = 300;
 
+ТочкаСдвига1 = ДФ.ТочкаСдвига();
+ТочкаСдвига1.ПоложениеИкс = 20;
+ТочкаСдвига1.ПоложениеИгрек = 30;
+ТочкаСдвига1.ПоложениеЗет = 40;
+Сообщить("ТочкаСдвига1.ПоложениеИкс = " + ТочкаСдвига1.ПоложениеИкс);
+Сообщить("ТочкаСдвига1.ПоложениеИгрек = " + ТочкаСдвига1.ПоложениеИгрек);
+Сообщить("ТочкаСдвига1.ПоложениеЗет = " + ТочкаСдвига1.ПоложениеЗет);
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

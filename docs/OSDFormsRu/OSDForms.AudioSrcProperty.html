@@ -19,16 +19,27 @@
 <P>Тип: Строка.</P>
 <P>Возвращает или задает источник аудио.</P>
 <H4 class=dtH4>Примечание</H4>
-<P></P>
+<P>Строка источника должна быть записана в формате URL.</P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Аудио1.Источник = "file:///C:/444/Pic/Kaoma_Lambada.mp3";
+Аудио1.Источник = "Kaoma_Lambada.mp3";
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
 
+Аудио1 = ДФ.Аудио();
+Аудио1.Родитель = Форма1;
+Аудио1.Контролы = Истина;
+Аудио1.Источник = "file:///C:/444/Pic/Kaoma_Lambada.mp3";
+// Аудио1.Источник = "Kaoma_Lambada.mp3";
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

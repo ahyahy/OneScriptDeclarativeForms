@@ -22,13 +22,26 @@
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+МасштабИкс1.Икс = 1.4;
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
 
+МасштабИкс1 = ДФ.МасштабИкс();
+МасштабИкс1.Икс = 1.4;
+
+Сообщить("МасштабИкс1.Икс = " + МасштабИкс1.Икс);
+
+МасштабИкс2 = ДФ.МасштабИкс(2.3);
+
+Сообщить("МасштабИкс2.Икс = " + МасштабИкс2.Икс);
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

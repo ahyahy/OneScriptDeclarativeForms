@@ -23,13 +23,21 @@
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Ссылка1 = Форма1.ДобавитьДочерний(ДФ.Ссылка());
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
 
+Ссылка1 = Форма1.ДобавитьДочерний(ДФ.Ссылка());
+Ссылка1.Адрес = "https://oscript.io/";
+Ссылка1.Текст = "Инструмент автоматизации для специалистов по 1С";
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

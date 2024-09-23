@@ -22,13 +22,24 @@
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Поворот1.Угол = 3;
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
 
+Поворот1 = ДФ.Поворот();
+Поворот1.Угол = 3;
+Сообщить("Поворот1.Угол = " + Поворот1.Угол);
+
+Поворот2 = ДФ.Поворот(4);
+Сообщить("Поворот2.Угол = " + Поворот2.Угол);
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>
