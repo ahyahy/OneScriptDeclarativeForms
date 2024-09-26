@@ -1,28 +1,19 @@
-﻿using ScriptEngine.HostedScript.Library.Binary;
-using ScriptEngine.HostedScript.Library;
-using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Collections;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System;
 
 namespace osdf
 {
     [ContextClass("ДфСтиль", "DfStyle")]
     public class DfStyle : AutoContext<DfStyle>
     {
-
         public DfStyle()
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createElement(\u0022" + "style" + "\u0022, \u0022" + Name + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createElement(\u0022" + "style" + "\u0022, \u0022" + ItemKey + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
         private IValue owner;
@@ -79,7 +70,7 @@ namespace osdf
                         fontFamily = font.FontFamily.AsString() + " ";
                     }
                     string res = fontStyle + fontVariant + fontWeight + fontSize + "/" + lineHeight + " " + fontFamily;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "font" + "\u0022, \u0022" + res + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "font" + "\u0022, \u0022" + res + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -176,7 +167,7 @@ namespace osdf
                         sepia = "sepia(" + imagesFilter.Sepia.AsNumber() + "%) ";
                     }
                     string res = blur + brightness + contrast + dropShadow + grayscale + hueRotate + invert + opacity + saturate + sepia;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "filter" + "\u0022, \u0022" + res + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "filter" + "\u0022, \u0022" + res + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -193,7 +184,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "position" + "\u0022, \u0022" + position + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "position" + "\u0022, \u0022" + position + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -210,7 +201,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "justifyContent" + "\u0022, \u0022" + justifyContent + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "justifyContent" + "\u0022, \u0022" + justifyContent + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -227,7 +218,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "display" + "\u0022, \u0022" + display + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "display" + "\u0022, \u0022" + display + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -244,7 +235,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "alignItems" + "\u0022, \u0022" + alignItems + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "alignItems" + "\u0022, \u0022" + alignItems + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -291,7 +282,7 @@ namespace osdf
                     {
                         inset = "inset";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "boxShadow" + "\u0022, \u0022" + x + y + blur + spread + color + inset + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "boxShadow" + "\u0022, \u0022" + x + y + blur + spread + color + inset + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -323,7 +314,7 @@ namespace osdf
                     {
                         listStyleImage = "url('" + listStyle.ListStyleImage.AsString() + "') ";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "listStyle" + "\u0022, \u0022" + listStyleType + listStylePosition + listStyleImage + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "listStyle" + "\u0022, \u0022" + listStyleType + listStylePosition + listStyleImage + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -362,7 +353,7 @@ namespace osdf
                     {
                         columnRuleColor = columnRule.ColumnRuleColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "columnRule" + "\u0022, \u0022" + columnRuleWidth + columnRuleStyle + columnRuleColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columnRule" + "\u0022, \u0022" + columnRuleWidth + columnRuleStyle + columnRuleColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -381,7 +372,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "verticalAlign" + "\u0022, \u0022" + verticalAlign + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "verticalAlign" + "\u0022, \u0022" + verticalAlign + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -420,7 +411,7 @@ namespace osdf
                     {
                         borderTopColor = borderTop.BorderTopColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderTop" + "\u0022, \u0022" + borderTopWidth + borderTopStyle + borderTopColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderTop" + "\u0022, \u0022" + borderTopWidth + borderTopStyle + borderTopColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -437,7 +428,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "height" + "\u0022, \u0022" + height + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "height" + "\u0022, \u0022" + height + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -454,7 +445,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "textAlign" + "\u0022, \u0022" + horizontalTextAlign + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "textAlign" + "\u0022, \u0022" + horizontalTextAlign + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -471,7 +462,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderCollapse" + "\u0022, \u0022" + borderCollapse + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderCollapse" + "\u0022, \u0022" + borderCollapse + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -510,7 +501,7 @@ namespace osdf
                     {
                         borderColor = borders.BorderColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "border" + "\u0022, \u0022" + borderWidth + borderStyle + borderColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "border" + "\u0022, \u0022" + borderWidth + borderStyle + borderColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -547,7 +538,7 @@ namespace osdf
                     {
                         paddingLeft = padding.PaddingLeft.AsNumber().ToString() + "px";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "padding" + "\u0022, \u0022" + paddingTop + paddingRight + paddingBottom + paddingLeft + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "padding" + "\u0022, \u0022" + paddingTop + paddingRight + paddingBottom + paddingLeft + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -564,7 +555,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "paddingTop" + "\u0022, \u0022" + paddingTop + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingTop" + "\u0022, \u0022" + paddingTop + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -581,7 +572,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "paddingLeft" + "\u0022, \u0022" + paddingLeft + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingLeft" + "\u0022, \u0022" + paddingLeft + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -598,7 +589,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "paddingBottom" + "\u0022, \u0022" + paddingBottom + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingBottom" + "\u0022, \u0022" + paddingBottom + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -615,18 +606,18 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "paddingRight" + "\u0022, \u0022" + paddingRight + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingRight" + "\u0022, \u0022" + paddingRight + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
         }
 
-        private string name;
-        [ContextProperty("Имя", "Name")]
-        public string Name
+        private string itemKey;
+        [ContextProperty("КлючЭлемента", "ItemKey")]
+        public string ItemKey
         {
-            get { return name; }
-            set { name = value; }
+            get { return itemKey; }
+            set { itemKey = value; }
         }
 
         private string borderImageSource;
@@ -640,7 +631,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + Name + "\u0022, \u0022" + "borderImageSource" + "\u0022, \u0022" + borderImageSource + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageSource" + "\u0022, \u0022" + borderImageSource + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -682,7 +673,7 @@ namespace osdf
                     {
                         borderImageRepeat = borderImage.BorderImageRepeat.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderImage" + "\u0022, \u0022" + borderImageSource + borderImageSlice + borderImageWidth + borderImageOutset + borderImageRepeat + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderImage" + "\u0022, \u0022" + borderImageSource + borderImageSlice + borderImageWidth + borderImageOutset + borderImageRepeat + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -699,7 +690,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "columnCount" + "\u0022, \u0022" + columnCount + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columnCount" + "\u0022, \u0022" + columnCount + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -733,7 +724,7 @@ namespace osdf
                     {
                         columnCount = columns.ColumnCount.AsNumber().ToString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "columns" + "\u0022, \u0022" + columnWidth + columnCount + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columns" + "\u0022, \u0022" + columnWidth + columnCount + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -772,7 +763,7 @@ namespace osdf
                     {
                         outlineColor = outline.OutlineColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "outline" + "\u0022, \u0022" + outlineWidth + outlineStyle + outlineColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outline" + "\u0022, \u0022" + outlineWidth + outlineStyle + outlineColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -811,7 +802,7 @@ namespace osdf
                     {
                         borderLeftColor = borderLeft.BorderLeftColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderLeft" + "\u0022, \u0022" + borderLeftWidth + borderLeftStyle + borderLeftColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderLeft" + "\u0022, \u0022" + borderLeftWidth + borderLeftStyle + borderLeftColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -850,7 +841,7 @@ namespace osdf
                     {
                         borderRightColor = borderRight.BorderRightColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderRight" + "\u0022, \u0022" + borderRightWidth + borderRightStyle + borderRightColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderRight" + "\u0022, \u0022" + borderRightWidth + borderRightStyle + borderRightColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -889,7 +880,7 @@ namespace osdf
                     {
                         borderBottomColor = borderBottom.BorderBottomColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderBottom" + "\u0022, \u0022" + borderBottomWidth + borderBottomStyle + borderBottomColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderBottom" + "\u0022, \u0022" + borderBottomWidth + borderBottomStyle + borderBottomColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -931,7 +922,7 @@ namespace osdf
                     {
                         auto = "auto";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "margin" + "\u0022, \u0022" + marginTop + marginRight + marginBottom + marginLeft + auto + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "margin" + "\u0022, \u0022" + marginTop + marginRight + marginBottom + marginLeft + auto + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -948,7 +939,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + Name + "\u0022, \u0022" + "borderImageRepeat" + "\u0022, \u0022" + borderImageRepeat + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageRepeat" + "\u0022, \u0022" + borderImageRepeat + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -965,7 +956,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + Name + "\u0022, \u0022" + "borderImageSlice" + "\u0022, \u0022" + borderImageSlice + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageSlice" + "\u0022, \u0022" + borderImageSlice + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -982,7 +973,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "overflow" + "\u0022, \u0022" + overflow + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "overflow" + "\u0022, \u0022" + overflow + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -999,7 +990,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "overflowY" + "\u0022, \u0022" + overflowY + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "overflowY" + "\u0022, \u0022" + overflowY + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1016,7 +1007,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "overflowX" + "\u0022, \u0022" + overflowX + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "overflowX" + "\u0022, \u0022" + overflowX + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1033,7 +1024,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "tableLayout" + "\u0022, \u0022" + tableLayout + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "tableLayout" + "\u0022, \u0022" + tableLayout + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1050,7 +1041,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + Name + "\u0022, \u0022" + "borderImageOutset" + "\u0022, \u0022" + borderImageOutset + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageOutset" + "\u0022, \u0022" + borderImageOutset + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1095,7 +1086,7 @@ namespace osdf
                     {
                         borderLeftStyle = bordersStyle.BorderLeftStyle.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderStyle" + "\u0022, \u0022" + borderTopStyle + borderRightStyle + borderBottomStyle + borderLeftStyle + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderStyle" + "\u0022, \u0022" + borderTopStyle + borderRightStyle + borderBottomStyle + borderLeftStyle + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1112,7 +1103,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "outlineStyle" + "\u0022, \u0022" + outlineStyle + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outlineStyle" + "\u0022, \u0022" + outlineStyle + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1182,7 +1173,7 @@ namespace osdf
                         borderLeftColor = bordersColor.BorderLeftColor.AsString();
                     }
                     string res = borderTopColor + borderRightColor + borderBottomColor + borderLeftColor;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderColor" + "\u0022, \u0022" + res + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderColor" + "\u0022, \u0022" + res + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1199,7 +1190,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "outlineColor" + "\u0022, \u0022" + outlineColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outlineColor" + "\u0022, \u0022" + outlineColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1240,7 +1231,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "backgroundColor" + "\u0022, \u0022" + backgroundColor + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "backgroundColor" + "\u0022, \u0022" + backgroundColor + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1257,7 +1248,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "width" + "\u0022, \u0022" + width + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "width" + "\u0022, \u0022" + width + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1331,7 +1322,7 @@ namespace osdf
                         }
                     }
                     string res = borderTopWidth + borderRightWidth + borderBottomWidth + borderLeftWidth;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "borderWidth" + "\u0022, \u0022" + res + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderWidth" + "\u0022, \u0022" + res + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1348,7 +1339,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + Name + "\u0022, \u0022" + "borderImageWidth" + "\u0022, \u0022" + borderImageWidth + "\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageWidth" + "\u0022, \u0022" + borderImageWidth + "\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1365,7 +1356,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "columnWidth" + "\u0022, \u0022" + columnWidth + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columnWidth" + "\u0022, \u0022" + columnWidth + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1382,7 +1373,7 @@ namespace osdf
                 if (Owner != null)
                 {
                     //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).Name + "\u0022, \u0022" + "outlineWidth" + "\u0022, \u0022" + outlineWidth + "px\u0022)";
+                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outlineWidth" + "\u0022, \u0022" + outlineWidth + "px\u0022)";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
                 }
             }
@@ -1430,23 +1421,17 @@ namespace osdf
                 {
                     continue;
                 }
-                string propType = "";
                 dynamic propValue = p1.GetType().GetProperty(propName).GetValue(p1);
-                try
+                if (propValue == null)
                 {
-                    propType = propValue.GetType().ToString();
+                    continue;
                 }
-                catch { }
-                if (propType == "System.Int32")
+                if (propValue.GetType().ToString() == "System.Int32")
                 {
                     if (propValue != 0)
                     {
                         this[propName].SetValue(this, propValue);
                     }
-                }
-                else if (propType == "System.String")
-                {
-                    this[propName].SetValue(this, propValue);
                 }
                 else
                 {
@@ -1454,6 +1439,5 @@ namespace osdf
                 }
             }
         }
-        
     }
 }

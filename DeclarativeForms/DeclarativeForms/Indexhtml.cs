@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+		<link rel=""stylesheet"" href=""" + DeclarativeForms.CSSPath + @""" />
 
 		<script type=""text/javascript"">
             window.addEventListener(""error"", function (event) { alert(event.message + '\n' + event.filename); });

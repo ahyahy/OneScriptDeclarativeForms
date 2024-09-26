@@ -80,6 +80,19 @@ namespace osdf
         {
             return GlobalsManager.GetGlobalContext<SystemGlobalContext>();
         }
+		
+        public static string CSSPath = "styles.css";
+        private string _cssPath;
+        [ContextProperty("cssПуть", "cssPath")]
+        public string cssPath
+        {
+            get { return _cssPath; }
+            set
+            {
+                _cssPath = value;
+                CSSPath = _cssPath;
+            }
+        }
 
         private static DfTextBaseline df_TextBaseline = new DfTextBaseline();
         [ContextProperty("БазоваяЛинияТекста", "TextBaseline")]
@@ -781,7 +794,7 @@ namespace osdf
             return new DfGroupTitle();
         }
 
-        [ContextMethod("ЗаголовочнаяЯчейка", "HeaderCell")]
+        [ContextMethod("ЯчейкаЗаголовка", "HeaderCell")]
         public DfHeaderCell HeaderCell()
         {
             return new DfHeaderCell();
@@ -1007,12 +1020,6 @@ namespace osdf
         public DfOutput Output()
         {
             return new DfOutput();
-        }
-
-        [ContextMethod("СписокДанных", "Datalist")]
-        public DfDatalist Datalist()
-        {
-            return new DfDatalist();
         }
 
         [ContextMethod("СписокОпределений", "ListDefinition")]
@@ -1870,7 +1877,7 @@ namespace osdf
 
                     // Здесь нужно знать какой тип значения у свойства и конвертировать из строки str2[0] в нужный тип.
                     string nameProperty = "";
-                    System.Reflection.PropertyInfo[] myPropertyInfo = Sender.GetType().GetProperties();
+                    System.Reflection.PropertyInfo[] myPropertyInfo = DfEventArgs1.GetType().GetProperties();
                     for (int i1 = 0; i1 < myPropertyInfo.Length; i1++)
                     {
                         if (myPropertyInfo[i1].CustomAttributes.Count() == 1)
@@ -1885,7 +1892,15 @@ namespace osdf
                             }
                         }
                     }
-                    string propertyType = Sender.GetType().GetProperty(nameProperty).PropertyType.ToString();
+                    string propertyType;
+                    try
+                    {
+                        propertyType = ((dynamic)Sender).GetType().GetProperty(nameProperty).PropertyType.ToString();
+                    }
+                    catch (Exception)
+                    {
+                        propertyType = DfEventArgs1.GetType().GetProperty(nameProperty).PropertyType.ToString();
+                    }
                     IValue propValue;
                     if (propertyType == "System.Int32")
                     {
@@ -1942,11 +1957,11 @@ namespace osdf
             //getProperty(nameElement, namePropertyObj, namePropertyElement, notStyleProperty)
             if ((bool)namesRusProps[p2][1])
             {
-                function1 = "getProperty(\u0022" + ((dynamic)p1).Name + "\u0022, \u0022" + p2 + "\u0022, \u0022" + namesRusProps[p2][2] + "\u0022, \u0022" + namesRusProps[p2][1].ToString().ToLower() + "\u0022)";
+                function1 = "getProperty(\u0022" + ((dynamic)p1).ItemKey + "\u0022, \u0022" + p2 + "\u0022, \u0022" + namesRusProps[p2][2] + "\u0022, \u0022" + namesRusProps[p2][1].ToString().ToLower() + "\u0022)";
             }
             else
             {
-                function1 = "getProperty(\u0022" + ((dynamic)p1).Owner.Name + "\u0022, \u0022" + p2 + "\u0022, \u0022" + namesRusProps[p2][2] + "\u0022, \u0022" + namesRusProps[p2][1].ToString().ToLower() + "\u0022)";
+                function1 = "getProperty(\u0022" + ((dynamic)p1).Owner.ItemKey + "\u0022, \u0022" + p2 + "\u0022, \u0022" + namesRusProps[p2][2] + "\u0022, \u0022" + namesRusProps[p2][1].ToString().ToLower() + "\u0022)";
             }
             int num = DeclarativeForms.shareStructure.FindProperty("Клиент");
             dynamic val1 = DeclarativeForms.shareStructure.GetPropValue(num);

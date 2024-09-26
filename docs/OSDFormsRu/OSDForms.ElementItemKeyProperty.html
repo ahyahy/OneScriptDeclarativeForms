@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>ClassName Property</TITLE>
+<HTML><HEAD><TITLE>ItemKey Property</TITLE>
 <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
 <LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
 <BODY id=bodyID class=dtBODY>
@@ -11,35 +11,24 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>Элемент.ИмяКласса&nbsp;(Element.ClassName)&nbsp;Свойство</H1></DIV></DIV>
+<H1 class=dtH1>Элемент.КлючЭлемента&nbsp;(Element.ItemKey)&nbsp;Свойство</H1></DIV></DIV>
 <DIV id=nstext>
 <H4 class=dtH4>Использование</H4>
-<P>Чтение и запись.</P>
+<P>Только чтение.</P>
 <H4 class=dtH4>Значение</H4>
 <P>Тип: Строка.</P>
-<P>Возвращает или задает имя класса элемента.</P>
+<P>Возвращает уникальный ключ элемента сгенерированный при создании.</P>
 <H4 class=dtH4>Примечание</H4>
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-Кнопка1.ИмяКласса = "myClass";
+
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
-ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
-ДФ = Новый ДекларативныеФормы();
-ДФ.ПриПолученииСвойства = ДФ.Действие(ЭтотОбъект, "ДФ_ПриПолученииСвойства");
-Форма1 = ДФ.Форма;
 
-Кнопка1 = ДФ.Кнопка();
-Кнопка1.Родитель = Форма1;
-Кнопка1.Текст = "Кнопка1";
-Кнопка1.ИмяКласса = "myClass";
-Сообщить("Кнопка1.ИмяКласса = " + Кнопка1.ИмяКласса);
-
-Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

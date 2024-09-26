@@ -101,7 +101,6 @@
     <Compile Include="CssFloat.cs" />
     <Compile Include="CubicBezier.cs" />
     <Compile Include="Cursor.cs" />
-    <Compile Include="Datalist.cs" />
     <Compile Include="DateSelection.cs" />
     <Compile Include="DateTimeLocalSelection.cs" />
     <Compile Include="DateTimeSelection.cs" />

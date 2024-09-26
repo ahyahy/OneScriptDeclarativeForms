@@ -8,61 +8,61 @@ namespace osdf
     {
         public DfMenuItem(string label, string type)
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenuItem1(\u0022" + Name + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createMenuItem1(\u0022" + ItemKey + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
         public DfMenuItem(string label, string type, string key)
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenuItem2(\u0022" + Name + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + key + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createMenuItem2(\u0022" + ItemKey + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + key + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
         public DfMenuItem(string label, string type, string key, string modifiers)
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenuItem3(\u0022" + Name + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + key + "\u0022, \u0022" + modifiers + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createMenuItem3(\u0022" + ItemKey + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + key + "\u0022, \u0022" + modifiers + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
         public DfMenuItem(string label, string type, DfMenu menu)
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenuItem4(\u0022" + Name + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + menu.Name + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createMenuItem4(\u0022" + ItemKey + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + menu.ItemKey + "\u0022)";
             submenu = menu;
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
         public DfMenuItem(string label, string type, DfMenu menu, string key)
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenuItem5(\u0022" + Name + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + menu.Name + "\u0022, \u0022" + key + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createMenuItem5(\u0022" + ItemKey + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + menu.ItemKey + "\u0022, \u0022" + key + "\u0022)";
             submenu = menu;
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
         public DfMenuItem(string label, string type, DfMenu menu, string key, string modifiers)
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenuItem6(\u0022" + Name + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + menu.Name + "\u0022, \u0022" + key + "\u0022, \u0022" + modifiers + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createMenuItem6(\u0022" + ItemKey + "\u0022, \u0022" + label + "\u0022, \u0022" + type + "\u0022, \u0022" + menu.ItemKey + "\u0022, \u0022" + key + "\u0022, \u0022" + modifiers + "\u0022)";
             submenu = menu;
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
-        private string name;
-        [ContextProperty("Имя", "Name")]
-        public string Name
+        private string itemKey;
+        [ContextProperty("КлючЭлемента", "ItemKey")]
+        public string ItemKey
         {
-            get { return name; }
-            set { name = value; }
+            get { return itemKey; }
+            set { itemKey = value; }
         }
 
         public DfAction _сlick;
@@ -74,7 +74,7 @@ namespace osdf
             {
                 _сlick = value;
                 //setMenuItemClick(nameMenuItem)
-                string strFunc = "setMenuItemClick(\u0022" + Name + "\u0022)";
+                string strFunc = "setMenuItemClick(\u0022" + ItemKey + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -86,7 +86,7 @@ namespace osdf
             {
                 _сlick = value;
                 //setMenuItemClick(nameMenu)
-                string strFunc = "setMenuItemClick(\u0022" + Name + "\u0022)";
+                string strFunc = "setMenuItemClick(\u0022" + ItemKey + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -100,7 +100,7 @@ namespace osdf
             {
                 label = value;
                 //setMenuItemLabel(name, label)
-                string strFunc = "setMenuItemLabel(\u0022" + Name + "\u0022, \u0022" + label + "\u0022)";
+                string strFunc = "setMenuItemLabel(\u0022" + ItemKey + "\u0022, \u0022" + label + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -114,7 +114,7 @@ namespace osdf
             {
                 submenu = value;
                 //setMenuItemSubmenu(nameElement, nameSubmenu)
-                string strFunc = "setMenuItemSubmenu(\u0022" + Name + "\u0022, \u0022" + submenu.Name + "\u0022)";
+                string strFunc = "setMenuItemSubmenu(\u0022" + ItemKey + "\u0022, \u0022" + submenu.ItemKey + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -128,7 +128,7 @@ namespace osdf
             {
                 enabled = value;
                 //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + Name + "\u0022, \u0022" + "enabled" + "\u0022, \u0022" + enabled.ToString().ToLower() + "\u0022)";
+                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "enabled" + "\u0022, \u0022" + enabled.ToString().ToLower() + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -142,7 +142,7 @@ namespace osdf
             {
                 icon = value;
                 //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + Name + "\u0022, \u0022" + "icon" + "\u0022, \u0022" + icon + "\u0022)";
+                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "icon" + "\u0022, \u0022" + icon + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -156,7 +156,7 @@ namespace osdf
             {
                 tooltip = value;
                 //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + Name + "\u0022, \u0022" + "tooltip" + "\u0022, \u0022" + tooltip + "\u0022)";
+                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "tooltip" + "\u0022, \u0022" + tooltip + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -170,7 +170,7 @@ namespace osdf
             {
                 _checked = value;
                 //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + Name + "\u0022, \u0022" + "checked" + "\u0022, \u0022" + _checked.ToString().ToLower() + "\u0022)";
+                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "checked" + "\u0022, \u0022" + _checked.ToString().ToLower() + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -184,7 +184,7 @@ namespace osdf
             {
                 key = value;
                 //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + Name + "\u0022, \u0022" + "key" + "\u0022, \u0022" + key + "\u0022)";
+                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "key" + "\u0022, \u0022" + key + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -198,7 +198,7 @@ namespace osdf
             {
                 modifiers = value;
                 //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + Name + "\u0022, \u0022" + "modifiers" + "\u0022, \u0022" + modifiers + "\u0022)";
+                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "modifiers" + "\u0022, \u0022" + modifiers + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }

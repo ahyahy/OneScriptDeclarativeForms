@@ -18,16 +18,16 @@ namespace osdf
 
         public DfForm()
         {
-            Name = "mainForm";
-            DeclarativeForms.AddToHashtable(Name, this);
+            ItemKey = "mainForm";
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
-        private string name;
-        [ContextProperty("Имя", "Name")]
-        public string Name
+        private string itemKey;
+        [ContextProperty("КлючЭлемента", "ItemKey")]
+        public string ItemKey
         {
-            get { return name; }
-            private set { name = value; }
+            get { return itemKey; }
+            set { itemKey = value; }
         }
 
         private int width;
@@ -283,7 +283,7 @@ namespace osdf
             {
                 menu = value;
                 //setMenu(name)
-                string strFunc = "setMenu(\u0022" + menu.Name + "\u0022)";
+                string strFunc = "setMenu(\u0022" + menu.ItemKey + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -304,7 +304,7 @@ namespace osdf
         [ContextMethod("ДобавитьДочерний", "АppendChild")]
         public IValue АppendChild(IValue p1)
         {
-            string strFunc = "document.body.appendChild(map.get(\u0022" + ((dynamic)p1).Name + "\u0022));";
+            string strFunc = "document.body.appendChild(mapKeyEl.get(\u0022" + ((dynamic)p1).ItemKey + "\u0022));";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             ((dynamic)p1).Parent = this;
             return p1;
@@ -313,7 +313,7 @@ namespace osdf
         [ContextMethod("УдалитьДочерний", "RemoveChild")]
         public void RemoveChild(IValue p1)
         {
-            string strFunc = "document.body.removeChild(map.get(\u0022" + ((dynamic)p1.AsObject()).Name + "\u0022));";
+            string strFunc = "document.body.removeChild(mapKeyEl.get(\u0022" + ((dynamic)p1.AsObject()).ItemKey + "\u0022));";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
     }

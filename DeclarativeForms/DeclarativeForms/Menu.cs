@@ -8,25 +8,25 @@ namespace osdf
     {
         public DfMenu(string p1)
         {
-            Name = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenu(\u0022" + Name + "\u0022, \u0022" + p1 + "\u0022)";
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "createMenu(\u0022" + ItemKey + "\u0022, \u0022" + p1 + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-            DeclarativeForms.AddToHashtable(Name, this);
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
-        private string name;
-        [ContextProperty("Имя", "Name")]
-        public string Name
+        private string itemKey;
+        [ContextProperty("КлючЭлемента", "ItemKey")]
+        public string ItemKey
         {
-            get { return name; }
-            set { name = value; }
+            get { return itemKey; }
+            set { itemKey = value; }
         }
 
         [ContextMethod("Добавить", "Append")]
         public void Append(DfMenuItem p1)
         {
             //string strFunc = "doMenuAppend(name, submenuName)";
-            string strFunc = "doMenuAppend(\u0022" + Name + "\u0022, \u0022" + p1.Name + "\u0022)";
+            string strFunc = "doMenuAppend(\u0022" + ItemKey + "\u0022, \u0022" + p1.ItemKey + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
 
@@ -34,7 +34,7 @@ namespace osdf
         public void Insert(DfMenuItem p1, int p2)
         {
             //string strFunc = "doMenuInsert(name, submenuName, num)";
-            string strFunc = "doMenuInsert(\u0022" + Name + "\u0022, \u0022" + p1.Name + "\u0022, \u0022" + p2 + "\u0022)";
+            string strFunc = "doMenuInsert(\u0022" + ItemKey + "\u0022, \u0022" + p1.ItemKey + "\u0022, \u0022" + p2 + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
 
@@ -42,7 +42,7 @@ namespace osdf
         public void Popup(int p1, int p2)
         {
             //string strFunc = "doMenuPopup(name, x, y)";
-            string strFunc = "doMenuPopup(\u0022" + Name + "\u0022, \u0022" + p1 + "\u0022, \u0022" + p2 + "\u0022)";
+            string strFunc = "doMenuPopup(\u0022" + ItemKey + "\u0022, \u0022" + p1 + "\u0022, \u0022" + p2 + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
 
@@ -50,7 +50,7 @@ namespace osdf
         public void Remove(DfMenuItem p1)
         {
             //string strFunc = "doMenuRemove(name, submenuName)";
-            string strFunc = "doMenuRemove(\u0022" + Name + "\u0022, \u0022" + p1.Name + "\u0022)";
+            string strFunc = "doMenuRemove(\u0022" + ItemKey + "\u0022, \u0022" + p1.ItemKey + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
 
@@ -58,7 +58,7 @@ namespace osdf
         public void RemoveAt(int p1)
         {
             //string strFunc = "doMenuRemoveAt(name, num)";
-            string strFunc = "doMenuRemoveAt(\u0022" + Name + "\u0022, \u0022" + p1 + "\u0022)";
+            string strFunc = "doMenuRemoveAt(\u0022" + ItemKey + "\u0022, \u0022" + p1 + "\u0022)";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
         }
 
@@ -71,7 +71,7 @@ namespace osdf
             {
                 _сlick = value;
                 //setMenuClick(nameMenu)
-                string strFunc = "setMenuClick(\u0022" + Name + "\u0022)";
+                string strFunc = "setMenuClick(\u0022" + ItemKey + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }
@@ -83,7 +83,7 @@ namespace osdf
             {
                 _сlick = value;
                 //setMenuClick(nameMenu)
-                string strFunc = "setMenuClick(\u0022" + Name + "\u0022)";
+                string strFunc = "setMenuClick(\u0022" + ItemKey + "\u0022)";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
             }
         }

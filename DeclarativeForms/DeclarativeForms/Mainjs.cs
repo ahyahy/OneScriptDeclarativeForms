@@ -10,7 +10,7 @@ function funFromString(func)
 }
 function setMenuItemClick(nameMenuItem)
 {
-    let menuItem = map.get(nameMenuItem);
+    let menuItem = mapKeyEl.get(nameMenuItem);
     menuItem.click = function()
     {
         sendPost(nameMenuItem + '|||' + 'click');
@@ -36,7 +36,7 @@ function doEvent(event)
         }
 
         sendPost(
-        event.target.name + 
+        mapElKey.get(event.target) + 
         '|||' + event.type + 
         '|||Button=' + button + 
         '|||X=' + event.clientX + 
@@ -46,13 +46,13 @@ function doEvent(event)
     {
         let value = event.target.value;
         sendPost(
-        event.target.name + 
+        mapElKey.get(event.target) + 
         '|||' + event.type + 
         '|||Value=' + value);
     }
     else
     {
-        sendPost(event.target.name + '|||' + event.type);
+        sendPost(mapElKey.get(event.target) + '|||' + event.type);
     }
 }
 function createElement(typeElement, nameElement)
@@ -66,24 +66,25 @@ function createElement(typeElement, nameElement)
     {
         el = document.createElement(typeElement);
     }
-    el.name = nameElement;
-    map.set(nameElement, el);
+    //el.name = nameElement;
+    mapKeyEl.set(nameElement, el);
+    mapElKey.set(el, nameElement);
 }
 function setInputType(nameElement, typeElement)
 {
-    var el = map.get(nameElement);
+    var el = mapKeyEl.get(nameElement);
     el.type = typeElement;
 }
 function setParent(nameElement, nameparent)
 {
-    const el = map.get(nameElement);
+    const el = mapKeyEl.get(nameElement);
     if (nameparent == 'mainForm')
     {
         document.body.appendChild(el);
     }
     else
     {
-        const elParent = map.get(nameparent);
+        const elParent = mapKeyEl.get(nameparent);
         elParent.appendChild(el);
     }
 }
@@ -119,81 +120,87 @@ function sendPost(str)
 }
 function setMenuItemLabel(name, label)
 {
-    let menuItem = map.get(name);
+    let menuItem = mapKeyEl.get(name);
     menuItem.label = label;
 }
 function doMenuAppend(name, submenuName)
 {
-    let menu = map.get(name);
-    let menu2 = map.get(submenuName);
+    let menu = mapKeyEl.get(name);
+    let menu2 = mapKeyEl.get(submenuName);
     menu.append(menu2);
 }
 function doMenuRemove(name, submenuName)
 {
-    let menu = map.get(name);
-    let menu2 = map.get(submenuName);
+    let menu = mapKeyEl.get(name);
+    let menu2 = mapKeyEl.get(submenuName);
     menu.remove(menu2);
 }
 function doMenuRemoveAt(name, num)
 {
-    let menu = map.get(name);
+    let menu = mapKeyEl.get(name);
     menu.removeAt(parseInt(num));
 }
 function doMenuInsert(name, submenuName, num)
 {
-    let menu = map.get(name);
-    let menu2 = map.get(submenuName);
+    let menu = mapKeyEl.get(name);
+    let menu2 = mapKeyEl.get(submenuName);
     menu.insert(menu2, parseInt(num));
 }
 function doMenuPopup(name, x, y)
 {
-    let menu = map.get(name);
+    let menu = mapKeyEl.get(name);
     menu.popup(parseInt(x), parseInt(y));
 }
 function setMenuItemSubmenu(nameElement, nameSubmenu)
 {
-    let el = map.get(nameElement);
-    let submenu = map.get(nameSubmenu);
+    let el = mapKeyEl.get(nameElement);
+    let submenu = mapKeyEl.get(nameSubmenu);
     el.submenu = submenu;
 
 }
 function createMenuItem1(name, label, typeMenuItem)
 {
     let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem });
-    map.set(name, menuItem);
+    mapKeyEl.set(name, menuItem);
+    mapElKey.set(menuItem, name);
     return menuItem;
 }
 function createMenuItem2(name, label, typeMenuItem, key)
 {
     let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, key: key });
-    map.set(name, menuItem);
+    mapKeyEl.set(name, menuItem);
+    mapElKey.set(menuItem, name);
     return menuItem;
 }
 function createMenuItem3(name, label, typeMenuItem, key, modifiers)
 {
     let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, key: key, modifiers: modifiers });
-    map.set(name, menuItem);
+    mapKeyEl.set(name, menuItem);
+    mapElKey.set(menuItem, name);
     return menuItem;
 }
 function createMenuItem4(name, label, typeMenuItem, submenuName)
 {
-    let menuItems = map.get(submenuName);
+    let menuItems = mapKeyEl.get(submenuName);
     let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, submenu: menuItems });
-    map.set(name, menuItem);
+    mapKeyEl.set(name, menuItem);
+    mapElKey.set(menuItem, name);
     return menuItem;
 }
 function createMenuItem5(name, label, typeMenuItem, submenuName, key)
 {
-    let menuItems = map.get(submenuName);
+    let menuItems = mapKeyEl.get(submenuName);
     let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, submenu: menuItems, key: key });
-    map.set(name, menuItem);
+    mapKeyEl.set(name, menuItem);
+    mapElKey.set(menuItem, name);
     return menuItem;
 }
 function createMenuItem6(name, label, typeMenuItem, submenuName, key, modifiers)
 {
-    let menuItems = map.get(submenuName);
+    let menuItems = mapKeyEl.get(submenuName);
     let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, submenu: menuItems, key: key, modifiers: modifiers });
-    map.set(name, menuItem);
+    mapKeyEl.set(name, menuItem);
+    mapElKey.set(menuItem, name);
     return menuItem;
 }
 function createMenu(name, typeMenu)
@@ -211,18 +218,19 @@ function createMenu(name, typeMenu)
     {
         menu = new gui.Menu();
     }
-    map.set(name, menu);
+    mapKeyEl.set(name, menu);
+    mapElKey.set(menu, name);
     return menu;
 }
 function setMenu(name)
 {
-    let menu = map.get(name);
+    let menu = mapKeyEl.get(name);
     gui.Window.get().menu = menu;
 }
 function getProperty(nameElement, namePropertyObj, namePropertyElement, notStyleProperty)
 {
     let res;
-    let el = map.get(nameElement);
+    let el = mapKeyEl.get(nameElement);
     try
     {
         if (namePropertyObj == 'parent')
@@ -263,20 +271,20 @@ function setProperty(nameElement, nameProperty, valueProperty)
 {
     if (valueProperty == 'false')
     {
-        map.get(nameElement)[nameProperty] = false;
+        mapKeyEl.get(nameElement)[nameProperty] = false;
     }
     else if (valueProperty == 'true')
     {
-        map.get(nameElement)[nameProperty] = true;
+        mapKeyEl.get(nameElement)[nameProperty] = true;
     }
     else
     {
-        map.get(nameElement)[nameProperty] = valueProperty;
+        mapKeyEl.get(nameElement)[nameProperty] = valueProperty;
     }
 }
 function setAttribute(nameElement, nameAttribute, valueAttribute)
 {
-    map.get(nameElement).style[nameAttribute] = valueAttribute;
+    mapKeyEl.get(nameElement).style[nameAttribute] = valueAttribute;
 }
 // Начало блока постоянного клиента.
 function processData(data)
@@ -345,7 +353,8 @@ var nodeClient = getConn();
 nodeClient.write('ConstantClient5du4fsjiwixxf');
 // Конец блока постоянного клиента.
 
-var map = new Map();
+var mapKeyEl = new Map();
+var mapElKey = new Map();
 var gui = require('nw.gui');
 document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '|||' + 'loaded'); });
 ";

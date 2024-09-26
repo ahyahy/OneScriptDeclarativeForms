@@ -192,25 +192,6 @@
 		|using System;
 		|";
 		Возврат Стр;
-	ИначеЕсли КлассАнгл = "BorderWidth" 
-		или КлассАнгл = "Font" 
-		или КлассАнгл = "InputForm" 
-		Тогда
-		Стр = 
-		"using ScriptEngine.HostedScript.Library.Binary;
-		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|using System.Collections.Concurrent;
-		|using System.Collections.Generic;
-		|using System.Collections;
-		|using System.IO;
-		|using System.Linq;
-		|using System.Reflection;
-		|using System.Runtime.InteropServices;
-		|using System;
-		|";
-		Возврат Стр;
 	ИначеЕсли КлассАнгл = "AdditionalDiv" 		
 		или КлассАнгл = "Area" 		
 		или КлассАнгл = "Audio" 		
@@ -369,12 +350,12 @@
 		Стр = 
 		"        public Df" + КлассАнгл + "()
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createElement(\u0022"" + """ + СловарьКлассов(КлассАнгл)[1] + """ + ""\u0022, \u0022"" + Name + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createElement(\u0022"" + """ + СловарьКлассов(КлассАнгл)[1] + """ + ""\u0022, \u0022"" + ItemKey + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            strFunc = ""setInputType(\u0022"" + Name + ""\u0022, \u0022"" + """ + СловарьКлассов(КлассАнгл)[2] + """ + ""\u0022)"";
+		|            strFunc = ""setInputType(\u0022"" + ItemKey + ""\u0022, \u0022"" + """ + СловарьКлассов(КлассАнгл)[2] + """ + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";		
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
 		|        }
@@ -389,34 +370,12 @@
 		Стр = 
 		"        public DfBody()
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""map.set('"" + Name + @""', document.getElementsByTagName('body')[0]);"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + @""', document.getElementsByTagName('body')[0]);"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
-		|        }
-		|
-		|        public PropertyInfo this[string p1]
-		|        {
-		|            get { return this.GetType().GetProperty(p1); }
-		|        }
-		|";
-	ИначеЕсли КлассАнгл = "Font" 
-		Тогда
-		Стр = 
-		"        public DfFont(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5, IValue p6)
-		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createElement(\u0022"" + ""font"" + ""\u0022, \u0022"" + Name + ""\u0022)"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
-		|            FontStyle = p1;
-		|            FontVariant = p2;
-		|            FontWeight = p3;
-		|            FontSize = p4;
-		|            LineHeight = p5;
-		|            FontFamily = p6;
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -429,15 +388,15 @@
 		Стр = 
 		"        public DfCanvas()
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createElement(\u0022"" + ""canvas"" + ""\u0022, \u0022"" + Name + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createElement(\u0022"" + ""canvas"" + ""\u0022, \u0022"" + ItemKey + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
 		|
-		|            NameCanvasContext = Name + Name;
-		|            strFunc = @""map.set('"" + NameCanvasContext + @""', map.get('"" + Name + @""').getContext('2d'));"";
+		|            NameCanvasContext = ItemKey + ItemKey;
+		|            strFunc = @""mapKeyEl.set('"" + NameCanvasContext + @""', mapKeyEl.get('"" + ItemKey + @""').getContext('2d'));"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|        }
 		|
@@ -460,10 +419,10 @@
 		Стр = 
 		"        public Df" + КлассАнгл + "()
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createElement(\u0022"" + """ + СловарьКлассов(КлассАнгл)[1] + """ + ""\u0022, \u0022"" + Name + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createElement(\u0022"" + """ + СловарьКлассов(КлассАнгл)[1] + """ + ""\u0022, \u0022"" + ItemKey + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
 		|        }
@@ -640,7 +599,7 @@
 				или (СвойствоРус = "Позиция") 
 				или (СвойствоРус = "ПозицияСтиляСписка") 
 				или (СвойствоРус = "ПоложениеЗаголовка") 
-				или (СвойствоРус = "Помечен") 
+				// или (СвойствоРус = "Помечен") 
 				или (СвойствоРус = "ПомеченПоУмолчанию") 
 				или (СвойствоРус = "Порядок") 
 				или (СвойствоРус = "Постер") 
@@ -763,7 +722,7 @@
 				|            {
 				|                _value = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""value"" + ""\u0022, \u0022"" + _value + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""value"" + ""\u0022, \u0022"" + _value + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -809,10 +768,10 @@
 				|                    string y2 = y1 + ((DfRectangle)value).Height.AsNumber().ToString();
 				|                    strCoords = strCoords + x1 + "","" + y1 + "","" + x2 + "","" + y2;
 				|                }
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""shape"" + ""\u0022, \u0022"" + strForm + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""shape"" + ""\u0022, \u0022"" + strForm + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|
-				|                strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""coords"" + ""\u0022, \u0022"" + strCoords + ""\u0022)"";
+				|                strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""coords"" + ""\u0022, \u0022"" + strCoords + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -829,7 +788,7 @@
 				|            {
 				|                аlt = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""аlt"" + ""\u0022, \u0022"" + аlt + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""аlt"" + ""\u0022, \u0022"" + аlt + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -846,7 +805,7 @@
 				|            {
 				|                аlt = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""аlt"" + ""\u0022, \u0022"" + аlt + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""аlt"" + ""\u0022, \u0022"" + аlt + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -863,7 +822,7 @@
 				|            {
 				|                useMap = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""useMap"" + ""\u0022, \u0022"" + ""#"" + useMap + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""useMap"" + ""\u0022, \u0022"" + ""#"" + useMap + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -880,7 +839,7 @@
 				|            {
 				|                height = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""height"" + ""\u0022, \u0022"" + height + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""height"" + ""\u0022, \u0022"" + height + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -897,7 +856,7 @@
 				|            {
 				|                width = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""width"" + ""\u0022, \u0022"" + width + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""width"" + ""\u0022, \u0022"" + width + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -924,6 +883,17 @@
 				|        }
 				|
 				|";
+			ИначеЕсли СвойствоРус = "КлючЭлемента" Тогда
+				Стр = Стр +
+				"        private string itemKey;
+				|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+				|        public string ItemKey
+				|        {
+				|            get { return itemKey; }
+				|            set { itemKey = value; }
+				|        }
+				|
+				|";
 			ИначеЕсли СвойствоРус = "Имя" Тогда
 				Стр = Стр +
 				"        private string name;
@@ -931,7 +901,13 @@
 				|        public string Name
 				|        {
 				|            get { return name; }
-				|            set { name = value; }
+				|            set
+				|            {
+				|                name = value;
+				|                //setProperty(nameElement, nameProperty, valueProperty)
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""name"" + ""\u0022, \u0022"" + name + ""\u0022)"";
+				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
+				|            }
 				|        }
 				|
 				|";
@@ -946,7 +922,7 @@
 				|            {
 				|                parent = value;
 				|                //setParent(nameElement, nameparent)
-				|                string strFunc = ""setParent(\u0022"" + Name + ""\u0022, \u0022"" + parent.AsObject().GetPropValue(""Name"") + ""\u0022)"";
+				|                string strFunc = ""setParent(\u0022"" + ItemKey + ""\u0022, \u0022"" + parent.AsObject().GetPropValue(""ItemKey"") + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|                // Родителю добавим потомка.
 				|                ArrayImpl ArrayImpl1 = ((dynamic)parent).Children;
@@ -972,7 +948,7 @@
 				|                str = str.Replace(""\u000A"", @""\u000A""); // Перевод строки
 				|                str = str.Replace(""\u007C"", @""\u007C""); // Знак |
 				|                str = str.Replace(""\u0022"", @""\u0022""); // Кавычки.
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""innerText"" + ""\u0022, \u0022"" + str + ""\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""innerText"" + ""\u0022, \u0022"" + str + ""\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -994,7 +970,7 @@
 				или СвойствоРус = "Направление"
 				или СвойствоРус = "ПереносТекста"
 				// или СвойствоРус = "Текст"
-				или СвойствоРус = "ИмяКласса"
+				или СвойствоРус = "Класс"
 				или СвойствоРус = "ТолькоЧтение"
 				или СвойствоРус = "Значение"
 				или СвойствоРус = "Источник"
@@ -1025,6 +1001,8 @@
 				или (СвойствоРус = "ВысотаСтроки") 
 				или (СвойствоРус = "СемействоШрифтов") 
 				
+				или (СвойствоРус = "Помечен") 
+				или (СвойствоРус = "Связь") 
 
 				Тогда
 				ПриватИмяСвойства = СловарьСвойств(СвойствоРус + "_" + СвойствоАнгл)[0];
@@ -1042,7 +1020,7 @@
 				|            {
 				|                " + ПриватИмяСвойства + " = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + """ + ИмяСвойстваДляJS + """ + ""\u0022, \u0022"" + " + ПриватИмяСвойства + ПриведениеКbool +  " + """ + Хвостик + "\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + """ + ИмяСвойстваДляJS + """ + ""\u0022, \u0022"" + " + ПриватИмяСвойства + ПриведениеКbool +  " + """ + Хвостик + "\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -1071,7 +1049,7 @@
 				|            {
 				|                " + ПриватИмяСвойства + " = value;
 				|                //setProperty(nameElement, nameProperty, valueProperty)
-				|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + """ + ИмяСвойстваДляJS + """ + ""\u0022, \u0022"" + " + ПриватИмяСвойства + ПриведениеКbool +  " + """ + Хвостик + "\u0022)"";
+				|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + """ + ИмяСвойстваДляJS + """ + ""\u0022, \u0022"" + " + ПриватИмяСвойства + ПриведениеКbool +  " + """ + Хвостик + "\u0022)"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -1128,7 +1106,7 @@
 				|                if (Owner != null)
 				|                {
 				|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-				|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + """ + ИмяСвойстваДляJS + """ + ""\u0022, \u0022"" + " + ПриватИмяСвойства + ПриведениеКbool +  " + """ + Хвостик + "\u0022)"";
+				|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + """ + ИмяСвойстваДляJS + """ + ""\u0022, \u0022"" + " + ПриватИмяСвойства + ПриведениеКbool +  " + """ + Хвостик + "\u0022)"";
 				|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|                }
 				|            }
@@ -1202,8 +1180,8 @@
 				|            set
 				|            {
 				|                " + ПриватИмяСвойства + " = value;
-				|                //map.get(nameElement).addEventListener(nameEvent, doEvent);
-				|                string strFunc = ""map.get(\u0022"" + Name + ""\u0022).addEventListener(\u0022" + ИмяСвойстваДляJS + "\u0022, doEvent);"";
+				|                //mapKeyEl.get(nameElement).addEventListener(nameEvent, doEvent);
+				|                string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).addEventListener(\u0022" + ИмяСвойстваДляJS + "\u0022, doEvent);"";
 				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            }
 				|        }
@@ -1261,8 +1239,8 @@
 				"        [ContextMethod(""Показать"", ""Show"")]
 				|        public void Show()
 				|        {
-				|            //map.get(nameElement).show();
-				|            string strFunc = ""map.get(\u0022"" + Name + ""\u0022).show();"";
+				|            //mapKeyEl.get(nameElement).show();
+				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).show();"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
 				|        
@@ -1272,8 +1250,8 @@
 				"        [ContextMethod(""Закрыть"", ""Close"")]
 				|        public void Close()
 				|        {
-				|            //map.get(nameElement).close();
-				|            string strFunc = ""map.get(\u0022"" + Name + ""\u0022).close();"";
+				|            //mapKeyEl.get(nameElement).close();
+				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).close();"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
 				|        
@@ -1283,7 +1261,7 @@
 				"        [ContextMethod(""ЗаполнитьПрямоугольник"", ""FillRect"")]
 				|        public void FillRect(int p1, int p2, int p3, int p4)
 				|        {
-				|            string strFunc = ""map.get('"" + NameCanvasContext + @""').fillRect("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
+				|            string strFunc = ""mapKeyEl.get('"" + NameCanvasContext + @""').fillRect("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
 				|        
@@ -1294,9 +1272,9 @@
 				|        public void Rect(int p1, int p2, int p3, int p4)
 				|        {
 				|            string strFunc = @""
-				|map.get('"" + NameCanvasContext + @""').beginPath();
-				|map.get('"" + NameCanvasContext + @""').rect("" + p1 + @"", "" + p2 + @"", "" + p3 + @"", "" + p4 + @"");
-				|map.get('"" + NameCanvasContext + @""').stroke();
+				|mapKeyEl.get('"" + NameCanvasContext + @""').beginPath();
+				|mapKeyEl.get('"" + NameCanvasContext + @""').rect("" + p1 + @"", "" + p2 + @"", "" + p3 + @"", "" + p4 + @"");
+				|mapKeyEl.get('"" + NameCanvasContext + @""').stroke();
 				|"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
@@ -1316,11 +1294,11 @@
 				|            string strFunc;
 				|            if (!p1)
 				|            {
-				|                strFunc = ""map.get(\u0022"" + Name + ""\u0022).scrollIntoView(false);"";
+				|                strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).scrollIntoView(false);"";
 				|            }
 				|            else
 				|            {
-				|                strFunc = ""map.get(\u0022"" + Name + ""\u0022).scrollIntoView();"";
+				|                strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).scrollIntoView();"";
 				|            }
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
@@ -1331,8 +1309,8 @@
 				"        [ContextMethod(""СнятьФокус"", ""Blur"")]
 				|        public void Blur()
 				|        {
-				|            //map.get(nameElement).blur();
-				|            string strFunc = ""map.get(\u0022"" + Name + ""\u0022).blur();"";
+				|            //mapKeyEl.get(nameElement).blur();
+				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).blur();"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
 				|        
@@ -1342,8 +1320,8 @@
 				"        [ContextMethod(""Фокус"", ""Focus"")]
 				|        public void Focus()
 				|        {
-				|            //map.get(nameElement).focus();
-				|            string strFunc = ""map.get(\u0022"" + Name + ""\u0022).focus();"";
+				|            //mapKeyEl.get(nameElement).focus();
+				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).focus();"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
 				|        
@@ -1353,8 +1331,8 @@
 				"        [ContextMethod(""Удалить"", ""Remove"")]
 				|        public void Remove()
 				|        {
-				|            //map.get(nameElement).remove();
-				|            string strFunc = ""map.get(\u0022"" + Name + ""\u0022).remove();"";
+				|            //mapKeyEl.get(nameElement).remove();
+				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).remove();"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
 				|        
@@ -1364,7 +1342,7 @@
 				"        [ContextMethod(""ДобавитьДочерний"", ""АppendChild"")]
 				|        public IValue АppendChild(IValue p1)
 				|        {
-				|            string strFunc = ""map.get(\u0022"" + Name + ""\u0022).appendChild(map.get(\u0022"" + ((dynamic)p1).Name + ""\u0022));"";
+				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).appendChild(mapKeyEl.get(\u0022"" + ((dynamic)p1).ItemKey + ""\u0022));"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|            ((dynamic)p1).Parent = this;
 				|            return p1;
@@ -1376,7 +1354,7 @@
 				"        [ContextMethod(""УдалитьДочерний"", ""RemoveChild"")]
 				|        public void RemoveChild(IValue p1)
 				|        {
-				|            string strFunc = ""map.get(\u0022"" + Name + ""\u0022).removeChild(map.get(\u0022"" + ((dynamic)p1.AsObject()).Name + ""\u0022));"";
+				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).removeChild(mapKeyEl.get(\u0022"" + ((dynamic)p1.AsObject()).ItemKey + ""\u0022));"";
 				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 				|        }
 				|        
@@ -1473,6 +1451,7 @@
 	СоздатьФайлДФ("ImagesFilter");
 	СоздатьФайлДФ("BordersColor");
 	СоздатьФайлДФ("BordersWidth");
+	СоздатьФайлДФ("Font");
 	
 	// Соберем и запишем файлы перечислений.
 	ЗаписатьПеречисления();
@@ -1543,6 +1522,7 @@
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.ImagesFilter.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.BordersColor.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.BordersWidth.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Font.html" 
 			
 		Тогда
 			Продолжить;
@@ -1764,6 +1744,85 @@
 		
 		
 		
+	ИначеЕсли ИмяФайлаДФ = "Font" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Reflection;
+		|
+		|namespace osdf
+		|{
+		|    [ContextClass(""ДфШрифт"", ""DfFont"")]
+		|    public class DfFont : AutoContext<DfFont>
+		|    {
+		|        public DfFont(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5, IValue p6)
+		|        {
+		|            FontStyle = p1;
+		|            FontVariant = p2;
+		|            FontWeight = p3;
+		|            FontSize = p4;
+		|            LineHeight = p5;
+		|            FontFamily = p6;
+		|        }
+		|
+		|        public PropertyInfo this[string p1]
+		|        {
+		|            get { return this.GetType().GetProperty(p1); }
+		|        }
+		|
+		|        private IValue fontVariant;
+		|        [ContextProperty(""ВариантШрифта"", ""FontVariant"")]
+		|        public IValue FontVariant
+		|        {
+		|            get { return fontVariant; }
+		|            set { fontVariant = value; }
+		|        }
+		|
+		|        private IValue lineHeight;
+		|        [ContextProperty(""ВысотаСтроки"", ""LineHeight"")]
+		|        public IValue LineHeight
+		|        {
+		|            get { return lineHeight; }
+		|            set { lineHeight = value; }
+		|        }
+		|
+		|        private IValue fontWeight;
+		|        [ContextProperty(""ЖирностьШрифта"", ""FontWeight"")]
+		|        public IValue FontWeight
+		|        {
+		|            get { return fontWeight; }
+		|            set { fontWeight = value; }
+		|        }
+		|
+		|        private IValue fontSize;
+		|        [ContextProperty(""РазмерШрифта"", ""FontSize"")]
+		|        public IValue FontSize
+		|        {
+		|            get { return fontSize; }
+		|            set { fontSize = value; }
+		|        }
+		|
+		|        private IValue fontFamily;
+		|        [ContextProperty(""СемействоШрифтов"", ""FontFamily"")]
+		|        public IValue FontFamily
+		|        {
+		|            get { return fontFamily; }
+		|            set { fontFamily = value; }
+		|        }
+		|
+		|        private IValue fontStyle;
+		|        [ContextProperty(""СтильШрифта"", ""FontStyle"")]
+		|        public IValue FontStyle
+		|        {
+		|            get { return fontStyle; }
+		|            set { fontStyle = value; }
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
 	ИначеЕсли ИмяФайлаДФ = "BordersWidth" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"using ScriptEngine.Machine.Contexts;
@@ -4248,31 +4307,22 @@
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
 	ИначеЕсли ИмяФайлаДФ = "Style" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.HostedScript.Library.Binary;
-		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.Machine.Contexts;
+		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
-		|using System.Collections.Concurrent;
-		|using System.Collections.Generic;
-		|using System.Collections;
 		|using System.IO;
-		|using System.Linq;
 		|using System.Reflection;
-		|using System.Runtime.InteropServices;
-		|using System;
 		|
 		|namespace osdf
 		|{
 		|    [ContextClass(""ДфСтиль"", ""DfStyle"")]
 		|    public class DfStyle : AutoContext<DfStyle>
 		|    {
-		|
 		|        public DfStyle()
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createElement(\u0022"" + ""style"" + ""\u0022, \u0022"" + Name + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createElement(\u0022"" + ""style"" + ""\u0022, \u0022"" + ItemKey + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
 		|        private IValue owner;
@@ -4329,7 +4379,7 @@
 		|                        fontFamily = font.FontFamily.AsString() + "" "";
 		|                    }
 		|                    string res = fontStyle + fontVariant + fontWeight + fontSize + ""/"" + lineHeight + "" "" + fontFamily;
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""font"" + ""\u0022, \u0022"" + res + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""font"" + ""\u0022, \u0022"" + res + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4426,7 +4476,7 @@
 		|                        sepia = ""sepia("" + imagesFilter.Sepia.AsNumber() + ""%) "";
 		|                    }
 		|                    string res = blur + brightness + contrast + dropShadow + grayscale + hueRotate + invert + opacity + saturate + sepia;
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""filter"" + ""\u0022, \u0022"" + res + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""filter"" + ""\u0022, \u0022"" + res + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4443,7 +4493,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""position"" + ""\u0022, \u0022"" + position + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""position"" + ""\u0022, \u0022"" + position + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4460,7 +4510,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""justifyContent"" + ""\u0022, \u0022"" + justifyContent + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""justifyContent"" + ""\u0022, \u0022"" + justifyContent + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4477,7 +4527,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""display"" + ""\u0022, \u0022"" + display + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""display"" + ""\u0022, \u0022"" + display + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4494,7 +4544,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""alignItems"" + ""\u0022, \u0022"" + alignItems + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""alignItems"" + ""\u0022, \u0022"" + alignItems + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4541,7 +4591,7 @@
 		|                    {
 		|                        inset = ""inset"";
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""boxShadow"" + ""\u0022, \u0022"" + x + y + blur + spread + color + inset + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""boxShadow"" + ""\u0022, \u0022"" + x + y + blur + spread + color + inset + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4573,7 +4623,7 @@
 		|                    {
 		|                        listStyleImage = ""url('"" + listStyle.ListStyleImage.AsString() + ""') "";
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""listStyle"" + ""\u0022, \u0022"" + listStyleType + listStylePosition + listStyleImage + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""listStyle"" + ""\u0022, \u0022"" + listStyleType + listStylePosition + listStyleImage + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4612,7 +4662,7 @@
 		|                    {
 		|                        columnRuleColor = columnRule.ColumnRuleColor.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""columnRule"" + ""\u0022, \u0022"" + columnRuleWidth + columnRuleStyle + columnRuleColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""columnRule"" + ""\u0022, \u0022"" + columnRuleWidth + columnRuleStyle + columnRuleColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4631,7 +4681,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""verticalAlign"" + ""\u0022, \u0022"" + verticalAlign + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""verticalAlign"" + ""\u0022, \u0022"" + verticalAlign + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4670,7 +4720,7 @@
 		|                    {
 		|                        borderTopColor = borderTop.BorderTopColor.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderTop"" + ""\u0022, \u0022"" + borderTopWidth + borderTopStyle + borderTopColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderTop"" + ""\u0022, \u0022"" + borderTopWidth + borderTopStyle + borderTopColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4687,7 +4737,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""height"" + ""\u0022, \u0022"" + height + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""height"" + ""\u0022, \u0022"" + height + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4704,7 +4754,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""textAlign"" + ""\u0022, \u0022"" + horizontalTextAlign + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""textAlign"" + ""\u0022, \u0022"" + horizontalTextAlign + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4721,7 +4771,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderCollapse"" + ""\u0022, \u0022"" + borderCollapse + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderCollapse"" + ""\u0022, \u0022"" + borderCollapse + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4760,7 +4810,7 @@
 		|                    {
 		|                        borderColor = borders.BorderColor.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""border"" + ""\u0022, \u0022"" + borderWidth + borderStyle + borderColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""border"" + ""\u0022, \u0022"" + borderWidth + borderStyle + borderColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4797,7 +4847,7 @@
 		|                    {
 		|                        paddingLeft = padding.PaddingLeft.AsNumber().ToString() + ""px"";
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""padding"" + ""\u0022, \u0022"" + paddingTop + paddingRight + paddingBottom + paddingLeft + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""padding"" + ""\u0022, \u0022"" + paddingTop + paddingRight + paddingBottom + paddingLeft + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4814,7 +4864,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""paddingTop"" + ""\u0022, \u0022"" + paddingTop + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""paddingTop"" + ""\u0022, \u0022"" + paddingTop + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4831,7 +4881,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""paddingLeft"" + ""\u0022, \u0022"" + paddingLeft + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""paddingLeft"" + ""\u0022, \u0022"" + paddingLeft + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4848,7 +4898,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""paddingBottom"" + ""\u0022, \u0022"" + paddingBottom + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""paddingBottom"" + ""\u0022, \u0022"" + paddingBottom + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4865,18 +4915,18 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""paddingRight"" + ""\u0022, \u0022"" + paddingRight + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""paddingRight"" + ""\u0022, \u0022"" + paddingRight + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
 		|        }
 		|
-		|        private string name;
-		|        [ContextProperty(""Имя"", ""Name"")]
-		|        public string Name
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
 		|        {
-		|            get { return name; }
-		|            set { name = value; }
+		|            get { return itemKey; }
+		|            set { itemKey = value; }
 		|        }
 		|
 		|        private string borderImageSource;
@@ -4890,7 +4940,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + Name + ""\u0022, \u0022"" + ""borderImageSource"" + ""\u0022, \u0022"" + borderImageSource + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""borderImageSource"" + ""\u0022, \u0022"" + borderImageSource + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4932,7 +4982,7 @@
 		|                    {
 		|                        borderImageRepeat = borderImage.BorderImageRepeat.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderImage"" + ""\u0022, \u0022"" + borderImageSource + borderImageSlice + borderImageWidth + borderImageOutset + borderImageRepeat + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderImage"" + ""\u0022, \u0022"" + borderImageSource + borderImageSlice + borderImageWidth + borderImageOutset + borderImageRepeat + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4949,7 +4999,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""columnCount"" + ""\u0022, \u0022"" + columnCount + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""columnCount"" + ""\u0022, \u0022"" + columnCount + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -4983,7 +5033,7 @@
 		|                    {
 		|                        columnCount = columns.ColumnCount.AsNumber().ToString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""columns"" + ""\u0022, \u0022"" + columnWidth + columnCount + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""columns"" + ""\u0022, \u0022"" + columnWidth + columnCount + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5022,7 +5072,7 @@
 		|                    {
 		|                        outlineColor = outline.OutlineColor.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""outline"" + ""\u0022, \u0022"" + outlineWidth + outlineStyle + outlineColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""outline"" + ""\u0022, \u0022"" + outlineWidth + outlineStyle + outlineColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5061,7 +5111,7 @@
 		|                    {
 		|                        borderLeftColor = borderLeft.BorderLeftColor.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderLeft"" + ""\u0022, \u0022"" + borderLeftWidth + borderLeftStyle + borderLeftColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderLeft"" + ""\u0022, \u0022"" + borderLeftWidth + borderLeftStyle + borderLeftColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5100,7 +5150,7 @@
 		|                    {
 		|                        borderRightColor = borderRight.BorderRightColor.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderRight"" + ""\u0022, \u0022"" + borderRightWidth + borderRightStyle + borderRightColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderRight"" + ""\u0022, \u0022"" + borderRightWidth + borderRightStyle + borderRightColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5139,7 +5189,7 @@
 		|                    {
 		|                        borderBottomColor = borderBottom.BorderBottomColor.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderBottom"" + ""\u0022, \u0022"" + borderBottomWidth + borderBottomStyle + borderBottomColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderBottom"" + ""\u0022, \u0022"" + borderBottomWidth + borderBottomStyle + borderBottomColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5181,7 +5231,7 @@
 		|                    {
 		|                        auto = ""auto"";
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""margin"" + ""\u0022, \u0022"" + marginTop + marginRight + marginBottom + marginLeft + auto + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""margin"" + ""\u0022, \u0022"" + marginTop + marginRight + marginBottom + marginLeft + auto + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5198,7 +5248,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + Name + ""\u0022, \u0022"" + ""borderImageRepeat"" + ""\u0022, \u0022"" + borderImageRepeat + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""borderImageRepeat"" + ""\u0022, \u0022"" + borderImageRepeat + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5215,7 +5265,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + Name + ""\u0022, \u0022"" + ""borderImageSlice"" + ""\u0022, \u0022"" + borderImageSlice + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""borderImageSlice"" + ""\u0022, \u0022"" + borderImageSlice + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5232,7 +5282,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""overflow"" + ""\u0022, \u0022"" + overflow + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""overflow"" + ""\u0022, \u0022"" + overflow + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5249,7 +5299,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""overflowY"" + ""\u0022, \u0022"" + overflowY + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""overflowY"" + ""\u0022, \u0022"" + overflowY + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5266,7 +5316,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""overflowX"" + ""\u0022, \u0022"" + overflowX + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""overflowX"" + ""\u0022, \u0022"" + overflowX + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5283,7 +5333,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""tableLayout"" + ""\u0022, \u0022"" + tableLayout + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""tableLayout"" + ""\u0022, \u0022"" + tableLayout + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5300,7 +5350,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + Name + ""\u0022, \u0022"" + ""borderImageOutset"" + ""\u0022, \u0022"" + borderImageOutset + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""borderImageOutset"" + ""\u0022, \u0022"" + borderImageOutset + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5345,7 +5395,7 @@
 		|                    {
 		|                        borderLeftStyle = bordersStyle.BorderLeftStyle.AsString();
 		|                    }
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderStyle"" + ""\u0022, \u0022"" + borderTopStyle + borderRightStyle + borderBottomStyle + borderLeftStyle + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderStyle"" + ""\u0022, \u0022"" + borderTopStyle + borderRightStyle + borderBottomStyle + borderLeftStyle + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5362,7 +5412,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""outlineStyle"" + ""\u0022, \u0022"" + outlineStyle + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""outlineStyle"" + ""\u0022, \u0022"" + outlineStyle + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5432,7 +5482,7 @@
 		|                        borderLeftColor = bordersColor.BorderLeftColor.AsString();
 		|                    }
 		|                    string res = borderTopColor + borderRightColor + borderBottomColor + borderLeftColor;
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderColor"" + ""\u0022, \u0022"" + res + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderColor"" + ""\u0022, \u0022"" + res + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5449,7 +5499,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""outlineColor"" + ""\u0022, \u0022"" + outlineColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""outlineColor"" + ""\u0022, \u0022"" + outlineColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5490,7 +5540,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""backgroundColor"" + ""\u0022, \u0022"" + backgroundColor + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""backgroundColor"" + ""\u0022, \u0022"" + backgroundColor + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5507,7 +5557,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""width"" + ""\u0022, \u0022"" + width + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""width"" + ""\u0022, \u0022"" + width + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5581,7 +5631,7 @@
 		|                        }
 		|                    }
 		|                    string res = borderTopWidth + borderRightWidth + borderBottomWidth + borderLeftWidth;
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""borderWidth"" + ""\u0022, \u0022"" + res + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""borderWidth"" + ""\u0022, \u0022"" + res + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5598,7 +5648,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + Name + ""\u0022, \u0022"" + ""borderImageWidth"" + ""\u0022, \u0022"" + borderImageWidth + ""\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""borderImageWidth"" + ""\u0022, \u0022"" + borderImageWidth + ""\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5615,7 +5665,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""columnWidth"" + ""\u0022, \u0022"" + columnWidth + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""columnWidth"" + ""\u0022, \u0022"" + columnWidth + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5632,7 +5682,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).Name + ""\u0022, \u0022"" + ""outlineWidth"" + ""\u0022, \u0022"" + outlineWidth + ""px\u0022)"";
+		|                    string strFunc = ""setAttribute(\u0022"" + ((dynamic)Owner).ItemKey + ""\u0022, \u0022"" + ""outlineWidth"" + ""\u0022, \u0022"" + outlineWidth + ""px\u0022)"";
 		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|                }
 		|            }
@@ -5680,23 +5730,17 @@
 		|                {
 		|                    continue;
 		|                }
-		|                string propType = """";
 		|                dynamic propValue = p1.GetType().GetProperty(propName).GetValue(p1);
-		|                try
+		|                if (propValue == null)
 		|                {
-		|                    propType = propValue.GetType().ToString();
+		|                    continue;
 		|                }
-		|                catch { }
-		|                if (propType == ""System.Int32"")
+		|                if (propValue.GetType().ToString() == ""System.Int32"")
 		|                {
 		|                    if (propValue != 0)
 		|                    {
 		|                        this[propName].SetValue(this, propValue);
 		|                    }
-		|                }
-		|                else if (propType == ""System.String"")
-		|                {
-		|                    this[propName].SetValue(this, propValue);
 		|                }
 		|                else
 		|                {
@@ -5704,7 +5748,6 @@
 		|                }
 		|            }
 		|        }
-		|        
 		|    }
 		|}
 		|";
@@ -5854,61 +5897,61 @@
 		|    {
 		|        public DfMenuItem(string label, string type)
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createMenuItem1(\u0022"" + Name + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createMenuItem1(\u0022"" + ItemKey + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
 		|        public DfMenuItem(string label, string type, string key)
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createMenuItem2(\u0022"" + Name + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + key + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createMenuItem2(\u0022"" + ItemKey + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + key + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
 		|        public DfMenuItem(string label, string type, string key, string modifiers)
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createMenuItem3(\u0022"" + Name + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + key + ""\u0022, \u0022"" + modifiers + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createMenuItem3(\u0022"" + ItemKey + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + key + ""\u0022, \u0022"" + modifiers + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
 		|        public DfMenuItem(string label, string type, DfMenu menu)
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createMenuItem4(\u0022"" + Name + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + menu.Name + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createMenuItem4(\u0022"" + ItemKey + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + menu.ItemKey + ""\u0022)"";
 		|            submenu = menu;
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
 		|        public DfMenuItem(string label, string type, DfMenu menu, string key)
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createMenuItem5(\u0022"" + Name + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + menu.Name + ""\u0022, \u0022"" + key + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createMenuItem5(\u0022"" + ItemKey + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + menu.ItemKey + ""\u0022, \u0022"" + key + ""\u0022)"";
 		|            submenu = menu;
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
 		|        public DfMenuItem(string label, string type, DfMenu menu, string key, string modifiers)
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createMenuItem6(\u0022"" + Name + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + menu.Name + ""\u0022, \u0022"" + key + ""\u0022, \u0022"" + modifiers + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createMenuItem6(\u0022"" + ItemKey + ""\u0022, \u0022"" + label + ""\u0022, \u0022"" + type + ""\u0022, \u0022"" + menu.ItemKey + ""\u0022, \u0022"" + key + ""\u0022, \u0022"" + modifiers + ""\u0022)"";
 		|            submenu = menu;
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
-		|        private string name;
-		|        [ContextProperty(""Имя"", ""Name"")]
-		|        public string Name
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
 		|        {
-		|            get { return name; }
-		|            set { name = value; }
+		|            get { return itemKey; }
+		|            set { itemKey = value; }
 		|        }
 		|
 		|        public DfAction _сlick;
@@ -5920,7 +5963,7 @@
 		|            {
 		|                _сlick = value;
 		|                //setMenuItemClick(nameMenuItem)
-		|                string strFunc = ""setMenuItemClick(\u0022"" + Name + ""\u0022)"";
+		|                string strFunc = ""setMenuItemClick(\u0022"" + ItemKey + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -5932,7 +5975,7 @@
 		|            {
 		|                _сlick = value;
 		|                //setMenuItemClick(nameMenu)
-		|                string strFunc = ""setMenuItemClick(\u0022"" + Name + ""\u0022)"";
+		|                string strFunc = ""setMenuItemClick(\u0022"" + ItemKey + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -5946,7 +5989,7 @@
 		|            {
 		|                label = value;
 		|                //setMenuItemLabel(name, label)
-		|                string strFunc = ""setMenuItemLabel(\u0022"" + Name + ""\u0022, \u0022"" + label + ""\u0022)"";
+		|                string strFunc = ""setMenuItemLabel(\u0022"" + ItemKey + ""\u0022, \u0022"" + label + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -5960,7 +6003,7 @@
 		|            {
 		|                submenu = value;
 		|                //setMenuItemSubmenu(nameElement, nameSubmenu)
-		|                string strFunc = ""setMenuItemSubmenu(\u0022"" + Name + ""\u0022, \u0022"" + submenu.Name + ""\u0022)"";
+		|                string strFunc = ""setMenuItemSubmenu(\u0022"" + ItemKey + ""\u0022, \u0022"" + submenu.ItemKey + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -5974,7 +6017,7 @@
 		|            {
 		|                enabled = value;
 		|                //setProperty(nameElement, nameProperty, valueProperty)
-		|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""enabled"" + ""\u0022, \u0022"" + enabled.ToString().ToLower() + ""\u0022)"";
+		|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""enabled"" + ""\u0022, \u0022"" + enabled.ToString().ToLower() + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -5988,7 +6031,7 @@
 		|            {
 		|                icon = value;
 		|                //setProperty(nameElement, nameProperty, valueProperty)
-		|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""icon"" + ""\u0022, \u0022"" + icon + ""\u0022)"";
+		|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""icon"" + ""\u0022, \u0022"" + icon + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -6002,7 +6045,7 @@
 		|            {
 		|                tooltip = value;
 		|                //setProperty(nameElement, nameProperty, valueProperty)
-		|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""tooltip"" + ""\u0022, \u0022"" + tooltip + ""\u0022)"";
+		|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""tooltip"" + ""\u0022, \u0022"" + tooltip + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -6016,7 +6059,7 @@
 		|            {
 		|                _checked = value;
 		|                //setProperty(nameElement, nameProperty, valueProperty)
-		|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""checked"" + ""\u0022, \u0022"" + _checked.ToString().ToLower() + ""\u0022)"";
+		|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""checked"" + ""\u0022, \u0022"" + _checked.ToString().ToLower() + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -6030,7 +6073,7 @@
 		|            {
 		|                key = value;
 		|                //setProperty(nameElement, nameProperty, valueProperty)
-		|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""key"" + ""\u0022, \u0022"" + key + ""\u0022)"";
+		|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""key"" + ""\u0022, \u0022"" + key + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -6044,7 +6087,7 @@
 		|            {
 		|                modifiers = value;
 		|                //setProperty(nameElement, nameProperty, valueProperty)
-		|                string strFunc = ""setProperty(\u0022"" + Name + ""\u0022, \u0022"" + ""modifiers"" + ""\u0022, \u0022"" + modifiers + ""\u0022)"";
+		|                string strFunc = ""setProperty(\u0022"" + ItemKey + ""\u0022, \u0022"" + ""modifiers"" + ""\u0022, \u0022"" + modifiers + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -6066,25 +6109,25 @@
 		|    {
 		|        public DfMenu(string p1)
 		|        {
-		|            Name = ""d"" + Path.GetRandomFileName().Replace(""."", """");
-		|            string strFunc = ""createMenu(\u0022"" + Name + ""\u0022, \u0022"" + p1 + ""\u0022)"";
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""createMenu(\u0022"" + ItemKey + ""\u0022, \u0022"" + p1 + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
-		|        private string name;
-		|        [ContextProperty(""Имя"", ""Name"")]
-		|        public string Name
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
 		|        {
-		|            get { return name; }
-		|            set { name = value; }
+		|            get { return itemKey; }
+		|            set { itemKey = value; }
 		|        }
 		|
 		|        [ContextMethod(""Добавить"", ""Append"")]
 		|        public void Append(DfMenuItem p1)
 		|        {
 		|            //string strFunc = ""doMenuAppend(name, submenuName)"";
-		|            string strFunc = ""doMenuAppend(\u0022"" + Name + ""\u0022, \u0022"" + p1.Name + ""\u0022)"";
+		|            string strFunc = ""doMenuAppend(\u0022"" + ItemKey + ""\u0022, \u0022"" + p1.ItemKey + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|        }
 		|
@@ -6092,7 +6135,7 @@
 		|        public void Insert(DfMenuItem p1, int p2)
 		|        {
 		|            //string strFunc = ""doMenuInsert(name, submenuName, num)"";
-		|            string strFunc = ""doMenuInsert(\u0022"" + Name + ""\u0022, \u0022"" + p1.Name + ""\u0022, \u0022"" + p2 + ""\u0022)"";
+		|            string strFunc = ""doMenuInsert(\u0022"" + ItemKey + ""\u0022, \u0022"" + p1.ItemKey + ""\u0022, \u0022"" + p2 + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|        }
 		|
@@ -6100,7 +6143,7 @@
 		|        public void Popup(int p1, int p2)
 		|        {
 		|            //string strFunc = ""doMenuPopup(name, x, y)"";
-		|            string strFunc = ""doMenuPopup(\u0022"" + Name + ""\u0022, \u0022"" + p1 + ""\u0022, \u0022"" + p2 + ""\u0022)"";
+		|            string strFunc = ""doMenuPopup(\u0022"" + ItemKey + ""\u0022, \u0022"" + p1 + ""\u0022, \u0022"" + p2 + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|        }
 		|
@@ -6108,7 +6151,7 @@
 		|        public void Remove(DfMenuItem p1)
 		|        {
 		|            //string strFunc = ""doMenuRemove(name, submenuName)"";
-		|            string strFunc = ""doMenuRemove(\u0022"" + Name + ""\u0022, \u0022"" + p1.Name + ""\u0022)"";
+		|            string strFunc = ""doMenuRemove(\u0022"" + ItemKey + ""\u0022, \u0022"" + p1.ItemKey + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|        }
 		|
@@ -6116,7 +6159,7 @@
 		|        public void RemoveAt(int p1)
 		|        {
 		|            //string strFunc = ""doMenuRemoveAt(name, num)"";
-		|            string strFunc = ""doMenuRemoveAt(\u0022"" + Name + ""\u0022, \u0022"" + p1 + ""\u0022)"";
+		|            string strFunc = ""doMenuRemoveAt(\u0022"" + ItemKey + ""\u0022, \u0022"" + p1 + ""\u0022)"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|        }
 		|
@@ -6129,7 +6172,7 @@
 		|            {
 		|                _сlick = value;
 		|                //setMenuClick(nameMenu)
-		|                string strFunc = ""setMenuClick(\u0022"" + Name + ""\u0022)"";
+		|                string strFunc = ""setMenuClick(\u0022"" + ItemKey + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -6141,7 +6184,7 @@
 		|            {
 		|                _сlick = value;
 		|                //setMenuClick(nameMenu)
-		|                string strFunc = ""setMenuClick(\u0022"" + Name + ""\u0022)"";
+		|                string strFunc = ""setMenuClick(\u0022"" + ItemKey + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -7371,7 +7414,7 @@
 		|}
 		|function setMenuItemClick(nameMenuItem)
 		|{
-		|    let menuItem = map.get(nameMenuItem);
+		|    let menuItem = mapKeyEl.get(nameMenuItem);
 		|    menuItem.click = function()
 		|    {
 		|        sendPost(nameMenuItem + '|||' + 'click');
@@ -7397,7 +7440,7 @@
 		|        }
 		|
 		|        sendPost(
-		|        event.target.name + 
+		|        mapElKey.get(event.target) + 
 		|        '|||' + event.type + 
 		|        '|||Button=' + button + 
 		|        '|||X=' + event.clientX + 
@@ -7407,13 +7450,13 @@
 		|    {
 		|        let value = event.target.value;
 		|        sendPost(
-		|        event.target.name + 
+		|        mapElKey.get(event.target) + 
 		|        '|||' + event.type + 
 		|        '|||Value=' + value);
 		|    }
 		|    else
 		|    {
-		|        sendPost(event.target.name + '|||' + event.type);
+		|        sendPost(mapElKey.get(event.target) + '|||' + event.type);
 		|    }
 		|}
 		|function createElement(typeElement, nameElement)
@@ -7427,24 +7470,25 @@
 		|    {
 		|        el = document.createElement(typeElement);
 		|    }
-		|    el.name = nameElement;
-		|    map.set(nameElement, el);
+		|    //el.name = nameElement;
+		|    mapKeyEl.set(nameElement, el);
+		|    mapElKey.set(el, nameElement);
 		|}
 		|function setInputType(nameElement, typeElement)
 		|{
-		|    var el = map.get(nameElement);
+		|    var el = mapKeyEl.get(nameElement);
 		|    el.type = typeElement;
 		|}
 		|function setParent(nameElement, nameparent)
 		|{
-		|    const el = map.get(nameElement);
+		|    const el = mapKeyEl.get(nameElement);
 		|    if (nameparent == 'mainForm')
 		|    {
 		|        document.body.appendChild(el);
 		|    }
 		|    else
 		|    {
-		|        const elParent = map.get(nameparent);
+		|        const elParent = mapKeyEl.get(nameparent);
 		|        elParent.appendChild(el);
 		|    }
 		|}
@@ -7480,81 +7524,87 @@
 		|}
 		|function setMenuItemLabel(name, label)
 		|{
-		|    let menuItem = map.get(name);
+		|    let menuItem = mapKeyEl.get(name);
 		|    menuItem.label = label;
 		|}
 		|function doMenuAppend(name, submenuName)
 		|{
-		|    let menu = map.get(name);
-		|    let menu2 = map.get(submenuName);
+		|    let menu = mapKeyEl.get(name);
+		|    let menu2 = mapKeyEl.get(submenuName);
 		|    menu.append(menu2);
 		|}
 		|function doMenuRemove(name, submenuName)
 		|{
-		|    let menu = map.get(name);
-		|    let menu2 = map.get(submenuName);
+		|    let menu = mapKeyEl.get(name);
+		|    let menu2 = mapKeyEl.get(submenuName);
 		|    menu.remove(menu2);
 		|}
 		|function doMenuRemoveAt(name, num)
 		|{
-		|    let menu = map.get(name);
+		|    let menu = mapKeyEl.get(name);
 		|    menu.removeAt(parseInt(num));
 		|}
 		|function doMenuInsert(name, submenuName, num)
 		|{
-		|    let menu = map.get(name);
-		|    let menu2 = map.get(submenuName);
+		|    let menu = mapKeyEl.get(name);
+		|    let menu2 = mapKeyEl.get(submenuName);
 		|    menu.insert(menu2, parseInt(num));
 		|}
 		|function doMenuPopup(name, x, y)
 		|{
-		|    let menu = map.get(name);
+		|    let menu = mapKeyEl.get(name);
 		|    menu.popup(parseInt(x), parseInt(y));
 		|}
 		|function setMenuItemSubmenu(nameElement, nameSubmenu)
 		|{
-		|    let el = map.get(nameElement);
-		|    let submenu = map.get(nameSubmenu);
+		|    let el = mapKeyEl.get(nameElement);
+		|    let submenu = mapKeyEl.get(nameSubmenu);
 		|    el.submenu = submenu;
 		|
 		|}
 		|function createMenuItem1(name, label, typeMenuItem)
 		|{
 		|    let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem });
-		|    map.set(name, menuItem);
+		|    mapKeyEl.set(name, menuItem);
+		|    mapElKey.set(menuItem, name);
 		|    return menuItem;
 		|}
 		|function createMenuItem2(name, label, typeMenuItem, key)
 		|{
 		|    let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, key: key });
-		|    map.set(name, menuItem);
+		|    mapKeyEl.set(name, menuItem);
+		|    mapElKey.set(menuItem, name);
 		|    return menuItem;
 		|}
 		|function createMenuItem3(name, label, typeMenuItem, key, modifiers)
 		|{
 		|    let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, key: key, modifiers: modifiers });
-		|    map.set(name, menuItem);
+		|    mapKeyEl.set(name, menuItem);
+		|    mapElKey.set(menuItem, name);
 		|    return menuItem;
 		|}
 		|function createMenuItem4(name, label, typeMenuItem, submenuName)
 		|{
-		|    let menuItems = map.get(submenuName);
+		|    let menuItems = mapKeyEl.get(submenuName);
 		|    let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, submenu: menuItems });
-		|    map.set(name, menuItem);
+		|    mapKeyEl.set(name, menuItem);
+		|    mapElKey.set(menuItem, name);
 		|    return menuItem;
 		|}
 		|function createMenuItem5(name, label, typeMenuItem, submenuName, key)
 		|{
-		|    let menuItems = map.get(submenuName);
+		|    let menuItems = mapKeyEl.get(submenuName);
 		|    let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, submenu: menuItems, key: key });
-		|    map.set(name, menuItem);
+		|    mapKeyEl.set(name, menuItem);
+		|    mapElKey.set(menuItem, name);
 		|    return menuItem;
 		|}
 		|function createMenuItem6(name, label, typeMenuItem, submenuName, key, modifiers)
 		|{
-		|    let menuItems = map.get(submenuName);
+		|    let menuItems = mapKeyEl.get(submenuName);
 		|    let menuItem = new gui.MenuItem({ label: label, type: typeMenuItem, submenu: menuItems, key: key, modifiers: modifiers });
-		|    map.set(name, menuItem);
+		|    mapKeyEl.set(name, menuItem);
+		|    mapElKey.set(menuItem, name);
 		|    return menuItem;
 		|}
 		|function createMenu(name, typeMenu)
@@ -7572,18 +7622,19 @@
 		|    {
 		|        menu = new gui.Menu();
 		|    }
-		|    map.set(name, menu);
+		|    mapKeyEl.set(name, menu);
+		|    mapElKey.set(menu, name);
 		|    return menu;
 		|}
 		|function setMenu(name)
 		|{
-		|    let menu = map.get(name);
+		|    let menu = mapKeyEl.get(name);
 		|    gui.Window.get().menu = menu;
 		|}
 		|function getProperty(nameElement, namePropertyObj, namePropertyElement, notStyleProperty)
 		|{
 		|    let res;
-		|    let el = map.get(nameElement);
+		|    let el = mapKeyEl.get(nameElement);
 		|    try
 		|    {
 		|        if (namePropertyObj == 'parent')
@@ -7624,20 +7675,20 @@
 		|{
 		|    if (valueProperty == 'false')
 		|    {
-		|        map.get(nameElement)[nameProperty] = false;
+		|        mapKeyEl.get(nameElement)[nameProperty] = false;
 		|    }
 		|    else if (valueProperty == 'true')
 		|    {
-		|        map.get(nameElement)[nameProperty] = true;
+		|        mapKeyEl.get(nameElement)[nameProperty] = true;
 		|    }
 		|    else
 		|    {
-		|        map.get(nameElement)[nameProperty] = valueProperty;
+		|        mapKeyEl.get(nameElement)[nameProperty] = valueProperty;
 		|    }
 		|}
 		|function setAttribute(nameElement, nameAttribute, valueAttribute)
 		|{
-		|    map.get(nameElement).style[nameAttribute] = valueAttribute;
+		|    mapKeyEl.get(nameElement).style[nameAttribute] = valueAttribute;
 		|}
 		|// Начало блока постоянного клиента.
 		|function processData(data)
@@ -7706,7 +7757,8 @@
 		|nodeClient.write('ConstantClient5du4fsjiwixxf');
 		|// Конец блока постоянного клиента.
 		|
-		|var map = new Map();
+		|var mapKeyEl = new Map();
+		|var mapElKey = new Map();
 		|var gui = require('nw.gui');
 		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '|||' + 'loaded'); });
 		|"";
@@ -7726,6 +7778,7 @@
 		|<html>
 		|	<head>
 		|		<meta content=""""text/html; charset=utf-8"""" http-equiv=""""Content-Type"""">
+		|		<link rel=""""stylesheet"""" href="""""" + DeclarativeForms.CSSPath + @"""""" />
 		|
 		|		<script type=""""text/javascript"""">
 		|            window.addEventListener(""""error"""", function (event) { alert(event.message + '\n' + event.filename); });
@@ -7766,16 +7819,16 @@
 		|
 		|        public DfForm()
 		|        {
-		|            Name = ""mainForm"";
-		|            DeclarativeForms.AddToHashtable(Name, this);
+		|            ItemKey = ""mainForm"";
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
-		|        private string name;
-		|        [ContextProperty(""Имя"", ""Name"")]
-		|        public string Name
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
 		|        {
-		|            get { return name; }
-		|            private set { name = value; }
+		|            get { return itemKey; }
+		|            set { itemKey = value; }
 		|        }
 		|
 		|        private int width;
@@ -8031,7 +8084,7 @@
 		|            {
 		|                menu = value;
 		|                //setMenu(name)
-		|                string strFunc = ""setMenu(\u0022"" + menu.Name + ""\u0022)"";
+		|                string strFunc = ""setMenu(\u0022"" + menu.ItemKey + ""\u0022)"";
 		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            }
 		|        }
@@ -8052,7 +8105,7 @@
 		|        [ContextMethod(""ДобавитьДочерний"", ""АppendChild"")]
 		|        public IValue АppendChild(IValue p1)
 		|        {
-		|            string strFunc = ""document.body.appendChild(map.get(\u0022"" + ((dynamic)p1).Name + ""\u0022));"";
+		|            string strFunc = ""document.body.appendChild(mapKeyEl.get(\u0022"" + ((dynamic)p1).ItemKey + ""\u0022));"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|            ((dynamic)p1).Parent = this;
 		|            return p1;
@@ -8061,7 +8114,7 @@
 		|        [ContextMethod(""УдалитьДочерний"", ""RemoveChild"")]
 		|        public void RemoveChild(IValue p1)
 		|        {
-		|            string strFunc = ""document.body.removeChild(map.get(\u0022"" + ((dynamic)p1.AsObject()).Name + ""\u0022));"";
+		|            string strFunc = ""document.body.removeChild(mapKeyEl.get(\u0022"" + ((dynamic)p1.AsObject()).ItemKey + ""\u0022));"";
 		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + "";"";
 		|        }
 		|    }
@@ -8500,6 +8553,19 @@
 		|        public static SystemGlobalContext GlobalContext()
 		|        {
 		|            return GlobalsManager.GetGlobalContext<SystemGlobalContext>();
+		|        }
+		|		
+		|        public static string CSSPath = ""styles.css"";
+		|        private string _cssPath;
+		|        [ContextProperty(""cssПуть"", ""cssPath"")]
+		|        public string cssPath
+		|        {
+		|            get { return _cssPath; }
+		|            set
+		|            {
+		|                _cssPath = value;
+		|                CSSPath = _cssPath;
+		|            }
 		|        }
 		|
 		|        private static DfTextBaseline df_TextBaseline = new DfTextBaseline();
@@ -9202,7 +9268,7 @@
 		|            return new DfGroupTitle();
 		|        }
 		|
-		|        [ContextMethod(""ЗаголовочнаяЯчейка"", ""HeaderCell"")]
+		|        [ContextMethod(""ЯчейкаЗаголовка"", ""HeaderCell"")]
 		|        public DfHeaderCell HeaderCell()
 		|        {
 		|            return new DfHeaderCell();
@@ -9428,12 +9494,6 @@
 		|        public DfOutput Output()
 		|        {
 		|            return new DfOutput();
-		|        }
-		|
-		|        [ContextMethod(""СписокДанных"", ""Datalist"")]
-		|        public DfDatalist Datalist()
-		|        {
-		|            return new DfDatalist();
 		|        }
 		|
 		|        [ContextMethod(""СписокОпределений"", ""ListDefinition"")]
@@ -10291,7 +10351,7 @@
 		|
 		|                    // Здесь нужно знать какой тип значения у свойства и конвертировать из строки str2[0] в нужный тип.
 		|                    string nameProperty = """";
-		|                    System.Reflection.PropertyInfo[] myPropertyInfo = Sender.GetType().GetProperties();
+		|                    System.Reflection.PropertyInfo[] myPropertyInfo = DfEventArgs1.GetType().GetProperties();
 		|                    for (int i1 = 0; i1 < myPropertyInfo.Length; i1++)
 		|                    {
 		|                        if (myPropertyInfo[i1].CustomAttributes.Count() == 1)
@@ -10306,7 +10366,15 @@
 		|                            }
 		|                        }
 		|                    }
-		|                    string propertyType = Sender.GetType().GetProperty(nameProperty).PropertyType.ToString();
+		|                    string propertyType;
+		|                    try
+		|                    {
+		|                        propertyType = ((dynamic)Sender).GetType().GetProperty(nameProperty).PropertyType.ToString();
+		|                    }
+		|                    catch (Exception)
+		|                    {
+		|                        propertyType = DfEventArgs1.GetType().GetProperty(nameProperty).PropertyType.ToString();
+		|                    }
 		|                    IValue propValue;
 		|                    if (propertyType == ""System.Int32"")
 		|                    {
@@ -10363,11 +10431,11 @@
 		|            //getProperty(nameElement, namePropertyObj, namePropertyElement, notStyleProperty)
 		|            if ((bool)namesRusProps[p2][1])
 		|            {
-		|                function1 = ""getProperty(\u0022"" + ((dynamic)p1).Name + ""\u0022, \u0022"" + p2 + ""\u0022, \u0022"" + namesRusProps[p2][2] + ""\u0022, \u0022"" + namesRusProps[p2][1].ToString().ToLower() + ""\u0022)"";
+		|                function1 = ""getProperty(\u0022"" + ((dynamic)p1).ItemKey + ""\u0022, \u0022"" + p2 + ""\u0022, \u0022"" + namesRusProps[p2][2] + ""\u0022, \u0022"" + namesRusProps[p2][1].ToString().ToLower() + ""\u0022)"";
 		|            }
 		|            else
 		|            {
-		|                function1 = ""getProperty(\u0022"" + ((dynamic)p1).Owner.Name + ""\u0022, \u0022"" + p2 + ""\u0022, \u0022"" + namesRusProps[p2][2] + ""\u0022, \u0022"" + namesRusProps[p2][1].ToString().ToLower() + ""\u0022)"";
+		|                function1 = ""getProperty(\u0022"" + ((dynamic)p1).Owner.ItemKey + ""\u0022, \u0022"" + p2 + ""\u0022, \u0022"" + namesRusProps[p2][2] + ""\u0022, \u0022"" + namesRusProps[p2][1].ToString().ToLower() + ""\u0022)"";
 		|            }
 		|            int num = DeclarativeForms.shareStructure.FindProperty(""Клиент"");
 		|            dynamic val1 = DeclarativeForms.shareStructure.GetPropValue(num);
@@ -10648,7 +10716,7 @@
 СловарьСвойств.Вставить("СемействоШрифтов_FontFamily", "fontFamily=fontFamily==IValue====");
 СловарьСвойств.Вставить("СтильШрифта_FontStyle", "fontStyle=fontStyle==IValue====");
 
-
+СловарьСвойств.Вставить("Связь_HtmlFor", "htmlFor=htmlFor==string====");
 
 // ВысотаСтроки_LineHeight
 // ЖирностьШрифта_FontWeight)}
@@ -10773,7 +10841,7 @@
 СловарьСвойств.Вставить("Изображения_Images", "=======");
 СловарьСвойств.Вставить("Икс_X", "x===int====");
 СловарьСвойств.Вставить("Имя_Name", "=======");
-СловарьСвойств.Вставить("ИмяКласса_ClassName", "className=className==string====");
+СловарьСвойств.Вставить("Класс_Class", "_class=className==string====");
 СловарьСвойств.Вставить("ИмяМетода_MethodName", "=======");
 СловарьСвойств.Вставить("Индекс_CellIndex", "=======");
 СловарьСвойств.Вставить("Индекс_Index", "=======");
@@ -10835,7 +10903,7 @@
 СловарьСвойств.Вставить("Показать_Show", "=======");
 СловарьСвойств.Вставить("ПоказатьВПанели_ShowInTaskbar", "=======");
 СловарьСвойств.Вставить("Полноэкранный_Fullscreen", "=======");
-СловарьСвойств.Вставить("Помечен_Checked", "=======");
+СловарьСвойств.Вставить("Помечен_Checked", "_checked=checked==bool=.ToString().ToLower()===");
 СловарьСвойств.Вставить("ПомеченПоУмолчанию_DefaultChecked", "=======");
 СловарьСвойств.Вставить("Порт_Port", "=======");
 СловарьСвойств.Вставить("ПорядокОбхода_TabIndex", "tabIndex=tabIndex==int====");
@@ -10914,7 +10982,6 @@
 СловарьКлассов.Вставить("ExpandableDiv", "РаскрываемыйБлок=details==");
 СловарьКлассов.Вставить("ExpandableDivHeader", "ЗаголовокРаскрываемогоБлока=summary==");
 СловарьКлассов.Вставить("FileSelection", "ВыборФайла=input=file=");
-СловарьКлассов.Вставить("Font", "Шрифт=font==");
 СловарьКлассов.Вставить("Footer", "НижнийКолонтитул=footer==");
 СловарьКлассов.Вставить("Form", "Форма===");
 СловарьКлассов.Вставить("Frame", "Фрейм=iframe==");
@@ -10927,7 +10994,7 @@
 СловарьКлассов.Вставить("H5", "Заголовок5=h5==");
 СловарьКлассов.Вставить("H6", "Заголовок6=h6==");
 СловарьКлассов.Вставить("Header", "Колонтитул=header==");
-СловарьКлассов.Вставить("HeaderCell", "ЗаголовочнаяЯчейка=th==");
+СловарьКлассов.Вставить("HeaderCell", "ЯчейкаЗаголовка=th==");
 СловарьКлассов.Вставить("Image", "Изображение=img==");
 СловарьКлассов.Вставить("ImagesFilter", "ФильтрИзображений===");
 СловарьКлассов.Вставить("ItalicsText", "КурсивТекст=cite==");

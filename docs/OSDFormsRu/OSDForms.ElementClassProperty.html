@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Loaded Event</TITLE>
+<HTML><HEAD><TITLE>Class Property</TITLE>
 <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
 <LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
 <BODY id=bodyID class=dtBODY>
@@ -11,42 +11,24 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>Форма.Загружена&nbsp;(Form.Loaded)&nbsp;Событие</H1></DIV></DIV>
+<H1 class=dtH1>Элемент.Класс&nbsp;(Element.Class)&nbsp;Свойство</H1></DIV></DIV>
 <DIV id=nstext>
 <H4 class=dtH4>Использование</H4>
 <P>Чтение и запись.</P>
 <H4 class=dtH4>Значение</H4>
-<P>Тип: <A href="OSDForms.ActionConstructor.html">Действие&nbsp;(Action)</A>.</P>
-<P>Возвращает или задает код, когда форма полностью загружена.</P>
+<P>Тип: Строка.</P>
+<P>Возвращает или задает имя класса элемента.</P>
 <H4 class=dtH4>Примечание</H4>
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-Форма1.Загружена = ДФ.Действие(ЭтотОбъект, "Форма1_Загружена");
+
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
-Процедура Форма1_Загружена() Экспорт
-	Сообщить("Форма1_Загружена " + ТекущаяУниверсальнаяДатаВМиллисекундах());
-КонецПроцедуры
 
-ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
-ДФ = Новый ДекларативныеФормы();
-Форма1 = ДФ.Форма;
-Форма1.Ширина = 300;
-Форма1.Высота = 300;
-
-Абзац1 = ДФ.Абзац();
-Абзац1.Родитель = Форма1;
-Абзац1.Текст = "Это Абзац";
-Абзац1.Стиль.Высота = 200;
-Абзац1.Стиль.ЦветФона = ДФ.Цвет("НебесноГолубой");
-
-Форма1.Загружена = ДФ.Действие(ЭтотОбъект, "Форма1_Загружена");
-
-Форма1.Открыть();
 </DIV>
 </PRE>
 </details>
