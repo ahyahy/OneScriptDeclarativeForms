@@ -1,4 +1,4 @@
-![cover](https://github.com/user-attachments/assets/440c47da-16d8-4419-ae59-198b7898dfe5)
+![cover](media/cover.png)
 
 # OneScript Declarative Forms
 
@@ -9,13 +9,13 @@
 
 ## Особенности
 
-<img src="https://github.com/user-attachments/assets/04035547-93cb-42d0-977b-28d220f17d61" align="right" width="128">
+<img src="media/2.png" align="right" width="128">
 
 + Для отрисовки интерфейса и элементов управления используется [nw.js](https://github.com/nwjs/nw.js) - кросплатформенный JavaScript-фреймворк, позволяющий создавать десктопные приложения на основе web-технологий. Благодаря ему готовое приложение может быть запущено на любой из основных операционных систем без внесения изменений в код
 
   >Изучать nw.js для использования библиотеки не нужно: механизм работы и взаимодействия со сценарием скрыт внутри библиотеки декларативных форм.
 
-<img src="https://github.com/user-attachments/assets/26dc67d8-170b-45a2-813f-01bb75354b39" align="right" width="128">
+<img src="media/1.png" align="right" width="128">
 
 <br>
 
