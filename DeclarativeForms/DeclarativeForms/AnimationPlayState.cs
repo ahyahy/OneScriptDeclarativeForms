@@ -13,7 +13,7 @@ using System;
 
 namespace osdf
 {
-    [ContextClass("ДфПауза", "DfAnimationPlayState")]
+    [ContextClass("ДфСостояние", "DfAnimationPlayState")]
     public class DfAnimationPlayState : AutoContext<DfAnimationPlayState>, ICollectionContext, IEnumerable<IValue>
     {
         private List<IValue> _list;

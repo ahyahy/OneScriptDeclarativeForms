@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Element.AppendChild Method</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Элемент.ДобавитьДочерний (Element.AppendChild)&nbsp;Метод</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>ДобавитьДочерний(&lt;Элемент&gt;)</P>
+<H4 class=dtH4>Параметры</H4>
+<DL>
+<DT><I>Элемент</I> (обязательный)</DT>
+<DD>Тип: Произвольный.</DD>
+<DD>Добавляемый в коллекцию элемент.</DD>
+</DL>
+<H4 class=dtH4>Возвращаемое значение</H4>
+<P>Тип: Произвольный.</P>
+<P>Добавленный в коллекцию элемент.</P>
+<H4 class=dtH4>Описание</H4>
+<P>Добавляет элемент в качестве последнего дочернего элемента элемента.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+ДополнительныйБлок1 = Форма1.ДобавитьДочерний(ДФ.ДополнительныйБлок());
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.Заголовок = "Нажмите кнопку";
+
+ДополнительныйБлок1 = Форма1.ДобавитьДочерний(ДФ.ДополнительныйБлок());
+ДополнительныйБлок1.Стиль.ЦветФона = ДФ.Цвет("БледноБирюзовый");
+
+ЖирныйТекст1 = ДополнительныйБлок1.ДобавитьДочерний(ДФ.ЖирныйТекст());
+ЖирныйТекст1.Текст = "Алиса начала очень скучать: она сидела рядом с сестрой на берегу и ничего не делала. " + 
+"Раза два она заглянула в книгу, которую читала ее сестра, но там не было ни картинок, ни разговоров. " + 
+"«И что за польза от книги, — подумала она, — в которой нет разговоров или картинок?»" + 
+"Тут она стала размышлять про себя (правда, с трудом, потому что в такой жаркий день чувствовала себя сонной и глупой), " + 
+"стоит ли удовольствие плести венок из маргариток беспокойства идти собирать маргаритки, как вдруг совсем близко от нее, " + 
+"пробежал Белый Кролик с розовыми глазами. ";
+
+ДополнительныйБлок1.ДобавитьДочерний(ДФ.Перенос());
+ДополнительныйБлок1.ДобавитьДочерний(ДФ.Перенос());
+
+ЖирныйТекст2 = ДополнительныйБлок1.ДобавитьДочерний(ДФ.ЖирныйТекст());
+ЖирныйТекст2.Текст = "В этом не было ничего очень уж замечательного. " + 
+"Точно так же Алисе не показалось очень необычным, когда она услышала, как Кролик говорил сам себе:" + 
+" - О горе, горе! Я опоздаю! (Позже Алиса вспоминала об этом, и ей пришло на ум, что она должна была бы удивиться, " + 
+"но в то время все представлялось ей совершенно естественным.)";
+
+Форма1.Открыть();
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;OneScriptDeclarativeForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

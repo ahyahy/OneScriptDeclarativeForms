@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Change Event</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Флажок.ПриИзменении&nbsp;(CheckBox.Change)&nbsp;Событие</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Использование</H4>
+<P>Чтение и запись.</P>
+<H4 class=dtH4>Значение</H4>
+<P>Тип: <A href="OSDForms.ActionConstructor.html">Действие&nbsp;(Action)</A>.</P>
+<P>Возвращает или задает код при изменении состояние флажка.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Аргументы события</H4>
+<DIV class=tablediv>
+<TABLE class=dtTABLE cellSpacing=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsCheckedProperty.html">Помечен&nbsp;(Checked)</A></TD>
+    <TD width="50%">Возвращает значение свойства элемента.</TD></TR></TBODY></TABLE></DIV>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Флажок1.ПриИзменении = ДФ.Действие(ЭтотОбъект, "Флажок1_ПриИзменении");
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем ДФ, Флажок1;
+
+Процедура Флажок1_ПриИзменении() Экспорт
+	Сообщить("ДФ.АргументыСобытия.Помечен = " + ДФ.АргументыСобытия.Помечен);
+	Сообщить("Флажок1.Помечен = " + Флажок1.Помечен);
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.НачальнаяШирина = 300;
+Форма1.НачальнаяВысота = 200;
+
+Флажок1 = Форма1.ДобавитьДочерний(ДФ.Флажок());
+Флажок1.ПриИзменении = ДФ.Действие(ЭтотОбъект, "Флажок1_ПриИзменении");
+
+Флажок1.Помечен = Истина;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;OneScriptDeclarativeForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

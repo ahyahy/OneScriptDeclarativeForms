@@ -1,7 +1,9 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.HostedScript.Library;
 using ScriptEngine.Machine;
 using System.IO;
 using System.Reflection;
+using System;
 
 namespace osdf
 {
@@ -11,8 +13,9 @@ namespace osdf
         public DfStyle()
         {
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createElement(\u0022" + "style" + "\u0022, \u0022" + ItemKey + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "mapKeyEl.set('" + ItemKey + "', document.createElement('style'));" + @"
+mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
@@ -27,55 +30,1046 @@ namespace osdf
         {
             get { return this.GetType().GetProperty(p1); }
         }
-		
-        private DfFont font;
+
+
+        public string Rotate(DfRotate p1)
+        {
+            string res;
+            string angle = "0";
+            if (p1.Angle != null)
+            {
+                angle = p1.Angle.AsString();
+            }
+            res = "rotate(" + angle + "deg)";
+            return res;
+        }
+        public string RotateY(DfRotateY p1)
+        {
+            string res;
+            string angle = "0";
+            if (p1.Angle != null)
+            {
+                angle = p1.Angle.AsString();
+            }
+            res = "rotateY(" + angle + "deg)";
+            return res;
+        }
+        public string RotateX(DfRotateX p1)
+        {
+            string res;
+            string angle = "0";
+            if (p1.Angle != null)
+            {
+                angle = p1.Angle.AsString();
+            }
+            res = "rotateX(" + angle + "deg)";
+            return res;
+        }
+        public string Scale(DfScale p1)
+        {
+            string res;
+            string x = "1";
+            string y = "1";
+            if (p1.X != null)
+            {
+                x = p1.X.AsString();
+            }
+            if (p1.Y != null)
+            {
+                y = p1.Y.AsString();
+            }
+            res = "scale(" + x + ", " + y + ")";
+            return res;
+        }
+        public string Rotate3D(DfRotate3D p1)
+        {
+            string res;
+            string x = "0";
+            string y = "0";
+            string z = "0";
+            string angle = "0";
+            if (p1.X != null)
+            {
+                x = p1.X.AsString();
+            }
+            if (p1.Y != null)
+            {
+                y = p1.Y.AsString();
+            }
+            if (p1.Z != null)
+            {
+                z = p1.Z.AsString();
+            }
+            if (p1.Angle != null)
+            {
+                angle = p1.Angle.AsString();
+            }
+            res = "rotate3d(" + x + ", " + y + ", " + z + ", " + angle + "deg)";
+            return res;
+        }
+        public string Translate3D(DfTranslate3D p1)
+        {
+            string res;
+            string x = "0px";
+            string y = "0px";
+            string z = "0px";
+            if (p1.X != null)
+            {
+                x = p1.X.AsString() + "px";
+            }
+            if (p1.Y != null)
+            {
+                y = p1.Y.AsString() + "px";
+            }
+            if (p1.Z != null)
+            {
+                z = p1.Z.AsString() + "px";
+            }
+            res = "translate3d(" + x + ", " + y + ", " + z + ")";
+            return res;
+        }
+        public string Scale3D(DfScale3D p1)
+        {
+            string res;
+            string x = "1";
+            string y = "1";
+            string z = "1";
+            if (p1.X != null)
+            {
+                x = p1.X.AsString();
+            }
+            if (p1.Y != null)
+            {
+                y = p1.Y.AsString();
+            }
+            if (p1.Z != null)
+            {
+                z = p1.Z.AsString();
+            }
+            res = "scale3d(" + x + ", " + y + ", " + z + ")";
+            return res;
+        }
+        public string TranslateZ(DfTranslateZ p1)
+        {
+            string res;
+            string z = "0px";
+            if (p1.Z != null)
+            {
+                z = p1.Z.AsNumber().ToString() + "px";
+            }
+            res = "translateZ(" + z + ")";
+            return res;
+        }
+
+
+
+
+        //Сдвиг (Transform)
+        public string restransform { get; set; }
+        private IValue transform;
+        [ContextProperty("Сдвиг", "Transform")]
+        public IValue Transform
+        {
+            get { return transform; }
+            set
+            {
+                transform = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restransform = value.AsString();
+                }
+                else
+                {
+                    if (transform.GetType() == typeof(ArrayImpl))
+                    {
+                        ArrayImpl ArrayImpl1 = (ArrayImpl)value;
+                        for (int i = 0; i < ArrayImpl1.Count(); i++)
+                        {
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfRotate))
+                            {
+                                restransform = restransform + " " + Rotate((DfRotate)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfRotateY))
+                            {
+                                restransform = restransform + " " + RotateY((DfRotateY)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfRotateX))
+                            {
+                                restransform = restransform + " " + RotateX((DfRotateX)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfScale))
+                            {
+                                restransform = restransform + " " + Scale((DfScale)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfRotate3D))
+                            {
+                                restransform = restransform + " " + Rotate3D((DfRotate3D)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfTranslate3D))
+                            {
+                                restransform = restransform + " " + Translate3D((DfTranslate3D)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfScale3D))
+                            {
+                                restransform = restransform + " " + Scale3D((DfScale3D)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfTranslateZ))
+                            {
+                                restransform = restransform + " " + TranslateZ((DfTranslateZ)ArrayImpl1.Get(i));
+                            }
+                        }
+                    }
+
+                    if (transform.GetType() == typeof(DfRotate))
+                    {
+                        restransform = Rotate((DfRotate)transform);
+                    }
+                    if (transform.GetType() == typeof(DfRotateY))
+                    {
+                        restransform = RotateY((DfRotateY)transform);
+                    }
+                    if (transform.GetType() == typeof(DfRotateX))
+                    {
+                        restransform = RotateX((DfRotateX)transform);
+                    }
+                    if (transform.GetType() == typeof(DfRotate3D))
+                    {
+                        restransform = Rotate3D((DfRotate3D)transform);
+                    }
+                    if (transform.GetType() == typeof(DfScale))
+                    {
+                        restransform = Scale((DfScale)transform);
+                    }
+                    if (transform.GetType() == typeof(DfTranslate3D))
+                    {
+                        restransform = Translate3D((DfTranslate3D)transform);
+                    }
+                    if (transform.GetType() == typeof(DfTranslate3D))
+                    {
+                        restransform = Translate3D((DfTranslate3D)transform);
+                    }
+                    if (transform.GetType() == typeof(DfScale3D))
+                    {
+                        restransform = Scale3D((DfScale3D)transform);
+                    }
+                    if (transform.GetType() == typeof(DfTranslateZ))
+                    {
+                        restransform = TranslateZ((DfTranslateZ)transform);
+                    }
+
+
+
+
+                }
+
+                //////DeclarativeForms.GlobalContext().Echo(restransform);
+
+                // доделать
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transform'] = '" + restransform + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationPlayState { get; set; }
+        private string animationPlayState;
+        [ContextProperty("Состояние", "AnimationPlayState")]
+        public string AnimationPlayState
+        {
+            get { return animationPlayState; }
+            set
+            {
+                animationPlayState = value;
+                resanimationPlayState = animationPlayState;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationPlayState'] = '" + resanimationPlayState + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resbackgroundSize { get; set; }
+        private IValue backgroundSize;
+        [ContextProperty("РазмерКартинки", "BackgroundSize")]
+        public IValue BackgroundSize
+        {
+            get { return backgroundSize; }
+            set
+            {
+                backgroundSize = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resbackgroundSize = value.AsString();
+                }
+                else
+                {
+                    DfSize val = (DfSize)value;
+                    if (val.Width != null && val.Height != null)
+                    {
+                        resbackgroundSize = val.Width.AsNumber().ToString() + "px " + val.Height.AsNumber().ToString() + "px";
+                    }
+                    else
+                    {
+                        resbackgroundSize = "auto";
+                    }
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundSize'] = '" + resbackgroundSize + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resfontSize { get; set; }
+        private IValue fontSize;
+        [ContextProperty("РазмерШрифта", "FontSize")]
+        public IValue HeFontSizeight
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resfontSize = value.AsString();
+                }
+                else
+                {
+                    resfontSize = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['fontSize'] = '" + resfontSize + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resminHeight { get; set; }
+        private IValue minHeight;
+        [ContextProperty("МинимальнаяВысота", "MinHeight")]
+        public IValue MinHeight
+        {
+            get { return minHeight; }
+            set
+            {
+                minHeight = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resminHeight = value.AsString();
+                }
+                else
+                {
+                    resminHeight = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['paddingBottom'] = '" + resminHeight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resopacity { get; set; }
+        private IValue opacity;
+        [ContextProperty("Непрозрачность", "Opacity")]
+        public IValue Opacity
+        {
+            get { return opacity; }
+            set
+            {
+                opacity = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resopacity = value.AsString();
+                }
+                else
+                {
+                    resopacity = value.AsNumber().ToString().Replace(",", ".");
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['opacity'] = '" + resopacity + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restransformOrigin { get; set; }
+        private IValue transformOrigin;
+        [ContextProperty("ТочкаСдвига", "TransformOrigin")]
+        public IValue TransformOrigin
+        {
+            get { return transformOrigin; }
+            set
+            {
+                transformOrigin = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restransformOrigin = value.AsString();
+                }
+                else
+                {
+                    DfTransformOrigin val = (DfTransformOrigin)value;
+                    string axisX = "0";
+                    string axisY = "0";
+                    string axisZ = "0";
+                    if (val.AxisX != 0)
+                    {
+                        axisX = val.AxisX.ToString();
+                    }
+                    if (val.AxisY != 0)
+                    {
+                        axisY = val.AxisY.ToString();
+                    }
+                    if (val.AxisZ != 0)
+                    {
+                        axisZ = val.AxisZ.ToString();
+                    }
+                    restransformOrigin = axisX + " " + axisY + " " + axisZ + " ";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transformOrigin'] = '" + restransformOrigin + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restransformStyle { get; set; }
+        private string transformStyle;
+        [ContextProperty("СтильСдвига", "TransformStyle")]
+        public string TransformStyle
+        {
+            get { return transformStyle; }
+            set
+            {
+                transformStyle = value;
+                restransformStyle = transformStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transformStyle'] = '" + restransformStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resperspectiveOrigin { get; set; }
+        private IValue perspectiveOrigin;
+        [ContextProperty("ИсточникПерспективы", "PerspectiveOrigin")]
+        public IValue PerspectiveOrigin
+        {
+            get { return perspectiveOrigin; }
+            set
+            {
+                perspectiveOrigin = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resperspectiveOrigin = value.AsString();
+                }
+                else
+                {
+                    DfPerspectiveOrigin val = (DfPerspectiveOrigin)value;
+                    string x = "0";
+                    string y = "0";
+                    if (val.X != null)
+                    {
+                        x = val.X.ToString();
+                    }
+                    if (val.Y != null)
+                    {
+                        y = val.Y.ToString();
+                    }
+                    resperspectiveOrigin = x + "px " + y + "px ";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['perspectiveOrigin'] = '" + resperspectiveOrigin + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resperspective { get; set; }
+        private IValue perspective;
+        [ContextProperty("Перспектива", "Perspective")]
+        public IValue Perspective
+        {
+            get { return perspective; }
+            set
+            {
+                perspective = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resperspective = value.AsString();
+                }
+                else
+                {
+                    resperspective = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['perspective'] = '" + resperspective + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resbackgroundRepeat { get; set; }
+        private string backgroundRepeat;
+        [ContextProperty("МозаикаКартинки", "BackgroundRepeat")]
+        public string BackgroundRepeat
+        {
+            get { return backgroundRepeat; }
+            set
+            {
+                backgroundRepeat = value;
+                resbackgroundRepeat = backgroundRepeat;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundRepeat'] = '" + resbackgroundRepeat + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resfontFamily { get; set; }
+        private string fontFamily;
+        [ContextProperty("СемействоШрифтов", "FontFamily")]
+        public string FontFamily
+        {
+            get { return fontFamily; }
+            set
+            {
+                fontFamily = value;
+                resfontFamily = fontFamily;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['fontFamily'] = '" + resfontFamily + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextShadow { get; set; }
+        private IValue textShadow;
+        [ContextProperty("ТеньТекста", "TextShadow")]
+        public IValue TextShadow
+        {
+            get { return textShadow; }
+            set
+            {
+                textShadow = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restextShadow = value.AsString();
+                }
+                else
+                {
+                    DfBoxShadow val = (DfBoxShadow)value;
+                    string x = "0px ";
+                    string y = "0px ";
+                    string blur = "0px ";
+                    string color = "rgb(0, 0, 0) ";
+                    if (val.X != null)
+                    {
+                        x = val.X.AsNumber().ToString() + "px ";
+                    }
+                    if (val.Y != null)
+                    {
+                        y = val.Y.AsNumber().ToString() + "px ";
+                    }
+                    if (val.Blur != null)
+                    {
+                        blur = val.Blur.AsNumber().ToString() + "px ";
+                    }
+                    if (val.Color != null)
+                    {
+                        color = val.Color.AsString() + " ";
+                    }
+                    restextShadow = x + y + blur + color;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textShadow'] = '" + restextShadow + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resbackgroundImage { get; set; }
+        private string backgroundImage;
+        [ContextProperty("ФоновоеИзображение", "BackgroundImage")]
+        public string BackgroundImage
+        {
+            get { return backgroundImage; }
+            set
+            {
+                backgroundImage = value;
+                if (value.Contains("gradient"))
+                {
+                    resbackgroundImage = backgroundImage;
+                }
+                else
+                {
+                    resbackgroundImage = "url('" + backgroundImage
+                        .Replace("url(\u0022", "")
+                        .Replace("\u0022)", "")
+                        .Replace("url('", "")
+                        .Replace("')", "")
+                        .Replace(" ", "%20") +
+                        "') ";
+                }
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundImage'] = \u0022" + resbackgroundImage + "\u0022;";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resoffset { get; set; }
+        private IValue offset;
+        [ContextProperty("Смещение", "Offset")]
+        public IValue Offset
+        {
+            get { return offset; }
+            set
+            {
+                offset = value;
+                resoffset = value.AsNumber().ToString().Replace(",", ".");
+            }
+        }
+
+        private DfFrames frames;
+        [ContextProperty("Кадры", "Frames")]
+        public DfFrames Frames
+        {
+            get { return frames; }
+            set
+            {
+                frames = value;
+                string strFunc = "" +
+                    "let s = '@keyframes " + frames.Name + @" { \u000A';" +
+                    "let el = mapKeyEl.get('" + frames.ItemKey + "');" +
+                    "for (var i = 0; i < el.length; i++)" +
+                    "{" +
+                    "   let item = el[i];" +
+                    "   let offset = '';" +
+                    "   let keys = Object.keys(item);" +
+                    "   let subS = '';" +
+                    "   for (var i1 = 0; i1 < keys.length; i1++)" +
+                    "   {" +
+                    "       let prop = keys[i1];" +
+                    "       if (!prop.includes('offset'))" +
+                    "       {" +
+                    "           subS += prop + ': ';" +
+                    "           subS += item[prop] + '; ';" +
+                    "       }" +
+                    "       else" +
+                    "       {" +
+                    "           offset = '' + (parseFloat(item[prop]) * 100) + '% ';" +
+                    "       }" +
+                    "   }" +
+                    "   subS = offset + ' {' + subS;" +
+                    "   s += subS;" +
+                    "   s += '}" + @"\u000A';" +
+                    "}" +
+                    "s += '}';" +
+                    //"alert(s);" +
+                    "let el2 = mapKeyEl.get('" + ItemKey + "');" +
+                    "var t = document.createTextNode(s);" +
+                    "el2.appendChild(t);" +
+                    "document.body.appendChild(el2);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+
+        public string resanimation { get; set; }
+        private IValue animation;
+        [ContextProperty("Анимация", "Animation")]
+        public IValue Animation
+        {
+            get { return animation; }
+            set
+            {
+                animation = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resanimation = value.AsString();
+                }
+                else
+                {
+                    DfAnimationProperties val = (DfAnimationProperties)value;
+                    string name = "none ";
+                    string duration = "0ms ";
+                    string timingFunction = "ease ";
+                    string delay = "0ms ";
+                    string iterationCount = "1 ";
+                    string direction = "normal ";
+                    string fillMode = "none ";
+                    string playState = "running ";
+                    if (val.AnimationName != null)
+                    {
+                        name = val.AnimationName + " ";
+                    }
+                    if (val.AnimationDuration != null)
+                    {
+                        duration = val.AnimationDuration.AsNumber().ToString() + "ms ";
+                    }
+                    if (val.AnimationTimingFunction != null)
+                    {
+                        timingFunction = val.AnimationTimingFunction.AsString() + " ";
+                    }
+                    if (val.AnimationDelay != null)
+                    {
+                        delay = val.AnimationDelay.AsNumber().ToString() + "ms ";
+                    }
+                    if (val.AnimationIterationCount != null)
+                    {
+                        if (Convert.ToInt32(val.AnimationIterationCount.AsNumber()) == -1)
+                        {
+                            iterationCount = "infinite ";
+                        }
+                        else
+                        {
+                            iterationCount = val.AnimationIterationCount.AsNumber().ToString() + " ";
+                        }
+                    }
+                    if (val.AnimationDirection != null)
+                    {
+                        direction = val.AnimationDirection.AsString() + " ";
+                    }
+                    if (val.AnimationFillMode != null)
+                    {
+                        fillMode = val.AnimationFillMode.AsString() + " ";
+                    }
+                    if (val.AnimationPlayState != null)
+                    {
+                        playState = val.AnimationPlayState.AsString() + " ";
+                    }
+                    resanimation = name + duration + timingFunction + delay + iterationCount + direction + fillMode + playState;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animation'] = '" + resanimation + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resalignSelf { get; set; }
+        private string alignSelf;
+        [ContextProperty("ВыравниваниеОтдельных", "AlignSelf")]
+        public string AlignSelf
+        {
+            get { return alignSelf; }
+            set
+            {
+                alignSelf = value;
+                resalignSelf = alignSelf;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['alignSelf'] = '" + resalignSelf + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resalignContent { get; set; }
+        private string alignContent;
+        [ContextProperty("ВыравниваниеСодержимого", "AlignContent")]
+        public string AlignContent
+        {
+            get { return alignContent; }
+            set
+            {
+                alignContent = value;
+                resalignContent = alignContent;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['alignContent'] = '" + resalignContent + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resflexDirection { get; set; }
+        private string flexDirection;
+        [ContextProperty("НаправлениеЭлементов", "FlexDirection")]
+        public string FlexDirection
+        {
+            get { return flexDirection; }
+            set
+            {
+                flexDirection = value;
+                resflexDirection = flexDirection;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['flexDirection'] = '" + resflexDirection + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resflexWrap { get; set; }
+        private string flexWrap;
+        [ContextProperty("ПереносГибких", "FlexWrap")]
+        public string FlexWrap
+        {
+            get { return flexWrap; }
+            set
+            {
+                flexWrap = value;
+                resflexWrap = flexWrap;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['flexWrap'] = '" + resflexWrap + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderRadius { get; set; }
+        private IValue borderRadius;
+        [ContextProperty("РадиусГраницы", "BorderRadius")]
+        public IValue BorderRadius
+        {
+            get { return borderRadius; }
+            set
+            {
+                borderRadius = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderRadius = value.AsString();
+                }
+                else
+                {
+                    DfBorderRadius val = (DfBorderRadius)value;
+                    string borderTopLeftRadius = "0px ";
+                    string borderTopRightRadius = "0px ";
+                    string borderBottomRightRadius = "0px ";
+                    string borderBottomLeftRadius = "0px ";
+                    if (val.BorderTopLeftRadius != 0)
+                    {
+                        borderTopLeftRadius = val.BorderTopLeftRadius.ToString() + "px ";
+                    }
+                    if (val.BorderTopRightRadius != 0)
+                    {
+                        borderTopRightRadius = val.BorderTopRightRadius.ToString() + "px ";
+                    }
+                    if (val.BorderBottomRightRadius != 0)
+                    {
+                        borderBottomRightRadius = val.BorderBottomRightRadius.ToString() + "px ";
+                    }
+                    if (val.BorderBottomLeftRadius != 0)
+                    {
+                        borderBottomLeftRadius = val.BorderBottomLeftRadius.ToString() + "px ";
+                    }
+                    resborderRadius = borderTopLeftRadius + borderTopRightRadius + borderBottomRightRadius + borderBottomLeftRadius;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderRadius'] = '" + resborderRadius + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+
+            }
+        }
+
+        public string resmarginTop { get; set; }
+        private IValue marginTop;
+        [ContextProperty("ОтступСверху", "MarginTop")]
+        public IValue MarginTop
+        {
+            get { return marginTop; }
+            set
+            {
+                marginTop = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resmarginTop = value.AsString();
+                }
+                else
+                {
+                    resmarginTop = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['marginTop'] = '" + resmarginTop + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resmarginLeft { get; set; }
+        private IValue marginLeft;
+        [ContextProperty("ОтступСлева", "MarginLeft")]
+        public IValue MarginLeft
+        {
+            get { return marginLeft; }
+            set
+            {
+                marginLeft = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resmarginLeft = value.AsString();
+                }
+                else
+                {
+                    resmarginLeft = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['marginLeft'] = '" + resmarginLeft + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resmarginBottom { get; set; }
+        private IValue marginBottom;
+        [ContextProperty("ОтступСнизу", "MarginBottom")]
+        public IValue MarginBottom
+        {
+            get { return marginBottom; }
+            set
+            {
+                marginBottom = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resmarginBottom = value.AsString();
+                }
+                else
+                {
+                    resmarginBottom = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['marginBottom'] = '" + resmarginBottom + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resmarginRight { get; set; }
+        private IValue marginRight;
+        [ContextProperty("ОтступСправа", "MarginRight")]
+        public IValue MarginRight
+        {
+            get { return marginRight; }
+            set
+            {
+                marginRight = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resmarginRight = value.AsString();
+                }
+                else
+                {
+                    resmarginRight = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['marginRight'] = '" + resmarginRight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resfont { get; set; }
+        private IValue font;
         [ContextProperty("Шрифт", "Font")]
-        public DfFont Font
+        public IValue Font
         {
             get { return font; }
             set
             {
                 font = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resfont = value.AsString();
+                }
+                else
+                {
+                    DfFont val = (DfFont)value;
                     string fontStyle = "";
                     string fontVariant = "";
                     string fontWeight = "";
                     string fontSize = "100%";
                     string lineHeight = "100%";
                     string fontFamily = "";
-                    if (font.FontStyle != null)
+                    if (val.FontStyle != null)
                     {
-                        fontStyle = font.FontStyle.AsString() + " ";
+                        fontStyle = val.FontStyle.AsString() + " ";
                     }
-                    if (font.FontVariant != null)
+                    if (val.FontVariant != null)
                     {
-                        fontVariant = font.FontVariant.AsString() + " ";
+                        fontVariant = val.FontVariant.AsString() + " ";
                     }
-                    if (font.FontWeight != null)
+                    if (val.FontWeight != null)
                     {
-                        fontWeight = font.FontWeight.AsString() + " ";
+                        fontWeight = val.FontWeight.AsString() + " ";
                     }
-                    if (font.FontSize != null)
+                    if (val.FontSize != null)
                     {
-                        fontSize = "" + font.FontSize.AsNumber() + "px";
+                        fontSize = val.FontSize.AsNumber().ToString() + "px";
                     }
-                    if (font.LineHeight != null)
+                    if (val.LineHeight != null)
                     {
-                        lineHeight = "" + font.LineHeight.AsNumber() + "px";
+                        lineHeight = val.LineHeight.AsNumber().ToString() + "px";
                     }
-                    if (font.FontFamily != null)
+                    if (val.FontFamily != null)
                     {
-                        fontFamily = font.FontFamily.AsString() + " ";
+                        fontFamily = val.FontFamily.AsString() + " ";
                     }
-                    string res = fontStyle + fontVariant + fontWeight + fontSize + "/" + lineHeight + " " + fontFamily;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "font" + "\u0022, \u0022" + res + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resfont = fontStyle + fontVariant + fontWeight + fontSize + "/" + lineHeight + " " + fontFamily;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['font'] = '" + resfont + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
-		
+
+        public string resfilter { get; set; }
         private IValue filter;
         [ContextProperty("Фильтр", "Filter")]
         public IValue Filter
@@ -84,10 +1078,14 @@ namespace osdf
             set
             {
                 filter = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    DfImagesFilter imagesFilter = (DfImagesFilter)filter.AsObject();
+                    resfilter = value.AsString();
+                }
+                else
+                {
+                    DfImagesFilter val = (DfImagesFilter)value;
                     string blur = "";
                     string brightness = "";
                     string contrast = "";
@@ -98,21 +1096,21 @@ namespace osdf
                     string opacity = "";
                     string saturate = "";
                     string sepia = "";
-                    if (imagesFilter.Blur != null)
+                    if (val.Blur != null)
                     {
-                        blur = "blur(" + imagesFilter.Blur.AsNumber() + "px) ";
+                        blur = "blur(" + val.Blur.AsNumber().ToString() + "px) ";
                     }
-                    if (imagesFilter.Brightness != null)
+                    if (val.Brightness != null)
                     {
-                        brightness = "brightness(" + imagesFilter.Brightness.AsNumber() + "%) ";
+                        brightness = "brightness(" + val.Brightness.AsNumber().ToString() + "%) ";
                     }
-                    if (imagesFilter.Contrast != null)
+                    if (val.Contrast != null)
                     {
-                        contrast = "contrast(" + imagesFilter.Contrast.AsNumber() + "%) ";
+                        contrast = "contrast(" + val.Contrast.AsNumber().ToString() + "%) ";
                     }
-                    if (imagesFilter.DropShadow != null)
+                    if (val.DropShadow != null)
                     {
-                        DfBoxShadow boxShadow = (DfBoxShadow)imagesFilter.DropShadow.AsObject();
+                        DfBoxShadow boxShadow = (DfBoxShadow)val.DropShadow;
                         string x = "";
                         string y = "";
                         string _blur = "";
@@ -120,19 +1118,19 @@ namespace osdf
                         string color = "";
                         if (boxShadow.X != null)
                         {
-                            x = "" + boxShadow.X.AsNumber() + "px ";
+                            x = boxShadow.X.AsNumber().ToString() + "px ";
                         }
                         if (boxShadow.Y != null)
                         {
-                            y = "" + boxShadow.Y.AsNumber() + "px ";
+                            y = boxShadow.Y.AsNumber().ToString() + "px ";
                         }
                         if (boxShadow.Blur != null)
                         {
-                            _blur = "" + boxShadow.Blur.AsNumber() + "px ";
+                            _blur = boxShadow.Blur.AsNumber().ToString() + "px ";
                         }
                         if (boxShadow.Spread != null)
                         {
-                            //spread = "" + boxShadow.Spread.AsNumber() + "px ";
+                            //spread = "" + boxShadow.Spread.AsNumber().ToString() + "px ";
                             // Не поддерживается множеством браузеров. Не используем.
                             spread = "";
                         }
@@ -142,37 +1140,42 @@ namespace osdf
                         }
                         dropShadow = "drop-shadow(" + x + y + _blur + spread + color + ") ";
                     }
-                    if (imagesFilter.Grayscale != null)
+                    if (val.Grayscale != null)
                     {
-                        grayscale = "grayscale(" + imagesFilter.Grayscale.AsNumber() + "%) ";
+                        grayscale = "grayscale(" + val.Grayscale.AsNumber().ToString() + "%) ";
                     }
-                    if (imagesFilter.HueRotate != null)
+                    if (val.HueRotate != null)
                     {
-                        hueRotate = "hue-rotate(" + imagesFilter.HueRotate.AsNumber() + "deg) ";
+                        hueRotate = "hue-rotate(" + val.HueRotate.AsNumber().ToString() + "deg) ";
                     }
-                    if (imagesFilter.Invert != null)
+                    if (val.Invert != null)
                     {
-                        invert = "invert(" + imagesFilter.Invert.AsNumber() + "%) ";
+                        invert = "invert(" + val.Invert.AsNumber().ToString() + "%) ";
                     }
-                    if (imagesFilter.Opacity != null)
+                    if (val.Opacity != null)
                     {
-                        opacity = "opacity(" + imagesFilter.Opacity.AsNumber() + "%) ";
+                        opacity = "opacity(" + val.Opacity.AsNumber().ToString() + "%) ";
                     }
-                    if (imagesFilter.Saturate != null)
+                    if (val.Saturate != null)
                     {
-                        saturate = "saturate(" + imagesFilter.Saturate.AsNumber() + ") ";
+                        saturate = "saturate(" + val.Saturate.AsNumber().ToString() + ") ";
                     }
-                    if (imagesFilter.Sepia != null)
+                    if (val.Sepia != null)
                     {
-                        sepia = "sepia(" + imagesFilter.Sepia.AsNumber() + "%) ";
+                        sepia = "sepia(" + val.Sepia.AsNumber().ToString() + "%) ";
                     }
-                    string res = blur + brightness + contrast + dropShadow + grayscale + hueRotate + invert + opacity + saturate + sepia;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "filter" + "\u0022, \u0022" + res + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resfilter = blur + brightness + contrast + dropShadow + grayscale + hueRotate + invert + opacity + saturate + sepia;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['filter'] = '" + resfilter + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
-		
+
+        public string resposition { get; set; }
         private string position;
         [ContextProperty("Позиция", "Position")]
         public string Position
@@ -181,15 +1184,124 @@ namespace osdf
             set
             {
                 position = value;
+                resposition = position;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "position" + "\u0022, \u0022" + position + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['position'] = '" + resposition + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string restop { get; set; }
+        private IValue top;
+        [ContextProperty("Верх", "Top")]
+        public IValue Top
+        {
+            get { return top; }
+            set
+            {
+                top = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restop = value.AsString();
+                }
+                else
+                {
+                    restop = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['top'] = '" + restop + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resbottom { get; set; }
+        private IValue bottom;
+        [ContextProperty("Низ", "Bottom")]
+        public IValue Bottom
+        {
+            get { return bottom; }
+            set
+            {
+                bottom = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resbottom = value.AsString();
+                }
+                else
+                {
+                    resbottom = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['bottom'] = '" + resbottom + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resleft { get; set; }
+        private IValue left;
+        [ContextProperty("Лево", "Left")]
+        public IValue Left
+        {
+            get { return left; }
+            set
+            {
+                left = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resleft = value.AsString();
+                }
+                else
+                {
+                    resleft = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['left'] = '" + resleft + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resright { get; set; }
+        private IValue right;
+        [ContextProperty("Право", "Right")]
+        public IValue Right
+        {
+            get { return right; }
+            set
+            {
+                right = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resright = value.AsString();
+                }
+                else
+                {
+                    resright = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['right'] = '" + resright + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resjustifyContent { get; set; }
         private string justifyContent;
         [ContextProperty("РасположениеСодержимого", "JustifyContent")]
         public string JustifyContent
@@ -198,15 +1310,16 @@ namespace osdf
             set
             {
                 justifyContent = value;
+                resjustifyContent = justifyContent;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "justifyContent" + "\u0022, \u0022" + justifyContent + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['justifyContent'] = '" + resjustifyContent + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string resdisplay { get; set; }
         private string display;
         [ContextProperty("Отображать", "Display")]
         public string Display
@@ -215,15 +1328,16 @@ namespace osdf
             set
             {
                 display = value;
+                resdisplay = display;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "display" + "\u0022, \u0022" + display + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['display'] = '" + resdisplay + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string resalignItems { get; set; }
         private string alignItems;
         [ContextProperty("ВыравниваниеЭлементов", "AlignItems")]
         public string AlignItems
@@ -232,208 +1346,277 @@ namespace osdf
             set
             {
                 alignItems = value;
+                resalignItems = alignItems;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "alignItems" + "\u0022, \u0022" + alignItems + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['alignItems'] = '" + resalignItems + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfBoxShadow boxShadow;
+        public string resboxShadow { get; set; }
+        private IValue boxShadow;
         [ContextProperty("Тень", "BoxShadow")]
-        public DfBoxShadow BoxShadow
+        public IValue BoxShadow
         {
             get { return boxShadow; }
             set
             {
                 boxShadow = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resboxShadow = value.AsString();
+                }
+                else
+                {
+                    DfBoxShadow val = (DfBoxShadow)value;
                     string x = "0px ";
                     string y = "0px ";
                     string blur = "0px ";
                     string spread = "0px ";
                     string color = "rgb(0, 0, 0) ";
                     string inset = "";
-                    if (boxShadow.X != null)
+                    if (val.X != null)
                     {
-                        x = "" + boxShadow.X.AsNumber() + "px ";
+                        x = val.X.AsNumber().ToString() + "px ";
                     }
-                    if (boxShadow.Y != null)
+                    if (val.Y != null)
                     {
-                        y = "" + boxShadow.Y.AsNumber() + "px ";
+                        y = val.Y.AsNumber().ToString() + "px ";
                     }
-                    if (boxShadow.Blur != null)
+                    if (val.Blur != null)
                     {
-                        blur = "" + boxShadow.Blur.AsNumber() + "px ";
+                        blur = val.Blur.AsNumber().ToString() + "px ";
                     }
-                    if (boxShadow.Spread != null)
+                    if (val.Spread != null)
                     {
-                        spread = "" + boxShadow.Spread.AsNumber() + "px ";
+                        spread = val.Spread.AsNumber().ToString() + "px ";
                     }
-                    if (boxShadow.Color != null)
+                    if (val.Color != null)
                     {
-                        color = boxShadow.Color.AsString() + " ";
+                        color = val.Color.AsString() + " ";
                     }
-                    if (boxShadow.Inset)
+                    if (val.Inset)
                     {
                         inset = "inset";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "boxShadow" + "\u0022, \u0022" + x + y + blur + spread + color + inset + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resboxShadow = x + y + blur + spread + color + inset;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['boxShadow'] = '" + resboxShadow + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfListStyle listStyle;
+        public string reslistStyle { get; set; }
+        private IValue listStyle;
         [ContextProperty("СтильСписка", "ListStyle")]
-        public DfListStyle ListStyle
+        public IValue ListStyle
         {
             get { return listStyle; }
             set
             {
                 listStyle = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    reslistStyle = value.AsString();
+                }
+                else
+                {
+                    DfListStyle val = (DfListStyle)value;
                     string listStyleType = "decimal ";
                     string listStylePosition = "outside ";
                     string listStyleImage = "none";
-                    if (listStyle.ListStyleType != null)
+                    if (val.ListStyleType != null)
                     {
-                        listStyleType = listStyle.ListStyleType.AsString() + " ";
+                        listStyleType = val.ListStyleType.AsString() + " ";
                     }
-                    if (listStyle.ListStylePosition != null)
+                    if (val.ListStylePosition != null)
                     {
-                        listStylePosition = listStyle.ListStylePosition.AsString() + " ";
+                        listStylePosition = val.ListStylePosition.AsString() + " ";
                     }
-                    if (listStyle.ListStyleImage != null)
+                    if (val.ListStyleImage != null)
                     {
-                        listStyleImage = "url('" + listStyle.ListStyleImage.AsString() + "') ";
+                        listStyleImage = "url('" + val.ListStyleImage.AsString()
+                            .Replace("url(\u0022", "")
+                            .Replace("\u0022)", "")
+                            .Replace("url('", "")
+                            .Replace("')", "")
+                            .Replace(" ", "%20") +
+                            "') ";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "listStyle" + "\u0022, \u0022" + listStyleType + listStylePosition + listStyleImage + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    reslistStyle = listStyleType + listStylePosition + listStyleImage;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['listStyle'] = \u0022" + reslistStyle + "\u0022;";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfColumnRule columnRule;
+        public string rescolumnRule { get; set; }
+        private IValue columnRule;
         [ContextProperty("РазделительКолонок", "ColumnRule")]
-        public DfColumnRule ColumnRule
+        public IValue ColumnRule
         {
             get { return columnRule; }
             set
             {
                 columnRule = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    rescolumnRule = value.AsString();
+                }
+                else
+                {
+                    DfColumnRule val = (DfColumnRule)value;
                     string columnRuleWidth = "medium ";
                     string columnRuleStyle = "none ";
                     string columnRuleColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (columnRule.ColumnRuleWidth != null)
+                    if (val.ColumnRuleWidth != null)
                     {
-                        if (columnRule.ColumnRuleWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.ColumnRuleWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            columnRuleWidth = columnRule.ColumnRuleWidth.AsString() + " ";
+                            columnRuleWidth = val.ColumnRuleWidth.AsString() + " ";
                         }
-                        else if (columnRule.ColumnRuleWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.ColumnRuleWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            columnRuleWidth = columnRule.ColumnRuleWidth.AsNumber().ToString() + "px ";
+                            columnRuleWidth = val.ColumnRuleWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (columnRule.ColumnRuleStyle != null)
+                    if (val.ColumnRuleStyle != null)
                     {
-                        columnRuleStyle = columnRule.ColumnRuleStyle.AsString() + " ";
+                        columnRuleStyle = val.ColumnRuleStyle.AsString() + " ";
                     }
-                    if (columnRule.ColumnRuleColor != null)
+                    if (val.ColumnRuleColor != null)
                     {
-                        columnRuleColor = columnRule.ColumnRuleColor.AsString();
+                        columnRuleColor = val.ColumnRuleColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columnRule" + "\u0022, \u0022" + columnRuleWidth + columnRuleStyle + columnRuleColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    rescolumnRule = columnRuleWidth + columnRuleStyle + columnRuleColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnRule'] = '" + rescolumnRule + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-
-
-        private string verticalAlign;
+        public string resverticalAlign { get; set; }
+        private IValue verticalAlign;
         [ContextProperty("ВертикальноеВыравнивание", "VerticalAlign")]
-        public string VerticalAlign
+        public IValue VerticalAlign
         {
             get { return verticalAlign; }
             set
             {
                 verticalAlign = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resverticalAlign = value.AsString();
+                }
+                else
+                {
+                    resverticalAlign = value.AsNumber().ToString() + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "verticalAlign" + "\u0022, \u0022" + verticalAlign + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['verticalAlign'] = '" + resverticalAlign + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfBorderTop borderTop;
+        public string resborderTop { get; set; }
+        private IValue borderTop;
         [ContextProperty("ВерхняяГраница", "BorderTop")]
-        public DfBorderTop BorderTop
+        public IValue BorderTop
         {
             get { return borderTop; }
             set
             {
                 borderTop = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resborderTop = value.AsString();
+                }
+                else
+                {
+                    DfBorderTop val = (DfBorderTop)value;
                     string borderTopWidth = "medium ";
                     string borderTopStyle = "none ";
                     string borderTopColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (borderTop.BorderTopWidth != null)
+                    if (val.BorderTopWidth != null)
                     {
-                        if (borderTop.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderTopWidth = borderTop.BorderTopWidth.AsString() + " ";
+                            borderTopWidth = val.BorderTopWidth.AsString() + " ";
                         }
-                        else if (borderTop.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderTopWidth = borderTop.BorderTopWidth.AsNumber().ToString() + "px ";
+                            borderTopWidth = val.BorderTopWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (borderTop.BorderTopStyle != null)
+                    if (val.BorderTopStyle != null)
                     {
-                        borderTopStyle = borderTop.BorderTopStyle.AsString() + " ";
+                        borderTopStyle = val.BorderTopStyle.AsString() + " ";
                     }
-                    if (borderTop.BorderTopColor != null)
+                    if (val.BorderTopColor != null)
                     {
-                        borderTopColor = borderTop.BorderTopColor.AsString();
+                        borderTopColor = val.BorderTopColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderTop" + "\u0022, \u0022" + borderTopWidth + borderTopStyle + borderTopColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resborderTop = borderTopWidth + borderTopStyle + borderTopColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderTop'] = '" + resborderTop + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int height;
+        public string resheight { get; set; }
+        private IValue height;
         [ContextProperty("Высота", "Height")]
-        public int Height
+        public IValue Height
         {
             get { return height; }
             set
             {
                 height = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resheight = value.AsString();
+                }
+                else
+                {
+                    resheight = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "height" + "\u0022, \u0022" + height + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['height'] = '" + resheight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string reshorizontalTextAlign { get; set; }
         private string horizontalTextAlign;
         [ContextProperty("ГоризонтальноеВыравниваниеТекста", "HorizontalTextAlign")]
         public string HorizontalTextAlign
@@ -442,15 +1625,16 @@ namespace osdf
             set
             {
                 horizontalTextAlign = value;
+                reshorizontalTextAlign = horizontalTextAlign;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "textAlign" + "\u0022, \u0022" + horizontalTextAlign + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textAlign'] = '" + reshorizontalTextAlign + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string resborderCollapse { get; set; }
         private string borderCollapse;
         [ContextProperty("ГраницаСвернута", "BorderCollapse")]
         public string BorderCollapse
@@ -459,155 +1643,217 @@ namespace osdf
             set
             {
                 borderCollapse = value;
+                resborderCollapse = borderCollapse;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderCollapse" + "\u0022, \u0022" + borderCollapse + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderCollapse'] = '" + resborderCollapse + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfBorders borders;
+        public string resborders { get; set; }
+        private IValue borders;
         [ContextProperty("Границы", "Borders")]
-        public DfBorders Borders
+        public IValue Borders
         {
             get { return borders; }
             set
             {
                 borders = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resborders = value.AsString();
+                }
+                else
+                {
+                    DfBorders val = (DfBorders)value;
                     string borderWidth = "medium ";
                     string borderStyle = "none ";
                     string borderColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (borders.BorderWidth != null)
+                    if (val.BorderWidth != null)
                     {
-                        if (borders.BorderWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderWidth = borders.BorderWidth.AsString() + " ";
+                            borderWidth = val.BorderWidth.AsString() + " ";
                         }
-                        else if (borders.BorderWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderWidth = borders.BorderWidth.AsNumber().ToString() + "px ";
+                            borderWidth = val.BorderWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (borders.BorderStyle != null)
+                    if (val.BorderStyle != null)
                     {
-                        borderStyle = borders.BorderStyle.AsString() + " ";
+                        borderStyle = val.BorderStyle.AsString() + " ";
                     }
-                    if (borders.BorderColor != null)
+                    if (val.BorderColor != null)
                     {
-                        borderColor = borders.BorderColor.AsString();
+                        borderColor = val.BorderColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "border" + "\u0022, \u0022" + borderWidth + borderStyle + borderColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resborders = borderWidth + borderStyle + borderColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['border'] = '" + resborders + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfPadding padding;
+        public string respadding { get; set; }
+        private IValue padding;
         [ContextProperty("Заполнение", "Padding")]
-        public DfPadding Padding
+        public IValue Padding
         {
             get { return padding; }
             set
             {
                 padding = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    respadding = value.AsString();
+                }
+                else
+                {
+                    DfPadding val = (DfPadding)value;
                     string paddingTop = "0px ";
                     string paddingRight = "0px ";
                     string paddingBottom = "0px ";
                     string paddingLeft = "0px";
-                    if (padding.PaddingTop != null)
+                    if (val.PaddingTop != null)
                     {
-                        paddingTop = padding.PaddingTop.AsNumber().ToString() + "px ";
+                        paddingTop = val.PaddingTop.AsNumber().ToString() + "px ";
                     }
-                    if (padding.PaddingRight != null)
+                    if (val.PaddingRight != null)
                     {
-                        paddingRight = padding.PaddingRight.AsNumber().ToString() + "px ";
+                        paddingRight = val.PaddingRight.AsNumber().ToString() + "px ";
                     }
-                    if (padding.PaddingBottom != null)
+                    if (val.PaddingBottom != null)
                     {
-                        paddingBottom = padding.PaddingBottom.AsNumber().ToString() + "px ";
+                        paddingBottom = val.PaddingBottom.AsNumber().ToString() + "px ";
                     }
-                    if (padding.PaddingLeft != null)
+                    if (val.PaddingLeft != null)
                     {
-                        paddingLeft = padding.PaddingLeft.AsNumber().ToString() + "px";
+                        paddingLeft = val.PaddingLeft.AsNumber().ToString() + "px";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "padding" + "\u0022, \u0022" + paddingTop + paddingRight + paddingBottom + paddingLeft + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    respadding = paddingTop + paddingRight + paddingBottom + paddingLeft;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['padding'] = '" + respadding + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int paddingTop;
+        public string respaddingTop { get; set; }
+        private IValue paddingTop;
         [ContextProperty("ЗаполнениеСверху", "PaddingTop")]
-        public int PaddingTop
+        public IValue PaddingTop
         {
             get { return paddingTop; }
             set
             {
                 paddingTop = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    respaddingTop = value.AsString();
+                }
+                else
+                {
+                    respaddingTop = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingTop" + "\u0022, \u0022" + paddingTop + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['paddingTop'] = '" + respaddingTop + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int paddingLeft;
+        public string respaddingLeft { get; set; }
+        private IValue paddingLeft;
         [ContextProperty("ЗаполнениеСлева", "PaddingLeft")]
-        public int PaddingLeft
+        public IValue PaddingLeft
         {
             get { return paddingLeft; }
             set
             {
                 paddingLeft = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    respaddingLeft = value.AsString();
+                }
+                else
+                {
+                    respaddingLeft = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingLeft" + "\u0022, \u0022" + paddingLeft + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['paddingLeft'] = '" + respaddingLeft + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int paddingBottom;
+        public string respaddingBottom { get; set; }
+        private IValue paddingBottom;
         [ContextProperty("ЗаполнениеСнизу", "PaddingBottom")]
-        public int PaddingBottom
+        public IValue PaddingBottom
         {
             get { return paddingBottom; }
             set
             {
                 paddingBottom = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    respaddingBottom = value.AsString();
+                }
+                else
+                {
+                    respaddingBottom = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingBottom" + "\u0022, \u0022" + paddingBottom + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['paddingBottom'] = '" + respaddingBottom + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int paddingRight;
+        public string respaddingRight { get; set; }
+        private IValue paddingRight;
         [ContextProperty("ЗаполнениеСправа", "PaddingRight")]
-        public int PaddingRight
+        public IValue PaddingRight
         {
             get { return paddingRight; }
             set
             {
                 paddingRight = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    respaddingRight = value.AsString();
+                }
+                else
+                {
+                    respaddingRight = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "paddingRight" + "\u0022, \u0022" + paddingRight + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['paddingRight'] = '" + respaddingRight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
@@ -617,351 +1863,394 @@ namespace osdf
         public string ItemKey
         {
             get { return itemKey; }
-            set { itemKey = value; }
+            private set { itemKey = value; }
         }
 
-        private string borderImageSource;
-        [ContextProperty("ИсточникКартинкиГраницы", "BorderImageSource")]
-        public string BorderImageSource
-        {
-            get { return borderImageSource; }
-            set
-            {
-                borderImageSource = value;
-                if (Owner != null)
-                {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageSource" + "\u0022, \u0022" + borderImageSource + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-                }
-            }
-        }
-
-        private DfBorderImage borderImage;
+        public string resborderImage { get; set; }
+        private IValue borderImage;
         [ContextProperty("КартинкаГраницы", "BorderImage")]
-        public DfBorderImage BorderImage
+        public IValue BorderImage
         {
             get { return borderImage; }
             set
             {
                 borderImage = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resborderImage = value.AsString();
+                }
+                else
+                {
+                    DfBorderImage val = (DfBorderImage)value;
                     string borderImageSource = "none ";
                     string borderImageSlice = "100 ";
                     string borderImageWidth = "1 ";
                     string borderImageOutset = "0 ";
                     string borderImageRepeat = "stretch";
-                    if (borderImage.BorderImageSource != null)
+                    if (val.BorderImageSource != null)
                     {
-                        borderImageSource = "url('" + borderImage.BorderImageSource.AsString() + "') ";
+                        borderImageSource = "url('" + val.BorderImageSource.AsString()
+                            .Replace("url(\u0022", "")
+                            .Replace("\u0022)", "")
+                            .Replace("url('", "")
+                            .Replace("')", "")
+                            .Replace(" ", "%20") +
+                            "') ";
                     }
-                    if (borderImage.BorderImageSlice != null)
+                    if (val.BorderImageSlice != null)
                     {
-                        borderImageSlice = borderImage.BorderImageSlice.AsNumber().ToString() + " ";
+                        borderImageSlice = val.BorderImageSlice.AsNumber().ToString() + " ";
                     }
-                    if (borderImage.BorderImageWidth != null)
+                    if (val.BorderImageWidth != null)
                     {
-                        borderImageWidth = borderImage.BorderImageWidth.AsNumber().ToString() + " ";
+                        borderImageWidth = val.BorderImageWidth.AsNumber().ToString() + " ";
                     }
-                    if (borderImage.BorderImageOutset != null)
+                    if (val.BorderImageOutset != null)
                     {
-                        borderImageOutset = borderImage.BorderImageOutset.AsNumber().ToString() + " ";
+                        borderImageOutset = val.BorderImageOutset.AsNumber().ToString() + " ";
                     }
-                    if (borderImage.BorderImageRepeat != null)
+                    if (val.BorderImageRepeat != null)
                     {
-                        borderImageRepeat = borderImage.BorderImageRepeat.AsString();
+                        borderImageRepeat = val.BorderImageRepeat.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderImage" + "\u0022, \u0022" + borderImageSource + borderImageSlice + borderImageWidth + borderImageOutset + borderImageRepeat + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resborderImage = borderImageSource + borderImageSlice + borderImageWidth + borderImageOutset + borderImageRepeat;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImage'] = \u0022" + resborderImage + "\u0022;";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int columnCount;
+        public string rescolumnCount { get; set; }
+        private IValue columnCount;
         [ContextProperty("КоличествоКолонок", "ColumnCount")]
-        public int ColumnCount
+        public IValue ColumnCount
         {
             get { return columnCount; }
             set
             {
                 columnCount = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    rescolumnCount = value.AsString();
+                }
+                else
+                {
+                    rescolumnCount = value.AsNumber().ToString().Replace(",", ".");
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columnCount" + "\u0022, \u0022" + columnCount + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnCount'] = '" + rescolumnCount + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfColumns columns;
+        public string rescolumns { get; set; }
+        private IValue columns;
         [ContextProperty("КолонкиЭлемента", "Columns")]
-        public DfColumns Columns
+        public IValue Columns
         {
             get { return columns; }
             set
             {
                 columns = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    rescolumns = value.AsString();
+                }
+                else
+                {
+                    DfColumns val = (DfColumns)value;
                     string columnWidth = "auto ";
                     string columnCount = "auto";
-                    if (columns.ColumnWidth != null)
+                    if (val.ColumnWidth != null)
                     {
-                        if (columns.ColumnWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.ColumnWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            columnWidth = columns.ColumnWidth.AsString() + " ";
+                            columnWidth = val.ColumnWidth.AsString() + " ";
                         }
-                        else if (columns.ColumnWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.ColumnWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            columnWidth = columns.ColumnWidth.AsNumber().ToString() + "px ";
+                            columnWidth = val.ColumnWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (columns.ColumnCount != null)
+                    if (val.ColumnCount != null)
                     {
-                        columnCount = columns.ColumnCount.AsNumber().ToString();
+                        columnCount = val.ColumnCount.AsNumber().ToString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columns" + "\u0022, \u0022" + columnWidth + columnCount + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    rescolumns = columnWidth + columnCount;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columns'] = '" + rescolumns + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfOutline outline;
+        public string resoutline { get; set; }
+        private IValue outline;
         [ContextProperty("Контур", "Outline")]
-        public DfOutline Outline
+        public IValue Outline
         {
             get { return outline; }
             set
             {
                 outline = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resoutline = value.AsString();
+                }
+                else
+                {
+                    DfOutline val = (DfOutline)value;
                     string outlineWidth = "medium ";
                     string outlineStyle = "none ";
                     string outlineColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (outline.OutlineWidth != null)
+                    if (val.OutlineWidth != null)
                     {
-                        if (outline.OutlineWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.OutlineWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            outlineWidth = outline.OutlineWidth.AsString() + " ";
+                            outlineWidth = val.OutlineWidth.AsString() + " ";
                         }
-                        else if (outline.OutlineWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.OutlineWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            outlineWidth = outline.OutlineWidth.AsNumber().ToString() + "px ";
+                            outlineWidth = val.OutlineWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (outline.OutlineStyle != null)
+                    if (val.OutlineStyle != null)
                     {
-                        outlineStyle = outline.OutlineStyle.AsString() + " ";
+                        outlineStyle = val.OutlineStyle.AsString() + " ";
                     }
-                    if (outline.OutlineColor != null)
+                    if (val.OutlineColor != null)
                     {
-                        outlineColor = outline.OutlineColor.AsString();
+                        outlineColor = val.OutlineColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outline" + "\u0022, \u0022" + outlineWidth + outlineStyle + outlineColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resoutline = outlineWidth + outlineStyle + outlineColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['outline'] = '" + resoutline + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfBorderLeft borderLeft;
+        public string resborderLeft { get; set; }
+        private IValue borderLeft;
         [ContextProperty("ЛеваяГраница", "BorderLeft")]
-        public DfBorderLeft BorderLeft
+        public IValue BorderLeft
         {
             get { return borderLeft; }
             set
             {
                 borderLeft = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resborderLeft = value.AsString();
+                }
+                else
+                {
+                    DfBorderLeft val = (DfBorderLeft)value;
                     string borderLeftWidth = "medium ";
                     string borderLeftStyle = "none ";
                     string borderLeftColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (borderLeft.BorderLeftWidth != null)
+                    if (val.BorderLeftWidth != null)
                     {
-                        if (borderLeft.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderLeftWidth = borderLeft.BorderLeftWidth.AsString() + " ";
+                            borderLeftWidth = val.BorderLeftWidth.AsString() + " ";
                         }
-                        else if (borderLeft.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderLeftWidth = borderLeft.BorderLeftWidth.AsNumber().ToString() + "px ";
+                            borderLeftWidth = val.BorderLeftWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (borderLeft.BorderLeftStyle != null)
+                    if (val.BorderLeftStyle != null)
                     {
-                        borderLeftStyle = borderLeft.BorderLeftStyle.AsString() + " ";
+                        borderLeftStyle = val.BorderLeftStyle.AsString() + " ";
                     }
-                    if (borderLeft.BorderLeftColor != null)
+                    if (val.BorderLeftColor != null)
                     {
-                        borderLeftColor = borderLeft.BorderLeftColor.AsString();
+                        borderLeftColor = val.BorderLeftColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderLeft" + "\u0022, \u0022" + borderLeftWidth + borderLeftStyle + borderLeftColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resborderLeft = borderLeftWidth + borderLeftStyle + borderLeftColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderLeft'] = '" + resborderLeft + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfBorderRight borderRight;
+        public string resborderRight { get; set; }
+        private IValue borderRight;
         [ContextProperty("ПраваяГраница", "BorderRight")]
-        public DfBorderRight BorderRight
+        public IValue BorderRight
         {
             get { return borderRight; }
             set
             {
                 borderRight = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resborderRight = value.AsString();
+                }
+                else
+                {
+                    DfBorderRight val = (DfBorderRight)value;
                     string borderRightWidth = "medium ";
                     string borderRightStyle = "none ";
                     string borderRightColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (borderRight.BorderRightWidth != null)
+                    if (val.BorderRightWidth != null)
                     {
-                        if (borderRight.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderRightWidth = borderRight.BorderRightWidth.AsString() + " ";
+                            borderRightWidth = val.BorderRightWidth.AsString() + " ";
                         }
-                        else if (borderRight.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderRightWidth = borderRight.BorderRightWidth.AsNumber().ToString() + "px ";
+                            borderRightWidth = val.BorderRightWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (borderRight.BorderRightStyle != null)
+                    if (val.BorderRightStyle != null)
                     {
-                        borderRightStyle = borderRight.BorderRightStyle.AsString() + " ";
+                        borderRightStyle = val.BorderRightStyle.AsString() + " ";
                     }
-                    if (borderRight.BorderRightColor != null)
+                    if (val.BorderRightColor != null)
                     {
-                        borderRightColor = borderRight.BorderRightColor.AsString();
+                        borderRightColor = val.BorderRightColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderRight" + "\u0022, \u0022" + borderRightWidth + borderRightStyle + borderRightColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resborderRight = borderRightWidth + borderRightStyle + borderRightColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderRight'] = '" + resborderRight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfBorderBottom borderBottom;
+        public string resborderBottom { get; set; }
+        private IValue borderBottom;
         [ContextProperty("НижняяГраница", "BorderBottom")]
-        public DfBorderBottom BorderBottom
+        public IValue BorderBottom
         {
             get { return borderBottom; }
             set
             {
                 borderBottom = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resborderBottom = value.AsString();
+                }
+                else
+                {
+                    DfBorderBottom val = (DfBorderBottom)value;
                     string borderBottomWidth = "medium ";
                     string borderBottomStyle = "none ";
                     string borderBottomColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (borderBottom.BorderBottomWidth != null)
+                    if (val.BorderBottomWidth != null)
                     {
-                        if (borderBottom.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderBottomWidth = borderBottom.BorderBottomWidth.AsString() + " ";
+                            borderBottomWidth = val.BorderBottomWidth.AsString() + " ";
                         }
-                        else if (borderBottom.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderBottomWidth = borderBottom.BorderBottomWidth.AsNumber().ToString() + "px ";
+                            borderBottomWidth = val.BorderBottomWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (borderBottom.BorderBottomStyle != null)
+                    if (val.BorderBottomStyle != null)
                     {
-                        borderBottomStyle = borderBottom.BorderBottomStyle.AsString() + " ";
+                        borderBottomStyle = val.BorderBottomStyle.AsString() + " ";
                     }
-                    if (borderBottom.BorderBottomColor != null)
+                    if (val.BorderBottomColor != null)
                     {
-                        borderBottomColor = borderBottom.BorderBottomColor.AsString();
+                        borderBottomColor = val.BorderBottomColor.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderBottom" + "\u0022, \u0022" + borderBottomWidth + borderBottomStyle + borderBottomColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resborderBottom = borderBottomWidth + borderBottomStyle + borderBottomColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderBottom'] = '" + resborderBottom + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private DfMargin margin;
+        public string resmargin { get; set; }
+        private IValue margin;
         [ContextProperty("Отступ", "Margin")]
-        public DfMargin Margin
+        public IValue Margin
         {
             get { return margin; }
             set
             {
                 margin = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string marginTop = "0px ";
-                    string marginRight = "0px ";
-                    string marginBottom = "0px ";
-                    string marginLeft = "0px ";
+                    resmargin = value.AsString();
+                }
+                else
+                {
+                    DfMargin val = (DfMargin)value;
+                    string marginTop = "";
+                    string marginRight = "";
+                    string marginBottom = "";
+                    string marginLeft = "";
                     string auto = "";
-                    if (margin.MarginTop != 0)
+                    if (val.MarginTop != 0)
                     {
-                        marginTop = margin.MarginTop + "px ";
+                        marginTop = val.MarginTop.ToString() + "px ";
                     }
-                    if (margin.MarginRight != 0)
+                    if (val.MarginRight != 0)
                     {
-                        marginRight = margin.MarginRight + "px ";
+                        marginRight = val.MarginRight.ToString() + "px ";
                     }
-                    if (margin.MarginBottom != 0)
+                    if (val.MarginBottom != 0)
                     {
-                        marginBottom = margin.MarginBottom + "px ";
+                        marginBottom = val.MarginBottom.ToString() + "px ";
                     }
-                    if (margin.MarginLeft != 0)
+                    if (val.MarginLeft != 0)
                     {
-                        marginLeft = margin.MarginLeft + "px ";
+                        marginLeft = val.MarginLeft.ToString() + "px ";
                     }
-                    if (margin.Auto)
+                    if (val.Auto)
                     {
                         auto = "auto";
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "margin" + "\u0022, \u0022" + marginTop + marginRight + marginBottom + marginLeft + auto + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resmargin = marginTop + marginRight + marginBottom + marginLeft + auto;
                 }
-            }
-        }
 
-        private string borderImageRepeat;
-        [ContextProperty("МозаикаКартинкиГраницы", "BorderImageRepeat")]
-        public string BorderImageRepeat
-        {
-            get { return borderImageRepeat; }
-            set
-            {
-                borderImageRepeat = value;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageRepeat" + "\u0022, \u0022" + borderImageRepeat + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['margin'] = '" + resmargin + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int borderImageSlice;
-        [ContextProperty("НарезкаКартинкиГраницы", "BorderImageSlice")]
-        public int BorderImageSlice
-        {
-            get { return borderImageSlice; }
-            set
-            {
-                borderImageSlice = value;
-                if (Owner != null)
-                {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageSlice" + "\u0022, \u0022" + borderImageSlice + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-                }
-            }
-        }
-
+        public string resoverflow { get; set; }
         private string overflow;
         [ContextProperty("Переполнение", "Overflow")]
         public string Overflow
@@ -970,15 +2259,16 @@ namespace osdf
             set
             {
                 overflow = value;
+                resoverflow = overflow;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "overflow" + "\u0022, \u0022" + overflow + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['overflow'] = '" + resoverflow + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string resoverflowY { get; set; }
         private string overflowY;
         [ContextProperty("ПереполнениеИгрек", "OverflowY")]
         public string OverflowY
@@ -987,15 +2277,16 @@ namespace osdf
             set
             {
                 overflowY = value;
+                resoverflowY = overflowY;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "overflowY" + "\u0022, \u0022" + overflowY + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['overflowY'] = '" + resoverflowY + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string resoverflowX { get; set; }
         private string overflowX;
         [ContextProperty("ПереполнениеИкс", "OverflowX")]
         public string OverflowX
@@ -1004,15 +2295,34 @@ namespace osdf
             set
             {
                 overflowX = value;
+                resoverflowX = overflowX;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "overflowX" + "\u0022, \u0022" + overflowX + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['overflowX'] = '" + resoverflowX + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string reswhiteSpace { get; set; }
+        private string whiteSpace;
+        [ContextProperty("Пробелы", "WhiteSpace")]
+        public string WhiteSpace
+        {
+            get { return whiteSpace; }
+            set
+            {
+                whiteSpace = value;
+                reswhiteSpace = whiteSpace;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['whiteSpace'] = '" + reswhiteSpace + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restableLayout { get; set; }
         private string tableLayout;
         [ContextProperty("РазмещениеВТаблице", "TableLayout")]
         public string TableLayout
@@ -1021,77 +2331,64 @@ namespace osdf
             set
             {
                 tableLayout = value;
+                restableLayout = tableLayout;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "tableLayout" + "\u0022, \u0022" + tableLayout + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['tableLayout'] = '" + restableLayout + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int borderImageOutset;
-        [ContextProperty("СмещениеКартинкиГраницы", "BorderImageOutset")]
-        public int BorderImageOutset
-        {
-            get { return borderImageOutset; }
-            set
-            {
-                borderImageOutset = value;
-                if (Owner != null)
-                {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageOutset" + "\u0022, \u0022" + borderImageOutset + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
-                }
-            }
-        }
-
-        private string borderTopStyle;
-        [ContextProperty("СтильВерхнейГраницы", "BorderTopStyle")]
-        public string BorderTopStyle
-        {
-            get { return borderTopStyle; }
-            set { borderTopStyle = value; }
-        }
-
-        private DfBordersStyle bordersStyle;
+        public string resbordersStyle { get; set; }
+        private IValue bordersStyle;
         [ContextProperty("СтильГраниц", "BordersStyle")]
-        public DfBordersStyle BordersStyle
+        public IValue BordersStyle
         {
             get { return bordersStyle; }
             set
             {
                 bordersStyle = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resbordersStyle = value.AsString();
+                }
+                else
+                {
+                    DfBordersStyle val = (DfBordersStyle)value;
                     string borderTopStyle = "none ";
                     string borderRightStyle = "none ";
                     string borderBottomStyle = "none ";
                     string borderLeftStyle = "none";
-                    if (bordersStyle.BorderTopStyle != null)
+                    if (val.BorderTopStyle != null)
                     {
-                        borderTopStyle = bordersStyle.BorderTopStyle.AsString() + " ";
+                        borderTopStyle = val.BorderTopStyle.AsString() + " ";
                     }
-                    if (bordersStyle.BorderRightStyle != null)
+                    if (val.BorderRightStyle != null)
                     {
-                        borderRightStyle = bordersStyle.BorderRightStyle.AsString() + " ";
+                        borderRightStyle = val.BorderRightStyle.AsString() + " ";
                     }
-                    if (bordersStyle.BorderBottomStyle != null)
+                    if (val.BorderBottomStyle != null)
                     {
-                        borderBottomStyle = bordersStyle.BorderBottomStyle.AsString() + " ";
+                        borderBottomStyle = val.BorderBottomStyle.AsString() + " ";
                     }
-                    if (bordersStyle.BorderLeftStyle != null)
+                    if (val.BorderLeftStyle != null)
                     {
-                        borderLeftStyle = bordersStyle.BorderLeftStyle.AsString();
+                        borderLeftStyle = val.BorderLeftStyle.AsString();
                     }
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderStyle" + "\u0022, \u0022" + borderTopStyle + borderRightStyle + borderBottomStyle + borderLeftStyle + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resbordersStyle = borderTopStyle + borderRightStyle + borderBottomStyle + borderLeftStyle;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderStyle'] = '" + resbordersStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string resoutlineStyle { get; set; }
         private string outlineStyle;
         [ContextProperty("СтильКонтура", "OutlineStyle")]
         public string OutlineStyle
@@ -1100,85 +2397,226 @@ namespace osdf
             set
             {
                 outlineStyle = value;
+                resoutlineStyle = outlineStyle;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outlineStyle" + "\u0022, \u0022" + outlineStyle + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['outlineStyle'] = '" + resoutlineStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private string borderLeftStyle;
-        [ContextProperty("СтильЛевойГраницы", "BorderLeftStyle")]
-        public string BorderLeftStyle
+        public string resborderTopStyle { get; set; }
+        private string borderTopStyle;
+        [ContextProperty("СтильВерхнейГраницы", "BorderTopStyle")]
+        public string BorderTopStyle
         {
-            get { return borderLeftStyle; }
-            set { borderLeftStyle = value; }
+            get { return borderTopStyle; }
+            set
+            {
+                borderTopStyle = value;
+                resborderTopStyle = borderTopStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderTopStyle'] = '" + resborderTopStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
         }
 
-        private string borderBottomStyle;
-        [ContextProperty("СтильНижнейГраницы", "BorderBottomStyle")]
-        public string BorderBottomStyle
-        {
-            get { return borderBottomStyle; }
-            set { borderBottomStyle = value; }
-        }
-
+        public string resborderRightStyle { get; set; }
         private string borderRightStyle;
         [ContextProperty("СтильПравойГраницы", "BorderRightStyle")]
         public string BorderRightStyle
         {
             get { return borderRightStyle; }
-            set { borderRightStyle = value; }
+            set
+            {
+                borderRightStyle = value;
+                resborderRightStyle = borderRightStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderRightStyle'] = '" + resborderRightStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
         }
 
+        public string resborderBottomStyle { get; set; }
+        private string borderBottomStyle;
+        [ContextProperty("СтильНижнейГраницы", "BorderBottomStyle")]
+        public string BorderBottomStyle
+        {
+            get { return borderBottomStyle; }
+            set
+            {
+                borderBottomStyle = value;
+                resborderBottomStyle = borderBottomStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderBottomStyle'] = '" + resborderBottomStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderLeftStyle { get; set; }
+        private string borderLeftStyle;
+        [ContextProperty("СтильЛевойГраницы", "BorderLeftStyle")]
+        public string BorderLeftStyle
+        {
+            get { return borderLeftStyle; }
+            set
+            {
+                borderLeftStyle = value;
+                resborderLeftStyle = borderLeftStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderLeftStyle'] = '" + resborderLeftStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextColor { get; set; }
+        private string textColor;
+        [ContextProperty("ЦветТекста", "TextColor")]
+        public string TextColor
+        {
+            get { return textColor; }
+            set
+            {
+                textColor = value;
+                restextColor = textColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['color'] = '" + restextColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderTopColor { get; set; }
         private string borderTopColor;
         [ContextProperty("ЦветВерхнейГраницы", "BorderTopColor")]
         public string BorderTopColor
         {
             get { return borderTopColor; }
-            set { borderTopColor = value; }
+            set
+            {
+                borderTopColor = value;
+                resborderTopColor = borderTopColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderTopColor'] = '" + resborderTopColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
         }
-		
-        private DfBordersColor bordersColor;
+
+        public string resbordersColor { get; set; }
+        private IValue bordersColor;
         [ContextProperty("ЦветГраниц", "BordersColor")]
-        public DfBordersColor BordersColor
+        public IValue BordersColor
         {
             get { return bordersColor; }
             set
             {
                 bordersColor = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resbordersColor = value.AsString();
+                }
+                else
+                {
+                    DfBordersColor val = (DfBordersColor)value;
                     string borderTopColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + " ";
                     string borderRightColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + " ";
                     string borderBottomColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + " ";
                     string borderLeftColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
-                    if (bordersColor.BorderTopColor != null)
+                    if (val.BorderTopColor != null)
                     {
-                        borderTopColor = bordersColor.BorderTopColor.AsString() + " ";
+                        borderTopColor = val.BorderTopColor.AsString() + " ";
                     }
-                    if (bordersColor.BorderRightColor != null)
+                    if (val.BorderRightColor != null)
                     {
-                        borderRightColor = bordersColor.BorderRightColor.AsString() + " ";
+                        borderRightColor = val.BorderRightColor.AsString() + " ";
                     }
-                    if (bordersColor.BorderBottomColor != null)
+                    if (val.BorderBottomColor != null)
                     {
-                        borderBottomColor = bordersColor.BorderBottomColor.AsString() + " ";
+                        borderBottomColor = val.BorderBottomColor.AsString() + " ";
                     }
-                    if (bordersColor.BorderLeftColor != null)
+                    if (val.BorderLeftColor != null)
                     {
-                        borderLeftColor = bordersColor.BorderLeftColor.AsString();
+                        borderLeftColor = val.BorderLeftColor.AsString();
                     }
-                    string res = borderTopColor + borderRightColor + borderBottomColor + borderLeftColor;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderColor" + "\u0022, \u0022" + res + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resbordersColor = borderTopColor + borderRightColor + borderBottomColor + borderLeftColor;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderColor'] = '" + resbordersColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
+        public string resborderLeftColor { get; set; }
+        private string borderLeftColor;
+        [ContextProperty("ЦветЛевойГраницы", "BorderLeftColor")]
+        public string BorderLeftColor
+        {
+            get { return borderLeftColor; }
+            set
+            {
+                borderLeftColor = value;
+                resborderLeftColor = borderLeftColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderLeftColor'] = '" + resborderLeftColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderBottomColor { get; set; }
+        private string borderBottomColor;
+        [ContextProperty("ЦветНижнейГраницы", "BorderBottomColor")]
+        public string BorderBottomColor
+        {
+            get { return borderBottomColor; }
+            set
+            {
+                borderBottomColor = value;
+                resborderBottomColor = borderBottomColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderBottomColor'] = '" + resborderBottomColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderRightColor { get; set; }
+        private string borderRightColor;
+        [ContextProperty("ЦветПравойГраницы", "BorderRightColor")]
+        public string BorderRightColor
+        {
+            get { return borderRightColor; }
+            set
+            {
+                borderRightColor = value;
+                resborderRightColor = borderRightColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderRightColor'] = '" + resborderRightColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resoutlineColor { get; set; }
         private string outlineColor;
         [ContextProperty("ЦветКонтура", "OutlineColor")]
         public string OutlineColor
@@ -1187,39 +2625,16 @@ namespace osdf
             set
             {
                 outlineColor = value;
+                resoutlineColor = outlineColor;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outlineColor" + "\u0022, \u0022" + outlineColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['outlineColor'] = '" + resoutlineColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private string borderLeftColor;
-        [ContextProperty("ЦветЛевойГраницы", "BorderLeftColor")]
-        public string BorderLeftColor
-        {
-            get { return borderLeftColor; }
-            set { borderLeftColor = value; }
-        }
-
-        private string borderBottomColor;
-        [ContextProperty("ЦветНижнейГраницы", "BorderBottomColor")]
-        public string BorderBottomColor
-        {
-            get { return borderBottomColor; }
-            set { borderBottomColor = value; }
-        }
-
-        private string borderRightColor;
-        [ContextProperty("ЦветПравойГраницы", "BorderRightColor")]
-        public string BorderRightColor
-        {
-            get { return borderRightColor; }
-            set { borderRightColor = value; }
-        }
-
+        public string resbackgroundColor { get; set; }
         private string backgroundColor;
         [ContextProperty("ЦветФона", "BackgroundColor")]
         public string BackgroundColor
@@ -1228,179 +2643,296 @@ namespace osdf
             set
             {
                 backgroundColor = value;
+                resbackgroundColor = backgroundColor;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "backgroundColor" + "\u0022, \u0022" + backgroundColor + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundColor'] = '" + resbackgroundColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int width;
+        public string reswidth { get; set; }
+        private IValue width;
         [ContextProperty("Ширина", "Width")]
-        public int Width
+        public IValue Width
         {
             get { return width; }
             set
             {
                 width = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    reswidth = value.AsString();
+                }
+                else
+                {
+                    reswidth = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "width" + "\u0022, \u0022" + width + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['width'] = '" + reswidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private string borderTopWidth;
+        public string resborderTopWidth { get; set; }
+        private IValue borderTopWidth;
         [ContextProperty("ШиринаВерхнейГраницы", "BorderTopWidth")]
-        public string BorderTopWidth
+        public IValue BorderTopWidth
         {
             get { return borderTopWidth; }
-            set { borderTopWidth = value; }
+            set
+            {
+                borderTopWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderTopWidth = value.AsString();
+                }
+                else
+                {
+                    resborderTopWidth = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderTopWidth'] = '" + resborderTopWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
         }
 
-        private DfBordersWidth bordersWidth;
+        public string resbordersWidth { get; set; }
+        private IValue bordersWidth;
         [ContextProperty("ШиринаГраниц", "BordersWidth")]
-        public DfBordersWidth BordersWidth
+        public IValue BordersWidth
         {
             get { return bordersWidth; }
             set
             {
                 bordersWidth = value;
-                if (Owner != null)
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
+                    resbordersWidth = value.AsString();
+                }
+                else
+                {
+                    DfBordersWidth val = (DfBordersWidth)value;
                     string borderTopWidth = "medium ";
                     string borderRightWidth = "medium ";
                     string borderBottomWidth = "medium ";
                     string borderLeftWidth = "medium";
-                    if (bordersWidth.BorderTopWidth != null)
+                    if (val.BorderTopWidth != null)
                     {
-                        if (bordersWidth.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderTopWidth = bordersWidth.BorderTopWidth.AsString() + " ";
+                            borderTopWidth = val.BorderTopWidth.AsString() + " ";
                         }
-                        else if (bordersWidth.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderTopWidth = bordersWidth.BorderTopWidth.AsNumber().ToString() + "px ";
+                            borderTopWidth = val.BorderTopWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (bordersWidth.BorderRightWidth != null)
+                    if (val.BorderRightWidth != null)
                     {
-                        if (bordersWidth.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderRightWidth = bordersWidth.BorderRightWidth.AsString() + " ";
+                            borderRightWidth = val.BorderRightWidth.AsString() + " ";
                         }
-                        else if (bordersWidth.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderRightWidth = bordersWidth.BorderRightWidth.AsNumber().ToString() + "px ";
+                            borderRightWidth = val.BorderRightWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (bordersWidth.BorderBottomWidth != null)
+                    if (val.BorderBottomWidth != null)
                     {
-                        if (bordersWidth.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderBottomWidth = bordersWidth.BorderBottomWidth.AsString() + " ";
+                            borderBottomWidth = val.BorderBottomWidth.AsString() + " ";
                         }
-                        else if (bordersWidth.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderBottomWidth = bordersWidth.BorderBottomWidth.AsNumber().ToString() + "px ";
+                            borderBottomWidth = val.BorderBottomWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    if (bordersWidth.BorderLeftWidth != null)
+                    if (val.BorderLeftWidth != null)
                     {
-                        if (bordersWidth.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                        if (val.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                         {
-                            borderLeftWidth = bordersWidth.BorderLeftWidth.AsString() + " ";
+                            borderLeftWidth = val.BorderLeftWidth.AsString() + " ";
                         }
-                        else if (bordersWidth.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
+                        else if (val.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
                         {
-                            borderLeftWidth = bordersWidth.BorderLeftWidth.AsNumber().ToString() + "px ";
+                            borderLeftWidth = val.BorderLeftWidth.AsNumber().ToString() + "px ";
                         }
                     }
-                    string res = borderTopWidth + borderRightWidth + borderBottomWidth + borderLeftWidth;
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "borderWidth" + "\u0022, \u0022" + res + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    resbordersWidth = borderTopWidth + borderRightWidth + borderBottomWidth + borderLeftWidth;
                 }
-            }
-        }
 
-        private int borderImageWidth;
-        [ContextProperty("ШиринаКартинкиГраницы", "BorderImageWidth")]
-        public int BorderImageWidth
-        {
-            get { return borderImageWidth; }
-            set
-            {
-                borderImageWidth = value;
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ItemKey + "\u0022, \u0022" + "borderImageWidth" + "\u0022, \u0022" + borderImageWidth + "\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderWidth'] = '" + resbordersWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int columnWidth;
+        public string rescolumnWidth { get; set; }
+        private IValue columnWidth;
         [ContextProperty("ШиринаКолонок", "ColumnWidth")]
-        public int ColumnWidth
+        public IValue ColumnWidth
         {
             get { return columnWidth; }
             set
             {
                 columnWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    rescolumnWidth = value.AsString();
+                }
+                else
+                {
+                    rescolumnWidth = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "columnWidth" + "\u0022, \u0022" + columnWidth + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnWidth'] = '" + rescolumnWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private int outlineWidth;
+        public string resoutlineWidth { get; set; }
+        private IValue outlineWidth;
         [ContextProperty("ШиринаКонтура", "OutlineWidth")]
-        public int OutlineWidth
+        public IValue OutlineWidth
         {
             get { return outlineWidth; }
             set
             {
                 outlineWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resoutlineWidth = value.AsString();
+                }
+                else
+                {
+                    resoutlineWidth = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
                 if (Owner != null)
                 {
-                    //setAttribute(nameElement, nameAttribute, valueAttribute)
-                    string strFunc = "setAttribute(\u0022" + ((dynamic)Owner).ItemKey + "\u0022, \u0022" + "outlineWidth" + "\u0022, \u0022" + outlineWidth + "px\u0022)";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['outlineWidth'] = '" + resoutlineWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }
 
-        private string borderLeftWidth;
+        public string resborderLeftWidth { get; set; }
+        private IValue borderLeftWidth;
         [ContextProperty("ШиринаЛевойГраницы", "BorderLeftWidth")]
-        public string BorderLeftWidth
+        public IValue BorderLeftWidth
         {
             get { return borderLeftWidth; }
-            set { borderLeftWidth = value; }
+            set
+            {
+                borderLeftWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderLeftWidth = value.AsString();
+                }
+                else
+                {
+                    resborderLeftWidth = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderLeftWidth'] = '" + resborderLeftWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
         }
 
-        private string borderBottomWidth;
+        public string resborderBottomWidth { get; set; }
+        private IValue borderBottomWidth;
         [ContextProperty("ШиринаНижнейГраницы", "BorderBottomWidth")]
-        public string BorderBottomWidth
+        public IValue BorderBottomWidth
         {
             get { return borderBottomWidth; }
-            set { borderBottomWidth = value; }
+            set
+            {
+                borderBottomWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderBottomWidth = value.AsString();
+                }
+                else
+                {
+                    resborderBottomWidth = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderBottomWidth'] = '" + resborderBottomWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
         }
 
-        private string borderRightWidth;
+        public string reswordWrap { get; set; }
+        private string wordWrap;
+        [ContextProperty("ПереносСлов", "WordWrap")]
+        public string WordWrap
+        {
+            get { return wordWrap; }
+            set
+            {
+                wordWrap = value;
+                reswordWrap = wordWrap;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['wordWrap'] = '" + reswordWrap + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderRightWidth { get; set; }
+        private IValue borderRightWidth;
         [ContextProperty("ШиринаПравойГраницы", "BorderRightWidth")]
-        public string BorderRightWidth
+        public IValue BorderRightWidth
         {
             get { return borderRightWidth; }
-            set { borderRightWidth = value; }
+            set
+            {
+                borderRightWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderRightWidth = value.AsString();
+                }
+                else
+                {
+                    resborderRightWidth = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderRightWidth'] = '" + resborderRightWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
         }
 
         [ContextMethod("Копировать", "Copy")]

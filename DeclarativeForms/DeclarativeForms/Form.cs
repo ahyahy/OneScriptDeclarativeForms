@@ -27,32 +27,50 @@ namespace osdf
         public string ItemKey
         {
             get { return itemKey; }
-            set { itemKey = value; }
+            private set { itemKey = value; }
+        }
+		
+        public IValue windowHeight;
+        [ContextProperty("ВысотаОкна", "WindowHeight")]
+        public int WindowHeight
+        {
+            get { return Convert.ToInt32(windowHeight.AsNumber()); }
+            set { windowHeight = ValueFactory.Create(value); }
         }
 
-        private int width;
-        [ContextProperty("Ширина", "Width")]
-        public int Width
+        public IValue windowWidth;
+        [ContextProperty("ШиринаОкна", "WindowWidth")]
+        public int WindowWidth
         {
-            private get { return width; }
+            get { return Convert.ToInt32(windowWidth.AsNumber()); }
+            set { windowWidth = ValueFactory.Create(value); }
+        }
+
+        private int startWidth;
+        [ContextProperty("НачальнаяШирина", "StartWidth")]
+        public int StartWidth
+        {
+            private get { return startWidth; }
             set
             {
-                width = value;
-                props["width"] = "\u0022width\u0022: " + width.ToString() + ",";
+                WindowWidth = value;
+                startWidth = value;
+                props["width"] = "\u0022width\u0022: " + startWidth.ToString() + ",";
             }
         }
 
-        private int height;
-        [ContextProperty("Высота", "Height")]
-        public int Height
+        private int startheight;
+        [ContextProperty("НачальнаяВысота", "StartHeight")]
+        public int StartHeight
         {
-            private get { return height; }
+            private get { return startheight; }
             set
             {
-                height = value;
-                props["height"] = "\u0022height\u0022: " + height.ToString() + ",";
+                WindowHeight = value;
+                startheight = value;
+                props["height"] = "\u0022height\u0022: " + startheight.ToString() + ",";
             }
-        }
+        }		
 
         private string title;
         [ContextProperty("Заголовок", "Title")]
@@ -229,6 +247,14 @@ namespace osdf
             get { return loaded; }
             set { loaded = value; }
         }
+		
+        public DfAction resize;
+        [ContextProperty("РазмерИзменен", "Resize")]
+        public DfAction Resize
+        {
+            get { return resize; }
+            set { resize = value; }
+        }		
 
         [ContextMethod("Открыть", "Open")]
         public void Open()
@@ -282,9 +308,8 @@ namespace osdf
             set
             {
                 menu = value;
-                //setMenu(name)
-                string strFunc = "setMenu(\u0022" + menu.ItemKey + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "gui.Window.get().menu = mapKeyEl.get(\u0022" + menu.ItemKey + "\u0022);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -301,11 +326,11 @@ namespace osdf
             get { return children; }
         }
 
-        [ContextMethod("ДобавитьДочерний", "АppendChild")]
-        public IValue АppendChild(IValue p1)
+        [ContextMethod("ДобавитьДочерний", "AppendChild")]
+        public IValue AppendChild(IValue p1)
         {
             string strFunc = "document.body.appendChild(mapKeyEl.get(\u0022" + ((dynamic)p1).ItemKey + "\u0022));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             ((dynamic)p1).Parent = this;
             return p1;
         }
@@ -314,7 +339,7 @@ namespace osdf
         public void RemoveChild(IValue p1)
         {
             string strFunc = "document.body.removeChild(mapKeyEl.get(\u0022" + ((dynamic)p1.AsObject()).ItemKey + "\u0022));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
     }
 }

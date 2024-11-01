@@ -22,13 +22,22 @@
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Абзац1.Стиль.ЦветФона = ДФ.Цвет("НебесноГолубой");
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
 
+Абзац1 = Форма1.ДобавитьДочерний(ДФ.Абзац());
+Абзац1.Текст = "Это Абзац";
+Абзац1.Стиль.Высота = 200;
+Абзац1.Стиль.ЦветФона = ДФ.Цвет("НебесноГолубой");
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

@@ -1,5 +1,4 @@
 ﻿using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
 using System.Reflection;
 
 namespace osdf
@@ -7,7 +6,7 @@ namespace osdf
     [ContextClass("ДфРадиусГраницы", "DfBorderRadius")]
     public class DfBorderRadius : AutoContext<DfBorderRadius>
     {
-        public DfBorderRadius(IValue p1, IValue p2, IValue p3, IValue p4)
+        public DfBorderRadius(int p1, int p2, int p3, int p4)
         {
             BorderTopLeftRadius = p1;
             BorderTopRightRadius = p2;
@@ -20,33 +19,33 @@ namespace osdf
             get { return this.GetType().GetProperty(p1); }
         }
 
-        private IValue borderTopLeftRadius;
+        private int borderTopLeftRadius;
         [ContextProperty("ЛевыйРадиусВерхнейГраницы", "BorderTopLeftRadius")]
-        public IValue BorderTopLeftRadius
+        public int BorderTopLeftRadius
         {
             get { return borderTopLeftRadius; }
             set { borderTopLeftRadius = value; }
         }
 
-        private IValue borderBottomLeftRadius;
+        private int borderBottomLeftRadius;
         [ContextProperty("ЛевыйРадиусНижнейГраницы", "BorderBottomLeftRadius")]
-        public IValue BorderBottomLeftRadius
+        public int BorderBottomLeftRadius
         {
             get { return borderBottomLeftRadius; }
             set { borderBottomLeftRadius = value; }
         }
 
-        private IValue borderTopRightRadius;
+        private int borderTopRightRadius;
         [ContextProperty("ПравыйРадиусВерхнейГраницы", "BorderTopRightRadius")]
-        public IValue BorderTopRightRadius
+        public int BorderTopRightRadius
         {
             get { return borderTopRightRadius; }
             set { borderTopRightRadius = value; }
         }
 
-        private IValue borderBottomRightRadius;
+        private int borderBottomRightRadius;
         [ContextProperty("ПравыйРадиусНижнейГраницы", "BorderBottomRightRadius")]
-        public IValue BorderBottomRightRadius
+        public int BorderBottomRightRadius
         {
             get { return borderBottomRightRadius; }
             set { borderBottomRightRadius = value; }

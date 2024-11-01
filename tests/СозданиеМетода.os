@@ -394,27 +394,29 @@
 
 	// Изменим C:\444\OSDFormsRu\OSDForms.КЛАССMethods.html ====================================================================================
 	Если Не (КлассИмяEn = "") Тогда
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать("C:\444\OSDFormsRu\OSDForms." + КлассИмяEn + "Methods.html");
-		Стр = ТекстДок.ПолучитьТекст();
-		М = СтрНайтиМежду(Стр, 
-				"<H4 class=dtH4>Методы</H4>
-				|<DIV class=tablediv>
-				|<TABLE class=dtTABLE cellSpacing=0>
-				|  <TBODY>", 
-				"<TR vAlign=top>", 
-				Ложь, );
-		// Сообщить("М[0] = " + М[0]);
-		ПодстрокаПоиска = М[0];
-		ПодстрокаЗамены = М[0] + "
-		|    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OSDForms." + КлассИмяEn + МетодИмяEn + "Method.html"">" + МетодИмяРус + "&nbsp;(" + МетодИмяEn + ")</A></TD>
-		|    <TD width=""50%"">" + МетодОписание + "</TD></TR>
-		|  <TR vAlign=top>";
-		Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+		Если Не (КлассИмяEn = "Element") Тогда
+			ТекстДок = Новый ТекстовыйДокумент;
+			ТекстДок.Прочитать("C:\444\OSDFormsRu\OSDForms." + КлассИмяEn + "Methods.html");
+			Стр = ТекстДок.ПолучитьТекст();
+			М = СтрНайтиМежду(Стр, 
+					"<H4 class=dtH4>Методы</H4>
+					|<DIV class=tablediv>
+					|<TABLE class=dtTABLE cellSpacing=0>
+					|  <TBODY>", 
+					"<TR vAlign=top>", 
+					Ложь, );
+			// Сообщить("М[0] = " + М[0]);
+			ПодстрокаПоиска = М[0];
+			ПодстрокаЗамены = М[0] + "
+			|    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OSDForms." + КлассИмяEn + МетодИмяEn + "Method.html"">" + МетодИмяРус + "&nbsp;(" + МетодИмяEn + ")</A></TD>
+			|    <TD width=""50%"">" + МетодОписание + "</TD></TR>
+			|  <TR vAlign=top>";
+			Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
 
-		ИмяФайла = ВыходнойКаталог + "\OSDForms." + КлассИмяEn + "Methods.html";
-		ТекстДок.УстановитьТекст(Стр);
-		ТекстДок.Записать(ИмяФайла);
+			ИмяФайла = ВыходнойКаталог + "\OSDForms." + КлассИмяEn + "Methods.html";
+			ТекстДок.УстановитьТекст(Стр);
+			ТекстДок.Записать(ИмяФайла);
+		КонецЕсли;
 	КонецЕсли;
 	
 	Для А = 0 По СписокЭлементов1.Элементы.Количество - 1 Цикл
@@ -1574,7 +1576,6 @@
 "Абзац,Paragraph,<p;" + 
 "Аудио,Audio,<audio;" + 
 "Блок,Div,<div;" + 
-"Видео,Video,<video;" + 
 "ВыборВремени,TimeSelection,<input time;" + 
 "ВыборДаты,DateSelection,<input date;" + 
 "ВыборДатыВремени,DateTimeSelection,<input datetime;" + 
@@ -1586,7 +1587,6 @@
 "Группа,Group,<fieldset;" + 
 "ГруппаКолонок,Colgroup,<colgroup;" + 
 "ГруппировкаПоляСписка,SelectGroup,<optgroup;" + 
-"ДекларативныеФормы,DeclarativeForms,<;" + 
 "Диалог,Dialog,<dialog;" + 
 "ДополнительныйБлок,AdditionalDiv,<aside;" + 
 "ЖирныйТекст,BoldText,<b;" + 
@@ -1598,7 +1598,6 @@
 "Заголовок5,H5,<h5;" + 
 "Заголовок6,H6,<h6;" + 
 "ЗаголовокГруппы,GroupTitle,<legend;" + 
-"ЗаголовокКолонки,HeaderCell,<th;" + 
 "ЗаголовокРаскрываемогоБлока,ExpandableDivHeader,<summary;" + 
 "Изображение,Image,<img;" + 
 "Индикатор,Progress,<progress;" + 
@@ -1636,7 +1635,6 @@
 "Ползунок,Range,<input range;" + 
 "РаскрываемыйБлок,ExpandableDiv,<details;" + 
 "Результат,Output,<output;" + 
-"СписокДанных,Datalist,<datalist;" + 
 "СписокОпределений,ListDefinition,<dl;" + 
 "Ссылка,Link,<a;" + 
 "СтрокаТаблицы,TableRow,<tr;" + 
@@ -1650,9 +1648,9 @@
 "Холст,Canvas,<canvas;" + 
 "ШапкаТаблицы,TableHeader,<thead;" + 
 "Шкала,Meter,<meter;" + 
-"Элемент,Element,<;" + 
 "ЭлементПоляСписка,SelectItem,<option;" + 
 "ЭлементСписка,ListItem,<li;" + 
+"ЯчейкаЗаголовка,HeaderCell,<th;" + 
 "Ячейка,Cell,<td";
 
 НачальноеЗаполнениеФормы();

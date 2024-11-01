@@ -1,5 +1,7 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.HostedScript.Library;
+using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
+using System;
 
 namespace osdf
 {
@@ -9,20 +11,60 @@ namespace osdf
         public DfEventArgs()
         {
         }
+		
+        public bool _checked;
+        [ContextProperty("Помечен", "Checked")]
+        public bool Checked
+        {
+            get { return _checked; }
+            set { _checked = value; }
+        }
+		
+        public IValue listItem;
+        [ContextProperty("ЭлементыСписка", "ListItem")]
+        public ArrayImpl ListItem
+        {
+            get { return (ArrayImpl)listItem; }
+            set { listItem = ValueFactory.Create(value); }
+        }
+		
+        public IValue files;
+        [ContextProperty("Файлы", "Files")]
+        public ArrayImpl Files
+        {
+            get { return (ArrayImpl)files; }
+            set { files = ValueFactory.Create(value); }
+        }
+
+        public IValue height;
+        [ContextProperty("ВысотаОкна", "WindowHeight")]
+        public int WindowHeight
+        {
+            get { return Convert.ToInt32(height.AsNumber()); }
+            set { height = ValueFactory.Create(value); }
+        }
+
+        public IValue windowWidth;
+        [ContextProperty("ШиринаОкна", "WindowWidth")]
+        public int WindowWidth
+        {
+            get { return Convert.ToInt32(windowWidth.AsNumber()); }
+            set { windowWidth = ValueFactory.Create(value); }
+        }
 
         public IValue y;
         [ContextProperty("Игрек", "Y")]
-        public decimal Y
+        public int Y
         {
-            get { return y.AsNumber(); }
+            get { return Convert.ToInt32(y.AsNumber()); }
             set { y = ValueFactory.Create(value); }
         }
 
         public IValue x;
         [ContextProperty("Икс", "X")]
-        public decimal X
+        public int X
         {
-            get { return x.AsNumber(); }
+            get { return Convert.ToInt32(x.AsNumber()); }
             set { x = ValueFactory.Create(value); }
         }
 

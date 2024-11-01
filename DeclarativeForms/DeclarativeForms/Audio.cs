@@ -20,11 +20,17 @@ namespace osdf
         public DfAudio()
         {
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createElement(\u0022" + "audio" + "\u0022, \u0022" + ItemKey + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "mapKeyEl.set('" + ItemKey + "', document.createElement('audio'));" + @"
+mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             DeclarativeForms.AddToHashtable(ItemKey, this);
             style = new DfStyle();
             style.Owner = this;
+		
+            offsetTop = ValueFactory.Create(0);
+            offsetHeight = ValueFactory.Create(0);
+            offsetLeft = ValueFactory.Create(0);
+            offsetWidth = ValueFactory.Create(0);
         }
 
         public PropertyInfo this[string p1]
@@ -40,37 +46,48 @@ namespace osdf
             set
             {
                 muted = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "muted" + "\u0022, \u0022" + muted.ToString().ToLower() + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['muted'] = " + muted.ToString().ToLower() + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
-        private int scrollTop;
-        [ContextProperty("ВертикальноеПрокручивание", "ScrollTop")]
-        public int ScrollTop
+        private decimal volume;
+        [ContextProperty("Громкость", "Volume")]
+        public decimal Volume
         {
-            get { return scrollTop; }
+            get { return volume; }
             set
             {
-                scrollTop = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "scrollTop" + "\u0022, \u0022" + scrollTop + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                volume = value;
+                string res = volume.ToString().Replace(",", ".");
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['volume'] = '" + res + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
-        private int scrollLeft;
-        [ContextProperty("ГоризонтальноеПрокручивание", "ScrollLeft")]
-        public int ScrollLeft
+        private int duration;
+        [ContextProperty("Длительность", "Duration")]
+        public int Duration
         {
-            get { return scrollLeft; }
+            get { return duration; }
             set
             {
-                scrollLeft = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "scrollLeft" + "\u0022, \u0022" + scrollLeft + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                duration = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['duration'] = '" + duration + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+
+        private bool ended;
+        [ContextProperty("Завершено", "Ended")]
+        public bool Ended
+        {
+            get { return ended; }
+            set
+            {
+                ended = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['ended'] = " + ended.ToString().ToLower() + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -82,9 +99,8 @@ namespace osdf
             set
             {
                 id = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "id" + "\u0022, \u0022" + id + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['id'] = '" + id + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -96,9 +112,8 @@ namespace osdf
             set
             {
                 name = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "name" + "\u0022, \u0022" + name + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['name'] = '" + name + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -110,9 +125,8 @@ namespace osdf
             set
             {
                 src = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "src" + "\u0022, \u0022" + src + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['src'] = '" + src + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -124,9 +138,8 @@ namespace osdf
             set
             {
                 accessKey = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "accessKey" + "\u0022, \u0022" + accessKey + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['accessKey'] = '" + accessKey + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -138,9 +151,8 @@ namespace osdf
             set
             {
                 _class = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "className" + "\u0022, \u0022" + _class + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['className'] = '" + _class + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -149,7 +161,7 @@ namespace osdf
         public string ItemKey
         {
             get { return itemKey; }
-            set { itemKey = value; }
+            private set { itemKey = value; }
         }
 
         private bool controls;
@@ -160,9 +172,34 @@ namespace osdf
             set
             {
                 controls = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "controls" + "\u0022, \u0022" + controls.ToString().ToLower() + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['controls'] = " + controls.ToString().ToLower() + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+
+        private bool paused;
+        [ContextProperty("НаПаузе", "Paused")]
+        public bool Paused
+        {
+            get { return paused; }
+            set
+            {
+                paused = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['paused'] = " + paused.ToString().ToLower() + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+
+        private bool loop;
+        [ContextProperty("Повтор", "Loop")]
+        public bool Loop
+        {
+            get { return loop; }
+            set
+            {
+                loop = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['loop'] = " + loop.ToString().ToLower() + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -174,9 +211,8 @@ namespace osdf
             set
             {
                 tabIndex = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "tabIndex" + "\u0022, \u0022" + tabIndex + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['tabIndex'] = '" + tabIndex + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -188,9 +224,8 @@ namespace osdf
             set
             {
                 contentEditable = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "contentEditable" + "\u0022, \u0022" + contentEditable.ToString().ToLower() + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['contentEditable'] = " + contentEditable.ToString().ToLower() + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
 
@@ -202,13 +237,62 @@ namespace osdf
             set
             {
                 parent = value;
-                //setParent(nameElement, nameparent)
-                string strFunc = "setParent(\u0022" + ItemKey + "\u0022, \u0022" + parent.AsObject().GetPropValue("ItemKey") + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                string strFunc;
+                if (parent.AsObject().GetPropValue("ItemKey").AsString() == "mainForm")
+                {
+                    strFunc = "document.body.appendChild(mapKeyEl.get('" + ItemKey + "'));";
+                }
+                else
+                {
+                    strFunc = "mapKeyEl.get('" + parent.AsObject().GetPropValue("ItemKey").AsString() + "').appendChild(mapKeyEl.get('" + ItemKey + "'));";
+                }
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 // Родителю добавим потомка.
                 ArrayImpl ArrayImpl1 = ((dynamic)parent).Children;
                 ArrayImpl1.Add(this);
             }
+        }
+
+        private IValue playbackRate;
+        [ContextProperty("Скорость", "PlaybackRate")]
+        public IValue PlaybackRate
+        {
+            get { return playbackRate; }
+            set
+            {
+                playbackRate = value;
+                string res = playbackRate.AsNumber().ToString().Replace(",", ".");
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['playbackRate'] = '" + res + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+
+        public IValue offsetTop { get; set; }
+        [ContextProperty("СмещениеВерх", "OffsetTop")]
+        public int OffsetTop
+        {
+            get { return Convert.ToInt32(offsetTop.AsNumber()); }
+        }
+
+        public IValue offsetHeight { get; set; }
+        [ContextProperty("СмещениеВысота", "OffsetHeight")]
+        public int OffsetHeight
+        {
+            get { return Convert.ToInt32(offsetHeight.AsNumber()); }
+        }
+
+        public IValue offsetLeft { get; set; }
+        [ContextProperty("СмещениеЛево", "OffsetLeft")]
+        public int OffsetLeft
+        {
+            get { return Convert.ToInt32(offsetLeft.AsNumber()); }
+        }
+
+        public IValue offsetWidth { get; set; }
+        [ContextProperty("СмещениеШирина", "OffsetWidth")]
+        public int OffsetWidth
+        {
+            get { return Convert.ToInt32(offsetWidth.AsNumber()); }
         }
 
         private DfStyle style;
@@ -219,31 +303,17 @@ namespace osdf
             set { style.Copy(value); }
         }
         
-        private IValue innerText;
-        [ContextProperty("Текст", "Text")]
-        public IValue Text
+        private int currentTime;
+        [ContextProperty("ТекущаяПозиция", "CurrentTime")]
+        public int CurrentTime
         {
-            get { return innerText; }
+            get { return currentTime; }
             set
             {
-                innerText = value;
-                //setProperty(nameElement, nameProperty, valueProperty)
-                string str = value.AsString();
-                str = str.Replace("\u005C", @"\u005C"); // Обратная косая черта
-                str = str.Replace("\u003B", @"\u003B"); // Точка с запятой.
-                str = str.Replace("\u000A", @"\u000A"); // Перевод строки
-                str = str.Replace("\u007C", @"\u007C"); // Знак |
-                str = str.Replace("\u0022", @"\u0022"); // Кавычки.
-                string strFunc = "setProperty(\u0022" + ItemKey + "\u0022, \u0022" + "innerText" + "\u0022, \u0022" + str + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                currentTime = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['currentTime'] = '" + currentTime + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
-        }
-
-        private ArrayImpl children = new ArrayImpl();
-        [ContextProperty("Элементы", "Children")]
-        public ArrayImpl Children
-        {
-            get { return children; }
         }
 
         public DfAction dblclick;
@@ -254,9 +324,8 @@ namespace osdf
             set
             {
                 dblclick = value;
-                //mapKeyEl.get(nameElement).addEventListener(nameEvent, doEvent);
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dblclick\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
         
@@ -268,9 +337,8 @@ namespace osdf
             set
             {
                 click = value;
-                //mapKeyEl.get(nameElement).addEventListener(nameEvent, doEvent);
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022click\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
         
@@ -282,10 +350,23 @@ namespace osdf
             set
             {
                 mouseup = value;
-                //mapKeyEl.get(nameElement).addEventListener(nameEvent, doEvent);
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseup\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
+        }
+        
+        [ContextMethod("Воспроизвести", "Play")]
+        public void Play()
+        {
+            string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).play();";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+        }
+        
+        [ContextMethod("Пауза", "Pause")]
+        public void Pause()
+        {
+            string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).pause();";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
         
         [ContextMethod("ПрокрутитьДо", "ScrollIntoView")]
@@ -300,31 +381,28 @@ namespace osdf
             {
                 strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).scrollIntoView();";
             }
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
         
         [ContextMethod("СнятьФокус", "Blur")]
         public void Blur()
         {
-            //mapKeyEl.get(nameElement).blur();
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).blur();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
         
         [ContextMethod("Удалить", "Remove")]
         public void Remove()
         {
-            //mapKeyEl.get(nameElement).remove();
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).remove();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
         
         [ContextMethod("Фокус", "Focus")]
         public void Focus()
         {
-            //mapKeyEl.get(nameElement).focus();
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).focus();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
         
     }

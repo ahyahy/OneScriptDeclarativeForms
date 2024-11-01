@@ -9,8 +9,20 @@ namespace osdf
         public DfMenu(string p1)
         {
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
-            string strFunc = "createMenu(\u0022" + ItemKey + "\u0022, \u0022" + p1 + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "";
+            if (p1 == "contextmenu")
+            {
+                strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.Menu({ type: 'contextmenu' })); mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
+            }
+            else if (p1 == "menubar")
+            {
+                strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.Menu({ type: 'menubar' })); mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
+            }
+            else if (p1 == "none")
+            {
+                strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.Menu()); mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
+            }
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
@@ -19,47 +31,42 @@ namespace osdf
         public string ItemKey
         {
             get { return itemKey; }
-            set { itemKey = value; }
+            private set { itemKey = value; }
         }
 
         [ContextMethod("Добавить", "Append")]
         public void Append(DfMenuItem p1)
         {
-            //string strFunc = "doMenuAppend(name, submenuName)";
-            string strFunc = "doMenuAppend(\u0022" + ItemKey + "\u0022, \u0022" + p1.ItemKey + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "mapKeyEl.get('" + ItemKey + "').append(mapKeyEl.get('" + p1.ItemKey + "'));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
 
         [ContextMethod("Вставить", "Insert")]
         public void Insert(DfMenuItem p1, int p2)
         {
-            //string strFunc = "doMenuInsert(name, submenuName, num)";
-            string strFunc = "doMenuInsert(\u0022" + ItemKey + "\u0022, \u0022" + p1.ItemKey + "\u0022, \u0022" + p2 + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "mapKeyEl.get('" + ItemKey + "').insert(mapKeyEl.get('" + p1.ItemKey + "'), parseInt('" + p2 + "'));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
 
        [ContextMethod("Показать", "Popup")]
         public void Popup(int p1, int p2)
         {
-            //string strFunc = "doMenuPopup(name, x, y)";
-            string strFunc = "doMenuPopup(\u0022" + ItemKey + "\u0022, \u0022" + p1 + "\u0022, \u0022" + p2 + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "mapKeyEl.get('" + ItemKey + "').popup(parseInt('" + p1 + "'), parseInt('" + p2 + "'));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
 
        [ContextMethod("Удалить", "Remove")]
         public void Remove(DfMenuItem p1)
         {
-            //string strFunc = "doMenuRemove(name, submenuName)";
-            string strFunc = "doMenuRemove(\u0022" + ItemKey + "\u0022, \u0022" + p1.ItemKey + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "mapKeyEl.get('" + ItemKey + "').remove(mapKeyEl.get('" + p1.ItemKey + "'));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
 
        [ContextMethod("УдалитьПоИндексу", "RemoveAt")]
         public void RemoveAt(int p1)
         {
-            //string strFunc = "doMenuRemoveAt(name, num)";
-            string strFunc = "doMenuRemoveAt(\u0022" + ItemKey + "\u0022, \u0022" + p1 + "\u0022)";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+            string strFunc = "mapKeyEl.get('" + ItemKey + "').removeAt(parseInt('" + p1 + "'));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
 
         public DfAction _сlick;
@@ -72,7 +79,7 @@ namespace osdf
                 _сlick = value;
                 //setMenuClick(nameMenu)
                 string strFunc = "setMenuClick(\u0022" + ItemKey + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
         [ContextProperty("click", "click")]
@@ -84,7 +91,7 @@ namespace osdf
                 _сlick = value;
                 //setMenuClick(nameMenu)
                 string strFunc = "setMenuClick(\u0022" + ItemKey + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + ";";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
     }

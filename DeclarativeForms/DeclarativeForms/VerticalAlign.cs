@@ -72,7 +72,7 @@ namespace osdf
         	get { return "text-top"; }
         }
 
-        [ContextProperty("НизТекста", "Bottom")]
+        [ContextProperty("Низ", "Bottom")]
         public string Bottom
         {
         	get { return "bottom"; }

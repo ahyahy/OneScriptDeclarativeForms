@@ -19,6 +19,9 @@
 <TABLE class=dtTABLE cellSpacing=0>
   <TBODY>
   <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleAnimationProperty.html">Анимация&nbsp;(Animation)</A></TD>
+    <TD width="50%">Возвращает или задает свойства анимации элемента.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleFlexBasisProperty.html">БазоваяДлина&nbsp;(FlexBasis)</A></TD>
     <TD width="50%">Возвращает или задает начальную длину гибкого элемента.</TD></TR>
   <TR vAlign=top>
@@ -61,9 +64,6 @@
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleLineHeightProperty.html">ВысотаСтроки&nbsp;(LineHeight)</A></TD>
     <TD width="50%">Возвращает или задает высоту строки.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleFlexProperty.html">Гибкость&nbsp;(Flex)</A></TD>
-    <TD width="50%">Возвращает или задает длину элемента относительно остальных гибких элементов внутри того же контейнера.</TD></TR>
-  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleCssFloatProperty.html">ГоризонтальноеВыравнивание&nbsp;(CssFloat)</A></TD>
     <TD width="50%">Возвращает или задает горизонтальное выравнивание элемента.</TD></TR>
   <TR vAlign=top>
@@ -83,7 +83,7 @@
     <TD width="50%">Возвращает или задает длину символа табуляции.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleAnimationDurationProperty.html">ДлительностьАнимации&nbsp;(AnimationDuration)</A></TD>
-    <TD width="50%">Возвращает или задает количество секунд или миллисекунд длительности одного цикла анимации.</TD></TR>
+    <TD width="50%">Возвращает или задает количество миллисекунд длительности одного цикла анимации.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleFontWeightProperty.html">ЖирностьШрифта&nbsp;(FontWeight)</A></TD>
     <TD width="50%">Возвращает или задает жирность шрифта.</TD></TR>
@@ -124,6 +124,9 @@
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleNameProperty.html">Имя&nbsp;(Name)</A></TD>
     <TD width="50%">Возвращает уникальное имя стиля сгенерированное при создании.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleAnimationNameProperty.html">ИмяАнимации&nbsp;(AnimationName)</A></TD>
+    <TD width="50%">Возвращает или задает имя набора ключевых кадров анимации.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBorderSpacingProperty.html">ИнтервалГраницы&nbsp;(BorderSpacing)</A></TD>
     <TD width="50%">Возвращает или задает пространство между ячейками в таблице.</TD></TR>
   <TR vAlign=top>
@@ -136,11 +139,8 @@
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleWordSpacingProperty.html">ИнтервалСлов&nbsp;(WordSpacing)</A></TD>
     <TD width="50%">Возвращает или задает интервал между словами в тексте.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBorderImageSourceProperty.html">ИсточникКартинкиГраницы&nbsp;(BorderImageSource)</A></TD>
-    <TD width="50%">Возвращает или задает путь к изображению, которое будет использоваться в качестве границы.</TD></TR>
-  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StylePerspectiveOriginProperty.html">ИсточникПерспективы&nbsp;(PerspectiveOrigin)</A></TD>
-    <TD width="50%">Возвращает или задает где находится трехмерный элемент по осям x и y.</TD></TR>
+    <TD width="50%">Возвращает или задает где находится трехмерный элемент по осям x и y (от 0 до 1).</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBoxSizingProperty.html">Калибровка&nbsp;(BoxSizing)</A></TD>
     <TD width="50%">Возвращает или задает вписывание элемента в область.</TD></TR>
@@ -193,17 +193,11 @@
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBackgroundRepeatProperty.html">МозаикаКартинки&nbsp;(BackgroundRepeat)</A></TD>
     <TD width="50%">Возвращает или задает способ повторения (мозаики) фонового изображения.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBorderImageRepeatProperty.html">МозаикаКартинкиГраницы&nbsp;(BorderImageRepeat)</A></TD>
-    <TD width="50%">Возвращает или задает должна ли картинка границы повторяться, закругляться или растягиваться.</TD></TR>
-  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleAnimationDirectionProperty.html">НаправлениеАнимации&nbsp;(AnimationDirection)</A></TD>
     <TD width="50%">Возвращает или задает значение, должна ли анимация воспроизводиться в прямом или обратном порядке.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleFlexDirectionProperty.html">НаправлениеЭлементов&nbsp;(FlexDirection)</A></TD>
     <TD width="50%">Возвращает или задает направление элементов внутри флекс-контейнера.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBorderImageSliceProperty.html">НарезкаКартинкиГраницы&nbsp;(BorderImageSlice)</A></TD>
-    <TD width="50%">Возвращает или задает внутренние смещения картинки границы.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleFontStretchProperty.html">Начертание&nbsp;(FontStretch)</A></TD>
     <TD width="50%">Выбирает обычное, сжатое или расширенное начертание из семейства шрифтов.</TD></TR>
@@ -258,9 +252,6 @@
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleTextDecorationColorProperty.html">ОформлениеТекстаЦвет&nbsp;(TextDecorationColor)</A></TD>
     <TD width="50%">Возвращает или задает цвет оформления текста.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleAnimationPlayStateProperty.html">Пауза&nbsp;(AnimationPlayState)</A></TD>
-    <TD width="50%">Возвращает или задает значение, запущена или приостановлена ​​анимация.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleFlexWrapProperty.html">ПереносГибких&nbsp;(FlexWrap)</A></TD>
     <TD width="50%">Возвращает или задает значение, должны ли переноситься гибкие элементы.</TD></TR>
@@ -364,11 +355,14 @@
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleFontFamilyProperty.html">СемействоШрифтов&nbsp;(FontFamily)</A></TD>
     <TD width="50%">Возвращает или задает семейство шрифтов для текста.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBorderImageOutsetProperty.html">СмещениеКартинкиГраницы&nbsp;(BorderImageOutset)</A></TD>
-    <TD width="50%">Возвращает или задает величину, на которую область рисунка границы выходит за границы.</TD></TR>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleOffsetProperty.html">Смещение&nbsp;(Offset)</A></TD>
+    <TD width="50%">Возвращает или задает момент времени от 0 до 1, когда кадр анимации должен отображаться в анимации.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleOutlineOffsetProperty.html">СмещениеКонтура&nbsp;(OutlineOffset)</A></TD>
     <TD width="50%">Смещает контур и выводит его за пределы границы.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleAnimationPlayStateProperty.html">Состояние&nbsp;(AnimationPlayState)</A></TD>
+    <TD width="50%">Возвращает или задает значение, запущена или приостановлена ​​анимация.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.StyleBorderTopStyleProperty.html">СтильВерхнейГраницы&nbsp;(BorderTopStyle)</A></TD>
     <TD width="50%">Возвращает или задает стиль верхней границы.</TD></TR>

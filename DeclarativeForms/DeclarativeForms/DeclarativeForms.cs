@@ -16,6 +16,7 @@ namespace osdf
     [ContextClass("ДекларативныеФормы", "DeclarativeForms")]
     public class DeclarativeForms : AutoContext<DeclarativeForms>
     {
+        public static string funDelimiter = "d1ziwjr520tq";
         private static string separator = Path.DirectorySeparatorChar.ToString();
         private static StructureImpl shareStructure = new StructureImpl();
         public DfEventArgs eventArgs;
@@ -28,6 +29,7 @@ namespace osdf
         public static Hashtable hashtable = new Hashtable();
         private static DfForm form = new DfForm();
         public static System.Diagnostics.Process process;
+        public static System.Random Random = new Random();
 
         public static DeclarativeForms getInstance()
         {
@@ -92,6 +94,18 @@ namespace osdf
                 _cssPath = value;
                 CSSPath = _cssPath;
             }
+        }
+		
+        [ContextMethod("Скрипт", "Script")]
+        public DfScript Script()
+        {
+            return new DfScript();
+        }
+		
+        [ContextMethod("Математика", "Math")]
+        public DfMath Math()
+        {
+            return new DfMath();
         }
 
         private static DfTextBaseline df_TextBaseline = new DfTextBaseline();
@@ -326,7 +340,7 @@ namespace osdf
         }
 
         private static DfAnimationPlayState df_AnimationPlayState = new DfAnimationPlayState();
-        [ContextProperty("Пауза", "AnimationPlayState")]
+        [ContextProperty("Состояние", "AnimationPlayState")]
         public DfAnimationPlayState AnimationPlayState
         {
             get { return df_AnimationPlayState; }
@@ -486,13 +500,6 @@ namespace osdf
             get { return df_TransitionProperty; }
         }
 
-        private static DfVideoType df_VideoType = new DfVideoType();
-        [ContextProperty("ТипВидео", "VideoType")]
-        public DfVideoType VideoType
-        {
-            get { return df_VideoType; }
-        }
-
         private static DfBorderStyle df_BorderStyle = new DfBorderStyle();
         [ContextProperty("СтильГраницы", "BorderStyle")]
         public DfBorderStyle BorderStyle
@@ -626,6 +633,12 @@ namespace osdf
             get { return df_BorderWidth; }
         }
 
+        [ContextMethod("Артикль", "Article")]
+        public DfArticle Article()
+        {
+            return new DfArticle();
+        }
+
         [ContextMethod("Абзац", "Paragraph")]
         public DfParagraph Paragraph()
         {
@@ -648,12 +661,6 @@ namespace osdf
         public DfDiv Div()
         {
             return new DfDiv();
-        }
-
-        [ContextMethod("Видео", "Video")]
-        public DfVideo Video()
-        {
-            return new DfVideo();
         }
 
         [ContextMethod("ВыборВремени", "TimeSelection")]
@@ -1105,6 +1112,24 @@ namespace osdf
         {
             return new DfMeter();
         }
+		
+        [ContextMethod("СвойстваАнимации", "AnimationOptions")]
+        public DfAnimationProperties AnimationProperties(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null, IValue p5 = null, IValue p6 = null, IValue p7 = null, IValue p8 = null)
+        {
+            return new DfAnimationProperties(p1, p2, p3, p4, p5, p6, p7, p8);
+        }
+		
+        [ContextMethod("ПараметрыАнимации", "AnimationOptions")]
+        public DfAnimationOptions AnimationOptions(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null, IValue p5 = null, IValue p6 = null, IValue p7 = null)
+        {
+            return new DfAnimationOptions(p1, p2, p3, p4, p5, p6, p7);
+        }
+
+        [ContextMethod("Кадры", "Frames")]
+        public DfFrames Frames()
+        {
+            return new DfFrames();
+        }
 
         [ContextMethod("БезьеКуб", "CubicBezier")]
         public DfCubicBezier CubicBezier(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null)
@@ -1327,7 +1352,7 @@ namespace osdf
         }
 
         [ContextMethod("РадиусГраницы", "BorderRadius")]
-        public DfBorderRadius BorderRadius(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null)
+        public DfBorderRadius BorderRadius(int p1 = 0, int p2 = 0, int p3 = 0, int p4 = 0)
         {
             return new DfBorderRadius(p1, p2, p3, p4);
         }
@@ -1372,6 +1397,12 @@ namespace osdf
         public DfBoxShadow BoxShadow(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null, IValue p5 = null, bool p6 = false)
         {
             return new DfBoxShadow(p1, p2, p3, p4, p5, p6);
+        }
+
+        [ContextMethod("ИсточникПерспективы", "PerspectiveOrigin")]
+        public DfPerspectiveOrigin PerspectiveOrigin(IValue p1 = null, IValue p2 = null)
+        {
+            return new DfPerspectiveOrigin(p1, p2);
         }
 
         [ContextMethod("Точка", "Point")]
@@ -1543,21 +1574,153 @@ namespace osdf
             shareStructure.Insert("Сценарии", scripts);
             extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
             extContext.Insert("ОбщаяСтруктура", shareStructure);
+		
+            string backgroundTasks = @"
+Процедура ЗапускКлиента(параметр1) Экспорт
+	Контекст = Новый Структура(""ДФ"", параметр1);
+	Стр = ""
+	|Перем КС;
+	|Перем Клиент;
+	|Перем ИдентификаторКлиента;
+	|
+	|Функция РазобратьСтроку(Строка, Разделитель)
+	|	Стр = СтрЗаменить(Строка,Разделитель,символы.ПС);
+	|	М = Новый Массив;
+	|	Если ПустаяСтрока(Стр) Тогда
+	|		Возврат М;
+	|	КонецЕсли;
+	|	Для Ч = 1 По СтрЧислоСтрок(Стр) Цикл
+	|		М.Добавить(СтрПолучитьСтроку(Стр,Ч));
+	|	КонецЦикла;
+	|	Возврат М;
+	|КонецФункции
+	|
+	|Функция ТекстСообщения(парам)
+	|	СимволПС = Символы.ВК + Символы.ПС;
+	|	
+	|	// Ответ для браузер-клиента нужно сформировать по определенным правилам, с заголовком и прочими составляющими.
+	|	Массив = Новый Массив();
+	|	Массив.Добавить(""""HTTP/1.1 200 OK"""");
+	|	Массив.Добавить(""""Server: OneScriptDeclarativeForms"""");
+	|	Массив.Добавить(""""Content-Type: text/html; charset=utf-8"""");
+	|	Массив.Добавить(СимволПС);
+	|	ДвоичныеДанныеЗаголовков = ПолучитьДвоичныеДанныеИзСтроки(СтрСоединить(Массив, СимволПС), """"utf-8"""");
+	|	ДвоичныеДанныеТела = ПолучитьДвоичныеДанныеИзСтроки(парам);
+	|	ДвоичныеДанныеОтвета = Новый Массив;
+	|	ДвоичныеДанныеОтвета.Добавить(ДвоичныеДанныеЗаголовков);
+	|	ДвоичныеДанныеОтвета.Добавить(ДвоичныеДанныеТела);
+	|	Ответ = СоединитьДвоичныеДанные(ДвоичныеДанныеОтвета);
+	|
+	|	Возврат ПолучитьСтрокуИзДвоичныхДанных(Ответ); 
+	|КонецФункции
+	|
+	|Процедура Сервер_ПриПодключенииКлиента() Экспорт
+	|	СерверКлиент = КС.СерверКлиентАрг().Клиент;
+	|	ИдентификаторКлиента = СерверКлиент.ИдентификаторКлиента;
+	|	// Сообщить(""""Клиент подключен. Идентификатор клиента = """" + СерверКлиент.ИдентификаторКлиента + """" """" + ТекущаяДата());
+	|КонецПроцедуры
+	|
+	|Процедура Сервер_ПриОтключенииКлиента() Экспорт
+	|	СерверКлиент = КС.СерверКлиентАрг().Клиент;
+	|	// Сообщить(""""Клиент отключен. Идентификатор клиента = """" + СерверКлиент.ИдентификаторКлиента + """" """" + ТекущаяДата());
+	|КонецПроцедуры
+	|
+	|Процедура Сервер_ПриПолученииСообщения() Экспорт
+	|	Сообщение = КС.АргументыСобытия.Сообщение;
+	|	Отправитель = КС.АргументыСобытия.Отправитель;
+	|	ДФ.ОбработатьСообщение(Сообщение.Текст);
+	|	
+	|	// Сообщить(""""Сообщение.Текст = """" + Сообщение.Текст);
+	|	Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
+	|		Клиент = КС.АргументыСобытия.Отправитель;
+	|		ДФ.ОбщаяСтруктура.Вставить(""""Клиент"""", Клиент);
+	|		ДФ.ОбщаяСтруктура.Вставить(""""КС"""", КС);
+	|	Иначе
+	|	КонецЕсли;
+	|
+	|	// Сообщить(""""ДФ.СтрокаФункций = """" + ДФ.СтрокаФункций);
+	|	Попытка
+	|		Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
+	|			Если ИдентификаторКлиента = 1 Тогда
+	|				Клиент.ОтправитьСообщение(КС.СообщениеТекст(ДФ.СтрокаФункций));
+	|			КонецЕсли;
+	|		Иначе
+	|			Отправитель.ОтправитьСообщение(КС.СообщениеТекст(ТекстСообщения(ДФ.СтрокаФункций)));
+	|		КонецЕсли;
+	|	Исключение
+	|	КонецПопытки;
+	|	ДФ.СтрокаФункций = """""""";
+	|	
+	|	Если КС.РежимСтороннегоКлиента = КС.РежимКлиента.Браузер Тогда
+	|		Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
+	|		Иначе
+	|			Отправитель.Отключить(); // Нужно в случае клиента-браузера по протоколу http.
+	|		КонецЕсли;
+	|	КонецЕсли;
+	|	// Сообщить(""""== Событие обработано ======================================="""");
+	|КонецПроцедуры
+	|
+	|ПодключитьВнешнююКомпоненту(""""" + pathStartupScript + separator + @"OneScriptClientServer.dll"""");
+	|КС = Новый КлиентСерверДляОдноСкрипта();
+	|
+	|TCPСервер1 = КС.TCPСервер(ДФ.Порт);
+	|TCPСервер1.ПриПодключенииКлиента = КС.Действие(ЭтотОбъект, """"Сервер_ПриПодключенииКлиента""""); // Это свойство необходимо установить.
+	|TCPСервер1.ПриОтключенииКлиента = КС.Действие(ЭтотОбъект, """"Сервер_ПриОтключенииКлиента""""); // Это свойство необходимо установить.
+	|TCPСервер1.ПриПолученииСообщения = КС.Действие(ЭтотОбъект, """"Сервер_ПриПолученииСообщения"""");
+	|КС.РежимСтороннегоКлиента = КС.РежимКлиента.Браузер;
+	|
+	|// Запустим сервер
+	|TCPСервер1.Начать();
+	|// Сообщить(""""Сервер запущен"""");
+	|
+	|// Запустим цикл обработки событий
+	|Пока КС.Продолжать Цикл
+	|	КС.ПолучитьСобытие().Выполнить();
+	|КонецЦикла;
+	|"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
 
-            // Создаем файл startserver.os
-            File.WriteAllText(pathStartupScript + separator + "Классы" + separator + "startserver.os", Startserver.startserver, System.Text.Encoding.UTF8);
+Процедура ЗапускgetProps(параметр1) Экспорт
+	Контекст = Новый Структура(""ДФ"", параметр1);
+	Стр = ""
+	|Пока Истина Цикл
+	|	Пока ДФ.КоличествоВОчереди() > 0 Цикл
+	|		ДФ.Отправить();
+	|	КонецЦикла;
+	|	Приостановить(7);
+	|КонецЦикла;"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
 
-            // Создаем файл server
-            File.WriteAllText(pathStartupScript + separator + "Классы" + separator + "server", Server.server, System.Text.Encoding.UTF8);
+МассивПараметров = Новый Массив(1);
+МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускgetProps"", МассивПараметров);
+";
+            GlobalContext().LoadScriptFromString(backgroundTasks, extContext);
 
-            // Создаем файл package.json
-            System.IO.File.WriteAllText(pathStartupScript + separator + "package.json", Packagejson.packagejson, System.Text.Encoding.UTF8);
+            // Если отсутствует файл OneScriptClientServer.dll создадим его.oscsdll
+            if (!File.Exists(pathStartupScript + separator + "OneScriptClientServer.dll"))
+            {
+                var file = System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew("test", 123);
 
-            // Создаем файл index.html
-            System.IO.File.WriteAllText(pathStartupScript + separator + "index.html", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
 
-            // Создаем файл main.js
-            System.IO.File.WriteAllText(pathStartupScript + separator + "main.js", Mainjs.mainjs, System.Text.Encoding.UTF8);
+
+                byte[] bytes = Convert.FromBase64String(Oscsdll.oscsdll);
+                var ms = new MemoryStream(bytes, 0, bytes.Length);
+                using (var fileStream = File.Create(pathStartupScript + separator + "OneScriptClientServer.dll"))
+                {
+                    ms.Seek(0, SeekOrigin.Begin);
+                    ms.CopyTo(fileStream);
+                }
+            }
+
+            // Создаем в этом каталоге файл package.json с заданными в сценарии начальнымисвойствами формы.
+            File.WriteAllText(pathStartupScript + separator + "package.json", Packagejson.packagejson, System.Text.Encoding.UTF8);
+
+            // Создаем в этом каталоге файл index.html.
+            File.WriteAllText(pathStartupScript + separator + "index.html", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
 
             // Создаем в этом каталоге файл стиля (имя_скрипта).css
             // ...
@@ -1778,7 +1941,10 @@ namespace osdf
                         }
                         else
                         {
-                            GlobalContext().Echo("Не обработано событие = " + nameEvent);
+                            if (Sender.GetType() != typeof(osdf.DfMenuItem))
+                            {
+                                GlobalContext().Echo("Не обработано событие = " + nameEvent);
+                            }
                         }
                     }
                 }
@@ -1812,12 +1978,39 @@ namespace osdf
                                 Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
                                 propValue = ValueFactory.Create(Convert.ToInt32(num1));
                             }
+                            else if (propertyType == "ScriptEngine.HostedScript.Library.ArrayImpl")
+                            {
+                                ArrayImpl ArrayImpl1 = new ArrayImpl();
+                                string[] s = massiv[3].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                                for (int i = 0; i < s.Length; i++)
+                                {
+                                    if (FindElement(s[i]) != null)
+                                    {
+                                        ArrayImpl1.Add(FindElement(s[i]));
+                                    }
+                                    else
+                                    {
+                                        ArrayImpl1.Add(ValueFactory.Create(s[i]));
+                                    }
+                                }
+                                propValue = ArrayImpl1;
+                            }		
                             else
                             {
                                 propValue = ValueFactory.Create(massiv[3]);
                             }
-                            ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(nameProperty), propValue);
-                            System.Threading.Thread.Sleep(7);
+
+                            try
+                            {
+                                // Если свойство предоставляется для пользователя только для чтения
+                                // то присваивать значение будем свойству - посреднику.
+                                string nameProperty2 = (string)namesRusProps[massiv[2]][2].ToString();
+                                ((dynamic)Sender)[nameProperty2].SetValue((dynamic)Sender, propValue);
+                            }
+                            catch
+                            {
+                                ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(nameProperty), propValue);
+                            }
                             Execute(GettingProperty);
                         }
                         else
@@ -1829,7 +2022,14 @@ namespace osdf
                     }
                     catch
                     {
-                        GlobalContext().Echo("Не найден = " + nameElement);
+                        if (nameElement == "mainForm")
+                        {
+                            // Ничего не делаем.
+                        }
+                        else
+                        {
+                            GlobalContext().Echo("Не обработан запрос = " + strZapros);
+                        }
                     }
                 }
             }
@@ -1872,8 +2072,8 @@ namespace osdf
                 try
                 {
                     string[] str2 = str1[i].Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-                    //GlobalContext().Echo("str2[i] = " + str2[0]);
-                    //GlobalContext().Echo("str2[i] = " + str2[1]);
+                    //GlobalContext().Echo("str2[0] = " + str2[0]);
+                    //GlobalContext().Echo("str2[1] = " + str2[1]);
 
                     // Здесь нужно знать какой тип значения у свойства и конвертировать из строки str2[0] в нужный тип.
                     string nameProperty = "";
@@ -1907,13 +2107,51 @@ namespace osdf
                         Decimal num1 = Decimal.Parse(str2[1].Replace(".", ","));
                         propValue = ValueFactory.Create(Convert.ToInt32(num1));
                     }
+                    else if (propertyType == "ScriptEngine.HostedScript.Library.ArrayImpl")
+                    {
+                        ArrayImpl ArrayImpl1 = new ArrayImpl();
+                        string[] s = str2[1].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        for (int i1 = 0; i1 < s.Length; i1++)
+                        {
+                            if (FindElement(s[i1]) != null)
+                            {
+                                ArrayImpl1.Add(FindElement(s[i1]));
+                            }
+                            else
+                            {
+                                ArrayImpl1.Add(ValueFactory.Create(s[i1]));
+                            }
+                        }
+                        propValue = ArrayImpl1;
+                    }		
+                    else if (propertyType == "System.Boolean")
+                    {
+                        propValue = ValueFactory.Create(Boolean.Parse(str2[1]));
+                    }		
                     else
                     {
                         propValue = ValueFactory.Create(str2[1]);
                     }
                     DfEventArgs1.SetPropValue(DfEventArgs1.FindProperty(str2[0]), propValue);
                     // Изменим и значение свойства объекта.
-                    ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(str2[0]), propValue);
+                    try
+                    {
+                        // Если свойство предоставляется для пользователя только для чтения
+                        // то присваивать значение будем свойству - посреднику.
+                        string nameProperty2 = (string)namesRusProps[str2[0]][2].ToString();
+                        if (Sender.GetType() == typeof(DfCheckBox))
+                        {
+                            ((DfCheckBox)Sender)._checked = propValue.AsBoolean();
+                        }
+                        else
+                        {
+                            ((dynamic)Sender)[nameProperty2].SetValue((dynamic)Sender, propValue);
+                        }
+                    }
+                    catch
+                    {
+                        ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(str2[0]), propValue);
+                    }		
                 }
                 catch { }
             }
@@ -1949,26 +2187,179 @@ namespace osdf
             }
             return res;
         }
-
-        [ContextMethod("ПолучитьСвойство", "GetObjectProperty")]
-        public void GetObjectProperty(IValue p1, string p2)
+		
+        [ContextMethod("КоличествоВОчереди", "QueueCount")]
+        public int QueueCount()
         {
-            string function1;		
-            //getProperty(nameElement, namePropertyObj, namePropertyElement, notStyleProperty)
-            if ((bool)namesRusProps[p2][1])
-            {
-                function1 = "getProperty(\u0022" + ((dynamic)p1).ItemKey + "\u0022, \u0022" + p2 + "\u0022, \u0022" + namesRusProps[p2][2] + "\u0022, \u0022" + namesRusProps[p2][1].ToString().ToLower() + "\u0022)";
-            }
-            else
-            {
-                function1 = "getProperty(\u0022" + ((dynamic)p1).Owner.ItemKey + "\u0022, \u0022" + p2 + "\u0022, \u0022" + namesRusProps[p2][2] + "\u0022, \u0022" + namesRusProps[p2][1].ToString().ToLower() + "\u0022)";
-            }
+            return EventQueue.Count;
+        }
+
+        [ContextMethod("Отправить", "Send")]
+        public void Send()
+        {
+            string func;
+            EventQueue.TryDequeue(out func);
             int num = DeclarativeForms.shareStructure.FindProperty("Клиент");
             dynamic val1 = DeclarativeForms.shareStructure.GetPropValue(num);
             int num2 = DeclarativeForms.shareStructure.FindProperty("КС");
             dynamic val2 = DeclarativeForms.shareStructure.GetPropValue(num2);
-            val1.SendMessage(val2.TextMessage(function1));
+            val1.SendMessage(val2.TextMessage(func));
             DeclarativeForms.strFunctions = "";
+        }
+
+        public static ConcurrentQueue<string> EventQueue = new ConcurrentQueue<string>();		
+        [ContextMethod("ПолучитьСвойство", "GetObjectProperty")]
+        public void GetObjectProperty(IValue p1, string p2)
+        {
+            string function1;		
+            if ((bool)namesRusProps[p2][1])
+            {
+                function1 = "" +
+                    "let res;" +
+                    "let el = mapKeyEl.get('" + ((dynamic)p1).ItemKey + "');" +
+                    "try" +
+                    "{" +
+                    "    if ('" + p2 + "' == 'parent')" +
+                    "    {" +
+                    "        if (el.parentElement == document.body)" +
+                    "        {" +
+                    "            res = 'mainForm';" +
+                    "        }" +
+                    "        else" +
+                    "        {" +
+                    "            res = el.parentElement.name;" +
+                    "        }" +
+                    "    }" +
+                    "    else" +
+                    "    {" +
+                    "        if ('" + namesRusProps[p2][1].ToString().ToLower() + "' == 'true')" +
+                    "        {" +
+                    "            if ('" + namesRusProps[p2][2] + "' == 'class')" +
+                    "            {" +
+                    "                res = el['className'];" +
+                    "            }" +
+                    "            else if ('" + namesRusProps[p2][2] + "' == 'areas')" +
+                    "            {" +
+                    "                res = '';" +
+                    "                if (el.areas.length > 0)" +
+                    "                {" +
+                    "                    for (var i = 0; i < el.areas.length; i++)" +
+                    "                    {" +
+                    "                        res = res + mapElKey.get(el.areas[i]) + ';';" +
+                    "                    }" +
+                    "                }" +
+                    "            }" +
+                    "            else if ('" + namesRusProps[p2][2] + "' == 'options')" +
+                    "            {" +
+                    "                res = '';" +
+                    "                if (el.options.length > 0)" +
+                    "                {" +
+                    "                    for (var i = 0; i < el.options.length; i++)" +
+                    "                    {" +
+                    "                        res = res + mapElKey.get(el.options[i]) + ';';" +
+                    "                    }" +
+                    "                }" +
+                    "            }" +
+                    "            else" +
+                    "            {" +
+                    "                res = el['" + namesRusProps[p2][2] + "'];" +
+                    "            }" +
+                    "        }" +
+                    "        else" +
+                    "        {" +
+                    "            res = el.style.getPropertyValue('" + namesRusProps[p2][2] + "');" +
+                    "        }" +
+                    "    }" +
+                    "    sendPost(" +
+                    "    '" + ((dynamic)p1).ItemKey + "' +" +
+                    "    '|||' + 'dgj3rqq550w4' +" +
+                    "    '|||' + '" + p2 + "' +" +
+                    "    '|||' + res +" +
+                    "    '|||' + '" + namesRusProps[p2][1].ToString().ToLower() + "');" +
+                    "}" +
+                    "catch (err)" +
+                    "{" +
+                    "    sendPost('!!! Ошибка:' + err.message);" +
+                    "}" +
+                    "";
+            }
+            else
+            {
+                    function1 = "" +
+                    "let res;" +
+                    "let el = mapKeyEl.get('" + ((dynamic)p1).Owner.ItemKey + "');" +
+                    "try" +
+                    "{" +
+                    "    if ('" + p2 + "' == 'parent')" +
+                    "    {" +
+                    "        if (el.parentElement == document.body)" +
+                    "        {" +
+                    "            res = 'mainForm';" +
+                    "        }" +
+                    "        else" +
+                    "        {" +
+                    "            res = el.parentElement.name;" +
+                    "        }" +
+                    "    }" +
+                    "    else" +
+                    "    {" +
+                    "        if ('" + namesRusProps[p2][1].ToString().ToLower() + "' == 'true')" +
+                    "        {" +
+                    "            if ('" + namesRusProps[p2][2] + "' == 'class')" +
+                    "            {" +
+                    "                res = el['className'];" +
+                    "            }" +
+                    "            else if ('" + namesRusProps[p2][2] + "' == 'areas')" +
+                    "            {" +
+                    "                res = '';" +
+                    "                if (el.areas.length > 0)" +
+                    "                {" +
+                    "                    for (var i = 0; i < el.areas.length; i++)" +
+                    "                    {" +
+                    "                        res = res + mapElKey.get(el.areas[i]) + ';';" +
+                    "                    }" +
+                    "                }" +
+                    "            }" +
+                    "            else if ('" + namesRusProps[p2][2] + "' == 'options')" +
+                    "            {" +
+                    "                res = '';" +
+                    "                if (el.options.length > 0)" +
+                    "                {" +
+                    "                    for (var i = 0; i < el.options.length; i++)" +
+                    "                    {" +
+                    "                        res = res + mapElKey.get(el.options[i]) + ';';" +
+                    "                    }" +
+                    "                }" +
+                    "            }" +
+                    "            else" +
+                    "            {" +
+                    "                res = el['" + namesRusProps[p2][2] + "'];" +
+                    "            }" +
+                    "        }" +
+                    "        else" +
+                    "        {" +
+                    "            res = el.style['" + namesRusProps[p2][2] + "'];" +
+                    "        }" +
+                    "    }" +
+                    "    sendPost(" +
+                    "    '" + ((dynamic)p1).ItemKey + "' +" +
+                    "    '|||' + 'dgj3rqq550w4' +" +
+                    "    '|||' + '" + p2 + "' +" +
+                    "    '|||' + res +" +
+                    "    '|||' + '" + namesRusProps[p2][1].ToString().ToLower() + "');" +
+                    "}" +
+                    "catch (err)" +
+                    "{" +
+                    "    sendPost('!!! Ошибка:' + err.message);" +
+                    "}" +
+                    "";
+            }
+            EventQueue.Enqueue(function1);
+            // Здесь нужно задержаться до тех пор пока фоновое задание не обработает очередь сообщений
+            while (EventQueue.Count > 0)
+            {
+                System.Threading.Thread.Sleep(7);
+            }
         }		
 
         public static dynamic DefineTypeIValue(dynamic p1)
@@ -2153,30 +2544,212 @@ namespace osdf
             return DfArrayList1;
         }
 
+        // Для метода Добавить класса DfFrames. Имена свойств и атрибутов.
+        public static Dictionary<string, object[]> namesStyleProps = new Dictionary<string, object[]>
+        {
+            //object[0] Имя как в справке - HorizontalTextAlign
+            //object[1] Имя как в js (горбатый стиль)- style['textAlign']
+            //object[2] Имя скрытого поля в стиле (private string horizontalTextAlign) - horizontalTextAlign
+            //object[3] Имя как в css(через тире)- text-align
+            {"Анимация", new object[4] { "Animation", "animation", "Animation", "animation" } },
+            {"БазоваяДлина", new object[4] { "FlexBasis", "flexBasis", "flexBasis", "flex-basis" } },
+            {"ВариантШрифта", new object[4] { "FontVariant", "fontVariant", "fontVariant", "font-variant" } },
+            {"ВертикальноеВыравнивание", new object[4] { "VerticalAlign", "verticalAlign", "verticalAlign", "vertical-align" } },
+            {"Верх", new object[4] { "Top", "top", "top", "top" } },
+            {"ВерхняяГраница", new object[4] { "BorderTop", "borderTop", "borderTop", "border-top" } },
+            {"Видимость", new object[4] { "Visibility", "visibility", "visibility", "visibility" } },
+            {"ВписываниеОбъекта", new object[4] { "ObjectFit", "objectFit", "objectFit", "object-fit" } },
+            {"ВремяПерехода", new object[4] { "TransitionDuration", "transitionDuration", "transitionDuration", "transition-duration" } },
+            {"ВыделениеПользователем", new object[4] { "UserSelect", "userSelect", "userSelect", "user-select" } },
+            {"ВыравниваниеОтдельных", new object[4] { "AlignSelf", "alignSelf", "alignSelf", "align-self" } },
+            {"ВыравниваниеСодержимого", new object[4] { "AlignContent", "alignContent", "alignContent", "align-content" } },
+            {"ВыравниваниеЭлементов", new object[4] { "AlignItems", "alignItems", "alignItems", "align-items" } },
+            {"Высота", new object[4] { "Height", "height", "height", "height" } },
+            {"ВысотаСтроки", new object[4] { "LineHeight", "lineHeight", "lineHeight", "line-height" } },
+            {"Гибкость", new object[4] { "Flex", "flex", "flex", "flex" } },
+            {"ГоризонтальноеВыравнивание", new object[4] { "CssFloat", "cssFloat", "cssFloat", "css-float" } },
+            {"ГоризонтальноеВыравниваниеТекста", new object[4] { "HorizontalTextAlign", "textAlign", "horizontalTextAlign", "text-align" } },/////////////////////////////////////////////////
+            {"ГраницаСвернута", new object[4] { "BorderCollapse", "borderCollapse", "borderCollapse", "border-collapse" } },
+            {"Границы", new object[4] { "Borders", "border", "borders", "border" } },///////////////////////////////////////////////////////////////////////////////////////////////////////
+            {"ДиапазонКолонокЭлемента", new object[4] { "ColumnSpan", "columnSpan", "columnSpan", "column-span" } },
+            {"ДлинаТабуляции", new object[4] { "TabSize", "tabSize", "tabSize", "tab-size" } },
+            {"ДлительностьАнимации", new object[4] { "AnimationDuration", "animationDuration", "animationDuration", "animation-duration" } },
+            {"ЖирностьШрифта", new object[4] { "FontWeight", "fontWeight", "fontWeight", "font-weight" } },
+            {"ЗадержкаАнимации", new object[4] { "AnimationDelay", "animationDelay", "animationDelay", "animation-delay" } },
+            {"ЗадержкаПерехода", new object[4] { "TransitionDelay", "transitionDelay", "transitionDelay", "transition-delay" } },
+            {"ЗаливкаАнимации", new object[4] { "AnimationFillMode", "animationFillMode", "animationFillMode", "animation-fill-mode" } },
+            {"Заполнение", new object[4] { "Padding", "padding", "padding", "padding" } },
+            {"ЗаполнениеКолонок", new object[4] { "ColumnFill", "columnFill", "columnFill", "column-fill" } },
+            {"ЗаполнениеСверху", new object[4] { "PaddingTop", "paddingTop", "paddingTop", "padding-top" } },
+            {"ЗаполнениеСлева", new object[4] { "PaddingLeft", "paddingLeft", "paddingLeft", "padding-left" } },
+            {"ЗаполнениеСнизу", new object[4] { "PaddingBottom", "paddingBottom", "paddingBottom", "padding-bottom" } },
+            {"ЗаполнениеСправа", new object[4] { "PaddingRight", "paddingRight", "paddingRight", "padding-right" } },
+            {"Значок", new object[4] { "Icon", "icon", "icon", "icon" } },
+            {"ИзменяемыйРазмер", new object[4] { "Resize", "resize", "resize", "resize" } },
+            {"ИмяАнимации", new object[4] { "AnimationName", "animationName", "animationName", "animation-name" } },
+            {"ИнтервалГраницы", new object[4] { "BorderSpacing", "borderSpacing", "borderSpacing", "border-spacing" } },
+            {"ИнтервалКолонок", new object[4] { "ColumnGap", "columnGap", "columnGap", "column-gap" } },
+            {"ИнтервалСимволов", new object[4] { "LetterSpacing", "letterSpacing", "letterSpacing", "letter-spacing" } },
+            {"ИнтервалСлов", new object[4] { "WordSpacing", "wordSpacing", "wordSpacing", "word-spacing" } },
+            {"ИсточникПерспективы", new object[4] { "PerspectiveOrigin", "perspectiveOrigin", "perspectiveOrigin", "perspective-origin" } },
+            {"Калибровка", new object[4] { "BoxSizing", "boxSizing", "boxSizing", "box-sizing" } },
+            {"КартинкаГраницы", new object[4] { "BorderImage", "borderImage", "borderImage", "border-image" } },
+            {"КартинкаСтиляСписка", new object[4] { "ListStyleImage", "listStyleImage", "listStyleImage", "list-style-image" } },
+            {"КоличествоКолонок", new object[4] { "ColumnCount", "columnCount", "columnCount", "column-count" } },
+            {"КоличествоПовторов", new object[4] { "AnimationIterationCount", "animationIterationCount", "animationIterationCount", "animation-iteration-count" } },
+            {"КолонкиЭлемента", new object[4] { "Columns", "columns", "columns", "columns" } },
+            {"Контур", new object[4] { "Outline", "outline", "outline", "outline" } },
+            {"Курсор", new object[4] { "Cursor", "cursor", "cursor", "cursor" } },
+            {"ЛеваяГраница", new object[4] { "BorderLeft", "borderLeft", "borderLeft", "border-left" } },
+            {"Лево", new object[4] { "Left", "left", "left", "left" } },
+            {"ЛевыйРадиусВерхнейГраницы", new object[4] { "BorderTopLeftRadius", "borderTopLeftRadius", "borderTopLeftRadius", "border-top-left-radius" } },
+            {"ЛевыйРадиусНижнейГраницы", new object[4] { "BorderBottomLeftRadius", "borderBottomLeftRadius", "borderBottomLeftRadius", "border-bottom-left-radius" } },
+            {"МаксимальнаяВысота", new object[4] { "MaxHeight", "maxHeight", "maxHeight", "max-height" } },
+            {"МаксимальнаяШирина", new object[4] { "MaxWidth", "maxWidth", "maxWidth", "max-width" } },
+            {"МинимальнаяВысота", new object[4] { "MinHeight", "minHeight", "minHeight", "min-height" } },
+            {"МинимальнаяШирина", new object[4] { "MinWidth", "minWidth", "minWidth", "min-width" } },
+            {"МозаикаКартинки", new object[4] { "BackgroundRepeat", "backgroundRepeat", "backgroundRepeat", "background-repeat" } },
+            {"НаправлениеАнимации", new object[4] { "AnimationDirection", "animationDirection", "animationDirection", "animation-direction" } },
+            {"НаправлениеЭлементов", new object[4] { "FlexDirection", "flexDirection", "flexDirection", "flex-direction" } },
+            {"Начертание", new object[4] { "FontStretch", "fontStretch", "fontStretch", "font-stretch" } },
+            {"Непрозрачность", new object[4] { "Opacity", "opacity", "opacity", "opacity" } },
+            {"Несвободно", new object[4] { "Clear", "clear", "clear", "clear" } },
+            {"НижняяГраница", new object[4] { "BorderBottom", "borderBottom", "borderBottom", "border-bottom" } },
+            {"Низ", new object[4] { "Bottom", "bottom", "bottom", "bottom" } },
+            {"ОбластьКартинки", new object[4] { "BackgroundOrigin", "backgroundOrigin", "backgroundOrigin", "background-origin" } },
+            {"ОбластьРисования", new object[4] { "BackgroundClip", "backgroundClip", "backgroundClip", "background-clip" } },
+            {"Обрезка", new object[4] { "Clip", "clip", "clip", "clip" } },
+            {"Отображать", new object[4] { "Display", "display", "display", "display" } },
+            {"Отступ", new object[4] { "Margin", "margin", "margin", "margin" } },
+            {"ОтступСверху", new object[4] { "MarginTop", "marginTop", "marginTop", "margin-top" } },
+            {"ОтступСлева", new object[4] { "MarginLeft", "marginLeft", "marginLeft", "margin-left" } },
+            {"ОтступСнизу", new object[4] { "MarginBottom", "marginBottom", "marginBottom", "margin-bottom" } },
+            {"ОтступСправа", new object[4] { "MarginRight", "marginRight", "marginRight", "margin-right" } },
+            {"ОтступТекста", new object[4] { "TextIndent", "textIndent", "textIndent", "text-indent" } },
+            {"ОформлениеТекстаЛиния", new object[4] { "TextDecorationLine", "textDecorationLine", "textDecorationLine", "text-decoration-line" } },
+            {"ОформлениеТекстаСтиль", new object[4] { "TextDecorationStyle", "textDecorationStyle", "textDecorationStyle", "text-decoration-style" } },
+            {"ОформлениеТекстаЦвет", new object[4] { "TextDecorationColor", "textDecorationColor", "textDecorationColor", "text-decoration-color" } },
+            {"ПереносГибких", new object[4] { "FlexWrap", "flexWrap", "flexWrap", "flex-wrap" } },
+            {"ПереносСлов", new object[4] { "WordWrap", "wordWrap", "wordWrap", "word-wrap" } },
+            {"Переполнение", new object[4] { "Overflow", "overflow", "overflow", "overflow" } },
+            {"ПереполнениеИгрек", new object[4] { "OverflowY", "overflowY", "overflowY", "overflow-y" } },
+            {"ПереполнениеИкс", new object[4] { "OverflowX", "overflowX", "overflowX", "overflow-x" } },
+            {"ПереполнениеТекста", new object[4] { "TextOverflow", "textOverflow", "textOverflow", "text-overflow" } },
+            {"Переход", new object[4] { "Transition", "transition", "transition", "transition" } },
+            {"Перспектива", new object[4] { "Perspective", "perspective", "perspective", "perspective" } },
+            {"ПоведениеПрокрутки", new object[4] { "ScrollBehavior", "scrollBehavior", "scrollBehavior", "scroll-behavior" } },
+            {"Позиция", new object[4] { "Position", "position", "position", "position" } },
+            {"ПозицияОбъекта", new object[4] { "ObjectPosition", "objectPosition", "objectPosition", "object-position" } },
+            {"ПозицияСтиляСписка", new object[4] { "ListStylePosition", "listStylePosition", "listStylePosition", "list-style-position" } },
+            {"ПоложениеЗаголовка", new object[4] { "CaptionSide", "captionSide", "captionSide", "caption-side" } },
+            {"ПоложениеКартинки", new object[4] { "BackgroundPosition", "backgroundPosition", "backgroundPosition", "background-position" } },
+            {"Порядок", new object[4] { "Order", "order", "order", "order" } },
+            {"ПраваяГраница", new object[4] { "BorderRight", "borderRight", "borderRight", "border-right" } },
+            {"Право", new object[4] { "Right", "right", "right", "right" } },
+            {"ПравыйРадиусВерхнейГраницы", new object[4] { "BorderTopRightRadius", "borderTopRightRadius", "borderTopRightRadius", "border-top-right-radius" } },
+            {"ПравыйРадиусНижнейГраницы", new object[4] { "BorderBottomRightRadius", "borderBottomRightRadius", "borderBottomRightRadius", "border-bottom-right-radius" } },
+            {"Пробелы", new object[4] { "WhiteSpace", "whiteSpace", "whiteSpace", "white-space" } },
+            {"ПрописныеТекста", new object[4] { "TextTransform", "textTransform", "textTransform", "text-transform" } },
+            {"ПустыеЯчейки", new object[4] { "EmptyCells", "emptyCells", "emptyCells", "empty-cells" } },
+            {"РадиусГраницы", new object[4] { "BorderRadius", "borderRadius", "borderRadius", "border-radius" } },
+            {"РазделительКолонок", new object[4] { "ColumnRule", "columnRule", "columnRule", "column-rule" } },
+            {"РазмерКартинки", new object[4] { "BackgroundSize", "backgroundSize", "backgroundSize", "background-size" } },
+            {"РазмерШрифта", new object[4] { "FontSize", "fontSize", "fontSize", "font-size" } },
+            {"РазмещениеВТаблице", new object[4] { "TableLayout", "tableLayout", "tableLayout", "table-layout" } },
+            {"РазрывСтраницыВнутри", new object[4] { "PageBreakInside", "pageBreakInside", "pageBreakInside", "page-break-inside" } },
+            {"РазрывСтраницыДо", new object[4] { "PageBreakBefore", "pageBreakBefore", "pageBreakBefore", "page-break-before" } },
+            {"РазрывСтраницыПосле", new object[4] { "PageBreakAfter", "pageBreakAfter", "pageBreakAfter", "page-break-after" } },
+            {"РасположениеСодержимого", new object[4] { "JustifyContent", "justifyContent", "justifyContent", "justify-content" } },
+            {"СвойствоПерехода", new object[4] { "TransitionProperty", "transitionProperty", "transitionProperty", "transition-property" } },
+            {"Сдвиг", new object[4] { "Transform", "transform", "transform", "transform" } },
+            {"СемействоШрифтов", new object[4] { "FontFamily", "fontFamily", "fontFamily", "font-family" } },
+            {"Смещение", new object[4] { "Offset", "offset", "offset", "offset" } },
+            {"СмещениеКонтура", new object[4] { "OutlineOffset", "outlineOffset", "outlineOffset", "outline-offset" } },
+            {"Состояние", new object[4] { "AnimationPlayState", "animationPlayState", "animationPlayState", "animation-play-state" } },
+            {"СтильВерхнейГраницы", new object[4] { "BorderTopStyle", "borderTopStyle", "borderTopStyle", "border-top-style" } },
+            {"СтильГраниц", new object[4] { "BordersStyle", "borderStyle", "bordersStyle", "border-style" } },//////////////////////////////////////////////////////////////////////////
+            {"СтильКонтура", new object[4] { "OutlineStyle", "outlineStyle", "outlineStyle", "outline-style" } },
+            {"СтильЛевойГраницы", new object[4] { "BorderLeftStyle", "borderLeftStyle", "borderLeftStyle", "border-left-style" } },
+            {"СтильНижнейГраницы", new object[4] { "BorderBottomStyle", "borderBottomStyle", "borderBottomStyle", "border-bottom-style" } },
+            {"СтильПравойГраницы", new object[4] { "BorderRightStyle", "borderRightStyle", "borderRightStyle", "border-right-style" } },
+            {"СтильРазделителяКолонок", new object[4] { "ColumnRuleStyle", "columnRuleStyle", "columnRuleStyle", "column-rule-style" } },
+            {"СтильСдвига", new object[4] { "TransformStyle", "transformStyle", "transformStyle", "transform-style" } },
+            {"СтильСписка", new object[4] { "ListStyle", "listStyle", "listStyle", "list-style" } },
+            {"СтильШрифта", new object[4] { "FontStyle", "fontStyle", "fontStyle", "font-style" } },
+            {"СтрокПриРазрыве", new object[4] { "Orphans", "orphans", "orphans", "orphans" } },
+            {"Тень", new object[4] { "BoxShadow", "boxShadow", "boxShadow", "box-shadow" } },
+            {"ТеньТекста", new object[4] { "TextShadow", "textShadow", "textShadow", "text-shadow" } },
+            {"ТипСтиляСписка", new object[4] { "ListStyleType", "listStyleType", "listStyleType", "list-style-type" } },
+            {"ТочкаСдвига", new object[4] { "TransformOrigin", "transformOrigin", "transformOrigin", "transform-origin" } },
+            {"Увеличение", new object[4] { "FlexGrow", "flexGrow", "flexGrow", "flex-grow" } },
+            {"Уменьшение", new object[4] { "FlexShrink", "flexShrink", "flexShrink", "flex-shrink" } },
+            {"Фильтр", new object[4] { "Filter", "filter", "filter", "filter" } },
+            {"ФоновоеВложение", new object[4] { "BackgroundAttachment", "backgroundAttachment", "backgroundAttachment", "background-attachment" } },
+            {"ФоновоеИзображение", new object[4] { "BackgroundImage", "backgroundImage", "backgroundImage", "background-image" } },
+            {"ФункцияПерехода", new object[4] { "TransitionTimingFunction", "transitionTimingFunction", "transitionTimingFunction", "transition-timing-function" } },
+            {"ФункцияСинхронизации", new object[4] { "AnimationTimingFunction", "animationTimingFunction", "animationTimingFunction", "animation-timing-function" } },
+            {"ЦветВерхнейГраницы", new object[4] { "BorderTopColor", "borderTopColor", "borderTopColor", "border-top-color" } },
+            {"ЦветГраниц", new object[4] { "BordersColor", "borderColor", "bordersColor", "border-color" } },//////////////////////////////////////////////////////////////////////////
+            {"ЦветКонтура", new object[4] { "OutlineColor", "outlineColor", "outlineColor", "outline-color" } },
+            {"ЦветКурсора", new object[4] { "CaretColor", "caretColor", "caretColor", "caret-color" } },
+            {"ЦветЛевойГраницы", new object[4] { "BorderLeftColor", "borderLeftColor", "borderLeftColor", "border-left-color" } },
+            {"ЦветНижнейГраницы", new object[4] { "BorderBottomColor", "borderBottomColor", "borderBottomColor", "border-bottom-color" } },
+            {"ЦветПравойГраницы", new object[4] { "BorderRightColor", "borderRightColor", "borderRightColor", "border-right-color" } },
+            {"ЦветРазделителяКолонок", new object[4] { "ColumnRuleColor", "columnRuleColor", "columnRuleColor", "column-rule-color" } },
+            {"ЦветТекста", new object[4] { "TextColor", "color", "textColor", "color" } }, //////////////////////////////////////////////////////////////////////////////////////////
+            {"ЦветФона", new object[4] { "BackgroundColor", "backgroundColor", "backgroundColor", "background-color" } },
+            {"Ширина", new object[4] { "Width", "width", "width", "width" } },
+            {"ШиринаВерхнейГраницы", new object[4] { "BorderTopWidth", "borderTopWidth", "borderTopWidth", "border-top-width" } },
+            {"ШиринаГраниц", new object[4] { "BordersWidth", "borderWidth", "bordersWidth", "border-width" } }, ////////////////////////////////////////////////////////////////////////
+            {"ШиринаКартинкиГраницы", new object[4] { "BorderImageWidth", "borderImageWidth", "borderImageWidth", "border-image-width" } },
+            {"ШиринаКолонок", new object[4] { "ColumnWidth", "columnWidth", "columnWidth", "column-width" } },
+            {"ШиринаКонтура", new object[4] { "OutlineWidth", "outlineWidth", "outlineWidth", "outline-width" } },
+            {"ШиринаЛевойГраницы", new object[4] { "BorderLeftWidth", "borderLeftWidth", "borderLeftWidth", "border-left-width" } },
+            {"ШиринаНижнейГраницы", new object[4] { "BorderBottomWidth", "borderBottomWidth", "borderBottomWidth", "border-bottom-width" } },
+            {"ШиринаПравойГраницы", new object[4] { "BorderRightWidth", "borderRightWidth", "borderRightWidth", "border-right-width" } },
+            {"ШиринаРазделителяКолонок", new object[4] { "ColumnRuleWidth", "columnRuleWidth", "columnRuleWidth", "column-rule-width" } },
+            {"Шрифт", new object[4] { "Font", "font", "font", "font" } }
+        };		
+		
         // Для метода ПолучитьСвойство. Имена свойств.
         public static Dictionary<string, object[]> namesRusProps = new Dictionary<string, object[]>
             {
                 // methodRus tail isProperty jsMethodEn
                 // tail - хвостик к значению свойства.
                 // isProperty - это свойство объекта, иначе, - это свойство стиля.
-                // {"Ширина", new object[3] { "px", true, "offsetWidth" } },
-                // {"Высота", new object[3] { "px", true, "offsetHeight" } },
-                // {"ДвойноеНажатие", new object[3] { "", true, "dblclick" } },
-                // {"Нажатие", new object[3] { "", true, "click" } },
-                // {"ПриОтпусканииМыши", new object[3] { "", true, "mouseup" } },
-                {"ЦветФона", new object[3] { "", false, "background-color" } },
-                // {"Текст", new object[3] { "", true, "innerText" } },
-                // {"Родитель", new object[3] { "", true, "parent" } },
-                // {"Загружена", new object[3] { "", true, "loaded" } },
-                // {"КлавишаДоступа", new object[3] { "", true, "accessKey" } },
-                // {"Редактируемый", new object[3] { "", true, "contenteditable" } },
+                {"ЦветФона", new object[3] { "", false, "backgroundColor" } },
                 {"Направление", new object[3] { "", true, "dir" } },
-                // {"Лево", new object[3] { "", true, "offsetLeft" } },
                 {"ГоризонтальноеПрокручивание", new object[3] { "", true, "scrollLeft" } },
                 {"ВертикальноеПрокручивание", new object[3] { "", true, "scrollTop" } },
-
-
+                {"Длительность", new object[3] { "", true, "duration" } },
+                {"НаПаузе", new object[3] { "", true, "paused" } },
+                {"Завершено", new object[3] { "", true, "ended" } },
+                {"Скорость", new object[3] { "", true, "playbackRate" } },
+                {"ИндексЯчейки", new object[3] { "", true, "cellIndex" } },
+                {"Индекс", new object[3] { "", true, "index" } },
+                {"ДиапазонКолонок", new object[3] { "", true, "colSpan" } },
+                {"Заголовки", new object[3] { "", true, "headers" } },
+                {"ДиапазонСтрок", new object[3] { "", true, "rowSpan" } },
+                {"Класс", new object[3] { "", true, "class" } },
+                {"ЗначениеПоУмолчанию", new object[3] { "", true, "defaultValue" } },
+                {"СмещениеЛево", new object[3] { "", true, "offsetLeft" } },
+                {"СмещениеВерх", new object[3] { "", true, "offsetTop" } },
+                {"СмещениеШирина", new object[3] { "", true, "offsetWidth" } },
+                {"СмещениеВысота", new object[3] { "", true, "offsetHeight" } },
+                {"Имя", new object[3] { "", true, "name" } },
+                {"Загружено", new object[3] { "", true, "complete" } },
+                {"Карта", new object[3] { "", true, "isMap" } },
+                {"ИсходнаяШирина", new object[3] { "", true, "naturalWidth" } },
+                {"ИсходнаяВысота", new object[3] { "", true, "naturalHeight" } },
+                {"Области", new object[3] { "", true, "areas" } },
+                {"Изображения", new object[3] { "", true, "images" } },
+                {"Файлы", new object[3] { "", true, "files" } },
+                {"Files", new object[3] { "", true, "files" } },		
+                {"Позиция", new object[3] { "", true, "position" } },		
+                {"Количество", new object[3] { "", true, "length" } },
+                {"ЭлементыСписка", new object[3] { "", true, "options" } },
+                {"Помечен", new object[3] { "", true, "_checked" } },
+                {"Checked", new object[3] { "", true, "_checked" } },
             };
-
     }
 }

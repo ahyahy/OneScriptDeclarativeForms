@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>AnimationOptions Constructor</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>ПараметрыАнимации (AnimationOptions)&nbsp;Конструктор</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>ПараметрыАнимации(&lt;Длительность&gt;, &lt;ФункцияСинхронизации&gt;, &lt;Задержка&gt;, &lt;КоличествоПовторов&gt;, &lt;Направление&gt;, &lt;Заливка&gt;, &lt;ЗадержкаПосле&gt;)</P>
+<H4 class=dtH4>Параметры</H4>
+<DL>
+<DT><I>Длительность</I> (необязательный)</DT>
+<DD>Тип: Число.</DD>
+<DD>Количество миллисекунд длительности одного цикла анимации.</DD>
+<DT><I>ФункцияСинхронизации</I> (необязательный)</DT>
+<DD>Тип: <A href="OSDForms.AnimationTimingFunctionEnumeration.html">ФункцияСинхронизации&nbsp;(AnimationTimingFunction)</A>.</DD>
+<DD>Определяет кривую скорости анимации.</DD>
+<DT><I>Задержка</I> (необязательный)</DT>
+<DD>Тип: Число.</DD>
+<DD>Задержка перед началом анимации в миллисекундах.</DD>
+<DT><I>КоличествоПовторов</I> (необязательный)</DT>
+<DD>Тип: Число.</DD>
+<DD>Количество повторений анимации. Значение <B>-1</B> соответствует бесконечному воспроизведению анимации.</DD>
+<DT><I>Направление</I> (необязательный)</DT>
+<DD>Тип: <A href="OSDForms.AnimationDirectionEnumeration.html">НаправлениеАнимации&nbsp;(AnimationDirection)</A>.</DD>
+<DD>Определяет значение, должна ли анимация воспроизводиться в прямом или обратном порядке.</DD>
+<DT><I>Заливка</I> (необязательный)</DT>
+<DD>Тип: <A href="OSDForms.AnimationFillModeEnumeration.html">ЗаливкаАнимации&nbsp;(AnimationFillMode)</A>.</DD>
+<DD>Определяет значения стилей ключевых кадров которые применяются до или после анимации.</DD>
+<DT><I>ЗадержкаПосле</I> (необязательный)</DT>
+<DD>Тип: Число.</DD>
+<DD>Определяет задержку после завершения анимации в миллисекундах.</DD>
+</DL>
+<H4 class=dtH4>Описание</H4>
+<P>Создаёт новый экземпляр класса <B>ПараметрыАнимации&nbsp;(AnimationOptions)</B>.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>
