@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="ActionServer.cs" />
     <Compile Include="AdditionalDiv.cs" />
     <Compile Include="AlignContent.cs" />
     <Compile Include="AlignItems.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="BoxShadow.cs" />
     <Compile Include="BoxSizing.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="ByteMessage.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="Caption.cs" />
     <Compile Include="CaptionMedia.cs" />
@@ -93,6 +95,8 @@
     <Compile Include="CheckBox.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Clear.cs" />
+    <Compile Include="ClientMode.cs" />
+    <Compile Include="ClientServerDeclarForms.cs" />
     <Compile Include="Code.cs" />
     <Compile Include="Colgroup.cs" />
     <Compile Include="Color.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="ColumnRule.cs" />
     <Compile Include="ColumnRuleStyle.cs" />
     <Compile Include="Columns.cs" />
+    <Compile Include="CommunicationStates.cs" />
     <Compile Include="Context2d.cs" />
     <Compile Include="CssFloat.cs" />
     <Compile Include="CubicBezier.cs" />
@@ -120,6 +125,7 @@
     <Compile Include="Div.cs" />
     <Compile Include="EmptyCells.cs" />
     <Compile Include="EventArgs.cs" />
+    <Compile Include="EventArgsServer.cs" />
     <Compile Include="ExpandableDiv.cs" />
     <Compile Include="ExpandableDivHeader.cs" />
     <Compile Include="FileSelection.cs" />
@@ -175,6 +181,7 @@
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuItemType.cs" />
     <Compile Include="MenuType.cs" />
+    <Compile Include="MessageEventArgs.cs" />
     <Compile Include="Meter.cs" />
     <Compile Include="MonthSelection.cs" />
     <Compile Include="MouseButtons.cs" />
@@ -221,11 +228,14 @@
     <Compile Include="ScaleZ.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="ScrollBehavior.cs" />
+    <Compile Include="ScsSupport.cs" />
     <Compile Include="SearchField.cs" />
     <Compile Include="Select.cs" />
     <Compile Include="SelectedFileType.cs" />
     <Compile Include="SelectGroup.cs" />
     <Compile Include="SelectItem.cs" />
+    <Compile Include="ServerClient.cs" />
+    <Compile Include="ServerClientEventArgs.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="Skew.cs" />
     <Compile Include="SkewX.cs" />
@@ -240,6 +250,9 @@
     <Compile Include="TableLayout.cs" />
     <Compile Include="TableRow.cs" />
     <Compile Include="Target.cs" />
+    <Compile Include="TcpClient.cs" />
+    <Compile Include="TcpEndPoint.cs" />
+    <Compile Include="TcpServer.cs" />
     <Compile Include="Term.cs" />
     <Compile Include="TextAlign.cs" />
     <Compile Include="TextArea.cs" />
@@ -247,6 +260,7 @@
     <Compile Include="TextDecorationLine.cs" />
     <Compile Include="TextDecorationStyle.cs" />
     <Compile Include="TextField.cs" />
+    <Compile Include="TextMessage.cs" />
     <Compile Include="TextOverflow.cs" />
     <Compile Include="TextTransform.cs" />
     <Compile Include="TextWrap.cs" />
