@@ -46,7 +46,6 @@ namespace osdf
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(All));
             _list.Add(ValueFactory.Create(None));
-            _list.Add(ValueFactory.Create(Property));
         }
 
         [ContextProperty("Все", "All")]
@@ -59,12 +58,6 @@ namespace osdf
         public string None
         {
         	get { return "none"; }
-        }
-
-        [ContextProperty("Свойство", "Property")]
-        public string Property
-        {
-        	get { return "property"; }
         }
     }
 }

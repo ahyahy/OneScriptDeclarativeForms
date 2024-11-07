@@ -33,6 +33,22 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             offsetWidth = ValueFactory.Create(0);
         }
 
+        public DfTableRow(DfTable table, string method, int index)
+        {
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "mapKeyEl.set('" + ItemKey + "', mapKeyEl.get(\u0022" + table.ItemKey + "\u0022)." + method + "(" + index + "));" + @"
+mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.AddToHashtable(ItemKey, this);
+            style = new DfStyle();
+            style.Owner = this;
+
+            offsetTop = ValueFactory.Create(0);
+            offsetHeight = ValueFactory.Create(0);
+            offsetLeft = ValueFactory.Create(0);
+            offsetWidth = ValueFactory.Create(0);
+        }
+
         public PropertyInfo this[string p1]
         {
             get { return this.GetType().GetProperty(p1); }
@@ -90,6 +106,20 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
         }
 
+        public IValue rowIndex { get; set; }
+        [ContextProperty("ИндексСтроки", "RowIndex")]
+        public IValue RowIndex
+        {
+            get { return rowIndex; }
+        }
+        
+        public IValue sectionRowIndex { get; set; }
+        [ContextProperty("ИндексСтрокиВСекции", "SectionRowIndex")]
+        public IValue SectionRowIndex
+        {
+            get { return sectionRowIndex; }
+        }
+        
         private string accessKey;
         [ContextProperty("КлавишаДоступа", "AccessKey")]
         public string AccessKey
@@ -249,6 +279,13 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             get { return children; }
         }
 
+        public ArrayImpl cells { get; set; }
+        [ContextProperty("Ячейки", "Cells")]
+        public ArrayImpl Cells
+        {
+            get { return cells; }
+        }
+        
         public DfAction dblclick;
         [ContextProperty("ДвойноеНажатие", "DoubleClick")]
         public DfAction DoubleClick
@@ -258,6 +295,32 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 dblclick = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dblclick\u0022, doEvent);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+        
+        public DfAction mouseover;
+        [ContextProperty("МышьНадЭлементом", "MouseOver")]
+        public DfAction MouseOver
+        {
+            get { return mouseover; }
+            set
+            {
+                mouseover = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseover\u0022, doEvent);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+        
+        public DfAction mouseout;
+        [ContextProperty("МышьПокинулаЭлемент", "MouseOut")]
+        public DfAction MouseOut
+        {
+            get { return mouseout; }
+            set
+            {
+                mouseout = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseout\u0022, doEvent);";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }
@@ -286,6 +349,13 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseup\u0022, doEvent);";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
+        }
+        
+        [ContextMethod("ВставитьЯчейку", "InsertCell")]
+        public DfCell InsertCell(int p1)
+        {
+            DfCell DfCell1 = new DfCell(this, "insertCell", p1);
+            return DfCell1;
         }
         
         [ContextMethod("ДобавитьДочерний", "AppendChild")]
@@ -330,6 +400,13 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         public void RemoveChild(IValue p1)
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).removeChild(mapKeyEl.get(\u0022" + ((dynamic)p1.AsObject()).ItemKey + "\u0022));";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+        }
+        
+        [ContextMethod("УдалитьЯчейку", "DeleteCell")]
+        public void DeleteCell(int p1)
+        {
+            string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).deleteCell(" + p1 + ");";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
         

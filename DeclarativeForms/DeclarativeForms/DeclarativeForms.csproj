@@ -61,6 +61,7 @@
     <Compile Include="ArrayList.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="Audio.cs" />
+    <Compile Include="Background.cs" />
     <Compile Include="BackgroundAttachment.cs" />
     <Compile Include="BackgroundClip.cs" />
     <Compile Include="BackgroundOrigin.cs" />
@@ -196,9 +197,6 @@
     <Compile Include="Overflow.cs" />
     <Compile Include="Packagejson.cs" />
     <Compile Include="Padding.cs" />
-    <Compile Include="PageBreakAfter.cs" />
-    <Compile Include="PageBreakBefore.cs" />
-    <Compile Include="PageBreakInside.cs" />
     <Compile Include="Paragraph.cs" />
     <Compile Include="PasswordField.cs" />
     <Compile Include="PatternRepeat.cs" />
@@ -227,7 +225,6 @@
     <Compile Include="ScaleY.cs" />
     <Compile Include="ScaleZ.cs" />
     <Compile Include="Script.cs" />
-    <Compile Include="ScrollBehavior.cs" />
     <Compile Include="ScsSupport.cs" />
     <Compile Include="SearchField.cs" />
     <Compile Include="Select.cs" />

@@ -1,5 +1,6 @@
 ﻿using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
+using System.IO;
 
 namespace osdf
 {
@@ -11,10 +12,21 @@ namespace osdf
             Script = script;
             MethodName = methodName;
             Parameter = param;
+
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
         public DfAction()
         {
+        }
+
+        private string itemKey;
+        [ContextProperty("КлючЭлемента", "ItemKey")]
+        public string ItemKey
+        {
+            get { return itemKey; }
+            private set { itemKey = value; }
         }
 
         [ContextProperty("ИмяМетода", "MethodName")]

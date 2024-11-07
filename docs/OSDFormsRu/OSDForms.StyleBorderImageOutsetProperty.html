@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>ScrollBehavior Property</TITLE>
+<HTML><HEAD><TITLE>BorderImageOutset Property</TITLE>
 <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
 <LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
 <BODY id=bodyID class=dtBODY>
@@ -11,24 +11,40 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>Стиль.ПоведениеПрокрутки&nbsp;(Style.ScrollBehavior)&nbsp;Свойство</H1></DIV></DIV>
+<H1 class=dtH1>Стиль.СмещениеКартинкиГраницы&nbsp;(Style.BorderImageOutset)&nbsp;Свойство</H1></DIV></DIV>
 <DIV id=nstext>
 <H4 class=dtH4>Использование</H4>
 <P>Чтение и запись.</P>
 <H4 class=dtH4>Значение</H4>
-<P>Тип: <A href="OSDForms.ScrollBehaviorEnumeration.html">ПоведениеПрокрутки&nbsp;(ScrollBehavior)</A>.</P>
-<P>Возвращает или задает, следует ли плавно анимировать положение прокрутки вместо прямого перехода, когда пользователь нажимает ссылку в прокручиваемом поле.</P>
+<P>Тип: Число.</P>
+<P>Возвращает или задает величину, на которую область рисунка границы выходит за границы.</P>
 <H4 class=dtH4>Примечание</H4>
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Блок1.Стиль.СмещениеКартинкиГраницы = 0;
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.НачальнаяШирина = 400;
+Форма1.НачальнаяВысота = 400;
 
+Блок1 = Форма1.ДобавитьДочерний(ДФ.Блок());
+Блок1.Стиль.ЦветФона = ДФ.Цвет.СветлоСерый;
+Блок1.Стиль.Границы = ДФ.Границы(30, ДФ.СтильГраницы.Сплошная, ДФ.Цвет.Прозрачный);
+
+Блок1.Стиль.ИсточникКартинкиГраницы = "border.png";
+Блок1.Стиль.НарезкаКартинкиГраницы = 30;
+Блок1.Стиль.ШиринаКартинкиГраницы = ДФ.Размер(10, 20);
+Блок1.Стиль.СмещениеКартинкиГраницы = 0;
+Блок1.Стиль.МозаикаКартинкиГраницы = ДФ.МозаикаКартинкиГраницы.Закруглять;
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

@@ -17,6 +17,7 @@ namespace osdf
     public class DeclarativeForms : AutoContext<DeclarativeForms>
     {
         public static string funDelimiter = "d1ziwjr520tq";
+        public static string paramDelimiter = "|";
         private static string separator = Path.DirectorySeparatorChar.ToString();
         private static StructureImpl shareStructure = new StructureImpl();
         public DfEventArgs eventArgs;
@@ -94,6 +95,12 @@ namespace osdf
                 _cssPath = value;
                 CSSPath = _cssPath;
             }
+        }
+		
+        [ContextMethod("Фон", "Background")]
+        public DfBackground Background(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null, IValue p5 = null, IValue p6 = null, IValue p7 = null, IValue p8 = null)
+        {
+            return new DfBackground(p1, p2, p3, p4, p5, p6, p7, p8);
         }
 		
         [ContextMethod("Скрипт", "Script")]
@@ -381,13 +388,6 @@ namespace osdf
             get { return df_TextOverflow; }
         }
 
-        private static DfScrollBehavior df_ScrollBehavior = new DfScrollBehavior();
-        [ContextProperty("ПоведениеПрокрутки", "ScrollBehavior")]
-        public DfScrollBehavior ScrollBehavior
-        {
-            get { return df_ScrollBehavior; }
-        }
-
         private static DfPatternRepeat df_PatternRepeat = new DfPatternRepeat();
         [ContextProperty("ПовторШаблона", "PatternRepeat")]
         public DfPatternRepeat PatternRepeat
@@ -465,27 +465,6 @@ namespace osdf
             get { return df_TableLayout; }
         }
 
-        private static DfPageBreakInside df_PageBreakInside = new DfPageBreakInside();
-        [ContextProperty("РазрывСтраницыВнутри", "PageBreakInside")]
-        public DfPageBreakInside PageBreakInside
-        {
-            get { return df_PageBreakInside; }
-        }
-
-        private static DfPageBreakBefore df_PageBreakBefore = new DfPageBreakBefore();
-        [ContextProperty("РазрывСтраницыДо", "PageBreakBefore")]
-        public DfPageBreakBefore PageBreakBefore
-        {
-            get { return df_PageBreakBefore; }
-        }
-
-        private static DfPageBreakAfter df_PageBreakAfter = new DfPageBreakAfter();
-        [ContextProperty("РазрывСтраницыПосле", "PageBreakAfter")]
-        public DfPageBreakAfter PageBreakAfter
-        {
-            get { return df_PageBreakAfter; }
-        }
-
         private static DfJustifyContent df_JustifyContent = new DfJustifyContent();
         [ContextProperty("РасположениеСодержимого", "JustifyContent")]
         public DfJustifyContent JustifyContent
@@ -499,7 +478,7 @@ namespace osdf
         {
             get { return df_TransitionProperty; }
         }
-
+		
         private static DfBorderStyle df_BorderStyle = new DfBorderStyle();
         [ContextProperty("СтильГраницы", "BorderStyle")]
         public DfBorderStyle BorderStyle
@@ -1850,15 +1829,15 @@ namespace osdf
 
         public static void AddToHashtable(dynamic p1, dynamic p2)
         {
-            if (!DeclarativeForms.hashtable.ContainsKey(p1))
+            if (!hashtable.ContainsKey(p1))
             {
-                DeclarativeForms.hashtable.Add(p1, p2);
+                hashtable.Add(p1, p2);
             }
             else
             {
-                if (!((object)DeclarativeForms.hashtable[p1]).Equals(p2))
+                if (!((object)hashtable[p1]).Equals(p2))
                 {
-                    DeclarativeForms.hashtable[p1] = p2;
+                    hashtable[p1] = p2;
                 }
             }
         }
@@ -1868,7 +1847,7 @@ namespace osdf
         {
             try
             {
-                return (IValue)DeclarativeForms.hashtable[nameObject];
+                return (IValue)hashtable[nameObject];
             }
             catch
             {
@@ -1901,7 +1880,7 @@ namespace osdf
         {
             string[] zapros = p1.Split(new string[] { "\u000a", "\u000d" }, StringSplitOptions.RemoveEmptyEntries);
             string strZapros = zapros[zapros.Length - 1];
-            string[] massiv = strZapros.Split(new string[] { "|||" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] massiv = strZapros.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
             //GlobalContext().Echo("Сообщение.Текст = " + p1);
             //GlobalContext().Echo("СтрЗапроса = " + strZapros);
             if (!(massiv.Length < 2))
@@ -1934,8 +1913,9 @@ namespace osdf
                 {
                     try
                     {
-                        if (nameEvent =="dgj3rqq550w4")
+                        if (nameEvent.Contains("v5v5v"))
                         {
+                            string actionItemKey = nameEvent.Replace("v5v5v", "");
                             Sender = FindElement(nameElement);
                             string nameProperty = "";
                             System.Reflection.PropertyInfo[] myPropertyInfo = Sender.GetType().GetProperties();
@@ -1977,6 +1957,14 @@ namespace osdf
                                 }
                                 propValue = ArrayImpl1;
                             }		
+                            else if (propertyType == "osdf.DfOutcome")
+                            {
+                                propValue = (DfOutcome)FindElement(massiv[3]);
+                            }		
+                            else if (propertyType == "osdf.DfTableHeader")
+                            {
+                                propValue = (DfTableHeader)FindElement(massiv[3]);
+                            }		
                             else
                             {
                                 propValue = ValueFactory.Create(massiv[3]);
@@ -1993,7 +1981,14 @@ namespace osdf
                             {
                                 ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(nameProperty), propValue);
                             }
-                            Execute(GettingProperty);
+                            if (actionItemKey != "")
+                            {
+                                Execute((DfAction)FindElement(actionItemKey));
+                            }
+                            else
+                            {
+                                Execute(GettingProperty);
+                            }
                         }
                         else
                         {
@@ -2046,9 +2041,9 @@ namespace osdf
         public DfEventArgs CreateEventArgs(string p1)
         {
             DfEventArgs DfEventArgs1 = new DfEventArgs();
-            //СтрЗапроса = d3tfonn3esun|||mouseup|||Button=right|||X=40|||Y=54
+            //СтрЗапроса = d3tfonn3esun|mouseup|Button=right|X=40|Y=54
             //GlobalContext().Echo("p1 = " + p1);
-            string[] str1 = p1.Split(new string[] { "|||" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] str1 = p1.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 2; i < str1.Length; i++)
             {
                 try
@@ -2181,168 +2176,154 @@ namespace osdf
         {
             string func;
             EventQueue.TryDequeue(out func);
-            int num = DeclarativeForms.shareStructure.FindProperty("Клиент");
-            dynamic val1 = DeclarativeForms.shareStructure.GetPropValue(num);
-            int num2 = DeclarativeForms.shareStructure.FindProperty("КСДФ");
-            dynamic val2 = DeclarativeForms.shareStructure.GetPropValue(num2);
+            int num = shareStructure.FindProperty("Клиент");
+            dynamic val1 = shareStructure.GetPropValue(num);
+            int num2 = shareStructure.FindProperty("КСДФ");
+            dynamic val2 = shareStructure.GetPropValue(num2);
             val1.SendMessage(val2.TextMessage(func));
-            DeclarativeForms.strFunctions = "";
+            strFunctions = "";
         }
 
-        public static ConcurrentQueue<string> EventQueue = new ConcurrentQueue<string>();		
+        public static ConcurrentQueue<string> EventQueue = new ConcurrentQueue<string>();
         [ContextMethod("ПолучитьСвойство", "GetObjectProperty")]
-        public void GetObjectProperty(IValue p1, string p2)
+        public void GetObjectProperty(IValue p1, string p2, DfAction p3 = null)
         {
-            string function1;		
+            string p4 = "";
+            if (p3 != null)
+            {
+                p4 = p3.ItemKey;
+            }
+            string itemKeyObj;
+            string resObj;
             if ((bool)namesRusProps[p2][1])
             {
-                function1 = "" +
-                    "let res;" +
-                    "let el = mapKeyEl.get('" + ((dynamic)p1).ItemKey + "');" +
-                    "try" +
-                    "{" +
-                    "    if ('" + p2 + "' == 'parent')" +
-                    "    {" +
-                    "        if (el.parentElement == document.body)" +
-                    "        {" +
-                    "            res = 'mainForm';" +
-                    "        }" +
-                    "        else" +
-                    "        {" +
-                    "            res = el.parentElement.name;" +
-                    "        }" +
-                    "    }" +
-                    "    else" +
-                    "    {" +
-                    "        if ('" + namesRusProps[p2][1].ToString().ToLower() + "' == 'true')" +
-                    "        {" +
-                    "            if ('" + namesRusProps[p2][2] + "' == 'class')" +
-                    "            {" +
-                    "                res = el['className'];" +
-                    "            }" +
-                    "            else if ('" + namesRusProps[p2][2] + "' == 'areas')" +
-                    "            {" +
-                    "                res = '';" +
-                    "                if (el.areas.length > 0)" +
-                    "                {" +
-                    "                    for (var i = 0; i < el.areas.length; i++)" +
-                    "                    {" +
-                    "                        res = res + mapElKey.get(el.areas[i]) + ';';" +
-                    "                    }" +
-                    "                }" +
-                    "            }" +
-                    "            else if ('" + namesRusProps[p2][2] + "' == 'options')" +
-                    "            {" +
-                    "                res = '';" +
-                    "                if (el.options.length > 0)" +
-                    "                {" +
-                    "                    for (var i = 0; i < el.options.length; i++)" +
-                    "                    {" +
-                    "                        res = res + mapElKey.get(el.options[i]) + ';';" +
-                    "                    }" +
-                    "                }" +
-                    "            }" +
-                    "            else" +
-                    "            {" +
-                    "                res = el['" + namesRusProps[p2][2] + "'];" +
-                    "            }" +
-                    "        }" +
-                    "        else" +
-                    "        {" +
-                    "            res = el.style.getPropertyValue('" + namesRusProps[p2][2] + "');" +
-                    "        }" +
-                    "    }" +
-                    "    sendPost(" +
-                    "    '" + ((dynamic)p1).ItemKey + "' +" +
-                    "    '|||' + 'dgj3rqq550w4' +" +
-                    "    '|||' + '" + p2 + "' +" +
-                    "    '|||' + res +" +
-                    "    '|||' + '" + namesRusProps[p2][1].ToString().ToLower() + "');" +
-                    "}" +
-                    "catch (err)" +
-                    "{" +
-                    "    sendPost('!!! Ошибка:' + err.message);" +
-                    "}" +
-                    "";
+                itemKeyObj = ((dynamic)p1).ItemKey;
+                resObj = "el.style.getPropertyValue('" + namesRusProps[p2][2] + "');";
             }
             else
             {
-                    function1 = "" +
-                    "let res;" +
-                    "let el = mapKeyEl.get('" + ((dynamic)p1).Owner.ItemKey + "');" +
-                    "try" +
-                    "{" +
-                    "    if ('" + p2 + "' == 'parent')" +
-                    "    {" +
-                    "        if (el.parentElement == document.body)" +
-                    "        {" +
-                    "            res = 'mainForm';" +
-                    "        }" +
-                    "        else" +
-                    "        {" +
-                    "            res = el.parentElement.name;" +
-                    "        }" +
-                    "    }" +
-                    "    else" +
-                    "    {" +
-                    "        if ('" + namesRusProps[p2][1].ToString().ToLower() + "' == 'true')" +
-                    "        {" +
-                    "            if ('" + namesRusProps[p2][2] + "' == 'class')" +
-                    "            {" +
-                    "                res = el['className'];" +
-                    "            }" +
-                    "            else if ('" + namesRusProps[p2][2] + "' == 'areas')" +
-                    "            {" +
-                    "                res = '';" +
-                    "                if (el.areas.length > 0)" +
-                    "                {" +
-                    "                    for (var i = 0; i < el.areas.length; i++)" +
-                    "                    {" +
-                    "                        res = res + mapElKey.get(el.areas[i]) + ';';" +
-                    "                    }" +
-                    "                }" +
-                    "            }" +
-                    "            else if ('" + namesRusProps[p2][2] + "' == 'options')" +
-                    "            {" +
-                    "                res = '';" +
-                    "                if (el.options.length > 0)" +
-                    "                {" +
-                    "                    for (var i = 0; i < el.options.length; i++)" +
-                    "                    {" +
-                    "                        res = res + mapElKey.get(el.options[i]) + ';';" +
-                    "                    }" +
-                    "                }" +
-                    "            }" +
-                    "            else" +
-                    "            {" +
-                    "                res = el['" + namesRusProps[p2][2] + "'];" +
-                    "            }" +
-                    "        }" +
-                    "        else" +
-                    "        {" +
-                    "            res = el.style['" + namesRusProps[p2][2] + "'];" +
-                    "        }" +
-                    "    }" +
-                    "    sendPost(" +
-                    "    '" + ((dynamic)p1).ItemKey + "' +" +
-                    "    '|||' + 'dgj3rqq550w4' +" +
-                    "    '|||' + '" + p2 + "' +" +
-                    "    '|||' + res +" +
-                    "    '|||' + '" + namesRusProps[p2][1].ToString().ToLower() + "');" +
-                    "}" +
-                    "catch (err)" +
-                    "{" +
-                    "    sendPost('!!! Ошибка:' + err.message);" +
-                    "}" +
-                    "";
+                itemKeyObj = ((dynamic)p1).Owner.ItemKey;
+                resObj = "el.style['" + namesRusProps[p2][2] + "'];";
             }
+            string function1 = "" +
+                "let res;" +
+                "let el = mapKeyEl.get('" + itemKeyObj + "');" +
+                "try" +
+                "{" +
+                "    if ('" + p2 + "' == 'parent')" +
+                "    {" +
+                "        if (el.parentElement == document.body)" +
+                "        {" +
+                "            res = 'mainForm';" +
+                "        }" +
+                "        else" +
+                "        {" +
+                "            res = el.parentElement.name;" +
+                "        }" +
+                "    }" +
+                "    else" +
+                "    {" +
+                "        if ('" + namesRusProps[p2][1].ToString().ToLower() + "' == 'true')" +
+                "        {" +
+                "            if ('" + namesRusProps[p2][2] + "' == 'class')" +
+                "            {" +
+                "                res = el['className'];" +
+                "            }" +
+                "            else if ('" + namesRusProps[p2][2] + "' == 'tFoot')" +
+                "            {" +
+                "                let tFoot = el['tFoot'];" +
+                "                res = mapElKey.get(tFoot);" +
+                "            }" +
+                "            else if ('" + namesRusProps[p2][2] + "' == 'tHead')" +
+                "            {" +
+                "                let tHead = el['tHead'];" +
+                "                res = mapElKey.get(tHead);" +
+                "            }" +		
+                "            else if ('" + namesRusProps[p2][2] + "' == 'areas')" +
+                "            {" +
+                "                res = '';" +
+                "                if (el.areas.length > 0)" +
+                "                {" +
+                "                    for (var i = 0; i < el.areas.length; i++)" +
+                "                    {" +
+                "                        res = res + mapElKey.get(el.areas[i]) + ';';" +
+                "                    }" +
+                "                }" +
+                "            }" +
+                "            else if ('" + namesRusProps[p2][2] + "' == 'cells')" +
+                "            {" +
+                "                res = '';" +
+                "                if (el.cells.length > 0)" +
+                "                {" +
+                "                    for (var i = 0; i < el.cells.length; i++)" +
+                "                    {" +
+                "                        res = res + mapElKey.get(el.cells[i]) + ';';" +
+                "                    }" +
+                "                }" +
+                "            }" +
+                "            else if ('" + namesRusProps[p2][2] + "' == 'rows')" +
+                "            {" +
+                "                res = '';" +
+                "                if (el.rows.length > 0)" +
+                "                {" +
+                "                    for (var i = 0; i < el.rows.length; i++)" +
+                "                    {" +
+                "                        res = res + mapElKey.get(el.rows[i]) + ';';" +
+                "                    }" +
+                "                }" +
+                "            }" +
+                "            else if ('" + namesRusProps[p2][2] + "' == 'tBodies')" +
+                "            {" +
+                "                res = '';" +
+                "                if (el.tBodies.length > 0)" +
+                "                {" +
+                "                    for (var i = 0; i < el.tBodies.length; i++)" +
+                "                    {" +
+                "                        res = res + mapElKey.get(el.tBodies[i]) + ';';" +
+                "                    }" +
+                "                }" +
+                "            }" +
+                "            else if ('" + namesRusProps[p2][2] + "' == 'options')" +
+                "            {" +
+                "                res = '';" +
+                "                if (el.options.length > 0)" +
+                "                {" +
+                "                    for (var i = 0; i < el.options.length; i++)" +
+                "                    {" +
+                "                        res = res + mapElKey.get(el.options[i]) + ';';" +
+                "                    }" +
+                "                }" +
+                "            }" +
+                "            else" +
+                "            {" +
+                "                res = el['" + namesRusProps[p2][2] + "'];" +
+                "            }" +
+                "        }" +
+                "        else" +
+                "        {" +
+                "            res = " + resObj +
+                "        }" +
+                "    }" +
+                "    sendPost(" +
+                "    '" + ((dynamic)p1).ItemKey + "' +" +
+                "    '" + paramDelimiter + "' + 'v5v5v" + p4 + "' +" +
+                "    '" + paramDelimiter + "' + '" + p2 + "' +" +
+                "    '" + paramDelimiter + "' + res +" +
+                "    '" + paramDelimiter + "' + '" + namesRusProps[p2][1].ToString().ToLower() + "');" +
+                "}" +
+                "catch (err)" +
+                "{" +
+                "    sendPost('!!! Ошибка:' + err.message);" +
+                "}" +
+                "";
+            function1 = function1.Replace("    ", " ").Replace("  ", " ");
             EventQueue.Enqueue(function1);
             // Здесь нужно задержаться до тех пор пока фоновое задание не обработает очередь сообщений
             while (EventQueue.Count > 0)
             {
                 System.Threading.Thread.Sleep(7);
             }
-        }		
+        }
 
         public static dynamic DefineTypeIValue(dynamic p1)
         {
@@ -2593,7 +2574,6 @@ namespace osdf
             {"МозаикаКартинки", new object[4] { "BackgroundRepeat", "backgroundRepeat", "backgroundRepeat", "background-repeat" } },
             {"НаправлениеАнимации", new object[4] { "AnimationDirection", "animationDirection", "animationDirection", "animation-direction" } },
             {"НаправлениеЭлементов", new object[4] { "FlexDirection", "flexDirection", "flexDirection", "flex-direction" } },
-            {"Начертание", new object[4] { "FontStretch", "fontStretch", "fontStretch", "font-stretch" } },
             {"Непрозрачность", new object[4] { "Opacity", "opacity", "opacity", "opacity" } },
             {"Несвободно", new object[4] { "Clear", "clear", "clear", "clear" } },
             {"НижняяГраница", new object[4] { "BorderBottom", "borderBottom", "borderBottom", "border-bottom" } },
@@ -2619,7 +2599,6 @@ namespace osdf
             {"ПереполнениеТекста", new object[4] { "TextOverflow", "textOverflow", "textOverflow", "text-overflow" } },
             {"Переход", new object[4] { "Transition", "transition", "transition", "transition" } },
             {"Перспектива", new object[4] { "Perspective", "perspective", "perspective", "perspective" } },
-            {"ПоведениеПрокрутки", new object[4] { "ScrollBehavior", "scrollBehavior", "scrollBehavior", "scroll-behavior" } },
             {"Позиция", new object[4] { "Position", "position", "position", "position" } },
             {"ПозицияОбъекта", new object[4] { "ObjectPosition", "objectPosition", "objectPosition", "object-position" } },
             {"ПозицияСтиляСписка", new object[4] { "ListStylePosition", "listStylePosition", "listStylePosition", "list-style-position" } },
@@ -2638,9 +2617,6 @@ namespace osdf
             {"РазмерКартинки", new object[4] { "BackgroundSize", "backgroundSize", "backgroundSize", "background-size" } },
             {"РазмерШрифта", new object[4] { "FontSize", "fontSize", "fontSize", "font-size" } },
             {"РазмещениеВТаблице", new object[4] { "TableLayout", "tableLayout", "tableLayout", "table-layout" } },
-            {"РазрывСтраницыВнутри", new object[4] { "PageBreakInside", "pageBreakInside", "pageBreakInside", "page-break-inside" } },
-            {"РазрывСтраницыДо", new object[4] { "PageBreakBefore", "pageBreakBefore", "pageBreakBefore", "page-break-before" } },
-            {"РазрывСтраницыПосле", new object[4] { "PageBreakAfter", "pageBreakAfter", "pageBreakAfter", "page-break-after" } },
             {"РасположениеСодержимого", new object[4] { "JustifyContent", "justifyContent", "justifyContent", "justify-content" } },
             {"СвойствоПерехода", new object[4] { "TransitionProperty", "transitionProperty", "transitionProperty", "transition-property" } },
             {"Сдвиг", new object[4] { "Transform", "transform", "transform", "transform" } },
@@ -2658,7 +2634,6 @@ namespace osdf
             {"СтильСдвига", new object[4] { "TransformStyle", "transformStyle", "transformStyle", "transform-style" } },
             {"СтильСписка", new object[4] { "ListStyle", "listStyle", "listStyle", "list-style" } },
             {"СтильШрифта", new object[4] { "FontStyle", "fontStyle", "fontStyle", "font-style" } },
-            {"СтрокПриРазрыве", new object[4] { "Orphans", "orphans", "orphans", "orphans" } },
             {"Тень", new object[4] { "BoxShadow", "boxShadow", "boxShadow", "box-shadow" } },
             {"ТеньТекста", new object[4] { "TextShadow", "textShadow", "textShadow", "text-shadow" } },
             {"ТипСтиляСписка", new object[4] { "ListStyleType", "listStyleType", "listStyleType", "list-style-type" } },
@@ -2732,6 +2707,13 @@ namespace osdf
                 {"ЭлементыСписка", new object[3] { "", true, "options" } },
                 {"Помечен", new object[3] { "", true, "_checked" } },
                 {"Checked", new object[3] { "", true, "_checked" } },
+                {"Ячейки", new object[3] { "", true, "cells" } },
+                {"ИндексСтроки", new object[3] { "", true, "rowIndex" } },
+                {"ИндексСтрокиВСекции", new object[3] { "", true, "sectionRowIndex" } },
+                {"Строки", new object[3] { "", true, "rows" } },
+                {"ОбластиТаблицы", new object[3] { "", true, "tBodies" } },
+                {"Итоги", new object[3] { "", true, "tFoot" } },
+                {"ШапкаТаблицы", new object[3] { "", true, "tHead" } },
             };
     }
 }

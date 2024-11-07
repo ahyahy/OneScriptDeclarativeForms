@@ -179,6 +179,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             private set { itemKey = value; }
         }
 
+        private int cols;
+        [ContextProperty("Колонки", "Cols")]
+        public int Cols
+        {
+            get { return cols; }
+            set
+            {
+                cols = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['cols'] = '" + cols + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+
         private int maxLength;
         [ContextProperty("МаксимальнаяДлина", "MaxLength")]
         public int MaxLength
@@ -317,6 +330,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             set { style.Copy(value); }
         }
         
+        private int rows;
+        [ContextProperty("Строки", "Rows")]
+        public int Rows
+        {
+            get { return rows; }
+            set
+            {
+                rows = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['rows'] = '" + rows + "';";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+
         private IValue innerText;
         [ContextProperty("Текст", "Text")]
         public IValue Text
@@ -382,6 +408,32 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
         }
         
+        public DfAction mouseover;
+        [ContextProperty("МышьНадЭлементом", "MouseOver")]
+        public DfAction MouseOver
+        {
+            get { return mouseover; }
+            set
+            {
+                mouseover = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseover\u0022, doEvent);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+        
+        public DfAction mouseout;
+        [ContextProperty("МышьПокинулаЭлемент", "MouseOut")]
+        public DfAction MouseOut
+        {
+            get { return mouseout; }
+            set
+            {
+                mouseout = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseout\u0022, doEvent);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+        
         public DfAction click;
         [ContextProperty("Нажатие", "Click")]
         public DfAction Click
@@ -419,6 +471,13 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseup\u0022, doEvent);";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
+        }
+        
+        [ContextMethod("Выбрать", "Select")]
+        public void Select()
+        {
+            string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).select();";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
         }
         
         [ContextMethod("ДобавитьДочерний", "AppendChild")]

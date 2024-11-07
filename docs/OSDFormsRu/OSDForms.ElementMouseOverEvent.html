@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FontStretch Property</TITLE>
+<HTML><HEAD><TITLE>MouseOver Event</TITLE>
 <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
 <LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
 <BODY id=bodyID class=dtBODY>
@@ -11,24 +11,49 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>Стиль.Начертание&nbsp;(Style.FontStretch)&nbsp;Свойство</H1></DIV></DIV>
+<H1 class=dtH1>Элемент.МышьНадЭлементом&nbsp;(Element.MouseOver)&nbsp;Событие</H1></DIV></DIV>
 <DIV id=nstext>
 <H4 class=dtH4>Использование</H4>
 <P>Чтение и запись.</P>
 <H4 class=dtH4>Значение</H4>
-<P>Тип: Число.</P>
-<P>Выбирает обычное, сжатое или расширенное начертание из семейства шрифтов.</P>
+<P>Тип: <A href="OSDForms.ActionConstructor.html">Действие&nbsp;(Action)</A>.</P>
+<P>Возвращает или задает код для выполнения когда указатель мыши наведен на элемент.</P>
 <H4 class=dtH4>Примечание</H4>
 <P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-
+Блок1.МышьНадЭлементом = ДФ.Действие(ЭтотОбъект, "МышьНадЭлементом");
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
+Перем ДФ, Блок1;
 
+Процедура МышьНадЭлементом() Экспорт
+	Блок1.Стиль.ЦветФона = ДФ.Цвет.Синий;
+КонецПроцедуры
+
+Процедура МышьПокинулаЭлемент() Экспорт
+	Блок1.Стиль.ЦветФона = ДФ.Цвет.БелаяДымка;
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.НачальнаяШирина = 400;
+Форма1.НачальнаяВысота = 300;
+
+Блок1 = Форма1.ДобавитьДочерний(ДФ.Блок());
+Блок1.Стиль.Ширина = 250;
+Блок1.Текст = "Наведите мышь";
+Блок1.Стиль.Границы = ДФ.Границы(2, ДФ.СтильГраницы.Сплошная, ДФ.Цвет.Красный);
+Блок1.Стиль.Заполнение = ДФ.Заполнение(10, 20, 20, 10);
+Блок1.МышьНадЭлементом = ДФ.Действие(ЭтотОбъект, "МышьНадЭлементом");
+Блок1.МышьПокинулаЭлемент = ДФ.Действие(ЭтотОбъект, "МышьПокинулаЭлемент");
+Блок1.Стиль.ЦветФона = ДФ.Цвет.БелаяДымка;
+
+Форма1.Открыть();
 </DIV>
 </PRE>
 </details>

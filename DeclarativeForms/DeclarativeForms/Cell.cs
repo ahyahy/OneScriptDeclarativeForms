@@ -33,6 +33,22 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             offsetWidth = ValueFactory.Create(0);
         }
 
+        public DfCell(DfTableRow tableRow, string method, int index)
+        {
+            ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
+            string strFunc = "mapKeyEl.set('" + ItemKey + "', mapKeyEl.get(\u0022" + tableRow.ItemKey + "\u0022)." + method + "(" + index + "));" + @"
+mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
+            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.AddToHashtable(ItemKey, this);
+            style = new DfStyle();
+            style.Owner = this;
+
+            offsetTop = ValueFactory.Create(0);
+            offsetHeight = ValueFactory.Create(0);
+            offsetLeft = ValueFactory.Create(0);
+            offsetWidth = ValueFactory.Create(0);
+        }
+
         public PropertyInfo this[string p1]
         {
             get { return this.GetType().GetProperty(p1); }
@@ -310,6 +326,32 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 dblclick = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dblclick\u0022, doEvent);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+        
+        public DfAction mouseover;
+        [ContextProperty("МышьНадЭлементом", "MouseOver")]
+        public DfAction MouseOver
+        {
+            get { return mouseover; }
+            set
+            {
+                mouseover = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseover\u0022, doEvent);";
+                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            }
+        }
+        
+        public DfAction mouseout;
+        [ContextProperty("МышьПокинулаЭлемент", "MouseOut")]
+        public DfAction MouseOut
+        {
+            get { return mouseout; }
+            set
+            {
+                mouseout = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseout\u0022, doEvent);";
                 DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
             }
         }

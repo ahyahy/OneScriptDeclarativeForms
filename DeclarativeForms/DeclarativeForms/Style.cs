@@ -30,8 +30,1716 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         {
             get { return this.GetType().GetProperty(p1); }
         }
+		
+        public string restransition { get; set; }
+        private IValue transition;
+        [ContextProperty("Переход", "Transition")]
+        public IValue Transition
+        {
+            get { return transition; }
+            set
+            {
+                transition = value;
 
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restransition = value.AsString();
+                    if (Owner != null)
+                    {
+                        string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transition'] = '" + restransition + "';";
+                        DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                    }
+                }
+                else
+                {
+                    DfTransition val = (DfTransition)value;
+                    if (val.TransitionProperty != null)
+                    {
+                        TransitionProperty = val.TransitionProperty.AsString();
+                    }
+                    if (val.TransitionDuration != null)
+                    {
+                        TransitionDuration = val.TransitionDuration;
+                    }
+                    if (val.TransitionTimingFunction != null)
+                    {
+                        TransitionTimingFunction = val.TransitionTimingFunction.AsString();
+                    }
+                    if (val.TransitionDelay != null)
+                    {
+                        TransitionDelay = val.TransitionDelay;
+                    }
+                }
+            }
+        }
 
+        public string resobjectPosition { get; set; }
+        private IValue objectPosition;
+        [ContextProperty("ПозицияОбъекта", "ObjectPosition")]
+        public IValue ObjectPosition
+        {
+            get { return objectPosition; }
+            set
+            {
+                objectPosition = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resobjectPosition = value.AsString();
+                }
+                else
+                {
+                    DfPoint val = (DfPoint)value;
+                    if (val.X != 0 && val.Y != 0)
+                    {
+                        resobjectPosition = val.X.ToString() + "px " + val.Y.ToString() + "px";
+                    }
+                    else
+                    {
+                        resobjectPosition = "0px 0px";
+                    }
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['objectPosition'] = '" + resobjectPosition + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resclip { get; set; }
+        private IValue clip;
+        [ContextProperty("Обрезка", "Clip")]
+        public IValue Clip
+        {
+            get { return clip; }
+            set
+            {
+                clip = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resclip = value.AsString();
+                }
+                else
+                {
+                    DfRectangle val = (DfRectangle)value;
+                    if (val.X != null && val.Y != null && val.Width != null && val.Height != null)
+                    {
+                        decimal x1 = val.X.AsNumber() + val.Width.AsNumber();
+                        decimal y1 = val.Y.AsNumber();
+                        decimal y2 = val.Y.AsNumber() + val.Height.AsNumber();
+                        decimal x2 = val.X.AsNumber();
+                        resclip = "rect(" + Convert.ToInt32(y1).ToString() + "px, " +
+                            Convert.ToInt32(x1).ToString() + "px, " +
+                            Convert.ToInt32(y2).ToString() + "px, " +
+                            Convert.ToInt32(x2).ToString() + "px)";
+                    }
+                    else
+                    {
+                        resclip = "auto";
+                    }
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['clip'] = '" + resclip + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string reswordSpacing { get; set; }
+        private IValue wordSpacing;
+        [ContextProperty("ИнтервалСлов", "WordSpacing")]
+        public IValue WordSpacing
+        {
+            get { return wordSpacing; }
+            set
+            {
+                wordSpacing = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    reswordSpacing = value.AsString();
+                }
+                else
+                {
+                    reswordSpacing = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['wordSpacing'] = '" + reswordSpacing + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restransitionDuration { get; set; }
+        private IValue transitionDuration;
+        [ContextProperty("ВремяПерехода", "TransitionDuration")]
+        public IValue TransitionDuration
+        {
+            get { return transitionDuration; }
+            set
+            {
+                transitionDuration = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restransitionDuration = value.AsString();
+                }
+                else
+                {
+                    restransitionDuration = value.AsNumber().ToString() + "ms";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transitionDuration'] = '" + restransitionDuration + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restransitionDelay { get; set; }
+        private IValue transitionDelay;
+        [ContextProperty("ЗадержкаПерехода", "TransitionDelay")]
+        public IValue TransitionDelay
+        {
+            get { return transitionDelay; }
+            set
+            {
+                transitionDelay = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restransitionDelay = value.AsString();
+                }
+                else
+                {
+                    restransitionDelay = value.AsNumber().ToString() + "ms";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transitionDelay'] = '" + restransitionDelay + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextIndent { get; set; }
+        private IValue textIndent;
+        [ContextProperty("ОтступТекста", "TextIndent")]
+        public IValue TextIndent
+        {
+            get { return textIndent; }
+            set
+            {
+                textIndent = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restextIndent = value.AsString();
+                }
+                else
+                {
+                    restextIndent = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textIndent'] = '" + restextIndent + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
+        public string resorder { get; set; }
+        private IValue order;
+        [ContextProperty("Порядок", "Order")]
+        public IValue Order
+        {
+            get { return order; }
+            set
+            {
+                order = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resorder = value.AsString();
+                }
+                else
+                {
+                    resorder = value.AsNumber().ToString();
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['order'] = '" + resorder + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restabSize { get; set; }
+        private IValue tabSize;
+        [ContextProperty("ДлинаТабуляции", "TabSize")]
+        public IValue TabSize
+        {
+            get { return tabSize; }
+            set
+            {
+                tabSize = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    restabSize = value.AsString();
+                }
+                else
+                {
+                    restabSize = value.AsNumber().ToString();
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['tabSize'] = '" + restabSize + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resoutlineOffset { get; set; }
+        private IValue outlineOffset;
+        [ContextProperty("СмещениеКонтура", "OutlineOffset")]
+        public IValue OutlineOffset
+        {
+            get { return outlineOffset; }
+            set
+            {
+                outlineOffset = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resoutlineOffset = value.AsString();
+                }
+                else
+                {
+                    resoutlineOffset = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['outlineOffset'] = '" + resoutlineOffset + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resminWidth { get; set; }
+        private IValue minWidth;
+        [ContextProperty("МинимальнаяШирина", "MinWidth")]
+        public IValue MinWidth
+        {
+            get { return minWidth; }
+            set
+            {
+                minWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resminWidth = value.AsString();
+                }
+                else
+                {
+                    resminWidth = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['minWidth'] = '" + resminWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resmaxWidth { get; set; }
+        private IValue maxWidth;
+        [ContextProperty("МаксимальнаяШирина", "MaxWidth")]
+        public IValue MaxWidth
+        {
+            get { return maxWidth; }
+            set
+            {
+                maxWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resmaxWidth = value.AsString();
+                }
+                else
+                {
+                    resmaxWidth = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['maxWidth'] = '" + resmaxWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resmaxHeight { get; set; }
+        private IValue maxHeight;
+        [ContextProperty("МаксимальнаяВысота", "MaxHeight")]
+        public IValue MaxHeight
+        {
+            get { return maxHeight; }
+            set
+            {
+                maxHeight = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resmaxHeight = value.AsString();
+                }
+                else
+                {
+                    resmaxHeight = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['maxHeight'] = '" + resmaxHeight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string reslineHeight { get; set; }
+        private IValue lineHeight;
+        [ContextProperty("ВысотаСтроки", "LineHeight")]
+        public IValue LineHeight
+        {
+            get { return lineHeight; }
+            set
+            {
+                lineHeight = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    reslineHeight = value.AsString();
+                }
+                else
+                {
+                    reslineHeight = value.AsNumber().ToString();
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['lineHeight'] = '" + reslineHeight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resletterSpacing { get; set; }
+        private IValue letterSpacing;
+        [ContextProperty("ИнтервалСимволов", "LetterSpacing")]
+        public IValue LetterSpacing
+        {
+            get { return letterSpacing; }
+            set
+            {
+                letterSpacing = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resletterSpacing = value.AsString();
+                }
+                else
+                {
+                    resletterSpacing = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['letterSpacing'] = '" + resletterSpacing + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resflexShrink { get; set; }
+        private IValue flexShrink;
+        [ContextProperty("Уменьшение", "FlexShrink")]
+        public IValue FlexShrink
+        {
+            get { return flexShrink; }
+            set
+            {
+                flexShrink = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resflexShrink = value.AsString();
+                }
+                else
+                {
+                    resflexShrink = value.AsNumber().ToString();
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['flexShrink'] = '" + resflexShrink + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resflexGrow { get; set; }
+        private IValue flexGrow;
+        [ContextProperty("Увеличение", "FlexGrow")]
+        public IValue FlexGrow
+        {
+            get { return flexGrow; }
+            set
+            {
+                flexGrow = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resflexGrow = value.AsString();
+                }
+                else
+                {
+                    resflexGrow = value.AsNumber().ToString();
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['flexGrow'] = '" + resflexGrow + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resflexBasis { get; set; }
+        private IValue flexBasis;
+        [ContextProperty("БазоваяДлина", "FlexBasis")]
+        public IValue FlexBasis
+        {
+            get { return flexBasis; }
+            set
+            {
+                flexBasis = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resflexBasis = value.AsString();
+                }
+                else
+                {
+                    resflexBasis = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['flexBasis'] = '" + resflexBasis + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescolumnSpan { get; set; }
+        private IValue columnSpan;
+        [ContextProperty("ДиапазонКолонокЭлемента", "ColumnSpan")]
+        public IValue ColumnSpan
+        {
+            get { return columnSpan; }
+            set
+            {
+                columnSpan = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    rescolumnSpan = value.AsString();
+                }
+                else
+                {
+                    if (value.AsNumber() == -1)
+                    {
+                        rescolumnSpan = "all";
+                    }
+                    else
+                    {
+                        rescolumnSpan = value.AsNumber().ToString();
+                    }
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnSpan'] = '" + rescolumnSpan + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescolumnRuleWidth { get; set; }
+        private IValue columnRuleWidth;
+        [ContextProperty("ШиринаРазделителяКолонок", "ColumnRuleWidth")]
+        public IValue ColumnRuleWidth
+        {
+            get { return columnRuleWidth; }
+            set
+            {
+                columnRuleWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    rescolumnRuleWidth = value.AsString();
+                }
+                else
+                {
+                    rescolumnRuleWidth = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnRuleWidth'] = '" + rescolumnRuleWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescolumnGap { get; set; }
+        private IValue columnGap;
+        [ContextProperty("ИнтервалКолонок", "ColumnGap")]
+        public IValue ColumnGap
+        {
+            get { return columnGap; }
+            set
+            {
+                columnGap = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    rescolumnGap = value.AsString();
+                }
+                else
+                {
+                    rescolumnGap = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnGap'] = '" + rescolumnGap + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resvisibility { get; set; }
+        private string visibility;
+        [ContextProperty("Видимость", "Visibility")]
+        public string Visibility
+        {
+            get { return visibility; }
+            set
+            {
+                visibility = value;
+                resvisibility = visibility;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['visibility'] = '" + resvisibility + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resuserSelect { get; set; }
+        private string userSelect;
+        [ContextProperty("ВыделениеПользователем", "UserSelect")]
+        public string UserSelect
+        {
+            get { return userSelect; }
+            set
+            {
+                userSelect = value;
+                resuserSelect = userSelect;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['userSelect'] = '" + resuserSelect + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restransitionTimingFunction { get; set; }
+        private string transitionTimingFunction;
+        [ContextProperty("ФункцияПерехода", "TransitionTimingFunction")]
+        public string TransitionTimingFunction
+        {
+            get { return transitionTimingFunction; }
+            set
+            {
+                transitionTimingFunction = value;
+                restransitionTimingFunction = transitionTimingFunction;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transitionTimingFunction'] = '" + restransitionTimingFunction + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restransitionProperty { get; set; }
+        private string transitionProperty;
+        [ContextProperty("СвойствоПерехода", "TransitionProperty")]
+        public string TransitionProperty
+        {
+            get { return transitionProperty; }
+            set
+            {
+                transitionProperty = value;
+                restransitionProperty = transitionProperty;
+                if (transitionProperty != "all")
+                {
+                    string[] result = transitionProperty.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    string prop = "";
+                    if (result.Length > 0)
+                    {
+                        prop += (string)DeclarativeForms.namesStyleProps[result[0].Trim()][1];
+                        for (int i = 1; i < result.Length; i++)
+                        {
+                            prop += ", " + (string)DeclarativeForms.namesStyleProps[result[i].Trim()][1];
+                        }
+                    }
+                    restransitionProperty = prop;
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transitionProperty'] = '" + restransitionProperty + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextTransform { get; set; }
+        private string textTransform;
+        [ContextProperty("ПрописныеТекста", "TextTransform")]
+        public string TextTransform
+        {
+            get { return textTransform; }
+            set
+            {
+                textTransform = value;
+                restextTransform = textTransform;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textTransform'] = '" + restextTransform + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextOverflow { get; set; }
+        private string textOverflow;
+        [ContextProperty("ПереполнениеТекста", "TextOverflow")]
+        public string TextOverflow
+        {
+            get { return textOverflow; }
+            set
+            {
+                textOverflow = value;
+                restextOverflow = textOverflow;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textOverflow'] = '" + restextOverflow + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextDecorationStyle { get; set; }
+        private string textDecorationStyle;
+        [ContextProperty("ОформлениеТекстаСтиль", "TextDecorationStyle")]
+        public string TextDecorationStyle
+        {
+            get { return textDecorationStyle; }
+            set
+            {
+                textDecorationStyle = value;
+                restextDecorationStyle = textDecorationStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textDecorationStyle'] = '" + restextDecorationStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextDecorationLine { get; set; }
+        private string textDecorationLine;
+        [ContextProperty("ОформлениеТекстаЛиния", "TextDecorationLine")]
+        public string TextDecorationLine
+        {
+            get { return textDecorationLine; }
+            set
+            {
+                textDecorationLine = value;
+                restextDecorationLine = textDecorationLine;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textDecorationLine'] = '" + restextDecorationLine + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string restextDecorationColor { get; set; }
+        private string textDecorationColor;
+        [ContextProperty("ОформлениеТекстаЦвет", "TextDecorationColor")]
+        public string TextDecorationColor
+        {
+            get { return textDecorationColor; }
+            set
+            {
+                textDecorationColor = value;
+                restextDecorationColor = textDecorationColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['textDecorationColor'] = '" + restextDecorationColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resresize { get; set; }
+        private string resize;
+        [ContextProperty("ИзменяемыйРазмер", "Resize")]
+        public string Resize
+        {
+            get { return resize; }
+            set
+            {
+                resize = value;
+                resresize = resize;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['resize'] = '" + resresize + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resobjectFit { get; set; }
+        private string objectFit;
+        [ContextProperty("ВписываниеОбъекта", "ObjectFit")]
+        public string ObjectFit
+        {
+            get { return objectFit; }
+            set
+            {
+                objectFit = value;
+                resobjectFit = objectFit;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['objectFit'] = '" + resobjectFit + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string reslistStyleType { get; set; }
+        private string listStyleType;
+        [ContextProperty("ТипСтиляСписка", "ListStyleType")]
+        public string ListStyleType
+        {
+            get { return listStyleType; }
+            set
+            {
+                listStyleType = value;
+                reslistStyleType = listStyleType;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['listStyleType'] = '" + reslistStyleType + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string reslistStylePosition { get; set; }
+        private string listStylePosition;
+        [ContextProperty("ПозицияСтиляСписка", "ListStylePosition")]
+        public string ListStylePosition
+        {
+            get { return listStylePosition; }
+            set
+            {
+                listStylePosition = value;
+                reslistStylePosition = listStylePosition;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['listStylePosition'] = '" + reslistStylePosition + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string reslistStyleImage { get; set; }
+        private string listStyleImage;
+        [ContextProperty("КартинкаСтиляСписка", "ListStyleImage")]
+        public string ListStyleImage
+        {
+            get { return listStyleImage; }
+            set
+            {
+                listStyleImage = value;
+                reslistStyleImage = "url('" + listStyleImage
+                    .Replace("url(\u0022", "")
+                    .Replace("\u0022)", "")
+                    .Replace("url('", "")
+                    .Replace("')", "")
+                    .Replace(" ", "%20") +
+                    "') ";
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['listStyleImage'] = \u0022" + reslistStyleImage + "\u0022;";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resfontWeight { get; set; }
+        private string fontWeight;
+        [ContextProperty("ЖирностьШрифта", "FontWeight")]
+        public string FontWeight
+        {
+            get { return fontWeight; }
+            set
+            {
+                fontWeight = value;
+                resfontWeight = fontWeight;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['fontWeight'] = '" + resfontWeight + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resfontVariant { get; set; }
+        private string fontVariant;
+        [ContextProperty("ВариантШрифта", "FontVariant")]
+        public string FontVariant
+        {
+            get { return fontVariant; }
+            set
+            {
+                fontVariant = value;
+                resfontVariant = fontVariant;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['fontVariant'] = '" + resfontVariant + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resfontStyle { get; set; }
+        private string fontStyle;
+        [ContextProperty("СтильШрифта", "FontStyle")]
+        public string FontStyle
+        {
+            get { return fontStyle; }
+            set
+            {
+                fontStyle = value;
+                resfontStyle = fontStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['fontStyle'] = '" + resfontStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resemptyCells { get; set; }
+        private string emptyCells;
+        [ContextProperty("ПустыеЯчейки", "EmptyCells")]
+        public string EmptyCells
+        {
+            get { return emptyCells; }
+            set
+            {
+                emptyCells = value;
+                resemptyCells = emptyCells;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['emptyCells'] = '" + resemptyCells + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescursor { get; set; }
+        private string cursor;
+        [ContextProperty("Курсор", "Cursor")]
+        public string Cursor
+        {
+            get { return cursor; }
+            set
+            {
+                cursor = value;
+                rescursor = cursor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['cursor'] = '" + rescursor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescolumnRuleStyle { get; set; }
+        private string columnRuleStyle;
+        [ContextProperty("СтильРазделителяКолонок", "ColumnRuleStyle")]
+        public string ColumnRuleStyle
+        {
+            get { return columnRuleStyle; }
+            set
+            {
+                columnRuleStyle = value;
+                rescolumnRuleStyle = columnRuleStyle;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnRuleStyle'] = '" + rescolumnRuleStyle + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescolumnRuleColor { get; set; }
+        private string columnRuleColor;
+        [ContextProperty("ЦветРазделителяКолонок", "ColumnRuleColor")]
+        public string ColumnRuleColor
+        {
+            get { return columnRuleColor; }
+            set
+            {
+                columnRuleColor = value;
+                rescolumnRuleColor = columnRuleColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnRuleColor'] = '" + rescolumnRuleColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescolumnFill { get; set; }
+        private string columnFill;
+        [ContextProperty("ЗаполнениеКолонок", "ColumnFill")]
+        public string ColumnFill
+        {
+            get { return columnFill; }
+            set
+            {
+                columnFill = value;
+                rescolumnFill = columnFill;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['columnFill'] = '" + rescolumnFill + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescaretColor { get; set; }
+        private string caretColor;
+        [ContextProperty("ЦветКурсора", "CaretColor")]
+        public string CaretColor
+        {
+            get { return caretColor; }
+            set
+            {
+                caretColor = value;
+                rescaretColor = caretColor;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['caretColor'] = '" + rescaretColor + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string rescaptionSide { get; set; }
+        private string captionSide;
+        [ContextProperty("ПоложениеЗаголовка", "CaptionSide")]
+        public string CaptionSide
+        {
+            get { return captionSide; }
+            set
+            {
+                captionSide = value;
+                rescaptionSide = captionSide;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['captionSide'] = '" + rescaptionSide + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
+        public string rescssFloat { get; set; }
+        private string cssFloat;
+        [ContextProperty("ГоризонтальноеВыравнивание", "CssFloat")]
+        public string CssFloat
+        {
+            get { return cssFloat; }
+            set
+            {
+                cssFloat = value;
+                rescssFloat = cssFloat;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['cssFloat'] = '" + rescssFloat + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resclear { get; set; }
+        private string clear;
+        [ContextProperty("Несвободно", "Clear")]
+        public string Clear
+        {
+            get { return clear; }
+            set
+            {
+                clear = value;
+                resclear = clear;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['clear'] = '" + resclear + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resboxSizing { get; set; }
+        private string boxSizing;
+        [ContextProperty("Калибровка", "BoxSizing")]
+        public string BoxSizing
+        {
+            get { return boxSizing; }
+            set
+            {
+                boxSizing = value;
+                resboxSizing = boxSizing;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['boxSizing'] = '" + resboxSizing + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
+        public string resborderSpacing { get; set; }
+        private IValue borderSpacing;
+        [ContextProperty("ИнтервалГраницы", "BorderSpacing")]
+        public IValue BorderSpacing
+        {
+            get { return borderSpacing; }
+            set
+            {
+                borderSpacing = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderSpacing = value.AsString();
+                }
+                else
+                {
+                    DfSize val = (DfSize)value;
+                    if (val.Width != null && val.Height != null)
+                    {
+                        resborderSpacing = val.Width.AsNumber().ToString() + "px " + val.Height.AsNumber().ToString() + "px";
+                    }
+                    else
+                    {
+                        resborderSpacing = "0px";
+                    }
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderSpacing'] = '" + resborderSpacing + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
+        public string resborderImageRepeat { get; set; }
+        private string borderImageRepeat;
+        [ContextProperty("МозаикаКартинкиГраницы", "BorderImageRepeat")]
+        public string BorderImageRepeat
+        {
+            get { return borderImageRepeat; }
+            set
+            {
+                borderImageRepeat = value;
+                resborderImageRepeat = borderImageRepeat;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImageRepeat'] = '" + resborderImageRepeat + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderImageOutset { get; set; }
+        private IValue borderImageOutset;
+        [ContextProperty("СмещениеКартинкиГраницы", "BorderImageOutset")]
+        public IValue BorderImageOutset
+        {
+            get { return borderImageOutset; }
+            set
+            {
+                borderImageOutset = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderImageOutset = value.AsString();
+                }
+                else
+                {
+                    resborderImageOutset = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImageOutset'] = '" + resborderImageOutset + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderImageSlice { get; set; }
+        private IValue borderImageSlice;
+        [ContextProperty("НарезкаКартинкиГраницы", "BorderImageSlice")]
+        public IValue BorderImageSlice
+        {
+            get { return borderImageSlice; }
+            set
+            {
+                borderImageSlice = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderImageSlice = value.AsString();
+                }
+                else
+                {
+                    resborderImageSlice = value.AsNumber().ToString();
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImageSlice'] = '" + resborderImageSlice + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderImageSource { get; set; }
+        private string borderImageSource;
+        [ContextProperty("ИсточникКартинкиГраницы", "BorderImageSource")]
+        public string BorderImageSource
+        {
+            get { return borderImageSource; }
+            set
+            {
+                borderImageSource = value;
+                if (value.Contains("gradient"))
+                {
+                    resborderImageSource = borderImageSource;
+                }
+                else
+                {
+                    resborderImageSource = "url('" + borderImageSource
+                        .Replace("url(\u0022", "")
+                        .Replace("\u0022)", "")
+                        .Replace("url('", "")
+                        .Replace("')", "")
+                        .Replace(" ", "%20") +
+                        "') ";
+                }
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImageSource'] = \u0022" + resborderImageSource + "\u0022;";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderImageWidth { get; set; }
+        private IValue borderImageWidth;
+        [ContextProperty("ШиринаКартинкиГраницы", "BorderImageWidth")]
+        public IValue BorderImageWidth
+        {
+            get { return borderImageWidth; }
+            set
+            {
+                borderImageWidth = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderImageWidth = value.AsString();
+                }
+                else if (value.GetType() == typeof(DfSize))
+                {
+                    DfSize val = (DfSize)value;
+                    if (val.Width != null && val.Height != null)
+                    {
+                        resborderImageWidth = val.Width.AsNumber().ToString() + "px " + val.Height.AsNumber().ToString() + "px";
+                    }
+                }
+                else
+                {
+                    resborderImageWidth = value.AsNumber().ToString() + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImageWidth'] = '" + resborderImageWidth + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
+        public string resborderTopRightRadius { get; set; }
+        private IValue borderTopRightRadius;
+        [ContextProperty("ПравыйРадиусВерхнейГраницы", "BorderTopRightRadius")]
+        public IValue BorderTopRightRadius
+        {
+            get { return borderTopRightRadius; }
+            set
+            {
+                borderTopRightRadius = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderTopRightRadius = value.AsString();
+                }
+                else
+                {
+                    resborderTopRightRadius = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderTopRightRadius'] = '" + resborderTopRightRadius + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderTopLeftRadius { get; set; }
+        private IValue borderTopLeftRadius;
+        [ContextProperty("ЛевыйРадиусВерхнейГраницы", "BorderTopLeftRadius")]
+        public IValue BorderTopLeftRadius
+        {
+            get { return borderTopLeftRadius; }
+            set
+            {
+                borderTopLeftRadius = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderTopLeftRadius = value.AsString();
+                }
+                else
+                {
+                    resborderTopLeftRadius = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderTopLeftRadius'] = '" + resborderTopLeftRadius + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }		
+
+        public string resborderBottomLeftRadius { get; set; }
+        private IValue borderBottomLeftRadius;
+        [ContextProperty("ЛевыйРадиусНижнейГраницы", "BorderBottomLeftRadius")]
+        public IValue BorderBottomLeftRadius
+        {
+            get { return borderBottomLeftRadius; }
+            set
+            {
+                borderBottomLeftRadius = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderBottomLeftRadius = value.AsString();
+                }
+                else
+                {
+                    resborderBottomLeftRadius = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderBottomLeftRadius'] = '" + resborderBottomLeftRadius + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resborderBottomRightRadius { get; set; }
+        private IValue borderBottomRightRadius;
+        [ContextProperty("ПравыйРадиусНижнейГраницы", "BorderBottomRightRadius")]
+        public IValue BorderBottomRightRadius
+        {
+            get { return borderBottomRightRadius; }
+            set
+            {
+                borderBottomRightRadius = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resborderBottomRightRadius = value.AsString();
+                }
+                else
+                {
+                    resborderBottomRightRadius = value.AsNumber().ToString().Replace(",", ".") + "px";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderBottomRightRadius'] = '" + resborderBottomRightRadius + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
+        public string resbackgroundPosition { get; set; }
+        private string backgroundPosition;
+        [ContextProperty("ПоложениеКартинки", "BackgroundPosition")]
+        public string BackgroundPosition
+        {
+            get { return backgroundPosition; }
+            set
+            {
+                backgroundPosition = value;
+                resbackgroundPosition = backgroundPosition;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundPosition'] = '" + resbackgroundPosition + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resbackgroundOrigin { get; set; }
+        private string backgroundOrigin;
+        [ContextProperty("ОбластьКартинки", "BackgroundOrigin")]
+        public string BackgroundOrigin
+        {
+            get { return backgroundOrigin; }
+            set
+            {
+                backgroundOrigin = value;
+                resbackgroundOrigin = backgroundOrigin;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundOrigin'] = '" + resbackgroundOrigin + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resbackgroundClip { get; set; }
+        private string backgroundClip;
+        [ContextProperty("ОбластьРисования", "BackgroundClip")]
+        public string BackgroundClip
+        {
+            get { return backgroundClip; }
+            set
+            {
+                backgroundClip = value;
+                resbackgroundClip = backgroundClip;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundClip'] = '" + resbackgroundClip + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resbackgroundAttachment { get; set; }
+        private string backgroundAttachment;
+        [ContextProperty("ФоновоеВложение", "BackgroundAttachment")]
+        public string BackgroundAttachment
+        {
+            get { return backgroundAttachment; }
+            set
+            {
+                backgroundAttachment = value;
+                resbackgroundAttachment = backgroundAttachment;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['backgroundAttachment'] = '" + resbackgroundAttachment + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
+        public string resbackground { get; set; }
+        private IValue background;
+        [ContextProperty("Фон", "Background")]
+        public IValue Background
+        {
+            get { return background; }
+            set
+            {
+                background = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resbackground = value.AsString();
+                    if (Owner != null)
+                    {
+                        string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['background'] = '" + resbackground + "';";
+                        DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                    }
+                }
+                else
+                {
+                    DfBackground val = (DfBackground)value;
+
+                    if (val.BackgroundColor != null)
+                    {
+                        BackgroundColor = val.BackgroundColor.AsString();
+                    }
+                    if (val.BackgroundImage != null)
+                    {
+                        BackgroundImage = val.BackgroundImage.AsString();
+                    }
+                    if (val.BackgroundRepeat != null)
+                    {
+                        BackgroundRepeat = val.BackgroundRepeat.AsString();
+                    }
+                    if (val.BackgroundPosition != null)
+                    {
+                        BackgroundPosition = val.BackgroundPosition.AsString();
+                    }
+                    if (val.BackgroundOrigin != null)
+                    {
+                        BackgroundOrigin = val.BackgroundOrigin.AsString();
+                    }
+                    if (val.BackgroundClip != null)
+                    {
+                        BackgroundClip = val.BackgroundClip.AsString();
+                    }
+                    if (val.BackgroundSize != null)
+                    {
+                        BackgroundSize = val.BackgroundSize;
+                    }
+                    if (val.BackgroundAttachment != null)
+                    {
+                        BackgroundAttachment = val.BackgroundAttachment.AsString();
+                    }
+                }
+            }
+        }
+
+        public string resanimationDuration { get; set; }
+        private IValue animationDuration;
+        [ContextProperty("ДлительностьАнимации", "AnimationDuration")]
+        public IValue AnimationDuration
+        {
+            get { return animationDuration; }
+            set
+            {
+                animationDuration = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resanimationDuration = value.AsString();
+                }
+                else
+                {
+                    resanimationDuration = value.AsNumber().ToString().Replace(",", ".") + "ms";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationDuration'] = '" + resanimationDuration + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationDelay { get; set; }
+        private IValue animationDelay;
+        [ContextProperty("ЗадержкаАнимации", "AnimationDelay")]
+        public IValue AnimationDelay
+        {
+            get { return animationDelay; }
+            set
+            {
+                animationDelay = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resanimationDelay = value.AsString();
+                }
+                else
+                {
+                    resanimationDelay = value.AsNumber().ToString().Replace(",", ".") + "ms";
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationDelay'] = '" + resanimationDelay + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationIterationCount { get; set; }
+        private IValue animationIterationCount;
+        [ContextProperty("КоличествоПовторов", "AnimationIterationCount")]
+        public IValue AnimationIterationCount
+        {
+            get { return animationIterationCount; }
+            set
+            {
+                animationIterationCount = value;
+
+                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    resanimationIterationCount = value.AsString();
+                }
+                else
+                {
+                    if (value.AsNumber() == -1)
+                    {
+                        resanimationIterationCount = "infinite ";
+                    }
+                    else
+                    {
+                        resanimationIterationCount = value.AsNumber().ToString().Replace(",", ".");
+                    }
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationIterationCount'] = '" + resanimationIterationCount + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationPlayState { get; set; }
+        private string animationPlayState;
+        [ContextProperty("Состояние", "AnimationPlayState")]
+        public string AnimationPlayState
+        {
+            get { return animationPlayState; }
+            set
+            {
+                animationPlayState = value;
+                resanimationPlayState = animationPlayState;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationPlayState'] = '" + resanimationPlayState + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationTimingFunction { get; set; }
+        private string animationTimingFunction;
+        [ContextProperty("ФункцияСинхронизации", "AnimationTimingFunction")]
+        public string AnimationTimingFunction
+        {
+            get { return animationTimingFunction; }
+            set
+            {
+                animationTimingFunction = value;
+                resanimationTimingFunction = animationTimingFunction;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationTimingFunction'] = '" + resanimationTimingFunction + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationFillMode { get; set; }
+        private string animationFillMode;
+        [ContextProperty("ЗаливкаАнимации", "AnimationFillMode")]
+        public string AnimationFillMode
+        {
+            get { return animationFillMode; }
+            set
+            {
+                animationFillMode = value;
+                resanimationFillMode = animationFillMode;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationFillMode'] = '" + resanimationFillMode + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationDirection { get; set; }
+        private string animationDirection;
+        [ContextProperty("НаправлениеАнимации", "AnimationDirection")]
+        public string AnimationDirection
+        {
+            get { return animationDirection; }
+            set
+            {
+                animationDirection = value;
+                resanimationDirection = animationDirection;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationDirection'] = '" + resanimationDirection + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+
+        public string resanimationName { get; set; }
+        private string animationName;
+        [ContextProperty("ИмяАнимации", "AnimationName")]
+        public string AnimationName
+        {
+            get { return animationName; }
+            set
+            {
+                animationName = value;
+                resanimationName = animationName;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationName'] = '" + resanimationName + "';";
+                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                }
+            }
+        }
+		
         public string Rotate(DfRotate p1)
         {
             string res;
@@ -160,11 +1868,185 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             res = "translateZ(" + z + ")";
             return res;
         }
+        public string TranslateY(DfTranslateY p1)
+        {
+            string res;
+            string y = "0px";
+            if (p1.Y != null)
+            {
+                y = p1.Y.AsNumber().ToString() + "px";
+            }
+            res = "translateY(" + y + ")";
+            return res;
+        }
+        public string TranslateX(DfTranslateX p1)
+        {
+            string res;
+            string x = "0px";
+            if (p1.X != null)
+            {
+                x = p1.X.AsNumber().ToString() + "px";
+            }
+            res = "translateX(" + x + ")";
+            return res;
+        }
+        public string Translate(DfTranslate p1)
+        {
+            string res;
+            string x = "0px";
+            string y = "0px";
+            if (p1.X != null)
+            {
+                x = p1.X.AsNumber().ToString() + "px";
+            }
+            if (p1.Y != null)
+            {
+                y = p1.Y.AsNumber().ToString() + "px";
+            }
+            res = "translate(" + x + ", " + y + ")";
+            return res;
+        }
+        public string ScaleX(DfScaleX p1)
+        {
+            string res;
+            string x = "1";
+            if (p1.X != null)
+            {
+                x = p1.X.AsNumber().ToString();
+            }
+            res = "scaleX(" + x + ")";
+            return res;
+        }
+        public string ScaleY(DfScaleY p1)
+        {
+            string res;
+            string y = "1";
+            if (p1.Y != null)
+            {
+                y = p1.Y.AsNumber().ToString();
+            }
+            res = "scaleY(" + y + ")";
+            return res;
+        }
+        public string ScaleZ(DfScaleZ p1)
+        {
+            string res;
+            string z = "1";
+            if (p1.Z != null)
+            {
+                z = p1.Z.AsNumber().ToString();
+            }
+            res = "scaleZ(" + z + ")";
+            return res;
+        }
+        public string RotateZ(DfRotateZ p1)
+        {
+            string res;
+            string angle = "0";
+            if (p1.Angle != null)
+            {
+                angle = p1.Angle.AsString();
+            }
+            res = "rotateZ(" + angle + "deg)";
+            return res;
+        }
+        public string Skew(DfSkew p1)
+        {
+            string res;
+            string angleX = "0";
+            string angleY = "0";
+            if (p1.AngleX != null)
+            {
+                angleX = p1.AngleX.AsString();
+            }
+            if (p1.AngleY != null)
+            {
+                angleY = p1.AngleY.AsString();
+            }
+            res = "skew(" + angleX + "deg, " + angleY + "deg)";
+            return res;
+        }
+        public string SkewX(DfSkewX p1)
+        {
+            string res;
+            string angle = "0";
+            if (p1.Angle != null)
+            {
+                angle = p1.Angle.AsString();
+            }
+            res = "skewX(" + angle + "deg)";
+            return res;
+        }
+        public string SkewY(DfSkewY p1)
+        {
+            string res;
+            string angle = "0";
+            if (p1.Angle != null)
+            {
+                angle = p1.Angle.AsString();
+            }
+            res = "skewY(" + angle + "deg)";
+            return res;
+        }
+        public string TransformPerspective(DfPerspective p1)
+        {
+            string res;
+            string ratio = "0";
+            if (p1.Ratio != null)
+            {
+                ratio = p1.Ratio.AsString();
+            }
+            res = "perspective(" + ratio + "px)";
+            return res;
+        }
+        public string Matrix(DfMatrix p1)
+        {
+            string res;
+            string scaleX = "1";
+            string transformY = "0";
+            string transformX = "0";
+            string scaleY = "1";
+            string offsetX = "0";
+            string offsetY = "0";
+            if (p1.ScaleX != null)
+            {
+                scaleX = p1.ScaleX.AsString();
+            }
+            if (p1.TransformY != null)
+            {
+                transformY = p1.TransformY.AsString();
+            }
+            if (p1.TransformX != null)
+            {
+                transformX = p1.TransformX.AsString();
+            }
+            if (p1.ScaleY != null)
+            {
+                scaleY = p1.ScaleY.AsString();
+            }
+            if (p1.OffsetX != null)
+            {
+                offsetX = p1.OffsetX.AsString();
+            }
+            if (p1.OffsetY != null)
+            {
+                offsetY = p1.OffsetY.AsString();
+            }
+            res = "matrix(" + scaleX + ", " + transformY + ", "  + transformX +  ", " + scaleY + ", " + offsetX + ", " + offsetY + ")";
+            return res;
+        }
+        public string Matrix3D(DfMatrix3D p1)
+        {
+            string res = "matrix3d(";
+            res += p1["Number" + 1];
+            for (int i = 1; i < 16; i++)
+            {
+                res += ", " + p1["Number" + (i + 1)];
+            }
+            res += ")";
+            return res;
+        }
 
-
-
-
-        //Сдвиг (Transform)
         public string restransform { get; set; }
         private IValue transform;
         [ContextProperty("Сдвиг", "Transform")]
@@ -218,6 +2100,58 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                             {
                                 restransform = restransform + " " + TranslateZ((DfTranslateZ)ArrayImpl1.Get(i));
                             }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfTranslateY))
+                            {
+                                restransform = restransform + " " + TranslateY((DfTranslateY)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfTranslateX))
+                            {
+                                restransform = restransform + " " + TranslateX((DfTranslateX)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfTranslate))
+                            {
+                                restransform = restransform + " " + Translate((DfTranslate)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfScaleX))
+                            {
+                                restransform = restransform + " " + ScaleX((DfScaleX)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfScaleY))
+                            {
+                                restransform = restransform + " " + ScaleY((DfScaleY)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfScaleZ))
+                            {
+                                restransform = restransform + " " + ScaleZ((DfScaleZ)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfRotateZ))
+                            {
+                                restransform = restransform + " " + RotateZ((DfRotateZ)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfSkew))
+                            {
+                                restransform = restransform + " " + Skew((DfSkew)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfSkewX))
+                            {
+                                restransform = restransform + " " + SkewX((DfSkewX)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfSkewY))
+                            {
+                                restransform = restransform + " " + SkewY((DfSkewY)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfPerspective))
+                            {
+                                restransform = restransform + " " + TransformPerspective((DfPerspective)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfMatrix))
+                            {
+                                restransform = restransform + " " + Matrix((DfMatrix)ArrayImpl1.Get(i));
+                            }
+                            if (ArrayImpl1.Get(i).GetType() == typeof(DfMatrix3D))
+                            {
+                                restransform = restransform + " " + Matrix3D((DfMatrix3D)ArrayImpl1.Get(i));
+                            }
                         }
                     }
 
@@ -257,37 +2191,62 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                     {
                         restransform = TranslateZ((DfTranslateZ)transform);
                     }
-
-
-
-
+                    if (transform.GetType() == typeof(DfTranslateY))
+                    {
+                        restransform = TranslateY((DfTranslateY)transform);
+                    }
+                    if (transform.GetType() == typeof(DfTranslateX))
+                    {
+                        restransform = TranslateX((DfTranslateX)transform);
+                    }
+                    if (transform.GetType() == typeof(DfTranslate))
+                    {
+                        restransform = Translate((DfTranslate)transform);
+                    }
+                    if (transform.GetType() == typeof(DfScaleX))
+                    {
+                        restransform = ScaleX((DfScaleX)transform);
+                    }
+                    if (transform.GetType() == typeof(DfScaleY))
+                    {
+                        restransform = ScaleY((DfScaleY)transform);
+                    }
+                    if (transform.GetType() == typeof(DfScaleZ))
+                    {
+                        restransform = ScaleZ((DfScaleZ)transform);
+                    }
+                    if (transform.GetType() == typeof(DfRotateZ))
+                    {
+                        restransform = RotateZ((DfRotateZ)transform);
+                    }
+                    if (transform.GetType() == typeof(DfSkew))
+                    {
+                        restransform = Skew((DfSkew)transform);
+                    }
+                    if (transform.GetType() == typeof(DfSkewX))
+                    {
+                        restransform = SkewX((DfSkewX)transform);
+                    }
+                    if (transform.GetType() == typeof(DfSkewY))
+                    {
+                        restransform = SkewY((DfSkewY)transform);
+                    }
+                    if (transform.GetType() == typeof(DfPerspective))
+                    {
+                        restransform = TransformPerspective((DfPerspective)transform);
+                    }
+                    if (transform.GetType() == typeof(DfMatrix))
+                    {
+                        restransform = Matrix((DfMatrix)transform);
+                    }
+                    if (transform.GetType() == typeof(DfMatrix3D))
+                    {
+                        restransform = Matrix3D((DfMatrix3D)transform);
+                    }
                 }
-
-                //////DeclarativeForms.GlobalContext().Echo(restransform);
-
-                // доделать
-
                 if (Owner != null)
                 {
                     string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['transform'] = '" + restransform + "';";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
-                }
-            }
-        }
-
-        public string resanimationPlayState { get; set; }
-        private string animationPlayState;
-        [ContextProperty("Состояние", "AnimationPlayState")]
-        public string AnimationPlayState
-        {
-            get { return animationPlayState; }
-            set
-            {
-                animationPlayState = value;
-                resanimationPlayState = animationPlayState;
-                if (Owner != null)
-                {
-                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['animationPlayState'] = '" + resanimationPlayState + "';";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
@@ -376,7 +2335,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
 
                 if (Owner != null)
                 {
-                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['paddingBottom'] = '" + resminHeight + "';";
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['minHeight'] = '" + resminHeight + "';";
                     DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
@@ -1866,6 +3825,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             private set { itemKey = value; }
         }
 
+
         public string resborderImage { get; set; }
         private IValue borderImage;
         [ContextProperty("КартинкаГраницы", "BorderImage")]
@@ -1879,48 +3839,35 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
                 {
                     resborderImage = value.AsString();
+                    if (Owner != null)
+                    {
+                        string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImage'] = '" + resborderImage + "';";
+                        DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                    }
                 }
                 else
                 {
                     DfBorderImage val = (DfBorderImage)value;
-                    string borderImageSource = "none ";
-                    string borderImageSlice = "100 ";
-                    string borderImageWidth = "1 ";
-                    string borderImageOutset = "0 ";
-                    string borderImageRepeat = "stretch";
                     if (val.BorderImageSource != null)
                     {
-                        borderImageSource = "url('" + val.BorderImageSource.AsString()
-                            .Replace("url(\u0022", "")
-                            .Replace("\u0022)", "")
-                            .Replace("url('", "")
-                            .Replace("')", "")
-                            .Replace(" ", "%20") +
-                            "') ";
+                        BorderImageSource = val.BorderImageSource.AsString();
                     }
                     if (val.BorderImageSlice != null)
                     {
-                        borderImageSlice = val.BorderImageSlice.AsNumber().ToString() + " ";
+                        BorderImageSlice = val.BorderImageSlice;
                     }
                     if (val.BorderImageWidth != null)
                     {
-                        borderImageWidth = val.BorderImageWidth.AsNumber().ToString() + " ";
+                        BorderImageWidth = val.BorderImageWidth;
                     }
                     if (val.BorderImageOutset != null)
                     {
-                        borderImageOutset = val.BorderImageOutset.AsNumber().ToString() + " ";
+                        BorderImageOutset = val.BorderImageOutset;
                     }
                     if (val.BorderImageRepeat != null)
                     {
-                        borderImageRepeat = val.BorderImageRepeat.AsString();
+                        BorderImageRepeat = val.BorderImageRepeat.AsString();
                     }
-                    resborderImage = borderImageSource + borderImageSlice + borderImageWidth + borderImageOutset + borderImageRepeat;
-                }
-
-                if (Owner != null)
-                {
-                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['borderImage'] = \u0022" + resborderImage + "\u0022;";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
                 }
             }
         }

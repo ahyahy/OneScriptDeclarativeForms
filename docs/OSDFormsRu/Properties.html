@@ -234,10 +234,10 @@
     <TD width="50%">Возвращает задержку перед началом анимации.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.AnimationPropertiesAnimationDelayProperty.html">ЗадержкаАнимации&nbsp;(AnimationDelay) (СвойстваАнимации)</A></TD>
-    <TD width="50%">Возвращает или задает задержку при воспроизведения анимации.</TD></TR>
+    <TD width="50%">Возвращает или задает задержку в миллисекундах при воспроизведения анимации.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleAnimationDelayProperty.html">ЗадержкаАнимации&nbsp;(AnimationDelay) (Стиль)</A></TD>
-    <TD width="50%">Возвращает или задает задержку при воспроизведения анимации.</TD></TR>
+    <TD width="50%">Возвращает или задает задержку в миллисекундах при воспроизведения анимации.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.TransitionTransitionDelayProperty.html">ЗадержкаПерехода&nbsp;(TransitionDelay) (Переход)</A></TD>
     <TD width="50%">Возвращает или задает время начала эффекта перехода.</TD></TR>
@@ -319,9 +319,6 @@
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementDefaultValueProperty.html">ЗначениеПоУмолчанию&nbsp;(DefaultValue) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает значение по умолчанию.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StyleIconProperty.html">Значок&nbsp;(Icon) (Стиль)</A></TD>
-    <TD width="50%">Путь до файла значка.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.FormIconProperty.html">Значок&nbsp;(Icon) (Форма)</A></TD>
     <TD width="50%">Путь до иконки.</TD></TR>
@@ -416,9 +413,6 @@
     <TD width="50%"><A href="OSDForms.PointXProperty.html">Икс&nbsp;(X) (Точка)</A></TD>
     <TD width="50%">Возвращает или задает x-координату.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StyleNameProperty.html">Имя&nbsp;(Name) (Стиль)</A></TD>
-    <TD width="50%">Возвращает уникальное имя стиля сгенерированное при создании.</TD></TR>
-  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.FormNameProperty.html">Имя&nbsp;(Name) (Форма)</A></TD>
     <TD width="50%">Возвращает имя формы.</TD></TR>
   <TR vAlign=top>
@@ -485,6 +479,9 @@
     <TD width="50%"><A href="OSDForms.BorderImageBorderImageSourceProperty.html">ИсточникКартинкиГраницы&nbsp;(BorderImageSource) (КартинкаГраницы)</A></TD>
     <TD width="50%">Возвращает или задает путь к изображению, которое будет использоваться в качестве границы.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.StyleBorderImageSourceProperty.html">ИсточникКартинкиГраницы&nbsp;(BorderImageSource) (Стиль)</A></TD>
+    <TD width="50%">Возвращает или задает путь к изображению, которое будет использоваться в качестве границы.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StylePerspectiveOriginProperty.html">ИсточникПерспективы&nbsp;(PerspectiveOrigin) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает где находится трехмерный элемент по осям x и y (0 до 1).</TD></TR>
   <TR vAlign=top>
@@ -546,7 +543,7 @@
     <TD width="50%">Возвращает количество повторений анимации.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.TextAreaColsProperty.html">Колонки&nbsp;(Cols) (ОбластьТекста)</A></TD>
-    <TD width="50%">Возвращает или задает значение видимой ширину области текста в символах.</TD></TR>
+    <TD width="50%">Возвращает или задает значение видимой ширины области текста в символах.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleColumnsProperty.html">КолонкиЭлемента&nbsp;(Columns) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает в одном объявлении ширину и количество колонок.</TD></TR>
@@ -647,7 +644,13 @@
     <TD width="50%"><A href="OSDForms.StyleBackgroundRepeatProperty.html">МозаикаКартинки&nbsp;(BackgroundRepeat) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает способ повторения (мозаики) фонового изображения.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundRepeatProperty.html">МозаикаКартинки&nbsp;(BackgroundRepeat) (Фон)</A></TD>
+    <TD width="50%">Возвращает или задает способ повторения (мозаики) фонового изображения.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.BorderImageBorderImageRepeatProperty.html">МозаикаКартинкиГраницы&nbsp;(BorderImageRepeat) (КартинкаГраницы)</A></TD>
+    <TD width="50%">Возвращает или задает должна ли картинка границы повторяться, закругляться или растягиваться.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.StyleBorderImageRepeatProperty.html">МозаикаКартинкиГраницы&nbsp;(BorderImageRepeat) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает должна ли картинка границы повторяться, закругляться или растягиваться.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.SelectGroupLabelProperty.html">Надпись&nbsp;(Label) (ГруппировкаПоляСписка)</A></TD>
@@ -686,6 +689,9 @@
     <TD width="50%"><A href="OSDForms.BorderImageBorderImageSliceProperty.html">НарезкаКартинкиГраницы&nbsp;(BorderImageSlice) (КартинкаГраницы)</A></TD>
     <TD width="50%">Возвращает или задает внутренние смещения картинки границы.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.StyleBorderImageSliceProperty.html">НарезкаКартинкиГраницы&nbsp;(BorderImageSlice) (Стиль)</A></TD>
+    <TD width="50%">Возвращает или задает внутренние смещения картинки границы.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ImagesFilterSaturateProperty.html">Насыщенность&nbsp;(Saturate) (ФильтрИзображений)</A></TD>
     <TD width="50%">Возвращает или задает насыщенность изображения.</TD></TR>
   <TR vAlign=top>
@@ -697,9 +703,6 @@
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.FormStartWidthProperty.html">НачальнаяШирина&nbsp;(StartWidth) (Форма)</A></TD>
     <TD width="50%">Задает начальную ширина главного окна.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StyleFontStretchProperty.html">Начертание&nbsp;(FontStretch) (Стиль)</A></TD>
-    <TD width="50%">Выбирает обычное, сжатое или расширенное начертание из семейства шрифтов.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.CheckBoxIndeterminateProperty.html">Неопределено&nbsp;(Indeterminate) (Флажок)</A></TD>
     <TD width="50%">Возвращает или задает неопределенное состояние флажка.</TD></TR>
@@ -725,10 +728,19 @@
     <TD width="50%"><A href="OSDForms.MapAreasProperty.html">Области&nbsp;(Areas) (Карта)</A></TD>
     <TD width="50%">Возвращает коллекцию всех областей на карте.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.TableTBodiesProperty.html">ОбластиТаблицы&nbsp;(TBodies) (Таблица)</A></TD>
+    <TD width="50%">Возвращает коллекцию объектов <B>ОбластьТаблицы (TableBody)</B> в таблице.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleBackgroundOriginProperty.html">ОбластьКартинки&nbsp;(BackgroundOrigin) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает какую область фоновая картинка будет занимать внутри элемента.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundOriginProperty.html">ОбластьКартинки&nbsp;(BackgroundOrigin) (Фон)</A></TD>
+    <TD width="50%">Возвращает или задает какую область фоновая картинка будет занимать внутри элемента.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleBackgroundClipProperty.html">ОбластьРисования&nbsp;(BackgroundClip) (Стиль)</A></TD>
+    <TD width="50%">Возвращает или задает область рисования фона.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundClipProperty.html">ОбластьРисования&nbsp;(BackgroundClip) (Фон)</A></TD>
     <TD width="50%">Возвращает или задает область рисования фона.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.OrderedListReversedProperty.html">Обратный&nbsp;(Reversed) (УпорядоченныйСписок)</A></TD>
@@ -848,9 +860,6 @@
     <TD width="50%"><A href="OSDForms.MathPIProperty.html">Пи&nbsp;(PI) (Математика)</A></TD>
     <TD width="50%">Возвращает отношение длины окружности круга к его диаметру, приблизительно равное 3,14159.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StyleScrollBehaviorProperty.html">ПоведениеПрокрутки&nbsp;(ScrollBehavior) (Стиль)</A></TD>
-    <TD width="50%">Возвращает или задает, следует ли плавно анимировать положение прокрутки вместо прямого перехода, когда пользователь нажимает ссылку в прокручиваемом поле.</TD></TR>
-  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ImagesFilterHueRotateProperty.html">ПоворотОттенка&nbsp;(HueRotate) (ФильтрИзображений)</A></TD>
     <TD width="50%">Возвращает или задает поворот оттенка к изображению.</TD></TR>
   <TR vAlign=top>
@@ -903,6 +912,9 @@
     <TD width="50%">Положение по оси X.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleBackgroundPositionProperty.html">ПоложениеКартинки&nbsp;(BackgroundPosition) (Стиль)</A></TD>
+    <TD width="50%">Возвращает или задает начальную позицию фонового изображения.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundPositionProperty.html">ПоложениеКартинки&nbsp;(BackgroundPosition) (Фон)</A></TD>
     <TD width="50%">Возвращает или задает начальную позицию фонового изображения.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.EventArgsCheckedProperty.html">Помечен&nbsp;(Checked) (АргументыСобытия)</A></TD>
@@ -989,6 +1001,9 @@
     <TD width="50%"><A href="OSDForms.StyleBackgroundSizeProperty.html">РазмерКартинки&nbsp;(BackgroundSize) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает размер фонового изображения.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundSizeProperty.html">РазмерКартинки&nbsp;(BackgroundSize) (Фон)</A></TD>
+    <TD width="50%">Возвращает или задает размер фонового изображения.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleFontSizeProperty.html">РазмерШрифта&nbsp;(FontSize) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает размер шрифта текста.</TD></TR>
   <TR vAlign=top>
@@ -1007,15 +1022,6 @@
     <TD width="50%"><A href="OSDForms.Context2dShadowBlurProperty.html">РазмытиеТени&nbsp;(ShadowBlur) (Контекст2d)</A></TD>
     <TD width="50%">Возвращает или задает уровень размытия теней.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StylePageBreakInsideProperty.html">РазрывСтраницыВнутри&nbsp;(PageBreakInside) (Стиль)</A></TD>
-    <TD width="50%">Возвращает или задает поведение разрыва страницы внутри элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StylePageBreakBeforeProperty.html">РазрывСтраницыДо&nbsp;(PageBreakBefore) (Стиль)</A></TD>
-    <TD width="50%">Возвращает или задает поведение разрыва страницы перед элементом.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StylePageBreakAfterProperty.html">РазрывСтраницыПосле&nbsp;(PageBreakAfter) (Стиль)</A></TD>
-    <TD width="50%">Возвращает или задает поведение разрыва страницы после элемента.</TD></TR>
-  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleJustifyContentProperty.html">РасположениеСодержимого&nbsp;(JustifyContent) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает выравнивание между элементами внутри гибкого контейнера, когда элементы не используют все доступное пространство.</TD></TR>
   <TR vAlign=top>
@@ -1029,10 +1035,10 @@
     <TD width="50%">Возвращает или задает родителя для элемента управления.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.TransitionTransitionPropertyProperty.html">СвойствоПерехода&nbsp;(TransitionProperty) (Переход)</A></TD>
-    <TD width="50%">Возвращает или задает свойство для которого предназначен эффект перехода.</TD></TR>
+    <TD width="50%">Возвращает или задает перечисленные через запятую свойства стиля, для которых предназначен эффект перехода.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleTransitionPropertyProperty.html">СвойствоПерехода&nbsp;(TransitionProperty) (Стиль)</A></TD>
-    <TD width="50%">Возвращает или задает свойство для которого предназначен эффект перехода.</TD></TR>
+    <TD width="50%">Возвращает или задает перечисленные через запятую свойства стиля, для которых предназначен эффект перехода.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.LabelHtmlForProperty.html">Связь&nbsp;(HtmlFor) (Подпись)</A></TD>
     <TD width="50%">Возвращает или задает к какому элементу привязана подпись.</TD></TR>
@@ -1074,6 +1080,9 @@
     <TD width="50%">Возвращает или задает смещение по горизонтали. Положительное значение - вправо, отрицательное - влево.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.BorderImageBorderImageOutsetProperty.html">СмещениеКартинкиГраницы&nbsp;(BorderImageOutset) (КартинкаГраницы)</A></TD>
+    <TD width="50%">Возвращает или задает величину, на которую область рисунка границы выходит за границы.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.StyleBorderImageOutsetProperty.html">СмещениеКартинкиГраницы&nbsp;(BorderImageOutset) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает величину, на которую область рисунка границы выходит за границы.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleOutlineOffsetProperty.html">СмещениеКонтура&nbsp;(OutlineOffset) (Стиль)</A></TD>
@@ -1184,8 +1193,8 @@
     <TD width="50%"><A href="OSDForms.TextAreaRowsProperty.html">Строки&nbsp;(Rows) (ОбластьТекста)</A></TD>
     <TD width="50%">Возвращает или задает видимое количество строк области текста.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StyleOrphansProperty.html">СтрокПриРазрыве&nbsp;(Orphans) (Стиль)</A></TD>
-    <TD width="50%">Возвращает или задает минимальное количество строк для элемента, которое должно оставаться внизу страницы, когда внутри элемента применен разрыв страницы.</TD></TR>
+    <TD width="50%"><A href="OSDForms.TableRowsProperty.html">Строки&nbsp;(Rows) (Таблица)</A></TD>
+    <TD width="50%">Возвращает коллекцию всех строк таблицы.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ActionScriptProperty.html">Сценарий&nbsp;(Script) (Действие)</A></TD>
     <TD width="50%">Возвращает или задает сценарий как объект с типом значения ScriptEngine.Machine.IRuntimeContextInstance в котором находится обработчик события.</TD></TR>
@@ -1262,10 +1271,19 @@
     <TD width="50%"><A href="OSDForms.StyleFilterProperty.html">Фильтр&nbsp;(Filter) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает фильтры изображений - визуальные эффекты, такие как размытие и насыщенность.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.StyleBackgroundProperty.html">Фон&nbsp;(Background) (Стиль)</A></TD>
+    <TD width="50%">Возвращает или задает свойства фона элемента в одном объявлении.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleBackgroundAttachmentProperty.html">ФоновоеВложение&nbsp;(BackgroundAttachment) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает значение, является ли фоновое изображение фиксированным или прокручивается вместе со страницей.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundAttachmentProperty.html">ФоновоеВложение&nbsp;(BackgroundAttachment) (Фон)</A></TD>
+    <TD width="50%">Возвращает или задает значение, является ли фоновое изображение фиксированным или прокручивается вместе со страницей.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleBackgroundImageProperty.html">ФоновоеИзображение&nbsp;(BackgroundImage) (Стиль)</A></TD>
+    <TD width="50%">Возвращает или задает путь до файла фонового изображения для элемента.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundImageProperty.html">ФоновоеИзображение&nbsp;(BackgroundImage) (Фон)</A></TD>
     <TD width="50%">Возвращает или задает путь до файла фонового изображения для элемента.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.DeclarativeFormsFormProperty.html">Форма&nbsp;(Form) (ДекларативныеФормы)</A></TD>
@@ -1362,6 +1380,9 @@
     <TD width="50%">Возвращает или задает цвет для теней.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleBackgroundColorProperty.html">ЦветФона&nbsp;(BackgroundColor) (Стиль)</A></TD>
+    <TD width="50%">Возвращает или задает цвет фона элемента.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.BackgroundBackgroundColorProperty.html">ЦветФона&nbsp;(BackgroundColor) (Фон)</A></TD>
     <TD width="50%">Возвращает или задает цвет фона элемента.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.CubicBezierNumber1Property.html">Число1&nbsp;(Number1) (БезьеКуб)</A></TD>
@@ -1542,10 +1563,4 @@
     <TD width="50%">Возвращает или задает яркость изображения.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.TableRowCellsProperty.html">Ячейки&nbsp;(Cells) (СтрокаТаблицы)</A></TD>
-    <TD width="50%">Возвращает коллекцию всех ячеек в строке таблицы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableTBodiesProperty.html">ЯчейкиОбласти&nbsp;(TBodies) (Таблица)</A></TD>
-    <TD width="50%">Возвращает коллекцию всех ячеек в объекте <B>ОбластьТаблицы (TableBody)</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableRowsProperty.html">ЯчейкиСтроки&nbsp;(Rows) (Таблица)</A></TD>
     <TD width="50%">Возвращает коллекцию всех ячеек в строке таблицы.</TD></TR></TBODY></TABLE></DIV></DIV></BODY></HTML>

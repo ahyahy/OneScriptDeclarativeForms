@@ -11,7 +11,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.MenuItem({ " + @"
             label: '" + label + "', " + @"
-            click: function() {{ sendPost('" + ItemKey + "' + '|||' + 'click') }}, " + @"
+            click: function() {{ sendPost('" + ItemKey + "' + '" + DeclarativeForms.paramDelimiter + "' + 'click') }}, " + @"
             type: '" + type + "' }));" + @"
             mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
@@ -23,7 +23,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.MenuItem({ " + @"
             label: '" + label + "', " + @"
-            click: function() {{ sendPost('" + ItemKey + "' + '|||' + 'click') }}, " + @"
+            click: function() {{ sendPost('" + ItemKey + "' + '" + DeclarativeForms.paramDelimiter + "' + 'click') }}, " + @"
             type: '" + type + "', " + @"
             key: '" + key + "' }));" + @"
             mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
@@ -36,7 +36,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.MenuItem({ " + @"
             label: '" + label + "', " + @"
-            click: function() {{ sendPost('" + ItemKey + "' + '|||' + 'click') }}, " + @"
+            click: function() {{ sendPost('" + ItemKey + "' + '" + DeclarativeForms.paramDelimiter + "' + 'click') }}, " + @"
             type: '" + type + "', " + @"
             key: '" + key + "', " + @"
             modifiers: '" + modifiers + "' }));" + @"
@@ -50,7 +50,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.MenuItem({ " + @"
             label: '" + label + "', " + @"
-            click: function() {{ sendPost('" + ItemKey + "' + '|||' + 'click') }}, " + @"
+            click: function() {{ sendPost('" + ItemKey + "' + '" + DeclarativeForms.paramDelimiter + "' + 'click') }}, " + @"
             type: '" + type + "', " + @"
             submenu: mapKeyEl.get('" + menu.ItemKey + "') }));" + @"
             mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
@@ -64,7 +64,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.MenuItem({ " + @"
             label: '" + label + "', " + @"
-            click: function() {{ sendPost('" + ItemKey + "' + '|||' + 'click') }}, " + @"
+            click: function() {{ sendPost('" + ItemKey + "' + '" + DeclarativeForms.paramDelimiter + "' + 'click') }}, " + @"
             type: '" + type + "', " + @"
             submenu: mapKeyEl.get('" + menu.ItemKey + "'), " + @"
             key: '" + key + "' }));" + @"
@@ -79,7 +79,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.MenuItem({ " + @"
             label: '" + label + "', " + @"
-            click: function() {{ sendPost('" + ItemKey + "' + '|||' + 'click') }}, " + @"
+            click: function() {{ sendPost('" + ItemKey + "' + '" + DeclarativeForms.paramDelimiter + "' + 'click') }}, " + @"
             type: '" + type + "', " + @"
             submenu: mapKeyEl.get('" + menu.ItemKey + "'), " + @"
             key: '" + key + "', " + @"

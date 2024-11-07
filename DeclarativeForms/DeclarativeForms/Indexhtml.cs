@@ -2,6 +2,7 @@
 {
     public class Indexhtml
     {
+        public static string spacer = DeclarativeForms.paramDelimiter;
         public static string indexhtml = @"<!DOCTYPE html>
 <html>
 	<head>
@@ -39,18 +40,18 @@ function doEvent(event)
 
         sendPost(
         mapElKey.get(event.target) + 
-        '|||' + event.type + 
-        '|||Button=' + button + 
-        '|||X=' + event.clientX + 
-        '|||Y=' + event.clientY);
+        '" + spacer + @"' + event.type + 
+        '" + spacer + @"Button=' + button + 
+        '" + spacer + @"X=' + event.clientX + 
+        '" + spacer + @"Y=' + event.clientY);
     }
     else if (event.type == 'input')
     {
         let value = event.target.value;
         sendPost(
         mapElKey.get(event.target) + 
-        '|||' + event.type + 
-        '|||Value=' + value);
+        '" + spacer + @"' + event.type + 
+        '" + spacer + @"Value=' + value);
     }
     else if (event.type == 'change')
     {
@@ -75,16 +76,16 @@ function doEvent(event)
                 }
                 sendPost(
                 mapElKey.get(event.target) + 
-                '|||' + event.type + 
-                '|||Files=' + txt);
+                '" + spacer + @"' + event.type + 
+                '" + spacer + @"Files=' + txt);
             }
             else if (event.target.type == 'checkbox')
             {
                 let _checked = event.target.checked;
                 sendPost(
                 mapElKey.get(event.target) + 
-                '|||' + event.type + 
-                '|||Checked=' + _checked);
+                '" + spacer + @"' + event.type + 
+                '" + spacer + @"Checked=' + _checked);
             }		
         }
         else if (event.target.nodeName == 'SELECT')
@@ -107,13 +108,13 @@ function doEvent(event)
             }
             sendPost(
             mapElKey.get(event.target) + 
-            '|||' + event.type + 
-            '|||ListItem=' + txt);
+            '" + spacer + @"' + event.type + 
+            '" + spacer + @"ListItem=' + txt);
         }
     }
     else
     {
-        sendPost(mapElKey.get(event.target) + '|||' + event.type);
+        sendPost(mapElKey.get(event.target) + '" + spacer + @"' + event.type);
     }
 }
 function sendPost(str)
@@ -149,9 +150,9 @@ function sendPost(str)
 nw.Window.get().on('resize', function(width, height)
 {
     sendPost('mainForm' + 
-    '|||' + 'resize' + 
-    '|||WindowWidth=' + width + 
-    '|||WindowHeight=' + height);
+    '" + spacer + @"' + 'resize' + 
+    '" + spacer + @"WindowWidth=' + width + 
+    '" + spacer + @"WindowHeight=' + height);
 });
 // Начало блока постоянного клиента.
 function processData(data)
@@ -223,7 +224,7 @@ nodeClient.write('ConstantClient5du4fsjiwixxf');
 var mapKeyEl = new Map();
 var mapElKey = new Map();
 var gui = require('nw.gui');
-document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '|||' + 'loaded'); });
+document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '" + spacer + @"' + 'loaded'); });
 //////var net = require('os1'); // Пример импорта модуля. os1.js в этом случае должен лежать рядом с package.json
 
 		</script>
