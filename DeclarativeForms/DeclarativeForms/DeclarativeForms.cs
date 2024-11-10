@@ -59,6 +59,7 @@ namespace osdf
             DeclarativeForms inst = getInstance();
             inst.InjectGlobalProperty(shareStructure, "ОбщаяСтруктура", false);
             shareStructure.Insert("ДФ", inst);
+            openInBrowser = false;
             return inst;
         }
 
@@ -83,6 +84,23 @@ namespace osdf
         {
             return GlobalsManager.GetGlobalContext<SystemGlobalContext>();
         }
+
+        public static bool wsserverOn;
+        [ContextProperty("ВебСерверРаботает", "WsserverOn")]
+        public bool WsserverOn
+        {
+            get { return wsserverOn; }
+            set { wsserverOn = value; }
+        }
+
+        public static bool openInBrowser;
+        [ContextProperty("ОткрытьВБраузере", "OpenInBrowser")]
+        public bool OpenInBrowser
+        {
+            get { return openInBrowser; }
+            set { openInBrowser = value; }
+        }
+
 		
         public static string CSSPath = "styles.css";
         private string _cssPath;
@@ -102,7 +120,7 @@ namespace osdf
         {
             return new DfBackground(p1, p2, p3, p4, p5, p6, p7, p8);
         }
-		
+
         [ContextMethod("Скрипт", "Script")]
         public DfScript Script()
         {
@@ -1652,7 +1670,7 @@ namespace osdf
 	|
 	|// Запустим цикл обработки событий
 	|Пока КСДФ.Продолжать Цикл
-	|	КСДФ.ПолучитьСобытие().Выполнить();
+	|   КСДФ.ПолучитьСобытие().Выполнить();
 	|КонецЦикла;
 	|"";
 	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
@@ -1675,13 +1693,76 @@ namespace osdf
 Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
 Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускgetProps"", МассивПараметров);
 ";
-            GlobalContext().LoadScriptFromString(backgroundTasks, extContext);
+
+            string backgroundTasksBr = @"
+Процедура ЗапускКлиента(параметр1) Экспорт
+	Контекст = Новый Структура(""ДФ"", параметр1);
+	Стр = ""
+	|Перем ВСДФ;
+	|
+	|Процедура ВСДФ_ПриПолученииСообщения() Экспорт
+	|	// Сообщить(""""== ВСДФ_ПриПолученииСообщения ======================================="""");
+	|	Сообщение = ВСДФ.АргументыСобытия.Сообщение;
+	|	// Сообщить(""""Сообщение = """" + Сообщение);
+	|	ДФ.ОбработатьСообщение(Сообщение);
+	|	
+	|	
+	|КонецПроцедуры
+	|   
+	|ВСДФ = Новый ВебСерверДекларФорм();
+	|ВСДФ.ПриПолученииСообщения = ВСДФ.Действие(ЭтотОбъект, """"ВСДФ_ПриПолученииСообщения"""");
+    |ВСДФ.Начать(""""127.0.0.1"""", ДФ.Порт);
+	|   
+	|
+	|// Запустим цикл обработки событий
+	|Пока ВСДФ.Продолжать Цикл
+	|   ВСДФ.ПолучитьСобытие().Выполнить();
+	|КонецЦикла;
+	|"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+Процедура ЗапускgetProps(параметр1) Экспорт
+	Контекст = Новый Структура(""ДФ"", параметр1);
+	Стр = ""
+	|Пока Истина Цикл
+	|	Пока ДФ.КоличествоВОчереди() > 0 Цикл
+	|		ДФ.Отправить();
+	|	КонецЦикла;
+	|	Приостановить(7);
+	|КонецЦикла;"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(1);
+МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускgetProps"", МассивПараметров);
+";
+            if (OpenInBrowser)
+            {
+                GlobalContext().LoadScriptFromString(backgroundTasksBr, extContext);
+            }
+            else
+            {
+                GlobalContext().LoadScriptFromString(backgroundTasks, extContext);
+            }
 
             // Создаем в этом каталоге файл package.json с заданными в сценарии начальнымисвойствами формы.
-            File.WriteAllText(pathStartupScript + separator + "package.json", Packagejson.packagejson, System.Text.Encoding.UTF8);
+            if (!OpenInBrowser)
+            {
+                File.WriteAllText(pathStartupScript + separator + "package.json", Packagejson.packagejson, System.Text.Encoding.UTF8);
+            }
 
             // Создаем в этом каталоге файл index.html.
-            File.WriteAllText(pathStartupScript + separator + "index.html", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
+            if (OpenInBrowser)
+            {
+                File.WriteAllText(pathStartupScript + separator + "index.html", Indexhtml.IndexhtmlBr, System.Text.Encoding.UTF8);
+            }
+            else
+            {
+                File.WriteAllText(pathStartupScript + separator + "index.html", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
+            }
 
             // Создаем в этом каталоге файл стиля (имя_скрипта).css
             // ...
@@ -1878,8 +1959,16 @@ namespace osdf
         [ContextMethod("ОбработатьСообщение", "ProcessMessage")]
         public void ProcessMessage(string p1)
         {
-            string[] zapros = p1.Split(new string[] { "\u000a", "\u000d" }, StringSplitOptions.RemoveEmptyEntries);
-            string strZapros = zapros[zapros.Length - 1];
+            string strZapros;
+            if (OpenInBrowser)
+            {
+                strZapros = p1;
+            }
+            else
+            {
+                string[] zapros = p1.Split(new string[] { "\u000a", "\u000d" }, StringSplitOptions.RemoveEmptyEntries);
+                strZapros = zapros[zapros.Length - 1];
+            }
             string[] massiv = strZapros.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
             //GlobalContext().Echo("Сообщение.Текст = " + p1);
             //GlobalContext().Echo("СтрЗапроса = " + strZapros);
@@ -2033,7 +2122,7 @@ namespace osdf
                 catch { }
                 if (resTest.Contains("!!!"))
                 {
-                    GlobalContext().Echo("Ошибка: " + resTest);
+                    GlobalContext().Echo("Ошибка1: " + resTest);
                 }
             }
         }
@@ -2128,7 +2217,7 @@ namespace osdf
                     catch
                     {
                         ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(str2[0]), propValue);
-                    }		
+                    }
                 }
                 catch { }
             }
@@ -2160,7 +2249,7 @@ namespace osdf
             }
             catch (Exception ex)
             {
-                GlobalContext().Echo("Ошибка: " + ex.Message);
+                GlobalContext().Echo("Ошибка2: " + ex.Message);
             }
             return res;
         }
@@ -2313,7 +2402,7 @@ namespace osdf
                 "}" +
                 "catch (err)" +
                 "{" +
-                "    sendPost('!!! Ошибка:' + err.message);" +
+                "    sendPost('!!! Ошибка3:' + err.message);" +
                 "}" +
                 "";
             function1 = function1.Replace("    ", " ").Replace("  ", " ");

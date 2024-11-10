@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 using ScriptEngine.HostedScript.Library;
+using System.Threading;
 
 namespace osdf
 {
@@ -259,45 +260,71 @@ namespace osdf
         [ContextMethod("Открыть", "Open")]
         public void Open()
         {
-            // Сформируем package.json
-            string resStr = "            ";
-            foreach (KeyValuePair<string, object> entry in props)
+            if (DeclarativeForms.openInBrowser)
             {
-                resStr = resStr + "            " + entry.Value + Environment.NewLine;
-            }
+                bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
+                string folderName = @".\";
+                if (!isWin)
+                {
+                    folderName = @"./";
+                }
+                DeclarativeForms.instance.LoadScripts(folderName);
+                // Запустим index.html в браузере по умолчанию.
+                string target = "index.html";
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                DeclarativeForms.process = process;
 
-            string str = osdf.Packagejson.packagejson;
-            string strFind = osdf.DeclarativeForms.StrFindBetween(str, "window\u0022: {", "}", false).Get(0).AsString();
-            resStr = resStr.Trim();
-            if (resStr.Length > 0)
+                process.StartInfo.FileName = target;
+                process.Start();
+                process.WaitForExit();
+                while (DeclarativeForms.wsserverOn)
+                {
+                    System.Threading.Thread.Sleep(9);
+                }
+                Environment.Exit(0);
+            }
+            else
             {
-                resStr = resStr.Substring(0, resStr.Length - 1);
+                // Сформируем package.json
+                string resStr = "            ";
+                foreach (KeyValuePair<string, object> entry in props)
+                {
+                    resStr = resStr + "            " + entry.Value + Environment.NewLine;
+                }
+
+                string str = Packagejson.packagejson;
+                string strFind = DeclarativeForms.StrFindBetween(str, "window\u0022: {", "}", false).Get(0).AsString();
+                resStr = resStr.Trim();
+                if (resStr.Length > 0)
+                {
+                    resStr = resStr.Substring(0, resStr.Length - 1);
+                }
+                string strReplace = "window\u0022: {" + Environment.NewLine + "            " + resStr + Environment.NewLine + "        }";
+                str = str.Replace(strFind, strReplace);
+                Packagejson.packagejson = str;
+
+                bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
+                string folderName = @".\";
+                if (!isWin)
+                {
+                    folderName = @"./";
+                }
+
+                DeclarativeForms.instance.LoadScripts(folderName);
+                string pathNW = DeclarativeForms._nw;
+
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+
+                DeclarativeForms.process = process;
+
+                process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                process.StartInfo.FileName = "\u0022" + pathNW + "\u0022";
+                process.StartInfo.Arguments = "\u0022" + pathStartupScript + separator;
+                process.Start();
+                process.WaitForExit();
+
+                Environment.Exit(0);
             }
-            string strReplace = "window\u0022: {" + Environment.NewLine + "            " + resStr + Environment.NewLine + "        }";
-            str = str.Replace(strFind, strReplace);
-            osdf.Packagejson.packagejson = str;
-
-            bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
-            string folderName = @".\";
-            if (!isWin)
-            {
-                folderName = @"./";
-            }
-
-            DeclarativeForms.instance.LoadScripts(folderName);
-            string pathNW = DeclarativeForms._nw;
-
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
-
-            DeclarativeForms.process = process;
-
-            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            process.StartInfo.FileName = "\u0022" + pathNW + "\u0022";
-            process.StartInfo.Arguments = "\u0022" + pathStartupScript + separator;
-            process.Start();
-            process.WaitForExit();
-
-            Environment.Exit(0);
         }
 
         public DfMenu menu;

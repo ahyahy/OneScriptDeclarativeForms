@@ -747,8 +747,6 @@
 				или (СвойствоРус = "ФункцияПерехода") 
 				или (СвойствоРус = "ВремяПерехода") 
 				
-				
-				
 				Тогда
 
 			ИначеЕсли (СвойствоРус = "Значение") и (
@@ -2002,6 +2000,7 @@
 	СоздатьФайлДФ("ByteMessage");
 	СоздатьФайлДФ("EventArgsServer");
 	СоздатьФайлДФ("Background");
+	СоздатьФайлДФ("Wsserver");
 	
 	
 	
@@ -2085,6 +2084,7 @@
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.AnimationProperties.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.PerspectiveOrigin.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Background.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Wsserver.html" 
 			
 		Тогда
 			Продолжить;
@@ -2306,6 +2306,288 @@
 		
 		
 		
+	ИначеЕсли ИмяФайлаДФ = "Wsserver" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using System;
+		|using System.Net;
+		|using System.Net.WebSockets;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.Machine;
+		|using System.Threading.Tasks;
+		|using System.Collections.Concurrent;
+		|
+		|namespace osws
+		|{
+		|    [ContextClass(""ВебСерверДекларФорм"", ""WsserverDeclarForms"")]
+		|    public class WsserverDeclarForms : AutoContext<WsserverDeclarForms>
+		|    {
+		|        private static string iPAddress;
+		|        private static int port;
+		|        public static WsserverDeclarForms instance;
+		|        public static WsMessageEventArgs Event = null;
+		|        public static WsAction EventAction = null;
+		|        public static ConcurrentQueue<WsMessageEventArgs> EventQueue = new ConcurrentQueue<WsMessageEventArgs>();
+		|        public static bool goOn = true;
+		|        // Это событие возникает при получении нового сообщения.
+		|        public event EventHandler<MessageEventArgs> MessageReceived;
+		|
+		|        [ScriptConstructor]
+		|        public static IRuntimeContextInstance Constructor()
+		|        {
+		|            instance = new WsserverDeclarForms();
+		|            instance.MessageReceived += Instance_MessageReceived;
+		|            return instance;
+		|        }
+		|
+		|        [ContextProperty(""АргументыСобытия"", ""EventArgs"")]
+		|        public WsMessageEventArgs EventArgs
+		|        {
+		|            get { return Event; }
+		|        }
+		|
+		|        [ContextProperty(""Продолжать"", ""GoOn"")]
+		|        public bool GoOn
+		|        {
+		|            get { return goOn; }
+		|            set { goOn = value; }
+		|        }
+		|
+		|        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
+		|        public DelegateAction DoEvents()
+		|        {
+		|            while (EventQueue.Count == 0)
+		|            {
+		|                System.Threading.Thread.Sleep(7);
+		|            }
+		|
+		|            IValue Action1 = EventHandling();
+		|            if (Action1.GetType() == typeof(WsAction))
+		|            {
+		|                return DelegateAction.Create(((WsAction)Action1).Script, ((WsAction)Action1).MethodName);
+		|            }
+		|            return (DelegateAction)Action1;
+		|        }
+		|
+		|        public static WsAction EventHandling()
+		|        {
+		|            WsMessageEventArgs EventArgs1;
+		|            EventQueue.TryDequeue(out EventArgs1);
+		|            Event = EventArgs1;
+		|            EventAction = EventArgs1.EventAction;
+		|            return EventAction;
+		|        }
+		|
+		|        [ContextMethod(""Начать"", ""Start"")]
+		|        public void Start(string p1, int p2)
+		|        {
+		|            iPAddress = p1;
+		|            port = p2;
+		|
+		|            Wsserver1();
+		|        }
+		|
+		|        public async void Wsserver1()
+		|        {
+		|            await WsserverStart();
+		|        }
+		|
+		|        static async Task WsserverStart()
+		|        {
+		|            var listener = new HttpListener();
+		|            listener.Prefixes.Add(""http://"" + iPAddress + "":"" + port + ""/"");
+		|            listener.Start();
+		|
+		|            osdf.DeclarativeForms.wsserverOn = true;
+		|            osdf.DeclarativeForms.GlobalContext().Echo(""Listening..."");
+		|
+		|            while (true)
+		|            {
+		|                var context = await listener.GetContextAsync();
+		|                if (context.Request.IsWebSocketRequest)
+		|                {
+		|                    await ProcessWebSocketRequest(context);
+		|                }
+		|                else
+		|                {
+		|                    context.Response.StatusCode = 400;
+		|                    context.Response.Close();
+		|                }
+		|            }
+		|        }
+		|
+		|        static async Task ProcessWebSocketRequest(HttpListenerContext context)
+		|        {
+		|            var ws = await context.AcceptWebSocketAsync(subProtocol: null);
+		|            //osdf.DeclarativeForms.GlobalContext().Echo(""WebSocket connected"");
+		|            await Echo(ws.WebSocket);
+		|        }
+		|
+		|        static async Task Echo(WebSocket ws)
+		|        {
+		|            //var buffer = new byte[1024 * 4];
+		|            var buffer = new byte[1024 * 1024 * 128]; //128 Megabytes.
+		|            while (true)
+		|            {
+		|                var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), System.Threading.CancellationToken.None);
+		|                if (result.MessageType == WebSocketMessageType.Text)
+		|                {
+		|                    string message1 = System.Text.Encoding.UTF8.GetString(buffer, 0, result.Count);
+		|                    //osdf.DeclarativeForms.GlobalContext().Echo(""Received: "" + message1);
+		|
+		|                    instance.OnMessageReceived(message1);
+		|
+		|                    string message = osdf.DeclarativeForms.strFunctions;
+		|
+		|                    var bytes = System.Text.Encoding.UTF8.GetBytes(message);
+		|                    await ws.SendAsync(new ArraySegment<byte>(bytes, 0, bytes.Length), WebSocketMessageType.Text, true, System.Threading.CancellationToken.None);
+		|
+		|                    osdf.DeclarativeForms.strFunctions = """";
+		|                }
+		|                else if (result.MessageType == WebSocketMessageType.Close)
+		|                {
+		|                    osdf.DeclarativeForms.wsserverOn = false;
+		|                    osdf.DeclarativeForms.GlobalContext().Echo(""WebSocket closed"");
+		|                    break;
+		|                }
+		|            }
+		|        }
+		|
+		|        [ContextProperty(""ПриПолученииСообщения"", ""MessageReceived"")]
+		|        public WsAction MessageReceived1 { get; set; }
+		|
+		|        [ContextMethod(""Действие"", ""Action"")]
+		|        public WsAction Action(IRuntimeContextInstance script, string methodName)
+		|        {
+		|            return new WsAction(script, methodName);
+		|        }
+		|
+		|        private static void Instance_MessageReceived(object sender, MessageEventArgs e)
+		|        {
+		|            //osdf.DeclarativeForms.GlobalContext().Echo(""========================DfWsserver_MessageReceived"");
+		|            if (instance.MessageReceived1 != null)
+		|            {
+		|                WsMessageEventArgs WsMessageEventArgs1 = new WsMessageEventArgs(e.MessageData);
+		|                WsMessageEventArgs1.EventAction = instance.MessageReceived1;
+		|                WsMessageEventArgs1.Message = e.MessageData;
+		|                //MessageEventArgs1.Sender = this;
+		|                EventQueue.Enqueue(WsMessageEventArgs1);
+		|
+		|                while (EventQueue.Count > 0)
+		|                {
+		|                    System.Threading.Thread.Sleep(7);
+		|                }
+		|            }
+		|        }
+		|
+		|        // Вызывает событие MessageReceived.
+		|        // ""message"" - Полученное сообщение.
+		|        public void OnMessageReceived(string message)
+		|        {
+		|            var handler = MessageReceived;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new MessageEventArgs(message));
+		|            }
+		|        }
+		|    }
+		|
+		|    public class MessageEventArgs
+		|    {
+		|        // Данные сообщения, которые передаются.
+		|        public string MessageData { get; set; }
+		|
+		|        ////// Пустой конструктор по умолчанию.
+		|        ////public MessageEventArgs()
+		|        ////{
+		|        ////}
+		|
+		|        // Создает новый объект ScsRawDataMessage со свойством MessageData.
+		|        // ""messageData"" - Данные сообщения, которые передаются.
+		|        public MessageEventArgs(string messageData)
+		|        {
+		|            MessageData = messageData;
+		|        }
+		|
+		|        //////[ContextProperty(""Действие"", ""EventAction"")]
+		|        ////public WsAction EventAction
+		|        ////{
+		|        ////    get { return EventAction; }
+		|        ////    set { EventAction = value; }
+		|        ////}
+		|    }
+		|
+		|    [ContextClass(""ВсСообщениеАрг"", ""WsMessageEventArgs"")]
+		|    public class WsMessageEventArgs : AutoContext<WsMessageEventArgs>
+		|    {
+		|        public WsMessageEventArgs(string p1)
+		|        {
+		|            message = p1;
+		|        }
+		|
+		|        private WsAction eventAction;
+		|        [ContextProperty(""Действие"", ""EventAction"")]
+		|        public WsAction EventAction
+		|        {
+		|            get { return eventAction; }
+		|            set { eventAction = value; }
+		|        }
+		|
+		|        //[ContextProperty(""Отправитель"", ""Sender"")]
+		|        //public IValue Sender
+		|        //{
+		|        //    get { return Base_obj.Sender.dll_obj; }
+		|        //}
+		|
+		|        private string message;
+		|        [ContextProperty(""Сообщение"", ""Message"")]
+		|        public string Message
+		|        {
+		|            get { return message; }
+		|            set { message = value; }
+		|        }
+		|    }
+		|
+		|    public class WsEventArgs
+		|    {
+		|        public WsEventArgs()
+		|        {
+		|        }
+		|
+		|        //[ContextProperty(""Действие"", ""EventAction"")]
+		|        //public IValue EventAction
+		|        //{
+		|        //    get { return Base_obj.EventAction; }
+		|        //    set { Base_obj.EventAction = value; }
+		|        //}
+		|
+		|        //[ContextProperty(""Отправитель"", ""Sender"")]
+		|        //public IValue Sender
+		|        //{
+		|        //    get { return OneScriptClientServer.RevertObj(Base_obj.Sender); }
+		|        //}
+		|    }
+		|
+		|    [ContextClass(""ВсДействие"", ""WsAction"")]
+		|    public class WsAction : AutoContext<WsAction>
+		|    {
+		|        public WsAction(IRuntimeContextInstance script, string methodName)
+		|        {
+		|            Script = script;
+		|            MethodName = methodName;
+		|        }
+		|
+		|        [ContextProperty(""ИмяМетода"", ""MethodName"")]
+		|        public string MethodName { get; set; }
+		|
+		|        [ContextProperty(""Сценарий"", ""Script"")]
+		|        public IRuntimeContextInstance Script { get; set; }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
 	ИначеЕсли ИмяФайлаДФ = "Background" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"using ScriptEngine.Machine.Contexts;
@@ -18104,7 +18386,165 @@
 		|    </body>
 		|</html>
 		|"";
-		|	}
+		|
+		|        public static string IndexhtmlBr = @""<!DOCTYPE html>
+		|<html>
+		|	<head>
+		|		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+		|		<link rel='stylesheet' href='"" + DeclarativeForms.CSSPath + @""' />
+		|
+		|		<script type='text/javascript'>
+		|            window.addEventListener('error', function (event) { alert(event.message + '\n' + event.filename); });
+		|        </script>
+		|
+		|		<script type='text/javascript'>
+		|function funFromString(func)
+		|{
+		|    let func2 = Function(func);
+		|    func2();
+		|}
+		|function doEvent(event)
+		|{
+		|    if (event.type == 'mouseup')
+		|    {
+		|        let button;
+		|        let eventButton = event.button;
+		|        if (eventButton == 0)
+		|        {
+		|            button = 'left';
+		|        }
+		|        else if (eventButton == 1)
+		|        {
+		|            button = 'middle';
+		|        }
+		|        else if (eventButton == 2)
+		|        {
+		|            button = 'right';
+		|        }
+		|
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""Button=' + button + 
+		|        '"" + spacer + @""X=' + event.clientX + 
+		|        '"" + spacer + @""Y=' + event.clientY);
+		|    }
+		|    else if (event.type == 'input')
+		|    {
+		|        let value = event.target.value;
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""Value=' + value);
+		|    }
+		|    else if (event.type == 'change')
+		|    {
+		|        let x = mapKeyEl.get(mapElKey.get(event.target));
+		|        //alert('nodeName = ' + event.target.nodeName + ' type = ' + event.target.type);
+		|        if (event.target.nodeName == 'INPUT')
+		|        {
+		|            if (event.target.type == 'file')
+		|            {
+		|                let txt = '';
+		|                if (x.files.length > 0)
+		|                {
+		|                    for (var i = 0; i < x.files.length; i++)
+		|                    {
+		|                        txt = txt + x.files[i].name + ';';
+		|                    }
+		|                } 
+		|                else
+		|                {
+		|                    x.value = null;
+		|                    txt = 'null';
+		|                }
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Files=' + txt);
+		|            }
+		|            else if (event.target.type == 'checkbox')
+		|            {
+		|                let _checked = event.target.checked;
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Checked=' + _checked);
+		|            }		
+		|        }
+		|        else if (event.target.nodeName == 'SELECT')
+		|        {
+		|            let txt = '';
+		|            var opt = event.target.options;
+		|            if (opt.length > 0)
+		|            {
+		|                for (var i = 0; i < opt.length; i++)
+		|                {
+		|                    if (opt[i].selected)
+		|                    {
+		|                        txt = txt + mapElKey.get(opt[i]) + ';';
+		|                    }
+		|                }
+		|            }
+		|            else
+		|            {
+		|                txt = 'null';
+		|            }
+		|            sendPost(
+		|            mapElKey.get(event.target) + 
+		|            '"" + spacer + @""' + event.type + 
+		|            '"" + spacer + @""ListItem=' + txt);
+		|        }
+		|    }
+		|    else
+		|    {
+		|        sendPost(mapElKey.get(event.target) + '"" + spacer + @""' + event.type);
+		|    }
+		|}
+		|function sendPost(str)
+		|{
+		|    try
+		|    {
+		|	    ws.send(str);
+		|    }
+		|    catch
+		|    {
+		|    }
+		|}
+		|var mapKeyEl = new Map();
+		|var mapElKey = new Map();
+		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
+		|//////var net = require('os1'); // Пример импорта модуля. os1.js в этом случае должен лежать рядом с package.json
+		|
+		|var ws = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.port + @""/');
+		|ws.onopen = function(event) { ws.send('mainForm' + '|' + 'loaded'); };
+		|//ws.onopen = function(event) { };
+		|ws.onmessage = function (event)
+		|{
+		|    var input = event.data;
+		|    var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
+		|    for (var i = 0; i < fields.length; i++)
+		|    {
+		|        var item = fields[i];
+		|        if (item != '')
+		|        {
+		|            funFromString(item);
+		|        }
+		|    }
+		|    //alert('Received: ' + event.data);
+		|};
+		|// ws.onclose = function (event) {alert('WebSocket closed');};
+		|// websocket.onerror = function (error) {alert('websocket error ' + error);};
+		|
+		|//sendPost('mainForm' + '"" + spacer + @""' + 'loaded');
+		|		</script>
+		|	</head>
+		|	<body>
+		|
+		|    </body>
+		|</html>
+		|"";
+		|    }
 		|}
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
@@ -18118,6 +18558,7 @@
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|using ScriptEngine.HostedScript.Library;
+		|using System.Threading;
 		|
 		|namespace osdf
 		|{
@@ -18373,45 +18814,71 @@
 		|        [ContextMethod(""Открыть"", ""Open"")]
 		|        public void Open()
 		|        {
-		|            // Сформируем package.json
-		|            string resStr = ""            "";
-		|            foreach (KeyValuePair<string, object> entry in props)
+		|            if (DeclarativeForms.openInBrowser)
 		|            {
-		|                resStr = resStr + ""            "" + entry.Value + Environment.NewLine;
-		|            }
+		|                bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
+		|                string folderName = @"".\"";
+		|                if (!isWin)
+		|                {
+		|                    folderName = @""./"";
+		|                }
+		|                DeclarativeForms.instance.LoadScripts(folderName);
+		|                // Запустим index.html в браузере по умолчанию.
+		|                string target = ""index.html"";
+		|                System.Diagnostics.Process process = new System.Diagnostics.Process();
+		|                DeclarativeForms.process = process;
 		|
-		|            string str = osdf.Packagejson.packagejson;
-		|            string strFind = osdf.DeclarativeForms.StrFindBetween(str, ""window\u0022: {"", ""}"", false).Get(0).AsString();
-		|            resStr = resStr.Trim();
-		|            if (resStr.Length > 0)
+		|                process.StartInfo.FileName = target;
+		|                process.Start();
+		|                process.WaitForExit();
+		|                while (DeclarativeForms.wsserverOn)
+		|                {
+		|                    System.Threading.Thread.Sleep(9);
+		|                }
+		|                Environment.Exit(0);
+		|            }
+		|            else
 		|            {
-		|                resStr = resStr.Substring(0, resStr.Length - 1);
+		|                // Сформируем package.json
+		|                string resStr = ""            "";
+		|                foreach (KeyValuePair<string, object> entry in props)
+		|                {
+		|                    resStr = resStr + ""            "" + entry.Value + Environment.NewLine;
+		|                }
+		|
+		|                string str = Packagejson.packagejson;
+		|                string strFind = DeclarativeForms.StrFindBetween(str, ""window\u0022: {"", ""}"", false).Get(0).AsString();
+		|                resStr = resStr.Trim();
+		|                if (resStr.Length > 0)
+		|                {
+		|                    resStr = resStr.Substring(0, resStr.Length - 1);
+		|                }
+		|                string strReplace = ""window\u0022: {"" + Environment.NewLine + ""            "" + resStr + Environment.NewLine + ""        }"";
+		|                str = str.Replace(strFind, strReplace);
+		|                Packagejson.packagejson = str;
+		|
+		|                bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
+		|                string folderName = @"".\"";
+		|                if (!isWin)
+		|                {
+		|                    folderName = @""./"";
+		|                }
+		|
+		|                DeclarativeForms.instance.LoadScripts(folderName);
+		|                string pathNW = DeclarativeForms._nw;
+		|
+		|                System.Diagnostics.Process process = new System.Diagnostics.Process();
+		|
+		|                DeclarativeForms.process = process;
+		|
+		|                process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+		|                process.StartInfo.FileName = ""\u0022"" + pathNW + ""\u0022"";
+		|                process.StartInfo.Arguments = ""\u0022"" + pathStartupScript + separator;
+		|                process.Start();
+		|                process.WaitForExit();
+		|
+		|                Environment.Exit(0);
 		|            }
-		|            string strReplace = ""window\u0022: {"" + Environment.NewLine + ""            "" + resStr + Environment.NewLine + ""        }"";
-		|            str = str.Replace(strFind, strReplace);
-		|            osdf.Packagejson.packagejson = str;
-		|
-		|            bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
-		|            string folderName = @"".\"";
-		|            if (!isWin)
-		|            {
-		|                folderName = @""./"";
-		|            }
-		|
-		|            DeclarativeForms.instance.LoadScripts(folderName);
-		|            string pathNW = DeclarativeForms._nw;
-		|
-		|            System.Diagnostics.Process process = new System.Diagnostics.Process();
-		|
-		|            DeclarativeForms.process = process;
-		|
-		|            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-		|            process.StartInfo.FileName = ""\u0022"" + pathNW + ""\u0022"";
-		|            process.StartInfo.Arguments = ""\u0022"" + pathStartupScript + separator;
-		|            process.Start();
-		|            process.WaitForExit();
-		|
-		|            Environment.Exit(0);
 		|        }
 		|
 		|        public DfMenu menu;
@@ -18871,6 +19338,7 @@
 		|            DeclarativeForms inst = getInstance();
 		|            inst.InjectGlobalProperty(shareStructure, ""ОбщаяСтруктура"", false);
 		|            shareStructure.Insert(""ДФ"", inst);
+		|            openInBrowser = false;
 		|            return inst;
 		|        }
 		|
@@ -18895,6 +19363,23 @@
 		|        {
 		|            return GlobalsManager.GetGlobalContext<SystemGlobalContext>();
 		|        }
+		|
+		|        public static bool wsserverOn;
+		|        [ContextProperty(""ВебСерверРаботает"", ""WsserverOn"")]
+		|        public bool WsserverOn
+		|        {
+		|            get { return wsserverOn; }
+		|            set { wsserverOn = value; }
+		|        }
+		|
+		|        public static bool openInBrowser;
+		|        [ContextProperty(""ОткрытьВБраузере"", ""OpenInBrowser"")]
+		|        public bool OpenInBrowser
+		|        {
+		|            get { return openInBrowser; }
+		|            set { openInBrowser = value; }
+		|        }
+		|
 		|		
 		|        public static string CSSPath = ""styles.css"";
 		|        private string _cssPath;
@@ -18914,7 +19399,7 @@
 		|        {
 		|            return new DfBackground(p1, p2, p3, p4, p5, p6, p7, p8);
 		|        }
-		|		
+		|
 		|        [ContextMethod(""Скрипт"", ""Script"")]
 		|        public DfScript Script()
 		|        {
@@ -20464,7 +20949,7 @@
 		|	|
 		|	|// Запустим цикл обработки событий
 		|	|Пока КСДФ.Продолжать Цикл
-		|	|	КСДФ.ПолучитьСобытие().Выполнить();
+		|	|   КСДФ.ПолучитьСобытие().Выполнить();
 		|	|КонецЦикла;
 		|	|"""";
 		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
@@ -20487,13 +20972,76 @@
 		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
 		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускgetProps"""", МассивПараметров);
 		|"";
-		|            GlobalContext().LoadScriptFromString(backgroundTasks, extContext);
+		|
+		|            string backgroundTasksBr = @""
+		|Процедура ЗапускКлиента(параметр1) Экспорт
+		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
+		|	Стр = """"
+		|	|Перем ВСДФ;
+		|	|
+		|	|Процедура ВСДФ_ПриПолученииСообщения() Экспорт
+		|	|	// Сообщить(""""""""== ВСДФ_ПриПолученииСообщения ======================================="""""""");
+		|	|	Сообщение = ВСДФ.АргументыСобытия.Сообщение;
+		|	|	// Сообщить(""""""""Сообщение = """""""" + Сообщение);
+		|	|	ДФ.ОбработатьСообщение(Сообщение);
+		|	|	
+		|	|	
+		|	|КонецПроцедуры
+		|	|   
+		|	|ВСДФ = Новый ВебСерверДекларФорм();
+		|	|ВСДФ.ПриПолученииСообщения = ВСДФ.Действие(ЭтотОбъект, """"""""ВСДФ_ПриПолученииСообщения"""""""");
+		|    |ВСДФ.Начать(""""""""127.0.0.1"""""""", ДФ.Порт);
+		|	|   
+		|	|
+		|	|// Запустим цикл обработки событий
+		|	|Пока ВСДФ.Продолжать Цикл
+		|	|   ВСДФ.ПолучитьСобытие().Выполнить();
+		|	|КонецЦикла;
+		|	|"""";
+		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+		|КонецПроцедуры
+		|
+		|Процедура ЗапускgetProps(параметр1) Экспорт
+		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
+		|	Стр = """"
+		|	|Пока Истина Цикл
+		|	|	Пока ДФ.КоличествоВОчереди() > 0 Цикл
+		|	|		ДФ.Отправить();
+		|	|	КонецЦикла;
+		|	|	Приостановить(7);
+		|	|КонецЦикла;"""";
+		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+		|КонецПроцедуры
+		|
+		|МассивПараметров = Новый Массив(1);
+		|МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
+		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускgetProps"""", МассивПараметров);
+		|"";
+		|            if (OpenInBrowser)
+		|            {
+		|                GlobalContext().LoadScriptFromString(backgroundTasksBr, extContext);
+		|            }
+		|            else
+		|            {
+		|                GlobalContext().LoadScriptFromString(backgroundTasks, extContext);
+		|            }
 		|
 		|            // Создаем в этом каталоге файл package.json с заданными в сценарии начальнымисвойствами формы.
-		|            File.WriteAllText(pathStartupScript + separator + ""package.json"", Packagejson.packagejson, System.Text.Encoding.UTF8);
+		|            if (!OpenInBrowser)
+		|            {
+		|                File.WriteAllText(pathStartupScript + separator + ""package.json"", Packagejson.packagejson, System.Text.Encoding.UTF8);
+		|            }
 		|
 		|            // Создаем в этом каталоге файл index.html.
-		|            File.WriteAllText(pathStartupScript + separator + ""index.html"", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
+		|            if (OpenInBrowser)
+		|            {
+		|                File.WriteAllText(pathStartupScript + separator + ""index.html"", Indexhtml.IndexhtmlBr, System.Text.Encoding.UTF8);
+		|            }
+		|            else
+		|            {
+		|                File.WriteAllText(pathStartupScript + separator + ""index.html"", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
+		|            }
 		|
 		|            // Создаем в этом каталоге файл стиля (имя_скрипта).css
 		|            // ...
@@ -20690,8 +21238,16 @@
 		|        [ContextMethod(""ОбработатьСообщение"", ""ProcessMessage"")]
 		|        public void ProcessMessage(string p1)
 		|        {
-		|            string[] zapros = p1.Split(new string[] { ""\u000a"", ""\u000d"" }, StringSplitOptions.RemoveEmptyEntries);
-		|            string strZapros = zapros[zapros.Length - 1];
+		|            string strZapros;
+		|            if (OpenInBrowser)
+		|            {
+		|                strZapros = p1;
+		|            }
+		|            else
+		|            {
+		|                string[] zapros = p1.Split(new string[] { ""\u000a"", ""\u000d"" }, StringSplitOptions.RemoveEmptyEntries);
+		|                strZapros = zapros[zapros.Length - 1];
+		|            }
 		|            string[] massiv = strZapros.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
 		|            //GlobalContext().Echo(""Сообщение.Текст = "" + p1);
 		|            //GlobalContext().Echo(""СтрЗапроса = "" + strZapros);
@@ -20845,7 +21401,7 @@
 		|                catch { }
 		|                if (resTest.Contains(""!!!""))
 		|                {
-		|                    GlobalContext().Echo(""Ошибка: "" + resTest);
+		|                    GlobalContext().Echo(""Ошибка1: "" + resTest);
 		|                }
 		|            }
 		|        }
@@ -20940,7 +21496,7 @@
 		|                    catch
 		|                    {
 		|                        ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(str2[0]), propValue);
-		|                    }		
+		|                    }
 		|                }
 		|                catch { }
 		|            }
@@ -20972,7 +21528,7 @@
 		|            }
 		|            catch (Exception ex)
 		|            {
-		|                GlobalContext().Echo(""Ошибка: "" + ex.Message);
+		|                GlobalContext().Echo(""Ошибка2: "" + ex.Message);
 		|            }
 		|            return res;
 		|        }
@@ -21125,7 +21681,7 @@
 		|                ""}"" +
 		|                ""catch (err)"" +
 		|                ""{"" +
-		|                ""    sendPost('!!! Ошибка:' + err.message);"" +
+		|                ""    sendPost('!!! Ошибка3:' + err.message);"" +
 		|                ""}"" +
 		|                """";
 		|            function1 = function1.Replace(""    "", "" "").Replace(""  "", "" "");

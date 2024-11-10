@@ -281,6 +281,7 @@
     <Compile Include="WeekSelection.cs" />
     <Compile Include="WhiteSpace.cs" />
     <Compile Include="WordWrap.cs" />
+    <Compile Include="Wsserver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
