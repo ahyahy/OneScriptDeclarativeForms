@@ -174,18 +174,10 @@
 		
 		Тогда
 		Стр = 
-		"using ScriptEngine.HostedScript.Library.Binary;
-		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.Machine.Contexts;
+		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
-		|using System.Collections.Concurrent;
 		|using System.Collections.Generic;
 		|using System.Collections;
-		|using System.IO;
-		|using System.Linq;
-		|using System.Reflection;
-		|using System.Runtime.InteropServices;
-		|using System;
 		|";
 		Возврат Стр;
 	ИначеЕсли КлассАнгл = "AdditionalDiv" 		
@@ -270,24 +262,26 @@
 		или КлассАнгл = "UnderlineText" 		
 		или КлассАнгл = "UnorderedList" 		
 		или КлассАнгл = "WeekSelection" 
-		или КлассАнгл = "Script" 
 		Тогда
 		Стр = 
-		"using ScriptEngine.HostedScript.Library.Binary;
-		|using ScriptEngine.HostedScript.Library;
+		"using ScriptEngine.HostedScript.Library;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
-		|using System.Collections.Concurrent;
-		|using System.Collections.Generic;
-		|using System.Collections;
 		|using System.IO;
-		|using System.Linq;
 		|using System.Reflection;
-		|using System.Runtime.InteropServices;
 		|using System;
 		|";
 		Возврат Стр;
-
+	ИначеЕсли КлассАнгл = "Script" 		
+		Тогда
+		Стр = 
+		"using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.IO;
+		|using System.Reflection;
+		|";
+		Возврат Стр;
 
 	
 		
@@ -341,9 +335,9 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('" + СловарьКлассов(КлассАнгл)[1] + "'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            strFunc = ""mapKeyEl.get('"" + ItemKey + ""').type = '" + СловарьКлассов(КлассАнгл)[2] + "';"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;		
+		|            DeclarativeForms.SendStrFunc(strFunc);		
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -366,7 +360,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('tr'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -382,7 +376,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', mapKeyEl.get(\u0022"" + table.ItemKey + ""\u0022)."" + method + ""("" + index + ""));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -405,7 +399,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('td'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -421,7 +415,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', mapKeyEl.get(\u0022"" + tableRow.ItemKey + ""\u0022)."" + method + ""("" + index + ""));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -444,9 +438,9 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('" + СловарьКлассов(КлассАнгл)[1] + "'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            strFunc = ""mapKeyEl.get('"" + ItemKey + ""').type = '" + СловарьКлассов(КлассАнгл)[2] + "';"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;		
+		|            DeclarativeForms.SendStrFunc(strFunc);		
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -455,8 +449,6 @@
 		|            offsetHeight = ValueFactory.Create(0);
 		|            offsetLeft = ValueFactory.Create(0);
 		|            offsetWidth = ValueFactory.Create(0);
-		|		
-		|            Value = ValueFactory.Create("""");
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -471,7 +463,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('table'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -497,7 +489,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.getElementsByTagName('body')[0]);"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -516,7 +508,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('script'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -533,7 +525,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('canvas'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -556,7 +548,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('" + СловарьКлассов(КлассАнгл)[1] + "'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|            style = new DfStyle();
 		|            style.Owner = this;
@@ -615,11 +607,9 @@
 				или (СвойствоРус = "Верх") 
 				или (СвойствоРус = "Видимость") 
 				или (СвойствоРус = "ВписываниеОбъекта") 
-				// или (СвойствоРус = "Выбран") 
 				или (СвойствоРус = "ВыбранныйПоУмолчанию") 
 				или (СвойствоРус = "ВыделениеПользователем") 
 				или (СвойствоРус = "ВыравниваниеОтдельных") 
-				// или (СвойствоРус = "ВыравниваниеСодержимого") 
 				или (СвойствоРус = "ВыравниваниеЭлементов") 
 				или (СвойствоРус = "ГоризонтальноеВыравнивание") 
 				или (СвойствоРус = "ДанныеРисунка") 
@@ -629,23 +619,16 @@
 				или (СвойствоРус = "ЗадержкаАнимации") 
 				или (СвойствоРус = "ЗаливкаАнимации") 
 				или (СвойствоРус = "ЗаполнениеКолонок") 
-				// или (СвойствоРус = "Заполнитель") 
 				или (СвойствоРус = "Значок") 
 				или (СвойствоРус = "ИзменяемыйРазмер") 
-				// или (СвойствоРус = "ИндексВыбранного") 
-				// или (СвойствоРус = "ИндексСтроки") 
-				// или (СвойствоРус = "ИндексСтрокиВСекции") 
 				или (СвойствоРус = "ИнтервалГраницы") 
 				или (СвойствоРус = "ИнтервалКолонок") 
 				или (СвойствоРус = "ИнтервалСимволов") 
 				или (СвойствоРус = "ИнтервалСлов") 
 				или (СвойствоРус = "ИнтервалСтрок") 
-				// или (СвойствоРус = "Итоги") 
 				или (СвойствоРус = "Калибровка") 
 				или (СвойствоРус = "КартинкаСтиляСписка") 
-				// или (СвойствоРус = "Количество") 
 				или (СвойствоРус = "КоличествоПовторов") 
-				// или (СвойствоРус = "Колонки") 
 				или (СвойствоРус = "Композиция") 
 				или (СвойствоРус = "Курсор") 
 				или (СвойствоРус = "Лево") 
@@ -676,7 +659,6 @@
 				или (СвойствоРус = "ПереполнениеТекста") 
 				или (СвойствоРус = "Перспектива") 
 				или (СвойствоРус = "ПоведениеПрокрутки") 
-				// или (СвойствоРус = "Позиция") 
 				или (СвойствоРус = "ПозицияСтиляСписка") 
 				или (СвойствоРус = "ПоложениеЗаголовка") 
 				или (СвойствоРус = "ПомеченПоУмолчанию") 
@@ -704,7 +686,6 @@
 				или (СвойствоРус = "СтильРазделителяКолонок") 
 				или (СвойствоРус = "СтильСдвига") 
 				или (СвойствоРус = "СтильУглаПересечения") 
-				// или (СвойствоРус = "Строки") 
 				или (СвойствоРус = "ТекстСсылки") 
 				или (СвойствоРус = "Тень") 
 				или (СвойствоРус = "ТипСтиляСписка") 
@@ -717,13 +698,9 @@
 				или (СвойствоРус = "ЦветРазделителяКолонок") 
 				или (СвойствоРус = "ЦветТекста") 
 				или (СвойствоРус = "ЦветТени") 
-				// или (СвойствоРус = "ШапкаТаблицы") 
 				или (СвойствоРус = "ШиринаЛинии") 
 				или (СвойствоРус = "ШиринаРазделителяКолонок") 
 				или (СвойствоРус = "Шрифт") 
-				// или (СвойствоРус = "ЭлементыСписка") 
-				// или (СвойствоРус = "Ячейки") 
-				// или (СвойствоРус = "ОбластиТаблицы") 
 				или (СвойствоРус = "Гибкость") 
 				или (СвойствоРус = "ДлинаТабуляции") 
 				или (СвойствоРус = "ДлительностьАнимации") 
@@ -749,28 +726,111 @@
 				
 				Тогда
 
-			ИначеЕсли (СвойствоРус = "Значение") и (
-				КлассАнгл = "NumberField"
-				или КлассАнгл = "Range"
-				) Тогда
+			ИначеЕсли (СвойствоРус = "Значение") и (КлассАнгл = "ColorSelection") Тогда
 				Стр = Стр +
-				"        private int _value;
+				"        public IValue _value { get; set; }
 				|        [ContextProperty(""Значение"", ""Value"")]
-				|        public int Value
+				|        public IValue Value
 				|        {
 				|            get { return _value; }
 				|            set
 				|            {
 				|                _value = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['value'] = '"" + _value + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                string str1 = _value.AsString().Replace("" "", """").Replace(""rgb("", """").Replace("")"", """");
+				|                string[] result1 = str1.Split(new string[] { "","" }, StringSplitOptions.RemoveEmptyEntries);
+				|                string hexValue = Int32.Parse(result1[0]).ToString(""X"") + Int32.Parse(result1[1]).ToString(""X"") + Int32.Parse(result1[2]).ToString(""X"");
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['value'] = '#"" + hexValue + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Значение") и (КлассАнгл = "NumberField") Тогда
+				Стр = Стр +
+				"        public IValue _value { get; set; }
+				|        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return _value; }
+				|            set
+				|            {
+				|                _value = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['value'] = '"" + _value.AsNumber().ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Шаг") и (КлассАнгл = "NumberField") Тогда
+				Стр = Стр +
+				"        public IValue step { get; set; }
+				|        [ContextProperty(""Шаг"", ""Step"")]
+				|        public IValue Step
+				|        {
+				|            get { return step; }
+				|            set
+				|            {
+				|                step = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['step'] = '"" + step.AsNumber().ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Значение") и (КлассАнгл = "Progress"
+				или КлассАнгл = "Meter"
+				) 
+				Тогда
+				Стр = Стр +
+				"        public IValue _value { get; set; }
+				|        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return _value; }
+				|            set
+				|            {
+				|                _value = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['value'] = "" + (_value.AsNumber() / 100).ToString().Replace("","", ""."") + "";"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Значение") и (КлассАнгл = "Range") Тогда
+				Стр = Стр +
+				"        public IValue _value { get; set; }
+				|        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return _value; }
+				|            set
+				|            {
+				|                _value = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['value'] = '"" + _value.AsNumber().ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Шаг") и (КлассАнгл = "Range") Тогда
+				Стр = Стр +
+				"        public IValue step { get; set; }
+				|        [ContextProperty(""Шаг"", ""Step"")]
+				|        public IValue Step
+				|        {
+				|            get { return step; }
+				|            set
+				|            {
+				|                step = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['step'] = '"" + step.AsNumber().ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Форма") и (КлассАнгл = "Area") Тогда
 				Стр = Стр +
-				"        private IValue form;
+				"        public IValue form { get; set; }
 				|        [ContextProperty(""Форма"", ""Shape"")]
 				|        public IValue Shape
 				|        {
@@ -808,49 +868,49 @@
 				|                    strCoords = strCoords + x1 + "","" + y1 + "","" + x2 + "","" + y2;
 				|                }
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['shape'] = '"" + strForm + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|
 				|                strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['coords'] = '"" + strCoords + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Описание") и (КлассАнгл = "Area") Тогда
 				Стр = Стр +
-				"        private string аlt;
+				"        public string _аlt { get; set; }
 				|        [ContextProperty(""Описание"", ""Alt"")]
 				|        public string Alt
 				|        {
-				|            get { return аlt; }
+				|            get { return _аlt; }
 				|            set
 				|            {
-				|                аlt = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['аlt'] = '"" + аlt + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                _аlt = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['аlt'] = '"" + _аlt + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Описание") и (КлассАнгл = "Image") Тогда
 				Стр = Стр +
-				"        private string аlt;
+				"        public string _аlt { get; set; }
 				|        [ContextProperty(""Описание"", ""Alt"")]
 				|        public string Alt
 				|        {
-				|            get { return аlt; }
+				|            get { return _аlt; }
 				|            set
 				|            {
-				|                аlt = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['аlt'] = '"" + аlt + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                _аlt = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['аlt'] = '"" + _аlt + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "ИмяКарты") и (КлассАнгл = "Image") Тогда
 				Стр = Стр +
-				"        private string useMap;
+				"        public string useMap { get; set; }
 				|        [ContextProperty(""ИмяКарты"", ""UseMap"")]
 				|        public string UseMap
 				|        {
@@ -859,31 +919,30 @@
 				|            {
 				|                useMap = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['useMap'] = '"" + ""#"" + useMap + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Громкость") и (КлассАнгл = "Audio") Тогда
 				Стр = Стр +
-				"        private decimal volume;
+				"        public IValue volume { get; set; }
 				|        [ContextProperty(""Громкость"", ""Volume"")]
-				|        public decimal Volume
+				|        public IValue Volume
 				|        {
 				|            get { return volume; }
 				|            set
 				|            {
 				|                volume = value;
-				|                string res = volume.ToString().Replace("","", ""."");
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['volume'] = '"" + res + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['volume'] = '"" + volume.AsString().ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Скорость") и (КлассАнгл = "Audio") Тогда
 				Стр = Стр +
-				"        private IValue playbackRate;
+				"        public IValue playbackRate { get; set; }
 				|        [ContextProperty(""Скорость"", ""PlaybackRate"")]
 				|        public IValue PlaybackRate
 				|        {
@@ -893,14 +952,14 @@
 				|                playbackRate = value;
 				|                string res = playbackRate.AsNumber().ToString().Replace("","", ""."");
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['playbackRate'] = '"" + res + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Высота") и (КлассАнгл = "Canvas") Тогда
 				Стр = Стр +
-				"        private int height;
+				"        public int height { get; set; }
 				|        [ContextProperty(""Высота"", ""Height"")]
 				|        public int Height
 				|        {
@@ -909,14 +968,14 @@
 				|            {
 				|                height = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['height'] = '"" + height + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Ширина") и (КлассАнгл = "Canvas") Тогда
 				Стр = Стр +
-				"        private int width;
+				"        public int width { get; set; }
 				|        [ContextProperty(""Ширина"", ""Width"")]
 				|        public int Width
 				|        {
@@ -925,14 +984,14 @@
 				|            {
 				|                width = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['width'] = '"" + width + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Контекст2d") и (КлассАнгл = "Canvas") Тогда
 				Стр = Стр +
-				"        private DfContext2d context2d;
+				"        public DfContext2d context2d { get; set; }
 				|        [ContextProperty(""Контекст2d"", ""Context2d"")]
 				|        public DfContext2d Context2d
 				|        {
@@ -943,7 +1002,7 @@
 				|";
 			ИначеЕсли (СвойствоРус = "ИндексЯчейки") и (КлассАнгл = "Cell") Тогда
 				Стр = Стр +
-				"        private int cellIndex;
+				"        public int cellIndex { get; set; }
 				|        [ContextProperty(""ИндексЯчейки"", ""CellIndex"")]
 				|        public int CellIndex
 				|        {
@@ -952,14 +1011,14 @@
 				|            {
 				|                cellIndex = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['cellIndex'] = '"" + cellIndex + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Высота") и (КлассАнгл = "Image") Тогда
 				Стр = Стр +
-				"        private int height;
+				"        public int height { get; set; }
 				|        [ContextProperty(""Высота"", ""Height"")]
 				|        public int Height
 				|        {
@@ -968,14 +1027,14 @@
 				|            {
 				|                height = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['height'] = '"" + height + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Ширина") и (КлассАнгл = "Image") Тогда
 				Стр = Стр +
-				"        private int width;
+				"        public int width { get; set; }
 				|        [ContextProperty(""Ширина"", ""Width"")]
 				|        public int Width
 				|        {
@@ -984,7 +1043,7 @@
 				|            {
 				|                width = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['width'] = '"" + width + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
@@ -1009,86 +1068,182 @@
 				|        }
 				|
 				|";
-			ИначеЕсли (СвойствоРус = "ВысокоеЗначение") и (КлассАнгл = "Meter") Тогда
-				Стр = Стр +
-				"        private decimal high;
-				|        [ContextProperty(""ВысокоеЗначение"", ""High"")]
-				|        public decimal High
-				|        {
-				|            get { return high; }
-				|            set
-				|            {
-				|                high = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['high'] = '"" + high.ToString().Replace("","", ""."") + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
-				|            }
-				|        }
-				|
-				|";
-			ИначеЕсли (СвойствоРус = "НизкоеЗначение") и (КлассАнгл = "Meter") Тогда
-				Стр = Стр +
-				"        private decimal low;
-				|        [ContextProperty(""НизкоеЗначение"", ""Low"")]
-				|        public decimal Low
-				|        {
-				|            get { return low; }
-				|            set
-				|            {
-				|                low = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['low'] = '"" + low.ToString().Replace("","", ""."") + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
-				|            }
-				|        }
-				|
-				|";
 			ИначеЕсли (СвойствоРус = "Оптимум") и (КлассАнгл = "Meter") Тогда
 				Стр = Стр +
-				"        private decimal optimum;
+				"        public IValue optimum { get; set; }
 				|        [ContextProperty(""Оптимум"", ""Optimum"")]
-				|        public decimal Optimum
+				|        public IValue Optimum
 				|        {
 				|            get { return optimum; }
 				|            set
 				|            {
 				|                optimum = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['optimum'] = '"" + optimum.ToString().Replace("","", ""."") + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['optimum'] = '"" + (optimum.AsNumber() / 100).ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
-			ИначеЕсли (СвойствоРус = "Максимум") и (КлассАнгл = "Meter") Тогда
+			ИначеЕсли (СвойствоРус = "Максимум") и (КлассАнгл = "Meter"
+				или КлассАнгл = "Progress"
+				) 
+				Тогда
 				Стр = Стр +
-				"        private decimal max;
+				"        public IValue max { get; set; }
 				|        [ContextProperty(""Максимум"", ""Max"")]
-				|        public decimal Max
+				|        public IValue Max
 				|        {
 				|            get { return max; }
 				|            set
 				|            {
 				|                max = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['max'] = '"" + max.ToString().Replace("","", ""."") + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['max'] = '"" + (max.AsNumber() / 100).ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли (СвойствоРус = "Минимум") и (КлассАнгл = "Meter") Тогда
 				Стр = Стр +
-				"        private decimal min;
+				"        public IValue min { get; set; }
 				|        [ContextProperty(""Минимум"", ""Min"")]
-				|        public decimal Min
+				|        public IValue Min
 				|        {
 				|            get { return min; }
 				|            set
 				|            {
 				|                min = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['min'] = '"" + min.ToString().Replace("","", ""."") + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['min'] = '"" + (min.AsNumber() / 100).ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
+				
+				
+				
+				
+				
+				
+				
+			ИначеЕсли (СвойствоРус = "Максимум") и (КлассАнгл = "NumberField"
+				или КлассАнгл = "Range"
+				) 
+				Тогда
+				Стр = Стр +
+				"        public IValue max { get; set; }
+				|        [ContextProperty(""Максимум"", ""Max"")]
+				|        public IValue Max
+				|        {
+				|            get { return max; }
+				|            set
+				|            {
+				|                max = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['max'] = '"" + max.AsNumber().ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Минимум") и (КлассАнгл = "NumberField"
+				или КлассАнгл = "Range"
+				) 
+				Тогда
+				Стр = Стр +
+				"        public IValue min { get; set; }
+				|        [ContextProperty(""Минимум"", ""Min"")]
+				|        public IValue Min
+				|        {
+				|            get { return min; }
+				|            set
+				|            {
+				|                min = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['min'] = '"" + min.AsNumber().ToString().Replace("","", ""."") + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+
+
+
+			ИначеЕсли (СвойствоРус = "Максимум") и (КлассАнгл = "DateSelection"
+				или КлассАнгл = "DateTimeLocalSelection"
+				или КлассАнгл = "DateTimeSelection"
+				или КлассАнгл = "DeclarativeForms"
+				или КлассАнгл = "MonthSelection"
+				или КлассАнгл = "TimeSelection"
+				или КлассАнгл = "WeekSelection"
+				) 
+				Тогда
+				Стр = Стр +
+				"        public string max { get; set; }
+				|        [ContextProperty(""Максимум"", ""Max"")]
+				|        public string Max
+				|        {
+				|            get { return max; }
+				|            set
+				|            {
+				|                max = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['max'] = '"" + max + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Минимум") и (КлассАнгл = "DateSelection"
+				или КлассАнгл = "DateTimeLocalSelection"
+				или КлассАнгл = "DateTimeSelection"
+				или КлассАнгл = "DeclarativeForms"
+				или КлассАнгл = "MonthSelection"
+				или КлассАнгл = "TimeSelection"
+				или КлассАнгл = "WeekSelection"
+				) 
+				Тогда
+				Стр = Стр +
+				"        public string min { get; set; }
+				|        [ContextProperty(""Минимум"", ""Min"")]
+				|        public string Min
+				|        {
+				|            get { return min; }
+				|            set
+				|            {
+				|                min = value;
+				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['min'] = '"" + min + ""';"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			ИначеЕсли (СвойствоРус = "Позиция") и (КлассАнгл = "Progress") Тогда
 				Стр = Стр +
 				"        public IValue position { get; set; }
@@ -1116,22 +1271,6 @@
 				|        public ArrayImpl Options
 				|        {
 				|            get { return options; }
-				|        }
-				|        
-				|";
-			ИначеЕсли (СвойствоРус = "Помечен") и (КлассАнгл = "CheckBox") Тогда
-				Стр = Стр +
-				"        public bool _checked { get; set; }
-				|        [ContextProperty(""Помечен"", ""Checked"")]
-				|        public bool Checked
-				|        {
-				|            get { return _checked; }
-				|            set
-				|            {
-				|                _checked = value;
-				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['checked'] = '"" + _checked.ToString().ToLower() + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
-				|            }
 				|        }
 				|        
 				|";
@@ -1206,6 +1345,16 @@
 				|        
 				|";
 				
+			ИначеЕсли (СвойствоРус = "ШапкаТаблицы") и (КлассАнгл = "Table") Тогда
+				Стр = Стр +
+				"        public DfTableHeader tHead { get; set; }
+				|        [ContextProperty(""ШапкаТаблицы"", ""TableHeader"")]
+				|        public DfTableHeader TableHeader
+				|        {
+				|            get { return tHead; }
+				|        }
+				|        
+				|";
 				
 				
 				
@@ -1220,7 +1369,7 @@
 				
 			ИначеЕсли СвойствоРус = "Размер" Тогда
 				Стр = Стр +
-				"        private int size;
+				"        public int size { get; set; }
 				|        [ContextProperty(""Размер"", ""Size"")]
 				|        public int Size
 				|        {
@@ -1229,14 +1378,14 @@
 				|            {
 				|                size = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['size'] = "" + size + "";"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли СвойствоРус = "МаксимальнаяДлина" Тогда
 				Стр = Стр +
-				"        private int maxLength;
+				"        public int maxLength { get; set; }
 				|        [ContextProperty(""МаксимальнаяДлина"", ""MaxLength"")]
 				|        public int MaxLength
 				|        {
@@ -1245,7 +1394,7 @@
 				|            {
 				|                maxLength = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['maxLength'] = "" + maxLength + "";"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
@@ -1290,28 +1439,9 @@
 				|        }
 				|
 				|";
-			ИначеЕсли СвойствоРус = "АвтоФокус" Тогда
-				Стр = Стр +
-				"        private bool autofocus;
-				|        [ContextProperty(""АвтоФокус"", ""AutoFocus"")]
-				|        public bool AutoFocus
-				|        {
-				|            get { return autofocus; }
-				|            set
-				|            {
-				|                autofocus = value;
-				|                if (autofocus)
-				|                {
-				|                    string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').focus();"";
-				|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
-				|                }
-				|            }
-				|        }
-				|
-				|";
 			ИначеЕсли СвойствоРус = "Стиль" Тогда
 				Стр = Стр +
-				"        private DfStyle style;
+				"        public DfStyle style { get; set; }
 				|        [ContextProperty(""Стиль"", ""Style"")]
 				|        public DfStyle Style
 				|        {
@@ -1343,7 +1473,7 @@
 				|";
 			ИначеЕсли СвойствоРус = "Имя" Тогда
 				Стр = Стр +
-				"        private string name;
+				"        public string name { get; set; }
 				|        [ContextProperty(""Имя"", ""Name"")]
 				|        public string Name
 				|        {
@@ -1352,14 +1482,14 @@
 				|            {
 				|                name = value;
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['name'] = '"" + name + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
 				|";
 			ИначеЕсли СвойствоРус = "Родитель" Тогда
 				Стр = Стр +
-				"        private IValue parent;
+				"        public IValue parent { get; set; }
 				|        [ContextProperty(""Родитель"", ""Parent"")]
 				|        public IValue Parent
 				|        {
@@ -1376,7 +1506,7 @@
 				|                {
 				|                    strFunc = ""mapKeyEl.get('"" + parent.AsObject().GetPropValue(""ItemKey"").AsString() + ""').appendChild(mapKeyEl.get('"" + ItemKey + ""'));"";
 				|                }
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|                // Родителю добавим потомка.
 				|                ArrayImpl ArrayImpl1 = ((dynamic)parent).Children;
 				|                ArrayImpl1.Add(this);
@@ -1386,7 +1516,7 @@
 				|";
 			ИначеЕсли СвойствоРус = "Текст" Тогда
 				Стр = Стр +
-				"        private IValue innerText;
+				"        public IValue innerText { get; set; }
 				|        [ContextProperty(""Текст"", ""Text"")]
 				|        public IValue Text
 				|        {
@@ -1401,7 +1531,7 @@
 				|                str = str.Replace(""\u007C"", @""\u007C""); // Знак |
 				|                str = str.Replace(""\u0022"", @""\u0022""); // Кавычки.
 				|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['innerText'] = '"" + str + ""';"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|
@@ -1426,7 +1556,7 @@
 				Если ТипЗнач = "bool" Тогда
 					ПриведениеКbool = СловарьСвойств(СвойствоРус + "_" + СвойствоАнгл)[4];
 					Стр = Стр +
-					"        private " + ТипЗнач + " " + ПриватИмяСвойства + ";
+					"        public " + ТипЗнач + " " + ПриватИмяСвойства + " { get; set; }
 					|        [ContextProperty(""" + СвойствоРус + """, """ + СвойствоАнгл + """)]
 					|        public " + ТипЗнач + " " + СвойствоАнгл + "
 					|        {
@@ -1435,7 +1565,7 @@
 					|            {
 					|                " + ПриватИмяСвойства + " = value;
 					|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['" + ИмяСвойстваДляJS + "'] = "" + " + ПриватИмяСвойства + ПриведениеКbool + Хвостик + " + "";"";
-					|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+					|                DeclarativeForms.SendStrFunc(strFunc);
 					|            }
 					|        }
 					|
@@ -1443,7 +1573,7 @@
 				Иначе
 					ПриведениеКbool = СловарьСвойств(СвойствоРус + "_" + СвойствоАнгл)[4];
 					Стр = Стр +
-					"        private " + ТипЗнач + " " + ПриватИмяСвойства + ";
+					"        public " + ТипЗнач + " " + ПриватИмяСвойства + " { get; set; }
 					|        [ContextProperty(""" + СвойствоРус + """, """ + СвойствоАнгл + """)]
 					|        public " + ТипЗнач + " " + СвойствоАнгл + "
 					|        {
@@ -1452,7 +1582,7 @@
 					|            {
 					|                " + ПриватИмяСвойства + " = value;
 					|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['" + ИмяСвойстваДляJS + "'] = '"" + " + ПриватИмяСвойства + ПриведениеКbool + Хвостик + " + ""';"";
-					|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+					|                DeclarativeForms.SendStrFunc(strFunc);
 					|            }
 					|        }
 					|
@@ -1505,12 +1635,14 @@
 				или СвойствоРус = "ПриИзменении"
 				или СвойствоРус = "МышьНадЭлементом"
 				или СвойствоРус = "МышьПокинулаЭлемент"
+				или СвойствоРус = "ФокусПолучен"
+				или СвойствоРус = "ФокусПотерян"
 				
 				Тогда
 				ПриватИмяСвойства = СловарьСобытий(СвойствоАнгл)[1];
 				ИмяСвойстваДляJS = СловарьСобытий(СвойствоАнгл)[2];
 				Стр = Стр +
-				"        public DfAction " + ПриватИмяСвойства + ";
+				"        public DfAction " + ПриватИмяСвойства + "  { get; set; }
 				|        [ContextProperty(""" + СвойствоРус + """, """ + СвойствоАнгл + """)]
 				|        public DfAction " + СвойствоАнгл + "
 				|        {
@@ -1519,7 +1651,7 @@
 				|            {
 				|                " + ПриватИмяСвойства + " = value;
 				|                string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).addEventListener(\u0022" + ИмяСвойстваДляJS + "\u0022, doEvent);"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|            }
 				|        }
 				|        
@@ -1577,7 +1709,7 @@
 				|        public void Show()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).show();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1587,7 +1719,7 @@
 				|        public void Close()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).close();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1597,7 +1729,7 @@
 				|        public void FillRect(int p1, int p2, int p3, int p4)
 				|        {
 				|            string strFunc = ""mapKeyEl.get('"" + NameCanvasContext + ""').fillRect("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1607,7 +1739,7 @@
 				|        public void Play()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).play();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1617,7 +1749,7 @@
 				|        public void Pause()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).pause();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1635,7 +1767,7 @@
 				|        public void StepUp(int p1)
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).stepUp("" + p1 + "");"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1653,7 +1785,7 @@
 				|        public void StepDown(int p1)
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).stepDown("" + p1 + "");"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1674,7 +1806,7 @@
 				|        public void Select()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).select();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1684,7 +1816,7 @@
 				|        public void ShowModal()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).showModal();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1696,13 +1828,13 @@
 				|            if (p2 != null)
 				|            {
 				|                string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).add(mapKeyEl.get(\u0022"" + ((dynamic)p1).ItemKey + ""\u0022), "" + p2 + "");"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|                Children.Add(p1);
 				|            }
 				|            else
 				|            {
 				|                string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).add(mapKeyEl.get(\u0022"" + ((dynamic)p1).ItemKey + ""\u0022));"";
-				|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|                DeclarativeForms.SendStrFunc(strFunc);
 				|                Children.Add(p1);
 				|            }
 				|        }
@@ -1724,7 +1856,7 @@
 				|        public void RemoveFromList(int p1)
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).remove("" + p1 + "");"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1734,7 +1866,23 @@
 				|        public void DeleteCaption()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).deleteCaption();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
+				|				
+				|            try
+				|            {
+				|                int num = -1;
+				|                for (int i = 0; i < Children.Count(); i++)
+				|                {
+				|                    var item = Children.Get(i);
+				|                    if (item.GetType() == typeof(osdf.DfCaption))
+				|                    {
+				|                        num = i;
+				|                        break;
+				|                    }
+				|                }
+				|                Children.Remove(num);
+				|            }
+				|            catch { }
 				|        }
 				|        
 				|";
@@ -1744,7 +1892,23 @@
 				|        public void DeleteTHead()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).deleteTHead();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
+				|				
+				|            try
+				|            {
+				|                int num = -1;
+				|                for (int i = 0; i < Children.Count(); i++)
+				|                {
+				|                    var item = Children.Get(i);
+				|                    if (item.GetType() == typeof(osdf.DfTableHeader))
+				|                    {
+				|                        num = i;
+				|                        break;
+				|                    }
+				|                }
+				|                Children.Remove(num);
+				|            }
+				|            catch { }
 				|        }
 				|        
 				|";
@@ -1754,7 +1918,23 @@
 				|        public void DeleteTFoot()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).deleteTFoot();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
+				|				
+				|            try
+				|            {
+				|                int num = -1;
+				|                for (int i = 0; i < Children.Count(); i++)
+				|                {
+				|                    var item = Children.Get(i);
+				|                    if (item.GetType() == typeof(osdf.DfOutcome))
+				|                    {
+				|                        num = i;
+				|                        break;
+				|                    }
+				|                }
+				|                Children.Remove(num);
+				|            }
+				|            catch { }
 				|        }
 				|        
 				|";
@@ -1764,7 +1944,37 @@
 				|        public void DeleteRow(int p1)
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).deleteRow("" + p1 + "");"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
+				|
+				|            // Если метод применяется к уже сформированной таблице, тогда ниже следующая актуализация свойства Таблица.Строки сработает.
+				|            // Иначе не сработает. Вернее свойство Таблица.Строки будет не актуальным.
+				|            // Это заготовка для актуализации свойств на стороне сценария на будущее.
+				|            //////strFunc = """" +
+				|            //////    ""let res;"" +
+				|            //////    ""let el = mapKeyEl.get('"" + ItemKey + ""');"" +
+				|            //////    ""try"" +
+				|            //////    ""{"" +
+				|            //////    ""    res = '';"" +
+				|            //////    ""    if (el.rows.length > 0)"" +
+				|            //////    ""    {"" +
+				|            //////    ""        for (var i = 0; i < el.rows.length; i++)"" +
+				|            //////    ""        {"" +
+				|            //////    ""            res = res + mapElKey.get(el.rows[i]) + ';';"" +
+				|            //////    ""        }"" +
+				|            //////    ""    }"" +
+				|            //////    ""    sendPost("" +
+				|            //////    ""    '"" + ItemKey + ""' +"" +
+				|            //////    ""    '"" + DeclarativeForms.paramDelimiter + ""' + 'v5v5v"" + """" + ""' +"" +
+				|            //////    ""    '"" + DeclarativeForms.paramDelimiter + ""' + '"" + ""Строки"" + ""' +"" +
+				|            //////    ""    '"" + DeclarativeForms.paramDelimiter + ""' + res +"" +
+				|            //////    ""    '"" + DeclarativeForms.paramDelimiter + ""' + true);"" +
+				|            //////    ""}"" +
+				|            //////    ""catch (err)"" +
+				|            //////    ""{"" +
+				|            //////    ""    sendPost('!!! Ошибка7:' + err.message);"" +
+				|            //////    ""}"" +
+				|            //////    """";
+				|            //////DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1794,7 +2004,7 @@
 				|        public void DeleteCell(int p1)
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).deleteCell("" + p1 + "");"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1830,7 +2040,7 @@
 				|            {
 				|                strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).scrollIntoView();"";
 				|            }
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1840,7 +2050,7 @@
 				|        public void Blur()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).blur();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1850,7 +2060,7 @@
 				|        public void Focus()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).focus();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|        }
 				|        
 				|";
@@ -1860,7 +2070,15 @@
 				|        public void Remove()
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).remove();"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
+				|				
+				|            try
+				|            {
+				|                ArrayImpl arr = (ArrayImpl)((dynamic)Parent).Children;
+				|                IValue val1 = arr.Find(this);
+				|                arr.Remove(Convert.ToInt32(val1.AsNumber()));
+				|            }
+				|            catch { }
 				|        }
 				|        
 				|";
@@ -1870,7 +2088,7 @@
 				|        public IValue AppendChild(IValue p1)
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).appendChild(mapKeyEl.get(\u0022"" + ((dynamic)p1).ItemKey + ""\u0022));"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
 				|            ((dynamic)p1).Parent = this;
 				|            return p1;
 				|        }
@@ -1882,7 +2100,46 @@
 				|        public void RemoveChild(IValue p1)
 				|        {
 				|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).removeChild(mapKeyEl.get(\u0022"" + ((dynamic)p1.AsObject()).ItemKey + ""\u0022));"";
-				|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+				|            DeclarativeForms.SendStrFunc(strFunc);
+				|				
+				|            try
+				|            {
+				|                IValue val1 = Children.Find(p1);
+				|                Children.Remove(Convert.ToInt32(val1.AsNumber()));
+				|            }
+				|            catch { }
+				|        }
+				|        
+				|";
+			ИначеЕсли МетодРус = "Нажатие" Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Нажатие"", ""Click"")]
+				|        public void Click2()
+				|        {
+				|            while (!DeclarativeForms.webserverSendUploaded)
+				|            {
+				|                System.Threading.Thread.Sleep(300);
+				|            }
+				|            System.Threading.Thread.Sleep(1000);
+				|            string strFunc = ""const event = new MouseEvent('click');"" +
+				|                ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).dispatchEvent(event);"";
+				|            DeclarativeForms.WebServerSendText(strFunc);
+				|        }
+				|        
+				|";
+			ИначеЕсли МетодРус = "ДвойноеНажатие" Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ДвойноеНажатие"", ""DoubleClick"")]
+				|        public void DoubleClick2()
+				|        {
+				|            while (!DeclarativeForms.webserverSendUploaded)
+				|            {
+				|                System.Threading.Thread.Sleep(300);
+				|            }
+				|            System.Threading.Thread.Sleep(1000);
+				|            string strFunc = ""const event = new MouseEvent('dblclick');"" +
+				|                ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).dispatchEvent(event);"";
+				|            DeclarativeForms.WebServerSendText(strFunc);
 				|        }
 				|        
 				|";
@@ -1918,7 +2175,10 @@
 	СоздатьФайлДФ("DeclarativeForms");
 	СоздатьФайлДФ("ArrayList");
 	СоздатьФайлДФ("Form");
-	СоздатьФайлДФ("Indexhtml");
+	СоздатьФайлДФ("IndexhtmlWin");
+	СоздатьФайлДФ("IndexhtmlWinBr");
+	СоздатьФайлДФ("IndexhtmlLin");
+	СоздатьФайлДФ("IndexhtmlLinBr");
 	СоздатьФайлДФ("Packagejson");
 	СоздатьФайлДФ("Color");
 	СоздатьФайлДФ("Element");
@@ -1985,22 +2245,11 @@
 	СоздатьФайлДФ("AnimationOptions");
 	СоздатьФайлДФ("AnimationProperties");
 	СоздатьФайлДФ("PerspectiveOrigin");
-	СоздатьФайлДФ("ClientServerDeclarForms");
-	СоздатьФайлДФ("ScsSupport");
-	СоздатьФайлДФ("ServerClientEventArgs");
-	СоздатьФайлДФ("TcpServer");
-	СоздатьФайлДФ("ServerClient");
-	СоздатьФайлДФ("ClientMode");
-	СоздатьФайлДФ("CommunicationStates");
-	СоздатьФайлДФ("TcpClient");
-	СоздатьФайлДФ("TcpEndPoint");
-	СоздатьФайлДФ("ActionServer");
-	СоздатьФайлДФ("MessageEventArgs");
-	СоздатьФайлДФ("TextMessage");
-	СоздатьФайлДФ("ByteMessage");
-	СоздатьФайлДФ("EventArgsServer");
 	СоздатьФайлДФ("Background");
-	СоздатьФайлДФ("Wsserver");
+	СоздатьФайлДФ("WebServerReceiving");
+	СоздатьФайлДФ("WebServerSend");
+	СоздатьФайлДФ("Timer");
+	СоздатьФайлДФ("Tray");
 	
 	
 	
@@ -2019,8 +2268,6 @@
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Menu.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.MenuItem.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.ArrayList.html" 
-			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Indexhtml.html" 
-			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Packagejson.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Color.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.CubicBezier.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.BorderTop.html" 
@@ -2085,6 +2332,8 @@
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.PerspectiveOrigin.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Background.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Wsserver.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Timer.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Tray.html" 
 			
 		Тогда
 			Продолжить;
@@ -2306,7 +2555,208 @@
 		
 		
 		
-	ИначеЕсли ИмяФайлаДФ = "Wsserver" Тогда
+	ИначеЕсли ИмяФайлаДФ = "Tray" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using System.IO;
+		|using System.Reflection;
+		|
+		|namespace osdf
+		|{
+		|    [ContextClass(""ДфЛоток"", ""DfTray"")]
+		|    public class DfTray : AutoContext<DfTray>
+		|    {
+		|        public DfTray()
+		|        {
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', new gui.Tray({ title: 'DeclarativeForms', icon: '' })); mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
+		|            DeclarativeForms.SendStrFunc(strFunc);
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
+		|        }
+		|
+		|        public PropertyInfo this[string p1]
+		|        {
+		|            get { return this.GetType().GetProperty(p1); }
+		|        }
+		|
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
+		|        {
+		|            get { return itemKey; }
+		|            private set { itemKey = value; }
+		|        }
+		|
+		|        public string title { get; set; }
+		|        [ContextProperty(""Заголовок"", ""Title"")]
+		|        public string Title
+		|        {
+		|            get { return title; }
+		|            set
+		|            {
+		|                title = value;
+		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['title'] = '"" + title + ""';"";
+		|                DeclarativeForms.SendStrFunc(strFunc);
+		|            }
+		|        }
+		|
+		|        public string icon { get; set; }
+		|        [ContextProperty(""Значок"", ""Icon"")]
+		|        public string Icon
+		|        {
+		|            get { return icon; }
+		|            set
+		|            {
+		|                icon = value;
+		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['icon'] = '"" + icon + ""';"";
+		|                DeclarativeForms.SendStrFunc(strFunc);
+		|            }
+		|        }
+		|
+		|        public string tooltip { get; set; }
+		|        [ContextProperty(""Подсказка"", ""Tooltip"")]
+		|        public string Tooltip
+		|        {
+		|            get { return tooltip; }
+		|            set
+		|            {
+		|                tooltip = value;
+		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['tooltip'] = '"" + tooltip + ""';"";
+		|                DeclarativeForms.SendStrFunc(strFunc);
+		|            }
+		|        }
+		|
+		|        public DfAction click { get; set; }
+		|        [ContextProperty(""Нажатие"", ""Click"")]
+		|        public DfAction Click
+		|        {
+		|            get { return click; }
+		|            set
+		|            {
+		|                click = value;
+		|                string strFunc = """" +
+		|                    ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).on('click', function()"" +
+		|                    ""{"" +
+		|                    ""    sendPost('"" + ItemKey + DeclarativeForms.paramDelimiter + @""click');"" +
+		|                    ""});"";
+		|                DeclarativeForms.SendStrFunc(strFunc);
+		|            }
+		|        }
+		|
+		|        public DfMenu menu;
+		|        [ContextProperty(""Меню"", ""Menu"")]
+		|        public DfMenu Menu
+		|        {
+		|            get { return menu; }
+		|            set
+		|            {
+		|                menu = value;
+		|                string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).menu = mapKeyEl.get(\u0022"" + menu.ItemKey + ""\u0022);"";
+		|                DeclarativeForms.SendStrFunc(strFunc);
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Удалить"", ""Remove"")]
+		|        public void Remove()
+		|        {
+		|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).remove();"";
+		|            DeclarativeForms.SendStrFunc(strFunc);
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "Timer" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using System.IO;
+		|using System.Reflection;
+		|
+		|namespace osdf
+		|{
+		|    [ContextClass(""ДфТаймер"", ""DfTimer"")]
+		|    public class DfTimer : AutoContext<DfTimer>
+		|    {
+		|        public DfTimer()
+		|        {
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
+		|            Interval = 1000;
+		|        }
+		|
+		|        public PropertyInfo this[string p1]
+		|        {
+		|            get { return this.GetType().GetProperty(p1); }
+		|        }
+		|
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
+		|        {
+		|            get { return itemKey; }
+		|            private set { itemKey = value; }
+		|        }
+		|
+		|        private int interval;
+		|        [ContextProperty(""Интервал"", ""Interval"")]
+		|        public int Interval
+		|        {
+		|            get { return interval; }
+		|            set { interval = value; }
+		|        }
+		|
+		|        public bool enabled { get; set; } = false;
+		|        [ContextProperty(""Активен"", ""Enabled"")]
+		|        public bool Enabled
+		|        {
+		|            get { return enabled; }
+		|            private set { enabled = value; }
+		|        }
+		|
+		|        public DfAction tick;
+		|        [ContextProperty(""ПриСрабатыванииТаймера"", ""Tick"")]
+		|        public DfAction Tick
+		|        {
+		|            get { return tick; }
+		|            set { tick = value; }
+		|        }
+		|
+		|        [ContextMethod(""Начать"", ""Start"")]
+		|        public void Start()
+		|        {
+		|            if (!Enabled)
+		|            {
+		|                string strFunc = ""startTimer('"" + ItemKey + ""', "" + Interval + "");"";
+		|                if (!DeclarativeForms.strFunctions.Contains(ItemKey))
+		|                {
+		|                    DeclarativeForms.SendStrFunc(strFunc);
+		|                }
+		|            }
+		|            Enabled = true;
+		|        }
+		|
+		|        [ContextMethod(""Остановить"", ""Stop"")]
+		|        public void Stop()
+		|        {
+		|            if (Enabled)
+		|            {
+		|                string strFunc = ""stopTimer('"" + ItemKey + ""');"";
+		|                if (!DeclarativeForms.strFunctions.Contains(ItemKey))
+		|                {
+		|                    DeclarativeForms.SendStrFunc(strFunc);
+		|                }
+		|            }
+		|            Enabled = false;
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "WebServerSend" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"using System;
 		|using System.Net;
@@ -2316,36 +2766,40 @@
 		|using ScriptEngine.Machine;
 		|using System.Threading.Tasks;
 		|using System.Collections.Concurrent;
+		|using System.Threading;
+		|using System.Text;
+		|using System.IO;
 		|
 		|namespace osws
 		|{
-		|    [ContextClass(""ВебСерверДекларФорм"", ""WsserverDeclarForms"")]
-		|    public class WsserverDeclarForms : AutoContext<WsserverDeclarForms>
+		|    [ContextClass(""ВебСерверОтправкиДекларФорм"", ""WebServerSendDeclarForms"")]
+		|    public class WebServerSendDeclarForms : AutoContext<WebServerSendDeclarForms>
 		|    {
 		|        private static string iPAddress;
 		|        private static int port;
-		|        public static WsserverDeclarForms instance;
-		|        public static WsMessageEventArgs Event = null;
-		|        public static WsAction EventAction = null;
-		|        public static ConcurrentQueue<WsMessageEventArgs> EventQueue = new ConcurrentQueue<WsMessageEventArgs>();
-		|        public static bool goOn = true;
+		|        public static WebServerSendDeclarForms WebServer;
+		|        public static WsSendMessageEventArgs Event = null;
+		|        public static WsSendAction EventAction = null;
+		|        public static ConcurrentQueue<WsSendMessageEventArgs> EventQueue = new ConcurrentQueue<WsSendMessageEventArgs>();
 		|        // Это событие возникает при получении нового сообщения.
-		|        public event EventHandler<MessageEventArgs> MessageReceived;
+		|        public event EventHandler<WsSendEventArgs> ReceivedMessage;
+		|        public static WebSocket _webSocket;
 		|
 		|        [ScriptConstructor]
 		|        public static IRuntimeContextInstance Constructor()
 		|        {
-		|            instance = new WsserverDeclarForms();
-		|            instance.MessageReceived += Instance_MessageReceived;
-		|            return instance;
+		|            WebServer = new WebServerSendDeclarForms();
+		|            WebServer.ReceivedMessage += WebServer_ReceivedMessage;
+		|            return WebServer;
 		|        }
 		|
 		|        [ContextProperty(""АргументыСобытия"", ""EventArgs"")]
-		|        public WsMessageEventArgs EventArgs
+		|        public WsSendMessageEventArgs EventArgs
 		|        {
 		|            get { return Event; }
 		|        }
 		|
+		|        public static bool goOn = true;
 		|        [ContextProperty(""Продолжать"", ""GoOn"")]
 		|        public bool GoOn
 		|        {
@@ -2362,16 +2816,16 @@
 		|            }
 		|
 		|            IValue Action1 = EventHandling();
-		|            if (Action1.GetType() == typeof(WsAction))
+		|            if (Action1.GetType() == typeof(WsSendAction))
 		|            {
-		|                return DelegateAction.Create(((WsAction)Action1).Script, ((WsAction)Action1).MethodName);
+		|                return DelegateAction.Create(((WsSendAction)Action1).Script, ((WsSendAction)Action1).MethodName);
 		|            }
 		|            return (DelegateAction)Action1;
 		|        }
 		|
-		|        public static WsAction EventHandling()
+		|        public static WsSendAction EventHandling()
 		|        {
-		|            WsMessageEventArgs EventArgs1;
+		|            WsSendMessageEventArgs EventArgs1;
 		|            EventQueue.TryDequeue(out EventArgs1);
 		|            Event = EventArgs1;
 		|            EventAction = EventArgs1.EventAction;
@@ -2386,20 +2840,26 @@
 		|
 		|            Wsserver1();
 		|        }
-		|
 		|        public async void Wsserver1()
 		|        {
 		|            await WsserverStart();
 		|        }
-		|
 		|        static async Task WsserverStart()
 		|        {
 		|            var listener = new HttpListener();
 		|            listener.Prefixes.Add(""http://"" + iPAddress + "":"" + port + ""/"");
-		|            listener.Start();
+		|            try
+		|            {
+		|                listener.Start();
+		|                osdf.DeclarativeForms.webserverSendUploaded = true;
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                osdf.DeclarativeForms.GlobalContext().Echo(""ServerSend ex.Message = "" + ex.Message);
+		|                return;
+		|            }
 		|
-		|            osdf.DeclarativeForms.wsserverOn = true;
-		|            osdf.DeclarativeForms.GlobalContext().Echo(""Listening..."");
+		|            //osdf.DeclarativeForms.GlobalContext().Echo(""WebServerSend Listening..."");
 		|
 		|            while (true)
 		|            {
@@ -2419,125 +2879,140 @@
 		|        static async Task ProcessWebSocketRequest(HttpListenerContext context)
 		|        {
 		|            var ws = await context.AcceptWebSocketAsync(subProtocol: null);
-		|            //osdf.DeclarativeForms.GlobalContext().Echo(""WebSocket connected"");
-		|            await Echo(ws.WebSocket);
+		|            _webSocket = ws.WebSocket;
+		|            // osdf.DeclarativeForms.GlobalContext().Echo(""WebServerSend connected"");
+		|
+		|            try
+		|            {
+		|                await Echo(ws.WebSocket);
+		|            }
+		|            catch (Exception)
+		|            {
+		|                //osdf.DeclarativeForms.GlobalContext().Echo(""WebServerSend ex.Message = "" + ex.Message);
+		|            }
 		|        }
 		|
 		|        static async Task Echo(WebSocket ws)
 		|        {
-		|            //var buffer = new byte[1024 * 4];
-		|            var buffer = new byte[1024 * 1024 * 128]; //128 Megabytes.
+		|            var buffer = new ArraySegment<byte>(new byte[2048]);
 		|            while (true)
 		|            {
-		|                var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), System.Threading.CancellationToken.None);
-		|                if (result.MessageType == WebSocketMessageType.Text)
+		|                if (ws.State != WebSocketState.Aborted)
 		|                {
-		|                    string message1 = System.Text.Encoding.UTF8.GetString(buffer, 0, result.Count);
-		|                    //osdf.DeclarativeForms.GlobalContext().Echo(""Received: "" + message1);
+		|                    WebSocketReceiveResult result;
+		|                    var ms = new MemoryStream();
+		|                    do
+		|                    {
+		|                        result = await ws.ReceiveAsync(buffer, CancellationToken.None);
+		|                        ms.Write(buffer.Array, buffer.Offset, result.Count);
+		|                    } while (!result.EndOfMessage);
 		|
-		|                    instance.OnMessageReceived(message1);
-		|
-		|                    string message = osdf.DeclarativeForms.strFunctions;
-		|
-		|                    var bytes = System.Text.Encoding.UTF8.GetBytes(message);
-		|                    await ws.SendAsync(new ArraySegment<byte>(bytes, 0, bytes.Length), WebSocketMessageType.Text, true, System.Threading.CancellationToken.None);
-		|
-		|                    osdf.DeclarativeForms.strFunctions = """";
+		|                    ms.Seek(0, SeekOrigin.Begin);
+		|                    if (result.MessageType == WebSocketMessageType.Text)
+		|                    {
+		|                        var reader = new StreamReader(ms, Encoding.UTF8);
+		|                        string ts = await reader.ReadToEndAsync();
+		|                        //////osdf.DeclarativeForms.GlobalContext().Echo(""4Received message: "" + ts);
+		|                        WebServer.OnReceivedMessage(ts); // Без этой строки не будут работать события.
+		|                    }
+		|                    else if (result.MessageType == WebSocketMessageType.Close)
+		|                    {
+		|                        // osdf.DeclarativeForms.GlobalContext().Echo(""WebServerSend closed"");
+		|                        break;
+		|                    }
 		|                }
-		|                else if (result.MessageType == WebSocketMessageType.Close)
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""ОтправитьТекст"", ""SendText"")]
+		|        public void SendText(string text)
+		|        {
+		|            SendText1(text);
+		|        }
+		|        public async void SendText1(string text)
+		|        {
+		|            await Send(text);
+		|        }
+		|        static async Task Send(string text)
+		|        {
+		|            if (_webSocket.State == WebSocketState.Open)
+		|            {
+		|                try
 		|                {
-		|                    osdf.DeclarativeForms.wsserverOn = false;
-		|                    osdf.DeclarativeForms.GlobalContext().Echo(""WebSocket closed"");
-		|                    break;
+		|                    var buffer = Encoding.UTF8.GetBytes(text);
+		|                    await _webSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
+		|                    ////_server.OnSentMessage(mes);
+		|                    //osdf.DeclarativeForms.GlobalContext().Echo(""Отправлено сервером отправки - "" + text);
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    osdf.DeclarativeForms.GlobalContext().Echo(""Не удалось отправить _webSocket.SendAsync = "" + ex.StackTrace);
+		|                    osdf.DeclarativeForms.GlobalContext().Echo(""text = "" + text);
 		|                }
 		|            }
 		|        }
 		|
 		|        [ContextProperty(""ПриПолученииСообщения"", ""MessageReceived"")]
-		|        public WsAction MessageReceived1 { get; set; }
+		|        public WsSendAction MessageReceived { get; set; }
 		|
 		|        [ContextMethod(""Действие"", ""Action"")]
-		|        public WsAction Action(IRuntimeContextInstance script, string methodName)
+		|        public WsSendAction Action(IRuntimeContextInstance script, string methodName)
 		|        {
-		|            return new WsAction(script, methodName);
+		|            return new WsSendAction(script, methodName);
 		|        }
 		|
-		|        private static void Instance_MessageReceived(object sender, MessageEventArgs e)
+		|        private static void WebServer_ReceivedMessage(object sender, WsSendEventArgs e)
 		|        {
-		|            //osdf.DeclarativeForms.GlobalContext().Echo(""========================DfWsserver_MessageReceived"");
-		|            if (instance.MessageReceived1 != null)
+		|            if (WebServer.MessageReceived != null)
 		|            {
-		|                WsMessageEventArgs WsMessageEventArgs1 = new WsMessageEventArgs(e.MessageData);
-		|                WsMessageEventArgs1.EventAction = instance.MessageReceived1;
-		|                WsMessageEventArgs1.Message = e.MessageData;
-		|                //MessageEventArgs1.Sender = this;
-		|                EventQueue.Enqueue(WsMessageEventArgs1);
+		|                WsSendMessageEventArgs WsSendMessageEventArgs1 = new WsSendMessageEventArgs(e.MessageData);
+		|                WsSendMessageEventArgs1.EventAction = WebServer.MessageReceived;
+		|                WsSendMessageEventArgs1.Message = e.MessageData;
+		|                EventQueue.Enqueue(WsSendMessageEventArgs1);
 		|
 		|                while (EventQueue.Count > 0)
 		|                {
-		|                    System.Threading.Thread.Sleep(7);
+		|                    System.Threading.Thread.Sleep(5);
 		|                }
 		|            }
 		|        }
 		|
 		|        // Вызывает событие MessageReceived.
 		|        // ""message"" - Полученное сообщение.
-		|        public void OnMessageReceived(string message)
+		|        public void OnReceivedMessage(string message)
 		|        {
-		|            var handler = MessageReceived;
+		|            var handler = ReceivedMessage;
 		|            if (handler != null)
 		|            {
-		|                handler(this, new MessageEventArgs(message));
+		|                handler(this, new WsSendEventArgs(message));
 		|            }
 		|        }
 		|    }
 		|
-		|    public class MessageEventArgs
+		|    public class WsSendEventArgs
 		|    {
-		|        // Данные сообщения, которые передаются.
 		|        public string MessageData { get; set; }
-		|
-		|        ////// Пустой конструктор по умолчанию.
-		|        ////public MessageEventArgs()
-		|        ////{
-		|        ////}
-		|
-		|        // Создает новый объект ScsRawDataMessage со свойством MessageData.
-		|        // ""messageData"" - Данные сообщения, которые передаются.
-		|        public MessageEventArgs(string messageData)
+		|        public WsSendEventArgs(string messageData)
 		|        {
 		|            MessageData = messageData;
 		|        }
-		|
-		|        //////[ContextProperty(""Действие"", ""EventAction"")]
-		|        ////public WsAction EventAction
-		|        ////{
-		|        ////    get { return EventAction; }
-		|        ////    set { EventAction = value; }
-		|        ////}
 		|    }
 		|
-		|    [ContextClass(""ВсСообщениеАрг"", ""WsMessageEventArgs"")]
-		|    public class WsMessageEventArgs : AutoContext<WsMessageEventArgs>
+		|    [ContextClass(""ВсОтправкиСообщениеАрг"", ""WsSendMessageEventArgs"")]
+		|    public class WsSendMessageEventArgs : AutoContext<WsSendMessageEventArgs>
 		|    {
-		|        public WsMessageEventArgs(string p1)
+		|        public WsSendMessageEventArgs(string p1)
 		|        {
 		|            message = p1;
 		|        }
 		|
-		|        private WsAction eventAction;
+		|        private WsSendAction eventAction;
 		|        [ContextProperty(""Действие"", ""EventAction"")]
-		|        public WsAction EventAction
+		|        public WsSendAction EventAction
 		|        {
 		|            get { return eventAction; }
 		|            set { eventAction = value; }
 		|        }
-		|
-		|        //[ContextProperty(""Отправитель"", ""Sender"")]
-		|        //public IValue Sender
-		|        //{
-		|        //    get { return Base_obj.Sender.dll_obj; }
-		|        //}
 		|
 		|        private string message;
 		|        [ContextProperty(""Сообщение"", ""Message"")]
@@ -2548,30 +3023,327 @@
 		|        }
 		|    }
 		|
-		|    public class WsEventArgs
+		|    [ContextClass(""ВсОтправкиДействие"", ""WsSendAction"")]
+		|    public class WsSendAction : AutoContext<WsSendAction>
 		|    {
-		|        public WsEventArgs()
+		|        public WsSendAction(IRuntimeContextInstance script, string methodName)
 		|        {
+		|            Script = script;
+		|            MethodName = methodName;
 		|        }
 		|
-		|        //[ContextProperty(""Действие"", ""EventAction"")]
-		|        //public IValue EventAction
-		|        //{
-		|        //    get { return Base_obj.EventAction; }
-		|        //    set { Base_obj.EventAction = value; }
-		|        //}
+		|        [ContextProperty(""ИмяМетода"", ""MethodName"")]
+		|        public string MethodName { get; set; }
 		|
-		|        //[ContextProperty(""Отправитель"", ""Sender"")]
-		|        //public IValue Sender
-		|        //{
-		|        //    get { return OneScriptClientServer.RevertObj(Base_obj.Sender); }
-		|        //}
+		|        [ContextProperty(""Сценарий"", ""Script"")]
+		|        public IRuntimeContextInstance Script { get; set; }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "WebServerReceiving" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using System;
+		|using System.Net;
+		|using System.Net.WebSockets;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.Machine;
+		|using System.Threading.Tasks;
+		|using System.Collections.Concurrent;
+		|using System.Threading;
+		|using System.Text;
+		|using System.IO;
+		|
+		|namespace osws
+		|{
+		|    [ContextClass(""ВебСерверПолученияДекларФорм"", ""WebServerReceivingDeclarForms"")]
+		|    public class WebServerReceivingDeclarForms : AutoContext<WebServerReceivingDeclarForms>
+		|    {
+		|        private static string iPAddress;
+		|        private static int port;
+		|        public static WebServerReceivingDeclarForms WebServer;
+		|        public static WsReceivingMessageEventArgs Event = null;
+		|        public static WsReceivingAction EventAction = null;
+		|        public static ConcurrentQueue<WsReceivingMessageEventArgs> EventQueue = new ConcurrentQueue<WsReceivingMessageEventArgs>();
+		|        // Это событие возникает при получении нового сообщения.
+		|        public event EventHandler<WsReceivingEventArgs> ReceivedMessage;
+		|        public static WebSocket _webSocket;
+		|
+		|        [ScriptConstructor]
+		|        public static IRuntimeContextInstance Constructor()
+		|        {
+		|            WebServer = new WebServerReceivingDeclarForms();
+		|            WebServer.ReceivedMessage += WebServer_ReceivedMessage;
+		|            return WebServer;
+		|        }
+		|
+		|        [ContextProperty(""АргументыСобытия"", ""EventArgs"")]
+		|        public WsReceivingMessageEventArgs EventArgs
+		|        {
+		|            get { return Event; }
+		|        }
+		|
+		|        public static bool goOn = true;
+		|        [ContextProperty(""Продолжать"", ""GoOn"")]
+		|        public bool GoOn
+		|        {
+		|            get { return goOn; }
+		|            set { goOn = value; }
+		|        }
+		|
+		|        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
+		|        public DelegateAction DoEvents()
+		|        {
+		|            while (EventQueue.Count == 0)
+		|            {
+		|                System.Threading.Thread.Sleep(7);
+		|            }
+		|
+		|            IValue Action1 = EventHandling();
+		|            if (Action1.GetType() == typeof(WsReceivingAction))
+		|            {
+		|                return DelegateAction.Create(((WsReceivingAction)Action1).Script, ((WsReceivingAction)Action1).MethodName);
+		|            }
+		|            return (DelegateAction)Action1;
+		|        }
+		|
+		|        public static WsReceivingAction EventHandling()
+		|        {
+		|            WsReceivingMessageEventArgs EventArgs1;
+		|            EventQueue.TryDequeue(out EventArgs1);
+		|            Event = EventArgs1;
+		|            EventAction = EventArgs1.EventAction;
+		|            return EventAction;
+		|        }
+		|
+		|        [ContextMethod(""Начать"", ""Start"")]
+		|        public void Start(string p1, int p2)
+		|        {
+		|            iPAddress = p1;
+		|            port = p2;
+		|
+		|            Wsserver1();
+		|        }
+		|        public async void Wsserver1()
+		|        {
+		|            await WsserverStart();
+		|        }
+		|        static async Task WsserverStart()
+		|        {
+		|            var listener = new HttpListener();
+		|            listener.Prefixes.Add(""http://"" + iPAddress + "":"" + port + ""/"");
+		|            try
+		|            {
+		|                listener.Start();
+		|                osdf.DeclarativeForms.webserverReceivingUploaded = true;
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                osdf.DeclarativeForms.GlobalContext().Echo(""ServerReceiving ex.Message = "" + ex.Message);
+		|                return;
+		|            }
+		|
+		|            //osdf.DeclarativeForms.GlobalContext().Echo(""WebServerReceiving Listening..."");
+		|
+		|            while (true)
+		|            {
+		|                var context = await listener.GetContextAsync();
+		|                if (context.Request.IsWebSocketRequest)
+		|                {
+		|                    await ProcessWebSocketRequest(context);
+		|                }
+		|                else
+		|                {
+		|                    context.Response.StatusCode = 400;
+		|                    context.Response.Close();
+		|                }
+		|            }
+		|        }
+		|
+		|        static async Task ProcessWebSocketRequest(HttpListenerContext context)
+		|        {
+		|            var ws = await context.AcceptWebSocketAsync(subProtocol: null);
+		|            _webSocket = ws.WebSocket;
+		|            // osdf.DeclarativeForms.GlobalContext().Echo(""WebServerReceiving connected"");
+		|
+		|            if (!firstTime)
+		|            {
+		|                osdf.DeclarativeForms.TimeClietnConnected = osdf.DeclarativeForms.GlobalContext().CurrentUniversalDateInMilliseconds();
+		|            }
+		|
+		|            try
+		|            {
+		|                await Echo(ws.WebSocket);
+		|            }
+		|            catch (Exception)
+		|            {
+		|                //osdf.DeclarativeForms.GlobalContext().Echo(""WebServerReceiving ex.Message = "" + ex.Message);
+		|
+		|                if (osdf.DeclarativeForms.instance.OpenInBrowser)
+		|                {
+		|                    osdf.DeclarativeForms.GlobalContext().Echo(""Произошло не корректное обновление страницы ("" + osdf.DeclarativeForms.GlobalContext().CurrentUniversalDate() + "")."");
+		|                    osdf.DeclarativeForms.GlobalContext().Echo(""Повторно обновите страницу."");
+		|                }
+		|            }
+		|        }
+		|
+		|        private static bool firstTime = true;
+		|        static async Task Echo(WebSocket ws)
+		|        {
+		|            var buffer = new ArraySegment<byte>(new byte[2048]);
+		|            while (true)
+		|            {
+		|                if (ws.State != WebSocketState.Aborted)
+		|                {
+		|                    WebSocketReceiveResult result;
+		|                    var ms = new MemoryStream();
+		|                    do
+		|                    {
+		|                        result = await ws.ReceiveAsync(buffer, CancellationToken.None);
+		|                        ms.Write(buffer.Array, buffer.Offset, result.Count);
+		|                    } while (!result.EndOfMessage);
+		|
+		|                    ms.Seek(0, SeekOrigin.Begin);
+		|                    if (result.MessageType == WebSocketMessageType.Text)
+		|                    {
+		|                        var reader = new StreamReader(ms, Encoding.UTF8);
+		|                        string ts = await reader.ReadToEndAsync();
+		|                        //////osdf.DeclarativeForms.GlobalContext().Echo(""4Received message: "" + ts);
+		|                        WebServer.OnReceivedMessage(ts); // Без этой строки не будут работать события.
+		|
+		|                        if (ts == ""mainForm|loaded"" && !firstTime) // строка нужна для запуска после перезагрузки
+		|                        {
+		|                            string message = osdf.DeclarativeForms.InitialStrFunctions;
+		|                            var bytes = System.Text.Encoding.UTF8.GetBytes(message);
+		|                            await ws.SendAsync(new ArraySegment<byte>(bytes, 0, bytes.Length), WebSocketMessageType.Text, true, CancellationToken.None);
+		|                        }
+		|                        firstTime = false;
+		|                    }
+		|                    else if (result.MessageType == WebSocketMessageType.Close)
+		|                    {
+		|                        // После закрытия соединения с клиентом возможно подключится новый клиент и через короткий промежуток. 
+		|                        // Не больше 100 миллисекунд. Значит было произведено обновление страницы и закрывать программу не нужно.
+		|                        // Если в течении секунды новый клиент не подключился, значит вкладка с программой была закрыта и
+		|                        // следует закрыть программу.
+		|
+		|                        if (!firstTime)
+		|                        {
+		|                            osdf.DeclarativeForms.TimeClietnClosed = osdf.DeclarativeForms.GlobalContext().CurrentUniversalDateInMilliseconds();
+		|                        }
+		|
+		|                        // osdf.DeclarativeForms.GlobalContext().Echo(""WebServerReceiving closed"");
+		|                        break;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""ОтправитьТекст"", ""SendText"")]
+		|        public void SendText(string text)
+		|        {
+		|            SendText1(text);
+		|        }
+		|        public async void SendText1(string text)
+		|        {
+		|            await Send(text);
+		|        }
+		|        static async Task Send(string text)
+		|        {
+		|            if (_webSocket.State == WebSocketState.Open)
+		|            {
+		|                try
+		|                {
+		|                    var buffer = Encoding.UTF8.GetBytes(text);
+		|                    await _webSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
+		|                    ////_server.OnSentMessage(mes);
+		|                    //osdf.DeclarativeForms.GlobalContext().Echo(""Отправлено сервером получения - "" + text);
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    osdf.DeclarativeForms.GlobalContext().Echo(""Не удалось отправить _webSocket.SendAsync = "" + ex.StackTrace);
+		|                    osdf.DeclarativeForms.GlobalContext().Echo(""text = "" + text);
+		|                }
+		|            }
+		|        }
+		|
+		|        [ContextProperty(""ПриПолученииСообщения"", ""MessageReceived"")]
+		|        public WsReceivingAction MessageReceived { get; set; }
+		|
+		|        [ContextMethod(""Действие"", ""Action"")]
+		|        public WsReceivingAction Action(IRuntimeContextInstance script, string methodName)
+		|        {
+		|            return new WsReceivingAction(script, methodName);
+		|        }
+		|
+		|        private static void WebServer_ReceivedMessage(object sender, WsReceivingEventArgs e)
+		|        {
+		|            if (WebServer.MessageReceived != null)
+		|            {
+		|                WsReceivingMessageEventArgs WsReceivingMessageEventArgs1 = new WsReceivingMessageEventArgs(e.MessageData);
+		|                WsReceivingMessageEventArgs1.EventAction = WebServer.MessageReceived;
+		|                WsReceivingMessageEventArgs1.Message = e.MessageData;
+		|                EventQueue.Enqueue(WsReceivingMessageEventArgs1);
+		|
+		|                while (EventQueue.Count > 0)
+		|                {
+		|                    System.Threading.Thread.Sleep(5);
+		|                }
+		|            }
+		|        }
+		|
+		|        // Вызывает событие MessageReceived.
+		|        // ""message"" - Полученное сообщение.
+		|        public void OnReceivedMessage(string message)
+		|        {
+		|            var handler = ReceivedMessage;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new WsReceivingEventArgs(message));
+		|            }
+		|        }
 		|    }
 		|
-		|    [ContextClass(""ВсДействие"", ""WsAction"")]
-		|    public class WsAction : AutoContext<WsAction>
+		|    public class WsReceivingEventArgs
 		|    {
-		|        public WsAction(IRuntimeContextInstance script, string methodName)
+		|        public string MessageData { get; set; }
+		|        public WsReceivingEventArgs(string messageData)
+		|        {
+		|            MessageData = messageData;
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ВсПолученияСообщениеАрг"", ""WsReceivingMessageEventArgs"")]
+		|    public class WsReceivingMessageEventArgs : AutoContext<WsReceivingMessageEventArgs>
+		|    {
+		|        public WsReceivingMessageEventArgs(string p1)
+		|        {
+		|            message = p1;
+		|        }
+		|
+		|        private WsReceivingAction eventAction;
+		|        [ContextProperty(""Действие"", ""EventAction"")]
+		|        public WsReceivingAction EventAction
+		|        {
+		|            get { return eventAction; }
+		|            set { eventAction = value; }
+		|        }
+		|
+		|        private string message;
+		|        [ContextProperty(""Сообщение"", ""Message"")]
+		|        public string Message
+		|        {
+		|            get { return message; }
+		|            set { message = value; }
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ВсПолученияДействие"", ""WsReceivingAction"")]
+		|    public class WsReceivingAction : AutoContext<WsReceivingAction>
+		|    {
+		|        public WsReceivingAction(IRuntimeContextInstance script, string methodName)
 		|        {
 		|            Script = script;
 		|            MethodName = methodName;
@@ -2678,4963 +3450,6 @@
 		|        {
 		|            get { return backgroundAttachment; }
 		|            set { backgroundAttachment = value; }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "EventArgsServer" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|
-		|namespace oscs
-		|{
-		|    public class EventArgs
-		|    {
-		|        public CsEventArgs dll_obj;
-		|        public IValue EventAction;
-		|        public dynamic Sender;
-		|
-		|        public EventArgs()
-		|        {
-		|            Sender = null;
-		|            EventAction = null;
-		|        }
-		|    }
-		|
-		|    [ContextClass (""КсАргументыСобытия"", ""CsEventArgs"")]
-		|    public class CsEventArgs : AutoContext<CsEventArgs>
-		|    {
-		|        public CsEventArgs()
-		|        {
-		|            EventArgs EventArgs1 = new EventArgs();
-		|            EventArgs1.dll_obj = this;
-		|            Base_obj = EventArgs1;
-		|        }
-		|		
-		|        public CsEventArgs(EventArgs p1)
-		|        {
-		|            EventArgs EventArgs1 = p1;
-		|            EventArgs1.dll_obj = this;
-		|            Base_obj = EventArgs1;
-		|        }
-		|        
-		|        public EventArgs Base_obj;
-		|        
-		|        [ContextProperty(""Действие"", ""EventAction"")]
-		|        public IValue EventAction
-		|        {
-		|            get { return Base_obj.EventAction; }
-		|            set { Base_obj.EventAction = value; }
-		|        }
-		|        
-		|        [ContextProperty(""Отправитель"", ""Sender"")]
-		|        public IValue Sender
-		|        {
-		|            get { return ClientServerDeclarForms.RevertObj(Base_obj.Sender); }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "ByteMessage" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.HostedScript.Library.Binary;
-		|using Hik.Communication.Scs.Communication.Messages;
-		|
-		|namespace oscs
-		|{
-		|    public class ByteMessage
-		|    {
-		|        public CsByteMessage dll_obj;
-		|        public ScsRawDataMessage M_ByteMessage;
-		|
-		|        public ByteMessage(byte[] p1 = null)
-		|        {
-		|            M_ByteMessage = new ScsRawDataMessage(p1);
-		|        }
-		|
-		|        public ByteMessage(ScsRawDataMessage p1)
-		|        {
-		|            M_ByteMessage = p1;
-		|        }
-		|
-		|        public ScsRawDataMessage M_Obj
-		|        {
-		|            get { return M_ByteMessage; }
-		|        }
-		|
-		|        public byte[] MessageData
-		|        {
-		|            get { return M_ByteMessage.MessageData; }
-		|            set { M_ByteMessage.MessageData = value; }
-		|        }
-		|
-		|        public string MessageId
-		|        {
-		|            get { return M_ByteMessage.MessageId; }
-		|        }
-		|
-		|        public string RepliedMessageId
-		|        {
-		|            get { return M_ByteMessage.RepliedMessageId; }
-		|        }
-		|    }
-		|
-		|    [ContextClass (""КсСообщениеБайты"", ""CsByteMessage"")]
-		|    public class CsByteMessage : AutoContext<CsByteMessage>
-		|    {
-		|        public CsByteMessage(BinaryDataContext p1)
-		|        {
-		|            ByteMessage ByteMessage1 = new ByteMessage();
-		|            ByteMessage1.dll_obj = this;
-		|            Base_obj = ByteMessage1;
-		|            ByteMessage1.MessageData = p1.Buffer;
-		|        }
-		|		
-		|        public CsByteMessage()
-		|        {
-		|            ByteMessage ByteMessage1 = new ByteMessage();
-		|            ByteMessage1.dll_obj = this;
-		|            Base_obj = ByteMessage1;
-		|        }
-		|		
-		|        public CsByteMessage(ByteMessage p1)
-		|        {
-		|            ByteMessage ByteMessage1 = p1;
-		|            ByteMessage1.dll_obj = this;
-		|            Base_obj = ByteMessage1;
-		|        }
-		|
-		|        public ByteMessage Base_obj;
-		|        
-		|        [ContextProperty(""Данные"", ""MessageData"")]
-		|        public BinaryDataContext MessageData
-		|        {
-		|            get { return new BinaryDataContext(Base_obj.MessageData); }
-		|            set { Base_obj.MessageData = ((BinaryDataContext)value).Buffer; }
-		|        }
-		|        
-		|        [ContextProperty(""Идентификатор"", ""MessageId"")]
-		|        public string MessageId
-		|        {
-		|            get { return Base_obj.MessageId; }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "TextMessage" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|using Hik.Communication.Scs.Communication.Messages;
-		|
-		|namespace oscs
-		|{
-		|    public class TextMessage
-		|    {
-		|        public CsTextMessage dll_obj;
-		|        public ScsTextMessage M_TextMessage;
-		|
-		|        public TextMessage(ScsTextMessage p1)
-		|        {
-		|            M_TextMessage = p1;
-		|        }
-		|
-		|        public TextMessage(string p1 = null)
-		|        {
-		|            M_TextMessage = new ScsTextMessage(p1);
-		|        }
-		|
-		|        public ScsTextMessage M_Obj
-		|        {
-		|            get { return M_TextMessage; }
-		|        }
-		|
-		|        public string MessageId
-		|        {
-		|            get { return M_TextMessage.MessageId; }
-		|        }
-		|
-		|        public string RepliedMessageId
-		|        {
-		|            get { return M_TextMessage.RepliedMessageId; }
-		|        }
-		|
-		|        public string Text
-		|        {
-		|            get { return M_TextMessage.Text; }
-		|            set { M_TextMessage.Text = value; }
-		|        }
-		|    }
-		|
-		|    [ContextClass (""КсСообщениеТекст"", ""CsTextMessage"")]
-		|    public class CsTextMessage : AutoContext<CsTextMessage>
-		|    {
-		|        public CsTextMessage(string p1 = null)
-		|        {
-		|            TextMessage TextMessage1 = new TextMessage(p1);
-		|            TextMessage1.dll_obj = this;
-		|            Base_obj = TextMessage1;
-		|        }
-		|		
-		|        public CsTextMessage(TextMessage p1)
-		|        {
-		|            TextMessage TextMessage1 = p1;
-		|            TextMessage1.dll_obj = this;
-		|            Base_obj = TextMessage1;
-		|        }
-		|
-		|        public TextMessage Base_obj;
-		|        
-		|        [ContextProperty(""Идентификатор"", ""MessageId"")]
-		|        public string MessageId
-		|        {
-		|            get { return Base_obj.MessageId; }
-		|        }
-		|
-		|        [ContextProperty(""Текст"", ""Text"")]
-		|        public string Text
-		|        {
-		|            get { return Base_obj.Text; }
-		|            set { Base_obj.Text = value; }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "MessageEventArgs" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using System;
-		|using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|using Hik.Communication.Scs.Communication.Messages;
-		|
-		|namespace Hik.Communication.Scs.Communication.Messages
-		|{
-		|    // Сохраняет сообщение, которое будет использоваться событием.
-		|    public class MessageEventArgs : System.EventArgs
-		|    {
-		|        // Объект сообщение, связанный с этим событием.
-		|        public IScsMessage Message { get; private set; }
-		|
-		|        // Создает новый объект MessageEventArgs.
-		|        // ""message"" - Объект сообщение, связанный с этим событием.
-		|        public MessageEventArgs(IScsMessage message)
-		|        {
-		|            Message = message;
-		|        }
-		|    }
-		|}
-		|
-		|namespace oscs
-		|{
-		|    public class MessageEventArgs : oscs.EventArgs
-		|    {
-		|        public new CsMessageEventArgs dll_obj;
-		|        private IScsMessage message;
-		|
-		|        public MessageEventArgs(IScsMessage p1)
-		|        {
-		|            message = p1;
-		|        }
-		|
-		|        public MessageEventArgs(Hik.Communication.Scs.Communication.Messages.MessageEventArgs args)
-		|        {
-		|            message = args.Message;
-		|        }
-		|
-		|        public dynamic Message
-		|        {
-		|            get
-		|            {
-		|                dynamic Obj1 = null;
-		|                string str1 = message.GetType().ToString();
-		|                string str2 = ""oscs."" + (str1.Substring(str1.LastIndexOf(""."") + 1).Replace(""Scs"", """").Replace(""RawDataMessage"", ""ByteMessage""));
-		|                System.Type TestType = System.Type.GetType(str2, false, true);
-		|                object[] args = { message };
-		|                Obj1 = Activator.CreateInstance(TestType, args);
-		|                return Obj1;
-		|            }
-		|        }
-		|    }
-		|
-		|    [ContextClass(""КсСообщениеАрг"", ""CsMessageEventArgs"")]
-		|    public class CsMessageEventArgs : AutoContext<CsMessageEventArgs>
-		|    {
-		|        public CsMessageEventArgs(oscs.MessageEventArgs p1)
-		|        {
-		|            oscs.MessageEventArgs MessageEventArgs1 = p1;
-		|            MessageEventArgs1.dll_obj = this;
-		|            Base_obj = MessageEventArgs1;
-		|        }
-		|
-		|        public oscs.MessageEventArgs Base_obj;
-		|        
-		|        [ContextProperty(""Действие"", ""EventAction"")]
-		|        public IValue EventAction
-		|        {
-		|            get { return Base_obj.EventAction; }
-		|            set { Base_obj.EventAction = value; }
-		|        }
-		|        
-		|        [ContextProperty(""Отправитель"", ""Sender"")]
-		|        public IValue Sender
-		|        {
-		|            get { return Base_obj.Sender.dll_obj; }
-		|        }
-		|        
-		|        [ContextProperty(""Сообщение"", ""Message"")]
-		|        public IValue Message
-		|        {
-		|            get
-		|            {
-		|                dynamic Obj1 = null;
-		|                string str1 = Base_obj.Message.GetType().ToString();
-		|                string str2 = ""oscs.Cs"" + str1.Substring(str1.LastIndexOf(""."") + 1);
-		|                System.Type TestType = System.Type.GetType(str2, false, true);
-		|                object[] args = { Base_obj.Message };
-		|                Obj1 = Activator.CreateInstance(TestType, args);
-		|                return Obj1;
-		|            }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "ActionServer" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|
-		|namespace oscs
-		|{
-		|    [ContextClass (""КсДействие"", ""CsAction"")]
-		|    public class CsAction : AutoContext<CsAction>
-		|    {
-		|        public CsAction(IRuntimeContextInstance script, string methodName)
-		|        {
-		|            Script = script;
-		|            MethodName = methodName;
-		|        }
-		|        
-		|        [ContextProperty(""ИмяМетода"", ""MethodName"")]
-		|        public string MethodName { get; set; }
-		|        
-		|        [ContextProperty(""Сценарий"", ""Script"")]
-		|        public IRuntimeContextInstance Script { get; set; }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "TcpEndPoint" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|using Hik.Communication.Scs.Communication.EndPoints;
-		|using Hik.Communication.Scs.Communication.EndPoints.Tcp;
-		|
-		|namespace oscs
-		|{
-		|    public class TcpEndPoint
-		|    {
-		|        public CsTcpEndPoint dll_obj;
-		|        public string ipAddress;
-		|        public ScsTcpEndPoint M_TcpEndPoint;
-		|        public int port;
-		|
-		|        public TcpEndPoint(ScsEndPoint p1)
-		|        {
-		|            ScsTcpEndPoint p2 = (ScsTcpEndPoint)p1;
-		|            M_TcpEndPoint = new ScsTcpEndPoint(p2.IpAddress, p2.TcpPort);
-		|        }
-		|
-		|        public TcpEndPoint(string p1, int p2)
-		|        {
-		|            M_TcpEndPoint = new ScsTcpEndPoint(p1, p2);
-		|        }
-		|
-		|        public TcpEndPoint(TcpEndPoint p1)
-		|        {
-		|            M_TcpEndPoint = p1.M_TcpEndPoint;
-		|            ipAddress = p1.ipAddress;
-		|            port = p1.port;
-		|        }
-		|
-		|        public string IpAddress
-		|        {
-		|            get { return M_TcpEndPoint.IpAddress; }
-		|            set { M_TcpEndPoint.IpAddress = value; }
-		|        }
-		|
-		|        public int TcpPort
-		|        {
-		|            get { return M_TcpEndPoint.TcpPort; }
-		|        }
-		|    }
-		|
-		|    [ContextClass (""КсTCPКонечнаяТочка"", ""CsTcpEndPoint"")]
-		|    public class CsTcpEndPoint : AutoContext<CsTcpEndPoint>
-		|    {
-		|        public CsTcpEndPoint(string p1, int p2)
-		|        {
-		|            TcpEndPoint TcpEndPoint1 = new TcpEndPoint(p1, p2);
-		|            TcpEndPoint1.dll_obj = this;
-		|            Base_obj = TcpEndPoint1;
-		|        }
-		|
-		|        public CsTcpEndPoint(TcpEndPoint p1)
-		|        {
-		|            TcpEndPoint TcpEndPoint1 = p1;
-		|            TcpEndPoint1.dll_obj = this;
-		|            Base_obj = TcpEndPoint1;
-		|        }
-		|
-		|        public TcpEndPoint Base_obj;
-		|        
-		|        [ContextProperty(""IPАдрес"", ""IpAddress"")]
-		|        public string IpAddress
-		|        {
-		|            get { return Base_obj.IpAddress; }
-		|            set { Base_obj.IpAddress = value; }
-		|        }
-		|
-		|        [ContextProperty(""TCPПорт"", ""TcpPort"")]
-		|        public int TcpPort
-		|        {
-		|            get { return Base_obj.TcpPort; }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "TcpClient" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|using Hik.Communication.Scs.Communication.Messages;
-		|using Hik.Communication.Scs.Client;
-		|
-		|namespace oscs
-		|{
-		|    public class TcpClient
-		|    {
-		|        public CsTcpClient dll_obj;
-		|        public IScsClient M_TcpClient;
-		|
-		|        public TcpClient(TcpEndPoint p1)
-		|        {
-		|            M_TcpClient = ScsClientFactory.CreateClient(p1.M_TcpEndPoint);
-		|            M_TcpClient.Connected += M_TcpClient_Connected;
-		|            M_TcpClient.Disconnected += M_TcpClient_Disconnected;
-		|            M_TcpClient.MessageSent += M_TcpClient_MessageSent;
-		|            M_TcpClient.MessageReceived += M_TcpClient_MessageReceived;
-		|            Connected = """";
-		|            Disconnected = """";
-		|            MessageReceived = """";
-		|            MessageSent = """";
-		|        }
-		|
-		|        public int CommunicationState
-		|        {
-		|            get { return (int)M_TcpClient.CommunicationState; }
-		|        }
-		|
-		|        public string Connected { get; set; }
-		|
-		|        public string Disconnected { get; set; }
-		|
-		|        public string MessageReceived { get; set; }
-		|
-		|        public string MessageSent { get; set; }
-		|
-		|        public void Connect()
-		|        {
-		|            M_TcpClient.Connect();
-		|        }
-		|
-		|        public void Disconnect()
-		|        {
-		|            M_TcpClient.Disconnect();
-		|        }
-		|
-		|        private void M_TcpClient_Connected(object sender, System.EventArgs e)
-		|        {
-		|            if (dll_obj.Connected != null)
-		|            {
-		|                oscs.EventArgs EventArgs1 = new oscs.EventArgs();
-		|                EventArgs1.EventAction = dll_obj.Connected;
-		|                EventArgs1.Sender = this;
-		|                CsEventArgs CsEventArgs1 = new CsEventArgs(EventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(EventArgs1);
-		|            }
-		|        }
-		|
-		|        private void M_TcpClient_Disconnected(object sender, System.EventArgs e)
-		|        {
-		|            if (dll_obj.Disconnected != null)
-		|            {
-		|                oscs.EventArgs EventArgs1 = new oscs.EventArgs();
-		|                EventArgs1.EventAction = dll_obj.Disconnected;
-		|                EventArgs1.Sender = this;
-		|                CsEventArgs CsEventArgs1 = new CsEventArgs(EventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(EventArgs1);
-		|            }
-		|        }
-		|
-		|        private void M_TcpClient_MessageReceived(object sender, Hik.Communication.Scs.Communication.Messages.MessageEventArgs e)
-		|        {
-		|            if (dll_obj.MessageReceived != null)
-		|            {
-		|                oscs.MessageEventArgs MessageEventArgs1 = new oscs.MessageEventArgs(e.Message);
-		|                MessageEventArgs1.EventAction = dll_obj.MessageReceived;
-		|                MessageEventArgs1.Sender = this;
-		|                CsMessageEventArgs CsMessageEventArgs1 = new CsMessageEventArgs(MessageEventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(MessageEventArgs1);
-		|            }
-		|        }
-		|
-		|        private void M_TcpClient_MessageSent(object sender, Hik.Communication.Scs.Communication.Messages.MessageEventArgs e)
-		|        {
-		|            if (e.Message.GetType() == typeof(ScsPingMessage))
-		|            {
-		|                return;
-		|            }
-		|
-		|            if (dll_obj.MessageSent != null)
-		|            {
-		|                oscs.MessageEventArgs MessageEventArgs1 = new oscs.MessageEventArgs(e.Message);
-		|                MessageEventArgs1.EventAction = dll_obj.MessageSent;
-		|                MessageEventArgs1.Sender = this;
-		|                CsMessageEventArgs CsMessageEventArgs1 = new CsMessageEventArgs(MessageEventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(MessageEventArgs1);
-		|            }
-		|        }
-		|
-		|        public void SendMessage(IScsMessage p1)
-		|        {
-		|            M_TcpClient.SendMessage(p1);
-		|        }
-		|    }
-		|
-		|    [ContextClass (""КсTCPКлиент"", ""CsTcpClient"")]
-		|    public class CsTcpClient : AutoContext<CsTcpClient>
-		|    {
-		|        public CsTcpClient(CsTcpEndPoint p1)
-		|        {
-		|            TcpClient TcpClient1 = new TcpClient(p1.Base_obj);
-		|            TcpClient1.dll_obj = this;
-		|            Base_obj = TcpClient1;
-		|        }
-		|
-		|        public TcpClient Base_obj;
-		|        
-		|        [ContextProperty(""ПриОтключении"", ""Disconnected"")]
-		|        public IValue Disconnected { get; set; }
-		|        
-		|        [ContextProperty(""ПриОтправкеСообщения"", ""MessageSent"")]
-		|        public IValue MessageSent { get; set; }
-		|        
-		|        [ContextProperty(""ПриПодключении"", ""Connected"")]
-		|        public IValue Connected { get; set; }
-		|        
-		|        [ContextProperty(""ПриПолученииСообщения"", ""MessageReceived"")]
-		|        public IValue MessageReceived { get; set; }
-		|        
-		|        [ContextProperty(""СостояниеСоединения"", ""CommunicationState"")]
-		|        public int CommunicationState
-		|        {
-		|            get { return (int)Base_obj.CommunicationState; }
-		|        }
-		|        
-		|        [ContextMethod(""Отключить"", ""Disconnect"")]
-		|        public void Disconnect()
-		|        {
-		|            Base_obj.Disconnect();
-		|        }
-		|					
-		|        [ContextMethod(""ОтправитьСообщение"", ""SendMessage"")]
-		|        public void SendMessage(IValue p1)
-		|        {
-		|            Base_obj.SendMessage(((dynamic)p1).Base_obj.M_Obj);
-		|        }
-		|
-		|        [ContextMethod(""Подключить"", ""Connect"")]
-		|        public void Connect()
-		|        {
-		|            Base_obj.Connect();
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "CommunicationStates" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|
-		|namespace oscs
-		|{
-		|    [ContextClass (""КсСостояниеСоединения"", ""CsCommunicationStates"")]
-		|    public class CsCommunicationStates : AutoContext<CsCommunicationStates>
-		|    {
-		|        private int m_connected = (int)Hik.Communication.Scs.Communication.CommunicationStates.Connected; // 0 Соединение подключено.
-		|        private int m_disconnected = (int)Hik.Communication.Scs.Communication.CommunicationStates.Disconnected; // 1 Соединение отключено.
-		|
-		|        [ContextProperty(""Отключен"", ""Disconnected"")]
-		|        public int Disconnected
-		|        {
-		|        	get { return m_disconnected; }
-		|        }
-		|
-		|        [ContextProperty(""Подключен"", ""Connected"")]
-		|        public int Connected
-		|        {
-		|        	get { return m_connected; }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "ClientMode" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|
-		|namespace oscs
-		|{
-		|    [ContextClass (""КсРежимКлиента"", ""CsClientMode"")]
-		|    public class CsClientMode : AutoContext<CsClientMode>
-		|    {
-		|        private int m_none = 0; // 0 Клиент является экземпляром класса из библиотеки ClientServerDeclarForms.
-		|        private int m_native = 1; // 1 Клиент является экземпляром класса <B>TCPСоединение&nbsp;/&nbsp;TCPConnection</B> из библиотеки односкрипта.
-		|        private int m_browser = 2; // 2 Подключение к серверу из какого либо браузера по протоколу http.
-		|
-		|        [ContextProperty(""Браузер"", ""Browser"")]
-		|        public int Browser
-		|        {
-		|        	get { return m_browser; }
-		|        }
-		|
-		|        [ContextProperty(""Нативный"", ""Native"")]
-		|        public int Native
-		|        {
-		|        	get { return m_native; }
-		|        }
-		|
-		|        [ContextProperty(""Отсутствие"", ""None"")]
-		|        public int None
-		|        {
-		|        	get { return m_none; }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "ServerClient" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using System;
-		|using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|using Hik.Communication.Scs.Communication.Messages;
-		|using Hik.Communication.Scs.Server;
-		|
-		|namespace oscs
-		|{
-		|    public class ServerClient
-		|    {
-		|        public CsServerClient dll_obj;
-		|        public IScsServerClient M_ServerClient;
-		|
-		|        public ServerClient(IScsServerClient p1)
-		|        {
-		|            M_ServerClient = p1;
-		|            M_ServerClient.Disconnected += M_ServerClient_Disconnected;
-		|            M_ServerClient.MessageReceived += M_ServerClient_MessageReceived;
-		|            M_ServerClient.MessageSent += M_ServerClient_MessageSent;
-		|            Disconnected = """";
-		|            MessageReceived = """";
-		|            MessageSent = """";
-		|        }
-		|
-		|        public decimal ClientId
-		|        {
-		|            get { return Convert.ToDecimal(M_ServerClient.ClientId); }
-		|        }
-		|
-		|        public int CommunicationState
-		|        {
-		|            get { return (int)M_ServerClient.CommunicationState; }
-		|        }
-		|
-		|        public string Disconnected { get; set; }
-		|
-		|        public string MessageReceived { get; set; }
-		|
-		|        public string MessageSent { get; set; }
-		|
-		|        public TcpEndPoint RemoteEndPoint
-		|        {
-		|            get { return new TcpEndPoint(M_ServerClient.RemoteEndPoint); }
-		|        }
-		|
-		|        public void Disconnect()
-		|        {
-		|            M_ServerClient.Disconnect();
-		|        }
-		|
-		|        private void M_ServerClient_Disconnected(object sender, System.EventArgs e)
-		|        {
-		|            if (dll_obj.Disconnected != null)		
-		|            {
-		|                oscs.EventArgs EventArgs1 = new oscs.EventArgs();
-		|                EventArgs1.EventAction = dll_obj.Disconnected;
-		|                EventArgs1.Sender = this;
-		|                CsEventArgs CsEventArgs1 = new CsEventArgs(EventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(EventArgs1);
-		|            }
-		|        }
-		|
-		|        private void M_ServerClient_MessageReceived(object sender, Hik.Communication.Scs.Communication.Messages.MessageEventArgs e)
-		|        {
-		|            if (dll_obj.MessageReceived != null)		
-		|            {
-		|                oscs.MessageEventArgs MessageEventArgs1 = new oscs.MessageEventArgs(e.Message);
-		|                MessageEventArgs1.EventAction = dll_obj.MessageReceived;
-		|                MessageEventArgs1.Sender = this;
-		|                CsMessageEventArgs CsMessageEventArgs1 = new CsMessageEventArgs(MessageEventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(MessageEventArgs1);
-		|            }
-		|        }
-		|
-		|        private void M_ServerClient_MessageSent(object sender, Hik.Communication.Scs.Communication.Messages.MessageEventArgs e)
-		|        {
-		|            if (e.Message.GetType() == typeof(ScsPingMessage))
-		|            {
-		|                return;
-		|            }
-		|
-		|            if (dll_obj.MessageSent != null)		
-		|            {
-		|                oscs.MessageEventArgs MessageEventArgs1 = new oscs.MessageEventArgs(e.Message);
-		|                MessageEventArgs1.EventAction = dll_obj.MessageSent;
-		|                MessageEventArgs1.Sender = this;
-		|                CsMessageEventArgs CsMessageEventArgs1 = new CsMessageEventArgs(MessageEventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(MessageEventArgs1);
-		|            }
-		|        }
-		|
-		|        public void SendMessage(IScsMessage p1)
-		|        {
-		|            M_ServerClient.SendMessage(p1);
-		|        }
-		|    }
-		|
-		|    [ContextClass (""КсСерверКлиент"", ""CsServerClient"")]
-		|    public class CsServerClient : AutoContext<CsServerClient>
-		|    {
-		|        public CsServerClient(IScsServerClient p1)
-		|        {
-		|            oscs.ServerClient ServerClient1 = new oscs.ServerClient(p1);
-		|            ServerClient1.dll_obj = this;
-		|            Base_obj = ServerClient1;
-		|        }
-		|		
-		|        public IValue MessageSent { get; set; }
-		|
-		|        public IValue MessageReceived { get; set; }
-		|
-		|        public oscs.ServerClient Base_obj;
-		|        
-		|        [ContextProperty(""ИдентификаторКлиента"", ""ClientId"")]
-		|        public decimal ClientId
-		|        {
-		|            get { return Base_obj.ClientId; }
-		|        }
-		|        
-		|        [ContextProperty(""ПриОтключении"", ""Disconnected"")]
-		|        public IValue Disconnected { get; set; }
-		|        
-		|        [ContextProperty(""СостояниеСоединения"", ""CommunicationState"")]
-		|        public int CommunicationState
-		|        {
-		|            get { return (int)Base_obj.CommunicationState; }
-		|        }
-		|        
-		|        [ContextMethod(""Отключить"", ""Disconnect"")]
-		|        public void Disconnect()
-		|        {
-		|            Base_obj.Disconnect();
-		|        }
-		|					
-		|        [ContextMethod(""ОтправитьСообщение"", ""SendMessage"")]
-		|        public void SendMessage(IValue p1)
-		|        {
-		|            Base_obj.SendMessage(((dynamic)p1).Base_obj.M_Obj);
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "TcpServer" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.HostedScript.Library;
-		|using System.Collections.Generic;
-		|using Hik.Communication.Scs.Server;
-		|using Hik.Communication.Scs.Communication.EndPoints.Tcp;
-		|using Hik.Communication.Scs.Communication.Channels;
-		|using Hik.Communication.Scs.Communication.Channels.Tcp;
-		|using ScriptEngine.Machine;
-		|
-		|namespace Hik.Communication.Scs.Server.Tcp
-		|{
-		|    // Этот класс используется для создания TCP-сервера.
-		|    internal class ScsTcpServer : ScsServerBase
-		|    {
-		|        // Адрес конечной точки сервера для прослушивания входящих подключений.
-		|        private readonly ScsTcpEndPoint _endPoint;
-		|
-		|        // Создает новый объект ScsTcpServer.
-		|        // ""endPoint"" - Адрес конечной точки сервера для прослушивания входящих подключений
-		|        public ScsTcpServer(ScsTcpEndPoint endPoint)
-		|        {
-		|            _endPoint = endPoint;
-		|        }
-		|
-		|        // Создает прослушиватель TCP-соединений.
-		|        // Возврат - Созданный объект прослушивателя
-		|        protected override IConnectionListener CreateConnectionListener()
-		|        {
-		|            return new TcpConnectionListener(_endPoint);
-		|        }
-		|    }
-		|}
-		|		
-		|namespace oscs
-		|{
-		|    public class ScsServer
-		|    {
-		|        public CsTcpServer dll_obj;
-		|        public IScsServer M_TcpServer;
-		|        public string ClientConnected { get; set; }
-		|        public string ClientDisconnected { get; set; }
-		|
-		|        public ScsServer(int p1)
-		|        {
-		|            ScsTcpEndPoint ScsTcpEndPoint1 = new ScsTcpEndPoint(p1);
-		|            M_TcpServer = ScsServerFactory.CreateServer(ScsTcpEndPoint1);
-		|            M_TcpServer.ClientConnected += M_TcpServer_ClientConnected;
-		|            M_TcpServer.ClientDisconnected += M_TcpServer_ClientDisconnected;
-		|            ClientConnected = """";
-		|            ClientDisconnected = """";
-		|        }
-		|
-		|        private void M_TcpServer_ClientDisconnected(object sender, Hik.Communication.Scs.Server.ServerClientEventArgs e)
-		|        {
-		|            if (dll_obj.ClientDisconnected != null)		
-		|            {
-		|                oscs.ServerClientEventArgs ServerClientEventArgs1 = new oscs.ServerClientEventArgs(e);
-		|                ServerClientEventArgs1.EventAction = dll_obj.ClientDisconnected;
-		|                ServerClientEventArgs1.Sender = this;
-		|                ServerClientEventArgs1.Client = new CsServerClient(e.Client);
-		|                CsServerClientEventArgs CsServerClientEventArgs1 = new CsServerClientEventArgs(ServerClientEventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(ServerClientEventArgs1);
-		|            }
-		|        }
-		|
-		|        private void M_TcpServer_ClientConnected(object sender, Hik.Communication.Scs.Server.ServerClientEventArgs e)
-		|        {
-		|            if (dll_obj.ClientConnected != null)		
-		|            {
-		|                oscs.ServerClientEventArgs ServerClientEventArgs1 = new oscs.ServerClientEventArgs(e);
-		|                ServerClientEventArgs1.EventAction = dll_obj.ClientConnected;
-		|                ServerClientEventArgs1.Sender = this;
-		|                oscs.CsServerClient CsServerClient1 = new CsServerClient(e.Client);
-		|                CsServerClient1.MessageReceived = ClientServerDeclarForms.ServerMessageReceived;
-		|                CsServerClient1.MessageSent = ClientServerDeclarForms.ServerMessageSent;
-		|                ServerClientEventArgs1.Client = CsServerClient1;
-		|                CsServerClientEventArgs CsServerClientEventArgs1 = new CsServerClientEventArgs(ServerClientEventArgs1);
-		|                ClientServerDeclarForms.EventQueue.Enqueue(ServerClientEventArgs1);
-		|            }
-		|        }
-		|
-		|        public void Start()
-		|        {
-		|            M_TcpServer.Start();
-		|        }
-		|
-		|        public void Stop()
-		|        {
-		|            M_TcpServer.Stop();
-		|        }
-		|		
-		|        public ArrayImpl Clients
-		|        {
-		|            get
-		|            {
-		|                List<IScsServerClient> list = M_TcpServer.Clients.GetAllItems();
-		|                ArrayImpl arrayImpl = new ArrayImpl();
-		|                for (int i = 0; i < list.Count; i++)
-		|                {
-		|                    arrayImpl.Add(new CsServerClient(list[i]));
-		|                }
-		|                return arrayImpl;
-		|            }
-		|        }
-		|    }
-		|
-		|    [ContextClass(""КсTCPСервер"", ""CsTcpServer"")]
-		|    public class CsTcpServer : AutoContext<CsTcpServer>
-		|    {
-		|        public CsTcpServer(int p1)
-		|        {
-		|            ScsServer ScsServer1 = new ScsServer(p1);
-		|            ScsServer1.dll_obj = this;
-		|            Base_obj = ScsServer1;
-		|        }
-		|
-		|        public CsTcpServer(ScsServer p1)
-		|        {
-		|            Base_obj = p1;
-		|        }
-		|
-		|        public oscs.ScsServer Base_obj;
-		|        
-		|        [ContextProperty(""Клиенты"", ""Clients"")]
-		|        public ArrayImpl Clients
-		|        {
-		|            get { return Base_obj.Clients; }
-		|        }
-		|        
-		|        [ContextProperty(""ПриОтключенииКлиента"", ""ClientDisconnected"")]
-		|        public IValue ClientDisconnected { get; set; }
-		|        
-		|        [ContextProperty(""ПриОтправкеСообщения"", ""MessageSent"")]
-		|        public IValue MessageSent
-		|        {
-		|            get { return ClientServerDeclarForms.ServerMessageSent; }
-		|            set { ClientServerDeclarForms.ServerMessageSent = value; }
-		|        }
-		|        
-		|        [ContextProperty(""ПриПодключенииКлиента"", ""ClientConnected"")]
-		|        public IValue ClientConnected { get; set; }
-		|        
-		|        [ContextProperty(""ПриПолученииСообщения"", ""MessageReceived"")]
-		|        public IValue MessageReceived
-		|        {
-		|            get { return ClientServerDeclarForms.ServerMessageReceived; }
-		|            set { ClientServerDeclarForms.ServerMessageReceived = value; }
-		|        }
-		|        
-		|        [ContextMethod(""Начать"", ""Start"")]
-		|        public void Start()
-		|        {
-		|            Base_obj.Start();
-		|        }
-		|					
-		|        [ContextMethod(""Остановить"", ""Stop"")]
-		|        public void Stop()
-		|        {
-		|            Base_obj.Stop();
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "ServerClientEventArgs" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using System;
-		|using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|using Hik.Communication.Scs.Server;
-		|
-		|namespace Hik.Communication.Scs.Server
-		|{
-		|    // Хранит информацию о клиенте, которая будет использоваться событием.
-		|    public class ServerClientEventArgs : EventArgs
-		|    {
-		|        // Клиент, связанный с этим событием.
-		|        public IScsServerClient Client { get; private set; }
-		|
-		|        // Создает новый объект ServerClientEventArgs.
-		|        // ""client"" - Клиент, связанный с этим событием
-		|        public ServerClientEventArgs(IScsServerClient client)
-		|        {
-		|            Client = client;
-		|        }
-		|    }
-		|}
-		|
-		|namespace oscs
-		|{
-		|    public class ServerClientEventArgs : oscs.EventArgs
-		|    {
-		|        public new CsServerClientEventArgs dll_obj;
-		|        private IScsServerClient client;
-		|
-		|        public ServerClientEventArgs(IScsServerClient p1)
-		|        {
-		|            client = p1;
-		|        }
-		|
-		|        public ServerClientEventArgs(Hik.Communication.Scs.Server.ServerClientEventArgs args)
-		|        {
-		|            client = args.Client;
-		|        }
-		|
-		|        public CsServerClient Client { get; set; }
-		|    }
-		|
-		|    [ContextClass(""КсСерверКлиентАрг"", ""CsServerClientEventArgs"")]
-		|    public class CsServerClientEventArgs : AutoContext<CsServerClientEventArgs>
-		|    {
-		|        public CsServerClientEventArgs(oscs.ServerClientEventArgs p1)
-		|        {
-		|            oscs.ServerClientEventArgs ServerClientEventArgs1 = p1;
-		|            ServerClientEventArgs1.dll_obj = this;
-		|            Base_obj = ServerClientEventArgs1;
-		|        }
-		|
-		|        public oscs.ServerClientEventArgs Base_obj;
-		|        
-		|        [ContextProperty(""Действие"", ""EventAction"")]
-		|        public IValue EventAction
-		|        {
-		|            get { return Base_obj.EventAction; }
-		|            set { Base_obj.EventAction = value; }
-		|        }
-		|        
-		|        [ContextProperty(""Клиент"", ""Client"")]
-		|        public CsServerClient Client
-		|        {
-		|            get { return Base_obj.Client; }
-		|        }
-		|        
-		|        [ContextProperty(""Отправитель"", ""Sender"")]
-		|        public IValue Sender
-		|        {
-		|            get { return Base_obj.Sender.dll_obj; }
-		|        }
-		|    }
-		|}
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "ScsSupport" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using System;
-		|using System.Threading;
-		|using System.Threading.Tasks;
-		|using System.Runtime.Serialization;
-		|using System.Runtime.Serialization.Formatters.Binary;
-		|using System.Runtime.Remoting.Proxies;
-		|using System.Runtime.Remoting.Messaging;
-		|using System.Reflection;
-		|using System.Net;
-		|using System.Net.Sockets;
-		|using System.Linq;
-		|using System.IO;
-		|using System.Collections.Generic;
-		|using Hik.Threading;
-		|using Hik.Communication.ScsServices.Communication;
-		|using Hik.Communication.ScsServices.Communication.Messages;
-		|using Hik.Communication.Scs.Server;
-		|using Hik.Communication.Scs.Server.Tcp;
-		|using Hik.Communication.Scs.Communication;
-		|using Hik.Communication.Scs.Communication.Protocols;
-		|using Hik.Communication.Scs.Communication.Protocols.BinarySerialization;
-		|using Hik.Communication.Scs.Communication.Messengers;
-		|using Hik.Communication.Scs.Communication.Messages;
-		|using Hik.Communication.Scs.Communication.EndPoints;
-		|using Hik.Communication.Scs.Communication.EndPoints.Tcp;
-		|using Hik.Communication.Scs.Communication.Channels;
-		|using Hik.Communication.Scs.Communication.Channels.Tcp;
-		|using Hik.Communication.Scs.Client;
-		|using Hik.Communication.Scs.Client.Tcp;
-		|using Hik.Collections;
-		|using System.Text;
-		|
-		|#region Server
-		|
-		|namespace Hik.Communication.Scs.Server
-		|{
-		|    // Представляет сервер SCS, который используется для приема клиентских подключений и управления ими.
-		|    public interface IScsServer
-		|    {
-		|        // Это событие возникает, когда новый клиент подключается к серверу.
-		|        event EventHandler<ServerClientEventArgs> ClientConnected;
-		|
-		|        // Это событие возникает, когда клиент отключается от сервера.
-		|        event EventHandler<ServerClientEventArgs> ClientDisconnected;
-		|
-		|        // Получает/устанавливает фабрику протоколов wire для создания объектов IWireProtocol.
-		|        IScsWireProtocolFactory WireProtocolFactory { get; set; }
-		|
-		|        // Набор клиентов, подключенных к серверу.
-		|        ThreadSafeSortedList<long, IScsServerClient> Clients { get; }
-		|
-		|        // Запускает сервер.
-		|        void Start();
-		|
-		|        // Останавливает сервер.
-		|        void Stop();
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс используется для создания SCS-серверов.
-		|    public static class ScsServerFactory
-		|    {
-		|        // Создает новый SCS-сервер, используя конечную точку.
-		|        // ""endPoint"" - Конечная точка, представляющая адрес сервера
-		|        // Возврат - Созданный TCP-сервер
-		|        public static IScsServer CreateServer(ScsEndPoint endPoint)
-		|        {
-		|            return endPoint.CreateServer();
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Предоставляет некоторые функциональные возможности, которые используются серверами.
-		|    internal static class ScsServerManager
-		|    {
-		|        // Используется для установки клиентам автоматического приращения уникального идентификатора.
-		|        private static long _lastClientId;
-		|
-		|        // Получает уникальный номер, который будет использоваться в качестве идентификатора клиента.
-		|        public static long GetClientId()
-		|        {
-		|            return Interlocked.Increment(ref _lastClientId);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс представляет клиента на стороне сервера.
-		|    internal class ScsServerClient : IScsServerClient
-		|    {
-		|        // Это событие возникает при получении нового сообщения.
-		|        public event EventHandler<MessageEventArgs> MessageReceived;
-		|
-		|        // Это событие возникает, когда новое сообщение отправляется без какой-либо ошибки.
-		|        // Это не гарантирует, что сообщение будет должным образом обработано удаленным приложением.
-		|        public event EventHandler<MessageEventArgs> MessageSent;
-		|
-		|        // Это событие возникает, когда клиент отключен от сервера.
-		|        public event EventHandler Disconnected;
-		|
-		|        // Уникальный идентификатор для этого клиента на сервере.
-		|        public long ClientId { get; set; }
-		|
-		|        // Получает состояние связи Клиента.
-		|        public CommunicationStates CommunicationState
-		|        {
-		|            get { return _communicationChannel.CommunicationState; }
-		|        }
-		|
-		|        // Получает/устанавливает проводной протокол, который используется при чтении и записи сообщений.
-		|        public IScsWireProtocol WireProtocol
-		|        {
-		|            get { return _communicationChannel.WireProtocol; }
-		|            set { _communicationChannel.WireProtocol = value; }
-		|        }
-		|
-		|        // Получает конечную точку удаленного приложения.
-		|        public ScsEndPoint RemoteEndPoint
-		|        {
-		|            get { return _communicationChannel.RemoteEndPoint; }
-		|        }
-		|
-		|        // Получает время последнего успешно полученного сообщения.
-		|        public DateTime LastReceivedMessageTime
-		|        {
-		|            get { return _communicationChannel.LastReceivedMessageTime; }
-		|        }
-		|
-		|        // Получает время последнего успешно отправленного сообщения.
-		|        public DateTime LastSentMessageTime
-		|        {
-		|            get { return _communicationChannel.LastSentMessageTime; }
-		|        }
-		|
-		|        // Канал связи, который используется клиентом для отправки и получения сообщений.
-		|        private readonly ICommunicationChannel _communicationChannel;
-		|
-		|        // Создает новый объект ScsClient.
-		|        // ""communicationChannel"" - Канал связи, который используется клиентом для отправки и получения сообщений
-		|        public ScsServerClient(ICommunicationChannel communicationChannel)
-		|        {
-		|            _communicationChannel = communicationChannel;
-		|            _communicationChannel.MessageReceived += CommunicationChannel_MessageReceived;
-		|            _communicationChannel.MessageSent += CommunicationChannel_MessageSent;
-		|            _communicationChannel.Disconnected += CommunicationChannel_Disconnected;
-		|        }
-		|
-		|        // Отключается от клиента и закрывает базовый канал связи.
-		|        public void Disconnect()
-		|        {
-		|            _communicationChannel.Disconnect();
-		|        }
-		|
-		|        // Отправляет сообщение клиенту.
-		|        // ""message"" - Сообщение, которое нужно отправить.
-		|        public void SendMessage(IScsMessage message)
-		|        {
-		|            _communicationChannel.SendMessage(message);
-		|        }
-		|
-		|        // Обрабатывает событие отключения объекта _communicationChannel.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void CommunicationChannel_Disconnected(object sender, EventArgs e)
-		|        {
-		|            OnDisconnected();
-		|        }
-		|
-		|        // Обрабатывает событие MessageReceived объекта _communicationChannel.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void CommunicationChannel_MessageReceived(object sender, MessageEventArgs e)
-		|        {
-		|            var message = e.Message;
-		|            if (message is ScsPingMessage)
-		|            {
-		|                _communicationChannel.SendMessage(new ScsPingMessage { RepliedMessageId = message.MessageId });
-		|                return;
-		|            }
-		|
-		|            OnMessageReceived(message);
-		|        }
-		|
-		|        // Обрабатывает событие отправки сообщений объекта _communicationChannel.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void CommunicationChannel_MessageSent(object sender, MessageEventArgs e)
-		|        {
-		|            OnMessageSent(e.Message);
-		|        }
-		|
-		|        // Вызывает событие отключения.
-		|        private void OnDisconnected()
-		|        {
-		|            var handler = Disconnected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, EventArgs.Empty);
-		|            }
-		|        }
-		|
-		|        // Вызывает событие MessageReceived.
-		|        // ""message"" - Полученное сообщение.
-		|        private void OnMessageReceived(IScsMessage message)
-		|        {
-		|            var handler = MessageReceived;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|
-		|        // Вызывает событие messageSent.
-		|        // ""message"" - Полученное сообщение.
-		|        protected virtual void OnMessageSent(IScsMessage message)
-		|        {
-		|            var handler = MessageSent;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс предоставляет базовую функциональность для серверных классов.
-		|    internal abstract class ScsServerBase : IScsServer
-		|    {
-		|        // Это событие возникает при подключении нового клиента.
-		|        public event EventHandler<ServerClientEventArgs> ClientConnected;
-		|
-		|        // Это событие возникает, когда клиент отключается от сервера.
-		|        public event EventHandler<ServerClientEventArgs> ClientDisconnected;
-		|
-		|        // Получает/устанавливает проводной протокол, который используется при чтении и записи сообщений.
-		|        public IScsWireProtocolFactory WireProtocolFactory { get; set; }
-		|
-		|        // Набор клиентов, подключенных к серверу.
-		|        public ThreadSafeSortedList<long, IScsServerClient> Clients { get; private set; }
-		|
-		|        // Этот объект используется для прослушивания входящих подключений.
-		|        private IConnectionListener _connectionListener;
-		|
-		|        // Конструктор.
-		|        protected ScsServerBase()
-		|        {
-		|            Clients = new ThreadSafeSortedList<long, IScsServerClient>();
-		|            WireProtocolFactory = WireProtocolManager.GetDefaultWireProtocolFactory();
-		|        }
-		|
-		|        // Запускает сервер.
-		|        public virtual void Start()
-		|        {
-		|            _connectionListener = CreateConnectionListener();
-		|            _connectionListener.CommunicationChannelConnected += ConnectionListener_CommunicationChannelConnected;
-		|            _connectionListener.Start();
-		|        }
-		|
-		|        // Останавливает сервер.
-		|        public virtual void Stop()
-		|        {
-		|            if (_connectionListener != null)
-		|            {
-		|                _connectionListener.Stop();
-		|            }
-		|
-		|            foreach (var client in Clients.GetAllItems())
-		|            {
-		|                client.Disconnect();
-		|            }
-		|        }
-		|
-		|        // Этот метод реализуется производными классами для создания соответствующего прослушивателя соединений для прослушивания входящих запросов на подключение.
-		|        protected abstract IConnectionListener CreateConnectionListener();
-		|
-		|        // Обрабатывает событие CommunicationChannelConnected объекта _connectionListener.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void ConnectionListener_CommunicationChannelConnected(object sender, CommunicationChannelEventArgs e)
-		|        {
-		|            var client = new ScsServerClient(e.Channel)
-		|            {
-		|                ClientId = ScsServerManager.GetClientId(),
-		|                WireProtocol = WireProtocolFactory.CreateWireProtocol()
-		|            };
-		|
-		|            client.Disconnected += Client_Disconnected;
-		|            Clients[client.ClientId] = client;
-		|            OnClientConnected(client);
-		|            e.Channel.Start();
-		|        }
-		|
-		|        // Обрабатывает события отключенния всех подключенных клиентов.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void Client_Disconnected(object sender, EventArgs e)
-		|        {
-		|            var client = (IScsServerClient)sender;
-		|            Clients.Remove(client.ClientId);
-		|            OnClientDisconnected(client);
-		|        }
-		|
-		|        // Вызывает событие, связанное с клиентом.
-		|        // ""client"" - Подключенный клиент.
-		|        protected virtual void OnClientConnected(IScsServerClient client)
-		|        {
-		|            var handler = ClientConnected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new ServerClientEventArgs(client));
-		|            }
-		|        }
-		|
-		|        // Вызывает событие ClientDisconnected.
-		|        // ""client"" - Отключенный клиент.
-		|        protected virtual void OnClientDisconnected(IScsServerClient client)
-		|        {
-		|            var handler = ClientDisconnected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new ServerClientEventArgs(client));
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Представляет клиента с точки зрения сервера.
-		|    public interface IScsServerClient : IMessenger
-		|    {
-		|        // Это событие возникает, когда клиент отключается от сервера.
-		|        event EventHandler Disconnected;
-		|
-		|        // Уникальный идентификатор для этого клиента на сервере.
-		|        long ClientId { get; }
-		|
-		|        // Получает конечную точку удаленного приложения.
-		|        ScsEndPoint RemoteEndPoint { get; }
-		|
-		|        // Получает текущее состояние связи.
-		|        CommunicationStates CommunicationState { get; }
-		|
-		|        // Отключается от сервера.
-		|        void Disconnect();
-		|    }
-		|}
-		|
-		|#endregion Server
-		|
-		|#region Client
-		|
-		|namespace Hik.Communication.Scs.Client.Tcp
-		|{
-		|    // Этот класс используется для связи с сервером по протоколу TCP/IP.
-		|    internal class ScsTcpClient : ScsClientBase
-		|    {
-		|        // Адрес конечной точки сервера.
-		|        private readonly ScsTcpEndPoint _serverEndPoint;
-		|
-		|        // Создает новый объект ScsTcpClient.
-		|        // serverEndPoint - Адрес конечной точки для подключения к серверу
-		|        public ScsTcpClient(ScsTcpEndPoint serverEndPoint)
-		|        {
-		|            _serverEndPoint = serverEndPoint;
-		|        }
-		|
-		|        // Создает канал связи, используя ServerIpAddress и ServerPort.
-		|        // Возвращает готовый канал связи для общения
-		|        protected override ICommunicationChannel CreateCommunicationChannel()
-		|        {
-		|            EndPoint endpoint = null;
-		|
-		|            if (IsStringIp(_serverEndPoint.IpAddress))
-		|            {
-		|                endpoint = new IPEndPoint(IPAddress.Parse(_serverEndPoint.IpAddress), _serverEndPoint.TcpPort);
-		|            }
-		|            else
-		|            {
-		|                endpoint = new DnsEndPoint(_serverEndPoint.IpAddress, _serverEndPoint.TcpPort);
-		|            }
-		|
-		|            return new TcpCommunicationChannel(
-		|                TcpHelper.ConnectToServer(
-		|                    endpoint,
-		|                    ConnectTimeout
-		|                    ));
-		|        }
-		|
-		|        private bool IsStringIp(string address)
-		|        {
-		|            IPAddress ipAddress = null;
-		|            return IPAddress.TryParse(address, out ipAddress);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс используется для упрощения операций с TCP-сокетами.
-		|    internal static class TcpHelper
-		|    {
-		|        // Этот код используется для подключения к TCP-сокету с опцией тайм-аута.
-		|        // ""endPoint"" - IP-конечная точка удаленного сервера.
-		|        // ""timeoutMs"" - Тайм-аут для ожидания подключения.
-		|        // Возвращает объект сокета, подключенный к серверу
-		|        // ""SocketException"" - Выдает исключение SocketException, если не удается подключиться.
-		|        // ""TimeoutException"" - Выдает исключение TimeoutException, если не удается подключиться в течение указанного времени ожидания
-		|        public static Socket ConnectToServer(EndPoint endPoint, int timeoutMs)
-		|        {
-		|            var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-		|            try
-		|            {
-		|                socket.Blocking = false;
-		|                socket.Connect(endPoint);
-		|                socket.Blocking = true;
-		|                return socket;
-		|            }
-		|            catch (SocketException socketException)
-		|            {
-		|                if (socketException.ErrorCode != 10035)
-		|                {
-		|                    socket.Close();
-		|                    throw;
-		|                }
-		|
-		|                if (!socket.Poll(timeoutMs * 1000, SelectMode.SelectWrite))
-		|                {
-		|                    socket.Close();
-		|                    throw new TimeoutException(""The host failed to connect. Timeout occured."");
-		|                }
-		|
-		|                socket.Blocking = true;
-		|                return socket;
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.Scs.Client
-		|{
-		|    // Этот класс используется для автоматического повторного подключения к серверу при отключении.
-		|    // Он периодически пытается повторно подключиться к серверу, пока соединение не будет установлено.
-		|    public class ClientReConnecter : IDisposable
-		|    {
-		|        // Период проверки повторного подключения.
-		|        // По умолчанию: 20 секунд.
-		|        public int ReConnectCheckPeriod
-		|        {
-		|            get { return _reconnectTimer.Period; }
-		|            set { _reconnectTimer.Period = value; }
-		|        }
-		|
-		|        // Ссылка на клиентский объект.
-		|        private readonly IConnectableClient _client;
-		|
-		|        // Таймер для периодической попытки повторного подключения ro.
-		|        private readonly Hik.Threading.Timer _reconnectTimer;
-		|
-		|        // Указывает состояние удаления этого объекта.
-		|        private volatile bool _disposed;
-		|
-		|        // Создает новый объект ClientReConnecter.
-		|        // Запускать ClientReConnecter не требуется, поскольку он автоматически запускается при отключении клиента.
-		|        // ""client"" - Ссылка на клиентский объект.
-		|        // Исключение - ""ArgumentNullException"" - Выдает исключение ArgumentNullException, если значение client равно null.
-		|        public ClientReConnecter(IConnectableClient client)
-		|        {
-		|            if (client == null)
-		|            {
-		|                throw new ArgumentNullException(""client"");
-		|            }
-		|
-		|            _client = client;
-		|            _client.Disconnected += Client_Disconnected;
-		|            _reconnectTimer = new Hik.Threading.Timer(20000);
-		|            _reconnectTimer.Elapsed += ReconnectTimer_Elapsed;
-		|            _reconnectTimer.Start();
-		|        }
-		|
-		|        // Распоряжается этим объектом.
-		|        // Ничего не делает, если уже утилизирован.
-		|        public void Dispose()
-		|        {
-		|            if (_disposed)
-		|            {
-		|                return;
-		|            }
-		|
-		|            _disposed = true;
-		|            _client.Disconnected -= Client_Disconnected;
-		|            _reconnectTimer.Stop();
-		|        }
-		|
-		|        // Обрабатывает отключенное событие объекта _client.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void Client_Disconnected(object sender, EventArgs e)
-		|        {
-		|            _reconnectTimer.Start();
-		|        }
-		|
-		|        // Hadles Прошедшее событие _reconnectTimer.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void ReconnectTimer_Elapsed(object sender, EventArgs e)
-		|        {
-		|            if (_disposed || _client.CommunicationState == CommunicationStates.Connected)
-		|            {
-		|                _reconnectTimer.Stop();
-		|                return;
-		|            }
-		|
-		|            try
-		|            {
-		|                _client.Connect();
-		|                _reconnectTimer.Stop();
-		|            }
-		|            catch
-		|            {
-		|                //No need to catch since it will try to re-connect again
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Представляет клиент для серверов SCS.
-		|    public interface IConnectableClient : IDisposable
-		|    {
-		|        // Это событие возникает, когда клиент подключается к серверу.
-		|        event EventHandler Connected;
-		|
-		|        // Это событие возникает, когда клиент отключается от сервера.
-		|        event EventHandler Disconnected;
-		|
-		|        // Тайм-аут для подключения к серверу (в миллисекундах).
-		|        // Значение по умолчанию: 15 секунд (15000 мс).
-		|        int ConnectTimeout { get; set; }
-		|
-		|        // Получает текущее состояние связи.
-		|        CommunicationStates CommunicationState { get; }
-		|
-		|        // Подключается к серверу.
-		|        void Connect();
-		|
-		|        // Отключается от сервера.
-		|        // Ничего не делает, если уже отключен.
-		|        void Disconnect();
-		|    }
-		|    //=========================================================================================================================================
-		|    // Представляет клиента для подключения к серверу.
-		|    public interface IScsClient : IMessenger, IConnectableClient
-		|    {
-		|        // Не определяет никакого дополнительного элемента.
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс предоставляет базовую функциональность для клиентских классов.
-		|    internal abstract class ScsClientBase : IScsClient
-		|    {
-		|        // Это событие возникает при получении нового сообщения.
-		|        public event EventHandler<MessageEventArgs> MessageReceived;
-		|
-		|        // Это событие возникает, когда новое сообщение отправляется без какой-либо ошибки.
-		|        // Это не гарантирует, что сообщение будет должным образом обработано удаленным приложением.
-		|        public event EventHandler<MessageEventArgs> MessageSent;
-		|
-		|        // Это событие возникает при подключении.
-		|        public event EventHandler Connected;
-		|
-		|        // Это событие возникает, когда клиент отключается от сервера.
-		|        public event EventHandler Disconnected;
-		|
-		|        // Тайм-аут для подключения к серверу (в миллисекундах).
-		|        // Значение по умолчанию: 15 секунд (15000 мс).
-		|        public int ConnectTimeout { get; set; }
-		|
-		|        // Получает/устанавливает проводной протокол, который используется при чтении и записи сообщений.
-		|        public IScsWireProtocol WireProtocol
-		|        {
-		|            get { return _wireProtocol; }
-		|            set
-		|            {
-		|                if (CommunicationState == CommunicationStates.Connected)
-		|                {
-		|                    throw new ApplicationException(""Wire protocol can not be changed while connected to server."");
-		|                }
-		|
-		|                _wireProtocol = value;
-		|            }
-		|        }
-		|        private IScsWireProtocol _wireProtocol;
-		|
-		|        // Получает состояние связи Клиента.
-		|        public CommunicationStates CommunicationState
-		|        {
-		|            get
-		|            {
-		|                return _communicationChannel != null
-		|                           ? _communicationChannel.CommunicationState
-		|                           : CommunicationStates.Disconnected;
-		|            }
-		|        }
-		|
-		|        // Получает время последнего успешно полученного сообщения.
-		|        public DateTime LastReceivedMessageTime
-		|        {
-		|            get
-		|            {
-		|                return _communicationChannel != null
-		|                           ? _communicationChannel.LastReceivedMessageTime
-		|                           : DateTime.MinValue;
-		|            }
-		|        }
-		|
-		|        // Получает время последнего успешно отправленного сообщения.
-		|        public DateTime LastSentMessageTime
-		|        {
-		|            get
-		|            {
-		|                return _communicationChannel != null
-		|                           ? _communicationChannel.LastSentMessageTime
-		|                           : DateTime.MinValue;
-		|            }
-		|        }
-		|
-		|        // Значение таймаута по умолчанию для подключения сервера.
-		|        private const int DefaultConnectionAttemptTimeout = 15000; //15 seconds.
-		|
-		|        // Канал связи, который используется клиентом для отправки и получения сообщений.
-		|        private ICommunicationChannel _communicationChannel;
-		|
-		|        // Этот таймер используется для периодической отправки сообщений PingMessage на сервер.
-		|        private readonly Hik.Threading.Timer _pingTimer;
-		|
-		|        // Конструктор
-		|        protected ScsClientBase()
-		|        {
-		|            _pingTimer = new Hik.Threading.Timer(30000);
-		|            _pingTimer.Elapsed += PingTimer_Elapsed;
-		|            ConnectTimeout = DefaultConnectionAttemptTimeout;
-		|            WireProtocol = WireProtocolManager.GetDefaultWireProtocol();
-		|        }
-		|
-		|        // Подключается к серверу.
-		|        public void Connect()
-		|        {
-		|            WireProtocol.Reset();
-		|            _communicationChannel = CreateCommunicationChannel();
-		|            _communicationChannel.WireProtocol = WireProtocol;
-		|            _communicationChannel.Disconnected += CommunicationChannel_Disconnected;
-		|            _communicationChannel.MessageReceived += CommunicationChannel_MessageReceived;
-		|            _communicationChannel.MessageSent += CommunicationChannel_MessageSent;
-		|            _communicationChannel.Start();
-		|            _pingTimer.Start();
-		|            OnConnected();
-		|        }
-		|
-		|        // Отключается от сервера.
-		|        // Ничего не делает, если уже отключен.
-		|        public void Disconnect()
-		|        {
-		|            if (CommunicationState != CommunicationStates.Connected)
-		|            {
-		|                return;
-		|            }
-		|
-		|            _communicationChannel.Disconnect();
-		|        }
-		|
-		|        // Удаляет этот объект и закрывает базовое соединение.
-		|        public void Dispose()
-		|        {
-		|            Disconnect();
-		|        }
-		|
-		|        // Отправляет сообщение на сервер.
-		|        // ""message"" - Сообщение, которое нужно отправить
-		|        // Исключение - ""CommunicationStateException"" - Выдает исключение CommunicationStateException, если клиент не подключен к серверу.
-		|        public void SendMessage(IScsMessage message)
-		|        {
-		|            if (CommunicationState != CommunicationStates.Connected)
-		|            {
-		|                throw new CommunicationStateException(""Client is not connected to the server."");
-		|            }
-		|
-		|            _communicationChannel.SendMessage(message);
-		|        }
-		|
-		|        // Этот метод реализуется производными классами для создания соответствующего канала связи.
-		|        // Возврат - Готовый канал связи для общения
-		|        protected abstract ICommunicationChannel CreateCommunicationChannel();
-		|
-		|        // Обрабатывает событие MessageReceived объекта _communicationChannel.
-		|        // ""sender"" - Источник события
-		|        // ""e"" - Аргументы события
-		|        private void CommunicationChannel_MessageReceived(object sender, MessageEventArgs e)
-		|        {
-		|            if (e.Message is ScsPingMessage)
-		|            {
-		|                return;
-		|            }
-		|
-		|            OnMessageReceived(e.Message);
-		|        }
-		|
-		|        // Handles MessageSent event of _communicationChannel object.
-		|        // Обрабатывает событие отправки сообщений объекта _communicationChannel.
-		|        // ""sender"" - Источник события
-		|        // ""e"" - Аргументы события
-		|        private void CommunicationChannel_MessageSent(object sender, MessageEventArgs e)
-		|        {
-		|            OnMessageSent(e.Message);
-		|        }
-		|
-		|        // Обрабатывает событие отключения объекта _communicationChannel.
-		|        // ""sender"">Source of event
-		|        // ""e"" - Аргументы события.
-		|        private void CommunicationChannel_Disconnected(object sender, EventArgs e)
-		|        {
-		|            _pingTimer.Stop();
-		|            OnDisconnected();
-		|        }
-		|
-		|        // Обрабатывает прошедшее событие _pingTimer для отправки сообщений PingMessage на сервер.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void PingTimer_Elapsed(object sender, EventArgs e)
-		|        {
-		|            if (CommunicationState != CommunicationStates.Connected)
-		|            {
-		|                return;
-		|            }
-		|
-		|            try
-		|            {
-		|                var lastMinute = DateTime.Now.AddMinutes(-1);
-		|                if (_communicationChannel.LastReceivedMessageTime > lastMinute || _communicationChannel.LastSentMessageTime > lastMinute)
-		|                {
-		|                    return;
-		|                }
-		|
-		|                _communicationChannel.SendMessage(new ScsPingMessage());
-		|            }
-		|            catch { }
-		|        }
-		|
-		|        // Вызывает событие Connected.
-		|        protected virtual void OnConnected()
-		|        {
-		|            var handler = Connected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, EventArgs.Empty);
-		|            }
-		|        }
-		|
-		|        // Вызывает событие Disconnected.
-		|        protected virtual void OnDisconnected()
-		|        {
-		|            var handler = Disconnected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, EventArgs.Empty);
-		|            }
-		|        }
-		|
-		|        // Вызывает событие MessageReceived.
-		|        // ""message"" - Сообщение.
-		|        protected virtual void OnMessageReceived(IScsMessage message)
-		|        {
-		|            var handler = MessageReceived;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|
-		|        // Вызывает событие MessageSent.
-		|        // ""message"" - Сообщение.
-		|        protected virtual void OnMessageSent(IScsMessage message)
-		|        {
-		|            var handler = MessageSent;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс используется для создания клиентов SCS для подключения к серверу SCS.
-		|    public static class ScsClientFactory
-		|    {
-		|        // Создает нового клиента для подключения к серверу с использованием конечной точки.
-		|        // ""endpoint"" - Конечная точка сервера для его подключения
-		|        // Возврат - Созданный TCP-клиент
-		|        public static IScsClient CreateClient(ScsEndPoint endpoint)
-		|        {
-		|            return endpoint.CreateClient();
-		|        }
-		|
-		|        // Создает нового клиента для подключения к серверу с использованием конечной точки.
-		|        // ""endpointAddress"" - Адрес конечной точки сервера для его подключения
-		|        // Возврат - Созданный TCP-клиент
-		|        public static IScsClient CreateClient(string endpointAddress)
-		|        {
-		|            return CreateClient(ScsEndPoint.CreateEndPoint(endpointAddress));
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|}
-		|
-		|#endregion Client
-		|
-		|#region Communication
-		|
-		|namespace Hik.Communication.Scs.Communication.Channels.Tcp
-		|{
-		|    // Этот класс используется для связи с удаленным приложением по протоколу TCP/IP.
-		|    internal class TcpCommunicationChannel : CommunicationChannelBase
-		|    {
-		|        // Получает конечную точку удаленного приложения.
-		|        public override ScsEndPoint RemoteEndPoint
-		|        {
-		|            get
-		|            {
-		|                return _remoteEndPoint;
-		|            }
-		|        }
-		|        private readonly ScsTcpEndPoint _remoteEndPoint;
-		|
-		|        // Размер буфера, который используется для приема байтов из TCP сокета.
-		|        private const int ReceiveBufferSize = 2 * 4 * 1024; //8KB
-		|
-		|        // Этот буфер используется для приема байтов 
-		|        private readonly byte[] _buffer;
-		|
-		|        // Объект сокета для отправки/получения сообщений.
-		|        private readonly Socket _clientSocket;
-		|
-		|        // Флаг для управления запуском потока
-		|        private volatile bool _running;
-		|
-		|        // Этот объект просто используется для синхронизации потоков (блокировки).
-		|        private readonly object _syncLock;
-		|		
-		|        // Для определения типа переданных сторонним клиентом данных (строка / файл в виде двоичных данных).
-		|        private static string magicSignature = "",89 50 4E 47 0D 0A 1A 0A,52 61 72 21 1A 07 01 00,52 61 72 21 1A 07 00,21 3C 61 72 63 68 3E,7B 5C 72 74 66 31,3C 3F 78 6D 6C 20,25 50 44 46 2D,52 49 46 46,50 4B 03 04,FF D8 FF E0,FF D8 FF E1,00 00 01 00,53 50 30 31,ED AB EE DB,EF BB BF,49 44 33,FF F2,FF F3,FF FB,42 4D,4D 5A,"";
-		|
-		|        // magicSignature.Add(""4D 5A""); // exe - DOS MZ executable file format and its descendants(including NE and PE).
-		|        // magicSignature.Add(""42 4D""); // bmp - BMP file, a bitmap format used mostly in the Windows world.
-		|        // magicSignature.Add(""FF FB""); // mp3 - MPEG-1 Layer 3 file without an ID3 tag or with an ID3v1 tag(which’s appended at the end of the file).
-		|        // magicSignature.Add(""FF F3""); // mp3.
-		|        // magicSignature.Add(""FF F2""); // mp3.
-		|        // magicSignature.Add(""49 44 33""); // mp3.
-		|        // magicSignature.Add(""EF BB BF""); // UTF-8 encoded Unicode byte order mark, commonly seen in text files.
-		|        // magicSignature.Add(""ED AB EE DB""); // rpm - RedHat Package Manager (RPM)package[1].
-		|        // magicSignature.Add(""53 50 30 31""); // bin - Amazon Kindle Update Package[2].
-		|        // magicSignature.Add(""00 00 01 00""); // ico - Computer icon encoded in ICO file format[3].
-		|        // magicSignature.Add(""FF D8 FF E1""); // jpg - JPEG raw or in the JFIF or Exif file format.
-		|        // magicSignature.Add(""FF D8 FF E0""); // jpg - JPEG raw or in the JFIF or Exif file format.
-		|        // magicSignature.Add(""50 4B 03 04""); // zip - zip file format and formats based on it, such as JAR, ODF, OOXML.
-		|        // magicSignature.Add(""52 49 46 46""); // wav - Waveform Audio File Format.
-		|        // magicSignature.Add(""52 49 46 46""); // avi - Audio Video Interleave video format.
-		|        // magicSignature.Add(""25 50 44 46 2D""); // pdf - PDF document.
-		|        // magicSignature.Add(""3C 3F 78 6D 6C 20""); // XML - eXtensible Markup Language when using the ASCII character encoding.
-		|        // magicSignature.Add(""7B 5C 72 74 66 31""); // rtf - Rich Text Format.
-		|        // magicSignature.Add(""21 3C 61 72 63 68 3E""); // - deb linux deb file.
-		|        // magicSignature.Add(""52 61 72 21 1A 07 00""); // rar - RAR archive.
-		|        // magicSignature.Add(""52 61 72 21 1A 07 01 00""); // rar - RAR archive.
-		|        // magicSignature.Add(""89 50 4E 47 0D 0A 1A 0A""); // png - Image encoded in the Portable Network Graphics format[10].
-		|
-		|        // Создает новый объект TcpCommunicationChannel.
-		|        // ""clientSocket"" - Подключенный объект сокета, который используется для обмена данными по сети.
-		|        public TcpCommunicationChannel(Socket clientSocket)
-		|        {
-		|            _clientSocket = clientSocket;
-		|            _clientSocket.NoDelay = true;
-		|
-		|            var ipEndPoint = (IPEndPoint)_clientSocket.RemoteEndPoint;
-		|            _remoteEndPoint = new ScsTcpEndPoint(ipEndPoint.Address.ToString(), ipEndPoint.Port);
-		|
-		|            _buffer = new byte[ReceiveBufferSize];
-		|            _syncLock = new object();
-		|        }
-		|
-		|        // Отключается от удаленного приложения и закрывает канал.
-		|        public override void Disconnect()
-		|        {
-		|            if (CommunicationState != CommunicationStates.Connected)
-		|            {
-		|                return;
-		|            }
-		|
-		|            _running = false;
-		|            try
-		|            {
-		|                if (_clientSocket.Connected)
-		|                {
-		|                    _clientSocket.Close();
-		|                }
-		|
-		|                _clientSocket.Dispose();
-		|            }
-		|            catch { }
-		|
-		|            CommunicationState = CommunicationStates.Disconnected;
-		|            OnDisconnected();
-		|        }
-		|
-		|        // Запускает поток для получения сообщений из сокета.
-		|        protected override void StartInternal()
-		|        {
-		|            _running = true;
-		|            _clientSocket.BeginReceive(_buffer, 0, _buffer.Length, 0, new AsyncCallback(ReceiveCallback), null);
-		|        }
-		|
-		|        // Отправляет сообщение удаленному приложению.
-		|        // ""message"" - Сообщение, которое нужно отправить.
-		|        protected override void SendMessageInternal(IScsMessage message)
-		|        {
-		|            // Отправить сообщение
-		|            var totalSent = 0;
-		|            lock (_syncLock)
-		|            {
-		|                if (oscs.ClientServerDeclarForms.thirdPartyClientMode != 0)
-		|                {
-		|                    byte[] sendBytes = new byte[0];
-		|                    if (message.GetType() == typeof(ScsRawDataMessage))
-		|                    {
-		|                        sendBytes = ((ScsRawDataMessage)message).MessageData;
-		|                    }
-		|                    else if (message.GetType() == typeof(ScsTextMessage))
-		|                    {
-		|                        sendBytes = Encoding.UTF8.GetBytes(((ScsTextMessage)message).Text);
-		|                    }
-		|
-		|                    // Отправьте все байты в удаленное приложение
-		|                    SocketAsyncEventArgs SocketAsyncEventArgs1 = new SocketAsyncEventArgs();
-		|                    SocketAsyncEventArgs1.AcceptSocket = _clientSocket;
-		|                    SocketAsyncEventArgs1.SetBuffer(sendBytes, 0, sendBytes.Length);
-		|                    var sent = _clientSocket.SendAsync(SocketAsyncEventArgs1);
-		|
-		|                    LastSentMessageTime = DateTime.Now;
-		|                    OnMessageSent(message);
-		|                }
-		|                else
-		|                {
-		|                    // Создайте массив байтов из сообщения в соответствии с текущим протоколом
-		|                    var messageBytes = WireProtocol.GetBytes(message);
-		|
-		|                    // Отправьте все байты в удаленное приложение
-		|                    while (totalSent < messageBytes.Length)
-		|                    {
-		|                        var sent = _clientSocket.Send(messageBytes, totalSent, messageBytes.Length - totalSent, SocketFlags.None);
-		|                        if (sent <= 0)
-		|                        {
-		|                            throw new CommunicationException(""Message could not be sent via TCP socket. Only "" + totalSent + "" bytes of "" + messageBytes.Length + "" bytes are sent."");
-		|                        }
-		|
-		|                        totalSent += sent;
-		|                    }
-		|
-		|                    LastSentMessageTime = DateTime.Now;
-		|                    OnMessageSent(message);
-		|                }
-		|            }
-		|        }
-		|		
-		|        private byte[] Combine(params byte[][] arrays)
-		|        {
-		|            byte[] rv = new byte[arrays.Sum(a => a.Length)];
-		|            int offset = 0;
-		|            foreach (byte[] array in arrays)
-		|            {
-		|                System.Buffer.BlockCopy(array, 0, rv, offset, array.Length);
-		|                offset += array.Length;
-		|            }
-		|            return rv;
-		|        }
-		|
-		|        bool out1 = false;
-		|        byte[] rv = new byte[0];
-		|
-		|        // Этот метод используется в качестве метода обратного вызова в методе BeginReceive _clientSocket.
-		|        // Он извлекает байты из сокета.
-		|        // ""ar"" - Асинхронный результат вызова.
-		|        private void ReceiveCallback(IAsyncResult ar)
-		|        {
-		|            if (!_running)
-		|            {
-		|                return;
-		|            }
-		|
-		|            if (oscs.ClientServerDeclarForms.thirdPartyClientMode == 2) // Браузер
-		|            {
-		|                try
-		|                {
-		|                    System.Threading.Thread.Sleep(5); // без этого данные от разных отправок сторонних клиентов могут оказаться соединенными.
-		|                    //Получить количество полученных байтов
-		|                    var bytesRead = _clientSocket.EndReceive(ar);
-		|
-		|                    if (_clientSocket.Available == 0)
-		|                    {
-		|                        out1 = true;
-		|                    }
-		|
-		|                    if (bytesRead > 0)
-		|                    {
-		|                        LastReceivedMessageTime = DateTime.Now;
-		|
-		|                        // Скопируйте полученные байты в новый массив байтов
-		|                        var receivedBytes = new byte[bytesRead];
-		|                        Array.Copy(_buffer, 0, receivedBytes, 0, bytesRead);
-		|
-		|                        rv = Combine(rv, receivedBytes); // Накопим данные из потока для одного клиента, если их больше 4096 байт.
-		|
-		|                        if (out1)
-		|                        {
-		|                            OnMessageReceived(new ScsTextMessage(Encoding.UTF8.GetString(rv)));
-		|
-		|                            rv = new byte[0];
-		|                            out1 = false;
-		|                        }
-		|                    }
-		|                    else
-		|                    {
-		|                        throw new CommunicationException(""Tcp socket is closed"");
-		|                    }
-		|                }
-		|                catch
-		|                {
-		|                    Disconnect();
-		|                }
-		|            }
-		|            else if (oscs.ClientServerDeclarForms.thirdPartyClientMode == 1) // Нативный
-		|            {
-		|                try
-		|                {
-		|                    System.Threading.Thread.Sleep(5); // без этого данные от разных отправок сторонних клиентов могут оказаться соединенными.
-		|                    //Получить количество полученных байтов
-		|                    var bytesRead = _clientSocket.EndReceive(ar);
-		|
-		|                    if (_clientSocket.Available == 0)
-		|                    {
-		|                        out1 = true;
-		|                    }
-		|
-		|                    if (bytesRead > 0)
-		|                    {
-		|                        LastReceivedMessageTime = DateTime.Now;
-		|
-		|                        // Скопируйте полученные байты в новый массив байтов
-		|                        var receivedBytes = new byte[bytesRead];
-		|                        Array.Copy(_buffer, 0, receivedBytes, 0, bytesRead);
-		|
-		|                        rv = Combine(rv, receivedBytes); // Накопим данные из потока для одного клиента, если их больше 4096 байт.
-		|
-		|                        if (out1)
-		|                        {
-		|                            string magicSign = Convert.ToString(rv[0], 16).ToUpper() + "" "" +
-		|                                Convert.ToString(rv[1], 16).ToUpper() + "" "" +
-		|                                Convert.ToString(rv[2], 16).ToUpper() + "" "" +
-		|                                Convert.ToString(rv[3], 16).ToUpper();
-		|
-		|                            if (magicSignature.Contains("","" + magicSign + "",""))
-		|                            {
-		|                                OnMessageReceived(new ScsRawDataMessage(rv));
-		|                            }
-		|                            else
-		|                            {
-		|                                OnMessageReceived(new ScsTextMessage(Encoding.UTF8.GetString(rv)));
-		|                            }
-		|
-		|                            rv = new byte[0];
-		|                            out1 = false;
-		|                        }
-		|                    }
-		|                    else
-		|                    {
-		|                        throw new CommunicationException(""Tcp socket is closed"");
-		|                    }
-		|
-		|                    // Прочитайте больше байтов, если все еще работаете
-		|                    if (_running)
-		|                    {
-		|                        _clientSocket.BeginReceive(_buffer, 0, _buffer.Length, 0, new AsyncCallback(ReceiveCallback), null);
-		|                    }
-		|                }
-		|                catch
-		|                {
-		|                    Disconnect();
-		|                }
-		|            }
-		|            else
-		|            {
-		|                try
-		|                {
-		|                    // Получить количество полученных байтов
-		|                    var bytesRead = _clientSocket.EndReceive(ar);
-		|                    if (bytesRead > 0)
-		|                    {
-		|                        LastReceivedMessageTime = DateTime.Now;
-		|
-		|                        // Скопируйте полученные байты в новый массив байтов
-		|                        var receivedBytes = new byte[bytesRead];
-		|                        Array.Copy(_buffer, 0, receivedBytes, 0, bytesRead);
-		|
-		|                        // Считывать сообщения в соответствии с текущим проводным протоколом
-		|                        var messages = WireProtocol.CreateMessages(receivedBytes);
-		|
-		|                        // Вызвать событие MessageReceived для всех полученных сообщений
-		|                        foreach (var message in messages)
-		|                        {
-		|                            OnMessageReceived(message);
-		|                        }
-		|                    }
-		|                    else
-		|                    {
-		|                        throw new CommunicationException(""Tcp socket is closed"");
-		|                    }
-		|
-		|                    // Прочитайте больше байтов, если все еще работаете
-		|                    if (_running)
-		|                    {
-		|                        _clientSocket.BeginReceive(_buffer, 0, _buffer.Length, 0, new AsyncCallback(ReceiveCallback), null);
-		|                    }
-		|                }
-		|                catch
-		|                {
-		|                    Disconnect();
-		|                }
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс используется для прослушивания и приема входящих запросов на TCP-соединение через TCP-порт.
-		|    internal class TcpConnectionListener : ConnectionListenerBase
-		|    {
-		|        // Адрес конечной точки сервера для прослушивания входящих подключений.
-		|        private readonly ScsTcpEndPoint _endPoint;
-		|
-		|        // Серверный сокет для прослушивания входящих запросов на подключение.
-		|        private TcpListener _listenerSocket;
-		|
-		|        // Поток для прослушивания сокета
-		|        private Thread _thread;
-		|
-		|        // Флаг для управления запуском потока
-		|        private volatile bool _running;
-		|
-		|        // Создает новый TcpConnectionListener для данной конечной точки.
-		|        // ""endPoint"" - Адрес конечной точки сервера для прослушивания входящих подключений.
-		|        public TcpConnectionListener(ScsTcpEndPoint endPoint)
-		|        {
-		|            _endPoint = endPoint;
-		|        }
-		|
-		|        // Начинает прослушивать входящие соединения.
-		|        public override void Start()
-		|        {
-		|            StartSocket();
-		|            _running = true;
-		|            _thread = new Thread(DoListenAsThread);
-		|            _thread.Start();
-		|        }
-		|
-		|        // Прекращает прослушивание входящих подключений.
-		|        public override void Stop()
-		|        {
-		|            _running = false;
-		|            StopSocket();
-		|        }
-		|
-		|        // Начинает прослушивать сокет.
-		|        private void StartSocket()
-		|        {
-		|            _listenerSocket = new TcpListener(System.Net.IPAddress.Any, _endPoint.TcpPort);
-		|            _listenerSocket.Start();
-		|        }
-		|
-		|        // Прекращает прослушивание сокета.
-		|        private void StopSocket()
-		|        {
-		|            try
-		|            {
-		|                _listenerSocket.Stop();
-		|            }
-		|            catch { }
-		|        }
-		|
-		|        // Точка входа нити.
-		|        // Этот метод используется потоком для прослушивания входящих запросов.
-		|        private void DoListenAsThread()
-		|        {
-		|            while (_running)
-		|            {
-		|                try
-		|                {
-		|                    var clientSocket = _listenerSocket.AcceptSocket();
-		|                    if (clientSocket.Connected)
-		|                    {
-		|                        OnCommunicationChannelConnected(new TcpCommunicationChannel(clientSocket));
-		|                    }
-		|                }
-		|                catch
-		|                {
-		|                    // Отключитесь, подождите некоторое время и подключите снова.
-		|                    StopSocket();
-		|                    Thread.Sleep(1000);
-		|                    if (!_running)
-		|                    {
-		|                        return;
-		|                    }
-		|
-		|                    try
-		|                    {
-		|                        StartSocket();
-		|                    }
-		|                    catch { }
-		|                }
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication.Channels
-		|{
-		|    // Этот класс обеспечивает базовую функциональность для всех классов каналов связи.
-		|    internal abstract class CommunicationChannelBase : ICommunicationChannel
-		|    {
-		|        // Это событие возникает при получении нового сообщения.
-		|        public event EventHandler<MessageEventArgs> MessageReceived;
-		|
-		|        // Это событие возникает, когда новое сообщение отправляется без какой-либо ошибки.
-		|        // Это не гарантирует, что сообщение будет должным образом обработано удаленным приложением.
-		|        public event EventHandler<MessageEventArgs> MessageSent;
-		|
-		|        // Это событие возникает, когда канал связи закрыт.
-		|        public event EventHandler Disconnected;
-		|
-		|        // Получает конечную точку удаленного приложения.
-		|        public abstract ScsEndPoint RemoteEndPoint { get; }
-		|
-		|        // Получает текущее состояние связи.
-		|        public CommunicationStates CommunicationState { get; protected set; }
-		|
-		|        // Получает время последнего успешно полученного сообщения.
-		|        public DateTime LastReceivedMessageTime { get; protected set; }
-		|
-		|        // Получает время последнего успешно отправленного сообщения.
-		|        public DateTime LastSentMessageTime { get; protected set; }
-		|
-		|        // Получает/устанавливает проводной протокол, который использует канал.
-		|        // Это свойство должно быть установлено перед первым сообщением.
-		|        public IScsWireProtocol WireProtocol { get; set; }
-		|
-		|        // Конструктор.
-		|        protected CommunicationChannelBase()
-		|        {
-		|            CommunicationState = CommunicationStates.Disconnected;
-		|            LastReceivedMessageTime = DateTime.MinValue;
-		|            LastSentMessageTime = DateTime.MinValue;
-		|        }
-		|
-		|        // Отключается от удаленного приложения и закрывает этот канал.
-		|        public abstract void Disconnect();
-		|
-		|        // Запускает связь с удаленным приложением.
-		|        public void Start()
-		|        {
-		|            StartInternal();
-		|            CommunicationState = CommunicationStates.Connected;
-		|        }
-		|
-		|        // Отправляет сообщение удаленному приложению.
-		|        // ""message"" - Сообщение, которое нужно отправить.
-		|        // Исключение - ""ArgumentNullException"" - Выдает исключение ArgumentNullException, если сообщение равно null
-		|        public void SendMessage(IScsMessage message)
-		|        {
-		|            if (message == null)
-		|            {
-		|                throw new ArgumentNullException(""message"");
-		|            }
-		|
-		|            SendMessageInternal(message);
-		|        }
-		|
-		|        // Действительно запускает связь с удаленным приложением.
-		|        protected abstract void StartInternal();
-		|
-		|        // Отправляет сообщение удаленному приложению.
-		|        // Этот метод переопределяется производными классами для реальной отправки в message.
-		|        // ""message"" - Сообщение, которое нужно отправить.
-		|        protected abstract void SendMessageInternal(IScsMessage message);
-		|
-		|        // Вызывает событие отключения.
-		|        protected virtual void OnDisconnected()
-		|        {
-		|            var handler = Disconnected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, EventArgs.Empty);
-		|            }
-		|        }
-		|
-		|        // Вызывает событие MessageReceived.
-		|        // ""message"" - Полученное сообщение.
-		|        protected virtual void OnMessageReceived(IScsMessage message)
-		|        {
-		|            var handler = MessageReceived;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|
-		|        // Вызывает событие messageSent.
-		|        // ""message"" - Полученное сообщение.
-		|        protected virtual void OnMessageSent(IScsMessage message)
-		|        {
-		|            var handler = MessageSent;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Хранит информацию о канале связи, который будет использоваться событием.
-		|    internal class CommunicationChannelEventArgs : EventArgs
-		|    {
-		|        // Канал связи, связанный с этим событием.
-		|        public ICommunicationChannel Channel { get; private set; }
-		|
-		|        // Создает новый объект CommunicationChannelEventArgs.
-		|        // ""channel"" - Канал связи, связанный с этим событием.
-		|        public CommunicationChannelEventArgs(ICommunicationChannel channel)
-		|        {
-		|            Channel = channel;
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс предоставляет базовую функциональность для классов прослушивателей связи.
-		|    internal abstract class ConnectionListenerBase : IConnectionListener
-		|    {
-		|        // Это событие возникает при подключении нового канала связи.
-		|        public event EventHandler<CommunicationChannelEventArgs> CommunicationChannelConnected;
-		|
-		|        // Начинает прослушивать входящие соединения.
-		|        public abstract void Start();
-		|
-		|        // Прекращает прослушивание входящих подключений.
-		|        public abstract void Stop();
-		|
-		|        // Вызывает событие CommunicationChannelConnected.
-		|        protected virtual void OnCommunicationChannelConnected(ICommunicationChannel client)
-		|        {
-		|            var handler = CommunicationChannelConnected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new CommunicationChannelEventArgs(client));
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Представляет собой канал связи.
-		|    // Канал связи используется для связи (отправки/получения сообщений) с удаленным приложением.
-		|    internal interface ICommunicationChannel : IMessenger
-		|    {
-		|        // Это событие возникает, когда клиент отключается от сервера.
-		|        event EventHandler Disconnected;
-		|
-		|        // Получает конечную точку удаленного приложения.
-		|        ScsEndPoint RemoteEndPoint { get; }
-		|
-		|        // Получает текущее состояние связи.
-		|        CommunicationStates CommunicationState { get; }
-		|
-		|        // Запускает связь с удаленным приложением.
-		|        void Start();
-		|
-		|        // Закрывает мессенджер.
-		|        void Disconnect();
-		|    }
-		|    //=========================================================================================================================================
-		|    // Представляет собой слушателя коммуникации.
-		|    // Прослушиватель соединений используется для приема входящих запросов на подключение клиента.
-		|    internal interface IConnectionListener
-		|    {
-		|        // Это событие возникает при подключении нового канала связи.
-		|        event EventHandler<CommunicationChannelEventArgs> CommunicationChannelConnected;
-		|
-		|        // Начинает прослушивать входящие соединения.
-		|        void Start();
-		|
-		|        // Прекращает прослушивание входящих подключений.
-		|        void Stop();
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication.EndPoints.Tcp
-		|{
-		|    // Представляет конечную точку TCP в SCS.
-		|    public sealed class ScsTcpEndPoint : ScsEndPoint
-		|    {
-		|        // Создает новый объект ScsTcpEndPoint с указанным IP-адресом и номером порта.
-		|        // ""ipAddress"" - IP-адрес сервера
-		|        // ""port"" - Прослушивание TCP-порта для входящих запросов на подключение на сервере
-		|        public ScsTcpEndPoint(string ipAddress, int port)
-		|        {
-		|            IpAddress = ipAddress;
-		|            TcpPort = port;
-		|        }
-		|
-		|        // Создает новую точку ScsTcpEndPoint из строкового адреса.
-		|        // Формат адреса должен быть похож на IPAddress:Port (например: 127.0.0.1:10085).
-		|        // ""address"" - Адрес конечной точки TCP
-		|        // Возврат - Созданный объект ScsTcpEndpoint
-		|        public ScsTcpEndPoint(string address)
-		|        {
-		|            var splittedAddress = address.Trim().Split(':');
-		|            IpAddress = splittedAddress[0].Trim();
-		|            TcpPort = Convert.ToInt32(splittedAddress[1].Trim());
-		|        }
-		|
-		|        // Создает новый объект ScsTcpEndPoint с указанным номером порта.
-		|        // ""tcpPort"" - Прослушивание TCP-порта для входящих запросов на подключение на сервере
-		|        public ScsTcpEndPoint(int tcpPort)
-		|        {
-		|            TcpPort = tcpPort;
-		|        }
-		|
-		|        // IP-адрес сервера.
-		|        public string IpAddress { get; set; }
-		|
-		|        // Прослушиваемый TCP-порт для входящих запросов на подключение на сервере.
-		|        public int TcpPort { get; private set; }
-		|
-		|        // Создает сервер Scs, который использует эту конечную точку для прослушивания входящих подключений.
-		|        // Возврат - Сервер Scs
-		|        internal override IScsServer CreateServer()
-		|        {
-		|            return new ScsTcpServer(this);
-		|        }
-		|
-		|        // Создает Scs-клиент, который использует эту конечную точку для подключения к серверу.
-		|        // Возврат - Клиент Scs
-		|        internal override IScsClient CreateClient()
-		|        {
-		|            return new ScsTcpClient(this);
-		|        }
-		|
-		|        // Генерирует строковое представление этого объекта конечной точки.
-		|        // Возврат - Строковое представление этого объекта конечной точки
-		|        public override string ToString()
-		|        {
-		|            return string.IsNullOrEmpty(IpAddress) ? (""tcp://"" + TcpPort) : (""tcp://"" + IpAddress + "":"" + TcpPort);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication.EndPoints
-		|{
-		|    // Представляет конечную точку на стороне сервера в SCS.
-		|    public abstract class ScsEndPoint
-		|    {
-		|        // Создайте конечную точку Scs из строки.
-		|        // Адрес должен быть отформатирован как: protocol://address
-		|        // Например: tcp://89.43.104.179:10048 для конечной точки TCP с
-		|        // IP 89.43.104.179 и портом 10048.
-		|        // ""endPointAddress"" - Адрес для создания конечной точки
-		|        // Возврат - Созданная конечная точка
-		|        public static ScsEndPoint CreateEndPoint(string endPointAddress)
-		|        {
-		|            // Проверьте, является ли адрес конечной точки нулевым.
-		|            if (string.IsNullOrEmpty(endPointAddress))
-		|            {
-		|                throw new ArgumentNullException(""endPointAddress"");
-		|            }
-		|
-		|            // Если протокол не указан, предположим, что TCP.
-		|            var endPointAddr = endPointAddress;
-		|            if (!endPointAddr.Contains(""://""))
-		|            {
-		|                endPointAddr = ""tcp://"" + endPointAddr;
-		|            }
-		|
-		|            // Разделить части протокола и адреса.
-		|            var splittedEndPoint = endPointAddr.Split(new[] { ""://"" }, StringSplitOptions.RemoveEmptyEntries);
-		|            if (splittedEndPoint.Length != 2)
-		|            {
-		|                throw new ApplicationException(endPointAddress + "" is not a valid endpoint address."");
-		|            }
-		|
-		|            // Разделите конечную точку, найдите протокол и адрес.
-		|            var protocol = splittedEndPoint[0].Trim().ToLower();
-		|            var address = splittedEndPoint[1].Trim();
-		|            switch (protocol)
-		|            {
-		|                case ""tcp"":
-		|                    return new ScsTcpEndPoint(address);
-		|                default:
-		|                    throw new ApplicationException(""Неподдерживаемый протокол "" + protocol + "" в конечной точке "" + endPointAddress);
-		|            }
-		|        }
-		|
-		|        // Создает сервер Scs, который использует эту конечную точку для прослушивания входящих подключений.
-		|        // Возврат - Scs Сервер
-		|        internal abstract IScsServer CreateServer();
-		|
-		|        // Создает сервер Scs, который использует эту конечную точку для подключения к серверу.
-		|        // Возврат - Scs Клиент
-		|        internal abstract IScsClient CreateClient();
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication.Messages
-		|{
-		|    // Представляет сообщение, которое отправляется и принимается сервером и клиентом.
-		|    public interface IScsMessage
-		|    {
-		|        // Уникальный идентификатор для этого сообщения. 
-		|        string MessageId { get; }
-		|
-		|        // Уникальный идентификатор для этого сообщения. 
-		|        string RepliedMessageId { get; set; }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Это сообщение используется для отправки/получения сообщений ping.
-		|    // Ping-сообщения используются для поддержания соединения между сервером и клиентом.
-		|    [Serializable]
-		|    public sealed class ScsPingMessage : ScsMessage
-		|    {
-		|        // Создает новый объект PingMessage.
-		|        public ScsPingMessage()
-		|        {
-		|
-		|        }
-		|
-		|        // Создает новый объект ответа PingMessage.
-		|        // ""repliedMessageId"" - Идентификатор ответившего сообщения, если это ответ на сообщение.
-		|        public ScsPingMessage(string repliedMessageId) : this()
-		|        {
-		|            RepliedMessageId = repliedMessageId;
-		|        }
-		|
-		|        // Создает строку, представляющую этот объект.
-		|        // Возврат - Строка представляющая этот объект
-		|        public override string ToString()
-		|        {
-		|            return string.IsNullOrEmpty(RepliedMessageId)
-		|                       ? string.Format(""ScsPingMessage [{0}]"", MessageId)
-		|                       : string.Format(""ScsPingMessage [{0}] Replied To [{1}]"", MessageId, RepliedMessageId);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|    // Представляет сообщение, которое отправляется и принимается сервером и клиентом.
-		|    // Это базовый класс для всех сообщений.
-		|    [Serializable]
-		|    public class ScsMessage : IScsMessage
-		|    {
-		|        // Уникальный идентификатор для этого сообщения.
-		|        // Значение по умолчанию: Новый идентификатор GUID.
-		|        // Не изменяйте, если вы не хотите вносить низкоуровневые изменения, такие как пользовательские проводные протоколы.
-		|        public string MessageId { get; set; }
-		|
-		|        // Это свойство используется, чтобы указать, что это ответное сообщение на сообщение.
-		|        // Это может быть значение null, если это не ответное сообщение.
-		|        public string RepliedMessageId { get; set; }
-		|
-		|        // Создает новое ScsMessage.
-		|        public ScsMessage()
-		|        {
-		|            MessageId = Guid.NewGuid().ToString();
-		|        }
-		|
-		|        // Создает новый ответ ScsMessage.
-		|        // ""repliedMessageId"" - Идентификатор ответившего сообщения, если это ответ на сообщение.
-		|        public ScsMessage(string repliedMessageId) : this()
-		|        {
-		|            RepliedMessageId = repliedMessageId;
-		|        }
-		|
-		|        // Создает строку, представляющую этот объект.
-		|        // Возврат - Строка представляющая этот объект
-		|        public override string ToString()
-		|        {
-		|            return string.IsNullOrEmpty(RepliedMessageId)
-		|                       ? string.Format(""ScsMessage [{0}]"", MessageId)
-		|                       : string.Format(""ScsMessage [{0}] Replied To [{1}]"", MessageId, RepliedMessageId);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это сообщение используется для отправки/получения необработанного массива байтов в качестве данных сообщения.
-		|    [Serializable]
-		|    public class ScsRawDataMessage : ScsMessage
-		|    {
-		|        // Данные сообщения, которые передаются.
-		|        public byte[] MessageData { get; set; }
-		|
-		|        // Пустой конструктор по умолчанию.
-		|        public ScsRawDataMessage()
-		|        {
-		|        }
-		|
-		|        // Создает новый объект ScsRawDataMessage со свойством MessageData.
-		|        // ""messageData"" - Данные сообщения, которые передаются.
-		|        public ScsRawDataMessage(byte[] messageData)
-		|        {
-		|            MessageData = messageData;
-		|        }
-		|
-		|        // Создает новый объект копию ScsRawDataMessage со свойством MessageData.
-		|        // ""messageData"" - Данные сообщения, которые передаются.
-		|        // ""repliedMessageId"" - Идентификатор ответившего сообщения, если это ответ на сообщение.
-		|        public ScsRawDataMessage(byte[] messageData, string repliedMessageId) : this(messageData)
-		|        {
-		|            RepliedMessageId = repliedMessageId;
-		|        }
-		|
-		|        // Создает строку, представляющую этот объект.
-		|        // Возврат - Строка представляющая этот объект
-		|        public override string ToString()
-		|        {
-		|            var messageLength = MessageData == null ? 0 : MessageData.Length;
-		|            return string.IsNullOrEmpty(RepliedMessageId)
-		|                       ? string.Format(""ScsRawDataMessage [{0}]: {1} bytes"", MessageId, messageLength)
-		|                       : string.Format(""ScsRawDataMessage [{0}] Replied To [{1}]: {2} bytes"", MessageId, RepliedMessageId, messageLength);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это сообщение используется для отправки/получения текста в качестве данных сообщения.
-		|    [Serializable]
-		|    public class ScsTextMessage : ScsMessage
-		|    {
-		|        // Текст сообщения, который передается.
-		|        public string Text { get; set; }
-		|
-		|        // Создает новый объект ScsTextMessage.
-		|        public ScsTextMessage()
-		|        {
-		|
-		|        }
-		|
-		|        // Создает новый объект ScsTextMessage со свойством Text.
-		|        // ""text"" - Текст сообщения, который передается.
-		|        public ScsTextMessage(string text)
-		|        {
-		|            Text = text;
-		|        }
-		|
-		|        // Создает новый объект ScsTextMessage со свойством Text.
-		|        // ""text"" - Текст сообщения, который передается.
-		|        // ""repliedMessageId"" - Идентификатор ответившего сообщения, если это ответ на сообщение.
-		|        public ScsTextMessage(string text, string repliedMessageId) : this(text)
-		|        {
-		|            RepliedMessageId = repliedMessageId;
-		|        }
-		|
-		|        // Создает строку, представляющую этот объект.
-		|        // Возврат - Строка представляющая этот объект
-		|        public override string ToString()
-		|        {
-		|            return string.IsNullOrEmpty(RepliedMessageId)
-		|                       ? string.Format(""ScsTextMessage [{0}]: {1}"", MessageId, Text)
-		|                       : string.Format(""ScsTextMessage [{0}] Replied To [{1}]: {2}"", MessageId, RepliedMessageId, Text);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это сообщение используется для отправки/получения числа в качестве данных сообщения.
-		|    [Serializable]
-		|    public class ScsNumberMessage : ScsMessage
-		|    {
-		|        // Число сообщения, который передается.
-		|        public decimal Number { get; set; }
-		|
-		|        // Создает новый объект ScsNumberMessage.
-		|        public ScsNumberMessage()
-		|        {
-		|
-		|        }
-		|
-		|        // Создает новый объект ScsNumberMessage со свойством Number.
-		|        // ""number"" - Число, которое передается.
-		|        public ScsNumberMessage(decimal number)
-		|        {
-		|            Number = number;
-		|        }
-		|
-		|        // Создает новый объект ScsNumberMessage со свойством Number.
-		|        // ""number"" - Число, которое передается.
-		|        // ""repliedMessageId"" - Идентификатор ответившего сообщения, если это ответ на сообщение.
-		|        public ScsNumberMessage(decimal number, string repliedMessageId) : this(number)
-		|        {
-		|            RepliedMessageId = repliedMessageId;
-		|        }
-		|
-		|        // Создает строку, представляющую этот объект.
-		|        // Возврат - Строка представляющая этот объект
-		|        public override string ToString()
-		|        {
-		|            return string.IsNullOrEmpty(RepliedMessageId)
-		|                       ? string.Format(""ScsNumberMessage [{0}]: {1}"", MessageId, Number)
-		|                       : string.Format(""ScsNumberMessage [{0}] Replied To [{1}]: {2}"", MessageId, RepliedMessageId, Number);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это сообщение используется для отправки/получения даты в качестве данных сообщения.
-		|    [Serializable]
-		|    public class ScsDateTimeMessage : ScsMessage
-		|    {
-		|        // Дата, которая передается.
-		|        public DateTime DateVal { get; set; }
-		|
-		|        // Создает новый объект ScsDateTimeMessage.
-		|        public ScsDateTimeMessage()
-		|        {
-		|
-		|        }
-		|
-		|        // Создает новый объект ScsDateTimeMessage со свойством DateVal.
-		|        // ""dateVal"" - Дата, которая передается.
-		|        public ScsDateTimeMessage(DateTime dateVal)
-		|        {
-		|            DateVal = dateVal;
-		|        }
-		|
-		|        // Создает новый объект ScsDateTimeMessage со свойством DateVal.
-		|        // ""dateVal"" - Дата, которая передается.
-		|        // ""repliedMessageId"" - Идентификатор ответившего сообщения, если это ответ на сообщение.
-		|        public ScsDateTimeMessage(DateTime dateVal, string repliedMessageId) : this(dateVal)
-		|        {
-		|            RepliedMessageId = repliedMessageId;
-		|        }
-		|
-		|        // Создает строку, представляющую этот объект.
-		|        // Возврат - Строка представляющая этот объект
-		|        public override string ToString()
-		|        {
-		|            return string.IsNullOrEmpty(RepliedMessageId)
-		|                       ? string.Format(""ScsNumberMessage [{0}]: {1}"", MessageId, DateVal)
-		|                       : string.Format(""ScsNumberMessage [{0}] Replied To [{1}]: {2}"", MessageId, RepliedMessageId, DateVal);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это сообщение используется для отправки/получения числа в качестве данных сообщения.
-		|    [Serializable]
-		|    public class ScsBoolMessage : ScsMessage
-		|    {
-		|        // Булево, которое передается.
-		|        public System.Boolean BoolVal { get; set; }
-		|
-		|        // Создает новый объект ScsBoolMessage.
-		|        public ScsBoolMessage()
-		|        {
-		|
-		|        }
-		|
-		|        // Создает новый объект ScsBoolMessage со свойством BoolVal.
-		|        // ""boolVal"" - Булево, которое передается.
-		|        public ScsBoolMessage(System.Boolean boolVal)
-		|        {
-		|            BoolVal = boolVal;
-		|        }
-		|
-		|        // Создает новый объект ScsBoolMessage со свойством BoolVal.
-		|        // ""boolVal"" - Булево, которое передается.
-		|        // ""repliedMessageId"" - Идентификатор ответившего сообщения, если это ответ на сообщение.
-		|        public ScsBoolMessage(System.Boolean boolVal, string repliedMessageId) : this(boolVal)
-		|        {
-		|            RepliedMessageId = repliedMessageId;
-		|        }
-		|
-		|        // Создает строку, представляющую этот объект.
-		|        // Возврат - Строка представляющая этот объект
-		|        public override string ToString()
-		|        {
-		|            return string.IsNullOrEmpty(RepliedMessageId)
-		|                       ? string.Format(""ScsNumberMessage [{0}]: {1}"", MessageId, BoolVal)
-		|                       : string.Format(""ScsNumberMessage [{0}] Replied To [{1}]: {2}"", MessageId, RepliedMessageId, BoolVal);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication.Messengers
-		|{
-		|    // Представляет объект, который может отправлять и получать сообщения.
-		|    public interface IMessenger
-		|    {
-		|        // Это событие возникает при получении нового сообщения.
-		|        event EventHandler<MessageEventArgs> MessageReceived;
-		|
-		|        // Это событие возникает, когда новое сообщение отправляется без какой-либо ошибки.
-		|        // Это не гарантирует, что сообщение будет должным образом обработано удаленным приложением.
-		|        event EventHandler<MessageEventArgs> MessageSent;
-		|
-		|        // Получает/устанавливает проводной протокол, который используется при чтении и записи сообщений.
-		|        IScsWireProtocol WireProtocol { get; set; }
-		|
-		|        // Получает время последнего успешно полученного сообщения.
-		|        DateTime LastReceivedMessageTime { get; }
-		|
-		|        // Получает время последнего успешно отправленного сообщения.
-		|        DateTime LastSentMessageTime { get; }
-		|
-		|        // Отправляет сообщение удаленному приложению.
-		|        // ""message"" - Сообщение, которое нужно отправить.
-		|        void SendMessage(IScsMessage message);
-		|    }
-		|    //=========================================================================================================================================
-		|    // Этот класс добавляет методы SendMessageAndWaitForResponse(...) и SendAndReceiveMessage в IMessenger для синхронного обмена сообщениями в стиле запроса/ответа.
-		|    // Он также добавляет обработку входящих сообщений в очереди.
-		|    // ""T"" - Тип объекта IMessenger для использования в качестве базового сообщения
-		|    public class RequestReplyMessenger<T> : IMessenger, IDisposable where T : IMessenger
-		|    {
-		|        // Это событие возникает при получении нового сообщения от базового мессенджера.
-		|        public event EventHandler<MessageEventArgs> MessageReceived;
-		|
-		|        // Это событие возникает, когда новое сообщение отправляется без какой-либо ошибки.
-		|        // Это не гарантирует, что сообщение будет должным образом обработано удаленным приложением.
-		|        public event EventHandler<MessageEventArgs> MessageSent;
-		|
-		|        // Получает/устанавливает проводной протокол, который используется при чтении и записи сообщений.
-		|        public IScsWireProtocol WireProtocol
-		|        {
-		|            get { return Messenger.WireProtocol; }
-		|            set { Messenger.WireProtocol = value; }
-		|        }
-		|
-		|        // Получает время последнего успешно полученного сообщения.
-		|        public DateTime LastReceivedMessageTime
-		|        {
-		|            get
-		|            {
-		|                return Messenger.LastReceivedMessageTime;
-		|            }
-		|        }
-		|
-		|        // Получает время последнего успешно отправленного сообщения.
-		|        public DateTime LastSentMessageTime
-		|        {
-		|            get
-		|            {
-		|                return Messenger.LastSentMessageTime;
-		|            }
-		|        }
-		|
-		|        // Получает базовый объект IMessenger.
-		|        public T Messenger { get; private set; }
-		|
-		|        // Значение таймаута в миллисекундах для ожидания получения сообщения с помощью методов SendMessageAndWaitForResponse и SendAndReceiveMessage.
-		|        // Значение по умолчанию: 60000 (1 minute).
-		|        public int Timeout { get; set; }
-		|
-		|        // Значение тайм-аута по умолчанию.
-		|        private const int DefaultTimeout = 60000;
-		|
-		|        // Эти сообщения ожидают ответа, которые используются при вызове SendMessageAndWaitForResponse.
-		|        // Key: MessageID ожидающего сообщения с запросом.
-		|        // Value: Экземпляр WaitingMessage.
-		|        private readonly SortedList<string, WaitingMessage> _waitingMessages;
-		|
-		|        // Этот объект используется для последовательной обработки входящих сообщений.
-		|        private readonly SequentialItemProcessor<IScsMessage> _incomingMessageProcessor;
-		|
-		|        // Этот объект используется для синхронизации потоков.
-		|        private readonly object _syncObj = new object();
-		|
-		|        // Создает новый RequestReplyMessenger.
-		|        // ""messenger"" - Объект IMessenger для использования в качестве базового сообщения.
-		|        public RequestReplyMessenger(T messenger)
-		|        {
-		|            Messenger = messenger;
-		|            messenger.MessageReceived += Messenger_MessageReceived;
-		|            messenger.MessageSent += Messenger_MessageSent;
-		|            _incomingMessageProcessor = new SequentialItemProcessor<IScsMessage>(OnMessageReceived);
-		|            _waitingMessages = new SortedList<string, WaitingMessage>();
-		|            Timeout = DefaultTimeout;
-		|        }
-		|
-		|        // Запускает мессенджер.
-		|        public virtual void Start()
-		|        {
-		|            _incomingMessageProcessor.Start();
-		|        }
-		|
-		|        // Останавливает мессенджер.
-		|        // Отменяет все ожидающие потоки в методе SendMessageAndWaitForResponse и останавливает очередь сообщений.
-		|        // Метод SendMessageAndWaitForResponse выдает исключение, если существует поток, ожидающий ответного сообщения.
-		|        // Также останавливает обработку входящих сообщений и удаляет все сообщения в очереди входящих сообщений.
-		|        public virtual void Stop()
-		|        {
-		|            _incomingMessageProcessor.Stop();
-		|
-		|            //Импульсные потоки ожидания входящих сообщений, поскольку базовый мессенджер отключен и больше не может получать сообщения.
-		|            lock (_syncObj)
-		|            {
-		|                foreach (var waitingMessage in _waitingMessages.Values)
-		|                {
-		|                    waitingMessage.State = WaitingMessageStates.Cancelled;
-		|                    waitingMessage.WaitEvent.Set();
-		|                }
-		|
-		|                _waitingMessages.Clear();
-		|            }
-		|        }
-		|
-		|        // Вызывает метод Stop этого объекта.
-		|        public void Dispose()
-		|        {
-		|            Stop();
-		|        }
-		|
-		|        // Отправляет сообщение.
-		|        // ""message"" - Сообщение, которое нужно отправить.
-		|        public void SendMessage(IScsMessage message)
-		|        {
-		|            Messenger.SendMessage(message);
-		|        }
-		|
-		|        // Отправляет сообщение и ожидает ответа на это сообщение.
-		|        // Замечание - Ответное сообщение сопоставляется со свойством RepliedMessageId, поэтому, если из удаленного приложения получено какое-либо 
-		|        // другое сообщение (которое не является ответом на отправленное сообщение), оно не рассматривается как ответ и не возвращается как 
-		|        // возвращаемое значение этого метода.
-		|        // Событие MessageReceived не вызывается для ответных сообщений.
-		|        // ""message"" - сообщение для отправки.
-		|        // Возврат - Ответное сообщение
-		|        public IScsMessage SendMessageAndWaitForResponse(IScsMessage message)
-		|        {
-		|            return SendMessageAndWaitForResponse(message, Timeout);
-		|        }
-		|
-		|        // Отправляет сообщение и ожидает ответа на это сообщение.
-		|        // Ответное сообщение сопоставляется со свойством RepliedMessageId, поэтому, если из удаленного приложения получено какое-либо 
-		|        // другое сообщение (которое не является ответом на отправленное сообщение), оно не рассматривается как ответ и не возвращается 
-		|        // как возвращаемое значение этого метода.
-		|        // Событие MessageReceived не вызывается для ответных сообщений.
-		|        // ""message"" - сообщение для отправки.
-		|        // ""timeoutMilliseconds"" - Продолжительность тайм-аута в миллисекундах.
-		|        // Возврат - Ответное сообщение
-		|        // Исключение - ""TimeoutException"" - Выдает исключение TimeoutException, если не удается получить ответное сообщение в значении тайм-аута
-		|        // Исключение - ""CommunicationException"" - Выдает исключение CommunicationException, если связь завершается неудачей перед ответным сообщением.
-		|        public IScsMessage SendMessageAndWaitForResponse(IScsMessage message, int timeoutMilliseconds)
-		|        {
-		|            //Создайте запись ожидающего сообщения и добавьте в список
-		|            var waitingMessage = new WaitingMessage();
-		|            lock (_syncObj)
-		|            {
-		|                _waitingMessages[message.MessageId] = waitingMessage;
-		|            }
-		|
-		|            try
-		|            {
-		|                //Отправить сообщение
-		|                Messenger.SendMessage(message);
-		|
-		|                //Дождитесь ответа
-		|                waitingMessage.WaitEvent.Wait(timeoutMilliseconds);
-		|
-		|                //Проверьте наличие исключений
-		|                switch (waitingMessage.State)
-		|                {
-		|                    case WaitingMessageStates.WaitingForResponse:
-		|                        throw new TimeoutException(""Произошел тайм-аут. Может не получен ответ."");
-		|                    case WaitingMessageStates.Cancelled:
-		|                        throw new CommunicationException(""Отключен до получения ответа."");
-		|                }
-		|
-		|                //вернуть ответное сообщение
-		|                return waitingMessage.ResponseMessage;
-		|            }
-		|            finally
-		|            {
-		|                //Удалить сообщение из ожидающих сообщений
-		|                lock (_syncObj)
-		|                {
-		|                    if (_waitingMessages.ContainsKey(message.MessageId))
-		|                    {
-		|                        _waitingMessages.Remove(message.MessageId);
-		|                    }
-		|                }
-		|            }
-		|        }
-		|
-		|        // Обрабатывает событие MessageReceived объекта Messenger.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void Messenger_MessageReceived(object sender, MessageEventArgs e)
-		|        {
-		|            //Проверьте, есть ли ожидающий поток для этого сообщения в методе SendMessageAndWaitForResponse
-		|            if (!string.IsNullOrEmpty(e.Message.RepliedMessageId))
-		|            {
-		|                WaitingMessage waitingMessage = null;
-		|                lock (_syncObj)
-		|                {
-		|                    if (_waitingMessages.ContainsKey(e.Message.RepliedMessageId))
-		|                    {
-		|                        waitingMessage = _waitingMessages[e.Message.RepliedMessageId];
-		|                    }
-		|                }
-		|
-		|                //Если есть поток, ожидающий этого ответного сообщения, отправьте его импульсом
-		|                if (waitingMessage != null)
-		|                {
-		|                    waitingMessage.ResponseMessage = e.Message;
-		|                    waitingMessage.State = WaitingMessageStates.ResponseReceived;
-		|                    waitingMessage.WaitEvent.Set();
-		|                    return;
-		|                }
-		|            }
-		|
-		|            _incomingMessageProcessor.EnqueueMessage(e.Message);
-		|        }
-		|
-		|        // Обрабатывает событие messageSent объекта Messenger.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void Messenger_MessageSent(object sender, MessageEventArgs e)
-		|        {
-		|            OnMessageSent(e.Message);
-		|        }
-		|
-		|        // Вызывает событие MessageReceived.
-		|        // ""message"" - Полученное сообщение.
-		|        protected virtual void OnMessageReceived(IScsMessage message)
-		|        {
-		|            var handler = MessageReceived;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|
-		|        // Вызывает событие messageSent.
-		|        // ""message"" - Полученное сообщение.
-		|        protected virtual void OnMessageSent(IScsMessage message)
-		|        {
-		|            var handler = MessageSent;
-		|            if (handler != null)
-		|            {
-		|                handler(this, new MessageEventArgs(message));
-		|            }
-		|        }
-		|
-		|        // Этот класс используется для хранения контекста обмена сообщениями для сообщения-запроса до получения ответа.
-		|        private sealed class WaitingMessage
-		|        {
-		|            // Сообщение-ответ на сообщение-запрос (null, если ответ еще не получен).
-		|            public IScsMessage ResponseMessage { get; set; }
-		|
-		|            // ManualResetEvent блокирует поток до тех пор, пока не будет получен ответ.
-		|            public ManualResetEventSlim WaitEvent { get; private set; }
-		|
-		|            // Состояние сообщения с запросом.
-		|            public WaitingMessageStates State { get; set; }
-		|
-		|            // Создает новый объект WaitingMessage.
-		|            public WaitingMessage()
-		|            {
-		|                WaitEvent = new ManualResetEventSlim(false);
-		|                State = WaitingMessageStates.WaitingForResponse;
-		|            }
-		|        }
-		|
-		|        // Это перечисление используется для хранения состояния ожидающего сообщения.
-		|        private enum WaitingMessageStates
-		|        {
-		|            // Все еще жду ответа.
-		|            WaitingForResponse,
-		|
-		|            // Отправка сообщения отменена.
-		|            Cancelled,
-		|
-		|            // Ответ получен должным образом.
-		|            ResponseReceived
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Этот класс является оболочкой для IMessenger и используется для синхронизации операции получения сообщений.
-		|    // Это расширяет RequestReplyMessenger.
-		|    // Он подходит для использования в приложениях, которые хотят получать сообщения с помощью синхронизированных вызовов методов вместо асинхронного события MessageReceived.
-		|    public class SynchronizedMessenger<T> : RequestReplyMessenger<T> where T : IMessenger
-		|    {
-		|        // Получает/устанавливает емкость очереди входящих сообщений.
-		|        // Никакое сообщение не будет получено от удаленного приложения, если количество сообщений во внутренней очереди превышает это значение.
-		|        // Значение по умолчанию: int.MaxValue (2147483647).
-		|        public int IncomingMessageQueueCapacity { get; set; }
-		|
-		|        // Очередь, которая используется для хранения получаемых сообщений до тех пор, пока для их получения не будет вызван метод Receive(...).
-		|        private readonly Queue<IScsMessage> _receivingMessageQueue;
-		|
-		|        // Этот объект используется для синхронизации/ожидания потоков.
-		|        private readonly ManualResetEventSlim _receiveWaiter;
-		|
-		|        // Это логическое значение указывает на состояние выполнения этого класса.
-		|        private volatile bool _running;
-		|
-		|        // Создает новый объект SynchronizedMessenger.
-		|        // ""messenger"" - Объект IMessenger, который будет использоваться для отправки /получения сообщений.
-		|        public SynchronizedMessenger(T messenger) : this(messenger, int.MaxValue)
-		|        {
-		|
-		|        }
-		|
-		|        // Создает новый объект SynchronizedMessenger.
-		|        // ""messenger"" - Объект IMessenger, который будет использоваться для отправки /получения сообщений.
-		|        // ""incomingMessageQueueCapacity"" - емкость очереди входящих сообщений.
-		|        public SynchronizedMessenger(T messenger, int incomingMessageQueueCapacity) : base(messenger)
-		|        {
-		|            _receiveWaiter = new ManualResetEventSlim();
-		|            _receivingMessageQueue = new Queue<IScsMessage>();
-		|            IncomingMessageQueueCapacity = incomingMessageQueueCapacity;
-		|        }
-		|
-		|        // Запускает мессенджер.
-		|        public override void Start()
-		|        {
-		|            lock (_receivingMessageQueue)
-		|            {
-		|                _running = true;
-		|            }
-		|
-		|            base.Start();
-		|        }
-		|
-		|        // Останавливает мессенджер.
-		|        public override void Stop()
-		|        {
-		|            base.Stop();
-		|
-		|            lock (_receivingMessageQueue)
-		|            {
-		|                _running = false;
-		|                _receiveWaiter.Set();
-		|            }
-		|        }
-		|
-		|        // Этот метод используется для получения сообщения от удаленного приложения.
-		|        // Он ожидает, пока не будет получено сообщение.
-		|        // Возврат - Полученное сообщение
-		|        public IScsMessage ReceiveMessage()
-		|        {
-		|            return ReceiveMessage(System.Threading.Timeout.Infinite);
-		|        }
-		|
-		|        // Этот метод используется для получения сообщения от удаленного приложения.
-		|        // Он ожидает, пока не будет получено сообщение или не наступит тайм-аут.
-		|        // ""timeout"" - Значение тайм-аута для ожидания, если сообщение не получено.
-		|        // Используйте -1, чтобы ждать бесконечно.
-		|        // Возврат - Полученное сообщение
-		|        // Исключение - ""TimeoutException"" - Выдает исключение TimeoutException, если происходит тайм-аут
-		|        // Исключение - ""Exception"" - Выдает исключение, если SynchronizedMessenger останавливается до получения сообщения
-		|        public IScsMessage ReceiveMessage(int timeout)
-		|        {
-		|            while (_running)
-		|            {
-		|                lock (_receivingMessageQueue)
-		|                {
-		|                    //Проверьте, запущен ли SynchronizedMessenger
-		|                    if (!_running)
-		|                    {
-		|                        throw new Exception(""SynchronizedMessenger is stopped. Can not receive message."");
-		|                    }
-		|
-		|                    //Немедленно получите сообщение, если какое-либо сообщение действительно существует
-		|                    if (_receivingMessageQueue.Count > 0)
-		|                    {
-		|                        return _receivingMessageQueue.Dequeue();
-		|                    }
-		|
-		|                    _receiveWaiter.Reset();
-		|                }
-		|
-		|                //Дождитесь сообщения
-		|                var signalled = _receiveWaiter.Wait(timeout);
-		|
-		|                //Если сигнал не подан, выдайте исключение
-		|                if (!signalled)
-		|                {
-		|                    throw new TimeoutException(""Timeout occured. Can not received any message"");
-		|                }
-		|            }
-		|
-		|            throw new Exception(""SynchronizedMessenger is stopped. Can not receive message."");
-		|        }
-		|
-		|        // Этот метод используется для получения определенного типа сообщения от удаленного приложения.
-		|        // Он ожидает, пока не будет получено сообщение.
-		|        // Возврат - Полученное сообщение
-		|        public TMessage ReceiveMessage<TMessage>() where TMessage : IScsMessage
-		|        {
-		|            return ReceiveMessage<TMessage>(System.Threading.Timeout.Infinite);
-		|        }
-		|
-		|        // Этот метод используется для получения определенного типа сообщения от удаленного приложения.
-		|        // Он ожидает, пока не будет получено сообщение или не наступит тайм-аут.
-		|        // ""timeout"" - Значение тайм-аута для ожидания, если сообщение не получено.
-		|        // Используйте -1, чтобы ждать бесконечно.
-		|        // Возврат - Полученное сообщение
-		|        public TMessage ReceiveMessage<TMessage>(int timeout) where TMessage : IScsMessage
-		|        {
-		|            var receivedMessage = ReceiveMessage(timeout);
-		|            if (!(receivedMessage is TMessage))
-		|            {
-		|                throw new Exception(""Unexpected message received."" +
-		|                                    "" Expected type: "" + typeof(TMessage).Name +
-		|                                    "". Received message type: "" + receivedMessage.GetType().Name);
-		|            }
-		|
-		|            return (TMessage)receivedMessage;
-		|        }
-		|
-		|        // Переопределяет
-		|        protected override void OnMessageReceived(IScsMessage message)
-		|        {
-		|            lock (_receivingMessageQueue)
-		|            {
-		|                if (_receivingMessageQueue.Count < IncomingMessageQueueCapacity)
-		|                {
-		|                    _receivingMessageQueue.Enqueue(message);
-		|                }
-		|
-		|                _receiveWaiter.Set();
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication.Protocols.BinarySerialization
-		|{
-		|    // Протокол связи по умолчанию между сервером и клиентами для отправки и получения сообщения.
-		|    // Он использует двоичную сериализацию .NET для записи и чтения сообщений.
-		|    // 
-		|    // Формат сообщения:
-		|    // [Message Length (4 bytes)][Serialized Message Content]
-		|    // 
-		|    // Если сообщение сериализуется в массив байтов в виде N байт, этот протокол добавляет информацию о размере 4 байт к 
-		|    // заголовку байтов сообщения, так что общая длина составляет (4 + N) байт.
-		|    // 
-		|    // Этот класс может быть получен для изменения сериализатора (по умолчанию: BinaryFormatter). Для этого методы SerializeMessage и 
-		|    // DeserializeMessage должны быть переопределены.
-		|    public class BinarySerializationProtocol : IScsWireProtocol
-		|    {
-		|        // Максимальная длина сообщения.
-		|        private const int MaxMessageLength = 128 * 1024 * 1024; //128 Megabytes.
-		|
-		|        // Этот объект MemoryStream используется для сбора байтов приема для построения сообщений.
-		|        private MemoryStream _receiveMemoryStream;
-		|
-		|        // Создает новый экземпляр BinarySerializationProtocol.
-		|        public BinarySerializationProtocol()
-		|        {
-		|            _receiveMemoryStream = new MemoryStream();
-		|        }
-		|
-		|        // Сериализует сообщение в массив байтов для отправки удаленному приложению.
-		|        // Этот метод синхронизирован. Таким образом, только один поток может вызывать его одновременно.
-		|        // ""message"" - Сообщение, подлежащее сериализации.
-		|        // Исключение - ""CommunicationException"" - Выдает исключение CommunicationException, если сообщение больше максимально допустимой длины сообщения.
-		|        public byte[] GetBytes(IScsMessage message)
-		|        {
-		|            //Сериализуйте сообщение в массив байтов
-		|            var serializedMessage = SerializeMessage(message);
-		|
-		|            //Проверьте длину сообщения
-		|            var messageLength = serializedMessage.Length;
-		|            if (messageLength > MaxMessageLength)
-		|            {
-		|                throw new CommunicationException(""Message is too big ("" + messageLength + "" bytes). Max allowed length is "" + MaxMessageLength + "" bytes."");
-		|            }
-		|
-		|            //Создайте массив байтов, включающий длину сообщения (4 байта) и сериализованное содержимое сообщения
-		|            var bytes = new byte[messageLength + 4];
-		|            WriteInt32(bytes, 0, messageLength);
-		|            Array.Copy(serializedMessage, 0, bytes, 4, messageLength);
-		|
-		|            //Возвращает сериализованное сообщение по этому протоколу
-		|            return bytes;
-		|        }
-		|
-		|        // Создает сообщения из массива байтов, полученного из удаленного приложения.
-		|        // Массив байтов может содержать только часть сообщения, протокол должен накапливать байты для построения сообщений.
-		|        // 
-		|        // Этот метод синхронизирован. Таким образом, только один поток может вызывать его одновременно.
-		|        // ""receivedBytes"" - Полученные байты от удаленного приложения.
-		|        // Возврат - Список сообщений.
-		|        // Протокол может генерировать более одного сообщения из массива байтов.
-		|        // Кроме того, если полученных байтов недостаточно для построения сообщения, протокол может вернуть пустой список 
-		|        // (и сохранить байты для объединения со следующим вызовом метода).
-		|        public IEnumerable<IScsMessage> CreateMessages(byte[] receivedBytes)
-		|        {
-		|            // Запишите все полученные байты в _receiveMemoryStream
-		|            _receiveMemoryStream.Write(receivedBytes, 0, receivedBytes.Length);
-		|		
-		|            // Создайте список для сбора сообщений
-		|            var messages = new List<IScsMessage>();
-		|		
-		|            // Прочитайте все доступные сообщения и добавьте в коллекцию сообщений
-		|            while (ReadSingleMessage(messages)) { }
-		|		
-		|            // Список возвращаемых сообщений
-		|            return messages;
-		|        }
-		|
-		|        // Этот метод вызывается при сбросе соединения с удаленным приложением (возобновлении соединения или первом подключении).
-		|        // Итак, проводной протокол должен сбросить сам себя.
-		|        public void Reset()
-		|        {
-		|            if (_receiveMemoryStream.Length > 0)
-		|            {
-		|                _receiveMemoryStream = new MemoryStream();
-		|            }
-		|        }
-		|
-		|        // Этот метод используется для сериализации IScsMessage в массив байтов.
-		|        // Этот метод может быть переопределен производными классами для изменения стратегии сериализации.
-		|        // Это пара с методом DeserializeMessage, и они должны быть переопределены вместе.
-		|        // ""message"" - Сообщение, подлежащее сериализации.
-		|        // Сериализованные байты сообщения.
-		|        // Не включает длину сообщения.
-		|        protected virtual byte[] SerializeMessage(IScsMessage message)
-		|        {
-		|            using (var memoryStream = new MemoryStream())
-		|            {
-		|                new BinaryFormatter().Serialize(memoryStream, message);
-		|                return memoryStream.ToArray();
-		|            }
-		|        }
-		|
-		|        // Этот метод используется для десериализации IScsMessage из его байтов.
-		|        // Этот метод может быть переопределен производными классами для изменения стратегии десериализации.
-		|        // Это пара с методом SerializeMessage, и они должны быть переопределены вместе.
-		|        // ""bytes"" - Байты сообщения, подлежащего десериализации (не включает длину сообщения.
-		|        // Оно состоит из одного целого сообщения).
-		|        // Возврат - Десериализованное сообщение
-		|        protected virtual IScsMessage DeserializeMessage(byte[] bytes)
-		|        {
-		|            //Создайте MemoryStream для преобразования байтов в поток
-		|            using (var deserializeMemoryStream = new MemoryStream(bytes))
-		|            {
-		|                //Идите к началу потока
-		|                deserializeMemoryStream.Position = 0;
-		|
-		|                //Десериализуйте сообщение
-		|                var binaryFormatter = new BinaryFormatter
-		|                {
-		|                    AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
-		|                    Binder = new DeserializationAppDomainBinder()
-		|                };
-		|
-		|                //Верните десериализованное сообщение
-		|                return (IScsMessage)binaryFormatter.Deserialize(deserializeMemoryStream);
-		|            }
-		|        }
-		|
-		|        // Этот метод пытается прочитать одно сообщение и добавить его в коллекцию сообщений. 
-		|        // ""messages"" - Коллекция сообщений для сбора сообщений.
-		|        // Возвращает логическое значение, указывающее на то, что при необходимости необходимо повторно вызвать этот метод.
-		|        // Исключение - ""CommunicationException"" - Выдает исключение CommunicationException, если сообщение больше максимально допустимой длины сообщения.
-		|        private bool ReadSingleMessage(ICollection<IScsMessage> messages)
-		|        {
-		|            //Идите к началу потока
-		|            _receiveMemoryStream.Position = 0;
-		|
-		|            //Если поток содержит менее 4 байт, это означает, что мы даже не можем прочитать длину сообщения
-		|            //Итак, верните значение false, чтобы дождаться дополнительных байтов от приложения remore.
-		|            if (_receiveMemoryStream.Length < 4)
-		|            {
-		|                return false;
-		|            }
-		|
-		|            //Прочитанная длина сообщения
-		|            var messageLength = ReadInt32(_receiveMemoryStream);
-		|            if (messageLength > MaxMessageLength)
-		|            {
-		|                throw new Exception(""Message is too big ("" + messageLength + "" bytes). Max allowed length is "" + MaxMessageLength + "" bytes."");
-		|            }
-		|
-		|            //Если сообщение имеет нулевую длину (этого не должно быть, но хорошо бы проверить)
-		|            if (messageLength == 0)
-		|            {
-		|                //если больше нет байтов, немедленно верните
-		|                if (_receiveMemoryStream.Length == 4)
-		|                {
-		|                    _receiveMemoryStream = new MemoryStream(); // Очистите поток.
-		|                    return false;
-		|                }
-		|
-		|                //Создайте новый поток памяти из текущего, за исключением первых 4 байт.
-		|                var bytes = _receiveMemoryStream.ToArray();
-		|                _receiveMemoryStream = new MemoryStream();
-		|                _receiveMemoryStream.Write(bytes, 4, bytes.Length - 4);
-		|                return true;
-		|            }
-		|
-		|            //Если все байты сообщения еще не получены, вернитесь, чтобы дождаться дополнительных байтов
-		|            if (_receiveMemoryStream.Length < (4 + messageLength))
-		|            {
-		|                _receiveMemoryStream.Position = _receiveMemoryStream.Length;
-		|                return false;
-		|            }
-		|
-		|            //Считайте байты сериализованного сообщения и десериализуйте его
-		|            var serializedMessageBytes = ReadByteArray(_receiveMemoryStream, messageLength);
-		|            messages.Add(DeserializeMessage(serializedMessageBytes));
-		|
-		|            //Считывает оставшиеся байты в массив
-		|            var remainingBytes = ReadByteArray(_receiveMemoryStream, (int)(_receiveMemoryStream.Length - (4 + messageLength)));
-		|
-		|            //Повторно создайте поток приемной памяти и запишите оставшиеся байты
-		|            _receiveMemoryStream = new MemoryStream();
-		|            _receiveMemoryStream.Write(remainingBytes, 0, remainingBytes.Length);
-		|
-		|            //Верните значение true для повторного вызова этого метода, чтобы попытаться прочитать следующее сообщение
-		|            return (remainingBytes.Length > 4);
-		|        }
-		|
-		|        // Записывает значение int в массив байтов из начального индекса.
-		|        // ""buffer"" - Массив байтов для записи значения int.
-		|        // ""startIndex"" - Начальный индекс массива байтов для записи.
-		|        // ""number"" - Целочисленное значение для записи.
-		|        private static void WriteInt32(byte[] buffer, int startIndex, int number)
-		|        {
-		|            buffer[startIndex] = (byte)((number >> 24) & 0xFF);
-		|            buffer[startIndex + 1] = (byte)((number >> 16) & 0xFF);
-		|            buffer[startIndex + 2] = (byte)((number >> 8) & 0xFF);
-		|            buffer[startIndex + 3] = (byte)((number) & 0xFF);
-		|        }
-		|
-		|        // Десериализует и возвращает сериализованное целое число.
-		|        // Возврат - Десериализованное целое число
-		|        private static int ReadInt32(Stream stream)
-		|        {
-		|            var buffer = ReadByteArray(stream, 4);
-		|            return ((buffer[0] << 24) |
-		|                    (buffer[1] << 16) |
-		|                    (buffer[2] << 8) |
-		|                    (buffer[3])
-		|                   );
-		|        }
-		|
-		|        // Считывает массив байтов заданной длины.
-		|        // ""stream"" - Поток для чтения из.
-		|        // ""length"" - Длина массива байтов для чтения.
-		|        // Возврат - Считанный массив байтов
-		|        // Исключение - ""EndOfStreamException"" - Выдает исключение EndOfStreamException, если не удается прочитать из потока.
-		|        private static byte[] ReadByteArray(Stream stream, int length)
-		|        {
-		|            var buffer = new byte[length];
-		|            var totalRead = 0;
-		|            while (totalRead < length)
-		|            {
-		|                var read = stream.Read(buffer, totalRead, length - totalRead);
-		|                if (read <= 0)
-		|                {
-		|                    throw new EndOfStreamException(""Can not read from stream! Input stream is closed."");
-		|                }
-		|
-		|                totalRead += read;
-		|            }
-		|
-		|            return buffer;
-		|        }
-		|
-		|        // Этот класс используется при десериализации, чтобы разрешить десериализацию объектов, которые определены
-		|        // в сборках, которые загружаются во время выполнения (например, плагины).
-		|        protected sealed class DeserializationAppDomainBinder : SerializationBinder
-		|        {
-		|            public override Type BindToType(string assemblyName, string typeName)
-		|            {
-		|                var toAssemblyName = assemblyName.Split(',')[0];
-		|                return (from assembly in AppDomain.CurrentDomain.GetAssemblies()
-		|                        where assembly.FullName.Split(',')[0] == toAssemblyName
-		|                        select assembly.GetType(typeName)).FirstOrDefault();
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Этот класс используется для создания объектов протокола двоичной сериализации.
-		|    public class BinarySerializationProtocolFactory : IScsWireProtocolFactory
-		|    {
-		|        // Создает новый объект проводного протокола.
-		|        // Возврат - Вновь созданный объект проводного протокола
-		|        public IScsWireProtocol CreateWireProtocol()
-		|        {
-		|            return new BinarySerializationProtocol();
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication.Protocols
-		|{
-		|    // Представляет собой протокол связи на байтовом уровне между приложениями.
-		|    public interface IScsWireProtocol
-		|    {
-		|        // Сериализует сообщение в массив байтов для отправки удаленному приложению.
-		|        // Этот метод синхронизирован. Таким образом, только один поток может вызывать его одновременно.
-		|        // ""message"" - Сообщение, подлежащее сериализации.
-		|        byte[] GetBytes(IScsMessage message);
-		|
-		|        // Создает сообщения из массива байтов, полученного из удаленного приложения.
-		|        // Массив байтов может содержать только часть сообщения, протокол должен накапливать байты для построения сообщений.
-		|        // Этот метод синхронизирован. Таким образом, только один поток может вызывать его одновременно.
-		|        // ""receivedBytes"" - Полученные байты от удаленного приложения.
-		|        // Возврат - 
-		|        // Список сообщений.
-		|        // Протокол может генерировать более одного сообщения из массива байтов.
-		|        // Кроме того, если полученных байтов недостаточно для построения сообщения, протокол
-		|        // может возвращать пустой список (и сохранять байты для объединения со следующим вызовом метода).
-		|        IEnumerable<IScsMessage> CreateMessages(byte[] receivedBytes);
-		|
-		|        // Этот метод вызывается при сбросе соединения с удаленным приложением (возобновлении соединения или первом подключении).
-		|        // Итак, проводной протокол должен сбросить сам себя.
-		|        void Reset();
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Определяет класс Wire Protocol Factory, который используется для создания объектов Wire Protocol.
-		|    public interface IScsWireProtocolFactory
-		|    {
-		|        // Создает новый объект проводного протокола.
-		|        // Возврат - Вновь созданный объект проводного протокола
-		|        IScsWireProtocol CreateWireProtocol();
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Этот класс используется для получения протоколов по умолчанию.
-		|    internal static class WireProtocolManager
-		|    {
-		|        // Создает заводской объект проводного протокола по умолчанию, который будет использоваться при обмене приложениями.
-		|        // Возврат - Новый экземпляр проводного протокола по умолчанию
-		|        public static IScsWireProtocolFactory GetDefaultWireProtocolFactory()
-		|        {
-		|            return new BinarySerializationProtocolFactory();
-		|        }
-		|
-		|        // Создает объект проводного протокола по умолчанию, который будет использоваться при взаимодействии приложений.
-		|        // Возврат - Новый экземпляр проводного протокола по умолчанию
-		|        public static IScsWireProtocol GetDefaultWireProtocol()
-		|        {
-		|            return new BinarySerializationProtocol();
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.Scs.Communication
-		|{
-		|    // Это приложение выдает ошибку связи.
-		|    [Serializable]
-		|    public class CommunicationException : Exception
-		|    {
-		|        // Конструктор.
-		|        public CommunicationException()
-		|        {
-		|        }
-		|
-		|        // Конструктор для сериализации.
-		|        public CommunicationException(SerializationInfo serializationInfo, StreamingContext context) : base(serializationInfo, context)
-		|        {
-		|        }
-		|
-		|        // Конструктор.
-		|        // ""message"" - Сообщение об исключении.
-		|        public CommunicationException(string message) : base(message)
-		|        {
-		|        }
-		|
-		|        // Конструктор.
-		|        // ""message"" - Сообщение об исключении.
-		|        // ""innerException"" - Внутреннее исключение.
-		|        public CommunicationException(string message, Exception innerException) : base(message, innerException)
-		|        {
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это приложение запускается, если связь не является ожидаемым состоянием.
-		|    [Serializable]
-		|    public class CommunicationStateException : CommunicationException
-		|    {
-		|        // Конструктор.
-		|        public CommunicationStateException()
-		|        {
-		|        }
-		|
-		|        // Конструктор для сериализации.
-		|        public CommunicationStateException(SerializationInfo serializationInfo, StreamingContext context) : base(serializationInfo, context)
-		|        {
-		|        }
-		|
-		|        // Конструктор.
-		|        // ""message"" - Сообщение об исключении.
-		|        public CommunicationStateException(string message) : base(message)
-		|        {
-		|        }
-		|
-		|        // Конструктор.
-		|        // ""message"" - Сообщение об исключении.
-		|        // ""innerException"" - Внутреннее исключение.
-		|        public CommunicationStateException(string message, Exception innerException) : base(message, innerException)
-		|        {
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Состояния соединения.
-		|    public enum CommunicationStates
-		|    {
-		|        // Подключен.
-		|        Connected,
-		|
-		|        // Отключен.
-		|        Disconnected
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|#endregion Communication
-		|
-		|#region ScsServices
-		|
-		|namespace Hik.Communication.ScsServices.Service
-		|{
-		|    // Представляет приложение службы SCS, которое используется для создания службы SCS и управления ею.
-		|    public interface IScsServiceApplication
-		|    {
-		|        // Для получения списка клиентов на стороне сервера приложений.
-		|        ThreadSafeSortedList<long, IScsServiceClient> Clients { get; }
-		|
-		|        // Запускает сервисное приложение.
-		|        void Start();
-		|
-		|        // Останавливает сервисное приложение.
-		|        void Stop();
-		|
-		|        // Добавляет объект службы в это приложение-службу.
-		|        // Для типа интерфейса службы может быть добавлен только один объект службы.
-		|        // ""TServiceInterface"" - Тип сервисного интерфейса
-		|        // ""TServiceClass"" - Тип класса обслуживания. Должен быть доставлен из ScsService и должен реализовывать TServiceInterface.
-		|        // ""service"" - Экземпляр TServiceClass.
-		|        void AddService<TServiceInterface, TServiceClass>(TServiceClass service)
-		|            where TServiceClass : ScsService, TServiceInterface
-		|            where TServiceInterface : class;
-		|
-		|        // Удаляет ранее добавленный объект службы из этого приложения-службы.
-		|        // Он удаляет объект в соответствии с типом интерфейса.
-		|        // ""TServiceInterface"" - Тип сервисного интерфейса
-		|        // Возврат - True: удалено. False: нет объекта службы с этим интерфейсом
-		|        bool RemoveService<TServiceInterface>() where TServiceInterface : class;
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Представляет клиента, который использует службу SCS.
-		|    public interface IScsServiceClient
-		|    {
-		|        // Гуид для этого клиента.
-		|        string ClientGuid { get; set; }
-		|        ////////////////////////oscs.CsServiceApplicationClient dll_obj { get; set; }
-		|		
-		|        // Это событие возникает при отключении клиента от службы.
-		|        event EventHandler Disconnected;
-		|
-		|        // Уникальный идентификатор для этого клиента.
-		|        long ClientId { get; }
-		|
-		|        // Получает конечную точку удаленного приложения.
-		|        ScsEndPoint RemoteEndPoint { get; }
-		|
-		|        // Получает состояние связи Клиента.
-		|        CommunicationStates CommunicationState { get; }
-		|
-		|        // Закрывает клиентское соединение.
-		|        void Disconnect();
-		|
-		|        // Получает клиентский прокси-интерфейс, который обеспечивает удаленный вызов клиентских методов.
-		|        // ""T"" - Тип клиентского интерфейса
-		|        // Возврат - Клиентский интерфейс
-		|        T GetClientProxy<T>() where T : class;
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Базовый класс для всех служб, обслуживаемых IScsServiceApplication.
-		|    // Класс должен быть производным от ScsService, чтобы служить в качестве службы SCS.
-		|    public abstract class ScsService
-		|    {
-		|        // Текущий клиент для потока, который вызвал метод обслуживания.
-		|        [ThreadStatic]
-		|        private static IScsServiceClient _currentClient;
-		|
-		|        // Это свойство является потокобезопасным, если возвращает правильный клиент, когда 
-		|        // вызывается в сервисном методе, если метод вызывается системой SCS, иначе выдает исключение.
-		|        protected internal IScsServiceClient CurrentClient
-		|        {
-		|            get
-		|            {
-		|                if (_currentClient == null)
-		|                {
-		|                    throw new Exception(""Client channel can not be obtained. CurrentClient property must be called by the thread which runs the service method."");
-		|                }
-		|
-		|                return _currentClient;
-		|            }
-		|
-		|            internal set
-		|            {
-		|                _currentClient = value;
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Любой класс интерфейса службы SCS должен иметь этот атрибут.
-		|    [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class)]
-		|    public class ScsServiceAttribute : Attribute
-		|    {
-		|        // Служебная версия. Это свойство может быть использовано для указания версии кода.
-		|        // Это значение отправляется клиентскому приложению при возникновении исключения, поэтому клиентское приложение может знать, что версия сервиса изменена.
-		|        // Значение по умолчанию: NO_VERSION.
-		|        public string Version { get; set; }
-		|
-		|        // Создает новый объект ScsServiceAttribute.
-		|        public ScsServiceAttribute()
-		|        {
-		|            Version = ""NO_VERSION"";
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    ////////////////////////////////////// Этот класс используется для создания приложений ScsService.
-		|    ////////////////////////////////////public static class ScsServiceBuilder
-		|    ////////////////////////////////////{
-		|    ////////////////////////////////////    // Создает новое приложение-службу SCS, используя конечную точку.
-		|    ////////////////////////////////////    // ""endPoint"" - Конечная точка, представляющая адрес службы.
-		|    ////////////////////////////////////    // Возврат - Созданное приложение службы SCS
-		|    ////////////////////////////////////    public static IScsServiceApplication CreateService(ScsEndPoint endPoint)
-		|    ////////////////////////////////////    {
-		|    ////////////////////////////////////        return new ScsServiceApplication(ScsServerFactory.CreateServer(endPoint));
-		|    ////////////////////////////////////    }
-		|    ////////////////////////////////////}
-		|    //=========================================================================================================================================
-		|
-		|    // Этот класс используется для создания объектов service client, которые используются на стороне сервера.
-		|    //////////////////////////////internal static class ScsServiceClientFactory
-		|    //////////////////////////////{
-		|    //////////////////////////////    // Создает новый объект клиента службы, который используется на стороне сервера.
-		|    //////////////////////////////    // ""serverClient"" - Базовый серверный клиентский объект.
-		|    //////////////////////////////    // ""requestReplyMessenger"" - Объект RequestReplyMessenger для отправки/получения сообщений через ServerClient.
-		|    //////////////////////////////    public static IScsServiceClient CreateServiceClient(IScsServerClient serverClient, RequestReplyMessenger<IScsServerClient> requestReplyMessenger)
-		|    //////////////////////////////    {
-		|    //////////////////////////////        return new ScsServiceClient(serverClient, requestReplyMessenger);
-		|    //////////////////////////////    }
-		|    //////////////////////////////}
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.ScsServices.Communication.Messages
-		|{
-		|    // Представляет удаленное исключение SCS.
-		|    // Это исключение используется для отправки исключения из приложения в другое приложение.
-		|    [Serializable]
-		|    public class ScsRemoteException : Exception
-		|    {
-		|        // Конструктор.
-		|        public ScsRemoteException()
-		|        {
-		|        }
-		|
-		|        // Конструктор.
-		|        public ScsRemoteException(SerializationInfo serializationInfo, StreamingContext context) : base(serializationInfo, context)
-		|        {
-		|        }
-		|
-		|        // Конструктор.
-		|        // ""message"" - Сообщение об исключении.
-		|        public ScsRemoteException(string message) : base(message)
-		|        {
-		|        }
-		|
-		|        // Конструктор.
-		|        // ""message"" - Сообщение об исключении.
-		|        // ""innerException"" - Внутреннее исключение.
-		|        public ScsRemoteException(string message, Exception innerException) : base(message, innerException)
-		|        {
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это сообщение отправляется для вызова метода удаленного приложения.
-		|    [Serializable]
-		|    public class ScsRemoteInvokeMessage : ScsMessage
-		|    {
-		|        // Имя класса службы удаления.
-		|        public string ServiceClassName { get; set; }
-		|
-		|        // Способ вызова удаленного приложения.
-		|        public string MethodName { get; set; }
-		|
-		|        // Параметры метода.
-		|        public object[] Parameters { get; set; }
-		|
-		|        // Представляет этот объект в виде строки.
-		|        // Возврат - Строковое представление этого объекта
-		|        public override string ToString()
-		|        {
-		|            return string.Format(""ScsRemoteInvokeMessage: {0}.{1}(...)"", ServiceClassName, MethodName);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Это сообщение отправляется в качестве ответного сообщения на ScsRemoteInvokeMessage.
-		|    // Он используется для отправки возвращаемого значения вызова метода.
-		|    [Serializable]
-		|    public class ScsRemoteInvokeReturnMessage : ScsMessage
-		|    {
-		|        // Возвращаемое значение вызова удаленного метода.
-		|        public object ReturnValue { get; set; }
-		|
-		|        // Если во время вызова метода возникло какое-либо исключение, это поле содержит объект исключения.
-		|        // Если исключения не произошло, это поле равно нулю.
-		|        public ScsRemoteException RemoteException { get; set; }
-		|
-		|        // Представляет этот объект в виде строки.
-		|        // Возврат - Строковое представление этого объекта
-		|        public override string ToString()
-		|        {
-		|            return string.Format(""ScsRemoteInvokeReturnMessage: Returns {0}, Exception = {1}"", ReturnValue, RemoteException);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.ScsServices.Communication
-		|{
-		|    // Этот класс расширяет RemoteInvokeProxy, чтобы обеспечить механизм автоматического подключения/ отключения, 
-		|    // если клиент не подключен к серверу при вызове сервисного метода.
-		|    // ""TProxy"" - Тип прокси-класса/интерфейса
-		|    // ""TMessenger"" - Тип объекта messenger, который используется для отправки/получения сообщений
-		|    internal class AutoConnectRemoteInvokeProxy<TProxy, TMessenger> : RemoteInvokeProxy<TProxy, TMessenger> where TMessenger : IMessenger
-		|    {
-		|        // Ссылка на объект клиента, который используется для подключения/отключения.
-		|        private readonly IConnectableClient _client;
-		|
-		|        // Создает новый объект AutoConnectRemoteInvokeProxy.
-		|        // ""clientMessenger"" - Объект Messenger, который используется для отправки/получения сообщений.
-		|        // ""client"" - Ссылка на объект клиента, который используется для подключения/отключения.
-		|        public AutoConnectRemoteInvokeProxy(RequestReplyMessenger<TMessenger> clientMessenger, IConnectableClient client) : base(clientMessenger)
-		|        {
-		|            _client = client;
-		|        }
-		|
-		|        // Переопределяет вызовы сообщений и преобразует их в сообщения удаленному приложению.
-		|        // ""msg"" - Сообщение о вызове метода (из базового класса RealProxy)
-		|        // Возврат - Вызов метода возвращает сообщение (базовому классу RealProxy)
-		|        public override IMessage Invoke(IMessage msg)
-		|        {
-		|            if (_client.CommunicationState == CommunicationStates.Connected)
-		|            {
-		|                //Если уже подключен, ведите себя как базовый класс (RemoteInvokeProxy).
-		|                return base.Invoke(msg);
-		|            }
-		|
-		|            //Подключитесь, вызовите метод и, наконец, отключитесь
-		|            _client.Connect();
-		|            try
-		|            {
-		|                return base.Invoke(msg);
-		|            }
-		|            finally
-		|            {
-		|                _client.Disconnect();
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Этот класс используется для создания динамического прокси-сервера для вызова удаленных методов.
-		|    // Он переводит вызовы методов в обмен сообщениями.
-		|    // ""TProxy"" - Тип прокси-класса/интерфейса
-		|    // ""TMessenger"" - Тип объекта messenger, который используется для отправки/получения сообщений
-		|    internal class RemoteInvokeProxy<TProxy, TMessenger> : RealProxy where TMessenger : IMessenger
-		|    {
-		|        // Объект Messenger, который используется для отправки/получения сообщений.
-		|        private readonly RequestReplyMessenger<TMessenger> _clientMessenger;
-		|
-		|        // Создает новый объект RemoteInvokeProxy.
-		|        // ""clientMessenger"" - Объект Messenger, который используется для отправки/получения сообщений.
-		|        public RemoteInvokeProxy(RequestReplyMessenger<TMessenger> clientMessenger) : base(typeof(TProxy))
-		|        {
-		|            _clientMessenger = clientMessenger;
-		|        }
-		|
-		|        // Переопределяет вызовы сообщений и преобразует их в сообщения удаленному приложению.
-		|        // ""msg"" - Сообщение о вызове метода (из базового класса RealProxy)
-		|        // Возврат - Вызов метода возвращает сообщение (базовому классу RealProxy)
-		|        public override IMessage Invoke(IMessage msg)
-		|        {
-		|            var message = msg as IMethodCallMessage;
-		|            if (message == null)
-		|            {
-		|                return null;
-		|            }
-		|
-		|            var requestMessage = new ScsRemoteInvokeMessage
-		|            {
-		|                ServiceClassName = typeof(TProxy).Name,
-		|                MethodName = message.MethodName,
-		|                Parameters = message.InArgs
-		|            };
-		|
-		|            var responseMessage = _clientMessenger.SendMessageAndWaitForResponse(requestMessage) as ScsRemoteInvokeReturnMessage;
-		|            if (responseMessage == null)
-		|            {
-		|                return null;
-		|            }
-		|
-		|            return responseMessage.RemoteException != null
-		|                       ? new ReturnMessage(responseMessage.RemoteException, message)
-		|                       : new ReturnMessage(responseMessage.ReturnValue, null, 0, message.LogicalCallContext, message);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|namespace Hik.Communication.ScsServices.Client
-		|{
-		|    // Представляет клиента службы, который использует службу SCS.
-		|    // ""T"" - Тип сервисного интерфейса
-		|    public interface IScsServiceClient<out T> : IConnectableClient where T : class
-		|    {
-		|        // Ссылка на прокси-сервер службы для вызова методов удаленного обслуживания.
-		|        T ServiceProxy { get; }
-		|
-		|        // Значение тайм-аута при вызове сервисного метода.
-		|        // Если тайм-аут возникает до завершения вызова удаленного метода, генерируется исключение.
-		|        // Используйте -1 для отсутствия тайм-аута (ожидание неопределенное).
-		|        // Значение по умолчанию: 60000 (1 minute).
-		|        int Timeout { get; set; }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Представляет клиента службы, который использует службу SCS.
-		|    // ""T"" - Тип сервисного интерфейса
-		|    internal class ScsServiceClient<T> : IScsServiceClient<T> where T : class
-		|    {
-		|        // Это событие возникает, когда клиент подключается к серверу.
-		|        public event EventHandler Connected;
-		|
-		|        // Это событие возникает, когда клиент отключается от сервера.
-		|        public event EventHandler Disconnected;
-		|
-		|        // Тайм-аут для подключения к серверу (в миллисекундах).
-		|        // Значение по умолчанию: 15 seconds (15000 ms).
-		|        public int ConnectTimeout
-		|        {
-		|            get { return _client.ConnectTimeout; }
-		|            set { _client.ConnectTimeout = value; }
-		|        }
-		|
-		|        // Получает текущее состояние связи.
-		|        public CommunicationStates CommunicationState
-		|        {
-		|            get { return _client.CommunicationState; }
-		|        }
-		|
-		|        // Ссылка на прокси-сервер службы для вызова методов удаленного обслуживания.
-		|        public T ServiceProxy { get; private set; }
-		|
-		|        // Значение тайм-аута при вызове сервисного метода.
-		|        // Если тайм-аут возникает до завершения вызова удаленного метода, генерируется исключение.
-		|        // Используйте -1 для отсутствия тайм-аута (ожидание неопределенное).
-		|        // Значение по умолчанию: 60000 (1 minute).
-		|        public int Timeout
-		|        {
-		|            get { return _requestReplyMessenger.Timeout; }
-		|            set { _requestReplyMessenger.Timeout = value; }
-		|        }
-		|
-		|        // Базовый объект IScsClient для связи с сервером.
-		|        private readonly IScsClient _client;
-		|
-		|        // Объект Messenger для отправки/получения сообщений через _client.
-		|        private readonly RequestReplyMessenger<IScsClient> _requestReplyMessenger;
-		|
-		|        // Этот объект используется для создания прозрачного прокси-сервера для вызова удаленных методов на сервере.
-		|        private readonly AutoConnectRemoteInvokeProxy<T, IScsClient> _realServiceProxy;
-		|
-		|        // Клиентский объект, который используется для вызова метода, вызывается на стороне клиента.
-		|        // Может быть нулевым, если у клиента нет методов, которые должны быть вызваны сервером.
-		|        private readonly object _clientObject;
-		|
-		|        // Создает новый объект ScsServiceClient.
-		|        // ""client"" - Базовый объект IScsClient для связи с сервером.
-		|        // ""clientObject"" - Клиентский объект, который используется для вызова метода, вызывается на стороне клиента.
-		|        // Может быть нулевым, если у клиента нет методов, которые должны быть вызваны сервером.
-		|        public ScsServiceClient(IScsClient client, object clientObject)
-		|        {
-		|            _client = client;
-		|            _clientObject = clientObject;
-		|
-		|            _client.Connected += Client_Connected;
-		|            _client.Disconnected += Client_Disconnected;
-		|
-		|            _requestReplyMessenger = new RequestReplyMessenger<IScsClient>(client);
-		|            _requestReplyMessenger.MessageReceived += RequestReplyMessenger_MessageReceived;
-		|
-		|            _realServiceProxy = new AutoConnectRemoteInvokeProxy<T, IScsClient>(_requestReplyMessenger, this);
-		|            ServiceProxy = (T)_realServiceProxy.GetTransparentProxy();
-		|        }
-		|
-		|        // Подключается к серверу.
-		|        public void Connect()
-		|        {
-		|            _client.Connect();
-		|        }
-		|
-		|        // Отключается от сервера.
-		|        // Ничего не делает, если уже отключен.
-		|        public void Disconnect()
-		|        {
-		|            _client.Disconnect();
-		|        }
-		|
-		|        // Вызывает метод разъединения.
-		|        public void Dispose()
-		|        {
-		|            Disconnect();
-		|        }
-		|
-		|        // Обрабатывает событие MessageReceived мессенджера.
-		|        // Он получает сообщения от сервера и вызывает соответствующий метод.
-		|        // ""sender"" - Источник события.
-		|        // ""e"" - Аргументы события.
-		|        private void RequestReplyMessenger_MessageReceived(object sender, MessageEventArgs e)
-		|        {
-		|            //Отправьте сообщение в ScsRemoteInvokeMessage и проверьте его
-		|            var invokeMessage = e.Message as ScsRemoteInvokeMessage;
-		|            if (invokeMessage == null)
-		|            {
-		|                return;
-		|            }
-		|
-		|            //Проверьте объект клиента.
-		|            if (_clientObject == null)
-		|            {
-		|                SendInvokeResponse(invokeMessage, null, new ScsRemoteException(""Client does not wait for method invocations by server.""));
-		|                return;
-		|            }
-		|
-		|            //Вызовите метод
-		|            object returnValue;
-		|            try
-		|            {
-		|                var type = _clientObject.GetType();
-		|                var method = type.GetMethod(invokeMessage.MethodName);
-		|                returnValue = method.Invoke(_clientObject, invokeMessage.Parameters);
-		|            }
-		|            catch (TargetInvocationException ex)
-		|            {
-		|                var innerEx = ex.InnerException;
-		|                SendInvokeResponse(invokeMessage, null, new ScsRemoteException(innerEx.Message, innerEx));
-		|                return;
-		|            }
-		|            catch (Exception ex)
-		|            {
-		|                SendInvokeResponse(invokeMessage, null, new ScsRemoteException(ex.Message, ex));
-		|                return;
-		|            }
-		|
-		|            //Отправить возвращаемое значение
-		|            SendInvokeResponse(invokeMessage, returnValue, null);
-		|        }
-		|
-		|        // Отправляет ответ удаленному приложению, которое вызвало метод службы.
-		|        // ""requestMessage"" - Сообщение с запросом.
-		|        // ""returnValue"" - Возвращаемое значение для отправки.
-		|        // ""exception"" - Исключение для отправки.
-		|        private void SendInvokeResponse(IScsMessage requestMessage, object returnValue, ScsRemoteException exception)
-		|        {
-		|            try
-		|            {
-		|                _requestReplyMessenger.SendMessage(
-		|                    new ScsRemoteInvokeReturnMessage
-		|                    {
-		|                        RepliedMessageId = requestMessage.MessageId,
-		|                        ReturnValue = returnValue,
-		|                        RemoteException = exception
-		|                    });
-		|            }
-		|            catch { }
-		|        }
-		|
-		|        // Обрабатывает подключенное событие объекта _client.
-		|        // ""sender"" - Источник объекта.
-		|        // ""e"" - Аргументы события.
-		|        private void Client_Connected(object sender, EventArgs e)
-		|        {
-		|            _requestReplyMessenger.Start();
-		|            OnConnected();
-		|        }
-		|
-		|        // Обрабатывает отключенное событие объекта _client.
-		|        // ""sender"" - Источник объекта.
-		|        // ""e"" - Event arguments.
-		|        private void Client_Disconnected(object sender, EventArgs e)
-		|        {
-		|            _requestReplyMessenger.Stop();
-		|            OnDisconnected();
-		|        }
-		|
-		|        // Вызывает связанное событие.
-		|        private void OnConnected()
-		|        {
-		|            var handler = Connected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, EventArgs.Empty);
-		|            }
-		|        }
-		|
-		|        // Вызывает событие отключения.
-		|        private void OnDisconnected()
-		|        {
-		|            var handler = Disconnected;
-		|            if (handler != null)
-		|            {
-		|                handler(this, EventArgs.Empty);
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Этот класс используется для создания клиентов-служб для удаленного вызова методов службы SCS.
-		|    public class ScsServiceClientBuilder
-		|    {
-		|        // Создает клиента для подключения к службе SCS.
-		|        // ""T"" - Тип сервисного интерфейса для удаленного вызова метода
-		|        // ""endpoint"" - Конечная точка сервера
-		|        // ""clientObject"" - Объект на стороне клиента, который обрабатывает вызовы удаленных методов от сервера к клиенту.
-		|        // Может быть нулевым, если у клиента нет методов, которые должны быть вызваны сервером
-		|        // Возврат - Созданный клиентский объект для подключения к серверу
-		|        public static IScsServiceClient<T> CreateClient<T>(ScsEndPoint endpoint, object clientObject = null) where T : class
-		|        {
-		|            return new ScsServiceClient<T>(endpoint.CreateClient(), clientObject);
-		|        }
-		|
-		|        // Создает клиента для подключения к службе SCS.
-		|        // ""T"" - Тип сервисного интерфейса для удаленного вызова метода
-		|        // ""endpointAddress"" - Адрес конечной точки сервера
-		|        // ""clientObject"" - Объект на стороне клиента, который обрабатывает вызовы удаленных методов от сервера к клиенту.
-		|        // Может быть нулевым, если у клиента нет методов, которые должны быть вызваны сервером
-		|        // Возврат - Созданный клиентский объект для подключения к серверу
-		|        public static IScsServiceClient<T> CreateClient<T>(string endpointAddress, object clientObject = null) where T : class
-		|        {
-		|            return CreateClient<T>(ScsEndPoint.CreateEndPoint(endpointAddress), clientObject);
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|#endregion ScsServices
-		|
-		|#region Threading
-		|
-		|namespace Hik.Threading
-		|{
-		|    // Этот класс используется для последовательной многопоточной обработки элементов.
-		|    // ""TItem"" - Тип элемента для обработки
-		|    public class SequentialItemProcessor<TItem>
-		|    {
-		|        // Делегат метода, который вызывается для фактической обработки элементов.
-		|        private readonly Action<TItem> _processMethod;
-		|
-		|        // Очередь элементов. Используется для последовательной обработки элементов.
-		|        private readonly Queue<TItem> _queue;
-		|
-		|        // Ссылка на текущую задачу, которая обрабатывает элемент в методе ProcessItem.
-		|        private Task _currentProcessTask;
-		|
-		|        // Указывает состояние обработки элемента.
-		|        private bool _isProcessing;
-		|
-		|        // Логическое значение для управления запуском SequentialItemProcessor.
-		|        private bool _isRunning;
-		|
-		|        // Объект для синхронизации потоков.
-		|        private readonly object _syncObj = new object();
-		|
-		|        // Создает новый объект SequentialItemProcessor.
-		|        // ""processMethod"" - Делегат метода, который вызывается для фактической обработки элементов.
-		|        public SequentialItemProcessor(Action<TItem> processMethod)
-		|        {
-		|            _processMethod = processMethod;
-		|            _queue = new Queue<TItem>();
-		|        }
-		|
-		|        // Добавляет элемент в очередь для обработки элемента.
-		|        // ""item"" - Элемент для добавления в очередь.
-		|        public void EnqueueMessage(TItem item)
-		|        {
-		|            //Добавьте элемент в очередь и при необходимости запустите новую задачу
-		|            lock (_syncObj)
-		|            {
-		|                if (!_isRunning)
-		|                {
-		|                    return;
-		|                }
-		|
-		|                _queue.Enqueue(item);
-		|
-		|                if (!_isProcessing)
-		|                {
-		|                    _currentProcessTask = Task.Factory.StartNew(ProcessItem);
-		|                }
-		|            }
-		|        }
-		|
-		|        // Запускает обработку элементов.
-		|        public void Start()
-		|        {
-		|            _isRunning = true;
-		|        }
-		|
-		|        // Останавливает обработку элементов и ожидает остановки текущего элемента.
-		|        public void Stop()
-		|        {
-		|            _isRunning = false;
-		|
-		|            //Очистить все входящие сообщения
-		|            lock (_syncObj)
-		|            {
-		|                _queue.Clear();
-		|            }
-		|
-		|            //Проверьте, есть ли сообщение, которое сейчас обрабатывается
-		|            if (!_isProcessing)
-		|            {
-		|                return;
-		|            }
-		|
-		|            //Дождитесь завершения текущей задачи обработки
-		|            try
-		|            {
-		|                _currentProcessTask.Wait();
-		|            }
-		|            catch { }
-		|        }
-		|
-		|        // Этот метод выполняется в новой отдельной задаче (потоке) для обработки элементов в очереди.
-		|        private void ProcessItem()
-		|        {
-		|            //Попробуйте получить элемент из очереди, чтобы обработать его.
-		|            TItem itemToProcess;
-		|            lock (_syncObj)
-		|            {
-		|                if (!_isRunning || _isProcessing)
-		|                {
-		|                    return;
-		|                }
-		|
-		|                if (_queue.Count <= 0)
-		|                {
-		|                    return;
-		|                }
-		|
-		|                _isProcessing = true;
-		|                itemToProcess = _queue.Dequeue();
-		|            }
-		|
-		|            //Обработайте элемент (вызвав делегат _processMethod)
-		|            _processMethod(itemToProcess);
-		|
-		|            //Обработайте следующий элемент, если он доступен
-		|            lock (_syncObj)
-		|            {
-		|                _isProcessing = false;
-		|                if (!_isRunning || _queue.Count <= 0)
-		|                {
-		|                    return;
-		|                }
-		|
-		|                //Начните новую задачу
-		|                _currentProcessTask = Task.Factory.StartNew(ProcessItem);
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|
-		|    // Этот класс представляет собой таймер, который периодически выполняет некоторые задачи.
-		|    public class Timer
-		|    {
-		|        // Это событие периодически вызывается в соответствии с периодом таймера.
-		|        public event EventHandler Elapsed;
-		|
-		|        // Период выполнения задания таймера (в миллисекундах).
-		|        public int Period { get; set; }
-		|
-		|        // Указывает, вызывает ли таймер прошедшее событие при методе запуска таймера один раз.
-		|        // По умолчанию: False.
-		|        public bool RunOnStart { get; set; }
-		|
-		|        // Этот таймер используется для выполнения задачи через определенные промежутки времени.
-		|        private readonly System.Threading.Timer _taskTimer;
-		|
-		|        // Указывает, запущен ли таймер или остановлен.
-		|        private volatile bool _running;
-		|
-		|        // Указывает, что независимо от того, выполняется ли задача или _taskTimer находится в спящем режиме.
-		|        // Это поле используется для ожидания выполнения задач при остановке таймера.
-		|        private volatile bool _performingTasks;
-		|
-		|        // Создает новый таймер.
-		|        // ""period"" - Период выполнения задания таймера (в миллисекундах)
-		|        public Timer(int period) : this(period, false)
-		|        {
-		|        }
-		|
-		|        // Создает новый таймер.
-		|        // ""period"" - Период выполнения задания таймера (в миллисекундах)
-		|        // ""runOnStart"" - Указывает, вызывает ли таймер прошедшее событие при методе запуска таймера один раз.
-		|        public Timer(int period, bool runOnStart)
-		|        {
-		|            Period = period;
-		|            RunOnStart = runOnStart;
-		|            _taskTimer = new System.Threading.Timer(TimerCallBack, null, Timeout.Infinite, Timeout.Infinite);
-		|        }
-		|
-		|        // Запускает таймер.
-		|        public void Start()
-		|        {
-		|            _running = true;
-		|            _taskTimer.Change(RunOnStart ? 0 : Period, Timeout.Infinite);
-		|        }
-		|
-		|        // Останавливает таймер.
-		|        public void Stop()
-		|        {
-		|            lock (_taskTimer)
-		|            {
-		|                _running = false;
-		|                _taskTimer.Change(Timeout.Infinite, Timeout.Infinite);
-		|            }
-		|        }
-		|
-		|        // Ожидает остановки службы.
-		|        public void WaitToStop()
-		|        {
-		|            lock (_taskTimer)
-		|            {
-		|                while (_performingTasks)
-		|                {
-		|                    Monitor.Wait(_taskTimer);
-		|                }
-		|            }
-		|        }
-		|
-		|        // Этот метод вызывается _taskTimer.
-		|        // ""state"" - Неиспользованный аргумент.
-		|        private void TimerCallBack(object state)
-		|        {
-		|            lock (_taskTimer)
-		|            {
-		|                if (!_running || _performingTasks)
-		|                {
-		|                    return;
-		|                }
-		|
-		|                _taskTimer.Change(Timeout.Infinite, Timeout.Infinite);
-		|                _performingTasks = true;
-		|            }
-		|
-		|            try
-		|            {
-		|                if (Elapsed != null)
-		|                {
-		|                    Elapsed(this, new EventArgs());
-		|                }
-		|            }
-		|            catch { }
-		|            finally
-		|            {
-		|                lock (_taskTimer)
-		|                {
-		|                    _performingTasks = false;
-		|                    if (_running)
-		|                    {
-		|                        _taskTimer.Change(Period, Timeout.Infinite);
-		|                    }
-		|
-		|                    Monitor.Pulse(_taskTimer);
-		|                }
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|#endregion Threading
-		|
-		|#region Collections
-		|
-		|namespace Hik.Collections
-		|{
-		|    // Этот класс используется для хранения элементов на основе ключа-значения потокобезопасным способом.
-		|    // Он использует System.Collections.Generic.SortedList изнутри.
-		|    // ""TK"" - Тип ключа
-		|    // ""TV"" - Тип значения
-		|    public class ThreadSafeSortedList<TK, TV>
-		|    {
-		|        // Получает/добавляет/заменяет элемент по ключу.
-		|        // ""key"" - Ключ для получения/установки значения
-		|        // Возврат - Элемент, связанный с этим ключом
-		|        public TV this[TK key]
-		|        {
-		|            get
-		|            {
-		|                _lock.EnterReadLock();
-		|                try
-		|                {
-		|                    return _items.ContainsKey(key) ? _items[key] : default(TV);
-		|                }
-		|                finally
-		|                {
-		|                    _lock.ExitReadLock();
-		|                }
-		|            }
-		|
-		|            set
-		|            {
-		|                _lock.EnterWriteLock();
-		|                try
-		|                {
-		|                    _items[key] = value;
-		|                }
-		|                finally
-		|                {
-		|                    _lock.ExitWriteLock();
-		|                }
-		|            }
-		|        }
-		|
-		|        // Получает количество элементов в коллекции.
-		|        public int Count
-		|        {
-		|            get
-		|            {
-		|                _lock.EnterReadLock();
-		|                try
-		|                {
-		|                    return _items.Count;
-		|                }
-		|                finally
-		|                {
-		|                    _lock.ExitReadLock();
-		|                }
-		|            }
-		|        }
-		|
-		|        // Внутренняя коллекция для хранения предметов.
-		|        protected readonly SortedList<TK, TV> _items;
-		|
-		|        // Используется для синхронизации доступа к списку _items.
-		|        protected readonly ReaderWriterLockSlim _lock;
-		|
-		|        // Создает новый объект ThreadSafeSortedList.
-		|        public ThreadSafeSortedList()
-		|        {
-		|            _items = new SortedList<TK, TV>();
-		|            _lock = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
-		|        }
-		|
-		|        // Проверяет, содержит ли коллекция специальный ключ.
-		|        // ""key"" - Ключ для проверки
-		|        // Возврат - True; если коллекция содержит данный ключ
-		|        public bool ContainsKey(TK key)
-		|        {
-		|            _lock.EnterReadLock();
-		|            try
-		|            {
-		|                return _items.ContainsKey(key);
-		|            }
-		|            finally
-		|            {
-		|                _lock.ExitReadLock();
-		|            }
-		|        }
-		|
-		|        // Проверяет, содержит ли коллекция определенный элемент.
-		|        // ""item"" - Элемент для проверки
-		|        // Возврат - True; если коллекция содержит данный элемент
-		|        public bool ContainsValue(TV item)
-		|        {
-		|            _lock.EnterReadLock();
-		|            try
-		|            {
-		|                return _items.ContainsValue(item);
-		|            }
-		|            finally
-		|            {
-		|                _lock.ExitReadLock();
-		|            }
-		|        }
-		|
-		|        // Удаляет элемент из коллекции.
-		|        // ""key"" - Ключ элемента для удаления
-		|        public bool Remove(TK key)
-		|        {
-		|            _lock.EnterWriteLock();
-		|            try
-		|            {
-		|                if (!_items.ContainsKey(key))
-		|                {
-		|                    return false;
-		|                }
-		|
-		|                _items.Remove(key);
-		|                return true;
-		|            }
-		|            finally
-		|            {
-		|                _lock.ExitWriteLock();
-		|            }
-		|        }
-		|
-		|        // Получает все предметы в коллекции.
-		|        // Возврат - Список элементов
-		|        public List<TV> GetAllItems()
-		|        {
-		|            _lock.EnterReadLock();
-		|            try
-		|            {
-		|                return new List<TV>(_items.Values);
-		|            }
-		|            finally
-		|            {
-		|                _lock.ExitReadLock();
-		|            }
-		|        }
-		|
-		|        // Удаляет все элементы из списка.
-		|        public void ClearAll()
-		|        {
-		|            _lock.EnterWriteLock();
-		|            try
-		|            {
-		|                _items.Clear();
-		|            }
-		|            finally
-		|            {
-		|                _lock.ExitWriteLock();
-		|            }
-		|        }
-		|
-		|        // Получает, затем удаляет все элементы в коллекции.
-		|        // Возврат - Список элементов
-		|        public List<TV> GetAndClearAllItems()
-		|        {
-		|            _lock.EnterWriteLock();
-		|            try
-		|            {
-		|                var list = new List<TV>(_items.Values);
-		|                _items.Clear();
-		|                return list;
-		|            }
-		|            finally
-		|            {
-		|                _lock.ExitWriteLock();
-		|            }
-		|        }
-		|    }
-		|    //=========================================================================================================================================
-		|}
-		|
-		|#endregion Collections		
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "ClientServerDeclarForms" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"using System;
-		|using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.HostedScript.Library.Binary;
-		|using System.Collections.Concurrent;
-		|
-		|namespace oscs
-		|{
-		|    [ContextClass (""КлиентСерверДекларФорм"", ""ClientServerDeclarForms"")]
-		|    public class ClientServerDeclarForms : AutoContext<ClientServerDeclarForms>
-		|    {
-		|        private static CsClientMode cs_ClientMode = new CsClientMode();
-		|        private static CsCommunicationStates cs_CommunicationStates = new CsCommunicationStates();
-		|        public static IValue Event = null;
-		|        public static IValue EventAction = null;
-		|        public static ConcurrentQueue<dynamic> EventQueue = new ConcurrentQueue<dynamic>();
-		|        public static bool goOn = true;
-		|        public static IValue ServerMessageReceived;
-		|        public static IValue ServerMessageSent;
-		|        public static int thirdPartyClientMode;
-		|
-		|        [ScriptConstructor]
-		|        public static IRuntimeContextInstance Constructor()
-		|        {
-		|            thirdPartyClientMode = cs_ClientMode.None;
-		|            return new ClientServerDeclarForms();
-		|        }
-		|
-		|        public ClientServerDeclarForms Base_obj;
-		|        
-		|        [ContextProperty(""АргументыСобытия"", ""EventArgs"")]
-		|        public IValue EventArgs
-		|        {
-		|            get { return Event; }
-		|        }
-		|        
-		|        [ContextProperty(""Отправитель"", ""Sender"")]
-		|        public IValue Sender
-		|        {
-		|            get { return ClientServerDeclarForms.RevertObj(((dynamic)Event).Base_obj.Sender); }
-		|        }
-		|        
-		|        [ContextProperty(""Продолжать"", ""GoOn"")]
-		|        public bool GoOn
-		|        {
-		|            get { return goOn; }
-		|            set { goOn = value; }
-		|        }
-		|        
-		|        [ContextProperty(""РежимСтороннегоКлиента"", ""ThirdPartyClientMode"")]
-		|        public int ThirdPartyClientMode
-		|        {
-		|            get { return thirdPartyClientMode; }
-		|            set { thirdPartyClientMode = value; }
-		|        }
-		|
-		|        [ContextProperty(""РежимКлиента"", ""ClientMode"")]
-		|        public CsClientMode ClientMode
-		|        {
-		|            get { return cs_ClientMode; }
-		|        }
-		|
-		|        [ContextProperty(""СостояниеСоединения"", ""CommunicationStates"")]
-		|        public CsCommunicationStates CommunicationStates
-		|        {
-		|            get { return cs_CommunicationStates; }
-		|        }
-		|        
-		|        [ContextMethod(""TCPКлиент"", ""TcpClient"")]
-		|        public CsTcpClient TcpClient(CsTcpEndPoint p1)
-		|        {
-		|            return new CsTcpClient(p1);
-		|        }
-		|
-		|        [ContextMethod(""TCPКонечнаяТочка"", ""TcpEndPoint"")]
-		|        public CsTcpEndPoint TcpEndPoint(string p1, int p2)
-		|        {
-		|            return new CsTcpEndPoint(p1, p2);
-		|        }
-		|
-		|        [ContextMethod(""TCPСервер"", ""TcpServer"")]
-		|        public CsTcpServer TcpServer(int p1)
-		|        {
-		|            return new CsTcpServer(p1);
-		|        }
-		|
-		|        [ContextMethod(""Действие"", ""Action"")]
-		|        public CsAction Action(IRuntimeContextInstance script, string methodName)
-		|        {
-		|            return new CsAction(script, methodName);
-		|        }
-		|
-		|        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
-		|        public DelegateAction DoEvents()
-		|        {
-		|            while (EventQueue.Count == 0)
-		|            {
-		|                System.Threading.Thread.Sleep(7);
-		|            }
-		|
-		|            IValue Action1 = EventHandling();
-		|            if (Action1.GetType() == typeof(CsAction))
-		|            {
-		|                return DelegateAction.Create(((CsAction)Action1).Script, ((CsAction)Action1).MethodName);
-		|            }
-		|            return (DelegateAction)Action1;
-		|        }
-		|
-		|        public static IValue EventHandling()
-		|        {
-		|            dynamic EventArgs1;
-		|            EventQueue.TryDequeue(out EventArgs1);
-		|            Event = EventArgs1.dll_obj;
-		|            EventAction = EventArgs1.EventAction;
-		|            return EventAction;
-		|        }
-		|
-		|        [ContextMethod(""СообщениеБайты"", ""ByteMessage"")]
-		|        public CsByteMessage ByteMessage(BinaryDataContext p1 = null)
-		|        {
-		|            return new CsByteMessage(p1);
-		|        }
-		|
-		|        [ContextMethod(""СообщениеТекст"", ""TextMessage"")]
-		|        public CsTextMessage TextMessage(string p1)
-		|        {
-		|            return new CsTextMessage(p1);
-		|        }
-		|
-		|        [ContextMethod(""СообщениеАрг"", ""MessageEventArgs"")]
-		|        public CsMessageEventArgs MessageEventArgs()
-		|        {
-		|        	return (CsMessageEventArgs)Event;
-		|        }
-		|        
-		|        [ContextMethod(""СерверКлиентАрг"", ""ServerClientEventArgs"")]
-		|        public CsServerClientEventArgs ServerClientEventArgs()
-		|        {
-		|        	return (CsServerClientEventArgs)Event;
-		|        }
-		|        
-		|        public static IValue RevertObj(dynamic initialObject) 
-		|        {
-		|            //ScriptEngine.Machine.Values.NullValue NullValue1;
-		|            //ScriptEngine.Machine.Values.BooleanValue BooleanValue1;
-		|            //ScriptEngine.Machine.Values.DateValue DateValue1;
-		|            //ScriptEngine.Machine.Values.NumberValue NumberValue1;
-		|            //ScriptEngine.Machine.Values.StringValue StringValue1;
-		|
-		|            //ScriptEngine.Machine.Values.GenericValue GenericValue1;
-		|            //ScriptEngine.Machine.Values.TypeTypeValue TypeTypeValue1;
-		|            //ScriptEngine.Machine.Values.UndefinedValue UndefinedValue1;
-		|
-		|            try
-		|            {
-		|                if (initialObject == null)
-		|                {
-		|                    return (IValue)null;
-		|                }
-		|            }
-		|            catch { }
-		|
-		|            try
-		|            {
-		|                string str_initialObject = initialObject.GetType().ToString();
-		|            }
-		|            catch
-		|            {
-		|                return (IValue)null;
-		|            }
-		|
-		|            dynamic Obj1 = null;
-		|            string str1 = initialObject.GetType().ToString();
-		|            try
-		|            {
-		|                Obj1 = initialObject.dll_obj;
-		|            }
-		|            catch { }
-		|            if (Obj1 != null)
-		|            {
-		|                return (IValue)Obj1;
-		|            }
-		|
-		|            try
-		|            {
-		|                Obj1 = initialObject.M_Object.dll_obj;
-		|            }
-		|            catch { }
-		|            if (Obj1 != null)
-		|            {
-		|                return (IValue)Obj1;
-		|            }
-		|
-		|            try // если initialObject не из пространства имен oscs, то есть Уровень1
-		|            {
-		|                if (!str1.Contains(""oscs.""))
-		|                {
-		|                    string str2 = ""oscs.Cs"" + str1.Substring(str1.LastIndexOf(""."") + 1);
-		|                    System.Type TestType = System.Type.GetType(str2, false, true);
-		|                    object[] args = { initialObject };
-		|                    Obj1 = Activator.CreateInstance(TestType, args);
-		|                }
-		|            }
-		|            catch { }
-		|            if (Obj1 != null)
-		|            {
-		|                return (IValue)Obj1;
-		|            }
-		|
-		|            try // если initialObject из пространства имен oscs, то есть Уровень2
-		|            {
-		|                if (str1.Contains(""oscs.""))
-		|                {
-		|                    string str3 = str1.Replace(""oscs."", ""oscs.Cs"");
-		|                    System.Type TestType = System.Type.GetType(str3, false, true);
-		|                    object[] args = { initialObject };
-		|                    Obj1 = Activator.CreateInstance(TestType, args);
-		|                }
-		|            }
-		|            catch { }
-		|            if (Obj1 != null)
-		|            {
-		|                return (IValue)Obj1;
-		|            }
-		|
-		|            string str4 = null;
-		|            try
-		|            {
-		|                str4 = initialObject.SystemType.Name;
-		|            }
-		|            catch
-		|            {
-		|                if ((str1 == ""System.String"") ||
-		|                (str1 == ""System.Decimal"") ||
-		|                (str1 == ""System.Int32"") ||
-		|                (str1 == ""System.Boolean"") ||
-		|                (str1 == ""System.DateTime""))
-		|                {
-		|                    return (IValue)ValueFactory.Create(initialObject);
-		|                }
-		|                else if (str1 == ""System.Byte"")
-		|                {
-		|                    int vOut = Convert.ToInt32(initialObject);
-		|                    return (IValue)ValueFactory.Create(vOut);
-		|                }
-		|                else if (str1 == ""System.DBNull"")
-		|                {
-		|                    string vOut = Convert.ToString(initialObject);
-		|                    return (IValue)ValueFactory.Create(vOut);
-		|                }
-		|            }
-		|			
-		|            if (str4 == ""Неопределено"")
-		|            {
-		|                return (IValue)null;
-		|            }
-		|            if (str4 == ""Булево"")
-		|            {
-		|                return (IValue)initialObject;
-		|            }
-		|            if (str4 == ""Дата"")
-		|            {
-		|                return (IValue)initialObject;
-		|            }
-		|            if (str4 == ""Число"")
-		|            {
-		|                return (IValue)initialObject;
-		|            }
-		|            if (str4 == ""Строка"")
-		|            {
-		|                return (IValue)initialObject;
-		|            }
-		|            return (IValue)initialObject;
-		|        }
-		|			
-		|        public static dynamic RedefineIValue(dynamic p1)
-		|        {
-		|            if (p1.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
-		|            {
-		|                return p1.AsString();
-		|            }
-		|            else if (p1.GetType() == typeof(ScriptEngine.Machine.Values.NumberValue))
-		|            {
-		|                return p1.AsNumber();
-		|            }
-		|            else if (p1.GetType() == typeof(ScriptEngine.Machine.Values.BooleanValue))
-		|            {
-		|                return p1.AsBoolean();
-		|            }
-		|            else if (p1.GetType() == typeof(ScriptEngine.Machine.Values.DateValue))
-		|            {
-		|                return p1.AsDate();
-		|            }
-		|            else if (p1.GetType() == typeof(BinaryDataContext))
-		|            {
-		|                return p1.Buffer;
-		|            }
-		|            else
-		|            {
-		|                return p1;
-		|            }
 		|        }
 		|    }
 		|}
@@ -7852,10 +3667,10 @@
 		|            s += "" }"";
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', JSON.parse('"" + s + ""'));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|
 		|            strFunc = ""mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -7952,7 +3767,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', []);"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -8061,7 +3876,7 @@
 		|            if (s != ""{  }"")
 		|            {
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')[mapKeyEl.get('"" + ItemKey + ""').length] = JSON.parse('"" + s + ""');"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|    }
@@ -8114,28 +3929,28 @@
 		|                ""}"" +
 		|                ""catch { }"" +
 		|                """";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Запустить"", ""Play"")]
 		|        public void Play()
 		|        {
 		|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).play();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Отменить"", ""Cancel"")]
 		|        public void Cancel()
 		|        {
 		|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).cancel();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Пауза"", ""Pause"")]
 		|        public void Pause()
 		|        {
 		|            string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).pause();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|    }
 		|}
@@ -8160,7 +3975,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', mapKeyEl.get('"" + ownerItemKey + ""').createRadialGradient('"" + p1 + ""', '"" + p2 + ""', '"" + p3 + ""', '"" + p4 + ""', '"" + p5 + ""', '"" + p6 + ""'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -8188,7 +4003,7 @@
 		|        {
 		|            string strFunc = @""
 		|            mapKeyEl.get('"" + ItemKey + ""').addColorStop('"" + p1.AsNumber().ToString().Replace("","", ""."") + ""', '"" + p2 + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|    }
 		|}
@@ -8212,7 +4027,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', mapKeyEl.get('"" + ownerItemKey + ""').createImageData("" + p1 + "", "" + p2 + ""));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            Width = p1;
 		|            Height = p2;
 		|        }
@@ -8222,7 +4037,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', mapKeyEl.get('"" + ownerItemKey + ""').createImageData(mapKeyEl.get('"" + p1.ItemKey + ""')));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            Width = p1.Width;
 		|            Height = p1.Height;
 		|        }
@@ -8247,7 +4062,7 @@
 		|            set { owner = value; }
 		|        }
 		|
-		|        private int height;
+		|        public int height { get; set; }
 		|        [ContextProperty(""Высота"", ""Height"")]
 		|        public int Height
 		|        {
@@ -8256,11 +4071,11 @@
 		|            {
 		|                height = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['height'] = "" + height + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private int width;
+		|        public int width { get; set; }
 		|        [ContextProperty(""Ширина"", ""Width"")]
 		|        public int Width
 		|        {
@@ -8269,11 +4084,11 @@
 		|            {
 		|                width = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['width'] = "" + width + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|		
-		|        private string сolor;
+		|        public string сolor { get; set; }
 		|        [ContextProperty(""Цвет"", ""Color"")]
 		|        public string Color
 		|        {
@@ -8292,7 +4107,7 @@
 		|                    ""    el.data[i + 3] = 255;"" +
 		|                    ""}"" +
 		|                    """";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }		
 		|    }
@@ -8505,7 +4320,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', mapKeyEl.get('"" + ownerItemKey + ""').createLinearGradient('"" + p1 + ""', '"" + p2 + ""', '"" + p3 + ""', '"" + p4 + ""'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -8533,7 +4348,7 @@
 		|        {
 		|            string strFunc = @""
 		|            mapKeyEl.get('"" + ItemKey + ""').addColorStop('"" + p1.AsNumber().ToString().Replace("","", ""."") + ""', '"" + p2 + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|    }
 		|}
@@ -8559,7 +4374,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', mapKeyEl.get('"" + ownerItemKey + ""').getContext('2d'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -8586,14 +4401,14 @@
 		|        public void FillRect(int p1, int p2, int p3, int p4)
 		|        {
 		|            string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').fillRect("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Прямоугольник"", ""Rect"")]
 		|        public void Rect(int p1, int p2, int p3, int p4)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').rect("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""СоздатьЛинейныйГрадиент"", ""CreateLinearGradient"")]
@@ -8604,7 +4419,7 @@
 		|            return DfLinearGradient1;
 		|        }
 		|
-		|        private IValue fillStyle;
+		|        public IValue fillStyle { get; set; }
 		|        [ContextProperty(""СтильЗаполнения"", ""FillStyle"")]
 		|        public IValue FillStyle
 		|        {
@@ -8621,7 +4436,7 @@
 		|                {
 		|                    strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['fillStyle'] = mapKeyEl.get('"" + ((dynamic)fillStyle).ItemKey + ""');"";
 		|                }
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|		
@@ -8629,70 +4444,70 @@
 		|        public void BeginPath()
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').beginPath();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Начертить"", ""Stroke"")]
 		|        public void Stroke()
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').stroke();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Дуга"", ""Arc"")]
 		|        public void Arc(int p1, int p2, int p3, IValue p4, IValue p5, bool p6 = false)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').arc("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4.AsNumber().ToString().Replace("","", ""."") + "", "" + p5.AsNumber().ToString().Replace("","", ""."") + "", "" + p6.ToString().ToLower() + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|		
 		|        [ContextMethod(""ДугаМежду"", ""ArcTo"")]
 		|        public void ArcTo(int p1, int p2, int p3, int p4, int p5)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').arcTo("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "", "" + p5 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""ПерейтиКТочке"", ""MoveTo"")]
 		|        public void MoveTo(int p1, int p2)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').moveTo("" + p1 + "", "" + p2 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Линия"", ""LineTo"")]
 		|        public void LineTo(int p1, int p2)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').lineTo("" + p1 + "", "" + p2 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""ДобавитьКубическуюБизье"", ""BezierCurveTo"")]
 		|        public void BezierCurveTo(int p1, int p2, int p3, int p4, int p5, int p6)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').bezierCurveTo("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "", "" + p5 + "", "" + p6 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""ОчиститьПрямоугольник"", ""ClearRect"")]
 		|        public void ClearRect(int p1, int p2, int p3, int p4)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').clearRect("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Обрезать"", ""Clip"")]
 		|        public void Clip()
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').clip();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""ЗакончитьПуть"", ""ClosePath"")]
 		|        public void ClosePath()
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').closePath();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""СоздатьДанныеРисунка"", ""CreateImageData"")]
@@ -8719,14 +4534,14 @@
 		|            {
 		|                strFunc = @""mapKeyEl.get('"" + ItemKey + ""').putImageData(mapKeyEl.get('"" + p1.ItemKey + ""'), "" + p2 + "", "" + p3 + "", "" + p4 + "", "" + p5 + "", "" + p6 + "", "" + p7 + "");"";
 		|            }
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Заполнить"", ""Fill"")]
 		|        public void Fill()
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').fill();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|		
 		|        [ContextMethod(""Замостить"", ""Pave"")]
@@ -8742,7 +4557,7 @@
 		|                ""    ctx.fill();"" +
 		|                ""}"" +
 		|                """";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""СоздатьРадиальныйГрадиент"", ""CreateRadialGradient"")]
@@ -8753,7 +4568,7 @@
 		|            return DfRadialGradient1;
 		|        }
 		|
-		|        private DfFont font;
+		|        public DfFont font { get; set; }
 		|        [ContextProperty(""Шрифт"", ""Font"")]
 		|        public DfFont Font
 		|        {
@@ -8795,7 +4610,7 @@
 		|                    }
 		|                    string res = fontStyle + fontVariant + fontWeight + fontSize + ""/"" + lineHeight + "" "" + fontFamily;
 		|                    string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['font'] = '"" + res + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
@@ -8812,10 +4627,10 @@
 		|            {
 		|                strFunc = @""mapKeyEl.get('"" + ItemKey + ""').fillText('"" + p1 + ""', "" + p2 + "", "" + p3 + "");"";
 		|            }
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
-		|        private string direction;
+		|        public string direction { get; set; }
 		|        [ContextProperty(""НаправлениеТекста"", ""Direction"")]
 		|        public string Direction
 		|        {
@@ -8824,7 +4639,7 @@
 		|            {
 		|                direction = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['direction'] = '"" + direction + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
@@ -8859,7 +4674,7 @@
 		|                    ""img.onload = function() { ctx.drawImage(img, "" + p2 + "", "" + p3 + ""); }"" +
 		|                    """";
 		|            }
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""КопироватьДанныеРисунка"", ""CopyImageData"")]
@@ -8872,10 +4687,10 @@
 		|                ""const imgData = ctx.getImageData("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"" +
 		|                ""ctx.putImageData(imgData, "" + p5 + "", "" + p6 + "");"" +
 		|                """";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
-		|        private IValue globalAlpha;
+		|        public IValue globalAlpha { get; set; }
 		|        [ContextProperty(""Альфа"", ""GlobalAlpha"")]
 		|        public IValue GlobalAlpha
 		|        {
@@ -8884,11 +4699,11 @@
 		|            {
 		|                globalAlpha = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['globalAlpha'] = "" + globalAlpha.AsNumber().ToString().Replace("","", ""."") + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private string globalCompositeOperation;
+		|        public string globalCompositeOperation { get; set; }
 		|        [ContextProperty(""Композиция"", ""GlobalCompositeOperation"")]
 		|        public string GlobalCompositeOperation
 		|        {
@@ -8897,11 +4712,11 @@
 		|            {
 		|                globalCompositeOperation = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['globalCompositeOperation'] = '"" + globalCompositeOperation + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private string lineCap;
+		|        public string lineCap { get; set; }
 		|        [ContextProperty(""СтильКонцовЛинии"", ""LineCap"")]
 		|        public string LineCap
 		|        {
@@ -8910,11 +4725,11 @@
 		|            {
 		|                lineCap = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['lineCap'] = '"" + lineCap + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private int lineWidth;
+		|        public int lineWidth { get; set; }
 		|        [ContextProperty(""ШиринаЛинии"", ""LineWidth"")]
 		|        public int LineWidth
 		|        {
@@ -8923,11 +4738,11 @@
 		|            {
 		|                lineWidth = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['lineWidth'] = "" + lineWidth + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private string lineJoin;
+		|        public string lineJoin { get; set; }
 		|        [ContextProperty(""СтильУглаПересечения"", ""LineJoin"")]
 		|        public string LineJoin
 		|        {
@@ -8936,11 +4751,11 @@
 		|            {
 		|                lineJoin = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['lineJoin'] = '"" + lineJoin + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private int miterLimit;
+		|        public int miterLimit { get; set; }
 		|        [ContextProperty(""ПределСреза"", ""MiterLimit"")]
 		|        public int MiterLimit
 		|        {
@@ -8949,7 +4764,7 @@
 		|            {
 		|                miterLimit = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['miterLimit'] = "" + miterLimit + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
@@ -8957,52 +4772,52 @@
 		|        public void QuadraticCurveTo(int p1, int p2, int p3, int p4)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').quadraticCurveTo("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Восстановить"", ""Restore"")]
 		|        public void Restore()
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').restore();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Сохранить"", ""Save"")]
 		|        public void Save()
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').save();"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Повернуть"", ""Rotate"")]
 		|        public void Rotate(IValue p1)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').rotate("" + p1.AsNumber().ToString().Replace("","", ""."") + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Масштабировать"", ""Scale"")]
 		|        public void Scale(IValue p1, IValue p2)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').scale("" + p1.AsNumber().ToString().Replace("","", ""."") + "", "" + p2.AsNumber().ToString().Replace("","", ""."") + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""РисоватьПрямоугольник"", ""StrokeRect"")]
 		|        public void StrokeRect(int p1, int p2, int p3, int p4)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').strokeRect("" + p1 + "", "" + p2 + "", "" + p3 + "", "" + p4 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""УстановитьСдвиг"", ""SetTransform"")]
 		|        public void SetTransform(IValue p1, IValue p2, IValue p3, IValue p4, int p5, int p6)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').setTransform("" + p1.AsNumber().ToString().Replace("","", ""."") + "", "" + p2.AsNumber().ToString().Replace("","", ""."") + "", "" + p3.AsNumber().ToString().Replace("","", ""."") + "", "" + p4.AsNumber().ToString().Replace("","", ""."") + "", "" + p5 + "", "" + p6 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
-		|        private int shadowBlur;
+		|        public int shadowBlur { get; set; }
 		|        [ContextProperty(""РазмытиеТени"", ""ShadowBlur"")]
 		|        public int ShadowBlur
 		|        {
@@ -9011,11 +4826,11 @@
 		|            {
 		|                shadowBlur = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['shadowBlur'] = "" + shadowBlur + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private string shadowColor;
+		|        public string shadowColor { get; set; }
 		|        [ContextProperty(""ЦветТени"", ""ShadowColor"")]
 		|        public string ShadowColor
 		|        {
@@ -9024,11 +4839,11 @@
 		|            {
 		|                shadowColor = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['shadowColor'] = '"" + shadowColor + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private int shadowOffsetX;
+		|        public int shadowOffsetX { get; set; }
 		|        [ContextProperty(""СмещениеТениИкс"", ""ShadowOffsetX"")]
 		|        public int ShadowOffsetX
 		|        {
@@ -9037,11 +4852,11 @@
 		|            {
 		|                shadowOffsetX = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['shadowOffsetX'] = "" + shadowOffsetX + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private int shadowOffsetY;
+		|        public int shadowOffsetY { get; set; }
 		|        [ContextProperty(""СмещениеТениИгрек"", ""ShadowOffsetY"")]
 		|        public int ShadowOffsetY
 		|        {
@@ -9050,11 +4865,11 @@
 		|            {
 		|                shadowOffsetY = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['shadowOffsetY'] = "" + shadowOffsetY + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private IValue strokeStyle;
+		|        public IValue strokeStyle { get; set; }
 		|        [ContextProperty(""СтильОбводки"", ""StrokeStyle"")]
 		|        public IValue StrokeStyle
 		|        {
@@ -9071,7 +4886,7 @@
 		|                {
 		|                    strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['strokeStyle'] = mapKeyEl.get('"" + ((dynamic)strokeStyle).ItemKey + ""');"";
 		|                }
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
@@ -9087,10 +4902,10 @@
 		|            {
 		|                strFunc = @""mapKeyEl.get('"" + ItemKey + ""').strokeText('"" + p1 + ""', "" + p2 + "", "" + p3 + "");"";
 		|            }
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
-		|        private string textAlign;
+		|        public string textAlign { get; set; }
 		|        [ContextProperty(""ВыравниваниеТекста"", ""TextAlign"")]
 		|        public string TextAlign
 		|        {
@@ -9099,11 +4914,11 @@
 		|            {
 		|                textAlign = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['textAlign'] = '"" + textAlign + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private string textBaseline;
+		|        public string textBaseline { get; set; }
 		|        [ContextProperty(""БазоваяЛинияТекста"", ""TextBaseline"")]
 		|        public string TextBaseline
 		|        {
@@ -9112,7 +4927,7 @@
 		|            {
 		|                textBaseline = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['textBaseline'] = '"" + textBaseline + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
@@ -9120,14 +4935,14 @@
 		|        public void Transform(IValue p1, IValue p2, IValue p3, IValue p4, int p5, int p6)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').transform("" + p1.AsNumber().ToString().Replace("","", ""."") + "", "" + p2.AsNumber().ToString().Replace("","", ""."") + "", "" + p3.AsNumber().ToString().Replace("","", ""."") + "", "" + p4.AsNumber().ToString().Replace("","", ""."") + "", "" + p5 + "", "" + p6 + "");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Преобразовать"", ""Translate"")]
 		|        public void Translate(int p1, int p2)
 		|        {
 		|            string strFunc = @""mapKeyEl.get('"" + ItemKey + ""').translate("" + p1 + "", "" + p2 +"");"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|    }
 		|}
@@ -11556,24 +7371,24 @@
 		|        public DfEventArgs()
 		|        {
 		|        }
-		|		
-		|        public bool _checked;
+		|
+		|        public bool _checked { get; set; }
 		|        [ContextProperty(""Помечен"", ""Checked"")]
 		|        public bool Checked
 		|        {
 		|            get { return _checked; }
 		|            set { _checked = value; }
 		|        }
-		|		
-		|        public IValue listItem;
+		|
+		|        public IValue listItem { get; set; }
 		|        [ContextProperty(""ЭлементыСписка"", ""ListItem"")]
 		|        public ArrayImpl ListItem
 		|        {
 		|            get { return (ArrayImpl)listItem; }
 		|            set { listItem = ValueFactory.Create(value); }
 		|        }
-		|		
-		|        public IValue files;
+		|
+		|        public IValue files { get; set; }
 		|        [ContextProperty(""Файлы"", ""Files"")]
 		|        public ArrayImpl Files
 		|        {
@@ -11581,15 +7396,15 @@
 		|            set { files = ValueFactory.Create(value); }
 		|        }
 		|
-		|        public IValue height;
+		|        public IValue windowHeight { get; set; }
 		|        [ContextProperty(""ВысотаОкна"", ""WindowHeight"")]
 		|        public int WindowHeight
 		|        {
-		|            get { return Convert.ToInt32(height.AsNumber()); }
-		|            set { height = ValueFactory.Create(value); }
+		|            get { return Convert.ToInt32(windowHeight.AsNumber()); }
+		|            set { windowHeight = ValueFactory.Create(value); }
 		|        }
 		|
-		|        public IValue windowWidth;
+		|        public IValue windowWidth { get; set; }
 		|        [ContextProperty(""ШиринаОкна"", ""WindowWidth"")]
 		|        public int WindowWidth
 		|        {
@@ -11597,7 +7412,7 @@
 		|            set { windowWidth = ValueFactory.Create(value); }
 		|        }
 		|
-		|        public IValue y;
+		|        public IValue y { get; set; }
 		|        [ContextProperty(""Игрек"", ""Y"")]
 		|        public int Y
 		|        {
@@ -11605,7 +7420,7 @@
 		|            set { y = ValueFactory.Create(value); }
 		|        }
 		|
-		|        public IValue x;
+		|        public IValue x { get; set; }
 		|        [ContextProperty(""Икс"", ""X"")]
 		|        public int X
 		|        {
@@ -11613,7 +7428,7 @@
 		|            set { x = ValueFactory.Create(value); }
 		|        }
 		|
-		|        public string button;
+		|        public string button { get; set; }
 		|        [ContextProperty(""Кнопка"", ""Button"")]
 		|        public string Button
 		|        {
@@ -11637,7 +7452,7 @@
 		|            set { parameter = value; }
 		|        }
 		|
-		|        private IValue _value = null;
+		|        private IValue _value { get; set; } = null;
 		|        [ContextProperty(""Значение"", ""Value"")]
 		|        public IValue Value
 		|        {
@@ -11768,7 +7583,7 @@
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            string strFunc = ""mapKeyEl.set('"" + ItemKey + ""', document.createElement('style'));"" + @""
 		|mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -11785,7 +7600,7 @@
 		|        }
 		|		
 		|        public string restransition { get; set; }
-		|        private IValue transition;
+		|        public IValue transition { get; set; }
 		|        [ContextProperty(""Переход"", ""Transition"")]
 		|        public IValue Transition
 		|        {
@@ -11800,7 +7615,7 @@
 		|                    if (Owner != null)
 		|                    {
 		|                        string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transition'] = '"" + restransition + ""';"";
-		|                        DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                        DeclarativeForms.SendStrFunc(strFunc);
 		|                    }
 		|                }
 		|                else
@@ -11827,7 +7642,7 @@
 		|        }
 		|
 		|        public string resobjectPosition { get; set; }
-		|        private IValue objectPosition;
+		|        public IValue objectPosition { get; set; }
 		|        [ContextProperty(""ПозицияОбъекта"", ""ObjectPosition"")]
 		|        public IValue ObjectPosition
 		|        {
@@ -11856,13 +7671,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['objectPosition'] = '"" + resobjectPosition + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resclip { get; set; }
-		|        private IValue clip;
+		|        public IValue clip { get; set; }
 		|        [ContextProperty(""Обрезка"", ""Clip"")]
 		|        public IValue Clip
 		|        {
@@ -11898,13 +7713,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['clip'] = '"" + resclip + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reswordSpacing { get; set; }
-		|        private IValue wordSpacing;
+		|        public IValue wordSpacing { get; set; }
 		|        [ContextProperty(""ИнтервалСлов"", ""WordSpacing"")]
 		|        public IValue WordSpacing
 		|        {
@@ -11925,13 +7740,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['wordSpacing'] = '"" + reswordSpacing + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restransitionDuration { get; set; }
-		|        private IValue transitionDuration;
+		|        public IValue transitionDuration { get; set; }
 		|        [ContextProperty(""ВремяПерехода"", ""TransitionDuration"")]
 		|        public IValue TransitionDuration
 		|        {
@@ -11952,13 +7767,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transitionDuration'] = '"" + restransitionDuration + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restransitionDelay { get; set; }
-		|        private IValue transitionDelay;
+		|        public IValue transitionDelay { get; set; }
 		|        [ContextProperty(""ЗадержкаПерехода"", ""TransitionDelay"")]
 		|        public IValue TransitionDelay
 		|        {
@@ -11979,13 +7794,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transitionDelay'] = '"" + restransitionDelay + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextIndent { get; set; }
-		|        private IValue textIndent;
+		|        public IValue textIndent { get; set; }
 		|        [ContextProperty(""ОтступТекста"", ""TextIndent"")]
 		|        public IValue TextIndent
 		|        {
@@ -12006,13 +7821,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textIndent'] = '"" + restextIndent + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|		
 		|        public string resorder { get; set; }
-		|        private IValue order;
+		|        public IValue order { get; set; }
 		|        [ContextProperty(""Порядок"", ""Order"")]
 		|        public IValue Order
 		|        {
@@ -12033,13 +7848,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['order'] = '"" + resorder + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restabSize { get; set; }
-		|        private IValue tabSize;
+		|        public IValue tabSize { get; set; }
 		|        [ContextProperty(""ДлинаТабуляции"", ""TabSize"")]
 		|        public IValue TabSize
 		|        {
@@ -12060,13 +7875,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['tabSize'] = '"" + restabSize + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoutlineOffset { get; set; }
-		|        private IValue outlineOffset;
+		|        public IValue outlineOffset { get; set; }
 		|        [ContextProperty(""СмещениеКонтура"", ""OutlineOffset"")]
 		|        public IValue OutlineOffset
 		|        {
@@ -12087,13 +7902,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['outlineOffset'] = '"" + resoutlineOffset + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resminWidth { get; set; }
-		|        private IValue minWidth;
+		|        public IValue minWidth { get; set; }
 		|        [ContextProperty(""МинимальнаяШирина"", ""MinWidth"")]
 		|        public IValue MinWidth
 		|        {
@@ -12114,13 +7929,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['minWidth'] = '"" + resminWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resmaxWidth { get; set; }
-		|        private IValue maxWidth;
+		|        public IValue maxWidth { get; set; }
 		|        [ContextProperty(""МаксимальнаяШирина"", ""MaxWidth"")]
 		|        public IValue MaxWidth
 		|        {
@@ -12141,13 +7956,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['maxWidth'] = '"" + resmaxWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resmaxHeight { get; set; }
-		|        private IValue maxHeight;
+		|        public IValue maxHeight { get; set; }
 		|        [ContextProperty(""МаксимальнаяВысота"", ""MaxHeight"")]
 		|        public IValue MaxHeight
 		|        {
@@ -12168,13 +7983,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['maxHeight'] = '"" + resmaxHeight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reslineHeight { get; set; }
-		|        private IValue lineHeight;
+		|        public IValue lineHeight { get; set; }
 		|        [ContextProperty(""ВысотаСтроки"", ""LineHeight"")]
 		|        public IValue LineHeight
 		|        {
@@ -12195,13 +8010,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['lineHeight'] = '"" + reslineHeight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resletterSpacing { get; set; }
-		|        private IValue letterSpacing;
+		|        public IValue letterSpacing { get; set; }
 		|        [ContextProperty(""ИнтервалСимволов"", ""LetterSpacing"")]
 		|        public IValue LetterSpacing
 		|        {
@@ -12222,13 +8037,39 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['letterSpacing'] = '"" + resletterSpacing + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
+		|                }
+		|            }
+		|        }
+		|		
+		|        public string resflex { get; set; }
+		|        public IValue flex { get; set; }
+		|        [ContextProperty(""Гибкость"", ""Flex"")]
+		|        public IValue Flex
+		|        {
+		|            get { return flex; }
+		|            set
+		|            {
+		|                flex = value;
+		|                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    resflex = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    resflex = value.AsNumber().ToString();
+		|                }
+		|
+		|                if (Owner != null)
+		|                {
+		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['flex'] = '"" + resflex + ""';"";
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resflexShrink { get; set; }
-		|        private IValue flexShrink;
+		|        public IValue flexShrink { get; set; }
 		|        [ContextProperty(""Уменьшение"", ""FlexShrink"")]
 		|        public IValue FlexShrink
 		|        {
@@ -12249,13 +8090,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['flexShrink'] = '"" + resflexShrink + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resflexGrow { get; set; }
-		|        private IValue flexGrow;
+		|        public IValue flexGrow { get; set; }
 		|        [ContextProperty(""Увеличение"", ""FlexGrow"")]
 		|        public IValue FlexGrow
 		|        {
@@ -12276,13 +8117,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['flexGrow'] = '"" + resflexGrow + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resflexBasis { get; set; }
-		|        private IValue flexBasis;
+		|        public IValue flexBasis { get; set; }
 		|        [ContextProperty(""БазоваяДлина"", ""FlexBasis"")]
 		|        public IValue FlexBasis
 		|        {
@@ -12303,13 +8144,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['flexBasis'] = '"" + resflexBasis + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnSpan { get; set; }
-		|        private IValue columnSpan;
+		|        public IValue columnSpan { get; set; }
 		|        [ContextProperty(""ДиапазонКолонокЭлемента"", ""ColumnSpan"")]
 		|        public IValue ColumnSpan
 		|        {
@@ -12337,13 +8178,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnSpan'] = '"" + rescolumnSpan + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnRuleWidth { get; set; }
-		|        private IValue columnRuleWidth;
+		|        public IValue columnRuleWidth { get; set; }
 		|        [ContextProperty(""ШиринаРазделителяКолонок"", ""ColumnRuleWidth"")]
 		|        public IValue ColumnRuleWidth
 		|        {
@@ -12364,13 +8205,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnRuleWidth'] = '"" + rescolumnRuleWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnGap { get; set; }
-		|        private IValue columnGap;
+		|        public IValue columnGap { get; set; }
 		|        [ContextProperty(""ИнтервалКолонок"", ""ColumnGap"")]
 		|        public IValue ColumnGap
 		|        {
@@ -12391,13 +8232,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnGap'] = '"" + rescolumnGap + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resvisibility { get; set; }
-		|        private string visibility;
+		|        public string visibility { get; set; }
 		|        [ContextProperty(""Видимость"", ""Visibility"")]
 		|        public string Visibility
 		|        {
@@ -12409,13 +8250,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['visibility'] = '"" + resvisibility + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resuserSelect { get; set; }
-		|        private string userSelect;
+		|        public string userSelect { get; set; }
 		|        [ContextProperty(""ВыделениеПользователем"", ""UserSelect"")]
 		|        public string UserSelect
 		|        {
@@ -12427,13 +8268,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['userSelect'] = '"" + resuserSelect + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restransitionTimingFunction { get; set; }
-		|        private string transitionTimingFunction;
+		|        public string transitionTimingFunction { get; set; }
 		|        [ContextProperty(""ФункцияПерехода"", ""TransitionTimingFunction"")]
 		|        public string TransitionTimingFunction
 		|        {
@@ -12445,13 +8286,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transitionTimingFunction'] = '"" + restransitionTimingFunction + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restransitionProperty { get; set; }
-		|        private string transitionProperty;
+		|        public string transitionProperty { get; set; }
 		|        [ContextProperty(""СвойствоПерехода"", ""TransitionProperty"")]
 		|        public string TransitionProperty
 		|        {
@@ -12478,13 +8319,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transitionProperty'] = '"" + restransitionProperty + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextTransform { get; set; }
-		|        private string textTransform;
+		|        public string textTransform { get; set; }
 		|        [ContextProperty(""ПрописныеТекста"", ""TextTransform"")]
 		|        public string TextTransform
 		|        {
@@ -12496,13 +8337,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textTransform'] = '"" + restextTransform + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextOverflow { get; set; }
-		|        private string textOverflow;
+		|        public string textOverflow { get; set; }
 		|        [ContextProperty(""ПереполнениеТекста"", ""TextOverflow"")]
 		|        public string TextOverflow
 		|        {
@@ -12514,13 +8355,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textOverflow'] = '"" + restextOverflow + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextDecorationStyle { get; set; }
-		|        private string textDecorationStyle;
+		|        public string textDecorationStyle { get; set; }
 		|        [ContextProperty(""ОформлениеТекстаСтиль"", ""TextDecorationStyle"")]
 		|        public string TextDecorationStyle
 		|        {
@@ -12532,13 +8373,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textDecorationStyle'] = '"" + restextDecorationStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextDecorationLine { get; set; }
-		|        private string textDecorationLine;
+		|        public string textDecorationLine { get; set; }
 		|        [ContextProperty(""ОформлениеТекстаЛиния"", ""TextDecorationLine"")]
 		|        public string TextDecorationLine
 		|        {
@@ -12550,13 +8391,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textDecorationLine'] = '"" + restextDecorationLine + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextDecorationColor { get; set; }
-		|        private string textDecorationColor;
+		|        public string textDecorationColor { get; set; }
 		|        [ContextProperty(""ОформлениеТекстаЦвет"", ""TextDecorationColor"")]
 		|        public string TextDecorationColor
 		|        {
@@ -12568,13 +8409,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textDecorationColor'] = '"" + restextDecorationColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resresize { get; set; }
-		|        private string resize;
+		|        public string resize { get; set; }
 		|        [ContextProperty(""ИзменяемыйРазмер"", ""Resize"")]
 		|        public string Resize
 		|        {
@@ -12586,13 +8427,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['resize'] = '"" + resresize + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resobjectFit { get; set; }
-		|        private string objectFit;
+		|        public string objectFit { get; set; }
 		|        [ContextProperty(""ВписываниеОбъекта"", ""ObjectFit"")]
 		|        public string ObjectFit
 		|        {
@@ -12604,13 +8445,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['objectFit'] = '"" + resobjectFit + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reslistStyleType { get; set; }
-		|        private string listStyleType;
+		|        public string listStyleType { get; set; }
 		|        [ContextProperty(""ТипСтиляСписка"", ""ListStyleType"")]
 		|        public string ListStyleType
 		|        {
@@ -12622,13 +8463,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['listStyleType'] = '"" + reslistStyleType + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reslistStylePosition { get; set; }
-		|        private string listStylePosition;
+		|        public string listStylePosition { get; set; }
 		|        [ContextProperty(""ПозицияСтиляСписка"", ""ListStylePosition"")]
 		|        public string ListStylePosition
 		|        {
@@ -12640,13 +8481,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['listStylePosition'] = '"" + reslistStylePosition + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reslistStyleImage { get; set; }
-		|        private string listStyleImage;
+		|        public string listStyleImage { get; set; }
 		|        [ContextProperty(""КартинкаСтиляСписка"", ""ListStyleImage"")]
 		|        public string ListStyleImage
 		|        {
@@ -12664,13 +8505,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['listStyleImage'] = \u0022"" + reslistStyleImage + ""\u0022;"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resfontWeight { get; set; }
-		|        private string fontWeight;
+		|        public string fontWeight { get; set; }
 		|        [ContextProperty(""ЖирностьШрифта"", ""FontWeight"")]
 		|        public string FontWeight
 		|        {
@@ -12682,13 +8523,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['fontWeight'] = '"" + resfontWeight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resfontVariant { get; set; }
-		|        private string fontVariant;
+		|        public string fontVariant { get; set; }
 		|        [ContextProperty(""ВариантШрифта"", ""FontVariant"")]
 		|        public string FontVariant
 		|        {
@@ -12700,13 +8541,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['fontVariant'] = '"" + resfontVariant + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resfontStyle { get; set; }
-		|        private string fontStyle;
+		|        public string fontStyle { get; set; }
 		|        [ContextProperty(""СтильШрифта"", ""FontStyle"")]
 		|        public string FontStyle
 		|        {
@@ -12718,13 +8559,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['fontStyle'] = '"" + resfontStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resemptyCells { get; set; }
-		|        private string emptyCells;
+		|        public string emptyCells { get; set; }
 		|        [ContextProperty(""ПустыеЯчейки"", ""EmptyCells"")]
 		|        public string EmptyCells
 		|        {
@@ -12736,13 +8577,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['emptyCells'] = '"" + resemptyCells + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescursor { get; set; }
-		|        private string cursor;
+		|        public string cursor { get; set; }
 		|        [ContextProperty(""Курсор"", ""Cursor"")]
 		|        public string Cursor
 		|        {
@@ -12754,13 +8595,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['cursor'] = '"" + rescursor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnRuleStyle { get; set; }
-		|        private string columnRuleStyle;
+		|        public string columnRuleStyle { get; set; }
 		|        [ContextProperty(""СтильРазделителяКолонок"", ""ColumnRuleStyle"")]
 		|        public string ColumnRuleStyle
 		|        {
@@ -12772,13 +8613,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnRuleStyle'] = '"" + rescolumnRuleStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnRuleColor { get; set; }
-		|        private string columnRuleColor;
+		|        public string columnRuleColor { get; set; }
 		|        [ContextProperty(""ЦветРазделителяКолонок"", ""ColumnRuleColor"")]
 		|        public string ColumnRuleColor
 		|        {
@@ -12790,13 +8631,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnRuleColor'] = '"" + rescolumnRuleColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnFill { get; set; }
-		|        private string columnFill;
+		|        public string columnFill { get; set; }
 		|        [ContextProperty(""ЗаполнениеКолонок"", ""ColumnFill"")]
 		|        public string ColumnFill
 		|        {
@@ -12808,13 +8649,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnFill'] = '"" + rescolumnFill + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescaretColor { get; set; }
-		|        private string caretColor;
+		|        public string caretColor { get; set; }
 		|        [ContextProperty(""ЦветКурсора"", ""CaretColor"")]
 		|        public string CaretColor
 		|        {
@@ -12826,13 +8667,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['caretColor'] = '"" + rescaretColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescaptionSide { get; set; }
-		|        private string captionSide;
+		|        public string captionSide { get; set; }
 		|        [ContextProperty(""ПоложениеЗаголовка"", ""CaptionSide"")]
 		|        public string CaptionSide
 		|        {
@@ -12844,13 +8685,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['captionSide'] = '"" + rescaptionSide + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|		
 		|        public string rescssFloat { get; set; }
-		|        private string cssFloat;
+		|        public string cssFloat { get; set; }
 		|        [ContextProperty(""ГоризонтальноеВыравнивание"", ""CssFloat"")]
 		|        public string CssFloat
 		|        {
@@ -12862,13 +8703,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['cssFloat'] = '"" + rescssFloat + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resclear { get; set; }
-		|        private string clear;
+		|        public string clear { get; set; }
 		|        [ContextProperty(""Несвободно"", ""Clear"")]
 		|        public string Clear
 		|        {
@@ -12880,13 +8721,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['clear'] = '"" + resclear + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resboxSizing { get; set; }
-		|        private string boxSizing;
+		|        public string boxSizing { get; set; }
 		|        [ContextProperty(""Калибровка"", ""BoxSizing"")]
 		|        public string BoxSizing
 		|        {
@@ -12898,13 +8739,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['boxSizing'] = '"" + resboxSizing + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|		
 		|        public string resborderSpacing { get; set; }
-		|        private IValue borderSpacing;
+		|        public IValue borderSpacing { get; set; }
 		|        [ContextProperty(""ИнтервалГраницы"", ""BorderSpacing"")]
 		|        public IValue BorderSpacing
 		|        {
@@ -12933,13 +8774,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderSpacing'] = '"" + resborderSpacing + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|		
 		|        public string resborderImageRepeat { get; set; }
-		|        private string borderImageRepeat;
+		|        public string borderImageRepeat { get; set; }
 		|        [ContextProperty(""МозаикаКартинкиГраницы"", ""BorderImageRepeat"")]
 		|        public string BorderImageRepeat
 		|        {
@@ -12951,13 +8792,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderImageRepeat'] = '"" + resborderImageRepeat + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderImageOutset { get; set; }
-		|        private IValue borderImageOutset;
+		|        public IValue borderImageOutset { get; set; }
 		|        [ContextProperty(""СмещениеКартинкиГраницы"", ""BorderImageOutset"")]
 		|        public IValue BorderImageOutset
 		|        {
@@ -12978,13 +8819,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderImageOutset'] = '"" + resborderImageOutset + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderImageSlice { get; set; }
-		|        private IValue borderImageSlice;
+		|        public IValue borderImageSlice { get; set; }
 		|        [ContextProperty(""НарезкаКартинкиГраницы"", ""BorderImageSlice"")]
 		|        public IValue BorderImageSlice
 		|        {
@@ -13005,13 +8846,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderImageSlice'] = '"" + resborderImageSlice + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderImageSource { get; set; }
-		|        private string borderImageSource;
+		|        public string borderImageSource { get; set; }
 		|        [ContextProperty(""ИсточникКартинкиГраницы"", ""BorderImageSource"")]
 		|        public string BorderImageSource
 		|        {
@@ -13036,13 +8877,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderImageSource'] = \u0022"" + resborderImageSource + ""\u0022;"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderImageWidth { get; set; }
-		|        private IValue borderImageWidth;
+		|        public IValue borderImageWidth { get; set; }
 		|        [ContextProperty(""ШиринаКартинкиГраницы"", ""BorderImageWidth"")]
 		|        public IValue BorderImageWidth
 		|        {
@@ -13071,13 +8912,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderImageWidth'] = '"" + resborderImageWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|		
 		|        public string resborderTopRightRadius { get; set; }
-		|        private IValue borderTopRightRadius;
+		|        public IValue borderTopRightRadius { get; set; }
 		|        [ContextProperty(""ПравыйРадиусВерхнейГраницы"", ""BorderTopRightRadius"")]
 		|        public IValue BorderTopRightRadius
 		|        {
@@ -13098,13 +8939,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderTopRightRadius'] = '"" + resborderTopRightRadius + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderTopLeftRadius { get; set; }
-		|        private IValue borderTopLeftRadius;
+		|        public IValue borderTopLeftRadius { get; set; }
 		|        [ContextProperty(""ЛевыйРадиусВерхнейГраницы"", ""BorderTopLeftRadius"")]
 		|        public IValue BorderTopLeftRadius
 		|        {
@@ -13125,13 +8966,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderTopLeftRadius'] = '"" + resborderTopLeftRadius + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }		
 		|
 		|        public string resborderBottomLeftRadius { get; set; }
-		|        private IValue borderBottomLeftRadius;
+		|        public IValue borderBottomLeftRadius { get; set; }
 		|        [ContextProperty(""ЛевыйРадиусНижнейГраницы"", ""BorderBottomLeftRadius"")]
 		|        public IValue BorderBottomLeftRadius
 		|        {
@@ -13152,13 +8993,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderBottomLeftRadius'] = '"" + resborderBottomLeftRadius + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderBottomRightRadius { get; set; }
-		|        private IValue borderBottomRightRadius;
+		|        public IValue borderBottomRightRadius { get; set; }
 		|        [ContextProperty(""ПравыйРадиусНижнейГраницы"", ""BorderBottomRightRadius"")]
 		|        public IValue BorderBottomRightRadius
 		|        {
@@ -13179,13 +9020,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderBottomRightRadius'] = '"" + resborderBottomRightRadius + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|		
 		|        public string resbackgroundPosition { get; set; }
-		|        private string backgroundPosition;
+		|        public string backgroundPosition { get; set; }
 		|        [ContextProperty(""ПоложениеКартинки"", ""BackgroundPosition"")]
 		|        public string BackgroundPosition
 		|        {
@@ -13197,13 +9038,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundPosition'] = '"" + resbackgroundPosition + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbackgroundOrigin { get; set; }
-		|        private string backgroundOrigin;
+		|        public string backgroundOrigin { get; set; }
 		|        [ContextProperty(""ОбластьКартинки"", ""BackgroundOrigin"")]
 		|        public string BackgroundOrigin
 		|        {
@@ -13215,13 +9056,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundOrigin'] = '"" + resbackgroundOrigin + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbackgroundClip { get; set; }
-		|        private string backgroundClip;
+		|        public string backgroundClip { get; set; }
 		|        [ContextProperty(""ОбластьРисования"", ""BackgroundClip"")]
 		|        public string BackgroundClip
 		|        {
@@ -13233,13 +9074,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundClip'] = '"" + resbackgroundClip + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbackgroundAttachment { get; set; }
-		|        private string backgroundAttachment;
+		|        public string backgroundAttachment { get; set; }
 		|        [ContextProperty(""ФоновоеВложение"", ""BackgroundAttachment"")]
 		|        public string BackgroundAttachment
 		|        {
@@ -13251,13 +9092,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundAttachment'] = '"" + resbackgroundAttachment + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|		
 		|        public string resbackground { get; set; }
-		|        private IValue background;
+		|        public IValue background { get; set; }
 		|        [ContextProperty(""Фон"", ""Background"")]
 		|        public IValue Background
 		|        {
@@ -13272,7 +9113,7 @@
 		|                    if (Owner != null)
 		|                    {
 		|                        string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['background'] = '"" + resbackground + ""';"";
-		|                        DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                        DeclarativeForms.SendStrFunc(strFunc);
 		|                    }
 		|                }
 		|                else
@@ -13316,7 +9157,7 @@
 		|        }
 		|
 		|        public string resanimationDuration { get; set; }
-		|        private IValue animationDuration;
+		|        public IValue animationDuration { get; set; }
 		|        [ContextProperty(""ДлительностьАнимации"", ""AnimationDuration"")]
 		|        public IValue AnimationDuration
 		|        {
@@ -13337,13 +9178,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationDuration'] = '"" + resanimationDuration + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resanimationDelay { get; set; }
-		|        private IValue animationDelay;
+		|        public IValue animationDelay { get; set; }
 		|        [ContextProperty(""ЗадержкаАнимации"", ""AnimationDelay"")]
 		|        public IValue AnimationDelay
 		|        {
@@ -13364,13 +9205,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationDelay'] = '"" + resanimationDelay + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resanimationIterationCount { get; set; }
-		|        private IValue animationIterationCount;
+		|        public IValue animationIterationCount { get; set; }
 		|        [ContextProperty(""КоличествоПовторов"", ""AnimationIterationCount"")]
 		|        public IValue AnimationIterationCount
 		|        {
@@ -13398,13 +9239,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationIterationCount'] = '"" + resanimationIterationCount + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resanimationPlayState { get; set; }
-		|        private string animationPlayState;
+		|        public string animationPlayState { get; set; }
 		|        [ContextProperty(""Состояние"", ""AnimationPlayState"")]
 		|        public string AnimationPlayState
 		|        {
@@ -13416,13 +9257,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationPlayState'] = '"" + resanimationPlayState + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resanimationTimingFunction { get; set; }
-		|        private string animationTimingFunction;
+		|        public string animationTimingFunction { get; set; }
 		|        [ContextProperty(""ФункцияСинхронизации"", ""AnimationTimingFunction"")]
 		|        public string AnimationTimingFunction
 		|        {
@@ -13434,13 +9275,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationTimingFunction'] = '"" + resanimationTimingFunction + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resanimationFillMode { get; set; }
-		|        private string animationFillMode;
+		|        public string animationFillMode { get; set; }
 		|        [ContextProperty(""ЗаливкаАнимации"", ""AnimationFillMode"")]
 		|        public string AnimationFillMode
 		|        {
@@ -13452,13 +9293,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationFillMode'] = '"" + resanimationFillMode + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resanimationDirection { get; set; }
-		|        private string animationDirection;
+		|        public string animationDirection { get; set; }
 		|        [ContextProperty(""НаправлениеАнимации"", ""AnimationDirection"")]
 		|        public string AnimationDirection
 		|        {
@@ -13470,13 +9311,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationDirection'] = '"" + resanimationDirection + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resanimationName { get; set; }
-		|        private string animationName;
+		|        public string animationName { get; set; }
 		|        [ContextProperty(""ИмяАнимации"", ""AnimationName"")]
 		|        public string AnimationName
 		|        {
@@ -13488,7 +9329,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationName'] = '"" + resanimationName + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
@@ -13801,7 +9642,7 @@
 		|        }
 		|
 		|        public string restransform { get; set; }
-		|        private IValue transform;
+		|        public IValue transform { get; set; }
 		|        [ContextProperty(""Сдвиг"", ""Transform"")]
 		|        public IValue Transform
 		|        {
@@ -14000,13 +9841,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transform'] = '"" + restransform + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbackgroundSize { get; set; }
-		|        private IValue backgroundSize;
+		|        public IValue backgroundSize { get; set; }
 		|        [ContextProperty(""РазмерКартинки"", ""BackgroundSize"")]
 		|        public IValue BackgroundSize
 		|        {
@@ -14035,15 +9876,15 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundSize'] = '"" + resbackgroundSize + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resfontSize { get; set; }
-		|        private IValue fontSize;
+		|        public IValue fontSize { get; set; }
 		|        [ContextProperty(""РазмерШрифта"", ""FontSize"")]
-		|        public IValue HeFontSizeight
+		|        public IValue FontSize
 		|        {
 		|            get { return fontSize; }
 		|            set
@@ -14062,13 +9903,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['fontSize'] = '"" + resfontSize + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resminHeight { get; set; }
-		|        private IValue minHeight;
+		|        public IValue minHeight { get; set; }
 		|        [ContextProperty(""МинимальнаяВысота"", ""MinHeight"")]
 		|        public IValue MinHeight
 		|        {
@@ -14089,13 +9930,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['minHeight'] = '"" + resminHeight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resopacity { get; set; }
-		|        private IValue opacity;
+		|        public IValue opacity { get; set; }
 		|        [ContextProperty(""Непрозрачность"", ""Opacity"")]
 		|        public IValue Opacity
 		|        {
@@ -14116,13 +9957,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['opacity'] = '"" + resopacity + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restransformOrigin { get; set; }
-		|        private IValue transformOrigin;
+		|        public IValue transformOrigin { get; set; }
 		|        [ContextProperty(""ТочкаСдвига"", ""TransformOrigin"")]
 		|        public IValue TransformOrigin
 		|        {
@@ -14159,13 +10000,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transformOrigin'] = '"" + restransformOrigin + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restransformStyle { get; set; }
-		|        private string transformStyle;
+		|        public string transformStyle { get; set; }
 		|        [ContextProperty(""СтильСдвига"", ""TransformStyle"")]
 		|        public string TransformStyle
 		|        {
@@ -14177,13 +10018,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['transformStyle'] = '"" + restransformStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resperspectiveOrigin { get; set; }
-		|        private IValue perspectiveOrigin;
+		|        public IValue perspectiveOrigin { get; set; }
 		|        [ContextProperty(""ИсточникПерспективы"", ""PerspectiveOrigin"")]
 		|        public IValue PerspectiveOrigin
 		|        {
@@ -14215,13 +10056,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['perspectiveOrigin'] = '"" + resperspectiveOrigin + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resperspective { get; set; }
-		|        private IValue perspective;
+		|        public IValue perspective { get; set; }
 		|        [ContextProperty(""Перспектива"", ""Perspective"")]
 		|        public IValue Perspective
 		|        {
@@ -14242,13 +10083,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['perspective'] = '"" + resperspective + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbackgroundRepeat { get; set; }
-		|        private string backgroundRepeat;
+		|        public string backgroundRepeat { get; set; }
 		|        [ContextProperty(""МозаикаКартинки"", ""BackgroundRepeat"")]
 		|        public string BackgroundRepeat
 		|        {
@@ -14260,13 +10101,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundRepeat'] = '"" + resbackgroundRepeat + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resfontFamily { get; set; }
-		|        private string fontFamily;
+		|        public string fontFamily { get; set; }
 		|        [ContextProperty(""СемействоШрифтов"", ""FontFamily"")]
 		|        public string FontFamily
 		|        {
@@ -14278,13 +10119,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['fontFamily'] = '"" + resfontFamily + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextShadow { get; set; }
-		|        private IValue textShadow;
+		|        public IValue textShadow { get; set; }
 		|        [ContextProperty(""ТеньТекста"", ""TextShadow"")]
 		|        public IValue TextShadow
 		|        {
@@ -14326,13 +10167,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textShadow'] = '"" + restextShadow + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbackgroundImage { get; set; }
-		|        private string backgroundImage;
+		|        public string backgroundImage { get; set; }
 		|        [ContextProperty(""ФоновоеИзображение"", ""BackgroundImage"")]
 		|        public string BackgroundImage
 		|        {
@@ -14357,13 +10198,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundImage'] = \u0022"" + resbackgroundImage + ""\u0022;"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoffset { get; set; }
-		|        private IValue offset;
+		|        public IValue offset { get; set; }
 		|        [ContextProperty(""Смещение"", ""Offset"")]
 		|        public IValue Offset
 		|        {
@@ -14375,7 +10216,7 @@
 		|            }
 		|        }
 		|
-		|        private DfFrames frames;
+		|        public DfFrames frames { get; set; }
 		|        [ContextProperty(""Кадры"", ""Frames"")]
 		|        public DfFrames Frames
 		|        {
@@ -14415,12 +10256,12 @@
 		|                    ""var t = document.createTextNode(s);"" +
 		|                    ""el2.appendChild(t);"" +
 		|                    ""document.body.appendChild(el2);"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
 		|        public string resanimation { get; set; }
-		|        private IValue animation;
+		|        public IValue animation { get; set; }
 		|        [ContextProperty(""Анимация"", ""Animation"")]
 		|        public IValue Animation
 		|        {
@@ -14489,13 +10330,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animation'] = '"" + resanimation + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resalignSelf { get; set; }
-		|        private string alignSelf;
+		|        public string alignSelf { get; set; }
 		|        [ContextProperty(""ВыравниваниеОтдельных"", ""AlignSelf"")]
 		|        public string AlignSelf
 		|        {
@@ -14507,13 +10348,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['alignSelf'] = '"" + resalignSelf + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resalignContent { get; set; }
-		|        private string alignContent;
+		|        public string alignContent { get; set; }
 		|        [ContextProperty(""ВыравниваниеСодержимого"", ""AlignContent"")]
 		|        public string AlignContent
 		|        {
@@ -14525,13 +10366,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['alignContent'] = '"" + resalignContent + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resflexDirection { get; set; }
-		|        private string flexDirection;
+		|        public string flexDirection { get; set; }
 		|        [ContextProperty(""НаправлениеЭлементов"", ""FlexDirection"")]
 		|        public string FlexDirection
 		|        {
@@ -14543,13 +10384,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['flexDirection'] = '"" + resflexDirection + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resflexWrap { get; set; }
-		|        private string flexWrap;
+		|        public string flexWrap { get; set; }
 		|        [ContextProperty(""ПереносГибких"", ""FlexWrap"")]
 		|        public string FlexWrap
 		|        {
@@ -14561,13 +10402,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['flexWrap'] = '"" + resflexWrap + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderRadius { get; set; }
-		|        private IValue borderRadius;
+		|        public IValue borderRadius { get; set; }
 		|        [ContextProperty(""РадиусГраницы"", ""BorderRadius"")]
 		|        public IValue BorderRadius
 		|        {
@@ -14609,14 +10450,14 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderRadius'] = '"" + resborderRadius + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|
 		|            }
 		|        }
 		|
 		|        public string resmarginTop { get; set; }
-		|        private IValue marginTop;
+		|        public IValue marginTop { get; set; }
 		|        [ContextProperty(""ОтступСверху"", ""MarginTop"")]
 		|        public IValue MarginTop
 		|        {
@@ -14637,13 +10478,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['marginTop'] = '"" + resmarginTop + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resmarginLeft { get; set; }
-		|        private IValue marginLeft;
+		|        public IValue marginLeft { get; set; }
 		|        [ContextProperty(""ОтступСлева"", ""MarginLeft"")]
 		|        public IValue MarginLeft
 		|        {
@@ -14664,13 +10505,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['marginLeft'] = '"" + resmarginLeft + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resmarginBottom { get; set; }
-		|        private IValue marginBottom;
+		|        public IValue marginBottom { get; set; }
 		|        [ContextProperty(""ОтступСнизу"", ""MarginBottom"")]
 		|        public IValue MarginBottom
 		|        {
@@ -14691,13 +10532,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['marginBottom'] = '"" + resmarginBottom + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resmarginRight { get; set; }
-		|        private IValue marginRight;
+		|        public IValue marginRight { get; set; }
 		|        [ContextProperty(""ОтступСправа"", ""MarginRight"")]
 		|        public IValue MarginRight
 		|        {
@@ -14718,13 +10559,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['marginRight'] = '"" + resmarginRight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resfont { get; set; }
-		|        private IValue font;
+		|        public IValue font { get; set; }
 		|        [ContextProperty(""Шрифт"", ""Font"")]
 		|        public IValue Font
 		|        {
@@ -14776,13 +10617,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['font'] = '"" + resfont + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resfilter { get; set; }
-		|        private IValue filter;
+		|        public IValue filter { get; set; }
 		|        [ContextProperty(""Фильтр"", ""Filter"")]
 		|        public IValue Filter
 		|        {
@@ -14882,13 +10723,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['filter'] = '"" + resfilter + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resposition { get; set; }
-		|        private string position;
+		|        public string position { get; set; }
 		|        [ContextProperty(""Позиция"", ""Position"")]
 		|        public string Position
 		|        {
@@ -14900,13 +10741,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['position'] = '"" + resposition + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restop { get; set; }
-		|        private IValue top;
+		|        public IValue top { get; set; }
 		|        [ContextProperty(""Верх"", ""Top"")]
 		|        public IValue Top
 		|        {
@@ -14927,13 +10768,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['top'] = '"" + restop + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbottom { get; set; }
-		|        private IValue bottom;
+		|        public IValue bottom { get; set; }
 		|        [ContextProperty(""Низ"", ""Bottom"")]
 		|        public IValue Bottom
 		|        {
@@ -14954,13 +10795,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['bottom'] = '"" + resbottom + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resleft { get; set; }
-		|        private IValue left;
+		|        public IValue left { get; set; }
 		|        [ContextProperty(""Лево"", ""Left"")]
 		|        public IValue Left
 		|        {
@@ -14981,13 +10822,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['left'] = '"" + resleft + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resright { get; set; }
-		|        private IValue right;
+		|        public IValue right { get; set; }
 		|        [ContextProperty(""Право"", ""Right"")]
 		|        public IValue Right
 		|        {
@@ -15008,13 +10849,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['right'] = '"" + resright + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resjustifyContent { get; set; }
-		|        private string justifyContent;
+		|        public string justifyContent { get; set; }
 		|        [ContextProperty(""РасположениеСодержимого"", ""JustifyContent"")]
 		|        public string JustifyContent
 		|        {
@@ -15026,13 +10867,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['justifyContent'] = '"" + resjustifyContent + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resdisplay { get; set; }
-		|        private string display;
+		|        public string display { get; set; }
 		|        [ContextProperty(""Отображать"", ""Display"")]
 		|        public string Display
 		|        {
@@ -15044,13 +10885,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['display'] = '"" + resdisplay + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resalignItems { get; set; }
-		|        private string alignItems;
+		|        public string alignItems { get; set; }
 		|        [ContextProperty(""ВыравниваниеЭлементов"", ""AlignItems"")]
 		|        public string AlignItems
 		|        {
@@ -15062,13 +10903,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['alignItems'] = '"" + resalignItems + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resboxShadow { get; set; }
-		|        private IValue boxShadow;
+		|        public IValue boxShadow { get; set; }
 		|        [ContextProperty(""Тень"", ""BoxShadow"")]
 		|        public IValue BoxShadow
 		|        {
@@ -15120,13 +10961,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['boxShadow'] = '"" + resboxShadow + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reslistStyle { get; set; }
-		|        private IValue listStyle;
+		|        public IValue listStyle { get; set; }
 		|        [ContextProperty(""СтильСписка"", ""ListStyle"")]
 		|        public IValue ListStyle
 		|        {
@@ -15169,13 +11010,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['listStyle'] = \u0022"" + reslistStyle + ""\u0022;"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnRule { get; set; }
-		|        private IValue columnRule;
+		|        public IValue columnRule { get; set; }
 		|        [ContextProperty(""РазделительКолонок"", ""ColumnRule"")]
 		|        public IValue ColumnRule
 		|        {
@@ -15193,7 +11034,15 @@
 		|                    DfColumnRule val = (DfColumnRule)value;
 		|                    string columnRuleWidth = ""medium "";
 		|                    string columnRuleStyle = ""none "";
-		|                    string columnRuleColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string columnRuleColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        columnRuleColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        columnRuleColor = BackgroundColor;
+		|                    }
 		|                    if (val.ColumnRuleWidth != null)
 		|                    {
 		|                        if (val.ColumnRuleWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -15219,13 +11068,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnRule'] = '"" + rescolumnRule + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resverticalAlign { get; set; }
-		|        private IValue verticalAlign;
+		|        public IValue verticalAlign { get; set; }
 		|        [ContextProperty(""ВертикальноеВыравнивание"", ""VerticalAlign"")]
 		|        public IValue VerticalAlign
 		|        {
@@ -15246,13 +11095,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['verticalAlign'] = '"" + resverticalAlign + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderTop { get; set; }
-		|        private IValue borderTop;
+		|        public IValue borderTop { get; set; }
 		|        [ContextProperty(""ВерхняяГраница"", ""BorderTop"")]
 		|        public IValue BorderTop
 		|        {
@@ -15270,7 +11119,15 @@
 		|                    DfBorderTop val = (DfBorderTop)value;
 		|                    string borderTopWidth = ""medium "";
 		|                    string borderTopStyle = ""none "";
-		|                    string borderTopColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string borderTopColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderTopColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        borderTopColor = BackgroundColor;
+		|                    }
 		|                    if (val.BorderTopWidth != null)
 		|                    {
 		|                        if (val.BorderTopWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -15296,13 +11153,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderTop'] = '"" + resborderTop + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resheight { get; set; }
-		|        private IValue height;
+		|        public IValue height { get; set; }
 		|        [ContextProperty(""Высота"", ""Height"")]
 		|        public IValue Height
 		|        {
@@ -15323,13 +11180,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['height'] = '"" + resheight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reshorizontalTextAlign { get; set; }
-		|        private string horizontalTextAlign;
+		|        public string horizontalTextAlign { get; set; }
 		|        [ContextProperty(""ГоризонтальноеВыравниваниеТекста"", ""HorizontalTextAlign"")]
 		|        public string HorizontalTextAlign
 		|        {
@@ -15341,13 +11198,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['textAlign'] = '"" + reshorizontalTextAlign + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderCollapse { get; set; }
-		|        private string borderCollapse;
+		|        public string borderCollapse { get; set; }
 		|        [ContextProperty(""ГраницаСвернута"", ""BorderCollapse"")]
 		|        public string BorderCollapse
 		|        {
@@ -15359,13 +11216,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderCollapse'] = '"" + resborderCollapse + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborders { get; set; }
-		|        private IValue borders;
+		|        public IValue borders { get; set; }
 		|        [ContextProperty(""Границы"", ""Borders"")]
 		|        public IValue Borders
 		|        {
@@ -15383,7 +11240,15 @@
 		|                    DfBorders val = (DfBorders)value;
 		|                    string borderWidth = ""medium "";
 		|                    string borderStyle = ""none "";
-		|                    string borderColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string borderColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        borderColor = BackgroundColor;
+		|                    }
 		|                    if (val.BorderWidth != null)
 		|                    {
 		|                        if (val.BorderWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -15409,13 +11274,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['border'] = '"" + resborders + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string respadding { get; set; }
-		|        private IValue padding;
+		|        public IValue padding { get; set; }
 		|        [ContextProperty(""Заполнение"", ""Padding"")]
 		|        public IValue Padding
 		|        {
@@ -15457,13 +11322,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['padding'] = '"" + respadding + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string respaddingTop { get; set; }
-		|        private IValue paddingTop;
+		|        public IValue paddingTop { get; set; }
 		|        [ContextProperty(""ЗаполнениеСверху"", ""PaddingTop"")]
 		|        public IValue PaddingTop
 		|        {
@@ -15484,13 +11349,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['paddingTop'] = '"" + respaddingTop + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string respaddingLeft { get; set; }
-		|        private IValue paddingLeft;
+		|        public IValue paddingLeft { get; set; }
 		|        [ContextProperty(""ЗаполнениеСлева"", ""PaddingLeft"")]
 		|        public IValue PaddingLeft
 		|        {
@@ -15511,13 +11376,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['paddingLeft'] = '"" + respaddingLeft + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string respaddingBottom { get; set; }
-		|        private IValue paddingBottom;
+		|        public IValue paddingBottom { get; set; }
 		|        [ContextProperty(""ЗаполнениеСнизу"", ""PaddingBottom"")]
 		|        public IValue PaddingBottom
 		|        {
@@ -15538,13 +11403,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['paddingBottom'] = '"" + respaddingBottom + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string respaddingRight { get; set; }
-		|        private IValue paddingRight;
+		|        public IValue paddingRight { get; set; }
 		|        [ContextProperty(""ЗаполнениеСправа"", ""PaddingRight"")]
 		|        public IValue PaddingRight
 		|        {
@@ -15565,7 +11430,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['paddingRight'] = '"" + respaddingRight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
@@ -15580,7 +11445,7 @@
 		|
 		|
 		|        public string resborderImage { get; set; }
-		|        private IValue borderImage;
+		|        public IValue borderImage { get; set; }
 		|        [ContextProperty(""КартинкаГраницы"", ""BorderImage"")]
 		|        public IValue BorderImage
 		|        {
@@ -15595,7 +11460,7 @@
 		|                    if (Owner != null)
 		|                    {
 		|                        string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderImage'] = '"" + resborderImage + ""';"";
-		|                        DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                        DeclarativeForms.SendStrFunc(strFunc);
 		|                    }
 		|                }
 		|                else
@@ -15626,7 +11491,7 @@
 		|        }
 		|
 		|        public string rescolumnCount { get; set; }
-		|        private IValue columnCount;
+		|        public IValue columnCount { get; set; }
 		|        [ContextProperty(""КоличествоКолонок"", ""ColumnCount"")]
 		|        public IValue ColumnCount
 		|        {
@@ -15647,13 +11512,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnCount'] = '"" + rescolumnCount + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumns { get; set; }
-		|        private IValue columns;
+		|        public IValue columns { get; set; }
 		|        [ContextProperty(""КолонкиЭлемента"", ""Columns"")]
 		|        public IValue Columns
 		|        {
@@ -15692,13 +11557,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columns'] = '"" + rescolumns + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoutline { get; set; }
-		|        private IValue outline;
+		|        public IValue outline { get; set; }
 		|        [ContextProperty(""Контур"", ""Outline"")]
 		|        public IValue Outline
 		|        {
@@ -15716,7 +11581,15 @@
 		|                    DfOutline val = (DfOutline)value;
 		|                    string outlineWidth = ""medium "";
 		|                    string outlineStyle = ""none "";
-		|                    string outlineColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string outlineColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        outlineColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        outlineColor = BackgroundColor;
+		|                    }
 		|                    if (val.OutlineWidth != null)
 		|                    {
 		|                        if (val.OutlineWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -15742,13 +11615,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['outline'] = '"" + resoutline + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderLeft { get; set; }
-		|        private IValue borderLeft;
+		|        public IValue borderLeft { get; set; }
 		|        [ContextProperty(""ЛеваяГраница"", ""BorderLeft"")]
 		|        public IValue BorderLeft
 		|        {
@@ -15766,7 +11639,15 @@
 		|                    DfBorderLeft val = (DfBorderLeft)value;
 		|                    string borderLeftWidth = ""medium "";
 		|                    string borderLeftStyle = ""none "";
-		|                    string borderLeftColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string borderLeftColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderLeftColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        borderLeftColor = BackgroundColor;
+		|                    }
 		|                    if (val.BorderLeftWidth != null)
 		|                    {
 		|                        if (val.BorderLeftWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -15792,13 +11673,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderLeft'] = '"" + resborderLeft + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderRight { get; set; }
-		|        private IValue borderRight;
+		|        public IValue borderRight { get; set; }
 		|        [ContextProperty(""ПраваяГраница"", ""BorderRight"")]
 		|        public IValue BorderRight
 		|        {
@@ -15816,7 +11697,15 @@
 		|                    DfBorderRight val = (DfBorderRight)value;
 		|                    string borderRightWidth = ""medium "";
 		|                    string borderRightStyle = ""none "";
-		|                    string borderRightColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string borderRightColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderRightColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        borderRightColor = BackgroundColor;
+		|                    }
 		|                    if (val.BorderRightWidth != null)
 		|                    {
 		|                        if (val.BorderRightWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -15842,13 +11731,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderRight'] = '"" + resborderRight + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderBottom { get; set; }
-		|        private IValue borderBottom;
+		|        public IValue borderBottom { get; set; }
 		|        [ContextProperty(""НижняяГраница"", ""BorderBottom"")]
 		|        public IValue BorderBottom
 		|        {
@@ -15866,7 +11755,15 @@
 		|                    DfBorderBottom val = (DfBorderBottom)value;
 		|                    string borderBottomWidth = ""medium "";
 		|                    string borderBottomStyle = ""none "";
-		|                    string borderBottomColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string borderBottomColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderBottomColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        borderBottomColor = BackgroundColor;
+		|                    }
 		|                    if (val.BorderBottomWidth != null)
 		|                    {
 		|                        if (val.BorderBottomWidth.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -15892,13 +11789,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderBottom'] = '"" + resborderBottom + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resmargin { get; set; }
-		|        private IValue margin;
+		|        public IValue margin { get; set; }
 		|        [ContextProperty(""Отступ"", ""Margin"")]
 		|        public IValue Margin
 		|        {
@@ -15945,13 +11842,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['margin'] = '"" + resmargin + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoverflow { get; set; }
-		|        private string overflow;
+		|        public string overflow { get; set; }
 		|        [ContextProperty(""Переполнение"", ""Overflow"")]
 		|        public string Overflow
 		|        {
@@ -15963,13 +11860,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['overflow'] = '"" + resoverflow + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoverflowY { get; set; }
-		|        private string overflowY;
+		|        public string overflowY { get; set; }
 		|        [ContextProperty(""ПереполнениеИгрек"", ""OverflowY"")]
 		|        public string OverflowY
 		|        {
@@ -15981,13 +11878,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['overflowY'] = '"" + resoverflowY + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoverflowX { get; set; }
-		|        private string overflowX;
+		|        public string overflowX { get; set; }
 		|        [ContextProperty(""ПереполнениеИкс"", ""OverflowX"")]
 		|        public string OverflowX
 		|        {
@@ -15999,13 +11896,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['overflowX'] = '"" + resoverflowX + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reswhiteSpace { get; set; }
-		|        private string whiteSpace;
+		|        public string whiteSpace { get; set; }
 		|        [ContextProperty(""Пробелы"", ""WhiteSpace"")]
 		|        public string WhiteSpace
 		|        {
@@ -16017,13 +11914,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['whiteSpace'] = '"" + reswhiteSpace + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restableLayout { get; set; }
-		|        private string tableLayout;
+		|        public string tableLayout { get; set; }
 		|        [ContextProperty(""РазмещениеВТаблице"", ""TableLayout"")]
 		|        public string TableLayout
 		|        {
@@ -16035,13 +11932,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['tableLayout'] = '"" + restableLayout + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbordersStyle { get; set; }
-		|        private IValue bordersStyle;
+		|        public IValue bordersStyle { get; set; }
 		|        [ContextProperty(""СтильГраниц"", ""BordersStyle"")]
 		|        public IValue BordersStyle
 		|        {
@@ -16083,13 +11980,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderStyle'] = '"" + resbordersStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoutlineStyle { get; set; }
-		|        private string outlineStyle;
+		|        public string outlineStyle { get; set; }
 		|        [ContextProperty(""СтильКонтура"", ""OutlineStyle"")]
 		|        public string OutlineStyle
 		|        {
@@ -16101,13 +11998,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['outlineStyle'] = '"" + resoutlineStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderTopStyle { get; set; }
-		|        private string borderTopStyle;
+		|        public string borderTopStyle { get; set; }
 		|        [ContextProperty(""СтильВерхнейГраницы"", ""BorderTopStyle"")]
 		|        public string BorderTopStyle
 		|        {
@@ -16119,13 +12016,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderTopStyle'] = '"" + resborderTopStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderRightStyle { get; set; }
-		|        private string borderRightStyle;
+		|        public string borderRightStyle { get; set; }
 		|        [ContextProperty(""СтильПравойГраницы"", ""BorderRightStyle"")]
 		|        public string BorderRightStyle
 		|        {
@@ -16137,13 +12034,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderRightStyle'] = '"" + resborderRightStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderBottomStyle { get; set; }
-		|        private string borderBottomStyle;
+		|        public string borderBottomStyle { get; set; }
 		|        [ContextProperty(""СтильНижнейГраницы"", ""BorderBottomStyle"")]
 		|        public string BorderBottomStyle
 		|        {
@@ -16155,13 +12052,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderBottomStyle'] = '"" + resborderBottomStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderLeftStyle { get; set; }
-		|        private string borderLeftStyle;
+		|        public string borderLeftStyle { get; set; }
 		|        [ContextProperty(""СтильЛевойГраницы"", ""BorderLeftStyle"")]
 		|        public string BorderLeftStyle
 		|        {
@@ -16173,13 +12070,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderLeftStyle'] = '"" + resborderLeftStyle + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string restextColor { get; set; }
-		|        private string textColor;
+		|        public string textColor { get; set; }
 		|        [ContextProperty(""ЦветТекста"", ""TextColor"")]
 		|        public string TextColor
 		|        {
@@ -16191,13 +12088,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['color'] = '"" + restextColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderTopColor { get; set; }
-		|        private string borderTopColor;
+		|        public string borderTopColor { get; set; }
 		|        [ContextProperty(""ЦветВерхнейГраницы"", ""BorderTopColor"")]
 		|        public string BorderTopColor
 		|        {
@@ -16209,13 +12106,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderTopColor'] = '"" + resborderTopColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbordersColor { get; set; }
-		|        private IValue bordersColor;
+		|        public IValue bordersColor { get; set; }
 		|        [ContextProperty(""ЦветГраниц"", ""BordersColor"")]
 		|        public IValue BordersColor
 		|        {
@@ -16231,10 +12128,42 @@
 		|                else
 		|                {
 		|                    DfBordersColor val = (DfBordersColor)value;
-		|                    string borderTopColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + "" "";
-		|                    string borderRightColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + "" "";
-		|                    string borderBottomColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + "" "";
-		|                    string borderLeftColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    string borderTopColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderTopColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + "" "";
+		|                    }
+		|                    else
+		|                    {
+		|                        borderTopColor = BackgroundColor + "" "";
+		|                    }
+		|                    string borderRightColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderRightColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + "" "";
+		|                    }
+		|                    else
+		|                    {
+		|                        borderRightColor = BackgroundColor + "" "";
+		|                    }
+		|                    string borderBottomColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderBottomColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor + "" "";
+		|                    }
+		|                    else
+		|                    {
+		|                        borderBottomColor = BackgroundColor + "" "";
+		|                    }
+		|                    string borderLeftColor;
+		|                    if (Owner != null)
+		|                    {
+		|                        borderLeftColor = ((dynamic)Owner.AsObject()).Style.BackgroundColor;
+		|                    }
+		|                    else
+		|                    {
+		|                        borderLeftColor = BackgroundColor;
+		|                    }
 		|                    if (val.BorderTopColor != null)
 		|                    {
 		|                        borderTopColor = val.BorderTopColor.AsString() + "" "";
@@ -16257,13 +12186,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderColor'] = '"" + resbordersColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderLeftColor { get; set; }
-		|        private string borderLeftColor;
+		|        public string borderLeftColor { get; set; }
 		|        [ContextProperty(""ЦветЛевойГраницы"", ""BorderLeftColor"")]
 		|        public string BorderLeftColor
 		|        {
@@ -16275,13 +12204,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderLeftColor'] = '"" + resborderLeftColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderBottomColor { get; set; }
-		|        private string borderBottomColor;
+		|        public string borderBottomColor { get; set; }
 		|        [ContextProperty(""ЦветНижнейГраницы"", ""BorderBottomColor"")]
 		|        public string BorderBottomColor
 		|        {
@@ -16293,13 +12222,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderBottomColor'] = '"" + resborderBottomColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderRightColor { get; set; }
-		|        private string borderRightColor;
+		|        public string borderRightColor { get; set; }
 		|        [ContextProperty(""ЦветПравойГраницы"", ""BorderRightColor"")]
 		|        public string BorderRightColor
 		|        {
@@ -16311,13 +12240,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderRightColor'] = '"" + resborderRightColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoutlineColor { get; set; }
-		|        private string outlineColor;
+		|        public string outlineColor { get; set; }
 		|        [ContextProperty(""ЦветКонтура"", ""OutlineColor"")]
 		|        public string OutlineColor
 		|        {
@@ -16329,13 +12258,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['outlineColor'] = '"" + resoutlineColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbackgroundColor { get; set; }
-		|        private string backgroundColor;
+		|        public string backgroundColor { get; set; }
 		|        [ContextProperty(""ЦветФона"", ""BackgroundColor"")]
 		|        public string BackgroundColor
 		|        {
@@ -16347,13 +12276,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['backgroundColor'] = '"" + resbackgroundColor + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reswidth { get; set; }
-		|        private IValue width;
+		|        public IValue width { get; set; }
 		|        [ContextProperty(""Ширина"", ""Width"")]
 		|        public IValue Width
 		|        {
@@ -16374,13 +12303,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['width'] = '"" + reswidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderTopWidth { get; set; }
-		|        private IValue borderTopWidth;
+		|        public IValue borderTopWidth { get; set; }
 		|        [ContextProperty(""ШиринаВерхнейГраницы"", ""BorderTopWidth"")]
 		|        public IValue BorderTopWidth
 		|        {
@@ -16401,13 +12330,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderTopWidth'] = '"" + resborderTopWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resbordersWidth { get; set; }
-		|        private IValue bordersWidth;
+		|        public IValue bordersWidth { get; set; }
 		|        [ContextProperty(""ШиринаГраниц"", ""BordersWidth"")]
 		|        public IValue BordersWidth
 		|        {
@@ -16477,13 +12406,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderWidth'] = '"" + resbordersWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string rescolumnWidth { get; set; }
-		|        private IValue columnWidth;
+		|        public IValue columnWidth { get; set; }
 		|        [ContextProperty(""ШиринаКолонок"", ""ColumnWidth"")]
 		|        public IValue ColumnWidth
 		|        {
@@ -16504,13 +12433,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['columnWidth'] = '"" + rescolumnWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resoutlineWidth { get; set; }
-		|        private IValue outlineWidth;
+		|        public IValue outlineWidth { get; set; }
 		|        [ContextProperty(""ШиринаКонтура"", ""OutlineWidth"")]
 		|        public IValue OutlineWidth
 		|        {
@@ -16531,13 +12460,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['outlineWidth'] = '"" + resoutlineWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderLeftWidth { get; set; }
-		|        private IValue borderLeftWidth;
+		|        public IValue borderLeftWidth { get; set; }
 		|        [ContextProperty(""ШиринаЛевойГраницы"", ""BorderLeftWidth"")]
 		|        public IValue BorderLeftWidth
 		|        {
@@ -16558,13 +12487,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderLeftWidth'] = '"" + resborderLeftWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderBottomWidth { get; set; }
-		|        private IValue borderBottomWidth;
+		|        public IValue borderBottomWidth { get; set; }
 		|        [ContextProperty(""ШиринаНижнейГраницы"", ""BorderBottomWidth"")]
 		|        public IValue BorderBottomWidth
 		|        {
@@ -16585,13 +12514,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderBottomWidth'] = '"" + resborderBottomWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string reswordWrap { get; set; }
-		|        private string wordWrap;
+		|        public string wordWrap { get; set; }
 		|        [ContextProperty(""ПереносСлов"", ""WordWrap"")]
 		|        public string WordWrap
 		|        {
@@ -16603,13 +12532,13 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['wordWrap'] = '"" + reswordWrap + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
 		|
 		|        public string resborderRightWidth { get; set; }
-		|        private IValue borderRightWidth;
+		|        public IValue borderRightWidth { get; set; }
 		|        [ContextProperty(""ШиринаПравойГраницы"", ""BorderRightWidth"")]
 		|        public IValue BorderRightWidth
 		|        {
@@ -16630,7 +12559,7 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['borderRightWidth'] = '"" + resborderRightWidth + ""';"";
-		|                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
 		|        }
@@ -16679,18 +12608,9 @@
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
 	ИначеЕсли ИмяФайлаДФ = "BorderTop" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.HostedScript.Library.Binary;
-		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.Machine.Contexts;
+		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
-		|using System.Collections.Concurrent;
-		|using System.Collections.Generic;
-		|using System.Collections;
-		|using System.IO;
-		|using System.Linq;
 		|using System.Reflection;
-		|using System.Runtime.InteropServices;
-		|using System;
 		|
 		|namespace osdf
 		|{
@@ -16740,18 +12660,9 @@
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
 	ИначеЕсли ИмяФайлаДФ = "CubicBezier" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"using ScriptEngine.HostedScript.Library.Binary;
-		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.Machine.Contexts;
+		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
-		|using System.Collections.Concurrent;
-		|using System.Collections.Generic;
-		|using System.Collections;
-		|using System.IO;
-		|using System.Linq;
 		|using System.Reflection;
-		|using System.Runtime.InteropServices;
-		|using System;
 		|
 		|namespace osdf
 		|{
@@ -16826,7 +12737,7 @@
 		|            click: function() {{ sendPost('"" + ItemKey + ""' + '"" + DeclarativeForms.paramDelimiter + ""' + 'click') }}, "" + @""
 		|            type: '"" + type + ""' }));"" + @""
 		|            mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -16839,7 +12750,7 @@
 		|            type: '"" + type + ""', "" + @""
 		|            key: '"" + key + ""' }));"" + @""
 		|            mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -16853,7 +12764,7 @@
 		|            key: '"" + key + ""', "" + @""
 		|            modifiers: '"" + modifiers + ""' }));"" + @""
 		|            mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -16867,7 +12778,7 @@
 		|            submenu: mapKeyEl.get('"" + menu.ItemKey + ""') }));"" + @""
 		|            mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
 		|            submenu = menu;
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -16882,7 +12793,7 @@
 		|            key: '"" + key + ""' }));"" + @""
 		|            mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
 		|            submenu = menu;
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -16898,7 +12809,7 @@
 		|            modifiers: '"" + modifiers + ""' }));"" + @""
 		|            mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
 		|            submenu = menu;
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -16918,7 +12829,7 @@
 		|            set { сlick = value; }
 		|        }
 		|
-		|        private string label;
+		|        public string label { get; set; }
 		|        [ContextProperty(""Надпись"", ""Label"")]
 		|        public string Label
 		|        {
@@ -16927,11 +12838,11 @@
 		|            {
 		|                label = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').label = '"" + label + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private DfMenu submenu;
+		|        public DfMenu submenu { get; set; }
 		|        [ContextProperty(""Подменю"", ""Submenu"")]
 		|        public DfMenu Submenu
 		|        {
@@ -16940,11 +12851,11 @@
 		|            {
 		|                submenu = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').submenu = mapKeyEl.get('"" + submenu.ItemKey + ""');"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private bool enabled;
+		|        public bool enabled { get; set; }
 		|        [ContextProperty(""Доступность"", ""Enabled"")]
 		|        public bool Enabled
 		|        {
@@ -16953,11 +12864,11 @@
 		|            {
 		|                enabled = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['enabled'] = "" + enabled.ToString().ToLower() + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private string icon;
+		|        public string icon { get; set; }
 		|        [ContextProperty(""Значок"", ""Icon"")]
 		|        public string Icon
 		|        {
@@ -16966,11 +12877,11 @@
 		|            {
 		|                icon = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['icon'] = '"" + icon + ""';"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
-		|        private bool _checked;
+		|        public bool _checked { get; set; }
 		|        [ContextProperty(""Помечен"", ""Checked"")]
 		|        public bool Checked
 		|        {
@@ -16979,7 +12890,7 @@
 		|            {
 		|                _checked = value;
 		|                string strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['checked'] = "" + _checked.ToString().ToLower() + "";"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|    }
@@ -17014,7 +12925,7 @@
 		|            {
 		|                strFunc = ""mapKeyEl.set('"" + ItemKey + ""', new gui.Menu()); mapElKey.set(mapKeyEl.get('"" + ItemKey + ""'), '"" + ItemKey + ""');"";
 		|            }
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
 		|        }
 		|
@@ -17030,35 +12941,35 @@
 		|        public void Append(DfMenuItem p1)
 		|        {
 		|            string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').append(mapKeyEl.get('"" + p1.ItemKey + ""'));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        [ContextMethod(""Вставить"", ""Insert"")]
 		|        public void Insert(DfMenuItem p1, int p2)
 		|        {
 		|            string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').insert(mapKeyEl.get('"" + p1.ItemKey + ""'), parseInt('"" + p2 + ""'));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|       [ContextMethod(""Показать"", ""Popup"")]
 		|        public void Popup(int p1, int p2)
 		|        {
 		|            string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').popup(parseInt('"" + p1 + ""'), parseInt('"" + p2 + ""'));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|       [ContextMethod(""Удалить"", ""Remove"")]
 		|        public void Remove(DfMenuItem p1)
 		|        {
 		|            string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').remove(mapKeyEl.get('"" + p1.ItemKey + ""'));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|       [ContextMethod(""УдалитьПоИндексу"", ""RemoveAt"")]
 		|        public void RemoveAt(int p1)
 		|        {
 		|            string strFunc = ""mapKeyEl.get('"" + ItemKey + ""').removeAt(parseInt('"" + p1 + ""'));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|        }
 		|
 		|        public DfAction _сlick;
@@ -17071,7 +12982,7 @@
 		|                _сlick = value;
 		|                //setMenuClick(nameMenu)
 		|                string strFunc = ""setMenuClick(\u0022"" + ItemKey + ""\u0022)"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|        [ContextProperty(""click"", ""click"")]
@@ -17083,7 +12994,7 @@
 		|                _сlick = value;
 		|                //setMenuClick(nameMenu)
 		|                string strFunc = ""setMenuClick(\u0022"" + ItemKey + ""\u0022)"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|    }
@@ -18148,14 +14059,14 @@
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
-	ИначеЕсли ИмяФайлаДФ = "Indexhtml" Тогда
+	ИначеЕсли ИмяФайлаДФ = "IndexhtmlWin" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osdf
 		|{
-		|    public class Indexhtml
+		|    public class IndexhtmlWin
 		|    {
 		|        public static string spacer = DeclarativeForms.paramDelimiter;
-		|        public static string indexhtml = @""<!DOCTYPE html>
+		|        public static string Indexhtml = @""<!DOCTYPE html>
 		|<html>
 		|	<head>
 		|		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
@@ -18238,9 +14149,29 @@
 		|                mapElKey.get(event.target) + 
 		|                '"" + spacer + @""' + event.type + 
 		|                '"" + spacer + @""Checked=' + _checked);
-		|            }		
+		|            }
+		|            else if (event.target.type == 'color')
+		|            {
+		|                let value = event.target.value;
+		|                let r = parseInt(value[1] + value[2], 16);
+		|                let g = parseInt(value[3] + value[4], 16);
+		|                let b = parseInt(value[5] + value[6], 16);
+		|                let value2 = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value2);
+		|            }
+		|            else
+		|            {
+		|                let value = event.target.value;
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value);
+		|            }
 		|        }
-		|        else if (event.target.nodeName == 'SELECT')
+		|        else if (event.target == 'SELECT')
 		|        {
 		|            let txt = '';
 		|            var opt = event.target.options;
@@ -18263,6 +14194,14 @@
 		|            '"" + spacer + @""' + event.type + 
 		|            '"" + spacer + @""ListItem=' + txt);
 		|        }
+		|        else
+		|        {
+		|            let value = event.target.value;
+		|            sendPost(
+		|            mapElKey.get(event.target) + 
+		|            '"" + spacer + @""' + event.type + 
+		|            '"" + spacer + @""Value=' + value);
+		|        }
 		|    }
 		|    else
 		|    {
@@ -18271,9 +14210,37 @@
 		|}
 		|function sendPost(str)
 		|{
-		|	var req = new XMLHttpRequest();
-		|	req.onload = function(){
-		|        var input = req.responseText;
+		|    try
+		|    {
+		|	    sendClient.send(str);
+		|    }
+		|    catch
+		|    {
+		|    }
+		|}
+		|function startTimer(nameEl, interval) {
+		|    window.TimerId = window.setInterval(function(){
+		|            sendPost(nameEl + '"" + spacer + @""tick');
+		|        }, interval);
+		|    mapKeyEl.set(nameEl, window.TimerId);
+		|    mapElKey.set(mapKeyEl.get(nameEl), nameEl);
+		|}
+		|function stopTimer(nameEl) {
+		|   window.clearInterval(mapKeyEl.get(nameEl));
+		|}
+		|		
+		|var mapKeyEl = new Map();
+		|var mapElKey = new Map();
+		|var gui = require('nw.gui');
+		|//document.addEventListener('DOMContentLoaded', function (event) { sleep(1000); sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
+		|
+		|function getReceiveClient()
+		|{
+		|    var receiveClient1 = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portSendServer + @""/');
+		|    receiveClient1.onopen = function(event) { receiveClient1.send('Hello from receiveClient'); };
+		|    receiveClient1.onmessage = function (event)
+		|    {
+		|        var input = event.data;
 		|        var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
 		|        for (var i = 0; i < fields.length; i++)
 		|        {
@@ -18283,21 +14250,498 @@
 		|                funFromString(item);
 		|            }
 		|        }
-		|    };  
-		|	req.onerror = function() {
-		|      alert('!!! Ошибка соединения');
-		|    };  
+		|    };
+		|    receiveClient1.onclose = function (event) {
+		|        setTimeout(function() {
+		|            receiveClient1 = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portSendServer + @""/');
+		|        }, 2);
+		|    };
+		|    receiveClient1.onerror = function (error) {
+		|	    //alert('websocket error ' + error);
+		|    };
+		|    return receiveClient1;
+		|}
+		|function getSendClient()
+		|{
+		|    var sendClient1 = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
+		|    sendClient1.onopen = function(event) { 
+		|        sendClient1.send('mainForm' + '"" + spacer + @""' + 'loaded'); 
+		|    };
+		|    sendClient1.onmessage = function (event)
+		|    {
+		|        var input = event.data;
+		|        var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
+		|        for (var i = 0; i < fields.length; i++)
+		|        {
+		|            var item = fields[i];
+		|            if (item != '')
+		|            {
+		|                funFromString(item);
+		|            }
+		|        }
+		|    };
+		|    sendClient1.onclose = function (event) {
+		|        setTimeout(function() {
+		|            sendClient1 = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
+		|        }, 2);
+		|    };
+		|    sendClient1.onerror = function (error) {
+		|	    alert('websocket error ' + error);
+		|    };
+		|    return sendClient1;
+		|}
+		|nw.Window.get().on('resize', function(width, height)
+		|{
+		|    sendPost('mainForm' +
+		|    '"" + spacer + @""' + 'resize' +
+		|    '"" + spacer + @""WindowWidth=' + width +
+		|    '"" + spacer + @""WindowHeight=' + height);
+		|});
+		|function sleep(milliseconds) {
+		|    const date = Date.now();
+		|    let currentDate = null;
+		|    do {
+		|        currentDate = Date.now();
+		|    } while (currentDate - date < milliseconds);
+		|}
+		|nw.Window.get().on('close', function () {
+		|    gui.App.quit();
+		|});
+		|function firstStart() {
+		|    sendPost('formIsLoaded');
+		|}
 		|
-		|	req.open('POST', 'http://127.0.0.1:"" + DeclarativeForms.port + @""');
+		|var sendClient = getSendClient();
+		|var receiveClient = getReceiveClient();
+		|
+		|        </script>
+		|	</head>
+		|	<body>
+		|
+		|    </body>
+		|</html>
+		|"";
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "IndexhtmlWinBr" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osdf
+		|{
+		|    public class IndexhtmlWinBr
+		|    {
+		|        public static string spacer = DeclarativeForms.paramDelimiter;
+		|        public static string Indexhtml = @""<!DOCTYPE html>
+		|<html>
+		|	<head>
+		|		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+		|		<link rel='stylesheet' href='"" + DeclarativeForms.CSSPath + @""' />
+		|
+		|		<script type='text/javascript'>
+		|            window.addEventListener('error', function (event) { alert(event.message + '\n' + event.filename); });
+		|        </script>
+		|
+		|		<script type='text/javascript'>
+		|function funFromString(func)
+		|{
+		|    let func2 = Function(func);
+		|    func2();
+		|}
+		|function doEvent(event)
+		|{
+		|    if (event.type == 'mouseup')
+		|    {
+		|        let button;
+		|        let eventButton = event.button;
+		|        if (eventButton == 0)
+		|        {
+		|            button = 'left';
+		|        }
+		|        else if (eventButton == 1)
+		|        {
+		|            button = 'middle';
+		|        }
+		|        else if (eventButton == 2)
+		|        {
+		|            button = 'right';
+		|        }
+		|
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""Button=' + button + 
+		|        '"" + spacer + @""X=' + event.clientX + 
+		|        '"" + spacer + @""Y=' + event.clientY);
+		|    }
+		|    else if (event.type == 'input')
+		|    {
+		|        let value = event.target.value;
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""Value=' + value);
+		|    }
+		|    else if (event.type == 'change')
+		|    {
+		|        let x = mapKeyEl.get(mapElKey.get(event.target));
+		|        //alert('nodeName = ' + event.target.nodeName + ' type = ' + event.target.type);
+		|        if (event.target.nodeName == 'INPUT')
+		|        {
+		|            if (event.target.type == 'file')
+		|            {
+		|                let txt = '';
+		|                if (x.files.length > 0)
+		|                {
+		|                    for (var i = 0; i < x.files.length; i++)
+		|                    {
+		|                        txt = txt + x.files[i].name + ';';
+		|                    }
+		|                } 
+		|                else
+		|                {
+		|                    x.value = null;
+		|                    txt = 'null';
+		|                }
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Files=' + txt);
+		|            }
+		|            else if (event.target.type == 'checkbox')
+		|            {
+		|                let _checked = event.target.checked;
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Checked=' + _checked);
+		|            }
+		|            else if (event.target.type == 'color')
+		|            {
+		|                let value = event.target.value;
+		|                let r = parseInt(value[1] + value[2], 16);
+		|                let g = parseInt(value[3] + value[4], 16);
+		|                let b = parseInt(value[5] + value[6], 16);
+		|                let value2 = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value2);
+		|            }
+		|            else
+		|            {
+		|                let value = event.target.value;
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value);
+		|            }
+		|        }
+		|        else if (event.target == 'SELECT')
+		|        {
+		|            let txt = '';
+		|            var opt = event.target.options;
+		|            if (opt.length > 0)
+		|            {
+		|                for (var i = 0; i < opt.length; i++)
+		|                {
+		|                    if (opt[i].selected)
+		|                    {
+		|                        txt = txt + mapElKey.get(opt[i]) + ';';
+		|                    }
+		|                }
+		|            }
+		|            else
+		|            {
+		|                txt = 'null';
+		|            }
+		|            sendPost(
+		|            mapElKey.get(event.target) + 
+		|            '"" + spacer + @""' + event.type + 
+		|            '"" + spacer + @""ListItem=' + txt);
+		|        }
+		|        else
+		|        {
+		|            let value = event.target.value;
+		|            sendPost(
+		|            mapElKey.get(event.target) + 
+		|            '"" + spacer + @""' + event.type + 
+		|            '"" + spacer + @""Value=' + value);
+		|        }
+		|    }
+		|    else
+		|    {
+		|        sendPost(mapElKey.get(event.target) + '"" + spacer + @""' + event.type);
+		|    }
+		|}
+		|function sendPost(str)
+		|{
 		|    try
 		|    {
-		|        req.send(str);
+		|	    sendClient.send(str);
 		|    }
-		|    catch (err)
+		|    catch
 		|    {
-		|        // для отлова ошибок используем конструкцию try...catch вместо onerror
-		|        alert('Запрос не удался');
 		|    }
+		|}
+		|function startTimer(nameEl, interval) {
+		|    window.TimerId = window.setInterval(function(){
+		|            sendPost(nameEl + '"" + spacer + @""tick');
+		|        }, interval);
+		|    mapKeyEl.set(nameEl, window.TimerId);
+		|    mapElKey.set(mapKeyEl.get(nameEl), nameEl);
+		|}
+		|function stopTimer(nameEl) {
+		|   window.clearInterval(mapKeyEl.get(nameEl));
+		|}
+		|
+		|var mapKeyEl = new Map();
+		|var mapElKey = new Map();
+		|
+		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
+		|
+		|var sendClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
+		|sendClient.onopen = function(event) { sendClient.send('mainForm' + '"" + spacer + @""' + 'loaded'); };
+		|sendClient.onmessage = function (event)
+		|{
+		|    var input = event.data;
+		|    var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
+		|    for (var i = 0; i < fields.length; i++)
+		|    {
+		|        var item = fields[i];
+		|        if (item != '')
+		|        {
+		|            funFromString(item);
+		|        }
+		|    }
+		|};
+		|sendClient.onclose = function (event) {
+		|    setTimeout(function() {
+		|        sendClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
+		|    }, 2);
+		|};
+		|sendClient.onerror = function (error) {
+		|	//alert('websocket error ' + error);
+		|};
+		|
+		|window.onbeforeunload = function(){
+		|    let str = 'При обновлении страницы или переходе по ссылке в этом окне программа будет перезапущена или закрыта соответственно. Введенные данные могут не сохраниться.';
+		|    setTimeout(function(){ alert(str); }, 1);
+		|    if (event.target.nodeName.toLowerCase() === 'a')
+		|    {
+		|        return;
+		|    }
+		|    else
+		|    {
+		|        setTimeout(function(){ alert(str); }, 1);
+		|        return false; // отменить действие браузера (переход по ссылке)
+		|    }
+		|};
+		|
+		|window.addEventListener('resize', function(event) {
+		|    sendPost('mainForm' + 
+		|    '"" + spacer + @""' + 'resize' + 
+		|    '"" + spacer + @""WindowWidth=' + window.innerWidth + 
+		|    '"" + spacer + @""WindowHeight=' + window.innerHeight);
+		|}, true);
+		|
+		|//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);
+		|
+		|var receiveClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portSendServer + @""/');
+		|receiveClient.onopen = function(event) { receiveClient.send('Hello from receiveClient'); };
+		|receiveClient.onmessage = function (event)
+		|{
+		|    var input = event.data;
+		|    var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
+		|    for (var i = 0; i < fields.length; i++)
+		|    {
+		|        var item = fields[i];
+		|        if (item != '')
+		|        {
+		|            funFromString(item);
+		|        }
+		|    }
+		|};
+		|receiveClient.onclose = function (event) {
+		|    setTimeout(function() {
+		|        receiveClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portSendServer + @""/');
+		|    }, 2);
+		|};
+		|receiveClient.onerror = function (error) {
+		|	//alert('websocket error ' + error);
+		|};
+		|function firstStart() {
+		|    sendPost('formIsLoaded');
+		|}
+		|
+		|        </script>
+		|	</head>
+		|	<body>
+		|
+		|    </body>
+		|</html>
+		|"";
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "IndexhtmlLin" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osdf
+		|{
+		|    public class IndexhtmlLin
+		|    {
+		|        public static string spacer = DeclarativeForms.paramDelimiter;
+		|        public static string Indexhtml = @""<!DOCTYPE html>
+		|<html>
+		|	<head>
+		|		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+		|		<link rel='stylesheet' href='"" + DeclarativeForms.CSSPath + @""' />
+		|
+		|		<script type='text/javascript'>
+		|            window.addEventListener('error', function (event) { alert(event.message + '\n' + event.filename); });
+		|        </script>
+		|
+		|		<script type='text/javascript'>
+		|function funFromString(func)
+		|{
+		|    let func2 = Function(func);
+		|    func2();
+		|}
+		|function doEvent(event)
+		|{
+		|    if (event.type == 'mouseup')
+		|    {
+		|        let button;
+		|        let eventButton = event.button;
+		|        if (eventButton == 0)
+		|        {
+		|            button = 'left';
+		|        }
+		|        else if (eventButton == 1)
+		|        {
+		|            button = 'middle';
+		|        }
+		|        else if (eventButton == 2)
+		|        {
+		|            button = 'right';
+		|        }
+		|
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""Button=' + button + 
+		|        '"" + spacer + @""X=' + event.clientX + 
+		|        '"" + spacer + @""Y=' + event.clientY);
+		|    }
+		|    else if (event.type == 'input')
+		|    {
+		|        let value = event.target.value;
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""Value=' + value);
+		|    }
+		|    else if (event.type == 'change')
+		|    {
+		|        let x = mapKeyEl.get(mapElKey.get(event.target));
+		|        //alert('nodeName = ' + event.target.nodeName + ' type = ' + event.target.type);
+		|        if (event.target.nodeName == 'INPUT')
+		|        {
+		|            if (event.target.type == 'file')
+		|            {
+		|                let txt = '';
+		|                if (x.files.length > 0)
+		|                {
+		|                    for (var i = 0; i < x.files.length; i++)
+		|                    {
+		|                        txt = txt + x.files[i].name + ';';
+		|                    }
+		|                } 
+		|                else
+		|                {
+		|                    x.value = null;
+		|                    txt = 'null';
+		|                }
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Files=' + txt);
+		|            }
+		|            else if (event.target.type == 'checkbox')
+		|            {
+		|                let _checked = event.target.checked;
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Checked=' + _checked);
+		|            }
+		|            else if (event.target.type == 'color')
+		|            {
+		|                let value = event.target.value;
+		|                let r = parseInt(value[1] + value[2], 16);
+		|                let g = parseInt(value[3] + value[4], 16);
+		|                let b = parseInt(value[5] + value[6], 16);
+		|                let value2 = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value2);
+		|            }
+		|            else
+		|            {
+		|                let value = event.target.value;
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value);
+		|            }
+		|        }
+		|        else if (event.target == 'SELECT')
+		|        {
+		|            let txt = '';
+		|            var opt = event.target.options;
+		|            if (opt.length > 0)
+		|            {
+		|                for (var i = 0; i < opt.length; i++)
+		|                {
+		|                    if (opt[i].selected)
+		|                    {
+		|                        txt = txt + mapElKey.get(opt[i]) + ';';
+		|                    }
+		|                }
+		|            }
+		|            else
+		|            {
+		|                txt = 'null';
+		|            }
+		|            sendPost(
+		|            mapElKey.get(event.target) + 
+		|            '"" + spacer + @""' + event.type + 
+		|            '"" + spacer + @""ListItem=' + txt);
+		|        }
+		|        else
+		|        {
+		|            let value = event.target.value;
+		|            sendPost(
+		|            mapElKey.get(event.target) + 
+		|            '"" + spacer + @""' + event.type + 
+		|            '"" + spacer + @""Value=' + value);
+		|        }
+		|    }
+		|    else
+		|    {
+		|        sendPost(mapElKey.get(event.target) + '"" + spacer + @""' + event.type);
+		|    }
+		|}
+		|function sendPost(str)
+		|{
+		|    nodeClientSend = getConnSend();
+		|    nodeClientSend.write(str);
 		|}
 		|nw.Window.get().on('resize', function(width, height)
 		|{
@@ -18306,14 +14750,22 @@
 		|    '"" + spacer + @""WindowWidth=' + width + 
 		|    '"" + spacer + @""WindowHeight=' + height);
 		|});
-		|// Начало блока постоянного клиента.
+		|function startTimer(nameEl, interval) {
+		|    window.TimerId = window.setInterval(function(){
+		|            sendPost(nameEl + '"" + spacer + @""tick');
+		|        }, interval);
+		|    mapKeyEl.set(nameEl, window.TimerId);
+		|    mapElKey.set(mapKeyEl.get(nameEl), nameEl);
+		|}
+		|function stopTimer(nameEl) {
+		|   window.clearInterval(mapKeyEl.get(nameEl));
+		|}
+		|		
+		|// Начало блока клиентов.
 		|function processData(data)
 		|{
-		|	let fragment1 = 'HTTP/1.1 200 OK';
-		|	let fragment2 = 'Server: OneScriptDeclarativeForms';
-		|	let fragment3 = 'Content-Type: text/html; charset=utf-8';
-		|	var input = data.replace(fragment1, '').replace(fragment2, '').replace(fragment3, '').trim();
-		|	// alert('input = ' + input);
+		|	var input = data;
+		|    //alert('input = ' + input);
 		|	var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
 		|	for (var i = 0; i < fields.length; i++)
 		|	{
@@ -18332,26 +14784,53 @@
 		|	}
 		|}
 		|var net = require('net'); // Импортируем сетевой модуль.
-		|function getConn() // Создаем TCP-клиент.
+		|function getConnSend() // Создаем TCP-клиент для отправки сообщений.
 		|{
-		|    var option = {host:'127.0.0.1', port: "" + DeclarativeForms.port + @""}
+		|    var option = {host:'127.0.0.1', port: "" + DeclarativeForms.portReceivingServer + @""}
 		|    // Создайте TCP-клиент.
 		|    var client = net.createConnection(option, function () {
 		|        // alert('Локальный адрес подключения : ' + client.localAddress + ':' + client.localPort);
-		|        // alert('Удаленный адрес подключения : ' + client.remoteAddress + ':' + client.remotePort);
 		|    });
-		|    // client.setTimeout(1000); // Отключение по таймауту нам не нужно. Один клиент должен быть постоянно на связи.
+		|    // client.setTimeout(1000); // Отключение по таймауту нам не нужно. Отключение сделает сервер.
 		|    client.setEncoding('utf8');
-		|    // При получении сервер отправляет обратно данные.
+		|    // При получении сообщения сервер отправляет обратно данные.
 		|    client.on('data', function (data) {
-		|        // alert('Данные возврата сервера : ' + data);
+		|        //alert('Данные возврата сервера : ' + data);
+		|		processData(data);
+		|    });
+		|    client.on('close',function () {
+		|         //alert('Сервер закрыл соединение.');
+		|    });
+		|    client.on('end',function () {
+		|         //alert('Окончание передачи.');
+		|    });
+		|    client.on('timeout', function () {
+		|        // alert('Таймаут подключения клиента.');
+		|    });
+		|    client.on('error', function (err) {
+		|         //alert(JSON.stringify(err));
+		|    });
+		|    return client;
+		|}
+		|function getConnReceiving() // Создаем TCP-клиент для приема сообщений.
+		|{
+		|    var option = {host:'127.0.0.1', port: "" + DeclarativeForms.portReceivingServer + @""}
+		|    // Создайте TCP-клиент.
+		|    var client = net.createConnection(option, function () {
+		|        // alert('Локальный адрес подключения : ' + client.localAddress + ':' + client.localPort);
+		|    });
+		|    // client.setTimeout(1000); // Отключение по таймауту нам не нужно. getConnReceiving должен быть постоянно на связи.
+		|    client.setEncoding('utf8');
+		|    // При получении сообщения или в произвольном порядке сервер отправляет данные.
+		|    client.on('data', function (data) {
+		|        //alert('Данные возврата сервера : ' + data);
 		|		processData(data);
 		|    });
 		|    // Если постоянный клиент почему то отключился, мы его снова подключим.
 		|    client.on('close',function () {
-		|        // alert('Сервер закрыл соединение.');
-		|		var nodeClient = getConn();
-		|		nodeClient.write('ConstantClient5du4fsjiwixxf');
+		|         //alert('Сервер закрыл соединение.');
+		|        var nodeClientReceiving = getConnReceiving();
+		|		nodeClientReceiving.write('ConstantClient5du4fsjiwixxf');
 		|    });
 		|    client.on('end',function () {
 		|        // alert('Окончание передачи.');
@@ -18364,30 +14843,47 @@
 		|    });
 		|    return client;
 		|}
-		|// Создадим одного постоянно подключенного клиента.
-		|// По этому каналу мы в любом месте сможем послать команду форме из сценария.
-		|// Остальные клиенты создаются  только во время возникновения события.
-		|// При возникновении события посылается POST запрос серверу и по получении ответа соединение разрывается.
-		|// это же соединение будет постоянным и в случае разрыва произойдет переподключение.
-		|var nodeClient = getConn();
-		|nodeClient.write('ConstantClient5du4fsjiwixxf');
-		|// Конец блока постоянного клиента.
+		|
+		|// Создадим клиенты.
+		|// По nodeClientReceiving мы в любом месте сможем послать команду форме из сценария.
+		|// Соединение nodeClientReceiving будет постоянным и в случае разрыва произойдет переподключение.
+		|// Клиент nodeClientSend создается только во время возникновения события.
+		|// При возникновении события nodeClientSend посылает сообщение серверу и после отправки ответа сервер разрывает соединение.
+		|var nodeClientSend = getConnSend();
+		|var nodeClientReceiving = getConnReceiving();
+		|nodeClientReceiving.write('ConstantClient5du4fsjiwixxf');
+		|// Конец блока клиентов.
 		|
 		|var mapKeyEl = new Map();
 		|var mapElKey = new Map();
 		|var gui = require('nw.gui');
-		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
-		|//////var net = require('os1'); // Пример импорта модуля. os1.js в этом случае должен лежать рядом с package.json
+		|document.addEventListener('DOMContentLoaded', function (event) { nodeClientSend.write('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
-		|		</script>
+		|function firstStart() {
+		|    sendPost('formIsLoaded');
+		|}
+		|
+		|        </script>
 		|	</head>
 		|	<body>
 		|
 		|    </body>
 		|</html>
 		|"";
-		|
-		|        public static string IndexhtmlBr = @""<!DOCTYPE html>
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "IndexhtmlLinBr" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osdf
+		|{
+		|    public class IndexhtmlLinBr
+		|    {
+		|        public static string spacer = DeclarativeForms.paramDelimiter;
+		|        public static string Indexhtml = @""<!DOCTYPE html>
 		|<html>
 		|	<head>
 		|		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
@@ -18470,9 +14966,29 @@
 		|                mapElKey.get(event.target) + 
 		|                '"" + spacer + @""' + event.type + 
 		|                '"" + spacer + @""Checked=' + _checked);
-		|            }		
+		|            }
+		|            else if (event.target.type == 'color')
+		|            {
+		|                let value = event.target.value;
+		|                let r = parseInt(value[1] + value[2], 16);
+		|                let g = parseInt(value[3] + value[4], 16);
+		|                let b = parseInt(value[5] + value[6], 16);
+		|                let value2 = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value2);
+		|            }
+		|            else
+		|            {
+		|                let value = event.target.value;
+		|                sendPost(
+		|                mapElKey.get(event.target) + 
+		|                '"" + spacer + @""' + event.type + 
+		|                '"" + spacer + @""Value=' + value);
+		|            }
 		|        }
-		|        else if (event.target.nodeName == 'SELECT')
+		|        else if (event.target == 'SELECT')
 		|        {
 		|            let txt = '';
 		|            var opt = event.target.options;
@@ -18495,6 +15011,14 @@
 		|            '"" + spacer + @""' + event.type + 
 		|            '"" + spacer + @""ListItem=' + txt);
 		|        }
+		|        else
+		|        {
+		|            let value = event.target.value;
+		|            sendPost(
+		|            mapElKey.get(event.target) + 
+		|            '"" + spacer + @""' + event.type + 
+		|            '"" + spacer + @""Value=' + value);
+		|        }
 		|    }
 		|    else
 		|    {
@@ -18505,39 +15029,74 @@
 		|{
 		|    try
 		|    {
-		|	    ws.send(str);
+		|	    sendClient.send(str);
 		|    }
 		|    catch
 		|    {
 		|    }
 		|}
+		|function startTimer(nameEl, interval) {
+		|    window.TimerId = window.setInterval(function(){
+		|            sendPost(nameEl + '"" + spacer + @""tick');
+		|        }, interval);
+		|    mapKeyEl.set(nameEl, window.TimerId);
+		|    mapElKey.set(mapKeyEl.get(nameEl), nameEl);
+		|}
+		|function stopTimer(nameEl) {
+		|   window.clearInterval(mapKeyEl.get(nameEl));
+		|}
+		|		
 		|var mapKeyEl = new Map();
 		|var mapElKey = new Map();
-		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
-		|//////var net = require('os1'); // Пример импорта модуля. os1.js в этом случае должен лежать рядом с package.json
+		|//var gui = require('nw.gui');
+		|//document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
-		|var ws = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.port + @""/');
-		|ws.onopen = function(event) { ws.send('mainForm' + '|' + 'loaded'); };
-		|//ws.onopen = function(event) { };
-		|ws.onmessage = function (event)
-		|{
-		|    var input = event.data;
-		|    var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
-		|    for (var i = 0; i < fields.length; i++)
-		|    {
-		|        var item = fields[i];
-		|        if (item != '')
+		|//nw.Window.get().on('resize', function(width, height)
+		|//{
+		|//    sendPost('mainForm' +
+		|//    '"" + spacer + @""' + 'resize' +
+		|//    '"" + spacer + @""WindowWidth=' + width +
+		|//    '"" + spacer + @""WindowHeight=' + height);
+		|//});
+		|
+		|//alert('qqqqqqqqqqq');
+		|//================================================================
+		|const WebSocket = require('ws');
+		|const serverSend = new WebSocket.Server({port: "" + DeclarativeForms.portReceivingServer + @""});
+		|serverSend.on('connection', onConnect);
+		|// обработчик подключения клиента
+		|// параметр - подключенный клиент
+		|var sendClient;
+		|function onConnect(clientSend) {
+		|    sendClient = clientSend;
+		|    //alert('Connection opened');
+		|
+		|    //sendClient.send('mainForm' + '"" + spacer + @""' + 'loaded');
+		|
+		|    // обрабатываем входящие сообщения от клиента
+		|    clientSend.on('message', function(message) {
+		|        alert('clientSend message:' + message.toString());
+		|        var input = message.toString();
+		|        var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
+		|        for (var i = 0; i < fields.length; i++)
 		|        {
-		|            funFromString(item);
+		|            var item = fields[i];
+		|            if (item != '')
+		|            {
+		|                funFromString(item);
+		|            }
 		|        }
-		|    }
-		|    //alert('Received: ' + event.data);
-		|};
-		|// ws.onclose = function (event) {alert('WebSocket closed');};
-		|// websocket.onerror = function (error) {alert('websocket error ' + error);};
+		|        //clientSend.send('Hello clientSend'); // отправка сообщения клиенту
+		|        //sendClient.send('mainForm' + '"" + spacer + @""' + 'loaded');
+		|    });
+		|    // закрытие подключения
+		|    clientSend.on('close', function() {
+		|        //alert('Connection closed');
+		|    });
+		|}
+		|//================================================================
 		|
-		|//sendPost('mainForm' + '"" + spacer + @""' + 'loaded');
-		|		</script>
+		|        </script>
 		|	</head>
 		|	<body>
 		|
@@ -18558,7 +15117,6 @@
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|using ScriptEngine.HostedScript.Library;
-		|using System.Threading;
 		|
 		|namespace osdf
 		|{
@@ -18585,20 +15143,20 @@
 		|            private set { itemKey = value; }
 		|        }
 		|		
-		|        public IValue windowHeight;
+		|        public int windowHeight { get; set; }
 		|        [ContextProperty(""ВысотаОкна"", ""WindowHeight"")]
 		|        public int WindowHeight
 		|        {
-		|            get { return Convert.ToInt32(windowHeight.AsNumber()); }
-		|            set { windowHeight = ValueFactory.Create(value); }
+		|            get { return windowHeight; }
+		|            private set { windowHeight = value; }
 		|        }
 		|
-		|        public IValue windowWidth;
+		|        public int windowWidth { get; set; }
 		|        [ContextProperty(""ШиринаОкна"", ""WindowWidth"")]
 		|        public int WindowWidth
 		|        {
-		|            get { return Convert.ToInt32(windowWidth.AsNumber()); }
-		|            set { windowWidth = ValueFactory.Create(value); }
+		|            get { return windowWidth; }
+		|            private set { windowWidth = value; }
 		|        }
 		|
 		|        private int startWidth;
@@ -18795,7 +15353,7 @@
 		|            }
 		|        }
 		|
-		|        public DfAction loaded;
+		|        public DfAction loaded { get; set; }
 		|        [ContextProperty(""Загружена"", ""Loaded"")]
 		|        public DfAction Loaded
 		|        {
@@ -18803,7 +15361,7 @@
 		|            set { loaded = value; }
 		|        }
 		|		
-		|        public DfAction resize;
+		|        public DfAction resize { get; set; }
 		|        [ContextProperty(""РазмерИзменен"", ""Resize"")]
 		|        public DfAction Resize
 		|        {
@@ -18814,27 +15372,47 @@
 		|        [ContextMethod(""Открыть"", ""Open"")]
 		|        public void Open()
 		|        {
+		|            DeclarativeForms.strFunctions += ""firstStart();"";
+		|            bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
+		|            string folderName = @"".\"";
+		|            if (!isWin)
+		|            {
+		|                folderName = @""./"";
+		|            }
+		|
 		|            if (DeclarativeForms.openInBrowser)
 		|            {
-		|                bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
-		|                string folderName = @"".\"";
-		|                if (!isWin)
-		|                {
-		|                    folderName = @""./"";
-		|                }
 		|                DeclarativeForms.instance.LoadScripts(folderName);
+		|
+		|                if (osdf.DeclarativeForms.InitialStrFunctions == null)
+		|                {
+		|                    osdf.DeclarativeForms.InitialStrFunctions = osdf.DeclarativeForms.strFunctions;
+		|                }
+		|
 		|                // Запустим index.html в браузере по умолчанию.
-		|                string target = ""index.html"";
+		|                string target = pathStartupScript + separator + ""index.html"";
 		|                System.Diagnostics.Process process = new System.Diagnostics.Process();
 		|                DeclarativeForms.process = process;
 		|
-		|                process.StartInfo.FileName = target;
+		|                if (!isWin)
+		|                {
+		|                    ////process.StartInfo.FileName = ""firefox"";
+		|                    ////process.StartInfo.FileName = ""chrome"";
+		|                    process.StartInfo.FileName = ""yandex-browser-stable"";
+		|                    process.StartInfo.Arguments = target;
+		|                }
+		|                else
+		|                {
+		|                    process.StartInfo.FileName = target;
+		|                }
+		|
 		|                process.Start();
 		|                process.WaitForExit();
-		|                while (DeclarativeForms.wsserverOn)
+		|                while (!((osdf.DeclarativeForms.TimeClietnConnected - osdf.DeclarativeForms.TimeClietnClosed) < 0))
 		|                {
-		|                    System.Threading.Thread.Sleep(9);
+		|                    System.Threading.Thread.Sleep(3000);
 		|                }
+		|		
 		|                Environment.Exit(0);
 		|            }
 		|            else
@@ -18857,23 +15435,27 @@
 		|                str = str.Replace(strFind, strReplace);
 		|                Packagejson.packagejson = str;
 		|
-		|                bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
-		|                string folderName = @"".\"";
-		|                if (!isWin)
+		|                if (!DeclarativeForms.scriptsIsLoad)
 		|                {
-		|                    folderName = @""./"";
+		|                    DeclarativeForms.instance.LoadScripts(folderName);
 		|                }
 		|
-		|                DeclarativeForms.instance.LoadScripts(folderName);
-		|                string pathNW = DeclarativeForms._nw;
-		|
 		|                System.Diagnostics.Process process = new System.Diagnostics.Process();
-		|
 		|                DeclarativeForms.process = process;
-		|
 		|                process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-		|                process.StartInfo.FileName = ""\u0022"" + pathNW + ""\u0022"";
-		|                process.StartInfo.Arguments = ""\u0022"" + pathStartupScript + separator;
+		|
+		|                if (!isWin)
+		|                {
+		|                    process.StartInfo.FileName = DeclarativeForms._nw;
+		|                    process.StartInfo.Arguments = pathStartupScript;
+		|                    System.Threading.Thread.Sleep(2000);
+		|                }
+		|                else
+		|                {
+		|                    process.StartInfo.FileName = ""\u0022"" + DeclarativeForms._nw + ""\u0022"";
+		|                    process.StartInfo.Arguments = ""\u0022"" + pathStartupScript + separator;
+		|                }
+		|
 		|                process.Start();
 		|                process.WaitForExit();
 		|
@@ -18890,7 +15472,7 @@
 		|            {
 		|                menu = value;
 		|                string strFunc = ""gui.Window.get().menu = mapKeyEl.get(\u0022"" + menu.ItemKey + ""\u0022);"";
-		|                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|                DeclarativeForms.SendStrFunc(strFunc);
 		|            }
 		|        }
 		|
@@ -18911,7 +15493,7 @@
 		|        public IValue AppendChild(IValue p1)
 		|        {
 		|            string strFunc = ""document.body.appendChild(mapKeyEl.get(\u0022"" + ((dynamic)p1).ItemKey + ""\u0022));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
 		|            ((dynamic)p1).Parent = this;
 		|            return p1;
 		|        }
@@ -18920,7 +15502,14 @@
 		|        public void RemoveChild(IValue p1)
 		|        {
 		|            string strFunc = ""document.body.removeChild(mapKeyEl.get(\u0022"" + ((dynamic)p1.AsObject()).ItemKey + ""\u0022));"";
-		|            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+		|            DeclarativeForms.SendStrFunc(strFunc);
+		|		
+		|            try
+		|            {
+		|                IValue val1 = Children.Find(p1);
+		|                Children.Remove(Convert.ToInt32(val1.AsNumber()));
+		|            }
+		|            catch { }
 		|        }
 		|    }
 		|}
@@ -19285,9 +15874,7 @@
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|using System.Reflection;
-		|using System.Runtime.InteropServices;
 		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.HostedScript.Library.Binary;
 		|using System.Collections.Concurrent;
 		|
 		|namespace osdf
@@ -19305,11 +15892,18 @@
 		|        public static string _oscriptPath = """";
 		|        public static string _nw = """";
 		|        public static string strFunctions = """";
-		|        public static int port = 3333;
+		|
+		|        public static string InitialStrFunctions { get; set; } = null; // Запомним интерфейс формы при запуске.
+		|        public static long TimeClietnClosed { get; set; } // Время отключения клиента.
+		|        public static long TimeClietnConnected { get; set; } // Время подключения клиента.
+		|
 		|        public static Hashtable hashtable = new Hashtable();
 		|        private static DfForm form = new DfForm();
 		|        public static System.Diagnostics.Process process;
 		|        public static System.Random Random = new Random();
+		|        public static bool scriptsIsLoad = false;
+		|
+		|        public static bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
 		|
 		|        public static DeclarativeForms getInstance()
 		|        {
@@ -19332,54 +15926,53 @@
 		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
 		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
 		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
-		|            _nw = pathStartupScript + separator + ""nwjs"" + separator + ""nw.exe"";
+		|            if (isWin)
+		|            {
+		|                _nw = pathStartupScript + separator + ""nwjs"" + separator + ""nw.exe"";
+		|            }
+		|            else
+		|            {
+		|                _nw = pathStartupScript + separator + ""nwjslin"" + separator + ""nw"";
+		|            }
 		|            _oscriptPath = pathStartupScript + separator + ""oscript"" + separator + ""bin"" + separator + ""oscript.exe"";
 		|
 		|            DeclarativeForms inst = getInstance();
 		|            inst.InjectGlobalProperty(shareStructure, ""ОбщаяСтруктура"", false);
 		|            shareStructure.Insert(""ДФ"", inst);
-		|            openInBrowser = false;
 		|            return inst;
-		|        }
-		|
-		|        [ContextProperty(""НоваяСтрока"", ""NewLine"")]
-		|        public string NewLine
-		|        {
-		|            get
-		|            {
-		|                if (Environment.OSVersion.Platform == PlatformID.Unix)
-		|                {
-		|                    return ""\u000a""; // \n
-		|                }
-		|                else if (Environment.OSVersion.Platform == PlatformID.MacOSX)
-		|                {
-		|                    return ""\u000d""; // \r
-		|                }
-		|                return ""\u000d\u000a"";
-		|            }
 		|        }
 		|
 		|        public static SystemGlobalContext GlobalContext()
 		|        {
 		|            return GlobalsManager.GetGlobalContext<SystemGlobalContext>();
 		|        }
-		|
-		|        public static bool wsserverOn;
-		|        [ContextProperty(""ВебСерверРаботает"", ""WsserverOn"")]
-		|        public bool WsserverOn
+		|		
+		|        public static void SendStrFunc(string strFunc)
 		|        {
-		|            get { return wsserverOn; }
-		|            set { wsserverOn = value; }
+		|            strFunctions = strFunctions + strFunc + funDelimiter;
 		|        }
 		|
-		|        public static bool openInBrowser;
+		|        public static bool displayStartupWarning = false;
+		|        [ContextProperty(""ВыводитьПредупреждениеПриЗапуске"", ""DisplayStartupWarning"")]
+		|        public bool DisplayStartupWarning
+		|        {
+		|            get { return displayStartupWarning; }
+		|            set { displayStartupWarning = value; }
+		|        }
+		|
+		|        public static bool openInBrowser = false;
 		|        [ContextProperty(""ОткрытьВБраузере"", ""OpenInBrowser"")]
 		|        public bool OpenInBrowser
 		|        {
 		|            get { return openInBrowser; }
-		|            set { openInBrowser = value; }
+		|            set
+		|            {
+		|                if (isWin)
+		|                {
+		|                    openInBrowser = value;
+		|                }
+		|            }
 		|        }
-		|
 		|		
 		|        public static string CSSPath = ""styles.css"";
 		|        private string _cssPath;
@@ -19393,6 +15986,26 @@
 		|                CSSPath = _cssPath;
 		|            }
 		|        }
+		|		
+		|        [ContextMethod(""Лоток"", ""Tray"")]
+		|        public DfTray Tray()
+		|        {
+		|            if (!openInBrowser)
+		|            {
+		|                return new DfTray();
+		|            }
+		|            else
+		|            {
+		|                GlobalContext().Echo(""Элемент Лоток недоступен при открытии программы в браузере."");
+		|                return null;
+		|            }
+		|        }		
+		|		
+		|        [ContextMethod(""Таймер"", ""Timer"")]
+		|        public DfTimer Timer()
+		|        {
+		|            return new DfTimer();
+		|        }		
 		|		
 		|        [ContextMethod(""Фон"", ""Background"")]
 		|        public DfBackground Background(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null, IValue p5 = null, IValue p6 = null, IValue p7 = null, IValue p8 = null)
@@ -20773,7 +17386,14 @@
 		|        [ContextMethod(""ЗавершитьРаботу"", ""Exit"")]
 		|        public void Exit()
 		|        {
-		|            process.Kill();
+		|            if (!OpenInBrowser)
+		|            {
+		|                Send(""gui.App.quit();"");
+		|            }
+		|            else
+		|            {
+		|                Send(""window.close();"");
+		|            }
 		|        }
 		|
 		|        [ContextMethod(""Цвет"", ""Color"")]
@@ -20818,11 +17438,20 @@
 		|            set { _nw = value; }
 		|        }
 		|
-		|        [ContextProperty(""Порт"", ""Port"")]
-		|        public int Port
+		|        public static int portReceivingServer = 3333;
+		|        [ContextProperty(""ПортСервераПриема"", ""PortReceivingServer"")]
+		|        public int PortReceivingServer
 		|        {
-		|            get { return port; }
-		|            set { port = value; }
+		|            get { return portReceivingServer; }
+		|            set { portReceivingServer = value; }
+		|        }
+		|
+		|        public static int portSendServer = 3339;
+		|        [ContextProperty(""ПортСервераОтправки"", ""PortSendServer"")]
+		|        public int PortSendServer
+		|        {
+		|            get { return portSendServer; }
+		|            set { portSendServer = value; }
 		|        }
 		|
 		|        [ContextProperty(""ОбщаяСтруктура"", ""ShareStructure"")]
@@ -20835,6 +17464,204 @@
 		|        public void InjectGlobalProperty(IValue obj, string name, bool onlyRead)
 		|        {
 		|            GlobalContext().EngineInstance.Environment.InjectGlobalProperty(obj, name, onlyRead);
+		|        }
+		|
+		|        public static bool webserverReceivingUploaded = false;
+		|        public static void LoadWsserverReceiving()
+		|        {
+		|            StructureImpl extContext = new StructureImpl();
+		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
+		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
+		|            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");
+		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
+		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
+		|
+		|            string backgroundTasksServerReceiving = @""
+		|Процедура ЗапускКлиента(параметр1) Экспорт
+		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
+		|	Стр = """"
+		|	|Перем ВСПДФ;
+		|	|Перем ПервоеСообщение;
+		|	|
+		|	|Процедура ВСПДФ_ПриПолученииСообщения() Экспорт
+		|	|	Сообщение = ВСПДФ.АргументыСобытия.Сообщение;
+		|	|	ДФ.ОбработатьСообщение(Сообщение);
+		|	|	Если ПервоеСообщение Тогда
+		|	|	    ПервоеСообщение = Ложь;
+		|	|	Иначе
+		|	|	    Попытка
+		|	|		    ВСПДФ.ОтправитьТекст(ДФ.СтрокаФункций);
+		|	|	    Исключение
+		|	|	    КонецПопытки;
+		|	|	    ДФ.СтрокаФункций = """""""""""""""";
+		|	|	КонецЕсли;
+		|	|КонецПроцедуры
+		|	|   
+		|	|ВСПДФ = Новый ВебСерверПолученияДекларФорм();
+		|	|ВСПДФ.ПриПолученииСообщения = ВСПДФ.Действие(ЭтотОбъект, """"""""ВСПДФ_ПриПолученииСообщения"""""""");
+		|	|ВСПДФ.Начать(""""""""127.0.0.1"""""""", ДФ.ПортСервераПриема);
+		|	|
+		|	|ПервоеСообщение = Истина;
+		|	|
+		|	|Пока ВСПДФ.Продолжать Цикл
+		|	|   ВСПДФ.ПолучитьСобытие().Выполнить();
+		|	|КонецЦикла;
+		|	|"""";
+		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+		|КонецПроцедуры
+		|
+		|МассивПараметров = Новый Массив(1);
+		|МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
+		|"";
+		|            GlobalContext().LoadScriptFromString(backgroundTasksServerReceiving, extContext);
+		|            while (!webserverReceivingUploaded)
+		|            {
+		|                System.Threading.Thread.Sleep(300);
+		|            }		
+		|        }
+		|
+		|        public static bool webserverSendUploaded = false;
+		|        public static void LoadWsserverSend()
+		|        {
+		|            StructureImpl extContext = new StructureImpl();
+		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
+		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
+		|            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");
+		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
+		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
+		|
+		|            string backgroundTasksServerSend = @""
+		|Процедура ЗапускКлиента(параметр1) Экспорт
+		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
+		|	Стр = """"
+		|	|Перем ВСОДФ;
+		|	|Перем ПервоеСообщение;
+		|	|
+		|	|Процедура ВСОДФ_ПриПолученииСообщения() Экспорт
+		|	|	Сообщение = ВСОДФ.АргументыСобытия.Сообщение;
+		|	|	ДФ.ОбработатьСообщение(Сообщение);
+		|	|	Если ПервоеСообщение Тогда
+		|	|	    Попытка
+		|	|		    ВСОДФ.ОтправитьТекст(ДФ.СтрокаФункций);
+		|	|	    Исключение
+		|	|	    КонецПопытки;
+		|	|	    ДФ.СтрокаФункций = """""""""""""""";
+		|	|	    ПервоеСообщение = Ложь;
+		|	|	КонецЕсли;
+		|	|КонецПроцедуры
+		|	|   
+		|	|ВСОДФ = Новый ВебСерверОтправкиДекларФорм();
+		|	|ВСОДФ.ПриПолученииСообщения = ВСОДФ.Действие(ЭтотОбъект, """"""""ВСОДФ_ПриПолученииСообщения"""""""");
+		|	|ВСОДФ.Начать(""""""""127.0.0.1"""""""", ДФ.ПортСервераОтправки);
+		|	|
+		|	|ПервоеСообщение = Истина;
+		|	|
+		|	|Пока ВСОДФ.Продолжать Цикл
+		|	|   ВСОДФ.ПолучитьСобытие().Выполнить();
+		|	|КонецЦикла;
+		|	|"""";
+		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+		|КонецПроцедуры
+		|
+		|МассивПараметров = Новый Массив(1);
+		|МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
+		|"";
+		|            GlobalContext().LoadScriptFromString(backgroundTasksServerSend, extContext);
+		|            while (!webserverSendUploaded)
+		|            {
+		|                System.Threading.Thread.Sleep(300);
+		|            }
+		|        }
+		|
+		|        public static bool clientServerUploaded = false;
+		|        public void LoadClientServer()
+		|        {
+		|            StructureImpl extContext = new StructureImpl();
+		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
+		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
+		|            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");
+		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
+		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
+		|
+		|            string backgroundClientServer = @""
+		|Процедура ЗапускКлиента(параметр1) Экспорт
+		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
+		|	Стр = """"
+		|	|Перем КСДФ;
+		|	|Перем Клиент;
+		|	|Перем ИдентификаторКлиента;
+		|	|
+		|	|Процедура Сервер_ПриПодключенииКлиента() Экспорт
+		|	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
+		|	|	ИдентификаторКлиента = СерверКлиент.ИдентификаторКлиента;
+		|	|	//Сообщить(""""""""Клиент подключен. Идентификатор клиента = """""""" + СерверКлиент.ИдентификаторКлиента + """""""" """""""" + ТекущаяДата());
+		|	|КонецПроцедуры
+		|	|
+		|	|Процедура Сервер_ПриОтключенииКлиента() Экспорт
+		|	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
+		|	|	//Сообщить(""""""""Клиент отключен. Идентификатор клиента = """""""" + СерверКлиент.ИдентификаторКлиента + """""""" """""""" + ТекущаяДата());
+		|	|КонецПроцедуры
+		|	|
+		|	|Процедура Сервер_ПриПолученииСообщения() Экспорт
+		|	|	Сообщение = КСДФ.АргументыСобытия.Сообщение;
+		|	|	Отправитель = КСДФ.АргументыСобытия.Отправитель;
+		|	|	ДФ.ОбработатьСообщение(Сообщение.Текст);
+		|	|	
+		|	|	//Сообщить(""""""""Сообщение.Текст = """""""" + Сообщение.Текст);
+		|	|	Если Сообщение.Текст = """"""""ConstantClient5du4fsjiwixxf"""""""" Тогда
+		|	|		Клиент = КСДФ.АргументыСобытия.Отправитель;
+		|	|		ДФ.ОбщаяСтруктура.Вставить(""""""""Клиент"""""""", Клиент);
+		|	|		ДФ.ОбщаяСтруктура.Вставить(""""""""КСДФ"""""""", КСДФ);
+		|	|	Иначе
+		|	|	КонецЕсли;
+		|	|
+		|	|	//Сообщить(""""""""ДФ.СтрокаФункций = """""""" + ДФ.СтрокаФункций);
+		|	|	Попытка
+		|	|		Клиент.ОтправитьСообщение(КСДФ.СообщениеТекст(ДФ.СтрокаФункций));
+		|	|	Исключение
+		|	|		Отправитель.ОтправитьСообщение(КСДФ.СообщениеТекст(ДФ.СтрокаФункций));
+		|	|	КонецПопытки;
+		|	|	ДФ.СтрокаФункций = """""""""""""""";
+		|	|	
+		|	|	Если КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер Тогда
+		|	|		Если Сообщение.Текст = """"""""ConstantClient5du4fsjiwixxf"""""""" Тогда
+		|	|		Иначе
+		|	|			Отправитель.Отключить();
+		|	|		КонецЕсли;
+		|	|	КонецЕсли;
+		|	|	// Сообщить(""""""""== Событие обработано ======================================="""""""");
+		|	|КонецПроцедуры
+		|	|
+		|	|КСДФ = Новый КлиентСерверДекларФорм();
+		|	|TCPСервер1 = КСДФ.TCPСервер(ДФ.ПортСервераПриема);
+		|	|TCPСервер1.ПриПодключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"""""Сервер_ПриПодключенииКлиента""""""""); // Это свойство необходимо установить.
+		|	|TCPСервер1.ПриОтключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"""""Сервер_ПриОтключенииКлиента""""""""); // Это свойство необходимо установить.
+		|	|TCPСервер1.ПриПолученииСообщения = КСДФ.Действие(ЭтотОбъект, """"""""Сервер_ПриПолученииСообщения"""""""");
+		|	|КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер;
+		|	|
+		|	|TCPСервер1.Начать();
+		|	|
+		|	|Пока КСДФ.Продолжать Цикл
+		|	|   КСДФ.ПолучитьСобытие().Выполнить();
+		|	|КонецЦикла;
+		|	|"""";
+		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+		|КонецПроцедуры
+		|
+		|МассивПараметров = Новый Массив(1);
+		|МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
+		|"";
+		|            GlobalContext().LoadScriptFromString(backgroundClientServer, extContext);
+		|            while (!clientServerUploaded)
+		|            {
+		|                System.Threading.Thread.Sleep(300);
+		|            }
 		|        }
 		|
 		|        [ContextMethod(""ЗагрузитьСценарии"", ""LoadScripts"")]
@@ -20850,203 +17677,62 @@
 		|            shareStructure.Insert(""Сценарии"", scripts);
 		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
 		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
-		|		
-		|            string backgroundTasks = @""
-		|Процедура ЗапускКлиента(параметр1) Экспорт
-		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
-		|	Стр = """"
-		|	|Перем КСДФ;
-		|	|Перем Клиент;
-		|	|Перем ИдентификаторКлиента;
-		|	|
-		|	|Функция РазобратьСтроку(Строка, Разделитель)
-		|	|	Стр = СтрЗаменить(Строка,Разделитель,символы.ПС);
-		|	|	М = Новый Массив;
-		|	|	Если ПустаяСтрока(Стр) Тогда
-		|	|		Возврат М;
-		|	|	КонецЕсли;
-		|	|	Для Ч = 1 По СтрЧислоСтрок(Стр) Цикл
-		|	|		М.Добавить(СтрПолучитьСтроку(Стр,Ч));
-		|	|	КонецЦикла;
-		|	|	Возврат М;
-		|	|КонецФункции
-		|	|
-		|	|Функция ТекстСообщения(парам)
-		|	|	СимволПС = Символы.ВК + Символы.ПС;
-		|	|	
-		|	|	// Ответ для браузер-клиента нужно сформировать по определенным правилам, с заголовком и прочими составляющими.
-		|	|	Массив = Новый Массив();
-		|	|	Массив.Добавить(""""""""HTTP/1.1 200 OK"""""""");
-		|	|	Массив.Добавить(""""""""Server: OneScriptDeclarativeForms"""""""");
-		|	|	Массив.Добавить(""""""""Content-Type: text/html; charset=utf-8"""""""");
-		|	|	Массив.Добавить(СимволПС);
-		|	|	ДвоичныеДанныеЗаголовков = ПолучитьДвоичныеДанныеИзСтроки(СтрСоединить(Массив, СимволПС), """"""""utf-8"""""""");
-		|	|	ДвоичныеДанныеТела = ПолучитьДвоичныеДанныеИзСтроки(парам);
-		|	|	ДвоичныеДанныеОтвета = Новый Массив;
-		|	|	ДвоичныеДанныеОтвета.Добавить(ДвоичныеДанныеЗаголовков);
-		|	|	ДвоичныеДанныеОтвета.Добавить(ДвоичныеДанныеТела);
-		|	|	Ответ = СоединитьДвоичныеДанные(ДвоичныеДанныеОтвета);
-		|	|
-		|	|	Возврат ПолучитьСтрокуИзДвоичныхДанных(Ответ); 
-		|	|КонецФункции
-		|	|
-		|	|Процедура Сервер_ПриПодключенииКлиента() Экспорт
-		|	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
-		|	|	ИдентификаторКлиента = СерверКлиент.ИдентификаторКлиента;
-		|	|	// Сообщить(""""""""Клиент подключен. Идентификатор клиента = """""""" + СерверКлиент.ИдентификаторКлиента + """""""" """""""" + ТекущаяДата());
-		|	|КонецПроцедуры
-		|	|
-		|	|Процедура Сервер_ПриОтключенииКлиента() Экспорт
-		|	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
-		|	|	// Сообщить(""""""""Клиент отключен. Идентификатор клиента = """""""" + СерверКлиент.ИдентификаторКлиента + """""""" """""""" + ТекущаяДата());
-		|	|КонецПроцедуры
-		|	|
-		|	|Процедура Сервер_ПриПолученииСообщения() Экспорт
-		|	|	Сообщение = КСДФ.АргументыСобытия.Сообщение;
-		|	|	Отправитель = КСДФ.АргументыСобытия.Отправитель;
-		|	|	ДФ.ОбработатьСообщение(Сообщение.Текст);
-		|	|	
-		|	|	// Сообщить(""""""""Сообщение.Текст = """""""" + Сообщение.Текст);
-		|	|	Если Сообщение.Текст = """"""""ConstantClient5du4fsjiwixxf"""""""" Тогда
-		|	|		Клиент = КСДФ.АргументыСобытия.Отправитель;
-		|	|		ДФ.ОбщаяСтруктура.Вставить(""""""""Клиент"""""""", Клиент);
-		|	|		ДФ.ОбщаяСтруктура.Вставить(""""""""КСДФ"""""""", КСДФ);
-		|	|	Иначе
-		|	|	КонецЕсли;
-		|	|
-		|	|	// Сообщить(""""""""ДФ.СтрокаФункций = """""""" + ДФ.СтрокаФункций);
-		|	|	Попытка
-		|	|		Если Сообщение.Текст = """"""""ConstantClient5du4fsjiwixxf"""""""" Тогда
-		|	|			Если ИдентификаторКлиента = 1 Тогда
-		|	|				Клиент.ОтправитьСообщение(КСДФ.СообщениеТекст(ДФ.СтрокаФункций));
-		|	|			КонецЕсли;
-		|	|		Иначе
-		|	|			Отправитель.ОтправитьСообщение(КСДФ.СообщениеТекст(ТекстСообщения(ДФ.СтрокаФункций)));
-		|	|		КонецЕсли;
-		|	|	Исключение
-		|	|	КонецПопытки;
-		|	|	ДФ.СтрокаФункций = """""""""""""""";
-		|	|	
-		|	|	Если КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер Тогда
-		|	|		Если Сообщение.Текст = """"""""ConstantClient5du4fsjiwixxf"""""""" Тогда
-		|	|		Иначе
-		|	|			Отправитель.Отключить(); // Нужно в случае клиента-браузера по протоколу http.
-		|	|		КонецЕсли;
-		|	|	КонецЕсли;
-		|	|	// Сообщить(""""""""== Событие обработано ======================================="""""""");
-		|	|КонецПроцедуры
-		|	|
-		|	|КСДФ = Новый КлиентСерверДекларФорм();
-		|	|TCPСервер1 = КСДФ.TCPСервер(ДФ.Порт);
-		|	|TCPСервер1.ПриПодключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"""""Сервер_ПриПодключенииКлиента""""""""); // Это свойство необходимо установить.
-		|	|TCPСервер1.ПриОтключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"""""Сервер_ПриОтключенииКлиента""""""""); // Это свойство необходимо установить.
-		|	|TCPСервер1.ПриПолученииСообщения = КСДФ.Действие(ЭтотОбъект, """"""""Сервер_ПриПолученииСообщения"""""""");
-		|	|КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер;
-		|	|
-		|	|// Запустим сервер
-		|	|TCPСервер1.Начать();
-		|	|// Сообщить(""""""""Сервер запущен"""""""");
-		|	|
-		|	|// Запустим цикл обработки событий
-		|	|Пока КСДФ.Продолжать Цикл
-		|	|   КСДФ.ПолучитьСобытие().Выполнить();
-		|	|КонецЦикла;
-		|	|"""";
-		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-		|КонецПроцедуры
 		|
-		|Процедура ЗапускgetProps(параметр1) Экспорт
-		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
-		|	Стр = """"
-		|	|Пока Истина Цикл
-		|	|	Пока ДФ.КоличествоВОчереди() > 0 Цикл
-		|	|		ДФ.Отправить();
-		|	|	КонецЦикла;
-		|	|	Приостановить(7);
-		|	|КонецЦикла;"""";
-		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-		|КонецПроцедуры
-		|
-		|МассивПараметров = Новый Массив(1);
-		|МассивПараметров[0] = ОбщаяСтруктура.ДФ;
-		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
-		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускgetProps"""", МассивПараметров);
-		|"";
-		|
-		|            string backgroundTasksBr = @""
-		|Процедура ЗапускКлиента(параметр1) Экспорт
-		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
-		|	Стр = """"
-		|	|Перем ВСДФ;
-		|	|
-		|	|Процедура ВСДФ_ПриПолученииСообщения() Экспорт
-		|	|	// Сообщить(""""""""== ВСДФ_ПриПолученииСообщения ======================================="""""""");
-		|	|	Сообщение = ВСДФ.АргументыСобытия.Сообщение;
-		|	|	// Сообщить(""""""""Сообщение = """""""" + Сообщение);
-		|	|	ДФ.ОбработатьСообщение(Сообщение);
-		|	|	
-		|	|	
-		|	|КонецПроцедуры
-		|	|   
-		|	|ВСДФ = Новый ВебСерверДекларФорм();
-		|	|ВСДФ.ПриПолученииСообщения = ВСДФ.Действие(ЭтотОбъект, """"""""ВСДФ_ПриПолученииСообщения"""""""");
-		|    |ВСДФ.Начать(""""""""127.0.0.1"""""""", ДФ.Порт);
-		|	|   
-		|	|
-		|	|// Запустим цикл обработки событий
-		|	|Пока ВСДФ.Продолжать Цикл
-		|	|   ВСДФ.ПолучитьСобытие().Выполнить();
-		|	|КонецЦикла;
-		|	|"""";
-		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-		|КонецПроцедуры
-		|
-		|Процедура ЗапускgetProps(параметр1) Экспорт
-		|	Контекст = Новый Структура(""""ДФ"""", параметр1);
-		|	Стр = """"
-		|	|Пока Истина Цикл
-		|	|	Пока ДФ.КоличествоВОчереди() > 0 Цикл
-		|	|		ДФ.Отправить();
-		|	|	КонецЦикла;
-		|	|	Приостановить(7);
-		|	|КонецЦикла;"""";
-		|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-		|КонецПроцедуры
-		|
-		|МассивПараметров = Новый Массив(1);
-		|МассивПараметров[0] = ОбщаяСтруктура.ДФ;
-		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
-		|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускgetProps"""", МассивПараметров);
-		|"";
-		|            if (OpenInBrowser)
+		|            // Ставим условия для корректной загрузки в случае одиночного или многократного использования
+		|            // в сценарии метода Сценарии = ДФ.ЗагрузитьСценарии(""os"");
+		|            if (!scriptsIsLoad)
 		|            {
-		|                GlobalContext().LoadScriptFromString(backgroundTasksBr, extContext);
-		|            }
-		|            else
-		|            {
-		|                GlobalContext().LoadScriptFromString(backgroundTasks, extContext);
+		|                if (isWin)
+		|                {
+		|                    LoadWsserverReceiving();
+		|                    LoadWsserverSend();
+		|                }
+		|                else
+		|                {
+		|                    LoadClientServer();
+		|                }
 		|            }
 		|
-		|            // Создаем в этом каталоге файл package.json с заданными в сценарии начальнымисвойствами формы.
+		|            // Создаем в этом каталоге файл package.json с заданными в сценарии начальными свойствами формы.
 		|            if (!OpenInBrowser)
 		|            {
 		|                File.WriteAllText(pathStartupScript + separator + ""package.json"", Packagejson.packagejson, System.Text.Encoding.UTF8);
 		|            }
 		|
 		|            // Создаем в этом каталоге файл index.html.
-		|            if (OpenInBrowser)
+		|            if (isWin)
 		|            {
-		|                File.WriteAllText(pathStartupScript + separator + ""index.html"", Indexhtml.IndexhtmlBr, System.Text.Encoding.UTF8);
+		|                if (OpenInBrowser)
+		|                {
+		|                    string strIndexhtmlBr = IndexhtmlWinBr.Indexhtml;
+		|                    if (DisplayStartupWarning)
+		|                    {
+		|                        string str1 = ""//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);"";
+		|                        string str2 = ""setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);"";
+		|                        strIndexhtmlBr = strIndexhtmlBr.Replace(str1, str2);
+		|                    }
+		|                    File.WriteAllText(pathStartupScript + separator + ""index.html"", strIndexhtmlBr, System.Text.Encoding.UTF8);
+		|                }
+		|                else
+		|                {
+		|                    File.WriteAllText(pathStartupScript + separator + ""index.html"", IndexhtmlWin.Indexhtml, System.Text.Encoding.UTF8);
+		|                }
 		|            }
 		|            else
 		|            {
-		|                File.WriteAllText(pathStartupScript + separator + ""index.html"", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
+		|                if (OpenInBrowser)
+		|                {
+		|                    string str1 = ""//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);"";
+		|                    string str2 = ""setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);"";
+		|                    string strIndexhtmlBr = IndexhtmlLinBr.Indexhtml.Replace(str1, str2);
+		|                    File.WriteAllText(pathStartupScript + separator + ""index.html"", strIndexhtmlBr, System.Text.Encoding.UTF8);
+		|                }
+		|                else
+		|                {
+		|                    File.WriteAllText(pathStartupScript + separator + ""index.html"", IndexhtmlLin.Indexhtml, System.Text.Encoding.UTF8);
+		|                }
 		|            }
 		|
-		|            // Создаем в этом каталоге файл стиля (имя_скрипта).css
-		|            // ...
-		|
-		|            bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
 		|            if (isWin)
 		|            {
 		|                if (folderName == @"".\"")
@@ -21176,6 +17862,9 @@
 		|                IRuntimeContextInstance inst = GlobalContext().LoadScript(item.Value.AsString(), extContext);
 		|                scripts.Insert(item.Key.AsString(), (IValue)inst);
 		|            }
+		|
+		|            scriptsIsLoad = true;
+		|
 		|            return scripts;
 		|        }
 		|
@@ -21218,49 +17907,58 @@
 		|        [ContextMethod(""СообщениеФорме"", ""MessageToForm"")]
 		|        public void Send(string p1)
 		|        {
-		|            int num = shareStructure.FindProperty(""Клиент"");
-		|            dynamic val1 = shareStructure.GetPropValue(num);
-		|            int num2 = shareStructure.FindProperty(""КСДФ"");
-		|            dynamic val2 = shareStructure.GetPropValue(num2);
-		|
-		|            val1.SendMessage(val2.TextMessage(p1));
-		|            strFunctions = """";
+		|            if (isWin)
+		|            {
+		|                WebServerSendText(p1);
+		|            }
+		|            else
+		|            {
+		|                SendStrFunc(p1);
+		|            }
 		|        }
-		|
-		|        public DfAction gettingProperty;
-		|        [ContextProperty(""ПриПолученииСвойства"", ""GettingProperty"")]
-		|        public DfAction GettingProperty
-		|        {
-		|            get { return gettingProperty; }
-		|            set { gettingProperty = value; }
-		|        }		
 		|
 		|        [ContextMethod(""ОбработатьСообщение"", ""ProcessMessage"")]
 		|        public void ProcessMessage(string p1)
 		|        {
-		|            string strZapros;
-		|            if (OpenInBrowser)
-		|            {
-		|                strZapros = p1;
-		|            }
-		|            else
-		|            {
-		|                string[] zapros = p1.Split(new string[] { ""\u000a"", ""\u000d"" }, StringSplitOptions.RemoveEmptyEntries);
-		|                strZapros = zapros[zapros.Length - 1];
-		|            }
+		|            string strZapros = p1;
 		|            string[] massiv = strZapros.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
 		|            //GlobalContext().Echo(""Сообщение.Текст = "" + p1);
 		|            //GlobalContext().Echo(""СтрЗапроса = "" + strZapros);
+		|		
+		|            if (strZapros == ""formIsLoaded"")
+		|            {
+		|                try
+		|                {
+		|                    Execute(((DfForm)FindElement(""mainForm"")).Loaded);
+		|                }
+		|                catch (Exception)
+		|                {
+		|                    //GlobalContext().Echo(""Loaded не задан"");
+		|                }
+		|            }
+		|		
 		|            if (!(massiv.Length < 2))
 		|            {
 		|                string nameElement = massiv[0];
 		|                string nameEvent = massiv[1];
 		|                if (massiv.Length == 2) // Для событий без аргументов.
 		|                {
+		|                    if (nameElement == ""mainForm"" && nameEvent == ""loaded"")
+		|                    {
+		|                        return;
+		|                    }
+		|		
 		|                    try
 		|                    {
 		|                        Sender = FindElement(nameElement);
-		|                        Execute((DfAction)FindElement(nameElement).AsObject().GetPropValue(nameEvent));
+		|                        if (Sender.GetType() == typeof(osdf.DfMenuItem))
+		|                        {
+		|                            Execute((DfAction)FindElement(nameElement).AsObject().GetPropValue(nameEvent));
+		|                        }
+		|                        else
+		|                        {
+		|                            Execute((DfAction)Sender.GetType().GetProperty(nameEvent).GetValue(Sender));
+		|                        }
 		|                    }
 		|                    catch
 		|                    {
@@ -21333,6 +18031,10 @@
 		|                            {
 		|                                propValue = (DfTableHeader)FindElement(massiv[3]);
 		|                            }		
+		|                            else if (Sender.GetType() == typeof(osdf.DfImage))
+		|                            {
+		|                                propValue = ValueFactory.Create(massiv[3].Replace(""#"", """"));
+		|                            }		
 		|                            else
 		|                            {
 		|                                propValue = ValueFactory.Create(massiv[3]);
@@ -21340,23 +18042,165 @@
 		|
 		|                            try
 		|                            {
-		|                                // Если свойство предоставляется для пользователя только для чтения
-		|                                // то присваивать значение будем свойству - посреднику.
-		|                                string nameProperty2 = (string)namesRusProps[massiv[2]][2].ToString();
-		|                                ((dynamic)Sender)[nameProperty2].SetValue((dynamic)Sender, propValue);
+		|                                // Присваивать значение будем свойству - посреднику.
+		|                                string nameProperty2 = namesRusProps[massiv[2]][2].ToString();
+		|                                if (nameProperty2 == ""textAlign"")
+		|                                {
+		|                                    nameProperty2 = ""horizontalTextAlign"";
+		|                                }
+		|                                if (nameProperty2 == ""border"")
+		|                                {
+		|                                    nameProperty2 = ""borders"";
+		|                                }
+		|                                if (nameProperty2 == ""borderStyle"")
+		|                                {
+		|                                    nameProperty2 = ""bordersStyle"";
+		|                                }
+		|                                if (nameProperty2 == ""borderColor"")
+		|                                {
+		|                                    nameProperty2 = ""bordersColor"";
+		|                                }
+		|                                if (nameProperty2 == ""color"")
+		|                                {
+		|                                    nameProperty2 = ""textColor"";
+		|                                }
+		|                                if (nameProperty2 == ""borderWidth"")
+		|                                {
+		|                                    nameProperty2 = ""bordersWidth"";
+		|                                }		
+		|                                dynamic obj = ((dynamic)Sender);
+		|
+		|                                Type type = obj.GetType().GetProperty(nameProperty2).PropertyType;
+		|                                if (type == typeof(string))
+		|                                {
+		|                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue.AsString());
+		|                                }
+		|                                else if (type == typeof(bool))
+		|                                {
+		|                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue.AsBoolean());
+		|                                }
+		|                                else if (type == typeof(System.Int32))
+		|                                {
+		|                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, Convert.ToInt32(propValue.AsNumber()));
+		|                                }
+		|                                else
+		|                                {
+		|                                    if (nameProperty2 == ""parent"")
+		|                                    {
+		|                                        propValue = FindElement(massiv[3]);
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfAudio) && nameProperty2 == ""volume"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        string str1 = num1.ToString().TrimEnd('0');
+		|                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfAudio) && nameProperty2 == ""playbackRate"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        string str1 = num1.ToString().TrimEnd('0');
+		|                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+		|                                    }		
+		|                                    if ((obj.GetType() == typeof(osdf.DfProgress) ||
+		|                                        obj.GetType() == typeof(osdf.DfMeter)
+		|                                        ) && nameProperty2 == ""_value"")		
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "","")) * 100;
+		|                                        string str1 = num1.ToString().TrimEnd('0');
+		|                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == ""_value"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }	
+		|                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == ""_value"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }	
+		|                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == ""step"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }	
+		|                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == ""step"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }		
+		|                                    if (obj.GetType() == typeof(osdf.DfProgress) && nameProperty2 == ""max"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "","")) * 100;
+		|                                        string str1 = num1.ToString().TrimEnd('0');
+		|                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == ""max"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == ""max"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfMeter) && nameProperty2 == ""max"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "","")) * 100;
+		|                                        string str1 = num1.ToString().TrimEnd('0');
+		|                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == ""min"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == ""min"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "",""));
+		|                                        propValue = ValueFactory.Create(num1);
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfMeter) && nameProperty2 == ""min"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "","")) * 100;
+		|                                        string str1 = num1.ToString().TrimEnd('0');
+		|                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+		|                                    }		
+		|                                    if (obj.GetType() == typeof(osdf.DfMeter) && nameProperty2 == ""optimum"")
+		|                                    {
+		|                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(""."", "","")) * 100;
+		|                                        string str1 = num1.ToString().TrimEnd('0');
+		|                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+		|                                    }		
+		|                                    if (obj.GetType() == typeof(osdf.DfTableRow) && nameProperty2 == ""rowIndex"")
+		|                                    {
+		|                                        propValue = ValueFactory.Create(Int32.Parse(massiv[3]));
+		|                                    }
+		|                                    if (obj.GetType() == typeof(osdf.DfTableRow) && nameProperty2 == ""sectionRowIndex"")
+		|                                    {
+		|                                        propValue = ValueFactory.Create(Int32.Parse(massiv[3]));
+		|                                    }		
+		|                                    if (obj.GetType() == typeof(osdf.DfColorSelection) && nameProperty2 == ""_value"")
+		|                                    {
+		|                                        string str1 = massiv[3].Replace(""#"", """");
+		|                                        int r = Convert.ToInt32(str1.Substring(0, 2), 16);
+		|                                        int g = Convert.ToInt32(str1.Substring(2, 2), 16);
+		|                                        int b = Convert.ToInt32(str1.Substring(4, 2), 16);
+		|                                        propValue = ValueFactory.Create(""rgb("" + r.ToString() + "", "" + g.ToString() + "", "" + b.ToString() + "")"");
+		|                                    }		
+		|                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue);
+		|                                }
 		|                            }
-		|                            catch
+		|                            catch (Exception ex)
 		|                            {
-		|                                ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(nameProperty), propValue);
+		|                                GlobalContext().Echo(""При присвоении значения свойству - посреднику = "" + ex.StackTrace);
 		|                            }
 		|                            if (actionItemKey != """")
 		|                            {
 		|                                Execute((DfAction)FindElement(actionItemKey));
 		|                            }
-		|                            else
-		|                            {
-		|                                Execute(GettingProperty);
-		|                            }
+		|                            else { }
 		|                        }
 		|                        else
 		|                        {
@@ -21414,38 +18258,39 @@
 		|            string[] str1 = p1.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
 		|            for (int i = 2; i < str1.Length; i++)
 		|            {
-		|                try
+		|                string[] str2 = str1[i].Split(new string[] { ""="" }, StringSplitOptions.RemoveEmptyEntries);
+		|                //GlobalContext().Echo(""str2[0] = "" + str2[0]);
+		|                //GlobalContext().Echo(""str2[1] = "" + str2[1]);
+		|
+		|                // Здесь нужно знать какой тип значения у свойства и конвертировать из строки str2[0] в нужный тип.
+		|                string nameProperty = """";
+		|                System.Reflection.PropertyInfo[] myPropertyInfo = DfEventArgs1.GetType().GetProperties();
+		|                for (int i1 = 0; i1 < myPropertyInfo.Length; i1++)
 		|                {
-		|                    string[] str2 = str1[i].Split(new string[] { ""="" }, StringSplitOptions.RemoveEmptyEntries);
-		|                    //GlobalContext().Echo(""str2[0] = "" + str2[0]);
-		|                    //GlobalContext().Echo(""str2[1] = "" + str2[1]);
-		|
-		|                    // Здесь нужно знать какой тип значения у свойства и конвертировать из строки str2[0] в нужный тип.
-		|                    string nameProperty = """";
-		|                    System.Reflection.PropertyInfo[] myPropertyInfo = DfEventArgs1.GetType().GetProperties();
-		|                    for (int i1 = 0; i1 < myPropertyInfo.Length; i1++)
+		|                    if (myPropertyInfo[i1].CustomAttributes.Count() == 1)
 		|                    {
-		|                        if (myPropertyInfo[i1].CustomAttributes.Count() == 1)
-		|                        {
-		|                            string methodRus1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetName();
-		|                            string methodEn1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+		|                        string methodRus1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+		|                        string methodEn1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
 		|
-		|                            if (methodRus1 == str2[0] || methodEn1 == str2[0])
-		|                            {
-		|                                nameProperty = methodEn1;
-		|                                break;
-		|                            }
+		|                        if (methodRus1 == str2[0] || methodEn1 == str2[0])
+		|                        {
+		|                            nameProperty = methodEn1;
+		|                            break;
 		|                        }
 		|                    }
-		|                    string propertyType;
-		|                    try
-		|                    {
-		|                        propertyType = ((dynamic)Sender).GetType().GetProperty(nameProperty).PropertyType.ToString();
-		|                    }
-		|                    catch (Exception)
-		|                    {
-		|                        propertyType = DfEventArgs1.GetType().GetProperty(nameProperty).PropertyType.ToString();
-		|                    }
+		|                }
+		|                string propertyType;
+		|                try
+		|                {
+		|                    propertyType = ((dynamic)Sender).GetType().GetProperty(nameProperty).PropertyType.ToString();
+		|                }
+		|                catch
+		|                {
+		|                    propertyType = DfEventArgs1.GetType().GetProperty(nameProperty).PropertyType.ToString();
+		|                }
+		|
+		|                try
+		|                {
 		|                    IValue propValue;
 		|                    if (propertyType == ""System.Int32"")
 		|                    {
@@ -21477,28 +18322,86 @@
 		|                    {
 		|                        propValue = ValueFactory.Create(str2[1]);
 		|                    }
-		|                    DfEventArgs1.SetPropValue(DfEventArgs1.FindProperty(str2[0]), propValue);
-		|                    // Изменим и значение свойства объекта.
-		|                    try
+		|
+		|                    // Здесь нужно преобразовать общее для многих свойство АргументыСобытия.Значение (EventArgs.Value)
+		|                    // из типа данных ScriptEngine.Machine.IValue в тип данных свойства Value данного объекта.
+		|                    if (Sender.GetType() == typeof(osdf.DfRange) ||
+		|                        Sender.GetType() == typeof(osdf.DfNumberField)
+		|                        )
 		|                    {
-		|                        // Если свойство предоставляется для пользователя только для чтения
-		|                        // то присваивать значение будем свойству - посреднику.
-		|                        string nameProperty2 = (string)namesRusProps[str2[0]][2].ToString();
-		|                        if (Sender.GetType() == typeof(DfCheckBox))
-		|                        {
-		|                            ((DfCheckBox)Sender)._checked = propValue.AsBoolean();
-		|                        }
-		|                        else
-		|                        {
-		|                            ((dynamic)Sender)[nameProperty2].SetValue((dynamic)Sender, propValue);
-		|                        }
+		|                        Decimal num1 = Decimal.Parse(str2[1].Replace(""."", "",""));
+		|                        propValue = ValueFactory.Create(num1);
 		|                    }
-		|                    catch
+		|                    if (Sender.GetType() == typeof(osdf.DfCheckBox))
 		|                    {
-		|                        ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(str2[0]), propValue);
+		|                        ((DfCheckBox)Sender)._checked = propValue.AsBoolean();
+		|                        DfEventArgs1.SetPropValue(DfEventArgs1.FindProperty(str2[0]), propValue);
+		|                    }
+		|                    else
+		|                    {
+		|                        DfEventArgs1.SetPropValue(DfEventArgs1.FindProperty(str2[0]), propValue);
 		|                    }
 		|                }
-		|                catch { }
+		|                catch (Exception ex)
+		|                {
+		|                    GlobalContext().Echo(""При изменении значения свойства отправителя = "" + ex.StackTrace);
+		|                }
+		|
+		|                // Изменим и значение свойства объекта.
+		|                try
+		|                {
+		|                    // Присваивать значение будем свойству - посреднику.
+		|                    string nameProperty2 = namesRusProps[str2[0]][2].ToString();
+		|                    dynamic obj = (dynamic)Sender;
+		|                    string propertyType2 = Sender.GetType().GetProperty(nameProperty2).PropertyType.ToString();
+		|                    dynamic propValue2;
+		|                    if (propertyType == ""System.Int32"")
+		|                    {
+		|                        Decimal num1 = Decimal.Parse(str2[1].Replace(""."", "",""));
+		|                        propValue2 = Convert.ToInt32(num1);
+		|                    }
+		|                    else if (propertyType == ""ScriptEngine.HostedScript.Library.ArrayImpl"")
+		|                    {
+		|                        ArrayImpl ArrayImpl1 = new ArrayImpl();
+		|                        string[] s = str2[1].Split(new string[] { "";"" }, StringSplitOptions.RemoveEmptyEntries);
+		|                        for (int i1 = 0; i1 < s.Length; i1++)
+		|                        {
+		|                            if (FindElement(s[i1]) != null)
+		|                            {
+		|                                ArrayImpl1.Add(FindElement(s[i1]));
+		|                            }
+		|                            else
+		|                            {
+		|                                ArrayImpl1.Add(ValueFactory.Create(s[i1]));
+		|                            }
+		|                        }
+		|                        propValue2 = ArrayImpl1;
+		|                    }
+		|                    else if (propertyType == ""System.Boolean"")
+		|                    {
+		|                        propValue2 = Boolean.Parse(str2[1]);
+		|                    }
+		|                    else if (Sender.GetType() == typeof(osdf.DfRange) ||
+		|                        Sender.GetType() == typeof(osdf.DfNumberField)
+		|                        )
+		|                    {
+		|                        Decimal num1 = Decimal.Parse(str2[1].Replace(""."", "",""));
+		|                        propValue2 = ValueFactory.Create(num1);
+		|                    }		
+		|                    else if (propertyType == ""ScriptEngine.Machine.IValue"")
+		|                    {
+		|                        propValue2 = ValueFactory.Create(str2[1]);
+		|                    }
+		|                    else
+		|                    {
+		|                        propValue2 = str2[1];
+		|                    }
+		|                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue2);
+		|                }
+		|                catch (Exception)
+		|                {
+		|                    //GlobalContext().Echo(""При изменении значения свойства объекта = "" + ex.StackTrace);
+		|                }
 		|            }
 		|            return DfEventArgs1;
 		|        }
@@ -21533,163 +18436,278 @@
 		|            return res;
 		|        }
 		|		
-		|        [ContextMethod(""КоличествоВОчереди"", ""QueueCount"")]
-		|        public int QueueCount()
+		|        public static void WebServerSendText(string p1)
 		|        {
-		|            return EventQueue.Count;
-		|        }
-		|
-		|        [ContextMethod(""Отправить"", ""Send"")]
-		|        public void Send()
-		|        {
-		|            string func;
-		|            EventQueue.TryDequeue(out func);
-		|            int num = shareStructure.FindProperty(""Клиент"");
-		|            dynamic val1 = shareStructure.GetPropValue(num);
-		|            int num2 = shareStructure.FindProperty(""КСДФ"");
-		|            dynamic val2 = shareStructure.GetPropValue(num2);
-		|            val1.SendMessage(val2.TextMessage(func));
-		|            strFunctions = """";
-		|        }
-		|
-		|        public static ConcurrentQueue<string> EventQueue = new ConcurrentQueue<string>();
+		|            osws.WebServerSendDeclarForms.WebServer.SendText(p1);
+		|        }		
+		|		
 		|        [ContextMethod(""ПолучитьСвойство"", ""GetObjectProperty"")]
-		|        public void GetObjectProperty(IValue p1, string p2, DfAction p3 = null)
+		|        public void GetObjectProperty(IValue p1, string p2, DfAction p3)
 		|        {
-		|            string p4 = """";
-		|            if (p3 != null)
-		|            {
-		|                p4 = p3.ItemKey;
-		|            }
 		|            string itemKeyObj;
 		|            string resObj;
-		|            if ((bool)namesRusProps[p2][1])
+		|            string function1 = """";
+		|            string enPropName = (string)namesRusProps[p2][2];
+		|            bool notStyle = (bool)namesRusProps[p2][1];
+		|            if ((p1.GetType() == typeof(osdf.DfTimeSelection) ||   
+		|                p1.GetType() == typeof(osdf.DfDateSelection) || 
+		|                p1.GetType() == typeof(osdf.DfDateTimeLocalSelection) || 
+		|                p1.GetType() == typeof(osdf.DfMonthSelection) || 
+		|                p1.GetType() == typeof(osdf.DfWeekSelection) || 
+		|                p1.GetType() == typeof(osdf.DfColorSelection) || 
+		|                p1.GetType() == typeof(osdf.DfProgress) ||	
+		|                p1.GetType() == typeof(osdf.DfTextArea) ||		
+		|                p1.GetType() == typeof(osdf.DfRadio) ||		
+		|                p1.GetType() == typeof(osdf.DfPasswordField) ||		
+		|                p1.GetType() == typeof(osdf.DfSearchField) ||		
+		|                p1.GetType() == typeof(osdf.DfSelect) ||		
+		|                p1.GetType() == typeof(osdf.DfTextField) ||		
+		|                p1.GetType() == typeof(osdf.DfNumberField) ||		
+		|                p1.GetType() == typeof(osdf.DfRange) ||		
+		|                p1.GetType() == typeof(osdf.DfOutput) ||		
+		|                p1.GetType() == typeof(osdf.DfCheckBox) ||		
+		|                p1.GetType() == typeof(osdf.DfMeter) ||		
+		|                p1.GetType() == typeof(osdf.DfSelectItem) ||
+		|                p1.GetType() == typeof(osdf.DfDateTimeSelection)
+		|                ) && p2 == ""Значение"")
 		|            {
 		|                itemKeyObj = ((dynamic)p1).ItemKey;
-		|                resObj = ""el.style.getPropertyValue('"" + namesRusProps[p2][2] + ""');"";
+		|                resObj = ""el['value'];"";
+		|            }
+		|            else if (p1.GetType() == typeof(osdf.DfTextArea) && p2 == ""Текст"")
+		|            {
+		|                itemKeyObj = ((dynamic)p1).ItemKey;
+		|                resObj = ""el['value'];"";
+		|            }
+		|            else if ((p1.GetType() == typeof(osdf.DfImage) ||
+		|                p1.GetType() == typeof(osdf.DfArea)
+		|                ) && p2 == ""Описание"")
+		|            {
+		|                itemKeyObj = ((dynamic)p1).ItemKey;
+		|                resObj = ""el['аlt'];"";
+		|            }		
+		|            else if ((p1.GetType() == typeof(osdf.DfRadio) ||
+		|                p1.GetType() == typeof(osdf.DfCheckBox)
+		|                ) && p2 == ""Помечен"")		
+		|            {
+		|                itemKeyObj = ((dynamic)p1).ItemKey;
+		|                resObj = ""el['checked'];"";
+		|            }		
+		|            else if ((p1.GetType() == typeof(osdf.DfImage) ||
+		|                p1.GetType() == typeof(osdf.DfCanvas)
+		|                ) && p2 == ""Высота"")
+		|            {
+		|                itemKeyObj = ((dynamic)p1).ItemKey;
+		|                resObj = ""el['height'];"";
+		|            }
+		|            else if ((p1.GetType() == typeof(osdf.DfImage) ||
+		|                p1.GetType() == typeof(osdf.DfCanvas)
+		|                ) && p2 == ""Ширина"")
+		|            {
+		|                itemKeyObj = ((dynamic)p1).ItemKey;
+		|                resObj = ""el['width'];"";
+		|            }		
+		|            else if (p1.GetType() == typeof(osdf.DfStyle) && p2 == ""Позиция"")
+		|            {
+		|                itemKeyObj = ((dynamic)p1).Owner.ItemKey;
+		|                resObj = ""el.style['position'];"";
+		|                notStyle = false;
+		|            }		
+		|            else if (notStyle)
+		|            {
+		|                itemKeyObj = ((dynamic)p1).ItemKey;
+		|                resObj = ""el['"" + enPropName + ""'];"";
 		|            }
 		|            else
 		|            {
 		|                itemKeyObj = ((dynamic)p1).Owner.ItemKey;
-		|                resObj = ""el.style['"" + namesRusProps[p2][2] + ""'];"";
+		|                resObj = ""el.style['"" + enPropName + ""'];"";
 		|            }
-		|            string function1 = """" +
-		|                ""let res;"" +
-		|                ""let el = mapKeyEl.get('"" + itemKeyObj + ""');"" +
-		|                ""try"" +
-		|                ""{"" +
-		|                ""    if ('"" + p2 + ""' == 'parent')"" +
-		|                ""    {"" +
-		|                ""        if (el.parentElement == document.body)"" +
-		|                ""        {"" +
-		|                ""            res = 'mainForm';"" +
-		|                ""        }"" +
-		|                ""        else"" +
-		|                ""        {"" +
-		|                ""            res = el.parentElement.name;"" +
-		|                ""        }"" +
-		|                ""    }"" +
-		|                ""    else"" +
-		|                ""    {"" +
-		|                ""        if ('"" + namesRusProps[p2][1].ToString().ToLower() + ""' == 'true')"" +
-		|                ""        {"" +
-		|                ""            if ('"" + namesRusProps[p2][2] + ""' == 'class')"" +
-		|                ""            {"" +
-		|                ""                res = el['className'];"" +
-		|                ""            }"" +
-		|                ""            else if ('"" + namesRusProps[p2][2] + ""' == 'tFoot')"" +
-		|                ""            {"" +
-		|                ""                let tFoot = el['tFoot'];"" +
-		|                ""                res = mapElKey.get(tFoot);"" +
-		|                ""            }"" +
-		|                ""            else if ('"" + namesRusProps[p2][2] + ""' == 'tHead')"" +
-		|                ""            {"" +
-		|                ""                let tHead = el['tHead'];"" +
-		|                ""                res = mapElKey.get(tHead);"" +
-		|                ""            }"" +		
-		|                ""            else if ('"" + namesRusProps[p2][2] + ""' == 'areas')"" +
-		|                ""            {"" +
-		|                ""                res = '';"" +
-		|                ""                if (el.areas.length > 0)"" +
-		|                ""                {"" +
-		|                ""                    for (var i = 0; i < el.areas.length; i++)"" +
-		|                ""                    {"" +
-		|                ""                        res = res + mapElKey.get(el.areas[i]) + ';';"" +
-		|                ""                    }"" +
-		|                ""                }"" +
-		|                ""            }"" +
-		|                ""            else if ('"" + namesRusProps[p2][2] + ""' == 'cells')"" +
-		|                ""            {"" +
-		|                ""                res = '';"" +
-		|                ""                if (el.cells.length > 0)"" +
-		|                ""                {"" +
-		|                ""                    for (var i = 0; i < el.cells.length; i++)"" +
-		|                ""                    {"" +
-		|                ""                        res = res + mapElKey.get(el.cells[i]) + ';';"" +
-		|                ""                    }"" +
-		|                ""                }"" +
-		|                ""            }"" +
-		|                ""            else if ('"" + namesRusProps[p2][2] + ""' == 'rows')"" +
-		|                ""            {"" +
-		|                ""                res = '';"" +
-		|                ""                if (el.rows.length > 0)"" +
-		|                ""                {"" +
-		|                ""                    for (var i = 0; i < el.rows.length; i++)"" +
-		|                ""                    {"" +
-		|                ""                        res = res + mapElKey.get(el.rows[i]) + ';';"" +
-		|                ""                    }"" +
-		|                ""                }"" +
-		|                ""            }"" +
-		|                ""            else if ('"" + namesRusProps[p2][2] + ""' == 'tBodies')"" +
-		|                ""            {"" +
-		|                ""                res = '';"" +
-		|                ""                if (el.tBodies.length > 0)"" +
-		|                ""                {"" +
-		|                ""                    for (var i = 0; i < el.tBodies.length; i++)"" +
-		|                ""                    {"" +
-		|                ""                        res = res + mapElKey.get(el.tBodies[i]) + ';';"" +
-		|                ""                    }"" +
-		|                ""                }"" +
-		|                ""            }"" +
-		|                ""            else if ('"" + namesRusProps[p2][2] + ""' == 'options')"" +
-		|                ""            {"" +
-		|                ""                res = '';"" +
-		|                ""                if (el.options.length > 0)"" +
-		|                ""                {"" +
-		|                ""                    for (var i = 0; i < el.options.length; i++)"" +
-		|                ""                    {"" +
-		|                ""                        res = res + mapElKey.get(el.options[i]) + ';';"" +
-		|                ""                    }"" +
-		|                ""                }"" +
-		|                ""            }"" +
-		|                ""            else"" +
-		|                ""            {"" +
-		|                ""                res = el['"" + namesRusProps[p2][2] + ""'];"" +
-		|                ""            }"" +
-		|                ""        }"" +
-		|                ""        else"" +
-		|                ""        {"" +
-		|                ""            res = "" + resObj +
-		|                ""        }"" +
-		|                ""    }"" +
-		|                ""    sendPost("" +
-		|                ""    '"" + ((dynamic)p1).ItemKey + ""' +"" +
-		|                ""    '"" + paramDelimiter + ""' + 'v5v5v"" + p4 + ""' +"" +
-		|                ""    '"" + paramDelimiter + ""' + '"" + p2 + ""' +"" +
-		|                ""    '"" + paramDelimiter + ""' + res +"" +
-		|                ""    '"" + paramDelimiter + ""' + '"" + namesRusProps[p2][1].ToString().ToLower() + ""');"" +
-		|                ""}"" +
-		|                ""catch (err)"" +
-		|                ""{"" +
-		|                ""    sendPost('!!! Ошибка3:' + err.message);"" +
-		|                ""}"" +
-		|                """";
-		|            function1 = function1.Replace(""    "", "" "").Replace(""  "", "" "");
-		|            EventQueue.Enqueue(function1);
-		|            // Здесь нужно задержаться до тех пор пока фоновое задание не обработает очередь сообщений
-		|            while (EventQueue.Count > 0)
+		|
+		|            if (enPropName == ""parent"")
 		|            {
-		|                System.Threading.Thread.Sleep(7);
+		|                function1 = """" +
+		|                    ""let res;"" +
+		|                    ""let el = mapKeyEl.get('"" + itemKeyObj + ""');"" +
+		|                    ""try"" +
+		|                    ""{"" +
+		|                    ""    if (el.parentElement == document.body)"" +
+		|                    ""    {"" +
+		|                    ""        res = 'mainForm';"" +
+		|                    ""    }"" +
+		|                    ""    else"" +
+		|                    ""    {"" +
+		|                    ""        res = mapElKey.get(el.parentElement);"" +
+		|                    ""    }"" +
+		|                    ""    sendPost("" +
+		|                    ""    '"" + ((dynamic)p1).ItemKey + ""' +"" +
+		|                    ""    '"" + paramDelimiter + ""' + 'v5v5v"" + p3.ItemKey + ""' +"" +
+		|                    ""    '"" + paramDelimiter + ""' + '"" + p2 + ""' +"" +
+		|                    ""    '"" + paramDelimiter + ""' + res +"" +
+		|                    ""    '"" + paramDelimiter + ""' + '"" + notStyle.ToString().ToLower() + ""');"" +
+		|                    ""}"" +
+		|                    ""catch (err)"" +
+		|                    ""{"" +
+		|                    ""    sendPost('!!! Ошибка3:' + err.message);"" +
+		|                    ""}"" +
+		|                    """";
+		|            }
+		|            else if (notStyle)
+		|            {
+		|                if (p1.GetType() == typeof(osdf.DfTextArea) && p2 == ""Строки"")
+		|                {
+		|                    function1 = """" +
+		|                        ""let res;"" +
+		|                        ""let el = mapKeyEl.get('"" + itemKeyObj + ""');"" +
+		|                        ""try"" +
+		|                        ""{"" +
+		|                        ""    {"" +
+		|                        ""        res = "" + resObj +
+		|                        ""    }"" +
+		|                        ""    sendPost("" +
+		|                        ""    '"" + ((dynamic)p1).ItemKey + ""' +"" +
+		|                        ""    '"" + paramDelimiter + ""' + 'v5v5v"" + p3.ItemKey + ""' +"" +
+		|                        ""    '"" + paramDelimiter + ""' + '"" + p2 + ""' +"" +
+		|                        ""    '"" + paramDelimiter + ""' + res +"" +
+		|                        ""    '"" + paramDelimiter + ""' + true);"" +
+		|                        ""}"" +
+		|                        ""catch (err)"" +
+		|                        ""{"" +
+		|                        ""    sendPost('!!! Ошибка3:' + err.message);"" +
+		|                        ""}"" +
+		|                        """";
+		|                }
+		|                else
+		|                {
+		|                    function1 = """" +
+		|                        ""let res;"" +
+		|                        ""let el = mapKeyEl.get('"" + itemKeyObj + ""');"" +
+		|                        ""try"" +
+		|                        ""{"" +
+		|
+		|                        ""    if ('"" + enPropName + ""' == 'class')"" +
+		|                        ""    {"" +
+		|                        ""        res = el['className'];"" +
+		|                        ""    }"" +
+		|                        ""    else if ('"" + enPropName + ""' == 'tFoot')"" +
+		|                        ""    {"" +
+		|                        ""        let tFoot = el['tFoot'];"" +
+		|                        ""        res = mapElKey.get(tFoot);"" +
+		|                        ""    }"" +
+		|                        ""    else if ('"" + enPropName + ""' == 'tHead')"" +
+		|                        ""    {"" +
+		|                        ""        let tHead = el['tHead'];"" +
+		|                        ""        res = mapElKey.get(tHead);"" +
+		|                        ""    }"" +
+		|                        ""    else if ('"" + enPropName + ""' == 'areas')"" +
+		|                        ""    {"" +
+		|                        ""        res = '';"" +
+		|                        ""        if (el.areas.length > 0)"" +
+		|                        ""        {"" +
+		|                        ""            for (var i = 0; i < el.areas.length; i++)"" +
+		|                        ""            {"" +
+		|                        ""                res = res + mapElKey.get(el.areas[i]) + ';';"" +
+		|                        ""            }"" +
+		|                        ""        }"" +
+		|                        ""    }"" +
+		|                        ""    else if ('"" + enPropName + ""' == 'cells')"" +
+		|                        ""    {"" +
+		|                        ""        res = '';"" +
+		|                        ""        if (el.cells.length > 0)"" +
+		|                        ""        {"" +
+		|                        ""            for (var i = 0; i < el.cells.length; i++)"" +
+		|                        ""            {"" +
+		|                        ""                res = res + mapElKey.get(el.cells[i]) + ';';"" +
+		|                        ""            }"" +
+		|                        ""        }"" +
+		|                        ""    }"" +
+		|                        ""    else if ('"" + enPropName + ""' == 'rows')"" +
+		|                        ""    {"" +
+		|                        ""        res = '';"" +
+		|                        ""        if (el.rows.length > 0)"" +
+		|                        ""        {"" +
+		|                        ""            for (var i = 0; i < el.rows.length; i++)"" +
+		|                        ""            {"" +
+		|                        ""                res = res + mapElKey.get(el.rows[i]) + ';';"" +
+		|                        ""            }"" +
+		|                        ""        }"" +
+		|                        ""    }"" +
+		|                        ""    else if ('"" + enPropName + ""' == 'tBodies')"" +
+		|                        ""    {"" +
+		|                        ""        res = '';"" +
+		|                        ""        if (el.tBodies.length > 0)"" +
+		|                        ""        {"" +
+		|                        ""            for (var i = 0; i < el.tBodies.length; i++)"" +
+		|                        ""            {"" +
+		|                        ""                res = res + mapElKey.get(el.tBodies[i]) + ';';"" +
+		|                        ""            }"" +
+		|                        ""        }"" +
+		|                        ""    }"" +
+		|                        ""    else if ('"" + enPropName + ""' == 'options')"" +
+		|                        ""    {"" +
+		|                        ""        res = '';"" +
+		|                        ""        if (el.options.length > 0)"" +
+		|                        ""        {"" +
+		|                        ""            for (var i = 0; i < el.options.length; i++)"" +
+		|                        ""            {"" +
+		|                        ""                res = res + mapElKey.get(el.options[i]) + ';';"" +
+		|                        ""            }"" +
+		|                        ""        }"" +
+		|                        ""    }"" +
+		|                        ""    else"" +
+		|                        ""    {"" +
+		|                        ""        res = "" + resObj +
+		|                        ""    }"" +
+		|
+		|                        ""    sendPost("" +
+		|                        ""    '"" + ((dynamic)p1).ItemKey + ""' +"" +
+		|                        ""    '"" + paramDelimiter + ""' + 'v5v5v"" + p3.ItemKey + ""' +"" +
+		|                        ""    '"" + paramDelimiter + ""' + '"" + p2 + ""' +"" +
+		|                        ""    '"" + paramDelimiter + ""' + res +"" +
+		|                        ""    '"" + paramDelimiter + ""' + true);"" +
+		|                        ""}"" +
+		|                        ""catch (err)"" +
+		|                        ""{"" +
+		|                        ""    sendPost('!!! Ошибка3:' + err.message);"" +
+		|                        ""}"" +
+		|                        """";
+		|                }
+		|            }
+		|            else
+		|            {
+		|                function1 = """" +
+		|                    ""let res;"" +
+		|                    ""let el = mapKeyEl.get('"" + itemKeyObj + ""');"" +
+		|                    ""try"" +
+		|                    ""{"" +
+		|
+		|                    ""    res = "" + resObj +
+		|
+		|                    ""    sendPost("" +
+		|                    ""    '"" + ((dynamic)p1).ItemKey + ""' +"" +
+		|                    ""    '"" + paramDelimiter + ""' + 'v5v5v"" + p3.ItemKey + ""' +"" +
+		|                    ""    '"" + paramDelimiter + ""' + '"" + p2 + ""' +"" +
+		|                    ""    '"" + paramDelimiter + ""' + res +"" +
+		|                    ""    '"" + paramDelimiter + ""' + false);"" +
+		|                    ""}"" +
+		|                    ""catch (err)"" +
+		|                    ""{"" +
+		|                    ""    sendPost('!!! Ошибка3:' + err.message);"" +
+		|                    ""}"" +
+		|                    """";
+		|            }
+		|            function1 = function1.Replace(""    "", "" "").Replace(""  "", "" "");
+		|
+		|            if (isWin)
+		|            {
+		|                //WebServerSendText(function1);
+		|                DeclarativeForms.SendStrFunc(function1); // А может так?
+		|                // Здесь поставим задержку для формирования формой ответа.
+		|                System.Threading.Thread.Sleep(100);		
+		|            }
+		|            else
+		|            {
+		|                SendStrFunc(function1);
 		|            }
 		|        }
 		|
@@ -22036,12 +19054,22 @@
 		|            {""Шрифт"", new object[4] { ""Font"", ""font"", ""font"", ""font"" } }
 		|        };		
 		|		
-		|        // Для метода ПолучитьСвойство. Имена свойств.
+		|        // Для метода ПолучитьСвойство и для установки аргументов событий. Имена свойств.
 		|        public static Dictionary<string, object[]> namesRusProps = new Dictionary<string, object[]>
 		|            {
 		|                // methodRus tail isProperty jsMethodEn
 		|                // tail - хвостик к значению свойства.
 		|                // isProperty - это свойство объекта, иначе, - это свойство стиля.
+		|                // Это для DfEventArgs
+		|                {""ListItem"", new object[3] { """", true, ""listItem"" } },
+		|                {""Y"", new object[3] { """", true, ""y"" } },
+		|                {""X"", new object[3] { """", true, ""x"" } },
+		|                {""Button"", new object[3] { """", true, ""button"" } },
+		|                {""Files"", new object[3] { """", true, ""files"" } },		
+		|                {""Value"", new object[3] { """", true, ""_value"" } },
+		|                // Это для объектов
+		|                {""WindowHeight"", new object[3] { """", true, ""windowHeight"" } },
+		|                {""WindowWidth"", new object[3] { """", true, ""windowWidth"" } },
 		|                {""ЦветФона"", new object[3] { """", false, ""backgroundColor"" } },
 		|                {""Направление"", new object[3] { """", true, ""dir"" } },
 		|                {""ГоризонтальноеПрокручивание"", new object[3] { """", true, ""scrollLeft"" } },
@@ -22055,8 +19083,7 @@
 		|                {""ДиапазонКолонок"", new object[3] { """", true, ""colSpan"" } },
 		|                {""Заголовки"", new object[3] { """", true, ""headers"" } },
 		|                {""ДиапазонСтрок"", new object[3] { """", true, ""rowSpan"" } },
-		|                {""Класс"", new object[3] { """", true, ""class"" } },
-		|                {""ЗначениеПоУмолчанию"", new object[3] { """", true, ""defaultValue"" } },
+		|                {""Класс"", new object[3] { """", true, ""className"" } },
 		|                {""СмещениеЛево"", new object[3] { """", true, ""offsetLeft"" } },
 		|                {""СмещениеВерх"", new object[3] { """", true, ""offsetTop"" } },
 		|                {""СмещениеШирина"", new object[3] { """", true, ""offsetWidth"" } },
@@ -22069,12 +19096,10 @@
 		|                {""Области"", new object[3] { """", true, ""areas"" } },
 		|                {""Изображения"", new object[3] { """", true, ""images"" } },
 		|                {""Файлы"", new object[3] { """", true, ""files"" } },
-		|                {""Files"", new object[3] { """", true, ""files"" } },		
 		|                {""Позиция"", new object[3] { """", true, ""position"" } },		
 		|                {""Количество"", new object[3] { """", true, ""length"" } },
 		|                {""ЭлементыСписка"", new object[3] { """", true, ""options"" } },
 		|                {""Помечен"", new object[3] { """", true, ""_checked"" } },
-		|                {""Checked"", new object[3] { """", true, ""_checked"" } },
 		|                {""Ячейки"", new object[3] { """", true, ""cells"" } },
 		|                {""ИндексСтроки"", new object[3] { """", true, ""rowIndex"" } },
 		|                {""ИндексСтрокиВСекции"", new object[3] { """", true, ""sectionRowIndex"" } },
@@ -22082,7 +19107,206 @@
 		|                {""ОбластиТаблицы"", new object[3] { """", true, ""tBodies"" } },
 		|                {""Итоги"", new object[3] { """", true, ""tFoot"" } },
 		|                {""ШапкаТаблицы"", new object[3] { """", true, ""tHead"" } },
-		|            };
+		|                {""Значение"", new object[3] { """", true, ""_value"" } },
+		|                {""БазоваяДлина"", new object[3] { """", false, ""flexBasis"" } },
+		|                {""ВариантШрифта"", new object[3] { """", false, ""fontVariant"" } },
+		|                {""ВертикальноеВыравнивание"", new object[3] { """", false, ""verticalAlign"" } },
+		|                {""Родитель"", new object[3] { """", true, ""parent"" } },
+		|                {""Идентификатор"", new object[3] { """", true, ""id"" } },
+		|                {""Текст"", new object[3] { """", true, ""innerText"" } },
+		|                {""Видимость"", new object[3] { """", false, ""visibility"" } },
+		|                {""ВерхняяГраница"", new object[3] { """", false, ""borderTop"" } },
+		|                {""ВписываниеОбъекта"", new object[3] { """", false, ""objectFit"" } },
+		|                {""ВремяПерехода"", new object[3] { """", false, ""transitionDuration"" } },
+		|                {""ВыделениеПользователем"", new object[3] { """", false, ""userSelect"" } },
+		|                {""ВыравниваниеОтдельных"", new object[3] { """", false, ""alignSelf"" } },
+		|                {""ВыравниваниеСодержимого"", new object[3] { """", false, ""alignContent"" } },
+		|                {""ВыравниваниеЭлементов"", new object[3] { """", false, ""alignItems"" } },
+		|                {""Высота"", new object[3] { """", false, ""height"" } },
+		|                {""ВысотаСтроки"", new object[3] { """", false, ""lineHeight"" } },
+		|                {""ГоризонтальноеВыравнивание"", new object[3] { """", false, ""cssFloat"" } },
+		|                {""ГоризонтальноеВыравниваниеТекста"", new object[3] { """", false, ""textAlign"" } },
+		|                {""ГраницаСвернута"", new object[3] { """", false, ""borderCollapse"" } },
+		|                {""Границы"", new object[3] { """", false, ""border"" } },
+		|                {""ДиапазонКолонокЭлемента"", new object[3] { """", false, ""columnSpan"" } },
+		|                {""ДлинаТабуляции"", new object[3] { """", false, ""tabSize"" } },
+		|                {""ДлительностьАнимации"", new object[3] { """", false, ""animationDuration"" } },
+		|                {""ЖирностьШрифта"", new object[3] { """", false, ""fontWeight"" } },
+		|                {""ЗадержкаАнимации"", new object[3] { """", false, ""animationDelay"" } },
+		|                {""ЗадержкаПерехода"", new object[3] { """", false, ""transitionDelay"" } },
+		|                {""ЗаливкаАнимации"", new object[3] { """", false, ""animationFillMode"" } },
+		|                {""Заполнение"", new object[3] { """", false, ""padding"" } },
+		|                {""ЗаполнениеКолонок"", new object[3] { """", false, ""columnFill"" } },
+		|                {""ЗаполнениеСверху"", new object[3] { """", false, ""paddingTop"" } },
+		|                {""ЗаполнениеСлева"", new object[3] { """", false, ""paddingLeft"" } },
+		|                {""ЗаполнениеСнизу"", new object[3] { """", false, ""paddingBottom"" } },
+		|                {""ЗаполнениеСправа"", new object[3] { """", false, ""paddingRight"" } },
+		|                {""ИзменяемыйРазмер"", new object[3] { """", false, ""resize"" } },
+		|                {""ИмяАнимации"", new object[3] { """", false, ""animationName"" } },
+		|                {""ИнтервалГраницы"", new object[3] { """", false, ""borderSpacing"" } },
+		|                {""ИнтервалКолонок"", new object[3] { """", false, ""columnGap"" } },
+		|                {""ИнтервалСимволов"", new object[3] { """", false, ""letterSpacing"" } },
+		|                {""ИнтервалСлов"", new object[3] { """", false, ""wordSpacing"" } },
+		|                {""ИсточникКартинкиГраницы"", new object[3] { """", false, ""borderImageSource"" } },
+		|                {""ИсточникПерспективы"", new object[3] { """", false, ""perspectiveOrigin"" } },
+		|                {""Калибровка"", new object[3] { """", false, ""boxSizing"" } },
+		|                {""КартинкаГраницы"", new object[3] { """", false, ""borderImage"" } },
+		|                {""КартинкаСтиляСписка"", new object[3] { """", false, ""listStyleImage"" } },
+		|                {""КоличествоКолонок"", new object[3] { """", false, ""columnCount"" } },
+		|                {""КоличествоПовторов"", new object[3] { """", false, ""animationIterationCount"" } },
+		|                {""КолонкиЭлемента"", new object[3] { """", false, ""columns"" } },
+		|                {""Контур"", new object[3] { """", false, ""outline"" } },
+		|                {""Ширина"", new object[3] { """", false, ""width"" } },
+		|                {""Курсор"", new object[3] { """", false, ""cursor"" } },
+		|                {""ЛеваяГраница"", new object[3] { """", false, ""borderLeft"" } },
+		|                {""Лево"", new object[3] { """", false, ""left"" } },
+		|                {""ЛевыйРадиусВерхнейГраницы"", new object[3] { """", false, ""borderTopLeftRadius"" } },
+		|                {""ЛевыйРадиусНижнейГраницы"", new object[3] { """", false, ""borderBottomLeftRadius"" } },
+		|                {""МаксимальнаяВысота"", new object[3] { """", false, ""maxHeight"" } },
+		|                {""МаксимальнаяШирина"", new object[3] { """", false, ""maxWidth"" } },
+		|                {""МинимальнаяВысота"", new object[3] { """", false, ""minHeight"" } },
+		|                {""МинимальнаяШирина"", new object[3] { """", false, ""minWidth"" } },
+		|                {""МозаикаКартинки"", new object[3] { """", false, ""backgroundRepeat"" } },
+		|                {""МозаикаКартинкиГраницы"", new object[3] { """", false, ""borderImageRepeat"" } },
+		|                {""НаправлениеАнимации"", new object[3] { """", false, ""animationDirection"" } },
+		|                {""НаправлениеЭлементов"", new object[3] { """", false, ""flexDirection"" } },
+		|                {""НарезкаКартинкиГраницы"", new object[3] { """", false, ""borderImageSlice"" } },
+		|                {""Непрозрачность"", new object[3] { """", false, ""opacity"" } },
+		|                {""Несвободно"", new object[3] { """", false, ""clear"" } },
+		|                {""НижняяГраница"", new object[3] { """", false, ""borderBottom"" } },
+		|                {""Низ"", new object[3] { """", false, ""bottom"" } },
+		|                {""ОбластьКартинки"", new object[3] { """", false, ""backgroundOrigin"" } },
+		|                {""ОбластьРисования"", new object[3] { """", false, ""backgroundClip"" } },
+		|                {""Обрезка"", new object[3] { """", false, ""clip"" } },
+		|                {""Отображать"", new object[3] { """", false, ""display"" } },
+		|                {""Отступ"", new object[3] { """", false, ""margin"" } },
+		|                {""ОтступСверху"", new object[3] { """", false, ""marginTop"" } },
+		|                {""ОтступСлева"", new object[3] { """", false, ""marginLeft"" } },
+		|                {""ОтступСнизу"", new object[3] { """", false, ""marginBottom"" } },
+		|                {""ОтступСправа"", new object[3] { """", false, ""marginRight"" } },
+		|                {""ОтступТекста"", new object[3] { """", false, ""textIndent"" } },
+		|                {""ОформлениеТекстаЛиния"", new object[3] { """", false, ""textDecorationLine"" } },
+		|                {""ОформлениеТекстаСтиль"", new object[3] { """", false, ""textDecorationStyle"" } },
+		|                {""ОформлениеТекстаЦвет"", new object[3] { """", false, ""textDecorationColor"" } },
+		|                {""ПереносГибких"", new object[3] { """", false, ""flexWrap"" } },
+		|                {""ПереносСлов"", new object[3] { """", false, ""wordWrap"" } },
+		|                {""Переполнение"", new object[3] { """", false, ""overflow"" } },
+		|                {""ПереполнениеИгрек"", new object[3] { """", false, ""overflowY"" } },
+		|                {""ПереполнениеИкс"", new object[3] { """", false, ""overflowX"" } },
+		|                {""ПереполнениеТекста"", new object[3] { """", false, ""textOverflow"" } },
+		|                {""Переход"", new object[3] { """", false, ""transition"" } },
+		|                {""Перспектива"", new object[3] { """", false, ""perspective"" } },	
+		|                {""ПозицияОбъекта"", new object[3] { """", false, ""objectPosition"" } },
+		|                {""ПозицияСтиляСписка"", new object[3] { """", false, ""listStylePosition"" } },
+		|                {""ПоложениеЗаголовка"", new object[3] { """", false, ""captionSide"" } },
+		|                {""ПоложениеКартинки"", new object[3] { """", false, ""backgroundPosition"" } },
+		|                {""Порядок"", new object[3] { """", false, ""order"" } },
+		|                {""ПраваяГраница"", new object[3] { """", false, ""borderRight"" } },
+		|                {""Право"", new object[3] { """", false, ""right"" } },
+		|                {""ПравыйРадиусВерхнейГраницы"", new object[3] { """", false, ""borderTopRightRadius"" } },
+		|                {""ПравыйРадиусНижнейГраницы"", new object[3] { """", false, ""borderBottomRightRadius"" } },
+		|                {""Пробелы"", new object[3] { """", false, ""whiteSpace"" } },
+		|                {""ПрописныеТекста"", new object[3] { """", false, ""textTransform"" } },
+		|                {""ПустыеЯчейки"", new object[3] { """", false, ""emptyCells"" } },
+		|                {""РадиусГраницы"", new object[3] { """", false, ""borderRadius"" } },
+		|                {""РазделительКолонок"", new object[3] { """", false, ""columnRule"" } },
+		|                {""РазмерКартинки"", new object[3] { """", false, ""backgroundSize"" } },
+		|                {""РазмерШрифта"", new object[3] { """", false, ""fontSize"" } },
+		|                {""РазмещениеВТаблице"", new object[3] { """", false, ""tableLayout"" } },
+		|                {""РасположениеСодержимого"", new object[3] { """", false, ""justifyContent"" } },
+		|                {""СвойствоПерехода"", new object[3] { """", false, ""transitionProperty"" } },
+		|                {""СемействоШрифтов"", new object[3] { """", false, ""fontFamily"" } },
+		|                {""СмещениеКартинкиГраницы"", new object[3] { """", false, ""borderImageOutset"" } },
+		|                {""СмещениеКонтура"", new object[3] { """", false, ""outlineOffset"" } },
+		|                {""Состояние"", new object[3] { """", false, ""animationPlayState"" } },
+		|                {""СтильВерхнейГраницы"", new object[3] { """", false, ""borderTopStyle"" } },
+		|                {""СтильГраниц"", new object[3] { """", false, ""borderStyle"" } },
+		|                {""СтильКонтура"", new object[3] { """", false, ""outlineStyle"" } },	
+		|                {""СтильЛевойГраницы"", new object[3] { """", false, ""borderLeftStyle"" } },
+		|                {""СтильНижнейГраницы"", new object[3] { """", false, ""borderBottomStyle"" } },
+		|                {""СтильПравойГраницы"", new object[3] { """", false, ""borderRightStyle"" } },
+		|                {""СтильРазделителяКолонок"", new object[3] { """", false, ""columnRuleStyle"" } },
+		|                {""СтильСдвига"", new object[3] { """", false, ""transformStyle"" } },
+		|                {""СтильСписка"", new object[3] { """", false, ""listStyle"" } },
+		|                {""СтильШрифта"", new object[3] { """", false, ""fontStyle"" } },
+		|                {""Тень"", new object[3] { """", false, ""boxShadow"" } },
+		|                {""ТеньТекста"", new object[3] { """", false, ""textShadow"" } },
+		|                {""ТипСтиляСписка"", new object[3] { """", false, ""listStyleType"" } },
+		|                {""ТочкаСдвига"", new object[3] { """", false, ""transformOrigin"" } },
+		|                {""Увеличение"", new object[3] { """", false, ""flexGrow"" } },
+		|                {""Уменьшение"", new object[3] { """", false, ""flexShrink"" } },
+		|                {""Фильтр"", new object[3] { """", false, ""filter"" } },
+		|                {""Фон"", new object[3] { """", false, ""background"" } },
+		|                {""ФоновоеВложение"", new object[3] { """", false, ""backgroundAttachment"" } },
+		|                {""ФоновоеИзображение"", new object[3] { """", false, ""backgroundImage"" } },
+		|                {""ФункцияПерехода"", new object[3] { """", false, ""transitionTimingFunction"" } },
+		|                {""ФункцияСинхронизации"", new object[3] { """", false, ""animationTimingFunction"" } },
+		|                {""ЦветВерхнейГраницы"", new object[3] { """", false, ""borderTopColor"" } },
+		|                {""ЦветГраниц"", new object[3] { """", false, ""borderColor"" } },
+		|                {""ЦветКонтура"", new object[3] { """", false, ""outlineColor"" } },
+		|                {""ЦветКурсора"", new object[3] { """", false, ""caretColor"" } },
+		|                {""ЦветЛевойГраницы"", new object[3] { """", false, ""borderLeftColor"" } },
+		|                {""ЦветНижнейГраницы"", new object[3] { """", false, ""borderBottomColor"" } },
+		|                {""ЦветПравойГраницы"", new object[3] { """", false, ""borderRightColor"" } },
+		|                {""ЦветРазделителяКолонок"", new object[3] { """", false, ""columnRuleColor"" } },
+		|                {""ЦветТекста"", new object[3] { """", false, ""color"" } },
+		|                {""ШиринаВерхнейГраницы"", new object[3] { """", false, ""borderTopWidth"" } },
+		|                {""ШиринаГраниц"", new object[3] { """", false, ""borderWidth"" } },
+		|                {""ШиринаКартинкиГраницы"", new object[3] { """", false, ""borderImageWidth"" } },
+		|                {""ШиринаКолонок"", new object[3] { """", false, ""columnWidth"" } },
+		|                {""ШиринаКонтура"", new object[3] { """", false, ""outlineWidth"" } },
+		|                {""ШиринаЛевойГраницы"", new object[3] { """", false, ""borderLeftWidth"" } },
+		|                {""ШиринаНижнейГраницы"", new object[3] { """", false, ""borderBottomWidth"" } },
+		|                {""ШиринаПравойГраницы"", new object[3] { """", false, ""borderRightWidth"" } },
+		|                {""ШиринаРазделителяКолонок"", new object[3] { """", false, ""columnRuleWidth"" } },
+		|                {""Шрифт"", new object[3] { """", false, ""font"" } },
+		|                {""ТолькоЧтение"", new object[3] { """", true, ""readOnly"" } },
+		|                {""АвтоФокус"", new object[3] { """", true, ""autofocus"" } },		
+		|                {""Адрес"", new object[3] { """", true, ""href"" } },
+		|                {""Асинхронно"", new object[3] { """", true, ""async"" } },
+		|                {""Беззвучно"", new object[3] { """", true, ""muted"" } },
+		|                {""КлавишаДоступа"", new object[3] { """", true, ""accessKey"" } },
+		|                {""ПорядокОбхода"", new object[3] { """", true, ""tabIndex"" } },
+		|                {""Редактируемый"", new object[3] { """", true, ""contentEditable"" } },		
+		|                {""Отключено"", new object[3] { """", true, ""disabled"" } },		
+		|                {""Шаг"", new object[3] { """", true, ""step"" } },		
+		|                {""Максимум"", new object[3] { """", true, ""max"" } },
+		|                {""Минимум"", new object[3] { """", true, ""min"" } },		
+		|                {""Открыт"", new object[3] { """", true, ""open"" } },		
+		|                {""Заполнитель"", new object[3] { """", true, ""placeholder"" } },		
+		|                {""МаксимальнаяДлина"", new object[3] { """", true, ""maxLength"" } },		
+		|                {""Размер"", new object[3] { """", true, ""size"" } },
+		|                {""Источник"", new object[3] { """", true, ""src"" } },
+		|                {""Разлиновка"", new object[3] { """", true, ""rules"" } },
+		|                {""Громкость"", new object[3] { """", true, ""volume"" } },
+		|                {""Контролы"", new object[3] { """", true, ""controls"" } },
+		|                {""Повтор"", new object[3] { """", true, ""loop"" } },
+		|                {""ТекущаяПозиция"", new object[3] { """", true, ""currentTime"" } },
+		|                {""Оптимум"", new object[3] { """", true, ""optimum"" } },
+		|                {""Диапазон"", new object[3] { """", true, ""span"" } },
+		|                {""Описание"", new object[3] { """", true, ""_аlt"" } },
+		|                {""ИмяКарты"", new object[3] { """", true, ""useMap"" } },
+		|                {""ИндексВыбранного"", new object[3] { """", true, ""selectedIndex"" } },
+		|                {""МножественныйВыбор"", new object[3] { """", true, ""multiple"" } },
+		|                {""Начало"", new object[3] { """", true, ""start"" } },
+		|                {""Обратный"", new object[3] { """", true, ""reversed"" } },
+		|                {""ТипМаркера"", new object[3] { """", true, ""type"" } },		
+		|                {""Выбран"", new object[3] { """", true, ""selected"" } },
+		|                {""Надпись"", new object[3] { """", true, ""label"" } },
+		|                {""ПереносТекста"", new object[3] { """", true, ""wrap"" } },
+		|                {""Колонки"", new object[3] { """", true, ""cols"" } },
+		|                {""Принимаемый"", new object[3] { """", true, ""accept"" } },
+		|                {""Скачать"", new object[3] { """", true, ""download"" } },
+		|                {""Подсказка"", new object[3] { """", true, ""title"" } },
+		|                {""Назначение"", new object[3] { """", true, ""target"" } },
+		|                {""Неопределено"", new object[3] { """", true, ""indeterminate"" } },
+		|                {""Форма"", new object[3] { """", true, ""form"" } },		
+		|                {""Отложено"", new object[3] { """", true, ""defer"" } },
+		|                {""Связь"", new object[3] { """", true, ""htmlFor"" } },		
+		|                {""Гибкость"", new object[3] { """", false, ""flex"" } },
+		|
+		|		
+		|        };
 		|    }
 		|}
 		|";
@@ -22115,12 +19339,12 @@
 СловарьСобытий.Вставить("Loaded", "Загружена=======");
 СловарьСобытий.Вставить("Click", "Нажатие=click=click=====");
 СловарьСобытий.Вставить("MouseUp", "ПриОтпусканииМыши=mouseup=mouseup=====");
-СловарьСобытий.Вставить("GettingProperty", "ПриПолученииСвойства=======");
 СловарьСобытий.Вставить("Input", "Ввод=input=input=====");
 СловарьСобытий.Вставить("Change", "ПриИзменении=change=change=====");
 СловарьСобытий.Вставить("MouseOver", "МышьНадЭлементом=mouseover=mouseover=====");
 СловарьСобытий.Вставить("MouseOut", "МышьПокинулаЭлемент=mouseout=mouseout=====");
-
+СловарьСобытий.Вставить("LostFocus", "ФокусПотерян=blur=blur=====");
+СловарьСобытий.Вставить("Focused", "ФокусПолучен=focus=focus=====");
 
 СловарьСвойств = Новый Структура();
 // ПриватИмяСвойства = СловарьСвойств(СвойствоРус + "_" + СвойствоАнгл)[0];
@@ -22245,7 +19469,6 @@
 СловарьСвойств.Вставить("Загружено_Complete", "complete=complete==bool=.ToString().ToLower()===");
 СловарьСвойств.Вставить("Заполнитель_Placeholder", "placeholder=placeholder==string====");
 СловарьСвойств.Вставить("Значение_Value", "_value=value==IValue====");
-СловарьСвойств.Вставить("ЗначениеПоУмолчанию_DefaultValue", "defaultValue=defaultValue==string====");
 СловарьСвойств.Вставить("Значок_Icon", "=======");
 СловарьСвойств.Вставить("Значок_Icon", "=======");
 СловарьСвойств.Вставить("Игрек_Y", "y===int====");
@@ -22254,7 +19477,7 @@
 СловарьСвойств.Вставить("Изображения_Images", "=======");
 СловарьСвойств.Вставить("Икс_X", "x===int====");
 СловарьСвойств.Вставить("Имя_Name", "=======");
-СловарьСвойств.Вставить("Класс_Class", "_class=className==string====");
+СловарьСвойств.Вставить("Класс_Class", "className=className==string====");
 СловарьСвойств.Вставить("ИмяМетода_MethodName", "=======");
 СловарьСвойств.Вставить("ИндексЯчейки_CellIndex", "cellIndex=cellIndex==int====");
 СловарьСвойств.Вставить("Индекс_Index", "index=index==int====");

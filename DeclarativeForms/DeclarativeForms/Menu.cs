@@ -22,7 +22,7 @@ namespace osdf
             {
                 strFunc = "mapKeyEl.set('" + ItemKey + "', new gui.Menu()); mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
             DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
@@ -38,35 +38,35 @@ namespace osdf
         public void Append(DfMenuItem p1)
         {
             string strFunc = "mapKeyEl.get('" + ItemKey + "').append(mapKeyEl.get('" + p1.ItemKey + "'));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Вставить", "Insert")]
         public void Insert(DfMenuItem p1, int p2)
         {
             string strFunc = "mapKeyEl.get('" + ItemKey + "').insert(mapKeyEl.get('" + p1.ItemKey + "'), parseInt('" + p2 + "'));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
        [ContextMethod("Показать", "Popup")]
         public void Popup(int p1, int p2)
         {
             string strFunc = "mapKeyEl.get('" + ItemKey + "').popup(parseInt('" + p1 + "'), parseInt('" + p2 + "'));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
        [ContextMethod("Удалить", "Remove")]
         public void Remove(DfMenuItem p1)
         {
             string strFunc = "mapKeyEl.get('" + ItemKey + "').remove(mapKeyEl.get('" + p1.ItemKey + "'));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
        [ContextMethod("УдалитьПоИндексу", "RemoveAt")]
         public void RemoveAt(int p1)
         {
             string strFunc = "mapKeyEl.get('" + ItemKey + "').removeAt(parseInt('" + p1 + "'));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         public DfAction _сlick;
@@ -79,7 +79,7 @@ namespace osdf
                 _сlick = value;
                 //setMenuClick(nameMenu)
                 string strFunc = "setMenuClick(\u0022" + ItemKey + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
         [ContextProperty("click", "click")]
@@ -91,7 +91,7 @@ namespace osdf
                 _сlick = value;
                 //setMenuClick(nameMenu)
                 string strFunc = "setMenuClick(\u0022" + ItemKey + "\u0022)";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
     }

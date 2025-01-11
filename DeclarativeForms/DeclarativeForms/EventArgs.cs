@@ -11,24 +11,24 @@ namespace osdf
         public DfEventArgs()
         {
         }
-		
-        public bool _checked;
+
+        public bool _checked { get; set; }
         [ContextProperty("Помечен", "Checked")]
         public bool Checked
         {
             get { return _checked; }
             set { _checked = value; }
         }
-		
-        public IValue listItem;
+
+        public IValue listItem { get; set; }
         [ContextProperty("ЭлементыСписка", "ListItem")]
         public ArrayImpl ListItem
         {
             get { return (ArrayImpl)listItem; }
             set { listItem = ValueFactory.Create(value); }
         }
-		
-        public IValue files;
+
+        public IValue files { get; set; }
         [ContextProperty("Файлы", "Files")]
         public ArrayImpl Files
         {
@@ -36,15 +36,15 @@ namespace osdf
             set { files = ValueFactory.Create(value); }
         }
 
-        public IValue height;
+        public IValue windowHeight { get; set; }
         [ContextProperty("ВысотаОкна", "WindowHeight")]
         public int WindowHeight
         {
-            get { return Convert.ToInt32(height.AsNumber()); }
-            set { height = ValueFactory.Create(value); }
+            get { return Convert.ToInt32(windowHeight.AsNumber()); }
+            set { windowHeight = ValueFactory.Create(value); }
         }
 
-        public IValue windowWidth;
+        public IValue windowWidth { get; set; }
         [ContextProperty("ШиринаОкна", "WindowWidth")]
         public int WindowWidth
         {
@@ -52,7 +52,7 @@ namespace osdf
             set { windowWidth = ValueFactory.Create(value); }
         }
 
-        public IValue y;
+        public IValue y { get; set; }
         [ContextProperty("Игрек", "Y")]
         public int Y
         {
@@ -60,7 +60,7 @@ namespace osdf
             set { y = ValueFactory.Create(value); }
         }
 
-        public IValue x;
+        public IValue x { get; set; }
         [ContextProperty("Икс", "X")]
         public int X
         {
@@ -68,7 +68,7 @@ namespace osdf
             set { x = ValueFactory.Create(value); }
         }
 
-        public string button;
+        public string button { get; set; }
         [ContextProperty("Кнопка", "Button")]
         public string Button
         {
@@ -92,7 +92,7 @@ namespace osdf
             set { parameter = value; }
         }
 
-        private IValue _value = null;
+        private IValue _value { get; set; } = null;
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {

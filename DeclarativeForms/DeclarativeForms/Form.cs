@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 using ScriptEngine.HostedScript.Library;
-using System.Threading;
 
 namespace osdf
 {
@@ -31,20 +30,20 @@ namespace osdf
             private set { itemKey = value; }
         }
 		
-        public IValue windowHeight;
+        public int windowHeight { get; set; }
         [ContextProperty("ВысотаОкна", "WindowHeight")]
         public int WindowHeight
         {
-            get { return Convert.ToInt32(windowHeight.AsNumber()); }
-            set { windowHeight = ValueFactory.Create(value); }
+            get { return windowHeight; }
+            private set { windowHeight = value; }
         }
 
-        public IValue windowWidth;
+        public int windowWidth { get; set; }
         [ContextProperty("ШиринаОкна", "WindowWidth")]
         public int WindowWidth
         {
-            get { return Convert.ToInt32(windowWidth.AsNumber()); }
-            set { windowWidth = ValueFactory.Create(value); }
+            get { return windowWidth; }
+            private set { windowWidth = value; }
         }
 
         private int startWidth;
@@ -241,7 +240,7 @@ namespace osdf
             }
         }
 
-        public DfAction loaded;
+        public DfAction loaded { get; set; }
         [ContextProperty("Загружена", "Loaded")]
         public DfAction Loaded
         {
@@ -249,7 +248,7 @@ namespace osdf
             set { loaded = value; }
         }
 		
-        public DfAction resize;
+        public DfAction resize { get; set; }
         [ContextProperty("РазмерИзменен", "Resize")]
         public DfAction Resize
         {
@@ -260,27 +259,47 @@ namespace osdf
         [ContextMethod("Открыть", "Open")]
         public void Open()
         {
+            DeclarativeForms.strFunctions += "firstStart();";
+            bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
+            string folderName = @".\";
+            if (!isWin)
+            {
+                folderName = @"./";
+            }
+
             if (DeclarativeForms.openInBrowser)
             {
-                bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
-                string folderName = @".\";
-                if (!isWin)
-                {
-                    folderName = @"./";
-                }
                 DeclarativeForms.instance.LoadScripts(folderName);
+
+                if (osdf.DeclarativeForms.InitialStrFunctions == null)
+                {
+                    osdf.DeclarativeForms.InitialStrFunctions = osdf.DeclarativeForms.strFunctions;
+                }
+
                 // Запустим index.html в браузере по умолчанию.
-                string target = "index.html";
+                string target = pathStartupScript + separator + "index.html";
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 DeclarativeForms.process = process;
 
-                process.StartInfo.FileName = target;
+                if (!isWin)
+                {
+                    ////process.StartInfo.FileName = "firefox";
+                    ////process.StartInfo.FileName = "chrome";
+                    process.StartInfo.FileName = "yandex-browser-stable";
+                    process.StartInfo.Arguments = target;
+                }
+                else
+                {
+                    process.StartInfo.FileName = target;
+                }
+
                 process.Start();
                 process.WaitForExit();
-                while (DeclarativeForms.wsserverOn)
+                while (!((osdf.DeclarativeForms.TimeClietnConnected - osdf.DeclarativeForms.TimeClietnClosed) < 0))
                 {
-                    System.Threading.Thread.Sleep(9);
+                    System.Threading.Thread.Sleep(3000);
                 }
+		
                 Environment.Exit(0);
             }
             else
@@ -303,23 +322,27 @@ namespace osdf
                 str = str.Replace(strFind, strReplace);
                 Packagejson.packagejson = str;
 
-                bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
-                string folderName = @".\";
-                if (!isWin)
+                if (!DeclarativeForms.scriptsIsLoad)
                 {
-                    folderName = @"./";
+                    DeclarativeForms.instance.LoadScripts(folderName);
                 }
 
-                DeclarativeForms.instance.LoadScripts(folderName);
-                string pathNW = DeclarativeForms._nw;
-
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
-
                 DeclarativeForms.process = process;
-
                 process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                process.StartInfo.FileName = "\u0022" + pathNW + "\u0022";
-                process.StartInfo.Arguments = "\u0022" + pathStartupScript + separator;
+
+                if (!isWin)
+                {
+                    process.StartInfo.FileName = DeclarativeForms._nw;
+                    process.StartInfo.Arguments = pathStartupScript;
+                    System.Threading.Thread.Sleep(2000);
+                }
+                else
+                {
+                    process.StartInfo.FileName = "\u0022" + DeclarativeForms._nw + "\u0022";
+                    process.StartInfo.Arguments = "\u0022" + pathStartupScript + separator;
+                }
+
                 process.Start();
                 process.WaitForExit();
 
@@ -336,7 +359,7 @@ namespace osdf
             {
                 menu = value;
                 string strFunc = "gui.Window.get().menu = mapKeyEl.get(\u0022" + menu.ItemKey + "\u0022);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
@@ -357,7 +380,7 @@ namespace osdf
         public IValue AppendChild(IValue p1)
         {
             string strFunc = "document.body.appendChild(mapKeyEl.get(\u0022" + ((dynamic)p1).ItemKey + "\u0022));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
             ((dynamic)p1).Parent = this;
             return p1;
         }
@@ -366,7 +389,14 @@ namespace osdf
         public void RemoveChild(IValue p1)
         {
             string strFunc = "document.body.removeChild(mapKeyEl.get(\u0022" + ((dynamic)p1.AsObject()).ItemKey + "\u0022));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
+		
+            try
+            {
+                IValue val1 = Children.Find(p1);
+                Children.Remove(Convert.ToInt32(val1.AsNumber()));
+            }
+            catch { }
         }
     }
 }

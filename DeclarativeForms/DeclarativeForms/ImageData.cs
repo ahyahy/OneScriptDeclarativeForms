@@ -12,7 +12,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', mapKeyEl.get('" + ownerItemKey + "').createImageData(" + p1 + ", " + p2 + "));" + @"
 mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
             Width = p1;
             Height = p2;
         }
@@ -22,7 +22,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', mapKeyEl.get('" + ownerItemKey + "').createImageData(mapKeyEl.get('" + p1.ItemKey + "')));" + @"
 mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
             Width = p1.Width;
             Height = p1.Height;
         }
@@ -47,7 +47,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             set { owner = value; }
         }
 
-        private int height;
+        public int height { get; set; }
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -56,11 +56,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 height = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['height'] = " + height + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private int width;
+        public int width { get; set; }
         [ContextProperty("Ширина", "Width")]
         public int Width
         {
@@ -69,11 +69,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 width = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['width'] = " + width + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 		
-        private string сolor;
+        public string сolor { get; set; }
         [ContextProperty("Цвет", "Color")]
         public string Color
         {
@@ -92,7 +92,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                     "    el.data[i + 3] = 255;" +
                     "}" +
                     "";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }		
     }

@@ -15,7 +15,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', []);" + @"
 mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
             DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 
@@ -124,7 +124,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             if (s != "{  }")
             {
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')[mapKeyEl.get('" + ItemKey + "').length] = JSON.parse('" + s + "');";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
     }

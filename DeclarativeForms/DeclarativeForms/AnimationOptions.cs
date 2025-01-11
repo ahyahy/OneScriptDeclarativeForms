@@ -58,10 +58,10 @@ namespace osdf
             s += " }";
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', JSON.parse('" + s + "'));";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
 
             strFunc = "mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
             DeclarativeForms.AddToHashtable(ItemKey, this);
         }
 

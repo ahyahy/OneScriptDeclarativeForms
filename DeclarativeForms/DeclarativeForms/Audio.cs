@@ -1,14 +1,8 @@
-﻿using ScriptEngine.HostedScript.Library.Binary;
-using ScriptEngine.HostedScript.Library;
+﻿using ScriptEngine.HostedScript.Library;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Collections;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System;
 
 namespace osdf
@@ -22,7 +16,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', document.createElement('audio'));" + @"
 mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
             DeclarativeForms.AddToHashtable(ItemKey, this);
             style = new DfStyle();
             style.Owner = this;
@@ -38,7 +32,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             get { return this.GetType().GetProperty(p1); }
         }
 
-        private bool muted;
+        public bool muted { get; set; }
         [ContextProperty("Беззвучно", "Muted")]
         public bool Muted
         {
@@ -47,25 +41,24 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 muted = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['muted'] = " + muted.ToString().ToLower() + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private decimal volume;
+        public IValue volume { get; set; }
         [ContextProperty("Громкость", "Volume")]
-        public decimal Volume
+        public IValue Volume
         {
             get { return volume; }
             set
             {
                 volume = value;
-                string res = volume.ToString().Replace(",", ".");
-                string strFunc = "mapKeyEl.get('" + ItemKey + "')['volume'] = '" + res + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['volume'] = '" + volume.AsString().ToString().Replace(",", ".") + "';";
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private int duration;
+        public int duration { get; set; }
         [ContextProperty("Длительность", "Duration")]
         public int Duration
         {
@@ -74,11 +67,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 duration = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['duration'] = '" + duration + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private bool ended;
+        public bool ended { get; set; }
         [ContextProperty("Завершено", "Ended")]
         public bool Ended
         {
@@ -87,11 +80,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 ended = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['ended'] = " + ended.ToString().ToLower() + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string id;
+        public string id { get; set; }
         [ContextProperty("Идентификатор", "Id")]
         public string Id
         {
@@ -100,11 +93,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 id = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['id'] = '" + id + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string name;
+        public string name { get; set; }
         [ContextProperty("Имя", "Name")]
         public string Name
         {
@@ -113,11 +106,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 name = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['name'] = '" + name + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string src;
+        public string src { get; set; }
         [ContextProperty("Источник", "Src")]
         public string Src
         {
@@ -126,11 +119,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 src = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['src'] = '" + src + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string accessKey;
+        public string accessKey { get; set; }
         [ContextProperty("КлавишаДоступа", "AccessKey")]
         public string AccessKey
         {
@@ -139,20 +132,20 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 accessKey = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['accessKey'] = '" + accessKey + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string _class;
+        public string className { get; set; }
         [ContextProperty("Класс", "Class")]
         public string Class
         {
-            get { return _class; }
+            get { return className; }
             set
             {
-                _class = value;
-                string strFunc = "mapKeyEl.get('" + ItemKey + "')['className'] = '" + _class + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                className = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['className'] = '" + className + "';";
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
@@ -164,7 +157,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             private set { itemKey = value; }
         }
 
-        private bool controls;
+        public bool controls { get; set; }
         [ContextProperty("Контролы", "Controls")]
         public bool Controls
         {
@@ -173,11 +166,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 controls = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['controls'] = " + controls.ToString().ToLower() + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private bool paused;
+        public bool paused { get; set; }
         [ContextProperty("НаПаузе", "Paused")]
         public bool Paused
         {
@@ -186,11 +179,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 paused = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['paused'] = " + paused.ToString().ToLower() + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private bool loop;
+        public bool loop { get; set; }
         [ContextProperty("Повтор", "Loop")]
         public bool Loop
         {
@@ -199,11 +192,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 loop = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['loop'] = " + loop.ToString().ToLower() + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private int tabIndex;
+        public int tabIndex { get; set; }
         [ContextProperty("ПорядокОбхода", "TabIndex")]
         public int TabIndex
         {
@@ -212,24 +205,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 tabIndex = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['tabIndex'] = '" + tabIndex + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private bool contentEditable;
-        [ContextProperty("Редактируемый", "ContentEditable")]
-        public bool ContentEditable
-        {
-            get { return contentEditable; }
-            set
-            {
-                contentEditable = value;
-                string strFunc = "mapKeyEl.get('" + ItemKey + "')['contentEditable'] = " + contentEditable.ToString().ToLower() + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
-            }
-        }
-
-        private IValue parent;
+        public IValue parent { get; set; }
         [ContextProperty("Родитель", "Parent")]
         public IValue Parent
         {
@@ -246,14 +226,14 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 {
                     strFunc = "mapKeyEl.get('" + parent.AsObject().GetPropValue("ItemKey").AsString() + "').appendChild(mapKeyEl.get('" + ItemKey + "'));";
                 }
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
                 // Родителю добавим потомка.
                 ArrayImpl ArrayImpl1 = ((dynamic)parent).Children;
                 ArrayImpl1.Add(this);
             }
         }
 
-        private IValue playbackRate;
+        public IValue playbackRate { get; set; }
         [ContextProperty("Скорость", "PlaybackRate")]
         public IValue PlaybackRate
         {
@@ -263,7 +243,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 playbackRate = value;
                 string res = playbackRate.AsNumber().ToString().Replace(",", ".");
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['playbackRate'] = '" + res + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
@@ -295,7 +275,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             get { return Convert.ToInt32(offsetWidth.AsNumber()); }
         }
 
-        private DfStyle style;
+        public DfStyle style { get; set; }
         [ContextProperty("Стиль", "Style")]
         public DfStyle Style
         {
@@ -303,7 +283,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             set { style.Copy(value); }
         }
         
-        private int currentTime;
+        public int currentTime { get; set; }
         [ContextProperty("ТекущаяПозиция", "CurrentTime")]
         public int CurrentTime
         {
@@ -312,11 +292,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 currentTime = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['currentTime'] = '" + currentTime + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        public DfAction dblclick;
+        public DfAction dblclick  { get; set; }
         [ContextProperty("ДвойноеНажатие", "DoubleClick")]
         public DfAction DoubleClick
         {
@@ -325,11 +305,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 dblclick = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dblclick\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
         
-        public DfAction mouseover;
+        public DfAction mouseover  { get; set; }
         [ContextProperty("МышьНадЭлементом", "MouseOver")]
         public DfAction MouseOver
         {
@@ -338,11 +318,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 mouseover = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseover\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
         
-        public DfAction mouseout;
+        public DfAction mouseout  { get; set; }
         [ContextProperty("МышьПокинулаЭлемент", "MouseOut")]
         public DfAction MouseOut
         {
@@ -351,11 +331,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 mouseout = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseout\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
         
-        public DfAction click;
+        public DfAction click  { get; set; }
         [ContextProperty("Нажатие", "Click")]
         public DfAction Click
         {
@@ -364,20 +344,33 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 click = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022click\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
         
-        public DfAction mouseup;
-        [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
-        public DfAction MouseUp
+        public DfAction focus  { get; set; }
+        [ContextProperty("ФокусПолучен", "Focused")]
+        public DfAction Focused
         {
-            get { return mouseup; }
+            get { return focus; }
             set
             {
-                mouseup = value;
-                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseup\u0022, doEvent);";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                focus = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022focus\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
+        public DfAction blur  { get; set; }
+        [ContextProperty("ФокусПотерян", "LostFocus")]
+        public DfAction LostFocus
+        {
+            get { return blur; }
+            set
+            {
+                blur = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022blur\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
         
@@ -385,50 +378,69 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         public void Play()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).play();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
+        }
+        
+        [ContextMethod("ДвойноеНажатие", "DoubleClick")]
+        public void DoubleClick2()
+        {
+            while (!DeclarativeForms.webserverSendUploaded)
+            {
+                System.Threading.Thread.Sleep(300);
+            }
+            System.Threading.Thread.Sleep(1000);
+            string strFunc = "const event = new MouseEvent('dblclick');" +
+                "mapKeyEl.get(\u0022" + ItemKey + "\u0022).dispatchEvent(event);";
+            DeclarativeForms.WebServerSendText(strFunc);
+        }
+        
+        [ContextMethod("Нажатие", "Click")]
+        public void Click2()
+        {
+            while (!DeclarativeForms.webserverSendUploaded)
+            {
+                System.Threading.Thread.Sleep(300);
+            }
+            System.Threading.Thread.Sleep(1000);
+            string strFunc = "const event = new MouseEvent('click');" +
+                "mapKeyEl.get(\u0022" + ItemKey + "\u0022).dispatchEvent(event);";
+            DeclarativeForms.WebServerSendText(strFunc);
         }
         
         [ContextMethod("Пауза", "Pause")]
         public void Pause()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).pause();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
-        }
-        
-        [ContextMethod("ПрокрутитьДо", "ScrollIntoView")]
-        public void ScrollIntoView(bool p1 = true)
-        {
-            string strFunc;
-            if (!p1)
-            {
-                strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).scrollIntoView(false);";
-            }
-            else
-            {
-                strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).scrollIntoView();";
-            }
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
         
         [ContextMethod("СнятьФокус", "Blur")]
         public void Blur()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).blur();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
         
         [ContextMethod("Удалить", "Remove")]
         public void Remove()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).remove();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
+				
+            try
+            {
+                ArrayImpl arr = (ArrayImpl)((dynamic)Parent).Children;
+                IValue val1 = arr.Find(this);
+                arr.Remove(Convert.ToInt32(val1.AsNumber()));
+            }
+            catch { }
         }
         
         [ContextMethod("Фокус", "Focus")]
         public void Focus()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).focus();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
         
     }

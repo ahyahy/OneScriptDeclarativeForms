@@ -20,15 +20,13 @@
 <P>Возвращает или задает код, когда пользователь произвел выбор в поле списка.</P>
 <H4 class=dtH4>Примечание</H4>
 <P></P>
-
-
 <H4 class=dtH4>Аргументы события</H4>
 <DIV class=tablediv>
 <TABLE class=dtTABLE cellSpacing=0>
   <TBODY>
   <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsListItemProperty.html">ЭлементыСписка&nbsp;(ListItem)</A></TD>
-    <TD width="50%">Возвращает выбранные элементы списка для события <B>ПриИзменении&nbsp;(Change)</B>.</TD></TR></TBODY></TABLE></DIV>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsValueProperty.html">Значение&nbsp;(Value)</A></TD>
+    <TD width="50%">Возвращает значение свойства элемента.</B>.</TD></TR></TBODY></TABLE></DIV>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
 ПолеСписка1.ПриИзменении = ДФ.Действие(ЭтотОбъект, "ПолеСписка1_ПриИзменении");
@@ -40,12 +38,7 @@
 Перем ДФ, ПолеТекста1;
 
 Процедура ПолеСписка1_ПриИзменении() Экспорт
-	Массив = ДФ.АргументыСобытия.ЭлементыСписка;
-	Для А = 0 По Массив.ВГраница() Цикл
-		Эл = Массив.Получить(А);
-		Сообщить("Эл = " + Эл.Значение + " " + Эл.Текст);
-	КонецЦикла;
-	Сообщить("========================");
+	Сообщить("ДФ.АргументыСобытия.Значение = " + ДФ.АргументыСобытия.Значение);
 КонецПроцедуры
 
 ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
@@ -86,7 +79,7 @@
 </details>
 <P></P>
 <H4 class=dtH4>Смотрите также</H4>
-<P><A href="OSDForms.html">Библиотека&nbsp;OneScriptDeclarativeForms</A></P></DIV>
+<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
 <script>
 window.onload = function () {
     var a = document.getElementById('select1');

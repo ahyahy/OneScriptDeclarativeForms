@@ -25,7 +25,7 @@
 <TABLE class=dtTABLE cellSpacing=0>
   <TBODY>
   <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsCheckedProperty.html">Помечен&nbsp;(Checked)</A></TD>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsValueProperty.html">Значение&nbsp;(Value)</A></TD>
     <TD width="50%">Возвращает значение свойства элемента.</TD></TR></TBODY></TABLE></DIV>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
@@ -38,8 +38,8 @@
 Перем ДФ, Флажок1;
 
 Процедура Флажок1_ПриИзменении() Экспорт
-	Сообщить("ДФ.АргументыСобытия.Помечен = " + ДФ.АргументыСобытия.Помечен);
-	Сообщить("Флажок1.Помечен = " + Флажок1.Помечен);
+	Сообщить("ДФ.АргументыСобытия.Значение = " + ДФ.АргументыСобытия.Значение);
+	Сообщить("Флажок1.Значение = " + Флажок1.Значение);
 КонецПроцедуры
 
 ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
@@ -51,13 +51,13 @@
 Флажок1 = Форма1.ДобавитьДочерний(ДФ.Флажок());
 Флажок1.ПриИзменении = ДФ.Действие(ЭтотОбъект, "Флажок1_ПриИзменении");
 
-Флажок1.Помечен = Истина;
+Флажок1.Значение = Истина;
 </DIV>
 </PRE>
 </details>
 <P></P>
 <H4 class=dtH4>Смотрите также</H4>
-<P><A href="OSDForms.html">Библиотека&nbsp;OneScriptDeclarativeForms</A></P></DIV>
+<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
 <script>
 window.onload = function () {
     var a = document.getElementById('select1');

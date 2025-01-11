@@ -6,9 +6,7 @@ using System.Linq;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using ScriptEngine.HostedScript.Library;
-using ScriptEngine.HostedScript.Library.Binary;
 using System.Collections.Concurrent;
 
 namespace osdf
@@ -26,11 +24,18 @@ namespace osdf
         public static string _oscriptPath = "";
         public static string _nw = "";
         public static string strFunctions = "";
-        public static int port = 3333;
+
+        public static string InitialStrFunctions { get; set; } = null; // Запомним интерфейс формы при запуске.
+        public static long TimeClietnClosed { get; set; } // Время отключения клиента.
+        public static long TimeClietnConnected { get; set; } // Время подключения клиента.
+
         public static Hashtable hashtable = new Hashtable();
         private static DfForm form = new DfForm();
         public static System.Diagnostics.Process process;
         public static System.Random Random = new Random();
+        public static bool scriptsIsLoad = false;
+
+        public static bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
 
         public static DeclarativeForms getInstance()
         {
@@ -53,54 +58,53 @@ namespace osdf
             IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
             string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
             string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
-            _nw = pathStartupScript + separator + "nwjs" + separator + "nw.exe";
+            if (isWin)
+            {
+                _nw = pathStartupScript + separator + "nwjs" + separator + "nw.exe";
+            }
+            else
+            {
+                _nw = pathStartupScript + separator + "nwjslin" + separator + "nw";
+            }
             _oscriptPath = pathStartupScript + separator + "oscript" + separator + "bin" + separator + "oscript.exe";
 
             DeclarativeForms inst = getInstance();
             inst.InjectGlobalProperty(shareStructure, "ОбщаяСтруктура", false);
             shareStructure.Insert("ДФ", inst);
-            openInBrowser = false;
             return inst;
-        }
-
-        [ContextProperty("НоваяСтрока", "NewLine")]
-        public string NewLine
-        {
-            get
-            {
-                if (Environment.OSVersion.Platform == PlatformID.Unix)
-                {
-                    return "\u000a"; // \n
-                }
-                else if (Environment.OSVersion.Platform == PlatformID.MacOSX)
-                {
-                    return "\u000d"; // \r
-                }
-                return "\u000d\u000a";
-            }
         }
 
         public static SystemGlobalContext GlobalContext()
         {
             return GlobalsManager.GetGlobalContext<SystemGlobalContext>();
         }
-
-        public static bool wsserverOn;
-        [ContextProperty("ВебСерверРаботает", "WsserverOn")]
-        public bool WsserverOn
+		
+        public static void SendStrFunc(string strFunc)
         {
-            get { return wsserverOn; }
-            set { wsserverOn = value; }
+            strFunctions = strFunctions + strFunc + funDelimiter;
         }
 
-        public static bool openInBrowser;
+        public static bool displayStartupWarning = false;
+        [ContextProperty("ВыводитьПредупреждениеПриЗапуске", "DisplayStartupWarning")]
+        public bool DisplayStartupWarning
+        {
+            get { return displayStartupWarning; }
+            set { displayStartupWarning = value; }
+        }
+
+        public static bool openInBrowser = false;
         [ContextProperty("ОткрытьВБраузере", "OpenInBrowser")]
         public bool OpenInBrowser
         {
             get { return openInBrowser; }
-            set { openInBrowser = value; }
+            set
+            {
+                if (isWin)
+                {
+                    openInBrowser = value;
+                }
+            }
         }
-
 		
         public static string CSSPath = "styles.css";
         private string _cssPath;
@@ -114,6 +118,26 @@ namespace osdf
                 CSSPath = _cssPath;
             }
         }
+		
+        [ContextMethod("Лоток", "Tray")]
+        public DfTray Tray()
+        {
+            if (!openInBrowser)
+            {
+                return new DfTray();
+            }
+            else
+            {
+                GlobalContext().Echo("Элемент Лоток недоступен при открытии программы в браузере.");
+                return null;
+            }
+        }		
+		
+        [ContextMethod("Таймер", "Timer")]
+        public DfTimer Timer()
+        {
+            return new DfTimer();
+        }		
 		
         [ContextMethod("Фон", "Background")]
         public DfBackground Background(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null, IValue p5 = null, IValue p6 = null, IValue p7 = null, IValue p8 = null)
@@ -1494,7 +1518,14 @@ namespace osdf
         [ContextMethod("ЗавершитьРаботу", "Exit")]
         public void Exit()
         {
-            process.Kill();
+            if (!OpenInBrowser)
+            {
+                Send("gui.App.quit();");
+            }
+            else
+            {
+                Send("window.close();");
+            }
         }
 
         [ContextMethod("Цвет", "Color")]
@@ -1539,11 +1570,20 @@ namespace osdf
             set { _nw = value; }
         }
 
-        [ContextProperty("Порт", "Port")]
-        public int Port
+        public static int portReceivingServer = 3333;
+        [ContextProperty("ПортСервераПриема", "PortReceivingServer")]
+        public int PortReceivingServer
         {
-            get { return port; }
-            set { port = value; }
+            get { return portReceivingServer; }
+            set { portReceivingServer = value; }
+        }
+
+        public static int portSendServer = 3339;
+        [ContextProperty("ПортСервераОтправки", "PortSendServer")]
+        public int PortSendServer
+        {
+            get { return portSendServer; }
+            set { portSendServer = value; }
         }
 
         [ContextProperty("ОбщаяСтруктура", "ShareStructure")]
@@ -1556,6 +1596,204 @@ namespace osdf
         public void InjectGlobalProperty(IValue obj, string name, bool onlyRead)
         {
             GlobalContext().EngineInstance.Environment.InjectGlobalProperty(obj, name, onlyRead);
+        }
+
+        public static bool webserverReceivingUploaded = false;
+        public static void LoadWsserverReceiving()
+        {
+            StructureImpl extContext = new StructureImpl();
+            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
+            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
+            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");
+            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
+            extContext.Insert("ОбщаяСтруктура", shareStructure);
+
+            string backgroundTasksServerReceiving = @"
+Процедура ЗапускКлиента(параметр1) Экспорт
+	Контекст = Новый Структура(""ДФ"", параметр1);
+	Стр = ""
+	|Перем ВСПДФ;
+	|Перем ПервоеСообщение;
+	|
+	|Процедура ВСПДФ_ПриПолученииСообщения() Экспорт
+	|	Сообщение = ВСПДФ.АргументыСобытия.Сообщение;
+	|	ДФ.ОбработатьСообщение(Сообщение);
+	|	Если ПервоеСообщение Тогда
+	|	    ПервоеСообщение = Ложь;
+	|	Иначе
+	|	    Попытка
+	|		    ВСПДФ.ОтправитьТекст(ДФ.СтрокаФункций);
+	|	    Исключение
+	|	    КонецПопытки;
+	|	    ДФ.СтрокаФункций = """""""";
+	|	КонецЕсли;
+	|КонецПроцедуры
+	|   
+	|ВСПДФ = Новый ВебСерверПолученияДекларФорм();
+	|ВСПДФ.ПриПолученииСообщения = ВСПДФ.Действие(ЭтотОбъект, """"ВСПДФ_ПриПолученииСообщения"""");
+	|ВСПДФ.Начать(""""127.0.0.1"""", ДФ.ПортСервераПриема);
+	|
+	|ПервоеСообщение = Истина;
+	|
+	|Пока ВСПДФ.Продолжать Цикл
+	|   ВСПДФ.ПолучитьСобытие().Выполнить();
+	|КонецЦикла;
+	|"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(1);
+МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
+";
+            GlobalContext().LoadScriptFromString(backgroundTasksServerReceiving, extContext);
+            while (!webserverReceivingUploaded)
+            {
+                System.Threading.Thread.Sleep(300);
+            }		
+        }
+
+        public static bool webserverSendUploaded = false;
+        public static void LoadWsserverSend()
+        {
+            StructureImpl extContext = new StructureImpl();
+            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
+            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
+            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");
+            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
+            extContext.Insert("ОбщаяСтруктура", shareStructure);
+
+            string backgroundTasksServerSend = @"
+Процедура ЗапускКлиента(параметр1) Экспорт
+	Контекст = Новый Структура(""ДФ"", параметр1);
+	Стр = ""
+	|Перем ВСОДФ;
+	|Перем ПервоеСообщение;
+	|
+	|Процедура ВСОДФ_ПриПолученииСообщения() Экспорт
+	|	Сообщение = ВСОДФ.АргументыСобытия.Сообщение;
+	|	ДФ.ОбработатьСообщение(Сообщение);
+	|	Если ПервоеСообщение Тогда
+	|	    Попытка
+	|		    ВСОДФ.ОтправитьТекст(ДФ.СтрокаФункций);
+	|	    Исключение
+	|	    КонецПопытки;
+	|	    ДФ.СтрокаФункций = """""""";
+	|	    ПервоеСообщение = Ложь;
+	|	КонецЕсли;
+	|КонецПроцедуры
+	|   
+	|ВСОДФ = Новый ВебСерверОтправкиДекларФорм();
+	|ВСОДФ.ПриПолученииСообщения = ВСОДФ.Действие(ЭтотОбъект, """"ВСОДФ_ПриПолученииСообщения"""");
+	|ВСОДФ.Начать(""""127.0.0.1"""", ДФ.ПортСервераОтправки);
+	|
+	|ПервоеСообщение = Истина;
+	|
+	|Пока ВСОДФ.Продолжать Цикл
+	|   ВСОДФ.ПолучитьСобытие().Выполнить();
+	|КонецЦикла;
+	|"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(1);
+МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
+";
+            GlobalContext().LoadScriptFromString(backgroundTasksServerSend, extContext);
+            while (!webserverSendUploaded)
+            {
+                System.Threading.Thread.Sleep(300);
+            }
+        }
+
+        public static bool clientServerUploaded = false;
+        public void LoadClientServer()
+        {
+            StructureImpl extContext = new StructureImpl();
+            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
+            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
+            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");
+            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
+            extContext.Insert("ОбщаяСтруктура", shareStructure);
+
+            string backgroundClientServer = @"
+Процедура ЗапускКлиента(параметр1) Экспорт
+	Контекст = Новый Структура(""ДФ"", параметр1);
+	Стр = ""
+	|Перем КСДФ;
+	|Перем Клиент;
+	|Перем ИдентификаторКлиента;
+	|
+	|Процедура Сервер_ПриПодключенииКлиента() Экспорт
+	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
+	|	ИдентификаторКлиента = СерверКлиент.ИдентификаторКлиента;
+	|	//Сообщить(""""Клиент подключен. Идентификатор клиента = """" + СерверКлиент.ИдентификаторКлиента + """" """" + ТекущаяДата());
+	|КонецПроцедуры
+	|
+	|Процедура Сервер_ПриОтключенииКлиента() Экспорт
+	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
+	|	//Сообщить(""""Клиент отключен. Идентификатор клиента = """" + СерверКлиент.ИдентификаторКлиента + """" """" + ТекущаяДата());
+	|КонецПроцедуры
+	|
+	|Процедура Сервер_ПриПолученииСообщения() Экспорт
+	|	Сообщение = КСДФ.АргументыСобытия.Сообщение;
+	|	Отправитель = КСДФ.АргументыСобытия.Отправитель;
+	|	ДФ.ОбработатьСообщение(Сообщение.Текст);
+	|	
+	|	//Сообщить(""""Сообщение.Текст = """" + Сообщение.Текст);
+	|	Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
+	|		Клиент = КСДФ.АргументыСобытия.Отправитель;
+	|		ДФ.ОбщаяСтруктура.Вставить(""""Клиент"""", Клиент);
+	|		ДФ.ОбщаяСтруктура.Вставить(""""КСДФ"""", КСДФ);
+	|	Иначе
+	|	КонецЕсли;
+	|
+	|	//Сообщить(""""ДФ.СтрокаФункций = """" + ДФ.СтрокаФункций);
+	|	Попытка
+	|		Клиент.ОтправитьСообщение(КСДФ.СообщениеТекст(ДФ.СтрокаФункций));
+	|	Исключение
+	|		Отправитель.ОтправитьСообщение(КСДФ.СообщениеТекст(ДФ.СтрокаФункций));
+	|	КонецПопытки;
+	|	ДФ.СтрокаФункций = """""""";
+	|	
+	|	Если КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер Тогда
+	|		Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
+	|		Иначе
+	|			Отправитель.Отключить();
+	|		КонецЕсли;
+	|	КонецЕсли;
+	|	// Сообщить(""""== Событие обработано ======================================="""");
+	|КонецПроцедуры
+	|
+	|КСДФ = Новый КлиентСерверДекларФорм();
+	|TCPСервер1 = КСДФ.TCPСервер(ДФ.ПортСервераПриема);
+	|TCPСервер1.ПриПодключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"Сервер_ПриПодключенииКлиента""""); // Это свойство необходимо установить.
+	|TCPСервер1.ПриОтключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"Сервер_ПриОтключенииКлиента""""); // Это свойство необходимо установить.
+	|TCPСервер1.ПриПолученииСообщения = КСДФ.Действие(ЭтотОбъект, """"Сервер_ПриПолученииСообщения"""");
+	|КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер;
+	|
+	|TCPСервер1.Начать();
+	|
+	|Пока КСДФ.Продолжать Цикл
+	|   КСДФ.ПолучитьСобытие().Выполнить();
+	|КонецЦикла;
+	|"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(1);
+МассивПараметров[0] = ОбщаяСтруктура.ДФ;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
+";
+            GlobalContext().LoadScriptFromString(backgroundClientServer, extContext);
+            while (!clientServerUploaded)
+            {
+                System.Threading.Thread.Sleep(300);
+            }
         }
 
         [ContextMethod("ЗагрузитьСценарии", "LoadScripts")]
@@ -1571,203 +1809,62 @@ namespace osdf
             shareStructure.Insert("Сценарии", scripts);
             extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
             extContext.Insert("ОбщаяСтруктура", shareStructure);
-		
-            string backgroundTasks = @"
-Процедура ЗапускКлиента(параметр1) Экспорт
-	Контекст = Новый Структура(""ДФ"", параметр1);
-	Стр = ""
-	|Перем КСДФ;
-	|Перем Клиент;
-	|Перем ИдентификаторКлиента;
-	|
-	|Функция РазобратьСтроку(Строка, Разделитель)
-	|	Стр = СтрЗаменить(Строка,Разделитель,символы.ПС);
-	|	М = Новый Массив;
-	|	Если ПустаяСтрока(Стр) Тогда
-	|		Возврат М;
-	|	КонецЕсли;
-	|	Для Ч = 1 По СтрЧислоСтрок(Стр) Цикл
-	|		М.Добавить(СтрПолучитьСтроку(Стр,Ч));
-	|	КонецЦикла;
-	|	Возврат М;
-	|КонецФункции
-	|
-	|Функция ТекстСообщения(парам)
-	|	СимволПС = Символы.ВК + Символы.ПС;
-	|	
-	|	// Ответ для браузер-клиента нужно сформировать по определенным правилам, с заголовком и прочими составляющими.
-	|	Массив = Новый Массив();
-	|	Массив.Добавить(""""HTTP/1.1 200 OK"""");
-	|	Массив.Добавить(""""Server: OneScriptDeclarativeForms"""");
-	|	Массив.Добавить(""""Content-Type: text/html; charset=utf-8"""");
-	|	Массив.Добавить(СимволПС);
-	|	ДвоичныеДанныеЗаголовков = ПолучитьДвоичныеДанныеИзСтроки(СтрСоединить(Массив, СимволПС), """"utf-8"""");
-	|	ДвоичныеДанныеТела = ПолучитьДвоичныеДанныеИзСтроки(парам);
-	|	ДвоичныеДанныеОтвета = Новый Массив;
-	|	ДвоичныеДанныеОтвета.Добавить(ДвоичныеДанныеЗаголовков);
-	|	ДвоичныеДанныеОтвета.Добавить(ДвоичныеДанныеТела);
-	|	Ответ = СоединитьДвоичныеДанные(ДвоичныеДанныеОтвета);
-	|
-	|	Возврат ПолучитьСтрокуИзДвоичныхДанных(Ответ); 
-	|КонецФункции
-	|
-	|Процедура Сервер_ПриПодключенииКлиента() Экспорт
-	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
-	|	ИдентификаторКлиента = СерверКлиент.ИдентификаторКлиента;
-	|	// Сообщить(""""Клиент подключен. Идентификатор клиента = """" + СерверКлиент.ИдентификаторКлиента + """" """" + ТекущаяДата());
-	|КонецПроцедуры
-	|
-	|Процедура Сервер_ПриОтключенииКлиента() Экспорт
-	|	СерверКлиент = КСДФ.СерверКлиентАрг().Клиент;
-	|	// Сообщить(""""Клиент отключен. Идентификатор клиента = """" + СерверКлиент.ИдентификаторКлиента + """" """" + ТекущаяДата());
-	|КонецПроцедуры
-	|
-	|Процедура Сервер_ПриПолученииСообщения() Экспорт
-	|	Сообщение = КСДФ.АргументыСобытия.Сообщение;
-	|	Отправитель = КСДФ.АргументыСобытия.Отправитель;
-	|	ДФ.ОбработатьСообщение(Сообщение.Текст);
-	|	
-	|	// Сообщить(""""Сообщение.Текст = """" + Сообщение.Текст);
-	|	Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
-	|		Клиент = КСДФ.АргументыСобытия.Отправитель;
-	|		ДФ.ОбщаяСтруктура.Вставить(""""Клиент"""", Клиент);
-	|		ДФ.ОбщаяСтруктура.Вставить(""""КСДФ"""", КСДФ);
-	|	Иначе
-	|	КонецЕсли;
-	|
-	|	// Сообщить(""""ДФ.СтрокаФункций = """" + ДФ.СтрокаФункций);
-	|	Попытка
-	|		Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
-	|			Если ИдентификаторКлиента = 1 Тогда
-	|				Клиент.ОтправитьСообщение(КСДФ.СообщениеТекст(ДФ.СтрокаФункций));
-	|			КонецЕсли;
-	|		Иначе
-	|			Отправитель.ОтправитьСообщение(КСДФ.СообщениеТекст(ТекстСообщения(ДФ.СтрокаФункций)));
-	|		КонецЕсли;
-	|	Исключение
-	|	КонецПопытки;
-	|	ДФ.СтрокаФункций = """""""";
-	|	
-	|	Если КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер Тогда
-	|		Если Сообщение.Текст = """"ConstantClient5du4fsjiwixxf"""" Тогда
-	|		Иначе
-	|			Отправитель.Отключить(); // Нужно в случае клиента-браузера по протоколу http.
-	|		КонецЕсли;
-	|	КонецЕсли;
-	|	// Сообщить(""""== Событие обработано ======================================="""");
-	|КонецПроцедуры
-	|
-	|КСДФ = Новый КлиентСерверДекларФорм();
-	|TCPСервер1 = КСДФ.TCPСервер(ДФ.Порт);
-	|TCPСервер1.ПриПодключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"Сервер_ПриПодключенииКлиента""""); // Это свойство необходимо установить.
-	|TCPСервер1.ПриОтключенииКлиента = КСДФ.Действие(ЭтотОбъект, """"Сервер_ПриОтключенииКлиента""""); // Это свойство необходимо установить.
-	|TCPСервер1.ПриПолученииСообщения = КСДФ.Действие(ЭтотОбъект, """"Сервер_ПриПолученииСообщения"""");
-	|КСДФ.РежимСтороннегоКлиента = КСДФ.РежимКлиента.Браузер;
-	|
-	|// Запустим сервер
-	|TCPСервер1.Начать();
-	|// Сообщить(""""Сервер запущен"""");
-	|
-	|// Запустим цикл обработки событий
-	|Пока КСДФ.Продолжать Цикл
-	|   КСДФ.ПолучитьСобытие().Выполнить();
-	|КонецЦикла;
-	|"";
-	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-КонецПроцедуры
 
-Процедура ЗапускgetProps(параметр1) Экспорт
-	Контекст = Новый Структура(""ДФ"", параметр1);
-	Стр = ""
-	|Пока Истина Цикл
-	|	Пока ДФ.КоличествоВОчереди() > 0 Цикл
-	|		ДФ.Отправить();
-	|	КонецЦикла;
-	|	Приостановить(7);
-	|КонецЦикла;"";
-	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-КонецПроцедуры
-
-МассивПараметров = Новый Массив(1);
-МассивПараметров[0] = ОбщаяСтруктура.ДФ;
-Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
-Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускgetProps"", МассивПараметров);
-";
-
-            string backgroundTasksBr = @"
-Процедура ЗапускКлиента(параметр1) Экспорт
-	Контекст = Новый Структура(""ДФ"", параметр1);
-	Стр = ""
-	|Перем ВСДФ;
-	|
-	|Процедура ВСДФ_ПриПолученииСообщения() Экспорт
-	|	// Сообщить(""""== ВСДФ_ПриПолученииСообщения ======================================="""");
-	|	Сообщение = ВСДФ.АргументыСобытия.Сообщение;
-	|	// Сообщить(""""Сообщение = """" + Сообщение);
-	|	ДФ.ОбработатьСообщение(Сообщение);
-	|	
-	|	
-	|КонецПроцедуры
-	|   
-	|ВСДФ = Новый ВебСерверДекларФорм();
-	|ВСДФ.ПриПолученииСообщения = ВСДФ.Действие(ЭтотОбъект, """"ВСДФ_ПриПолученииСообщения"""");
-    |ВСДФ.Начать(""""127.0.0.1"""", ДФ.Порт);
-	|   
-	|
-	|// Запустим цикл обработки событий
-	|Пока ВСДФ.Продолжать Цикл
-	|   ВСДФ.ПолучитьСобытие().Выполнить();
-	|КонецЦикла;
-	|"";
-	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-КонецПроцедуры
-
-Процедура ЗапускgetProps(параметр1) Экспорт
-	Контекст = Новый Структура(""ДФ"", параметр1);
-	Стр = ""
-	|Пока Истина Цикл
-	|	Пока ДФ.КоличествоВОчереди() > 0 Цикл
-	|		ДФ.Отправить();
-	|	КонецЦикла;
-	|	Приостановить(7);
-	|КонецЦикла;"";
-	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
-КонецПроцедуры
-
-МассивПараметров = Новый Массив(1);
-МассивПараметров[0] = ОбщаяСтруктура.ДФ;
-Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
-Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускgetProps"", МассивПараметров);
-";
-            if (OpenInBrowser)
+            // Ставим условия для корректной загрузки в случае одиночного или многократного использования
+            // в сценарии метода Сценарии = ДФ.ЗагрузитьСценарии("os");
+            if (!scriptsIsLoad)
             {
-                GlobalContext().LoadScriptFromString(backgroundTasksBr, extContext);
-            }
-            else
-            {
-                GlobalContext().LoadScriptFromString(backgroundTasks, extContext);
+                if (isWin)
+                {
+                    LoadWsserverReceiving();
+                    LoadWsserverSend();
+                }
+                else
+                {
+                    LoadClientServer();
+                }
             }
 
-            // Создаем в этом каталоге файл package.json с заданными в сценарии начальнымисвойствами формы.
+            // Создаем в этом каталоге файл package.json с заданными в сценарии начальными свойствами формы.
             if (!OpenInBrowser)
             {
                 File.WriteAllText(pathStartupScript + separator + "package.json", Packagejson.packagejson, System.Text.Encoding.UTF8);
             }
 
             // Создаем в этом каталоге файл index.html.
-            if (OpenInBrowser)
+            if (isWin)
             {
-                File.WriteAllText(pathStartupScript + separator + "index.html", Indexhtml.IndexhtmlBr, System.Text.Encoding.UTF8);
+                if (OpenInBrowser)
+                {
+                    string strIndexhtmlBr = IndexhtmlWinBr.Indexhtml;
+                    if (DisplayStartupWarning)
+                    {
+                        string str1 = "//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);";
+                        string str2 = "setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);";
+                        strIndexhtmlBr = strIndexhtmlBr.Replace(str1, str2);
+                    }
+                    File.WriteAllText(pathStartupScript + separator + "index.html", strIndexhtmlBr, System.Text.Encoding.UTF8);
+                }
+                else
+                {
+                    File.WriteAllText(pathStartupScript + separator + "index.html", IndexhtmlWin.Indexhtml, System.Text.Encoding.UTF8);
+                }
             }
             else
             {
-                File.WriteAllText(pathStartupScript + separator + "index.html", Indexhtml.indexhtml, System.Text.Encoding.UTF8);
+                if (OpenInBrowser)
+                {
+                    string str1 = "//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);";
+                    string str2 = "setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);";
+                    string strIndexhtmlBr = IndexhtmlLinBr.Indexhtml.Replace(str1, str2);
+                    File.WriteAllText(pathStartupScript + separator + "index.html", strIndexhtmlBr, System.Text.Encoding.UTF8);
+                }
+                else
+                {
+                    File.WriteAllText(pathStartupScript + separator + "index.html", IndexhtmlLin.Indexhtml, System.Text.Encoding.UTF8);
+                }
             }
 
-            // Создаем в этом каталоге файл стиля (имя_скрипта).css
-            // ...
-
-            bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
             if (isWin)
             {
                 if (folderName == @".\")
@@ -1897,6 +1994,9 @@ namespace osdf
                 IRuntimeContextInstance inst = GlobalContext().LoadScript(item.Value.AsString(), extContext);
                 scripts.Insert(item.Key.AsString(), (IValue)inst);
             }
+
+            scriptsIsLoad = true;
+
             return scripts;
         }
 
@@ -1939,49 +2039,58 @@ namespace osdf
         [ContextMethod("СообщениеФорме", "MessageToForm")]
         public void Send(string p1)
         {
-            int num = shareStructure.FindProperty("Клиент");
-            dynamic val1 = shareStructure.GetPropValue(num);
-            int num2 = shareStructure.FindProperty("КСДФ");
-            dynamic val2 = shareStructure.GetPropValue(num2);
-
-            val1.SendMessage(val2.TextMessage(p1));
-            strFunctions = "";
+            if (isWin)
+            {
+                WebServerSendText(p1);
+            }
+            else
+            {
+                SendStrFunc(p1);
+            }
         }
-
-        public DfAction gettingProperty;
-        [ContextProperty("ПриПолученииСвойства", "GettingProperty")]
-        public DfAction GettingProperty
-        {
-            get { return gettingProperty; }
-            set { gettingProperty = value; }
-        }		
 
         [ContextMethod("ОбработатьСообщение", "ProcessMessage")]
         public void ProcessMessage(string p1)
         {
-            string strZapros;
-            if (OpenInBrowser)
-            {
-                strZapros = p1;
-            }
-            else
-            {
-                string[] zapros = p1.Split(new string[] { "\u000a", "\u000d" }, StringSplitOptions.RemoveEmptyEntries);
-                strZapros = zapros[zapros.Length - 1];
-            }
+            string strZapros = p1;
             string[] massiv = strZapros.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
             //GlobalContext().Echo("Сообщение.Текст = " + p1);
             //GlobalContext().Echo("СтрЗапроса = " + strZapros);
+		
+            if (strZapros == "formIsLoaded")
+            {
+                try
+                {
+                    Execute(((DfForm)FindElement("mainForm")).Loaded);
+                }
+                catch (Exception)
+                {
+                    //GlobalContext().Echo("Loaded не задан");
+                }
+            }
+		
             if (!(massiv.Length < 2))
             {
                 string nameElement = massiv[0];
                 string nameEvent = massiv[1];
                 if (massiv.Length == 2) // Для событий без аргументов.
                 {
+                    if (nameElement == "mainForm" && nameEvent == "loaded")
+                    {
+                        return;
+                    }
+		
                     try
                     {
                         Sender = FindElement(nameElement);
-                        Execute((DfAction)FindElement(nameElement).AsObject().GetPropValue(nameEvent));
+                        if (Sender.GetType() == typeof(osdf.DfMenuItem))
+                        {
+                            Execute((DfAction)FindElement(nameElement).AsObject().GetPropValue(nameEvent));
+                        }
+                        else
+                        {
+                            Execute((DfAction)Sender.GetType().GetProperty(nameEvent).GetValue(Sender));
+                        }
                     }
                     catch
                     {
@@ -2054,6 +2163,10 @@ namespace osdf
                             {
                                 propValue = (DfTableHeader)FindElement(massiv[3]);
                             }		
+                            else if (Sender.GetType() == typeof(osdf.DfImage))
+                            {
+                                propValue = ValueFactory.Create(massiv[3].Replace("#", ""));
+                            }		
                             else
                             {
                                 propValue = ValueFactory.Create(massiv[3]);
@@ -2061,23 +2174,165 @@ namespace osdf
 
                             try
                             {
-                                // Если свойство предоставляется для пользователя только для чтения
-                                // то присваивать значение будем свойству - посреднику.
-                                string nameProperty2 = (string)namesRusProps[massiv[2]][2].ToString();
-                                ((dynamic)Sender)[nameProperty2].SetValue((dynamic)Sender, propValue);
+                                // Присваивать значение будем свойству - посреднику.
+                                string nameProperty2 = namesRusProps[massiv[2]][2].ToString();
+                                if (nameProperty2 == "textAlign")
+                                {
+                                    nameProperty2 = "horizontalTextAlign";
+                                }
+                                if (nameProperty2 == "border")
+                                {
+                                    nameProperty2 = "borders";
+                                }
+                                if (nameProperty2 == "borderStyle")
+                                {
+                                    nameProperty2 = "bordersStyle";
+                                }
+                                if (nameProperty2 == "borderColor")
+                                {
+                                    nameProperty2 = "bordersColor";
+                                }
+                                if (nameProperty2 == "color")
+                                {
+                                    nameProperty2 = "textColor";
+                                }
+                                if (nameProperty2 == "borderWidth")
+                                {
+                                    nameProperty2 = "bordersWidth";
+                                }		
+                                dynamic obj = ((dynamic)Sender);
+
+                                Type type = obj.GetType().GetProperty(nameProperty2).PropertyType;
+                                if (type == typeof(string))
+                                {
+                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue.AsString());
+                                }
+                                else if (type == typeof(bool))
+                                {
+                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue.AsBoolean());
+                                }
+                                else if (type == typeof(System.Int32))
+                                {
+                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, Convert.ToInt32(propValue.AsNumber()));
+                                }
+                                else
+                                {
+                                    if (nameProperty2 == "parent")
+                                    {
+                                        propValue = FindElement(massiv[3]);
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfAudio) && nameProperty2 == "volume")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        string str1 = num1.ToString().TrimEnd('0');
+                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfAudio) && nameProperty2 == "playbackRate")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        string str1 = num1.ToString().TrimEnd('0');
+                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+                                    }		
+                                    if ((obj.GetType() == typeof(osdf.DfProgress) ||
+                                        obj.GetType() == typeof(osdf.DfMeter)
+                                        ) && nameProperty2 == "_value")		
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ",")) * 100;
+                                        string str1 = num1.ToString().TrimEnd('0');
+                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == "_value")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }	
+                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == "_value")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }	
+                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == "step")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }	
+                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == "step")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }		
+                                    if (obj.GetType() == typeof(osdf.DfProgress) && nameProperty2 == "max")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ",")) * 100;
+                                        string str1 = num1.ToString().TrimEnd('0');
+                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == "max")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == "max")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfMeter) && nameProperty2 == "max")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ",")) * 100;
+                                        string str1 = num1.ToString().TrimEnd('0');
+                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfNumberField) && nameProperty2 == "min")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfRange) && nameProperty2 == "min")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ","));
+                                        propValue = ValueFactory.Create(num1);
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfMeter) && nameProperty2 == "min")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ",")) * 100;
+                                        string str1 = num1.ToString().TrimEnd('0');
+                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+                                    }		
+                                    if (obj.GetType() == typeof(osdf.DfMeter) && nameProperty2 == "optimum")
+                                    {
+                                        Decimal num1 = Decimal.Parse(massiv[3].Replace(".", ",")) * 100;
+                                        string str1 = num1.ToString().TrimEnd('0');
+                                        propValue = ValueFactory.Create(Decimal.Parse(str1));
+                                    }		
+                                    if (obj.GetType() == typeof(osdf.DfTableRow) && nameProperty2 == "rowIndex")
+                                    {
+                                        propValue = ValueFactory.Create(Int32.Parse(massiv[3]));
+                                    }
+                                    if (obj.GetType() == typeof(osdf.DfTableRow) && nameProperty2 == "sectionRowIndex")
+                                    {
+                                        propValue = ValueFactory.Create(Int32.Parse(massiv[3]));
+                                    }		
+                                    if (obj.GetType() == typeof(osdf.DfColorSelection) && nameProperty2 == "_value")
+                                    {
+                                        string str1 = massiv[3].Replace("#", "");
+                                        int r = Convert.ToInt32(str1.Substring(0, 2), 16);
+                                        int g = Convert.ToInt32(str1.Substring(2, 2), 16);
+                                        int b = Convert.ToInt32(str1.Substring(4, 2), 16);
+                                        propValue = ValueFactory.Create("rgb(" + r.ToString() + ", " + g.ToString() + ", " + b.ToString() + ")");
+                                    }		
+                                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue);
+                                }
                             }
-                            catch
+                            catch (Exception ex)
                             {
-                                ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(nameProperty), propValue);
+                                GlobalContext().Echo("При присвоении значения свойству - посреднику = " + ex.StackTrace);
                             }
                             if (actionItemKey != "")
                             {
                                 Execute((DfAction)FindElement(actionItemKey));
                             }
-                            else
-                            {
-                                Execute(GettingProperty);
-                            }
+                            else { }
                         }
                         else
                         {
@@ -2135,38 +2390,39 @@ namespace osdf
             string[] str1 = p1.Split(new string[] { paramDelimiter }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 2; i < str1.Length; i++)
             {
-                try
+                string[] str2 = str1[i].Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                //GlobalContext().Echo("str2[0] = " + str2[0]);
+                //GlobalContext().Echo("str2[1] = " + str2[1]);
+
+                // Здесь нужно знать какой тип значения у свойства и конвертировать из строки str2[0] в нужный тип.
+                string nameProperty = "";
+                System.Reflection.PropertyInfo[] myPropertyInfo = DfEventArgs1.GetType().GetProperties();
+                for (int i1 = 0; i1 < myPropertyInfo.Length; i1++)
                 {
-                    string[] str2 = str1[i].Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-                    //GlobalContext().Echo("str2[0] = " + str2[0]);
-                    //GlobalContext().Echo("str2[1] = " + str2[1]);
-
-                    // Здесь нужно знать какой тип значения у свойства и конвертировать из строки str2[0] в нужный тип.
-                    string nameProperty = "";
-                    System.Reflection.PropertyInfo[] myPropertyInfo = DfEventArgs1.GetType().GetProperties();
-                    for (int i1 = 0; i1 < myPropertyInfo.Length; i1++)
+                    if (myPropertyInfo[i1].CustomAttributes.Count() == 1)
                     {
-                        if (myPropertyInfo[i1].CustomAttributes.Count() == 1)
-                        {
-                            string methodRus1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetName();
-                            string methodEn1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                        string methodRus1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                        string methodEn1 = myPropertyInfo[i1].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
 
-                            if (methodRus1 == str2[0] || methodEn1 == str2[0])
-                            {
-                                nameProperty = methodEn1;
-                                break;
-                            }
+                        if (methodRus1 == str2[0] || methodEn1 == str2[0])
+                        {
+                            nameProperty = methodEn1;
+                            break;
                         }
                     }
-                    string propertyType;
-                    try
-                    {
-                        propertyType = ((dynamic)Sender).GetType().GetProperty(nameProperty).PropertyType.ToString();
-                    }
-                    catch (Exception)
-                    {
-                        propertyType = DfEventArgs1.GetType().GetProperty(nameProperty).PropertyType.ToString();
-                    }
+                }
+                string propertyType;
+                try
+                {
+                    propertyType = ((dynamic)Sender).GetType().GetProperty(nameProperty).PropertyType.ToString();
+                }
+                catch
+                {
+                    propertyType = DfEventArgs1.GetType().GetProperty(nameProperty).PropertyType.ToString();
+                }
+
+                try
+                {
                     IValue propValue;
                     if (propertyType == "System.Int32")
                     {
@@ -2198,28 +2454,86 @@ namespace osdf
                     {
                         propValue = ValueFactory.Create(str2[1]);
                     }
-                    DfEventArgs1.SetPropValue(DfEventArgs1.FindProperty(str2[0]), propValue);
-                    // Изменим и значение свойства объекта.
-                    try
+
+                    // Здесь нужно преобразовать общее для многих свойство АргументыСобытия.Значение (EventArgs.Value)
+                    // из типа данных ScriptEngine.Machine.IValue в тип данных свойства Value данного объекта.
+                    if (Sender.GetType() == typeof(osdf.DfRange) ||
+                        Sender.GetType() == typeof(osdf.DfNumberField)
+                        )
                     {
-                        // Если свойство предоставляется для пользователя только для чтения
-                        // то присваивать значение будем свойству - посреднику.
-                        string nameProperty2 = (string)namesRusProps[str2[0]][2].ToString();
-                        if (Sender.GetType() == typeof(DfCheckBox))
-                        {
-                            ((DfCheckBox)Sender)._checked = propValue.AsBoolean();
-                        }
-                        else
-                        {
-                            ((dynamic)Sender)[nameProperty2].SetValue((dynamic)Sender, propValue);
-                        }
+                        Decimal num1 = Decimal.Parse(str2[1].Replace(".", ","));
+                        propValue = ValueFactory.Create(num1);
                     }
-                    catch
+                    if (Sender.GetType() == typeof(osdf.DfCheckBox))
                     {
-                        ((dynamic)Sender).SetPropValue(((dynamic)Sender).FindProperty(str2[0]), propValue);
+                        ((DfCheckBox)Sender)._checked = propValue.AsBoolean();
+                        DfEventArgs1.SetPropValue(DfEventArgs1.FindProperty(str2[0]), propValue);
+                    }
+                    else
+                    {
+                        DfEventArgs1.SetPropValue(DfEventArgs1.FindProperty(str2[0]), propValue);
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    GlobalContext().Echo("При изменении значения свойства отправителя = " + ex.StackTrace);
+                }
+
+                // Изменим и значение свойства объекта.
+                try
+                {
+                    // Присваивать значение будем свойству - посреднику.
+                    string nameProperty2 = namesRusProps[str2[0]][2].ToString();
+                    dynamic obj = (dynamic)Sender;
+                    string propertyType2 = Sender.GetType().GetProperty(nameProperty2).PropertyType.ToString();
+                    dynamic propValue2;
+                    if (propertyType == "System.Int32")
+                    {
+                        Decimal num1 = Decimal.Parse(str2[1].Replace(".", ","));
+                        propValue2 = Convert.ToInt32(num1);
+                    }
+                    else if (propertyType == "ScriptEngine.HostedScript.Library.ArrayImpl")
+                    {
+                        ArrayImpl ArrayImpl1 = new ArrayImpl();
+                        string[] s = str2[1].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        for (int i1 = 0; i1 < s.Length; i1++)
+                        {
+                            if (FindElement(s[i1]) != null)
+                            {
+                                ArrayImpl1.Add(FindElement(s[i1]));
+                            }
+                            else
+                            {
+                                ArrayImpl1.Add(ValueFactory.Create(s[i1]));
+                            }
+                        }
+                        propValue2 = ArrayImpl1;
+                    }
+                    else if (propertyType == "System.Boolean")
+                    {
+                        propValue2 = Boolean.Parse(str2[1]);
+                    }
+                    else if (Sender.GetType() == typeof(osdf.DfRange) ||
+                        Sender.GetType() == typeof(osdf.DfNumberField)
+                        )
+                    {
+                        Decimal num1 = Decimal.Parse(str2[1].Replace(".", ","));
+                        propValue2 = ValueFactory.Create(num1);
+                    }		
+                    else if (propertyType == "ScriptEngine.Machine.IValue")
+                    {
+                        propValue2 = ValueFactory.Create(str2[1]);
+                    }
+                    else
+                    {
+                        propValue2 = str2[1];
+                    }
+                    obj.GetType().GetProperty(nameProperty2).SetValue(obj, propValue2);
+                }
+                catch (Exception)
+                {
+                    //GlobalContext().Echo("При изменении значения свойства объекта = " + ex.StackTrace);
+                }
             }
             return DfEventArgs1;
         }
@@ -2254,163 +2568,278 @@ namespace osdf
             return res;
         }
 		
-        [ContextMethod("КоличествоВОчереди", "QueueCount")]
-        public int QueueCount()
+        public static void WebServerSendText(string p1)
         {
-            return EventQueue.Count;
-        }
-
-        [ContextMethod("Отправить", "Send")]
-        public void Send()
-        {
-            string func;
-            EventQueue.TryDequeue(out func);
-            int num = shareStructure.FindProperty("Клиент");
-            dynamic val1 = shareStructure.GetPropValue(num);
-            int num2 = shareStructure.FindProperty("КСДФ");
-            dynamic val2 = shareStructure.GetPropValue(num2);
-            val1.SendMessage(val2.TextMessage(func));
-            strFunctions = "";
-        }
-
-        public static ConcurrentQueue<string> EventQueue = new ConcurrentQueue<string>();
+            osws.WebServerSendDeclarForms.WebServer.SendText(p1);
+        }		
+		
         [ContextMethod("ПолучитьСвойство", "GetObjectProperty")]
-        public void GetObjectProperty(IValue p1, string p2, DfAction p3 = null)
+        public void GetObjectProperty(IValue p1, string p2, DfAction p3)
         {
-            string p4 = "";
-            if (p3 != null)
-            {
-                p4 = p3.ItemKey;
-            }
             string itemKeyObj;
             string resObj;
-            if ((bool)namesRusProps[p2][1])
+            string function1 = "";
+            string enPropName = (string)namesRusProps[p2][2];
+            bool notStyle = (bool)namesRusProps[p2][1];
+            if ((p1.GetType() == typeof(osdf.DfTimeSelection) ||   
+                p1.GetType() == typeof(osdf.DfDateSelection) || 
+                p1.GetType() == typeof(osdf.DfDateTimeLocalSelection) || 
+                p1.GetType() == typeof(osdf.DfMonthSelection) || 
+                p1.GetType() == typeof(osdf.DfWeekSelection) || 
+                p1.GetType() == typeof(osdf.DfColorSelection) || 
+                p1.GetType() == typeof(osdf.DfProgress) ||	
+                p1.GetType() == typeof(osdf.DfTextArea) ||		
+                p1.GetType() == typeof(osdf.DfRadio) ||		
+                p1.GetType() == typeof(osdf.DfPasswordField) ||		
+                p1.GetType() == typeof(osdf.DfSearchField) ||		
+                p1.GetType() == typeof(osdf.DfSelect) ||		
+                p1.GetType() == typeof(osdf.DfTextField) ||		
+                p1.GetType() == typeof(osdf.DfNumberField) ||		
+                p1.GetType() == typeof(osdf.DfRange) ||		
+                p1.GetType() == typeof(osdf.DfOutput) ||		
+                p1.GetType() == typeof(osdf.DfCheckBox) ||		
+                p1.GetType() == typeof(osdf.DfMeter) ||		
+                p1.GetType() == typeof(osdf.DfSelectItem) ||
+                p1.GetType() == typeof(osdf.DfDateTimeSelection)
+                ) && p2 == "Значение")
             {
                 itemKeyObj = ((dynamic)p1).ItemKey;
-                resObj = "el.style.getPropertyValue('" + namesRusProps[p2][2] + "');";
+                resObj = "el['value'];";
+            }
+            else if (p1.GetType() == typeof(osdf.DfTextArea) && p2 == "Текст")
+            {
+                itemKeyObj = ((dynamic)p1).ItemKey;
+                resObj = "el['value'];";
+            }
+            else if ((p1.GetType() == typeof(osdf.DfImage) ||
+                p1.GetType() == typeof(osdf.DfArea)
+                ) && p2 == "Описание")
+            {
+                itemKeyObj = ((dynamic)p1).ItemKey;
+                resObj = "el['аlt'];";
+            }		
+            else if ((p1.GetType() == typeof(osdf.DfRadio) ||
+                p1.GetType() == typeof(osdf.DfCheckBox)
+                ) && p2 == "Помечен")		
+            {
+                itemKeyObj = ((dynamic)p1).ItemKey;
+                resObj = "el['checked'];";
+            }		
+            else if ((p1.GetType() == typeof(osdf.DfImage) ||
+                p1.GetType() == typeof(osdf.DfCanvas)
+                ) && p2 == "Высота")
+            {
+                itemKeyObj = ((dynamic)p1).ItemKey;
+                resObj = "el['height'];";
+            }
+            else if ((p1.GetType() == typeof(osdf.DfImage) ||
+                p1.GetType() == typeof(osdf.DfCanvas)
+                ) && p2 == "Ширина")
+            {
+                itemKeyObj = ((dynamic)p1).ItemKey;
+                resObj = "el['width'];";
+            }		
+            else if (p1.GetType() == typeof(osdf.DfStyle) && p2 == "Позиция")
+            {
+                itemKeyObj = ((dynamic)p1).Owner.ItemKey;
+                resObj = "el.style['position'];";
+                notStyle = false;
+            }		
+            else if (notStyle)
+            {
+                itemKeyObj = ((dynamic)p1).ItemKey;
+                resObj = "el['" + enPropName + "'];";
             }
             else
             {
                 itemKeyObj = ((dynamic)p1).Owner.ItemKey;
-                resObj = "el.style['" + namesRusProps[p2][2] + "'];";
+                resObj = "el.style['" + enPropName + "'];";
             }
-            string function1 = "" +
-                "let res;" +
-                "let el = mapKeyEl.get('" + itemKeyObj + "');" +
-                "try" +
-                "{" +
-                "    if ('" + p2 + "' == 'parent')" +
-                "    {" +
-                "        if (el.parentElement == document.body)" +
-                "        {" +
-                "            res = 'mainForm';" +
-                "        }" +
-                "        else" +
-                "        {" +
-                "            res = el.parentElement.name;" +
-                "        }" +
-                "    }" +
-                "    else" +
-                "    {" +
-                "        if ('" + namesRusProps[p2][1].ToString().ToLower() + "' == 'true')" +
-                "        {" +
-                "            if ('" + namesRusProps[p2][2] + "' == 'class')" +
-                "            {" +
-                "                res = el['className'];" +
-                "            }" +
-                "            else if ('" + namesRusProps[p2][2] + "' == 'tFoot')" +
-                "            {" +
-                "                let tFoot = el['tFoot'];" +
-                "                res = mapElKey.get(tFoot);" +
-                "            }" +
-                "            else if ('" + namesRusProps[p2][2] + "' == 'tHead')" +
-                "            {" +
-                "                let tHead = el['tHead'];" +
-                "                res = mapElKey.get(tHead);" +
-                "            }" +		
-                "            else if ('" + namesRusProps[p2][2] + "' == 'areas')" +
-                "            {" +
-                "                res = '';" +
-                "                if (el.areas.length > 0)" +
-                "                {" +
-                "                    for (var i = 0; i < el.areas.length; i++)" +
-                "                    {" +
-                "                        res = res + mapElKey.get(el.areas[i]) + ';';" +
-                "                    }" +
-                "                }" +
-                "            }" +
-                "            else if ('" + namesRusProps[p2][2] + "' == 'cells')" +
-                "            {" +
-                "                res = '';" +
-                "                if (el.cells.length > 0)" +
-                "                {" +
-                "                    for (var i = 0; i < el.cells.length; i++)" +
-                "                    {" +
-                "                        res = res + mapElKey.get(el.cells[i]) + ';';" +
-                "                    }" +
-                "                }" +
-                "            }" +
-                "            else if ('" + namesRusProps[p2][2] + "' == 'rows')" +
-                "            {" +
-                "                res = '';" +
-                "                if (el.rows.length > 0)" +
-                "                {" +
-                "                    for (var i = 0; i < el.rows.length; i++)" +
-                "                    {" +
-                "                        res = res + mapElKey.get(el.rows[i]) + ';';" +
-                "                    }" +
-                "                }" +
-                "            }" +
-                "            else if ('" + namesRusProps[p2][2] + "' == 'tBodies')" +
-                "            {" +
-                "                res = '';" +
-                "                if (el.tBodies.length > 0)" +
-                "                {" +
-                "                    for (var i = 0; i < el.tBodies.length; i++)" +
-                "                    {" +
-                "                        res = res + mapElKey.get(el.tBodies[i]) + ';';" +
-                "                    }" +
-                "                }" +
-                "            }" +
-                "            else if ('" + namesRusProps[p2][2] + "' == 'options')" +
-                "            {" +
-                "                res = '';" +
-                "                if (el.options.length > 0)" +
-                "                {" +
-                "                    for (var i = 0; i < el.options.length; i++)" +
-                "                    {" +
-                "                        res = res + mapElKey.get(el.options[i]) + ';';" +
-                "                    }" +
-                "                }" +
-                "            }" +
-                "            else" +
-                "            {" +
-                "                res = el['" + namesRusProps[p2][2] + "'];" +
-                "            }" +
-                "        }" +
-                "        else" +
-                "        {" +
-                "            res = " + resObj +
-                "        }" +
-                "    }" +
-                "    sendPost(" +
-                "    '" + ((dynamic)p1).ItemKey + "' +" +
-                "    '" + paramDelimiter + "' + 'v5v5v" + p4 + "' +" +
-                "    '" + paramDelimiter + "' + '" + p2 + "' +" +
-                "    '" + paramDelimiter + "' + res +" +
-                "    '" + paramDelimiter + "' + '" + namesRusProps[p2][1].ToString().ToLower() + "');" +
-                "}" +
-                "catch (err)" +
-                "{" +
-                "    sendPost('!!! Ошибка3:' + err.message);" +
-                "}" +
-                "";
-            function1 = function1.Replace("    ", " ").Replace("  ", " ");
-            EventQueue.Enqueue(function1);
-            // Здесь нужно задержаться до тех пор пока фоновое задание не обработает очередь сообщений
-            while (EventQueue.Count > 0)
+
+            if (enPropName == "parent")
             {
-                System.Threading.Thread.Sleep(7);
+                function1 = "" +
+                    "let res;" +
+                    "let el = mapKeyEl.get('" + itemKeyObj + "');" +
+                    "try" +
+                    "{" +
+                    "    if (el.parentElement == document.body)" +
+                    "    {" +
+                    "        res = 'mainForm';" +
+                    "    }" +
+                    "    else" +
+                    "    {" +
+                    "        res = mapElKey.get(el.parentElement);" +
+                    "    }" +
+                    "    sendPost(" +
+                    "    '" + ((dynamic)p1).ItemKey + "' +" +
+                    "    '" + paramDelimiter + "' + 'v5v5v" + p3.ItemKey + "' +" +
+                    "    '" + paramDelimiter + "' + '" + p2 + "' +" +
+                    "    '" + paramDelimiter + "' + res +" +
+                    "    '" + paramDelimiter + "' + '" + notStyle.ToString().ToLower() + "');" +
+                    "}" +
+                    "catch (err)" +
+                    "{" +
+                    "    sendPost('!!! Ошибка3:' + err.message);" +
+                    "}" +
+                    "";
+            }
+            else if (notStyle)
+            {
+                if (p1.GetType() == typeof(osdf.DfTextArea) && p2 == "Строки")
+                {
+                    function1 = "" +
+                        "let res;" +
+                        "let el = mapKeyEl.get('" + itemKeyObj + "');" +
+                        "try" +
+                        "{" +
+                        "    {" +
+                        "        res = " + resObj +
+                        "    }" +
+                        "    sendPost(" +
+                        "    '" + ((dynamic)p1).ItemKey + "' +" +
+                        "    '" + paramDelimiter + "' + 'v5v5v" + p3.ItemKey + "' +" +
+                        "    '" + paramDelimiter + "' + '" + p2 + "' +" +
+                        "    '" + paramDelimiter + "' + res +" +
+                        "    '" + paramDelimiter + "' + true);" +
+                        "}" +
+                        "catch (err)" +
+                        "{" +
+                        "    sendPost('!!! Ошибка3:' + err.message);" +
+                        "}" +
+                        "";
+                }
+                else
+                {
+                    function1 = "" +
+                        "let res;" +
+                        "let el = mapKeyEl.get('" + itemKeyObj + "');" +
+                        "try" +
+                        "{" +
+
+                        "    if ('" + enPropName + "' == 'class')" +
+                        "    {" +
+                        "        res = el['className'];" +
+                        "    }" +
+                        "    else if ('" + enPropName + "' == 'tFoot')" +
+                        "    {" +
+                        "        let tFoot = el['tFoot'];" +
+                        "        res = mapElKey.get(tFoot);" +
+                        "    }" +
+                        "    else if ('" + enPropName + "' == 'tHead')" +
+                        "    {" +
+                        "        let tHead = el['tHead'];" +
+                        "        res = mapElKey.get(tHead);" +
+                        "    }" +
+                        "    else if ('" + enPropName + "' == 'areas')" +
+                        "    {" +
+                        "        res = '';" +
+                        "        if (el.areas.length > 0)" +
+                        "        {" +
+                        "            for (var i = 0; i < el.areas.length; i++)" +
+                        "            {" +
+                        "                res = res + mapElKey.get(el.areas[i]) + ';';" +
+                        "            }" +
+                        "        }" +
+                        "    }" +
+                        "    else if ('" + enPropName + "' == 'cells')" +
+                        "    {" +
+                        "        res = '';" +
+                        "        if (el.cells.length > 0)" +
+                        "        {" +
+                        "            for (var i = 0; i < el.cells.length; i++)" +
+                        "            {" +
+                        "                res = res + mapElKey.get(el.cells[i]) + ';';" +
+                        "            }" +
+                        "        }" +
+                        "    }" +
+                        "    else if ('" + enPropName + "' == 'rows')" +
+                        "    {" +
+                        "        res = '';" +
+                        "        if (el.rows.length > 0)" +
+                        "        {" +
+                        "            for (var i = 0; i < el.rows.length; i++)" +
+                        "            {" +
+                        "                res = res + mapElKey.get(el.rows[i]) + ';';" +
+                        "            }" +
+                        "        }" +
+                        "    }" +
+                        "    else if ('" + enPropName + "' == 'tBodies')" +
+                        "    {" +
+                        "        res = '';" +
+                        "        if (el.tBodies.length > 0)" +
+                        "        {" +
+                        "            for (var i = 0; i < el.tBodies.length; i++)" +
+                        "            {" +
+                        "                res = res + mapElKey.get(el.tBodies[i]) + ';';" +
+                        "            }" +
+                        "        }" +
+                        "    }" +
+                        "    else if ('" + enPropName + "' == 'options')" +
+                        "    {" +
+                        "        res = '';" +
+                        "        if (el.options.length > 0)" +
+                        "        {" +
+                        "            for (var i = 0; i < el.options.length; i++)" +
+                        "            {" +
+                        "                res = res + mapElKey.get(el.options[i]) + ';';" +
+                        "            }" +
+                        "        }" +
+                        "    }" +
+                        "    else" +
+                        "    {" +
+                        "        res = " + resObj +
+                        "    }" +
+
+                        "    sendPost(" +
+                        "    '" + ((dynamic)p1).ItemKey + "' +" +
+                        "    '" + paramDelimiter + "' + 'v5v5v" + p3.ItemKey + "' +" +
+                        "    '" + paramDelimiter + "' + '" + p2 + "' +" +
+                        "    '" + paramDelimiter + "' + res +" +
+                        "    '" + paramDelimiter + "' + true);" +
+                        "}" +
+                        "catch (err)" +
+                        "{" +
+                        "    sendPost('!!! Ошибка3:' + err.message);" +
+                        "}" +
+                        "";
+                }
+            }
+            else
+            {
+                function1 = "" +
+                    "let res;" +
+                    "let el = mapKeyEl.get('" + itemKeyObj + "');" +
+                    "try" +
+                    "{" +
+
+                    "    res = " + resObj +
+
+                    "    sendPost(" +
+                    "    '" + ((dynamic)p1).ItemKey + "' +" +
+                    "    '" + paramDelimiter + "' + 'v5v5v" + p3.ItemKey + "' +" +
+                    "    '" + paramDelimiter + "' + '" + p2 + "' +" +
+                    "    '" + paramDelimiter + "' + res +" +
+                    "    '" + paramDelimiter + "' + false);" +
+                    "}" +
+                    "catch (err)" +
+                    "{" +
+                    "    sendPost('!!! Ошибка3:' + err.message);" +
+                    "}" +
+                    "";
+            }
+            function1 = function1.Replace("    ", " ").Replace("  ", " ");
+
+            if (isWin)
+            {
+                //WebServerSendText(function1);
+                DeclarativeForms.SendStrFunc(function1); // А может так?
+                // Здесь поставим задержку для формирования формой ответа.
+                System.Threading.Thread.Sleep(100);		
+            }
+            else
+            {
+                SendStrFunc(function1);
             }
         }
 
@@ -2757,12 +3186,22 @@ namespace osdf
             {"Шрифт", new object[4] { "Font", "font", "font", "font" } }
         };		
 		
-        // Для метода ПолучитьСвойство. Имена свойств.
+        // Для метода ПолучитьСвойство и для установки аргументов событий. Имена свойств.
         public static Dictionary<string, object[]> namesRusProps = new Dictionary<string, object[]>
             {
                 // methodRus tail isProperty jsMethodEn
                 // tail - хвостик к значению свойства.
                 // isProperty - это свойство объекта, иначе, - это свойство стиля.
+                // Это для DfEventArgs
+                {"ListItem", new object[3] { "", true, "listItem" } },
+                {"Y", new object[3] { "", true, "y" } },
+                {"X", new object[3] { "", true, "x" } },
+                {"Button", new object[3] { "", true, "button" } },
+                {"Files", new object[3] { "", true, "files" } },		
+                {"Value", new object[3] { "", true, "_value" } },
+                // Это для объектов
+                {"WindowHeight", new object[3] { "", true, "windowHeight" } },
+                {"WindowWidth", new object[3] { "", true, "windowWidth" } },
                 {"ЦветФона", new object[3] { "", false, "backgroundColor" } },
                 {"Направление", new object[3] { "", true, "dir" } },
                 {"ГоризонтальноеПрокручивание", new object[3] { "", true, "scrollLeft" } },
@@ -2776,8 +3215,7 @@ namespace osdf
                 {"ДиапазонКолонок", new object[3] { "", true, "colSpan" } },
                 {"Заголовки", new object[3] { "", true, "headers" } },
                 {"ДиапазонСтрок", new object[3] { "", true, "rowSpan" } },
-                {"Класс", new object[3] { "", true, "class" } },
-                {"ЗначениеПоУмолчанию", new object[3] { "", true, "defaultValue" } },
+                {"Класс", new object[3] { "", true, "className" } },
                 {"СмещениеЛево", new object[3] { "", true, "offsetLeft" } },
                 {"СмещениеВерх", new object[3] { "", true, "offsetTop" } },
                 {"СмещениеШирина", new object[3] { "", true, "offsetWidth" } },
@@ -2790,12 +3228,10 @@ namespace osdf
                 {"Области", new object[3] { "", true, "areas" } },
                 {"Изображения", new object[3] { "", true, "images" } },
                 {"Файлы", new object[3] { "", true, "files" } },
-                {"Files", new object[3] { "", true, "files" } },		
                 {"Позиция", new object[3] { "", true, "position" } },		
                 {"Количество", new object[3] { "", true, "length" } },
                 {"ЭлементыСписка", new object[3] { "", true, "options" } },
                 {"Помечен", new object[3] { "", true, "_checked" } },
-                {"Checked", new object[3] { "", true, "_checked" } },
                 {"Ячейки", new object[3] { "", true, "cells" } },
                 {"ИндексСтроки", new object[3] { "", true, "rowIndex" } },
                 {"ИндексСтрокиВСекции", new object[3] { "", true, "sectionRowIndex" } },
@@ -2803,6 +3239,205 @@ namespace osdf
                 {"ОбластиТаблицы", new object[3] { "", true, "tBodies" } },
                 {"Итоги", new object[3] { "", true, "tFoot" } },
                 {"ШапкаТаблицы", new object[3] { "", true, "tHead" } },
-            };
+                {"Значение", new object[3] { "", true, "_value" } },
+                {"БазоваяДлина", new object[3] { "", false, "flexBasis" } },
+                {"ВариантШрифта", new object[3] { "", false, "fontVariant" } },
+                {"ВертикальноеВыравнивание", new object[3] { "", false, "verticalAlign" } },
+                {"Родитель", new object[3] { "", true, "parent" } },
+                {"Идентификатор", new object[3] { "", true, "id" } },
+                {"Текст", new object[3] { "", true, "innerText" } },
+                {"Видимость", new object[3] { "", false, "visibility" } },
+                {"ВерхняяГраница", new object[3] { "", false, "borderTop" } },
+                {"ВписываниеОбъекта", new object[3] { "", false, "objectFit" } },
+                {"ВремяПерехода", new object[3] { "", false, "transitionDuration" } },
+                {"ВыделениеПользователем", new object[3] { "", false, "userSelect" } },
+                {"ВыравниваниеОтдельных", new object[3] { "", false, "alignSelf" } },
+                {"ВыравниваниеСодержимого", new object[3] { "", false, "alignContent" } },
+                {"ВыравниваниеЭлементов", new object[3] { "", false, "alignItems" } },
+                {"Высота", new object[3] { "", false, "height" } },
+                {"ВысотаСтроки", new object[3] { "", false, "lineHeight" } },
+                {"ГоризонтальноеВыравнивание", new object[3] { "", false, "cssFloat" } },
+                {"ГоризонтальноеВыравниваниеТекста", new object[3] { "", false, "textAlign" } },
+                {"ГраницаСвернута", new object[3] { "", false, "borderCollapse" } },
+                {"Границы", new object[3] { "", false, "border" } },
+                {"ДиапазонКолонокЭлемента", new object[3] { "", false, "columnSpan" } },
+                {"ДлинаТабуляции", new object[3] { "", false, "tabSize" } },
+                {"ДлительностьАнимации", new object[3] { "", false, "animationDuration" } },
+                {"ЖирностьШрифта", new object[3] { "", false, "fontWeight" } },
+                {"ЗадержкаАнимации", new object[3] { "", false, "animationDelay" } },
+                {"ЗадержкаПерехода", new object[3] { "", false, "transitionDelay" } },
+                {"ЗаливкаАнимации", new object[3] { "", false, "animationFillMode" } },
+                {"Заполнение", new object[3] { "", false, "padding" } },
+                {"ЗаполнениеКолонок", new object[3] { "", false, "columnFill" } },
+                {"ЗаполнениеСверху", new object[3] { "", false, "paddingTop" } },
+                {"ЗаполнениеСлева", new object[3] { "", false, "paddingLeft" } },
+                {"ЗаполнениеСнизу", new object[3] { "", false, "paddingBottom" } },
+                {"ЗаполнениеСправа", new object[3] { "", false, "paddingRight" } },
+                {"ИзменяемыйРазмер", new object[3] { "", false, "resize" } },
+                {"ИмяАнимации", new object[3] { "", false, "animationName" } },
+                {"ИнтервалГраницы", new object[3] { "", false, "borderSpacing" } },
+                {"ИнтервалКолонок", new object[3] { "", false, "columnGap" } },
+                {"ИнтервалСимволов", new object[3] { "", false, "letterSpacing" } },
+                {"ИнтервалСлов", new object[3] { "", false, "wordSpacing" } },
+                {"ИсточникКартинкиГраницы", new object[3] { "", false, "borderImageSource" } },
+                {"ИсточникПерспективы", new object[3] { "", false, "perspectiveOrigin" } },
+                {"Калибровка", new object[3] { "", false, "boxSizing" } },
+                {"КартинкаГраницы", new object[3] { "", false, "borderImage" } },
+                {"КартинкаСтиляСписка", new object[3] { "", false, "listStyleImage" } },
+                {"КоличествоКолонок", new object[3] { "", false, "columnCount" } },
+                {"КоличествоПовторов", new object[3] { "", false, "animationIterationCount" } },
+                {"КолонкиЭлемента", new object[3] { "", false, "columns" } },
+                {"Контур", new object[3] { "", false, "outline" } },
+                {"Ширина", new object[3] { "", false, "width" } },
+                {"Курсор", new object[3] { "", false, "cursor" } },
+                {"ЛеваяГраница", new object[3] { "", false, "borderLeft" } },
+                {"Лево", new object[3] { "", false, "left" } },
+                {"ЛевыйРадиусВерхнейГраницы", new object[3] { "", false, "borderTopLeftRadius" } },
+                {"ЛевыйРадиусНижнейГраницы", new object[3] { "", false, "borderBottomLeftRadius" } },
+                {"МаксимальнаяВысота", new object[3] { "", false, "maxHeight" } },
+                {"МаксимальнаяШирина", new object[3] { "", false, "maxWidth" } },
+                {"МинимальнаяВысота", new object[3] { "", false, "minHeight" } },
+                {"МинимальнаяШирина", new object[3] { "", false, "minWidth" } },
+                {"МозаикаКартинки", new object[3] { "", false, "backgroundRepeat" } },
+                {"МозаикаКартинкиГраницы", new object[3] { "", false, "borderImageRepeat" } },
+                {"НаправлениеАнимации", new object[3] { "", false, "animationDirection" } },
+                {"НаправлениеЭлементов", new object[3] { "", false, "flexDirection" } },
+                {"НарезкаКартинкиГраницы", new object[3] { "", false, "borderImageSlice" } },
+                {"Непрозрачность", new object[3] { "", false, "opacity" } },
+                {"Несвободно", new object[3] { "", false, "clear" } },
+                {"НижняяГраница", new object[3] { "", false, "borderBottom" } },
+                {"Низ", new object[3] { "", false, "bottom" } },
+                {"ОбластьКартинки", new object[3] { "", false, "backgroundOrigin" } },
+                {"ОбластьРисования", new object[3] { "", false, "backgroundClip" } },
+                {"Обрезка", new object[3] { "", false, "clip" } },
+                {"Отображать", new object[3] { "", false, "display" } },
+                {"Отступ", new object[3] { "", false, "margin" } },
+                {"ОтступСверху", new object[3] { "", false, "marginTop" } },
+                {"ОтступСлева", new object[3] { "", false, "marginLeft" } },
+                {"ОтступСнизу", new object[3] { "", false, "marginBottom" } },
+                {"ОтступСправа", new object[3] { "", false, "marginRight" } },
+                {"ОтступТекста", new object[3] { "", false, "textIndent" } },
+                {"ОформлениеТекстаЛиния", new object[3] { "", false, "textDecorationLine" } },
+                {"ОформлениеТекстаСтиль", new object[3] { "", false, "textDecorationStyle" } },
+                {"ОформлениеТекстаЦвет", new object[3] { "", false, "textDecorationColor" } },
+                {"ПереносГибких", new object[3] { "", false, "flexWrap" } },
+                {"ПереносСлов", new object[3] { "", false, "wordWrap" } },
+                {"Переполнение", new object[3] { "", false, "overflow" } },
+                {"ПереполнениеИгрек", new object[3] { "", false, "overflowY" } },
+                {"ПереполнениеИкс", new object[3] { "", false, "overflowX" } },
+                {"ПереполнениеТекста", new object[3] { "", false, "textOverflow" } },
+                {"Переход", new object[3] { "", false, "transition" } },
+                {"Перспектива", new object[3] { "", false, "perspective" } },	
+                {"ПозицияОбъекта", new object[3] { "", false, "objectPosition" } },
+                {"ПозицияСтиляСписка", new object[3] { "", false, "listStylePosition" } },
+                {"ПоложениеЗаголовка", new object[3] { "", false, "captionSide" } },
+                {"ПоложениеКартинки", new object[3] { "", false, "backgroundPosition" } },
+                {"Порядок", new object[3] { "", false, "order" } },
+                {"ПраваяГраница", new object[3] { "", false, "borderRight" } },
+                {"Право", new object[3] { "", false, "right" } },
+                {"ПравыйРадиусВерхнейГраницы", new object[3] { "", false, "borderTopRightRadius" } },
+                {"ПравыйРадиусНижнейГраницы", new object[3] { "", false, "borderBottomRightRadius" } },
+                {"Пробелы", new object[3] { "", false, "whiteSpace" } },
+                {"ПрописныеТекста", new object[3] { "", false, "textTransform" } },
+                {"ПустыеЯчейки", new object[3] { "", false, "emptyCells" } },
+                {"РадиусГраницы", new object[3] { "", false, "borderRadius" } },
+                {"РазделительКолонок", new object[3] { "", false, "columnRule" } },
+                {"РазмерКартинки", new object[3] { "", false, "backgroundSize" } },
+                {"РазмерШрифта", new object[3] { "", false, "fontSize" } },
+                {"РазмещениеВТаблице", new object[3] { "", false, "tableLayout" } },
+                {"РасположениеСодержимого", new object[3] { "", false, "justifyContent" } },
+                {"СвойствоПерехода", new object[3] { "", false, "transitionProperty" } },
+                {"СемействоШрифтов", new object[3] { "", false, "fontFamily" } },
+                {"СмещениеКартинкиГраницы", new object[3] { "", false, "borderImageOutset" } },
+                {"СмещениеКонтура", new object[3] { "", false, "outlineOffset" } },
+                {"Состояние", new object[3] { "", false, "animationPlayState" } },
+                {"СтильВерхнейГраницы", new object[3] { "", false, "borderTopStyle" } },
+                {"СтильГраниц", new object[3] { "", false, "borderStyle" } },
+                {"СтильКонтура", new object[3] { "", false, "outlineStyle" } },	
+                {"СтильЛевойГраницы", new object[3] { "", false, "borderLeftStyle" } },
+                {"СтильНижнейГраницы", new object[3] { "", false, "borderBottomStyle" } },
+                {"СтильПравойГраницы", new object[3] { "", false, "borderRightStyle" } },
+                {"СтильРазделителяКолонок", new object[3] { "", false, "columnRuleStyle" } },
+                {"СтильСдвига", new object[3] { "", false, "transformStyle" } },
+                {"СтильСписка", new object[3] { "", false, "listStyle" } },
+                {"СтильШрифта", new object[3] { "", false, "fontStyle" } },
+                {"Тень", new object[3] { "", false, "boxShadow" } },
+                {"ТеньТекста", new object[3] { "", false, "textShadow" } },
+                {"ТипСтиляСписка", new object[3] { "", false, "listStyleType" } },
+                {"ТочкаСдвига", new object[3] { "", false, "transformOrigin" } },
+                {"Увеличение", new object[3] { "", false, "flexGrow" } },
+                {"Уменьшение", new object[3] { "", false, "flexShrink" } },
+                {"Фильтр", new object[3] { "", false, "filter" } },
+                {"Фон", new object[3] { "", false, "background" } },
+                {"ФоновоеВложение", new object[3] { "", false, "backgroundAttachment" } },
+                {"ФоновоеИзображение", new object[3] { "", false, "backgroundImage" } },
+                {"ФункцияПерехода", new object[3] { "", false, "transitionTimingFunction" } },
+                {"ФункцияСинхронизации", new object[3] { "", false, "animationTimingFunction" } },
+                {"ЦветВерхнейГраницы", new object[3] { "", false, "borderTopColor" } },
+                {"ЦветГраниц", new object[3] { "", false, "borderColor" } },
+                {"ЦветКонтура", new object[3] { "", false, "outlineColor" } },
+                {"ЦветКурсора", new object[3] { "", false, "caretColor" } },
+                {"ЦветЛевойГраницы", new object[3] { "", false, "borderLeftColor" } },
+                {"ЦветНижнейГраницы", new object[3] { "", false, "borderBottomColor" } },
+                {"ЦветПравойГраницы", new object[3] { "", false, "borderRightColor" } },
+                {"ЦветРазделителяКолонок", new object[3] { "", false, "columnRuleColor" } },
+                {"ЦветТекста", new object[3] { "", false, "color" } },
+                {"ШиринаВерхнейГраницы", new object[3] { "", false, "borderTopWidth" } },
+                {"ШиринаГраниц", new object[3] { "", false, "borderWidth" } },
+                {"ШиринаКартинкиГраницы", new object[3] { "", false, "borderImageWidth" } },
+                {"ШиринаКолонок", new object[3] { "", false, "columnWidth" } },
+                {"ШиринаКонтура", new object[3] { "", false, "outlineWidth" } },
+                {"ШиринаЛевойГраницы", new object[3] { "", false, "borderLeftWidth" } },
+                {"ШиринаНижнейГраницы", new object[3] { "", false, "borderBottomWidth" } },
+                {"ШиринаПравойГраницы", new object[3] { "", false, "borderRightWidth" } },
+                {"ШиринаРазделителяКолонок", new object[3] { "", false, "columnRuleWidth" } },
+                {"Шрифт", new object[3] { "", false, "font" } },
+                {"ТолькоЧтение", new object[3] { "", true, "readOnly" } },
+                {"АвтоФокус", new object[3] { "", true, "autofocus" } },		
+                {"Адрес", new object[3] { "", true, "href" } },
+                {"Асинхронно", new object[3] { "", true, "async" } },
+                {"Беззвучно", new object[3] { "", true, "muted" } },
+                {"КлавишаДоступа", new object[3] { "", true, "accessKey" } },
+                {"ПорядокОбхода", new object[3] { "", true, "tabIndex" } },
+                {"Редактируемый", new object[3] { "", true, "contentEditable" } },		
+                {"Отключено", new object[3] { "", true, "disabled" } },		
+                {"Шаг", new object[3] { "", true, "step" } },		
+                {"Максимум", new object[3] { "", true, "max" } },
+                {"Минимум", new object[3] { "", true, "min" } },		
+                {"Открыт", new object[3] { "", true, "open" } },		
+                {"Заполнитель", new object[3] { "", true, "placeholder" } },		
+                {"МаксимальнаяДлина", new object[3] { "", true, "maxLength" } },		
+                {"Размер", new object[3] { "", true, "size" } },
+                {"Источник", new object[3] { "", true, "src" } },
+                {"Разлиновка", new object[3] { "", true, "rules" } },
+                {"Громкость", new object[3] { "", true, "volume" } },
+                {"Контролы", new object[3] { "", true, "controls" } },
+                {"Повтор", new object[3] { "", true, "loop" } },
+                {"ТекущаяПозиция", new object[3] { "", true, "currentTime" } },
+                {"Оптимум", new object[3] { "", true, "optimum" } },
+                {"Диапазон", new object[3] { "", true, "span" } },
+                {"Описание", new object[3] { "", true, "_аlt" } },
+                {"ИмяКарты", new object[3] { "", true, "useMap" } },
+                {"ИндексВыбранного", new object[3] { "", true, "selectedIndex" } },
+                {"МножественныйВыбор", new object[3] { "", true, "multiple" } },
+                {"Начало", new object[3] { "", true, "start" } },
+                {"Обратный", new object[3] { "", true, "reversed" } },
+                {"ТипМаркера", new object[3] { "", true, "type" } },		
+                {"Выбран", new object[3] { "", true, "selected" } },
+                {"Надпись", new object[3] { "", true, "label" } },
+                {"ПереносТекста", new object[3] { "", true, "wrap" } },
+                {"Колонки", new object[3] { "", true, "cols" } },
+                {"Принимаемый", new object[3] { "", true, "accept" } },
+                {"Скачать", new object[3] { "", true, "download" } },
+                {"Подсказка", new object[3] { "", true, "title" } },
+                {"Назначение", new object[3] { "", true, "target" } },
+                {"Неопределено", new object[3] { "", true, "indeterminate" } },
+                {"Форма", new object[3] { "", true, "form" } },		
+                {"Отложено", new object[3] { "", true, "defer" } },
+                {"Связь", new object[3] { "", true, "htmlFor" } },		
+                {"Гибкость", new object[3] { "", false, "flex" } },
+
+		
+        };
     }
 }

@@ -14,7 +14,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', mapKeyEl.get('" + ownerItemKey + "').getContext('2d'));" + @"
 mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         public PropertyInfo this[string p1]
@@ -41,14 +41,14 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         public void FillRect(int p1, int p2, int p3, int p4)
         {
             string strFunc = "mapKeyEl.get('" + ItemKey + "').fillRect(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Прямоугольник", "Rect")]
         public void Rect(int p1, int p2, int p3, int p4)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').rect(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("СоздатьЛинейныйГрадиент", "CreateLinearGradient")]
@@ -59,7 +59,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             return DfLinearGradient1;
         }
 
-        private IValue fillStyle;
+        public IValue fillStyle { get; set; }
         [ContextProperty("СтильЗаполнения", "FillStyle")]
         public IValue FillStyle
         {
@@ -76,7 +76,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 {
                     strFunc = "mapKeyEl.get('" + ItemKey + "')['fillStyle'] = mapKeyEl.get('" + ((dynamic)fillStyle).ItemKey + "');";
                 }
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 		
@@ -84,70 +84,70 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         public void BeginPath()
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').beginPath();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Начертить", "Stroke")]
         public void Stroke()
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').stroke();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Дуга", "Arc")]
         public void Arc(int p1, int p2, int p3, IValue p4, IValue p5, bool p6 = false)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').arc(" + p1 + ", " + p2 + ", " + p3 + ", " + p4.AsNumber().ToString().Replace(",", ".") + ", " + p5.AsNumber().ToString().Replace(",", ".") + ", " + p6.ToString().ToLower() + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 		
         [ContextMethod("ДугаМежду", "ArcTo")]
         public void ArcTo(int p1, int p2, int p3, int p4, int p5)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').arcTo(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ", " + p5 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("ПерейтиКТочке", "MoveTo")]
         public void MoveTo(int p1, int p2)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').moveTo(" + p1 + ", " + p2 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Линия", "LineTo")]
         public void LineTo(int p1, int p2)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').lineTo(" + p1 + ", " + p2 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("ДобавитьКубическуюБизье", "BezierCurveTo")]
         public void BezierCurveTo(int p1, int p2, int p3, int p4, int p5, int p6)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').bezierCurveTo(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ", " + p5 + ", " + p6 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("ОчиститьПрямоугольник", "ClearRect")]
         public void ClearRect(int p1, int p2, int p3, int p4)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').clearRect(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Обрезать", "Clip")]
         public void Clip()
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').clip();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("ЗакончитьПуть", "ClosePath")]
         public void ClosePath()
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').closePath();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("СоздатьДанныеРисунка", "CreateImageData")]
@@ -174,14 +174,14 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 strFunc = @"mapKeyEl.get('" + ItemKey + "').putImageData(mapKeyEl.get('" + p1.ItemKey + "'), " + p2 + ", " + p3 + ", " + p4 + ", " + p5 + ", " + p6 + ", " + p7 + ");";
             }
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Заполнить", "Fill")]
         public void Fill()
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').fill();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 		
         [ContextMethod("Замостить", "Pave")]
@@ -197,7 +197,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 "    ctx.fill();" +
                 "}" +
                 "";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("СоздатьРадиальныйГрадиент", "CreateRadialGradient")]
@@ -208,7 +208,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             return DfRadialGradient1;
         }
 
-        private DfFont font;
+        public DfFont font { get; set; }
         [ContextProperty("Шрифт", "Font")]
         public DfFont Font
         {
@@ -250,7 +250,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                     }
                     string res = fontStyle + fontVariant + fontWeight + fontSize + "/" + lineHeight + " " + fontFamily;
                     string strFunc = "mapKeyEl.get('" + ItemKey + "')['font'] = '" + res + "';";
-                    DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                    DeclarativeForms.SendStrFunc(strFunc);
                 }
             }
         }
@@ -267,10 +267,10 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 strFunc = @"mapKeyEl.get('" + ItemKey + "').fillText('" + p1 + "', " + p2 + ", " + p3 + ");";
             }
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
-        private string direction;
+        public string direction { get; set; }
         [ContextProperty("НаправлениеТекста", "Direction")]
         public string Direction
         {
@@ -279,7 +279,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 direction = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['direction'] = '" + direction + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
@@ -314,7 +314,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                     "img.onload = function() { ctx.drawImage(img, " + p2 + ", " + p3 + "); }" +
                     "";
             }
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("КопироватьДанныеРисунка", "CopyImageData")]
@@ -327,10 +327,10 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 "const imgData = ctx.getImageData(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ");" +
                 "ctx.putImageData(imgData, " + p5 + ", " + p6 + ");" +
                 "";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
-        private IValue globalAlpha;
+        public IValue globalAlpha { get; set; }
         [ContextProperty("Альфа", "GlobalAlpha")]
         public IValue GlobalAlpha
         {
@@ -339,11 +339,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 globalAlpha = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['globalAlpha'] = " + globalAlpha.AsNumber().ToString().Replace(",", ".") + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string globalCompositeOperation;
+        public string globalCompositeOperation { get; set; }
         [ContextProperty("Композиция", "GlobalCompositeOperation")]
         public string GlobalCompositeOperation
         {
@@ -352,11 +352,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 globalCompositeOperation = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['globalCompositeOperation'] = '" + globalCompositeOperation + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string lineCap;
+        public string lineCap { get; set; }
         [ContextProperty("СтильКонцовЛинии", "LineCap")]
         public string LineCap
         {
@@ -365,11 +365,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 lineCap = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['lineCap'] = '" + lineCap + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private int lineWidth;
+        public int lineWidth { get; set; }
         [ContextProperty("ШиринаЛинии", "LineWidth")]
         public int LineWidth
         {
@@ -378,11 +378,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 lineWidth = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['lineWidth'] = " + lineWidth + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string lineJoin;
+        public string lineJoin { get; set; }
         [ContextProperty("СтильУглаПересечения", "LineJoin")]
         public string LineJoin
         {
@@ -391,11 +391,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 lineJoin = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['lineJoin'] = '" + lineJoin + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private int miterLimit;
+        public int miterLimit { get; set; }
         [ContextProperty("ПределСреза", "MiterLimit")]
         public int MiterLimit
         {
@@ -404,7 +404,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 miterLimit = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['miterLimit'] = " + miterLimit + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
@@ -412,52 +412,52 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         public void QuadraticCurveTo(int p1, int p2, int p3, int p4)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').quadraticCurveTo(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Восстановить", "Restore")]
         public void Restore()
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').restore();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Сохранить", "Save")]
         public void Save()
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').save();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Повернуть", "Rotate")]
         public void Rotate(IValue p1)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').rotate(" + p1.AsNumber().ToString().Replace(",", ".") + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Масштабировать", "Scale")]
         public void Scale(IValue p1, IValue p2)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').scale(" + p1.AsNumber().ToString().Replace(",", ".") + ", " + p2.AsNumber().ToString().Replace(",", ".") + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("РисоватьПрямоугольник", "StrokeRect")]
         public void StrokeRect(int p1, int p2, int p3, int p4)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').strokeRect(" + p1 + ", " + p2 + ", " + p3 + ", " + p4 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("УстановитьСдвиг", "SetTransform")]
         public void SetTransform(IValue p1, IValue p2, IValue p3, IValue p4, int p5, int p6)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').setTransform(" + p1.AsNumber().ToString().Replace(",", ".") + ", " + p2.AsNumber().ToString().Replace(",", ".") + ", " + p3.AsNumber().ToString().Replace(",", ".") + ", " + p4.AsNumber().ToString().Replace(",", ".") + ", " + p5 + ", " + p6 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
-        private int shadowBlur;
+        public int shadowBlur { get; set; }
         [ContextProperty("РазмытиеТени", "ShadowBlur")]
         public int ShadowBlur
         {
@@ -466,11 +466,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 shadowBlur = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['shadowBlur'] = " + shadowBlur + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string shadowColor;
+        public string shadowColor { get; set; }
         [ContextProperty("ЦветТени", "ShadowColor")]
         public string ShadowColor
         {
@@ -479,11 +479,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 shadowColor = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['shadowColor'] = '" + shadowColor + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private int shadowOffsetX;
+        public int shadowOffsetX { get; set; }
         [ContextProperty("СмещениеТениИкс", "ShadowOffsetX")]
         public int ShadowOffsetX
         {
@@ -492,11 +492,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 shadowOffsetX = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['shadowOffsetX'] = " + shadowOffsetX + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private int shadowOffsetY;
+        public int shadowOffsetY { get; set; }
         [ContextProperty("СмещениеТениИгрек", "ShadowOffsetY")]
         public int ShadowOffsetY
         {
@@ -505,11 +505,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 shadowOffsetY = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['shadowOffsetY'] = " + shadowOffsetY + ";";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private IValue strokeStyle;
+        public IValue strokeStyle { get; set; }
         [ContextProperty("СтильОбводки", "StrokeStyle")]
         public IValue StrokeStyle
         {
@@ -526,7 +526,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 {
                     strFunc = "mapKeyEl.get('" + ItemKey + "')['strokeStyle'] = mapKeyEl.get('" + ((dynamic)strokeStyle).ItemKey + "');";
                 }
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
@@ -542,10 +542,10 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 strFunc = @"mapKeyEl.get('" + ItemKey + "').strokeText('" + p1 + "', " + p2 + ", " + p3 + ");";
             }
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
-        private string textAlign;
+        public string textAlign { get; set; }
         [ContextProperty("ВыравниваниеТекста", "TextAlign")]
         public string TextAlign
         {
@@ -554,11 +554,11 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 textAlign = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['textAlign'] = '" + textAlign + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
-        private string textBaseline;
+        public string textBaseline { get; set; }
         [ContextProperty("БазоваяЛинияТекста", "TextBaseline")]
         public string TextBaseline
         {
@@ -567,7 +567,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 textBaseline = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['textBaseline'] = '" + textBaseline + "';";
-                DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+                DeclarativeForms.SendStrFunc(strFunc);
             }
         }
 
@@ -575,14 +575,14 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         public void Transform(IValue p1, IValue p2, IValue p3, IValue p4, int p5, int p6)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').transform(" + p1.AsNumber().ToString().Replace(",", ".") + ", " + p2.AsNumber().ToString().Replace(",", ".") + ", " + p3.AsNumber().ToString().Replace(",", ".") + ", " + p4.AsNumber().ToString().Replace(",", ".") + ", " + p5 + ", " + p6 + ");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Преобразовать", "Translate")]
         public void Translate(int p1, int p2)
         {
             string strFunc = @"mapKeyEl.get('" + ItemKey + "').translate(" + p1 + ", " + p2 +");";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
     }
 }

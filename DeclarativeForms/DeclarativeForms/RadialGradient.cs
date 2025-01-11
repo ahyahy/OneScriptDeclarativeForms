@@ -13,7 +13,7 @@ namespace osdf
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             string strFunc = "mapKeyEl.set('" + ItemKey + "', mapKeyEl.get('" + ownerItemKey + "').createRadialGradient('" + p1 + "', '" + p2 + "', '" + p3 + "', '" + p4 + "', '" + p5 + "', '" + p6 + "'));" + @"
 mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         public PropertyInfo this[string p1]
@@ -41,7 +41,7 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
         {
             string strFunc = @"
             mapKeyEl.get('" + ItemKey + "').addColorStop('" + p1.AsNumber().ToString().Replace(",", ".") + "', '" + p2 + "');";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
     }
 }

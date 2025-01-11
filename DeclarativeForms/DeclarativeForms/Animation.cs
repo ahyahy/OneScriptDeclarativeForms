@@ -40,28 +40,28 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 "}" +
                 "catch { }" +
                 "";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Запустить", "Play")]
         public void Play()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).play();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Отменить", "Cancel")]
         public void Cancel()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).cancel();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
 
         [ContextMethod("Пауза", "Pause")]
         public void Pause()
         {
             string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).pause();";
-            DeclarativeForms.strFunctions = DeclarativeForms.strFunctions + strFunc + DeclarativeForms.funDelimiter;
+            DeclarativeForms.SendStrFunc(strFunc);
         }
     }
 }
