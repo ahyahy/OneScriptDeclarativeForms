@@ -658,7 +658,6 @@
 				или (СвойствоРус = "ПереносСлов") 
 				или (СвойствоРус = "ПереполнениеТекста") 
 				или (СвойствоРус = "Перспектива") 
-				или (СвойствоРус = "ПоведениеПрокрутки") 
 				или (СвойствоРус = "ПозицияСтиляСписка") 
 				или (СвойствоРус = "ПоложениеЗаголовка") 
 				или (СвойствоРус = "ПомеченПоУмолчанию") 
@@ -2250,6 +2249,11 @@
 	СоздатьФайлДФ("WebServerSend");
 	СоздатьФайлДФ("Timer");
 	СоздатьФайлДФ("Tray");
+	СоздатьФайлДФ("Balloons");
+	СоздатьФайлДФ("Balloon");
+	СоздатьФайлДФ("Meshtml");
+	СоздатьФайлДФ("MessageBox");
+	СоздатьФайлДФ("MesBoxhtml");
 	
 	
 	
@@ -2334,6 +2338,11 @@
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Wsserver.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Timer.html" 
 			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Tray.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Balloons.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Balloon.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.Meshtml.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.MessageBox.html" 
+			или ВыбранныеФайлы[А] = КаталогСправки + "\OSDForms.MesBoxhtml.html" 
 			
 		Тогда
 			Продолжить;
@@ -2555,6 +2564,785 @@
 		
 		
 		
+	ИначеЕсли ИмяФайлаДФ = "MesBoxhtml" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osdf
+		|{
+		|    public class MesBoxhtml
+		|    {
+		|        public static string mesboxhtml = @""<!DOCTYPE html>
+		|<html>
+		|	<head>
+		|		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+		|		<link rel='stylesheet' href='"" + DeclarativeForms.CSSPath + @""' />
+		|
+		|		<script type='text/javascript'>
+		|            window.addEventListener('error', function (event) { alert(event.message + '\n' + event.filename); });
+		|        </script>
+		|	</head>
+		|
+		|    <body style=""""-webkit-app-region: drag; padding-top: 0px; margin-top: 0; margin-right: 0; margin-left: 0; overflow: hidden;"""">
+		|
+		|    </body>
+		|</html>
+		|"";
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "MessageBox" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.IO;
+		|using System.Reflection;
+		|using System;
+		|
+		|namespace osdf
+		|{
+		|    [ContextClass(""ДфОкноСообщений"", ""DfMessageBox"")]
+		|    public class DfMessageBox : AutoContext<DfMessageBox>
+		|    {
+		|        public DfMessageBox(string p1 = null, string p2 = null, DfPoint p3 = null)
+		|        {
+		|            if (p1 != null)
+		|            {
+		|                Title = p1;
+		|            }
+		|            if (p2 != null)
+		|            {
+		|                Text = p2;
+		|            }
+		|            if (p3 != null)
+		|            {
+		|                Position = p3;
+		|            }
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
+		|        }
+		|
+		|        public PropertyInfo this[string p1]
+		|        {
+		|            get { return this.GetType().GetProperty(p1); }
+		|        }
+		|
+		|        public DfPoint position { get; set; } = new DfPoint(-1, -1);
+		|        [ContextProperty(""Позиция"", ""Position"")]
+		|        public DfPoint Position
+		|        {
+		|            get { return position; }
+		|            set
+		|            {
+		|                if (value != null)
+		|                {
+		|                    position = value;
+		|                }
+		|                else
+		|                {
+		|                    position = new DfPoint(-1, -1);
+		|                }
+		|            }
+		|        }
+		|
+		|        public string headerColor { get; set; } = ""rgb(175, 238, 238)"";
+		|        [ContextProperty(""ЦветЗаголовка"", ""HeaderColor"")]
+		|        public string HeaderColor
+		|        {
+		|            get { return headerColor; }
+		|            set { headerColor = value; }
+		|        }
+		|
+		|        public string headerTextColor { get; set; } = ""rgb(0, 0, 0)"";
+		|        [ContextProperty(""ЦветТекстаЗаголовка"", ""HeaderTextColor"")]
+		|        public string HeaderTextColor
+		|        {
+		|            get { return headerTextColor; }
+		|            set { headerTextColor = value; }
+		|        }
+		|
+		|        public string textColor { get; set; } = ""rgb(0, 0, 0)"";
+		|        [ContextProperty(""ЦветТекста"", ""TextColor"")]
+		|        public string TextColor
+		|        {
+		|            get { return textColor; }
+		|            set { textColor = value; }
+		|        }
+		|
+		|        public string backgroundColor { get; set; } = ""rgb(211, 211, 211)"";
+		|        [ContextProperty(""ЦветФона"", ""BackgroundColor"")]
+		|        public string BackgroundColor
+		|        {
+		|            get { return backgroundColor; }
+		|            set { backgroundColor = value; }
+		|        }
+		|
+		|        public string fontStyle { get; set; } = """";
+		|        [ContextProperty(""СтильШрифта"", ""FontStyle"")]
+		|        public string FontStyle
+		|        {
+		|            get { return fontStyle; }
+		|            set { fontStyle = value; }
+		|        }
+		|
+		|        public string fontVariant { get; set; } = """";
+		|        [ContextProperty(""ВариантШрифта"", ""FontVariant"")]
+		|        public string FontVariant
+		|        {
+		|            get { return fontVariant; }
+		|            set { fontVariant = value; }
+		|        }
+		|
+		|        public string fontWeight { get; set; } = """";
+		|        [ContextProperty(""ЖирностьШрифта"", ""FontWeight"")]
+		|        public string FontWeight
+		|        {
+		|            get { return fontWeight; }
+		|            set { fontWeight = value; }
+		|        }
+		|
+		|        public string resfontSize { get; set; }
+		|        public IValue fontSize { get; set; }
+		|        [ContextProperty(""РазмерШрифта"", ""FontSize"")]
+		|        public IValue FontSize
+		|        {
+		|            get { return fontSize; }
+		|            set
+		|            {
+		|                fontSize = value;
+		|                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    resfontSize = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    resfontSize = value.AsNumber().ToString().Replace("","", ""."") + ""px"";
+		|                }
+		|            }
+		|        }
+		|
+		|        public string reslineHeight { get; set; }
+		|        public IValue lineHeight { get; set; }
+		|        [ContextProperty(""ВысотаСтроки"", ""LineHeight"")]
+		|        public IValue LineHeight
+		|        {
+		|            get { return lineHeight; }
+		|            set
+		|            {
+		|                lineHeight = value;
+		|                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    reslineHeight = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    reslineHeight = value.AsNumber().ToString().Replace("","", ""."");
+		|                }
+		|            }
+		|        }
+		|
+		|        public string fontFamily { get; set; } = """";
+		|        [ContextProperty(""СемействоШрифтов"", ""FontFamily"")]
+		|        public string FontFamily
+		|        {
+		|            get { return fontFamily; }
+		|            set { fontFamily = value; }
+		|        }
+		|
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
+		|        {
+		|            get { return itemKey; }
+		|            private set { itemKey = value; }
+		|        }
+		|
+		|        public int width { get; set; } = 400;
+		|        [ContextProperty(""Ширина"", ""Width"")]
+		|        public int Width
+		|        {
+		|            get { return width; }
+		|            set { width = value; }
+		|        }
+		|
+		|        public int height { get; set; } = 200;
+		|        [ContextProperty(""Высота"", ""Height"")]
+		|        public int Height
+		|        {
+		|            get { return height; }
+		|            set { height = value; }
+		|        }
+		|
+		|        public string title { get; set; } = ""Сообщение"";
+		|        [ContextProperty(""Заголовок"", ""Title"")]
+		|        public string Title
+		|        {
+		|            get { return title; }
+		|            set { title = value; }
+		|        }
+		|
+		|        public string text { get; set; } = ""Сообщение..."";
+		|        [ContextProperty(""Текст"", ""Text"")]
+		|        public string Text
+		|        {
+		|            get { return text; }
+		|            set { text = value.Replace(""\u000A"", @""<br>""); }
+		|        }
+		|
+		|        public int _interval { get; set; } = 60000;
+		|        [ContextProperty(""Интервал"", ""Interval"")]
+		|        public int Interval
+		|        {
+		|            get { return _interval; }
+		|            set { _interval = value; }
+		|        }
+		|
+		|        [ContextMethod(""Показать"", ""Show"")]
+		|        public void Show()
+		|        {
+		|            // Создаем сообщение.
+		|            string strFunc = @""
+		|nw.Window.open('mes.html', {
+		|   width: "" + Width + @"",
+		|   height: "" + Height + @"",
+		|   show: false,
+		|   show_in_taskbar: false,
+		|   frame: false,
+		|   position: 'center'
+		|}, function(new_win){
+		|
+		|new_win.setAlwaysOnTop(true);
+		|new_win.setShowInTaskbar(false);
+		|
+		|new_win.on('closed', function () {
+		|    new_win = null;
+		|});
+		|
+		|new_win.on('loaded', function () {
+		|    let document1 = new_win.window.document;
+		|
+		|    let div1 = document1.createElement('div');
+		|    div1.innerHTML = `
+		|<div style=""""display: flex; justify-content: space-between; position: sticky; top: 0; height: 21px; background-color: "" + HeaderColor + @"";"""">
+		|    <span style=""""color: "" + HeaderTextColor + @"";"""">"" + Title + @""</span>
+		|    <div>
+		|        <span style=""""color: "" + HeaderTextColor + @"";"""">"" + DateTime.Now.ToString() + @""</span>
+		|        <button style=""""-webkit-app-region: no-drag; float: right;"""" onclick=""""nw.Window.get().close(true);"""">Х</button>
+		|    </div>
+		|</div>
+		|`;
+		|    document1.body.appendChild(div1);
+		|
+		|    let div2 = document1.createElement('div');
+		|    div2.innerHTML = `
+		|<div>
+		|    <div style=""""-webkit-app-region: no-drag; padding: 10px; word-break: break-all;"""">
+		|        <span style=""""color: "" + TextColor + @""; font-family: "" + FontFamily + @""; font-style: "" + FontStyle + @""; font-variant: "" + FontVariant + @""; font-weight: "" + FontWeight + @""; font-size: "" + resfontSize + @""; line-height: "" + reslineHeight + @"";"""">"" + Text + @""</span>
+		|    </div>
+		|</div>
+		|`;
+		|    document1.body.appendChild(div2);
+		|
+		|    document1.body.style.backgroundColor = '"" + BackgroundColor + @""';
+		|});
+		|
+		|let x = "" + Position.X + @"";
+		|let y = "" + Position.Y + @"";
+		|if (x >= 0 && y >=0)
+		|{
+		|    new_win.moveTo(x, y);
+		|}
+		|
+		|if ("" + Interval + @"" >= 0)
+		|{
+		|    setTimeout(() => {
+		|        try
+		|        {
+		|            new_win.close(true);
+		|        }
+		|        catch{}
+		|    }, "" + Interval + @"");
+		|}
+		|
+		|new_win.show();
+		|
+		|});
+		|"";
+		|            DeclarativeForms.SendStrFunc(strFunc);
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "Meshtml" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osdf
+		|{
+		|    public class Meshtml
+		|    {
+		|        public static string meshtml = @""<!DOCTYPE html>
+		|<html>
+		|	<head>
+		|		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+		|		<link rel='stylesheet' href='"" + DeclarativeForms.CSSPath + @""' />
+		|
+		|		<script type='text/javascript'>
+		|            window.addEventListener('error', function (event) { alert(event.message + '\n' + event.filename); });
+		|        </script>
+		|	</head>
+		|
+		|    <body style=""""-webkit-app-region: drag; padding-top: 0px; margin-top: 0; margin-right: 0; margin-left: 0; overflow: hidden;"""">
+		|
+		|    </body>
+		|</html>
+		|"";
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "Balloon" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Reflection;
+		|
+		|namespace osdf
+		|{
+		|    public class DfBalloon : AutoContext<DfBalloon>
+		|    {
+		|        public DfBalloon()
+		|        {
+		|        }
+		|
+		|        public PropertyInfo this[string p1]
+		|        {
+		|            get { return this.GetType().GetProperty(p1); }
+		|        }
+		|
+		|        public string TimeMessage { get; set; }
+		|
+		|        public string HeaderColor { get; set; }
+		|
+		|        public string HeaderTextColor { get; set; }
+		|
+		|        public string TextColor { get; set; }
+		|
+		|        public string FontStyle { get; set; }
+		|
+		|        public string FontVariant { get; set; }
+		|
+		|        public string FontWeight { get; set; }
+		|
+		|        public string fontSize;
+		|        public IValue FontSize
+		|        {
+		|            get { return ValueFactory.Create(fontSize); }
+		|            set
+		|            {
+		|                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    fontSize = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    fontSize = value.AsNumber().ToString().Replace("","", ""."") + ""px"";
+		|                }
+		|            }
+		|        }
+		|
+		|        public string lineHeight;
+		|        [ContextProperty(""ВысотаСтроки"", ""LineHeight"")]
+		|        public IValue LineHeight
+		|        {
+		|            get { return ValueFactory.Create(lineHeight); }
+		|            set
+		|            {
+		|                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    lineHeight = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    lineHeight = value.AsNumber().ToString();
+		|                }
+		|            }
+		|        }
+		|
+		|        public string FontFamily { get; set; }
+		|
+		|        public string BackgroundColor { get; set; }
+		|
+		|        public string MessageKey { get; set; }
+		|
+		|        private string itemKey;
+		|        public string ItemKey
+		|        {
+		|            get { return itemKey; }
+		|            private set { itemKey = value; }
+		|        }
+		|
+		|        public int Width { get; set; }
+		|
+		|        public int Height { get; set; }
+		|
+		|        public string Title { get; set; }
+		|
+		|        public string Text { get; set; }
+		|
+		|        public int Interval { get; set; }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
+	ИначеЕсли ИмяФайлаДФ = "Balloons" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.IO;
+		|using System.Reflection;
+		|using System;
+		|
+		|namespace osdf
+		|{
+		|    [ContextClass(""ДфУведомления"", ""DfBalloons"")]
+		|    public class DfBalloons : AutoContext<DfBalloons>
+		|    {
+		|        public DfBalloons()
+		|        {
+		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
+		|            DeclarativeForms.AddToHashtable(ItemKey, this);
+		|        }
+		|
+		|        public PropertyInfo this[string p1]
+		|        {
+		|            get { return this.GetType().GetProperty(p1); }
+		|        }
+		|
+		|        public string headerColor { get; set; } = ""rgb(175, 238, 238)"";
+		|        [ContextProperty(""ЦветЗаголовка"", ""HeaderColor"")]
+		|        public string HeaderColor
+		|        {
+		|            get { return headerColor; }
+		|            set { headerColor = value; }
+		|        }
+		|
+		|        public string headerTextColor { get; set; } = ""rgb(0, 0, 0)"";
+		|        [ContextProperty(""ЦветТекстаЗаголовка"", ""HeaderTextColor"")]
+		|        public string HeaderTextColor
+		|        {
+		|            get { return headerTextColor; }
+		|            set { headerTextColor = value; }
+		|        }
+		|
+		|        public string textColor { get; set; } = ""rgb(0, 0, 0)"";
+		|        [ContextProperty(""ЦветТекста"", ""TextColor"")]
+		|        public string TextColor
+		|        {
+		|            get { return textColor; }
+		|            set { textColor = value; }
+		|        }
+		|
+		|        public string backgroundColor { get; set; } = ""rgb(211, 211, 211)"";
+		|        [ContextProperty(""ЦветФона"", ""BackgroundColor"")]
+		|        public string BackgroundColor
+		|        {
+		|            get { return backgroundColor; }
+		|            set { backgroundColor = value; }
+		|        }
+		|
+		|        public string fontStyle { get; set; } = """";
+		|        [ContextProperty(""СтильШрифта"", ""FontStyle"")]
+		|        public string FontStyle
+		|        {
+		|            get { return fontStyle; }
+		|            set { fontStyle = value; }
+		|        }
+		|
+		|        public string fontVariant { get; set; } = """";
+		|        [ContextProperty(""ВариантШрифта"", ""FontVariant"")]
+		|        public string FontVariant
+		|        {
+		|            get { return fontVariant; }
+		|            set { fontVariant = value; }
+		|        }
+		|
+		|        public string fontWeight { get; set; } = """";
+		|        [ContextProperty(""ЖирностьШрифта"", ""FontWeight"")]
+		|        public string FontWeight
+		|        {
+		|            get { return fontWeight; }
+		|            set { fontWeight = value; }
+		|        }
+		|
+		|        public string resfontSize { get; set; }
+		|        public IValue fontSize { get; set; }
+		|        [ContextProperty(""РазмерШрифта"", ""FontSize"")]
+		|        public IValue FontSize
+		|        {
+		|            get { return fontSize; }
+		|            set
+		|            {
+		|                fontSize = value;
+		|                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    resfontSize = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    resfontSize = value.AsNumber().ToString().Replace("","", ""."") + ""px"";
+		|                }
+		|            }
+		|        }
+		|
+		|        public string reslineHeight { get; set; }
+		|        public IValue lineHeight { get; set; }
+		|        [ContextProperty(""ВысотаСтроки"", ""LineHeight"")]
+		|        public IValue LineHeight
+		|        {
+		|            get { return lineHeight; }
+		|            set
+		|            {
+		|                lineHeight = value;
+		|                if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    reslineHeight = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    reslineHeight = value.AsNumber().ToString().Replace("","", ""."");
+		|                }
+		|            }
+		|        }
+		|
+		|        public string fontFamily { get; set; } = """";
+		|        [ContextProperty(""СемействоШрифтов"", ""FontFamily"")]
+		|        public string FontFamily
+		|        {
+		|            get { return fontFamily; }
+		|            set { fontFamily = value; }
+		|        }
+		|
+		|        private string itemKey;
+		|        [ContextProperty(""КлючЭлемента"", ""ItemKey"")]
+		|        public string ItemKey
+		|        {
+		|            get { return itemKey; }
+		|            private set { itemKey = value; }
+		|        }
+		|
+		|        public int width { get; set; } = 400;
+		|        [ContextProperty(""Ширина"", ""Width"")]
+		|        public int Width
+		|        {
+		|            get { return width; }
+		|            set { width = value; }
+		|        }
+		|
+		|        public int height { get; set; } = 100;
+		|        [ContextProperty(""Высота"", ""Height"")]
+		|        public int Height
+		|        {
+		|            get { return height; }
+		|            set { height = value; }
+		|        }
+		|
+		|        public string title { get; set; } = ""Уведомление"";
+		|        [ContextProperty(""Заголовок"", ""Title"")]
+		|        public string Title
+		|        {
+		|            get { return title; }
+		|            set { title = value; }
+		|        }
+		|
+		|        public string text { get; set; } = ""Уведомление..."";
+		|        [ContextProperty(""Текст"", ""Text"")]
+		|        public string Text
+		|        {
+		|            get { return text; }
+		|            set { text = value.Replace(""\u000A"", @""<br>""); }
+		|        }
+		|
+		|        public int _interval { get; set; } = 60000;
+		|        [ContextProperty(""Интервал"", ""Interval"")]
+		|        public int Interval
+		|        {
+		|            get { return _interval; }
+		|            set { _interval = value; }
+		|        }
+		|
+		|        [ContextMethod(""Показать"", ""Show"")]
+		|        public void Show()
+		|        {
+		|            string TimeMessage = DeclarativeForms.GlobalContext().CurrentUniversalDateInMilliseconds().ToString();
+		|            string MessageKey = ""b"" + Path.GetRandomFileName().Replace(""."", """") + TimeMessage;
+		|            DfBalloon DfBalloon1 = new DfBalloon();
+		|            DfBalloon1.TimeMessage = TimeMessage;
+		|            DfBalloon1.MessageKey = MessageKey;
+		|            DeclarativeForms.AddToHashtable(MessageKey, DfBalloon1);
+		|
+		|            DfBalloon1.Height = Height;
+		|            DfBalloon1.Width = Width;
+		|            DfBalloon1.Title = Title;
+		|            DfBalloon1.Text = Text;
+		|            DfBalloon1.Interval = Interval;
+		|            DfBalloon1.BackgroundColor = BackgroundColor;
+		|            DfBalloon1.HeaderColor = HeaderColor;
+		|            DfBalloon1.TextColor = TextColor;
+		|            if (fontStyle != """")
+		|            {
+		|                DfBalloon1.FontStyle = FontStyle;
+		|            }
+		|            if (fontVariant != """")
+		|            {
+		|                DfBalloon1.FontVariant = FontVariant;
+		|            }
+		|            if (fontWeight != """")
+		|            {
+		|                DfBalloon1.FontWeight = FontWeight;
+		|            }
+		|            if (fontSize != null)
+		|            {
+		|                DfBalloon1.FontSize = FontSize;
+		|            }
+		|            if (lineHeight != null)
+		|            {
+		|                DfBalloon1.LineHeight = LineHeight;
+		|            }
+		|            if (fontFamily != """")
+		|            {
+		|                DfBalloon1.FontFamily = FontFamily;
+		|            }
+		|
+		|            if (!DeclarativeForms.instance.OpenInBrowser)
+		|            {
+		|                File.WriteAllText(DeclarativeForms.pathStartupScript + DeclarativeForms.separator + ""mes.html"",
+		|                    Meshtml.meshtml,
+		|                    System.Text.Encoding.UTF8);
+		|            }
+		|
+		|            // Создаем всплывающее уведомление.
+		|            string strFunc = @""
+		|let new_new_win;
+		|
+		|if ("" + Interval + @"" >= 0)
+		|{
+		|    setTimeout(() => {
+		|        new_new_win.close(true);
+		|    }, "" + Interval + @"");
+		|}
+		|
+		|nw.Window.open('mes.html', {
+		|   width: "" + Width + @"",
+		|   height: "" + Height + @"",
+		|   show: false,
+		|   show_in_taskbar: false,
+		|   frame: false,
+		|   position: 'center'
+		|}, function(new_win){
+		|
+		|new_new_win = new_win;
+		|mapKeyEl.set('"" + MessageKey + @""', new_win);
+		|mapElKey.set(new_win, '"" + MessageKey + @""');
+		|
+		|arrangeMessages();
+		|
+		|new_win.setAlwaysOnTop(true);
+		|new_win.setShowInTaskbar(false);
+		|
+		|new_win.on('closed', function () {
+		|    new_win = null;
+		|    mapKeyEl.delete('"" + MessageKey + @""');
+		|    mapElKey.delete(new_new_win);
+		|    arrangeMessages();
+		|});
+		|
+		|function arrangeMessages()
+		|{
+		|    const screen = nw.Screen.screens[0];
+		|    const area = screen.work_area;
+		|    var offsetX;
+		|    var offsetY;
+		|    let increaseHeight = 0;
+		|    let num = 0;
+		|    for (const [key, value] of mapKeyEl)
+		|    {
+		|        if (key.charAt(0) === 'b')
+		|        {
+		|            let item_win = value;
+		|            num = num + 1;
+		|            if (num > "" + DeclarativeForms.instance.MaxBalloonsOnScreen + @"")
+		|            {
+		|                item_win.hide();
+		|            }
+		|            else
+		|            {
+		|                item_win.show();
+		|                try
+		|                {
+		|                    offsetX = area.width - item_win.width;
+		|                    offsetY = area.height - (increaseHeight + item_win.height);
+		|                    item_win.moveTo(offsetX, offsetY);
+		|                    increaseHeight = increaseHeight + item_win.height;
+		|                }
+		|                catch{}
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|new_win.on('loaded', function () {
+		|    let document1 = new_win.window.document;
+		|
+		|    let div1 = document1.createElement('div');
+		|    div1.innerHTML = `
+		|<div style=""""display: flex; justify-content: space-between; position: sticky; top: 0; height: 21px; background-color: "" + HeaderColor + @"";"""">
+		|    <span style=""""color: "" + HeaderTextColor + @"";"""">"" + Title + @""</span>
+		|    <div>
+		|        <span style=""""color: "" + HeaderTextColor + @"";"""">"" + DateTime.Now.ToString() + @""</span>
+		|        <button style=""""-webkit-app-region: no-drag; float: right;"""" onclick=""""nw.Window.get().close(true);"""">Х</button>
+		|    </div>
+		|</div>
+		|`;
+		|    document1.body.appendChild(div1);
+		|
+		|    let div2 = document1.createElement('div');
+		|    div2.innerHTML = `
+		|<div>
+		|    <div style=""""-webkit-app-region: no-drag; padding: 10px; word-break: break-all;"""">
+		|        <span style=""""color: "" + TextColor + @""; font-family: "" + FontFamily + @""; font-style: "" + FontStyle + @""; font-variant: "" + FontVariant + @""; font-weight: "" + FontWeight + @""; font-size: "" + resfontSize + @""; line-height: "" + reslineHeight + @"";"""">"" + Text + @""</span>
+		|    </div>
+		|</div>
+		|`;
+		|    document1.body.appendChild(div2);
+		|
+		|    document1.body.style.backgroundColor = '"" + BackgroundColor + @""';
+		|});
+		|
+		|nw.Window.get().on('close', function () {
+		|    this.hide();
+		|    if (new_win !== null) {
+		|        new_win.close(true);
+		|    }
+		|    //this.close(true); // Закомментировали, потому что, множество других открытых сообщений могут не успеть закрыться.
+		|});
+		|
+		|});
+		|"";
+		|            DeclarativeForms.SendStrFunc(strFunc);
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаДФ + ".cs");
 	ИначеЕсли ИмяФайлаДФ = "Tray" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"using ScriptEngine.Machine.Contexts;
@@ -14863,6 +15651,11 @@
 		|    sendPost('formIsLoaded');
 		|}
 		|
+		|nw.Window.get().on('close', function () {
+		|    //alert('Форма закрывается.');
+		|    sendPost('FormClose');
+		|});
+		|		
 		|        </script>
 		|	</head>
 		|	<body>
@@ -15045,56 +15838,85 @@
 		|function stopTimer(nameEl) {
 		|   window.clearInterval(mapKeyEl.get(nameEl));
 		|}
-		|		
+		|
 		|var mapKeyEl = new Map();
 		|var mapElKey = new Map();
-		|//var gui = require('nw.gui');
-		|//document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
-		|//nw.Window.get().on('resize', function(width, height)
-		|//{
-		|//    sendPost('mainForm' +
-		|//    '"" + spacer + @""' + 'resize' +
-		|//    '"" + spacer + @""WindowWidth=' + width +
-		|//    '"" + spacer + @""WindowHeight=' + height);
-		|//});
+		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
-		|//alert('qqqqqqqqqqq');
-		|//================================================================
-		|const WebSocket = require('ws');
-		|const serverSend = new WebSocket.Server({port: "" + DeclarativeForms.portReceivingServer + @""});
-		|serverSend.on('connection', onConnect);
-		|// обработчик подключения клиента
-		|// параметр - подключенный клиент
-		|var sendClient;
-		|function onConnect(clientSend) {
-		|    sendClient = clientSend;
-		|    //alert('Connection opened');
-		|
-		|    //sendClient.send('mainForm' + '"" + spacer + @""' + 'loaded');
-		|
-		|    // обрабатываем входящие сообщения от клиента
-		|    clientSend.on('message', function(message) {
-		|        alert('clientSend message:' + message.toString());
-		|        var input = message.toString();
-		|        var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
-		|        for (var i = 0; i < fields.length; i++)
+		|var sendClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
+		|sendClient.onopen = function(event) { sendClient.send('mainForm' + '"" + spacer + @""' + 'loaded'); };
+		|sendClient.onmessage = function (event)
+		|{
+		|    var input = event.data;
+		|    var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
+		|    for (var i = 0; i < fields.length; i++)
+		|    {
+		|        var item = fields[i];
+		|        if (item != '')
 		|        {
-		|            var item = fields[i];
-		|            if (item != '')
-		|            {
-		|                funFromString(item);
-		|            }
+		|            funFromString(item);
 		|        }
-		|        //clientSend.send('Hello clientSend'); // отправка сообщения клиенту
-		|        //sendClient.send('mainForm' + '"" + spacer + @""' + 'loaded');
-		|    });
-		|    // закрытие подключения
-		|    clientSend.on('close', function() {
-		|        //alert('Connection closed');
-		|    });
+		|    }
+		|};
+		|sendClient.onclose = function (event) {
+		|    setTimeout(function() {
+		|        sendClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
+		|    }, 2);
+		|};
+		|sendClient.onerror = function (error) {
+		|	//alert('websocket error ' + error);
+		|};
+		|
+		|window.onbeforeunload = function(){
+		|    let str = 'При обновлении страницы или переходе по ссылке в этом окне программа будет перезапущена или закрыта соответственно. Введенные данные могут не сохраниться.';
+		|    setTimeout(function(){ alert(str); }, 1);
+		|    if (event.target.nodeName.toLowerCase() === 'a')
+		|    {
+		|        return;
+		|    }
+		|    else
+		|    {
+		|        setTimeout(function(){ alert(str); }, 1);
+		|        return false; // отменить действие браузера (переход по ссылке)
+		|    }
+		|};
+		|
+		|window.addEventListener('resize', function(event) {
+		|    sendPost('mainForm' + 
+		|    '"" + spacer + @""' + 'resize' + 
+		|    '"" + spacer + @""WindowWidth=' + window.innerWidth + 
+		|    '"" + spacer + @""WindowHeight=' + window.innerHeight);
+		|}, true);
+		|
+		|//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);
+		|
+		|var receiveClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portSendServer + @""/');
+		|receiveClient.onopen = function(event) { receiveClient.send('Hello from receiveClient'); };
+		|receiveClient.onmessage = function (event)
+		|{
+		|    var input = event.data;
+		|    var fields = input.split('"" + DeclarativeForms.funDelimiter + @""');
+		|    for (var i = 0; i < fields.length; i++)
+		|    {
+		|        var item = fields[i];
+		|        if (item != '')
+		|        {
+		|            funFromString(item);
+		|        }
+		|    }
+		|};
+		|receiveClient.onclose = function (event) {
+		|    setTimeout(function() {
+		|        receiveClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portSendServer + @""/');
+		|    }, 2);
+		|};
+		|receiveClient.onerror = function (error) {
+		|	//alert('websocket error ' + error);
+		|};
+		|function firstStart() {
+		|    sendPost('formIsLoaded');
 		|}
-		|//================================================================
 		|
 		|        </script>
 		|	</head>
@@ -15112,7 +15934,6 @@
 	ИначеЕсли ИмяФайлаДФ = "Form" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"using System;
-		|using System.IO;
 		|using System.Collections.Generic;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
@@ -15123,9 +15944,6 @@
 		|    [ContextClass(""ДфФорма"", ""DfForm"")]
 		|    public class DfForm : AutoContext<DfForm>
 		|    {
-		|        private static string separator = Path.DirectorySeparatorChar.ToString();
-		|        private static IRuntimeContextInstance startupScript = DeclarativeForms.GlobalContext().StartupScript();
-		|        private static string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
 		|        public static Dictionary<string, object> props = new Dictionary<string, object>();
 		|        private static DfBody body = new DfBody();
 		|
@@ -15390,7 +16208,7 @@
 		|                }
 		|
 		|                // Запустим index.html в браузере по умолчанию.
-		|                string target = pathStartupScript + separator + ""index.html"";
+		|                string target = DeclarativeForms.pathStartupScript + DeclarativeForms.separator + ""index.html"";		
 		|                System.Diagnostics.Process process = new System.Diagnostics.Process();
 		|                DeclarativeForms.process = process;
 		|
@@ -15447,13 +16265,13 @@
 		|                if (!isWin)
 		|                {
 		|                    process.StartInfo.FileName = DeclarativeForms._nw;
-		|                    process.StartInfo.Arguments = pathStartupScript;
+		|                    process.StartInfo.Arguments = DeclarativeForms.pathStartupScript;		
 		|                    System.Threading.Thread.Sleep(2000);
 		|                }
 		|                else
 		|                {
 		|                    process.StartInfo.FileName = ""\u0022"" + DeclarativeForms._nw + ""\u0022"";
-		|                    process.StartInfo.Arguments = ""\u0022"" + pathStartupScript + separator;
+		|                    process.StartInfo.Arguments = ""\u0022"" + DeclarativeForms.pathStartupScript + DeclarativeForms.separator;		
 		|                }
 		|
 		|                process.Start();
@@ -15875,16 +16693,15 @@
 		|using ScriptEngine.Machine;
 		|using System.Reflection;
 		|using ScriptEngine.HostedScript.Library;
-		|using System.Collections.Concurrent;
 		|
 		|namespace osdf
 		|{
 		|    [ContextClass(""ДекларативныеФормы"", ""DeclarativeForms"")]
 		|    public class DeclarativeForms : AutoContext<DeclarativeForms>
 		|    {
-		|        public static string funDelimiter = ""d1ziwjr520tq"";
-		|        public static string paramDelimiter = ""|"";
-		|        private static string separator = Path.DirectorySeparatorChar.ToString();
+		|        public static string funDelimiter = ""d1ziwjr520tq""; // Разделитель передаваемых форме функций в переменной СтрокаФункций.
+		|        public static string paramDelimiter = ""|""; // Разделитель передаваемых от формы параметров.		
+		|        public static string separator = Path.DirectorySeparatorChar.ToString();
 		|        private static StructureImpl shareStructure = new StructureImpl();
 		|        public DfEventArgs eventArgs;
 		|        public static DeclarativeForms instance;
@@ -15904,6 +16721,11 @@
 		|        public static bool scriptsIsLoad = false;
 		|
 		|        public static bool isWin = System.Environment.OSVersion.VersionString.Contains(""Microsoft"");
+		|		
+		|        public static IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+		|        public static string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
+		|        public static string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
+		|        public static string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");		
 		|
 		|        public static DeclarativeForms getInstance()
 		|        {
@@ -15923,9 +16745,6 @@
 		|        [ScriptConstructor]
 		|        public static IRuntimeContextInstance Constructor()
 		|        {
-		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
-		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
 		|            if (isWin)
 		|            {
 		|                _nw = pathStartupScript + separator + ""nwjs"" + separator + ""nw.exe"";
@@ -15987,6 +16806,21 @@
 		|            }
 		|        }
 		|		
+		|        [ContextMethod(""ОкноСообщений"", ""MessageBox"")]
+		|        public DfMessageBox MessageBox(string p1 = null, string p2 = null, DfPoint p3 = null)
+		|        {
+		|            return new DfMessageBox(p1, p2, p3);
+		|        }		
+		|
+		|        [ContextProperty(""МаксимумУведомленийНаЭкране"", ""MaxBalloonsOnScreen"")]
+		|        public int MaxBalloonsOnScreen { get; set; } = 5;
+		|		
+		|        [ContextMethod(""Уведомления"", ""Balloons"")]
+		|        public DfBalloons Balloons()
+		|        {
+		|            return new DfBalloons();
+		|        }		
+		|
 		|        [ContextMethod(""Лоток"", ""Tray"")]
 		|        public DfTray Tray()
 		|        {
@@ -17470,10 +18304,6 @@
 		|        public static void LoadWsserverReceiving()
 		|        {
 		|            StructureImpl extContext = new StructureImpl();
-		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
-		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
-		|            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");
 		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
 		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
 		|
@@ -17526,10 +18356,6 @@
 		|        public static void LoadWsserverSend()
 		|        {
 		|            StructureImpl extContext = new StructureImpl();
-		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
-		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
-		|            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");
 		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
 		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
 		|
@@ -17581,10 +18407,6 @@
 		|        public void LoadClientServer()
 		|        {
 		|            StructureImpl extContext = new StructureImpl();
-		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
-		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
-		|            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");
 		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
 		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
 		|
@@ -17670,10 +18492,6 @@
 		|            StructureImpl scripts = new StructureImpl();
 		|            StructureImpl attachByPath = new StructureImpl();
 		|            StructureImpl extContext = new StructureImpl();
-		|            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-		|            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Source"")).AsString();
-		|            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty(""Path"")).AsString();
-		|            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, """").Replace("".os"", """").Replace(separator, """");
 		|            shareStructure.Insert(""Сценарии"", scripts);
 		|            extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
 		|            extContext.Insert(""ОбщаяСтруктура"", shareStructure);
@@ -17936,6 +18754,10 @@
 		|                    //GlobalContext().Echo(""Loaded не задан"");
 		|                }
 		|            }
+		|            if (strZapros == ""FormClose"")
+		|            {
+		|                Exit();
+		|            }		
 		|		
 		|            if (!(massiv.Length < 2))
 		|            {
@@ -19676,5 +20498,6 @@
 СловарьКлассов.Вставить("UnorderedList", "НеупорядоченныйСписок=ul==");
 СловарьКлассов.Вставить("WeekSelection", "ВыборНедели=input=week=");
 СловарьКлассов.Вставить("Script", "Скрипт=script==");
+СловарьКлассов.Вставить("Balloons", "Уведомления===");
 
 ВыгрузкаДляДекларФорм();

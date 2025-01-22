@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
@@ -10,9 +9,6 @@ namespace osdf
     [ContextClass("ДфФорма", "DfForm")]
     public class DfForm : AutoContext<DfForm>
     {
-        private static string separator = Path.DirectorySeparatorChar.ToString();
-        private static IRuntimeContextInstance startupScript = DeclarativeForms.GlobalContext().StartupScript();
-        private static string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
         public static Dictionary<string, object> props = new Dictionary<string, object>();
         private static DfBody body = new DfBody();
 
@@ -277,7 +273,7 @@ namespace osdf
                 }
 
                 // Запустим index.html в браузере по умолчанию.
-                string target = pathStartupScript + separator + "index.html";
+                string target = DeclarativeForms.pathStartupScript + DeclarativeForms.separator + "index.html";		
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 DeclarativeForms.process = process;
 
@@ -334,13 +330,13 @@ namespace osdf
                 if (!isWin)
                 {
                     process.StartInfo.FileName = DeclarativeForms._nw;
-                    process.StartInfo.Arguments = pathStartupScript;
+                    process.StartInfo.Arguments = DeclarativeForms.pathStartupScript;		
                     System.Threading.Thread.Sleep(2000);
                 }
                 else
                 {
                     process.StartInfo.FileName = "\u0022" + DeclarativeForms._nw + "\u0022";
-                    process.StartInfo.Arguments = "\u0022" + pathStartupScript + separator;
+                    process.StartInfo.Arguments = "\u0022" + DeclarativeForms.pathStartupScript + DeclarativeForms.separator;		
                 }
 
                 process.Start();

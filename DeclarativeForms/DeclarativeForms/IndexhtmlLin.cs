@@ -270,6 +270,11 @@ function firstStart() {
     sendPost('formIsLoaded');
 }
 
+nw.Window.get().on('close', function () {
+    //alert('Форма закрывается.');
+    sendPost('FormClose');
+});
+		
         </script>
 	</head>
 	<body>

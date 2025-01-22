@@ -67,6 +67,8 @@
     <Compile Include="BackgroundPosition.cs" />
     <Compile Include="BackgroundRepeat.cs" />
     <Compile Include="BackgroundSize.cs" />
+    <Compile Include="Balloon.cs" />
+    <Compile Include="Balloons.cs" />
     <Compile Include="Body.cs" />
     <Compile Include="BoldText.cs" />
     <Compile Include="BorderBottom.cs" />
@@ -180,6 +182,9 @@
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuItemType.cs" />
     <Compile Include="MenuType.cs" />
+    <Compile Include="MesBoxhtml.cs" />
+    <Compile Include="Meshtml.cs" />
+    <Compile Include="MessageBox.cs" />
     <Compile Include="Meter.cs" />
     <Compile Include="MonthSelection.cs" />
     <Compile Include="MouseButtons.cs" />

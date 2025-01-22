@@ -7,16 +7,15 @@ using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 using System.Reflection;
 using ScriptEngine.HostedScript.Library;
-using System.Collections.Concurrent;
 
 namespace osdf
 {
     [ContextClass("ДекларативныеФормы", "DeclarativeForms")]
     public class DeclarativeForms : AutoContext<DeclarativeForms>
     {
-        public static string funDelimiter = "d1ziwjr520tq";
-        public static string paramDelimiter = "|";
-        private static string separator = Path.DirectorySeparatorChar.ToString();
+        public static string funDelimiter = "d1ziwjr520tq"; // Разделитель передаваемых форме функций в переменной СтрокаФункций.
+        public static string paramDelimiter = "|"; // Разделитель передаваемых от формы параметров.		
+        public static string separator = Path.DirectorySeparatorChar.ToString();
         private static StructureImpl shareStructure = new StructureImpl();
         public DfEventArgs eventArgs;
         public static DeclarativeForms instance;
@@ -36,6 +35,11 @@ namespace osdf
         public static bool scriptsIsLoad = false;
 
         public static bool isWin = System.Environment.OSVersion.VersionString.Contains("Microsoft");
+		
+        public static IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
+        public static string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
+        public static string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
+        public static string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");		
 
         public static DeclarativeForms getInstance()
         {
@@ -55,9 +59,6 @@ namespace osdf
         [ScriptConstructor]
         public static IRuntimeContextInstance Constructor()
         {
-            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
-            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
             if (isWin)
             {
                 _nw = pathStartupScript + separator + "nwjs" + separator + "nw.exe";
@@ -119,6 +120,21 @@ namespace osdf
             }
         }
 		
+        [ContextMethod("ОкноСообщений", "MessageBox")]
+        public DfMessageBox MessageBox(string p1 = null, string p2 = null, DfPoint p3 = null)
+        {
+            return new DfMessageBox(p1, p2, p3);
+        }		
+
+        [ContextProperty("МаксимумУведомленийНаЭкране", "MaxBalloonsOnScreen")]
+        public int MaxBalloonsOnScreen { get; set; } = 5;
+		
+        [ContextMethod("Уведомления", "Balloons")]
+        public DfBalloons Balloons()
+        {
+            return new DfBalloons();
+        }		
+
         [ContextMethod("Лоток", "Tray")]
         public DfTray Tray()
         {
@@ -1602,10 +1618,6 @@ namespace osdf
         public static void LoadWsserverReceiving()
         {
             StructureImpl extContext = new StructureImpl();
-            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
-            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
-            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");
             extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
             extContext.Insert("ОбщаяСтруктура", shareStructure);
 
@@ -1658,10 +1670,6 @@ namespace osdf
         public static void LoadWsserverSend()
         {
             StructureImpl extContext = new StructureImpl();
-            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
-            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
-            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");
             extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
             extContext.Insert("ОбщаяСтруктура", shareStructure);
 
@@ -1713,10 +1721,6 @@ namespace osdf
         public void LoadClientServer()
         {
             StructureImpl extContext = new StructureImpl();
-            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
-            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
-            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");
             extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
             extContext.Insert("ОбщаяСтруктура", shareStructure);
 
@@ -1802,10 +1806,6 @@ namespace osdf
             StructureImpl scripts = new StructureImpl();
             StructureImpl attachByPath = new StructureImpl();
             StructureImpl extContext = new StructureImpl();
-            IRuntimeContextInstance startupScript = GlobalContext().StartupScript();
-            string fullPathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Source")).AsString();
-            string pathStartupScript = startupScript.GetPropValue(startupScript.FindProperty("Path")).AsString();
-            string nameStartupScript = fullPathStartupScript.Replace(pathStartupScript, "").Replace(".os", "").Replace(separator, "");
             shareStructure.Insert("Сценарии", scripts);
             extContext.Insert(nameStartupScript, ValueFactory.Create(startupScript));
             extContext.Insert("ОбщаяСтруктура", shareStructure);
@@ -2068,6 +2068,10 @@ namespace osdf
                     //GlobalContext().Echo("Loaded не задан");
                 }
             }
+            if (strZapros == "FormClose")
+            {
+                Exit();
+            }		
 		
             if (!(massiv.Length < 2))
             {

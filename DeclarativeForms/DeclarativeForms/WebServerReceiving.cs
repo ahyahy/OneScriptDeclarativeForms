@@ -139,7 +139,6 @@ namespace osws
                 {
                     osdf.DeclarativeForms.GlobalContext().Echo("Произошло не корректное обновление страницы (" + osdf.DeclarativeForms.GlobalContext().CurrentUniversalDate() + ").");
                     osdf.DeclarativeForms.GlobalContext().Echo("Повторно обновите страницу.");
-                    Environment.Exit(1);
                 }
             }
         }

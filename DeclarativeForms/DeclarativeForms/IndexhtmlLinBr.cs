@@ -165,56 +165,85 @@ function startTimer(nameEl, interval) {
 function stopTimer(nameEl) {
    window.clearInterval(mapKeyEl.get(nameEl));
 }
-		
+
 var mapKeyEl = new Map();
 var mapElKey = new Map();
-//var gui = require('nw.gui');
-//document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '" + spacer + @"' + 'loaded'); });
 
-//nw.Window.get().on('resize', function(width, height)
-//{
-//    sendPost('mainForm' +
-//    '" + spacer + @"' + 'resize' +
-//    '" + spacer + @"WindowWidth=' + width +
-//    '" + spacer + @"WindowHeight=' + height);
-//});
+document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '" + spacer + @"' + 'loaded'); });
 
-//alert('qqqqqqqqqqq');
-//================================================================
-const WebSocket = require('ws');
-const serverSend = new WebSocket.Server({port: " + DeclarativeForms.portReceivingServer + @"});
-serverSend.on('connection', onConnect);
-// обработчик подключения клиента
-// параметр - подключенный клиент
-var sendClient;
-function onConnect(clientSend) {
-    sendClient = clientSend;
-    //alert('Connection opened');
-
-    //sendClient.send('mainForm' + '" + spacer + @"' + 'loaded');
-
-    // обрабатываем входящие сообщения от клиента
-    clientSend.on('message', function(message) {
-        alert('clientSend message:' + message.toString());
-        var input = message.toString();
-        var fields = input.split('" + DeclarativeForms.funDelimiter + @"');
-        for (var i = 0; i < fields.length; i++)
+var sendClient = new WebSocket('ws://127.0.0.1:" + DeclarativeForms.portReceivingServer + @"/');
+sendClient.onopen = function(event) { sendClient.send('mainForm' + '" + spacer + @"' + 'loaded'); };
+sendClient.onmessage = function (event)
+{
+    var input = event.data;
+    var fields = input.split('" + DeclarativeForms.funDelimiter + @"');
+    for (var i = 0; i < fields.length; i++)
+    {
+        var item = fields[i];
+        if (item != '')
         {
-            var item = fields[i];
-            if (item != '')
-            {
-                funFromString(item);
-            }
+            funFromString(item);
         }
-        //clientSend.send('Hello clientSend'); // отправка сообщения клиенту
-        //sendClient.send('mainForm' + '" + spacer + @"' + 'loaded');
-    });
-    // закрытие подключения
-    clientSend.on('close', function() {
-        //alert('Connection closed');
-    });
+    }
+};
+sendClient.onclose = function (event) {
+    setTimeout(function() {
+        sendClient = new WebSocket('ws://127.0.0.1:" + DeclarativeForms.portReceivingServer + @"/');
+    }, 2);
+};
+sendClient.onerror = function (error) {
+	//alert('websocket error ' + error);
+};
+
+window.onbeforeunload = function(){
+    let str = 'При обновлении страницы или переходе по ссылке в этом окне программа будет перезапущена или закрыта соответственно. Введенные данные могут не сохраниться.';
+    setTimeout(function(){ alert(str); }, 1);
+    if (event.target.nodeName.toLowerCase() === 'a')
+    {
+        return;
+    }
+    else
+    {
+        setTimeout(function(){ alert(str); }, 1);
+        return false; // отменить действие браузера (переход по ссылке)
+    }
+};
+
+window.addEventListener('resize', function(event) {
+    sendPost('mainForm' + 
+    '" + spacer + @"' + 'resize' + 
+    '" + spacer + @"WindowWidth=' + window.innerWidth + 
+    '" + spacer + @"WindowHeight=' + window.innerHeight);
+}, true);
+
+//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);
+
+var receiveClient = new WebSocket('ws://127.0.0.1:" + DeclarativeForms.portSendServer + @"/');
+receiveClient.onopen = function(event) { receiveClient.send('Hello from receiveClient'); };
+receiveClient.onmessage = function (event)
+{
+    var input = event.data;
+    var fields = input.split('" + DeclarativeForms.funDelimiter + @"');
+    for (var i = 0; i < fields.length; i++)
+    {
+        var item = fields[i];
+        if (item != '')
+        {
+            funFromString(item);
+        }
+    }
+};
+receiveClient.onclose = function (event) {
+    setTimeout(function() {
+        receiveClient = new WebSocket('ws://127.0.0.1:" + DeclarativeForms.portSendServer + @"/');
+    }, 2);
+};
+receiveClient.onerror = function (error) {
+	//alert('websocket error ' + error);
+};
+function firstStart() {
+    sendPost('formIsLoaded');
 }
-//================================================================
 
         </script>
 	</head>
