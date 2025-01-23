@@ -58,4 +58,4 @@
 
 <img src="https://infostart.ru/bitrix/templates/sandbox_empty/assets/tpl/abo/img/logo.svg" align="right" width="128">
 
-+ По данной работе на сайте Инфостарт празмешена публикация [Декларативные формы для сценарного языка OneScript](https://infostart.ru/public/2290947/)
++ По данной работе на сайте Инфостарт размешена публикация [Декларативные формы для сценарного языка OneScript](https://infostart.ru/public/2290947/)
