@@ -1,0 +1,154 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>OSDFormsAnimationCub</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Горизонтальная панель значков</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Горизонтальная панель значков.</H4>
+<P></P>
+<IMG src="HorizontalPanel1.jpg"></IMG>
+<P></P>
+<details><summary>Код примера</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем ДФ, Абзац1;
+
+Процедура МышьНадЭлементом() Экспорт
+	Параметр = ДФ.АргументыСобытия.Параметр;
+	Параметр["ЭтаСсылка"].Стиль.ЦветФона = ДФ.Цвет(0, 0, 0);
+КонецПроцедуры
+
+Процедура МышьПокинулаЭлемент() Экспорт
+	Параметр = ДФ.АргументыСобытия.Параметр;
+	Параметр["ЭтаСсылка"].Стиль.ЦветФона = ДФ.Цвет.ТемноСерый;
+КонецПроцедуры
+
+Процедура Нажатие() Экспорт
+	Абзац1.Текст = "Нажатие " + ДФ.АргументыСобытия.Параметр["ЭтаСсылка"].Источник + " " + ТекущаяУниверсальнаяДатаВМиллисекундах();
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.НачальнаяШирина = 500;
+Форма1.НачальнаяВысота = 250;
+
+// Запишем на диск иконки.
+Домой = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAmUlEQVR42u3WSwqAMAwEUHP/Q9eFVDQ2YfKhrZAslcw8EarUjrVDBQgBWrvWiWg+oJffST6ED8DLAwg74FneC9FrYYAWyu+lA5BAx6vBAODTiIgQwFIuIdwAT7lxVwZEyg0ZY0BGOZj1BWSWA5lvQNLxqgJY7mYAvjACSIeNhlbyfgyQvgUFKEABUgHaaL9k6M6+gIlTgOWAE/OL4wH1jWg2AAAAAElFTkSuQmCC";
+Поиск = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAoUlEQVR42u3WURKAIAgE0Lj/oe23xGlZQJoa/Fb2VabION4d8g/AGPcyIlIDmINVdQzxAVAwAeEBq/A5wDLHBWC/tWG+HeDdaGCdDRDY5Wg9D2DDQQ0MyAh/qNWABnwAkIVw/4YZgPBBFEGkHMWGQt41vrsAQVKvY7b5sCJNAPQkW1sy4jXmN6VMeHBoQGG4BhSHY8DmcA24IgrC14Di0YAT432nAbkFEZwAAAAASUVORK5CYII=";
+Конверт = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAjklEQVR42u3QsQ6AIAwEUJl08P//1Bgm7YCJMcVeUQSTu4WFHo+GoXECAQQQ0BVgk3zyqORfgPOAJ0gfvAGZmeVYwLcnqVqLN5AuqCXWNrRPHPhLvwkwC5Ffa10uAFKOIp8AstvQYs0XA+62kft1DYC6Dc/MK4CUMZ0RuVwD4AoBBMCA2ukX0CIEENAcsAPCZKohWBuCxwAAAABJRU5ErkJggg==";
+Глобус = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAu0lEQVR42u2W2w6AIAiGM3v/J+5EF27GkEMeqC1uDET+r7mCMDlb+AE+CXCAkcXAugKUhGtAVImU8CWS4vmzFURMoERSYc7He48AGIEIy472Z3A3DtAEIL2tIrbAskkQgRNvbRTE+wBycekutXGqpggg3bU1Xsp9L0Av+w6A+xW4A+TJQz9DfKCluf4JTb0gh6hoRqqO2LIdR3BXi7gIgIsMH0gwxO3gqJFMAiGLth5KtSDdx/Ie9gO4A5x4aTMwR1ZhdgAAAABJRU5ErkJggg==";
+Корзина = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAaUlEQVR42u3XwQrAIAwDUPP/H91dh1Rn2o7pSG4KoU/xIqx9GwhwLsDMrwJ4HzAaHkDkAP2g0X4Y8HRSNg5sc8AdQT6u1b4APCC7FkAAAQQQIA1g8x9ABLHQ5QCZhAEViMnNHfwxEaAoFxajARBYiAIeAAAAAElFTkSuQmCC";
+Base64Значение(Домой).Записать(ОбъединитьПути(Новый Файл(ТекущийСценарий().Источник).Путь, "home.png"));
+Base64Значение(Поиск).Записать(ОбъединитьПути(Новый Файл(ТекущийСценарий().Источник).Путь, "search.png"));
+Base64Значение(Конверт).Записать(ОбъединитьПути(Новый Файл(ТекущийСценарий().Источник).Путь, "envelope.png"));
+Base64Значение(Глобус).Записать(ОбъединитьПути(Новый Файл(ТекущийСценарий().Источник).Путь, "globe.png"));
+Base64Значение(Корзина).Записать(ОбъединитьПути(Новый Файл(ТекущийСценарий().Источник).Путь, "trash.png"));
+
+Блок1 = Форма1.ДобавитьДочерний(ДФ.Блок());
+Блок1.Стиль.Отступ = ДФ.Отступ(0, 0, 0, 0);
+Блок1.Стиль.Ширина = "100%";
+Блок1.Стиль.Высота = 40;
+
+Стиль1 = ДФ.Стиль();
+Стиль1.Ширина = "20%";
+Стиль1.Высота = 40;
+Стиль1.ГоризонтальноеВыравнивание = ДФ.ГоризонтальноеВыравнивание.Право;
+Стиль1.ГоризонтальноеВыравниваниеТекста = ДФ.ГоризонтальноеВыравниваниеТекста.Центр;
+Стиль1.ВыравниваниеЭлементов = ДФ.ВыравниваниеЭлементов.Центр;
+Стиль1.ЦветФона = ДФ.Цвет.ТемноСерый;
+Стиль1.Заполнение = ДФ.Заполнение(6, 0, 0, 0);
+
+Переход1 = ДФ.Переход();
+Переход1.СвойствоПерехода = ДФ.СвойствоПерехода.Все;
+Переход1.ВремяПерехода = 1000;
+Переход1.ФункцияПерехода = ДФ.ФункцияПерехода.Медленно;
+Стиль1.Переход = Переход1;
+Стиль1.ЦветТекста = ДФ.Цвет.Белый;
+
+БлокКорзина = Блок1.ДобавитьДочерний(ДФ.Блок());
+БлокКорзина.Стиль.Копировать(Стиль1);
+ИзображениеКорзина = БлокКорзина.ДобавитьДочерний(ДФ.Изображение());
+ИзображениеКорзина.Источник = "trash.png";
+ИзображениеКорзина.МышьНадЭлементом = ДФ.Действие(ЭтотОбъект, "МышьНадЭлементом", Новый Структура("ЭтаСсылка", БлокКорзина));
+ИзображениеКорзина.МышьПокинулаЭлемент = ДФ.Действие(ЭтотОбъект, "МышьПокинулаЭлемент", Новый Структура("ЭтаСсылка", БлокКорзина));
+ИзображениеКорзина.Нажатие = ДФ.Действие(ЭтотОбъект, "Нажатие", Новый Структура("ЭтаСсылка", ИзображениеКорзина));
+
+БлокГлобус = Блок1.ДобавитьДочерний(ДФ.Блок());
+БлокГлобус.Стиль.Копировать(Стиль1);
+ИзображениеГлобус = БлокГлобус.ДобавитьДочерний(ДФ.Изображение());
+ИзображениеГлобус.Источник = "globe.png";
+ИзображениеГлобус.МышьНадЭлементом = ДФ.Действие(ЭтотОбъект, "МышьНадЭлементом", Новый Структура("ЭтаСсылка", БлокГлобус));
+ИзображениеГлобус.МышьПокинулаЭлемент = ДФ.Действие(ЭтотОбъект, "МышьПокинулаЭлемент", Новый Структура("ЭтаСсылка", БлокГлобус));
+ИзображениеГлобус.Нажатие = ДФ.Действие(ЭтотОбъект, "Нажатие", Новый Структура("ЭтаСсылка", ИзображениеГлобус));
+
+БлокКонверт = Блок1.ДобавитьДочерний(ДФ.Блок());
+БлокКонверт.Стиль.Копировать(Стиль1);
+ИзображениеКонверт = БлокКонверт.ДобавитьДочерний(ДФ.Изображение());
+ИзображениеКонверт.Источник = "envelope.png";
+ИзображениеКонверт.МышьНадЭлементом = ДФ.Действие(ЭтотОбъект, "МышьНадЭлементом", Новый Структура("ЭтаСсылка", БлокКонверт));
+ИзображениеКонверт.МышьПокинулаЭлемент = ДФ.Действие(ЭтотОбъект, "МышьПокинулаЭлемент", Новый Структура("ЭтаСсылка", БлокКонверт));
+ИзображениеКонверт.Нажатие = ДФ.Действие(ЭтотОбъект, "Нажатие", Новый Структура("ЭтаСсылка", ИзображениеКонверт));
+
+БлокПоиск = Блок1.ДобавитьДочерний(ДФ.Блок());
+БлокПоиск.Стиль.Копировать(Стиль1);
+ИзображениеПоиск = БлокПоиск.ДобавитьДочерний(ДФ.Изображение());
+ИзображениеПоиск.Источник = "search.png";
+ИзображениеПоиск.МышьНадЭлементом = ДФ.Действие(ЭтотОбъект, "МышьНадЭлементом", Новый Структура("ЭтаСсылка", БлокПоиск));
+ИзображениеПоиск.МышьПокинулаЭлемент = ДФ.Действие(ЭтотОбъект, "МышьПокинулаЭлемент", Новый Структура("ЭтаСсылка", БлокПоиск));
+ИзображениеПоиск.Нажатие = ДФ.Действие(ЭтотОбъект, "Нажатие", Новый Структура("ЭтаСсылка", ИзображениеПоиск));
+
+БлокДомой = Блок1.ДобавитьДочерний(ДФ.Блок());
+БлокДомой.Стиль.Копировать(Стиль1);
+БлокДомой.Стиль.ЦветФона = ДФ.Цвет.ЗеленыйЛайм;
+ИзображениеДомой = БлокДомой.ДобавитьДочерний(ДФ.Изображение());
+ИзображениеДомой.Источник = "home.png";
+ИзображениеДомой.Нажатие = ДФ.Действие(ЭтотОбъект, "Нажатие", Новый Структура("ЭтаСсылка", ИзображениеДомой));
+
+Абзац1 = Форма1.ДобавитьДочерний(ДФ.Абзац());
+
+Форма1.Открыть();
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>
