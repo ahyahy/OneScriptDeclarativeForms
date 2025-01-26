@@ -51,6 +51,14 @@ namespace osdf
             get { return Convert.ToInt32(windowWidth.AsNumber()); }
             set { windowWidth = ValueFactory.Create(value); }
         }
+		
+        public IValue scrolledValue { get; set; }
+        [ContextProperty("Прокручено", "ScrolledValue")]
+        public int ScrolledValue
+        {
+            get { return Convert.ToInt32(scrolledValue.AsNumber()); }
+            set { scrolledValue = ValueFactory.Create(value); }
+        }		
 
         public IValue y { get; set; }
         [ContextProperty("Игрек", "Y")]

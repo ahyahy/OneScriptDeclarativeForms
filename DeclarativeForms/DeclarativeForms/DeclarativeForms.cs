@@ -2106,7 +2106,7 @@ namespace osdf
                         {
                             if (Sender.GetType() != typeof(osdf.DfMenuItem))
                             {
-                                GlobalContext().Echo("Не обработано событие = " + nameEvent);
+                                //GlobalContext().Echo("Не обработано событие = " + nameEvent);
                             }
                         }
                     }
@@ -3203,6 +3203,7 @@ namespace osdf
                 {"Button", new object[3] { "", true, "button" } },
                 {"Files", new object[3] { "", true, "files" } },		
                 {"Value", new object[3] { "", true, "_value" } },
+                {"ScrolledValue", new object[3] { "", true, "scrolledValue" } },
                 // Это для объектов
                 {"WindowHeight", new object[3] { "", true, "windowHeight" } },
                 {"WindowWidth", new object[3] { "", true, "windowWidth" } },
@@ -3440,7 +3441,7 @@ namespace osdf
                 {"Отложено", new object[3] { "", true, "defer" } },
                 {"Связь", new object[3] { "", true, "htmlFor" } },		
                 {"Гибкость", new object[3] { "", false, "flex" } },
-
+                {"ЗетИндекс", new object[3] { "", false, "zIndex" } },
 		
         };
     }

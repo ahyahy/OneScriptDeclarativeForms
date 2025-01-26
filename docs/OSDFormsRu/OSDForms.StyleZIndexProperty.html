@@ -1,0 +1,138 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>ZIndex Property</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Стиль.ЗетИндекс&nbsp;(Style.ZIndex)&nbsp;Свойство</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Использование</H4>
+<P>Чтение и запись.</P>
+<H4 class=dtH4>Значение</H4>
+<P>Тип: Число.</P>
+<P>Возвращает или задает порядок наложения позиционированных элементов.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Блок1.Стиль.ЗетИндекс = 2;
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем ДФ, Блок1, Блок2, Блок3;
+
+Процедура Кнопка1_Нажатие() Экспорт
+	Блок1.Стиль.ЗетИндекс = 3;
+	Блок2.Стиль.ЗетИндекс = 2;
+	Блок3.Стиль.ЗетИндекс = 1;
+КонецПроцедуры
+
+Процедура Кнопка2_Нажатие() Экспорт
+	Блок1.Стиль.ЗетИндекс = 2;
+	Блок2.Стиль.ЗетИндекс = 3;
+	Блок3.Стиль.ЗетИндекс = 1;
+КонецПроцедуры
+
+Процедура Кнопка3_Нажатие() Экспорт
+	Блок1.Стиль.ЗетИндекс = 2;
+	Блок2.Стиль.ЗетИндекс = 1;
+	Блок3.Стиль.ЗетИндекс = 3;
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.НачальнаяШирина = 400;
+Форма1.НачальнаяВысота = 400;
+
+Кнопка1 = ДФ.Кнопка();
+Кнопка1.Родитель = Форма1;
+Кнопка1.Текст = "Блок1 вперед";
+Кнопка1.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка1_Нажатие");
+
+Кнопка2 = ДФ.Кнопка();
+Кнопка2.Родитель = Форма1;
+Кнопка2.Текст = "Блок2 вперед";
+Кнопка2.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка2_Нажатие");
+
+Кнопка3 = ДФ.Кнопка();
+Кнопка3.Родитель = Форма1;
+Кнопка3.Текст = "Блок3 вперед";
+Кнопка3.Нажатие = ДФ.Действие(ЭтотОбъект, "Кнопка3_Нажатие");
+
+Стиль1 = ДФ.Стиль();
+Стиль1.Ширина = 100;
+Стиль1.Высота = 100;
+Стиль1.РадиусГраницы = ДФ.РадиусГраницы(25, 25, 25, 25);
+Стиль1.Отображать = ДФ.Отображать.Гибкий;
+Стиль1.Позиция = ДФ.Позиция.Абсолютно;
+Стиль1.ВыравниваниеЭлементов = ДФ.ВыравниваниеЭлементов.Центр;
+Стиль1.Отображать = ДФ.Отображать.Гибкий;
+
+Блок1 = Форма1.ДобавитьДочерний(ДФ.Блок());
+Блок1.Текст = "Блок1";
+Блок1.Стиль.Копировать(Стиль1);
+Блок1.Стиль.ЦветФона = ДФ.Цвет.Красный;
+Блок1.Стиль.Верх = 100;
+Блок1.Стиль.Лево = 50;
+
+Блок2 = Форма1.ДобавитьДочерний(ДФ.Блок());
+Блок2.Текст = "Блок2";
+Блок2.Стиль.Копировать(Стиль1);
+Блок2.Стиль.ЦветФона = ДФ.Цвет.Синий;
+Блок2.Стиль.Верх = 165;
+Блок2.Стиль.Лево = 100;
+Блок2.Стиль.РасположениеСодержимого = ДФ.РасположениеСодержимого.ВНачале;
+
+Блок3 = Форма1.ДобавитьДочерний(ДФ.Блок());
+Блок3.Текст = "Блок3";
+Блок3.Стиль.Копировать(Стиль1);
+Блок3.Стиль.ЦветФона = ДФ.Цвет.Зеленый;
+Блок3.Стиль.Верх = 100;
+Блок3.Стиль.Лево = 130;
+Блок3.Стиль.РасположениеСодержимого = ДФ.РасположениеСодержимого.ВКонце;
+
+Форма1.Открыть();
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

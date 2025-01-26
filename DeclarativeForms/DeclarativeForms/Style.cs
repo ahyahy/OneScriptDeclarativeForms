@@ -1641,6 +1641,36 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
                 }
             }
         }
+		
+        public string reszIndex { get; set; }
+        public IValue zIndex { get; set; }
+        [ContextProperty("ЗетИндекс", "ZIndex")]
+        public IValue ZIndex
+        {
+            get { return zIndex; }
+            set
+            {
+                zIndex = value;
+                if (value == null)
+                {
+                    reszIndex = "auto";
+                }
+                else if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+                {
+                    reszIndex = value.AsString();
+                }
+                else
+                {
+                    reszIndex = value.AsNumber().ToString().Replace(",", ".");
+                }
+
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['zIndex'] = '" + reszIndex + "';";
+                    DeclarativeForms.SendStrFunc(strFunc);
+                }
+            }
+        }
 
         public string resanimationIterationCount { get; set; }
         public IValue animationIterationCount { get; set; }

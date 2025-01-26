@@ -21,6 +21,7 @@ function funFromString(func)
 }
 function doEvent(event)
 {
+    event.stopPropagation();
     if (event.type == 'mouseup')
     {
         let button;
@@ -208,13 +209,6 @@ window.onbeforeunload = function(){
         return false; // отменить действие браузера (переход по ссылке)
     }
 };
-
-window.addEventListener('resize', function(event) {
-    sendPost('mainForm' + 
-    '" + spacer + @"' + 'resize' + 
-    '" + spacer + @"WindowWidth=' + window.innerWidth + 
-    '" + spacer + @"WindowHeight=' + window.innerHeight);
-}, true);
 
 //setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);
 

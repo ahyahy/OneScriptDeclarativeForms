@@ -244,12 +244,69 @@ namespace osdf
             set { loaded = value; }
         }
 		
+        public int scrolledValue { get; set; }
+        [ContextProperty("Прокручено", "ScrolledValue")]
+        public int ScrolledValue
+        {
+            get { return scrolledValue; }
+            private set { scrolledValue = value; }
+        }
+
+        public DfAction scrolled { get; set; }
+        [ContextProperty("ПриПрокручивании", "Scrolled")]
+        public DfAction Scrolled
+        {
+            get { return scrolled; }
+            set
+            {
+                scrolled = value;
+                string strFunc = @"
+window.addEventListener('scroll', function() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolledVal = (winScroll / height) * 100;
+    sendPost('mainForm' +
+    '" + DeclarativeForms.paramDelimiter + @"' + 'scrolled' +
+    '" + DeclarativeForms.paramDelimiter + @"ScrolledValue=' + scrolledVal);
+});";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }		
+		
         public DfAction resize { get; set; }
         [ContextProperty("РазмерИзменен", "Resize")]
         public DfAction Resize
         {
             get { return resize; }
-            set { resize = value; }
+            set
+            {
+                resize = value;
+                string strFunc;
+                if (!DeclarativeForms.openInBrowser)
+                {
+                    strFunc = @"
+nw.Window.get().on('resize', function(width, height)
+{
+    sendPost('mainForm' +
+    '" + DeclarativeForms.paramDelimiter + @"' + 'resize' +
+    '" + DeclarativeForms.paramDelimiter + @"WindowWidth=' + width +
+    '" + DeclarativeForms.paramDelimiter + @"WindowHeight=' + height);
+});
+";
+                }
+                else
+                {
+                    strFunc = @"
+window.addEventListener('resize', function(event) {
+    sendPost('mainForm' +
+    '" + DeclarativeForms.paramDelimiter + @"' + 'resize' +
+    '" + DeclarativeForms.paramDelimiter + @"WindowWidth=' + window.innerWidth +
+    '" + DeclarativeForms.paramDelimiter + @"WindowHeight=' + window.innerHeight);
+}, true);
+";
+                }
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
         }		
 
         [ContextMethod("Открыть", "Open")]

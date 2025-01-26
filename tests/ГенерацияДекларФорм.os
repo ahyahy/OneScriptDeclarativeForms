@@ -8199,6 +8199,14 @@
 		|            get { return Convert.ToInt32(windowWidth.AsNumber()); }
 		|            set { windowWidth = ValueFactory.Create(value); }
 		|        }
+		|		
+		|        public IValue scrolledValue { get; set; }
+		|        [ContextProperty(""Прокручено"", ""ScrolledValue"")]
+		|        public int ScrolledValue
+		|        {
+		|            get { return Convert.ToInt32(scrolledValue.AsNumber()); }
+		|            set { scrolledValue = ValueFactory.Create(value); }
+		|        }		
 		|
 		|        public IValue y { get; set; }
 		|        [ContextProperty(""Игрек"", ""Y"")]
@@ -9993,6 +10001,36 @@
 		|                if (Owner != null)
 		|                {
 		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['animationDelay'] = '"" + resanimationDelay + ""';"";
+		|                    DeclarativeForms.SendStrFunc(strFunc);
+		|                }
+		|            }
+		|        }
+		|		
+		|        public string reszIndex { get; set; }
+		|        public IValue zIndex { get; set; }
+		|        [ContextProperty(""ЗетИндекс"", ""ZIndex"")]
+		|        public IValue ZIndex
+		|        {
+		|            get { return zIndex; }
+		|            set
+		|            {
+		|                zIndex = value;
+		|                if (value == null)
+		|                {
+		|                    reszIndex = ""auto"";
+		|                }
+		|                else if (value.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
+		|                {
+		|                    reszIndex = value.AsString();
+		|                }
+		|                else
+		|                {
+		|                    reszIndex = value.AsNumber().ToString().Replace("","", ""."");
+		|                }
+		|
+		|                if (Owner != null)
+		|                {
+		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['zIndex'] = '"" + reszIndex + ""';"";
 		|                    DeclarativeForms.SendStrFunc(strFunc);
 		|                }
 		|            }
@@ -14872,6 +14910,7 @@
 		|}
 		|function doEvent(event)
 		|{
+		|    event.stopPropagation();
 		|    if (event.type == 'mouseup')
 		|    {
 		|        let button;
@@ -15078,13 +15117,6 @@
 		|    };
 		|    return sendClient1;
 		|}
-		|nw.Window.get().on('resize', function(width, height)
-		|{
-		|    sendPost('mainForm' +
-		|    '"" + spacer + @""' + 'resize' +
-		|    '"" + spacer + @""WindowWidth=' + width +
-		|    '"" + spacer + @""WindowHeight=' + height);
-		|});
 		|function sleep(milliseconds) {
 		|    const date = Date.now();
 		|    let currentDate = null;
@@ -15140,6 +15172,7 @@
 		|}
 		|function doEvent(event)
 		|{
+		|    event.stopPropagation();
 		|    if (event.type == 'mouseup')
 		|    {
 		|        let button;
@@ -15328,13 +15361,6 @@
 		|    }
 		|};
 		|
-		|window.addEventListener('resize', function(event) {
-		|    sendPost('mainForm' + 
-		|    '"" + spacer + @""' + 'resize' + 
-		|    '"" + spacer + @""WindowWidth=' + window.innerWidth + 
-		|    '"" + spacer + @""WindowHeight=' + window.innerHeight);
-		|}, true);
-		|
 		|//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);
 		|
 		|var receiveClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portSendServer + @""/');
@@ -15402,6 +15428,7 @@
 		|}
 		|function doEvent(event)
 		|{
+		|    event.stopPropagation();
 		|    if (event.type == 'mouseup')
 		|    {
 		|        let button;
@@ -15531,13 +15558,6 @@
 		|    nodeClientSend = getConnSend();
 		|    nodeClientSend.write(str);
 		|}
-		|nw.Window.get().on('resize', function(width, height)
-		|{
-		|    sendPost('mainForm' + 
-		|    '"" + spacer + @""' + 'resize' + 
-		|    '"" + spacer + @""WindowWidth=' + width + 
-		|    '"" + spacer + @""WindowHeight=' + height);
-		|});
 		|function startTimer(nameEl, interval) {
 		|    window.TimerId = window.setInterval(function(){
 		|            sendPost(nameEl + '"" + spacer + @""tick');
@@ -15694,6 +15714,7 @@
 		|}
 		|function doEvent(event)
 		|{
+		|    event.stopPropagation();
 		|    if (event.type == 'mouseup')
 		|    {
 		|        let button;
@@ -15881,13 +15902,6 @@
 		|        return false; // отменить действие браузера (переход по ссылке)
 		|    }
 		|};
-		|
-		|window.addEventListener('resize', function(event) {
-		|    sendPost('mainForm' + 
-		|    '"" + spacer + @""' + 'resize' + 
-		|    '"" + spacer + @""WindowWidth=' + window.innerWidth + 
-		|    '"" + spacer + @""WindowHeight=' + window.innerHeight);
-		|}, true);
 		|
 		|//setTimeout(function(){ alert('Не обновляйте страницу во время работы программы. Это вызовет перезапуск программы. Введенные данные могут не сохраниться.'); }, 1);
 		|
@@ -16179,12 +16193,69 @@
 		|            set { loaded = value; }
 		|        }
 		|		
+		|        public int scrolledValue { get; set; }
+		|        [ContextProperty(""Прокручено"", ""ScrolledValue"")]
+		|        public int ScrolledValue
+		|        {
+		|            get { return scrolledValue; }
+		|            private set { scrolledValue = value; }
+		|        }
+		|
+		|        public DfAction scrolled { get; set; }
+		|        [ContextProperty(""ПриПрокручивании"", ""Scrolled"")]
+		|        public DfAction Scrolled
+		|        {
+		|            get { return scrolled; }
+		|            set
+		|            {
+		|                scrolled = value;
+		|                string strFunc = @""
+		|window.addEventListener('scroll', function() {
+		|    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+		|    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+		|    var scrolledVal = (winScroll / height) * 100;
+		|    sendPost('mainForm' +
+		|    '"" + DeclarativeForms.paramDelimiter + @""' + 'scrolled' +
+		|    '"" + DeclarativeForms.paramDelimiter + @""ScrolledValue=' + scrolledVal);
+		|});"";
+		|                DeclarativeForms.SendStrFunc(strFunc);
+		|            }
+		|        }		
+		|		
 		|        public DfAction resize { get; set; }
 		|        [ContextProperty(""РазмерИзменен"", ""Resize"")]
 		|        public DfAction Resize
 		|        {
 		|            get { return resize; }
-		|            set { resize = value; }
+		|            set
+		|            {
+		|                resize = value;
+		|                string strFunc;
+		|                if (!DeclarativeForms.openInBrowser)
+		|                {
+		|                    strFunc = @""
+		|nw.Window.get().on('resize', function(width, height)
+		|{
+		|    sendPost('mainForm' +
+		|    '"" + DeclarativeForms.paramDelimiter + @""' + 'resize' +
+		|    '"" + DeclarativeForms.paramDelimiter + @""WindowWidth=' + width +
+		|    '"" + DeclarativeForms.paramDelimiter + @""WindowHeight=' + height);
+		|});
+		|"";
+		|                }
+		|                else
+		|                {
+		|                    strFunc = @""
+		|window.addEventListener('resize', function(event) {
+		|    sendPost('mainForm' +
+		|    '"" + DeclarativeForms.paramDelimiter + @""' + 'resize' +
+		|    '"" + DeclarativeForms.paramDelimiter + @""WindowWidth=' + window.innerWidth +
+		|    '"" + DeclarativeForms.paramDelimiter + @""WindowHeight=' + window.innerHeight);
+		|}, true);
+		|"";
+		|                }
+		|                DeclarativeForms.SendStrFunc(strFunc);
+		|            }
 		|        }		
 		|
 		|        [ContextMethod(""Открыть"", ""Open"")]
@@ -18792,7 +18863,7 @@
 		|                        {
 		|                            if (Sender.GetType() != typeof(osdf.DfMenuItem))
 		|                            {
-		|                                GlobalContext().Echo(""Не обработано событие = "" + nameEvent);
+		|                                //GlobalContext().Echo(""Не обработано событие = "" + nameEvent);
 		|                            }
 		|                        }
 		|                    }
@@ -19889,6 +19960,7 @@
 		|                {""Button"", new object[3] { """", true, ""button"" } },
 		|                {""Files"", new object[3] { """", true, ""files"" } },		
 		|                {""Value"", new object[3] { """", true, ""_value"" } },
+		|                {""ScrolledValue"", new object[3] { """", true, ""scrolledValue"" } },
 		|                // Это для объектов
 		|                {""WindowHeight"", new object[3] { """", true, ""windowHeight"" } },
 		|                {""WindowWidth"", new object[3] { """", true, ""windowWidth"" } },
@@ -20126,7 +20198,7 @@
 		|                {""Отложено"", new object[3] { """", true, ""defer"" } },
 		|                {""Связь"", new object[3] { """", true, ""htmlFor"" } },		
 		|                {""Гибкость"", new object[3] { """", false, ""flex"" } },
-		|
+		|                {""ЗетИндекс"", new object[3] { """", false, ""zIndex"" } },
 		|		
 		|        };
 		|    }

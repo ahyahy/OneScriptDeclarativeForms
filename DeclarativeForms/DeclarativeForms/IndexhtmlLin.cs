@@ -21,6 +21,7 @@ function funFromString(func)
 }
 function doEvent(event)
 {
+    event.stopPropagation();
     if (event.type == 'mouseup')
     {
         let button;
@@ -150,13 +151,6 @@ function sendPost(str)
     nodeClientSend = getConnSend();
     nodeClientSend.write(str);
 }
-nw.Window.get().on('resize', function(width, height)
-{
-    sendPost('mainForm' + 
-    '" + spacer + @"' + 'resize' + 
-    '" + spacer + @"WindowWidth=' + width + 
-    '" + spacer + @"WindowHeight=' + height);
-});
 function startTimer(nameEl, interval) {
     window.TimerId = window.setInterval(function(){
             sendPost(nameEl + '" + spacer + @"tick');

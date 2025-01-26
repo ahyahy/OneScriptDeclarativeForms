@@ -21,6 +21,7 @@ function funFromString(func)
 }
 function doEvent(event)
 {
+    event.stopPropagation();
     if (event.type == 'mouseup')
     {
         let button;
@@ -227,13 +228,6 @@ function getSendClient()
     };
     return sendClient1;
 }
-nw.Window.get().on('resize', function(width, height)
-{
-    sendPost('mainForm' +
-    '" + spacer + @"' + 'resize' +
-    '" + spacer + @"WindowWidth=' + width +
-    '" + spacer + @"WindowHeight=' + height);
-});
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
