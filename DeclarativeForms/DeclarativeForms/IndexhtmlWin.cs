@@ -46,6 +46,32 @@ function doEvent(event)
         '" + spacer + @"X=' + event.clientX + 
         '" + spacer + @"Y=' + event.clientY);
     }
+    else if (event.type == 'mousemove')
+    {
+        sendPost(
+        mapElKey.get(event.target) + 
+        '" + spacer + @"' + event.type + 
+        '" + spacer + @"ScreenX=' + event.screenX + 
+        '" + spacer + @"ScreenY=' + event.screenY + 
+        '" + spacer + @"OffsetX=' + event.offsetX + 
+        '" + spacer + @"OffsetY=' + event.offsetY + 
+        '" + spacer + @"MovementX=' + event.movementX + 
+        '" + spacer + @"MovementY=' + event.movementY + 
+        '" + spacer + @"PageX=' + event.pageX + 
+        '" + spacer + @"PageY=' + event.pageY);
+    }
+    else if (event.type == 'mousedown')
+    {
+        sendPost(
+        mapElKey.get(event.target) + 
+        '" + spacer + @"' + event.type + 
+        '" + spacer + @"ScreenX=' + event.screenX + 
+        '" + spacer + @"ScreenY=' + event.screenY + 
+        '" + spacer + @"OffsetX=' + event.offsetX + 
+        '" + spacer + @"OffsetY=' + event.offsetY + 
+        '" + spacer + @"PageX=' + event.pageX + 
+        '" + spacer + @"PageY=' + event.pageY);
+    }
     else if (event.type == 'input')
     {
         let value = event.target.value;
@@ -57,7 +83,6 @@ function doEvent(event)
     else if (event.type == 'change')
     {
         let x = mapKeyEl.get(mapElKey.get(event.target));
-        //alert('nodeName = ' + event.target.nodeName + ' type = ' + event.target.type);
         if (event.target.nodeName == 'INPUT')
         {
             if (event.target.type == 'file')
@@ -141,6 +166,10 @@ function doEvent(event)
             '" + spacer + @"Value=' + value);
         }
     }
+    else if (event.type == 'dragover')
+    {
+        event.preventDefault();
+    }
     else
     {
         sendPost(mapElKey.get(event.target) + '" + spacer + @"' + event.type);
@@ -169,6 +198,7 @@ function stopTimer(nameEl) {
 		
 var mapKeyEl = new Map();
 var mapElKey = new Map();
+var mapKeyDraggableEl = new Map();
 var gui = require('nw.gui');
 //document.addEventListener('DOMContentLoaded', function (event) { sleep(1000); sendPost('mainForm' + '" + spacer + @"' + 'loaded'); });
 

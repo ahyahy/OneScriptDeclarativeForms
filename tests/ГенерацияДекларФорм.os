@@ -1118,13 +1118,6 @@
 				|        }
 				|
 				|";
-				
-				
-				
-				
-				
-				
-				
 			ИначеЕсли (СвойствоРус = "Максимум") и (КлассАнгл = "NumberField"
 				или КлассАнгл = "Range"
 				) 
@@ -1163,19 +1156,6 @@
 				|        }
 				|
 				|";
-				
-				
-				
-				
-				
-				
-				
-				
-
-
-
-
-
 			ИначеЕсли (СвойствоРус = "Максимум") и (КлассАнгл = "DateSelection"
 				или КлассАнгл = "DateTimeLocalSelection"
 				или КлассАнгл = "DateTimeSelection"
@@ -1224,25 +1204,6 @@
 				|        }
 				|
 				|";
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 			ИначеЕсли (СвойствоРус = "Позиция") и (КлассАнгл = "Progress") Тогда
 				Стр = Стр +
 				"        public IValue position { get; set; }
@@ -1365,7 +1326,77 @@
 				
 				
 				
-				
+			ИначеЕсли СвойствоРус = "Перемещаемый" Тогда
+				Стр = Стр +
+				"        public bool movable { get; set; }
+				|        [ContextProperty(""Перемещаемый"", ""Movable"")]
+				|        public bool Movable
+				|        {
+				|            get { return movable; }
+				|            set
+				|            {
+				|                movable = value;
+				|                string strFunc;
+				|                if (value)
+				|                {
+				|                    strFunc = ""mapKeyEl.get('"" + ItemKey + ""')['movable'] = "" + movable.ToString().ToLower() + "";"";
+				|                    strFunc += @""
+				|mapKeyDraggableEl.set('"" + ItemKey + ""', mapKeyEl.get('"" + ItemKey + @""'));
+				|function dragElement"" + ItemKey + @""() {
+				|    let elmnt = mapKeyDraggableEl.get('"" + ItemKey + @""');
+				|        //alert('' + elmnt);
+				|        if (elmnt != undefined)
+				|        {
+				|            var pos1 = 0;
+				|            var pos2 = 0;
+				|            var pos3 = 0;
+				|            var pos4 = 0;
+				|            elmnt.onmousedown = dragMouseDown;
+				|            function dragMouseDown(e)
+				|            {
+				|                e = e || window.event;
+				|                e.preventDefault();
+				|                pos3 = e.clientX;
+				|                pos4 = e.clientY;
+				|                document.onmouseup = closeDragElement;
+				|                document.onmousemove = elementDrag;
+				|            }
+				|            function elementDrag(e)
+				|            {
+				|                e = e || window.event;
+				|                e.preventDefault();
+				|                pos1 = pos3 - e.clientX;
+				|                pos2 = pos4 - e.clientY;
+				|                pos3 = e.clientX;
+				|                pos4 = e.clientY;
+				|                elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
+				|                elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
+				|            }
+				|            function closeDragElement()
+				|            {
+				|                document.onmouseup = null;
+				|                document.onmousemove = null;
+				|            }
+				|        }
+				|        else
+				|        {
+				|            mapKeyEl.get('"" + ItemKey + @""').onmousedown = null;
+				|        }
+				|    }
+				|dragElement"" + ItemKey + ""();"";
+				|                }
+				|                else
+				|                {
+				|                    strFunc = @""
+				|mapKeyDraggableEl.delete('"" + ItemKey + @""');
+				|function dragElement"" + ItemKey + @""() { mapKeyEl.get('"" + ItemKey + @""').onmousedown = null; }
+				|dragElement"" + ItemKey + ""();"";
+				|                }
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
 			ИначеЕсли СвойствоРус = "Размер" Тогда
 				Стр = Стр +
 				"        public int size { get; set; }
@@ -1636,6 +1667,12 @@
 				или СвойствоРус = "МышьПокинулаЭлемент"
 				или СвойствоРус = "ФокусПолучен"
 				или СвойствоРус = "ФокусПотерян"
+				или СвойствоРус = "ПриНажатииМыши"
+				или СвойствоРус = "ПриПеремещенииМыши"
+				или СвойствоРус = "НачалоПеретаскивания"
+				или СвойствоРус = "КонецПеретаскивания"
+				или СвойствоРус = "НадЦелью"
+				или СвойствоРус = "ЦельПокинута"
 				
 				Тогда
 				ПриватИмяСвойства = СловарьСобытий(СвойствоАнгл)[1];
@@ -1655,11 +1692,23 @@
 				|        }
 				|        
 				|";
-			
-			
-			
-			
-			
+			ИначеЕсли СвойствоРус = "Бросить" Тогда
+				Стр = Стр +
+				"        public DfAction drop  { get; set; }
+				|        [ContextProperty(""Бросить"", ""Drop"")]
+				|        public DfAction Drop
+				|        {
+				|            get { return drop; }
+				|            set
+				|            {
+				|                drop = value;
+				|                string strFunc = ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).addEventListener(\u0022drop\u0022, doEvent);"";
+				|                strFunc += ""mapKeyEl.get(\u0022"" + ItemKey + ""\u0022).addEventListener(\u0022dragover\u0022, doEvent);"";
+				|                DeclarativeForms.SendStrFunc(strFunc);
+				|            }
+				|        }
+				|
+				|";
 			
 				
 			Иначе	
@@ -8206,7 +8255,71 @@
 		|        {
 		|            get { return Convert.ToInt32(scrolledValue.AsNumber()); }
 		|            set { scrolledValue = ValueFactory.Create(value); }
-		|        }		
+		|        }
+		|
+		|        public IValue screenX { get; set; }
+		|        [ContextProperty(""ИксЭкрана"", ""ScreenX"")]
+		|        public int ScreenX
+		|        {
+		|            get { return Convert.ToInt32(screenX.AsNumber()); }
+		|            set { screenX = ValueFactory.Create(value); }
+		|        }
+		|
+		|        public IValue screenY { get; set; }
+		|        [ContextProperty(""ИгрекЭкрана"", ""ScreenY"")]
+		|        public int ScreenY
+		|        {
+		|            get { return Convert.ToInt32(screenY.AsNumber()); }
+		|            set { screenY = ValueFactory.Create(value); }
+		|        }
+		|
+		|        public IValue offsetX { get; set; }
+		|        [ContextProperty(""ИксСмещение"", ""OffsetX"")]
+		|        public int OffsetX
+		|        {
+		|            get { return Convert.ToInt32(offsetX.AsNumber()); }
+		|            set { offsetX = ValueFactory.Create(value); }
+		|        }
+		|
+		|        public IValue offsetY { get; set; }
+		|        [ContextProperty(""ИгрекСмещение"", ""OffsetY"")]
+		|        public int OffsetY
+		|        {
+		|            get { return Convert.ToInt32(offsetY.AsNumber()); }
+		|            set { offsetY = ValueFactory.Create(value); }
+		|        }
+		|
+		|        public IValue pageX { get; set; }
+		|        [ContextProperty(""ИксФормы"", ""PageX"")]
+		|        public int PageX
+		|        {
+		|            get { return Convert.ToInt32(pageX.AsNumber()); }
+		|            set { pageX = ValueFactory.Create(value); }
+		|        }
+		|
+		|        public IValue pageY { get; set; }
+		|        [ContextProperty(""ИгрекФормы"", ""PageY"")]
+		|        public int PageY
+		|        {
+		|            get { return Convert.ToInt32(pageY.AsNumber()); }
+		|            set { pageY = ValueFactory.Create(value); }
+		|        }
+		|
+		|        public IValue movementX { get; set; }
+		|        [ContextProperty(""СдвигИкс"", ""MovementX"")]
+		|        public int MovementX
+		|        {
+		|            get { return Convert.ToInt32(movementX.AsNumber()); }
+		|            set { movementX = ValueFactory.Create(value); }
+		|        }
+		|
+		|        public IValue movementY { get; set; }
+		|        [ContextProperty(""СдвигИгрек"", ""MovementY"")]
+		|        public int MovementY
+		|        {
+		|            get { return Convert.ToInt32(movementY.AsNumber()); }
+		|            set { movementY = ValueFactory.Create(value); }
+		|        }
 		|
 		|        public IValue y { get; set; }
 		|        [ContextProperty(""Игрек"", ""Y"")]
@@ -14935,6 +15048,32 @@
 		|        '"" + spacer + @""X=' + event.clientX + 
 		|        '"" + spacer + @""Y=' + event.clientY);
 		|    }
+		|    else if (event.type == 'mousemove')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""MovementX=' + event.movementX + 
+		|        '"" + spacer + @""MovementY=' + event.movementY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
+		|    }
+		|    else if (event.type == 'mousedown')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
+		|    }
 		|    else if (event.type == 'input')
 		|    {
 		|        let value = event.target.value;
@@ -14946,7 +15085,6 @@
 		|    else if (event.type == 'change')
 		|    {
 		|        let x = mapKeyEl.get(mapElKey.get(event.target));
-		|        //alert('nodeName = ' + event.target.nodeName + ' type = ' + event.target.type);
 		|        if (event.target.nodeName == 'INPUT')
 		|        {
 		|            if (event.target.type == 'file')
@@ -15030,6 +15168,10 @@
 		|            '"" + spacer + @""Value=' + value);
 		|        }
 		|    }
+		|    else if (event.type == 'dragover')
+		|    {
+		|        event.preventDefault();
+		|    }
 		|    else
 		|    {
 		|        sendPost(mapElKey.get(event.target) + '"" + spacer + @""' + event.type);
@@ -15058,6 +15200,7 @@
 		|		
 		|var mapKeyEl = new Map();
 		|var mapElKey = new Map();
+		|var mapKeyDraggableEl = new Map();
 		|var gui = require('nw.gui');
 		|//document.addEventListener('DOMContentLoaded', function (event) { sleep(1000); sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
@@ -15197,6 +15340,32 @@
 		|        '"" + spacer + @""X=' + event.clientX + 
 		|        '"" + spacer + @""Y=' + event.clientY);
 		|    }
+		|    else if (event.type == 'mousemove')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""MovementX=' + event.movementX + 
+		|        '"" + spacer + @""MovementY=' + event.movementY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
+		|    }
+		|    else if (event.type == 'mousedown')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
+		|    }
 		|    else if (event.type == 'input')
 		|    {
 		|        let value = event.target.value;
@@ -15208,7 +15377,6 @@
 		|    else if (event.type == 'change')
 		|    {
 		|        let x = mapKeyEl.get(mapElKey.get(event.target));
-		|        //alert('nodeName = ' + event.target.nodeName + ' type = ' + event.target.type);
 		|        if (event.target.nodeName == 'INPUT')
 		|        {
 		|            if (event.target.type == 'file')
@@ -15292,6 +15460,10 @@
 		|            '"" + spacer + @""Value=' + value);
 		|        }
 		|    }
+		|    else if (event.type == 'dragover')
+		|    {
+		|        event.preventDefault();
+		|    }
 		|    else
 		|    {
 		|        sendPost(mapElKey.get(event.target) + '"" + spacer + @""' + event.type);
@@ -15320,7 +15492,7 @@
 		|
 		|var mapKeyEl = new Map();
 		|var mapElKey = new Map();
-		|
+		|var mapKeyDraggableEl = new Map();
 		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
 		|var sendClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
@@ -15453,6 +15625,32 @@
 		|        '"" + spacer + @""X=' + event.clientX + 
 		|        '"" + spacer + @""Y=' + event.clientY);
 		|    }
+		|    else if (event.type == 'mousemove')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""MovementX=' + event.movementX + 
+		|        '"" + spacer + @""MovementY=' + event.movementY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
+		|    }
+		|    else if (event.type == 'mousedown')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
+		|    }
 		|    else if (event.type == 'input')
 		|    {
 		|        let value = event.target.value;
@@ -15464,7 +15662,6 @@
 		|    else if (event.type == 'change')
 		|    {
 		|        let x = mapKeyEl.get(mapElKey.get(event.target));
-		|        //alert('nodeName = ' + event.target.nodeName + ' type = ' + event.target.type);
 		|        if (event.target.nodeName == 'INPUT')
 		|        {
 		|            if (event.target.type == 'file')
@@ -15547,6 +15744,10 @@
 		|            '"" + spacer + @""' + event.type + 
 		|            '"" + spacer + @""Value=' + value);
 		|        }
+		|    }
+		|    else if (event.type == 'dragover')
+		|    {
+		|        event.preventDefault();
 		|    }
 		|    else
 		|    {
@@ -15664,6 +15865,7 @@
 		|
 		|var mapKeyEl = new Map();
 		|var mapElKey = new Map();
+		|var mapKeyDraggableEl = new Map();
 		|var gui = require('nw.gui');
 		|document.addEventListener('DOMContentLoaded', function (event) { nodeClientSend.write('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
@@ -15738,6 +15940,32 @@
 		|        '"" + spacer + @""Button=' + button + 
 		|        '"" + spacer + @""X=' + event.clientX + 
 		|        '"" + spacer + @""Y=' + event.clientY);
+		|    }
+		|    else if (event.type == 'mousemove')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""MovementX=' + event.movementX + 
+		|        '"" + spacer + @""MovementY=' + event.movementY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
+		|    }
+		|    else if (event.type == 'mousedown')
+		|    {
+		|        sendPost(
+		|        mapElKey.get(event.target) + 
+		|        '"" + spacer + @""' + event.type + 
+		|        '"" + spacer + @""ScreenX=' + event.screenX + 
+		|        '"" + spacer + @""ScreenY=' + event.screenY + 
+		|        '"" + spacer + @""OffsetX=' + event.offsetX + 
+		|        '"" + spacer + @""OffsetY=' + event.offsetY + 
+		|        '"" + spacer + @""PageX=' + event.pageX + 
+		|        '"" + spacer + @""PageY=' + event.pageY);
 		|    }
 		|    else if (event.type == 'input')
 		|    {
@@ -15834,6 +16062,10 @@
 		|            '"" + spacer + @""Value=' + value);
 		|        }
 		|    }
+		|    else if (event.type == 'dragover')
+		|    {
+		|        event.preventDefault();
+		|    }
 		|    else
 		|    {
 		|        sendPost(mapElKey.get(event.target) + '"" + spacer + @""' + event.type);
@@ -15862,7 +16094,7 @@
 		|
 		|var mapKeyEl = new Map();
 		|var mapElKey = new Map();
-		|
+		|var mapKeyDraggableEl = new Map();
 		|document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '"" + spacer + @""' + 'loaded'); });
 		|
 		|var sendClient = new WebSocket('ws://127.0.0.1:"" + DeclarativeForms.portReceivingServer + @""/');
@@ -20199,6 +20431,9 @@
 		|                {""Связь"", new object[3] { """", true, ""htmlFor"" } },		
 		|                {""Гибкость"", new object[3] { """", false, ""flex"" } },
 		|                {""ЗетИндекс"", new object[3] { """", false, ""zIndex"" } },
+		|                {""Верх"", new object[3] { """", false, ""top"" } },
+		|                {""Перетаскиваемый"", new object[3] { """", true, ""draggable"" } },
+		|                {""Перемещаемый"", new object[3] { """", true, ""movable"" } },
 		|		
 		|        };
 		|    }
@@ -20239,6 +20474,13 @@
 СловарьСобытий.Вставить("MouseOut", "МышьПокинулаЭлемент=mouseout=mouseout=====");
 СловарьСобытий.Вставить("LostFocus", "ФокусПотерян=blur=blur=====");
 СловарьСобытий.Вставить("Focused", "ФокусПолучен=focus=focus=====");
+СловарьСобытий.Вставить("MouseDown", "ПриНажатииМыши=mousedown=mousedown=====");
+СловарьСобытий.Вставить("MouseMove", "ПриПеремещенииМыши=mousemove=mousemove=====");
+СловарьСобытий.Вставить("DragStart", "НачалоПеретаскивания=dragstart=dragstart=====");
+СловарьСобытий.Вставить("DragEnd", "КонецПеретаскивания=dragend=dragend=====");
+СловарьСобытий.Вставить("DragEnter", "НадЦелью=dragenter=dragenter=====");
+СловарьСобытий.Вставить("DragLeave", "ЦельПокинута=dragleave=dragleave=====");
+СловарьСобытий.Вставить("Drop", "Бросить=drop=drop=====");
 
 СловарьСвойств = Новый Структура();
 // ПриватИмяСвойства = СловарьСвойств(СвойствоРус + "_" + СвойствоАнгл)[0];
@@ -20479,6 +20721,8 @@
 СловарьСвойств.Вставить("ЭлементыСписка_Options", "оptions=оptions======");
 СловарьСвойств.Вставить("Ячейки_Cells", "cells=cells==ArrayImpl====");
 СловарьСвойств.Вставить("ОбластиТаблицы_TBodies", "tBodies=tBodies==ArrayImpl====");
+СловарьСвойств.Вставить("Перемещаемый_Movable", "movable=movable==bool=.ToString().ToLower()===");
+СловарьСвойств.Вставить("Перетаскиваемый_Draggable", "draggable=draggable==bool=.ToString().ToLower()===");
 
 СловарьКлассов = Новый Структура();
 // КлассРус=Тег=ТипДляinput=

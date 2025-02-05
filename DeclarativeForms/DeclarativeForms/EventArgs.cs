@@ -58,7 +58,71 @@ namespace osdf
         {
             get { return Convert.ToInt32(scrolledValue.AsNumber()); }
             set { scrolledValue = ValueFactory.Create(value); }
-        }		
+        }
+
+        public IValue screenX { get; set; }
+        [ContextProperty("ИксЭкрана", "ScreenX")]
+        public int ScreenX
+        {
+            get { return Convert.ToInt32(screenX.AsNumber()); }
+            set { screenX = ValueFactory.Create(value); }
+        }
+
+        public IValue screenY { get; set; }
+        [ContextProperty("ИгрекЭкрана", "ScreenY")]
+        public int ScreenY
+        {
+            get { return Convert.ToInt32(screenY.AsNumber()); }
+            set { screenY = ValueFactory.Create(value); }
+        }
+
+        public IValue offsetX { get; set; }
+        [ContextProperty("ИксСмещение", "OffsetX")]
+        public int OffsetX
+        {
+            get { return Convert.ToInt32(offsetX.AsNumber()); }
+            set { offsetX = ValueFactory.Create(value); }
+        }
+
+        public IValue offsetY { get; set; }
+        [ContextProperty("ИгрекСмещение", "OffsetY")]
+        public int OffsetY
+        {
+            get { return Convert.ToInt32(offsetY.AsNumber()); }
+            set { offsetY = ValueFactory.Create(value); }
+        }
+
+        public IValue pageX { get; set; }
+        [ContextProperty("ИксФормы", "PageX")]
+        public int PageX
+        {
+            get { return Convert.ToInt32(pageX.AsNumber()); }
+            set { pageX = ValueFactory.Create(value); }
+        }
+
+        public IValue pageY { get; set; }
+        [ContextProperty("ИгрекФормы", "PageY")]
+        public int PageY
+        {
+            get { return Convert.ToInt32(pageY.AsNumber()); }
+            set { pageY = ValueFactory.Create(value); }
+        }
+
+        public IValue movementX { get; set; }
+        [ContextProperty("СдвигИкс", "MovementX")]
+        public int MovementX
+        {
+            get { return Convert.ToInt32(movementX.AsNumber()); }
+            set { movementX = ValueFactory.Create(value); }
+        }
+
+        public IValue movementY { get; set; }
+        [ContextProperty("СдвигИгрек", "MovementY")]
+        public int MovementY
+        {
+            get { return Convert.ToInt32(movementY.AsNumber()); }
+            set { movementY = ValueFactory.Create(value); }
+        }
 
         public IValue y { get; set; }
         [ContextProperty("Игрек", "Y")]

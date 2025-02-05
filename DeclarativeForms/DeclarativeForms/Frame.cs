@@ -105,6 +105,74 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
         }
 
+        public bool movable { get; set; }
+        [ContextProperty("Перемещаемый", "Movable")]
+        public bool Movable
+        {
+            get { return movable; }
+            set
+            {
+                movable = value;
+                string strFunc;
+                if (value)
+                {
+                    strFunc = "mapKeyEl.get('" + ItemKey + "')['movable'] = " + movable.ToString().ToLower() + ";";
+                    strFunc += @"
+mapKeyDraggableEl.set('" + ItemKey + "', mapKeyEl.get('" + ItemKey + @"'));
+function dragElement" + ItemKey + @"() {
+    let elmnt = mapKeyDraggableEl.get('" + ItemKey + @"');
+        //alert('' + elmnt);
+        if (elmnt != undefined)
+        {
+            var pos1 = 0;
+            var pos2 = 0;
+            var pos3 = 0;
+            var pos4 = 0;
+            elmnt.onmousedown = dragMouseDown;
+            function dragMouseDown(e)
+            {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+            function elementDrag(e)
+            {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
+            }
+            function closeDragElement()
+            {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+        else
+        {
+            mapKeyEl.get('" + ItemKey + @"').onmousedown = null;
+        }
+    }
+dragElement" + ItemKey + "();";
+                }
+                else
+                {
+                    strFunc = @"
+mapKeyDraggableEl.delete('" + ItemKey + @"');
+function dragElement" + ItemKey + @"() { mapKeyEl.get('" + ItemKey + @"').onmousedown = null; }
+dragElement" + ItemKey + "();";
+                }
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+
         public int tabIndex { get; set; }
         [ContextProperty("ПорядокОбхода", "TabIndex")]
         public int TabIndex

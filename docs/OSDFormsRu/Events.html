@@ -23,6 +23,9 @@
     <TH width="50%">События (Events)</TH>
     <TH width="50%">Описание</TH></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementDropEvent.html">Бросить&nbsp;(Drop) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает код для события, которое генерируется при отпускании перетаскиваемого элемента  на целевой области.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementInputEvent.html">Ввод&nbsp;(Input) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает код, когда элемент получает ввод данных от пользователя.</TD></TR>
   <TR vAlign=top>
@@ -32,11 +35,17 @@
     <TD width="50%"><A href="OSDForms.FormLoadedEvent.html">Загружена&nbsp;(Loaded) (Форма)</A></TD>
     <TD width="50%">Возвращает или задает код, когда форма полностью загружена.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementDragEndEvent.html">КонецПеретаскивания&nbsp;(DragEnd) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает код, когда перетаскивание элемента завершено.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementMouseOverEvent.html">МышьНадЭлементом&nbsp;(MouseOver) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает код для выполнения когда указатель мыши наведен на элемент.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementMouseOutEvent.html">МышьПокинулаЭлемент&nbsp;(MouseOut) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает код для выполнения, когда указатель мыши покидает пределы элемента.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementDragEnterEvent.html">НадЦелью&nbsp;(DragEnter) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает код, когда элемент входит в границы целевой области.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.TrayClickEvent.html">Нажатие&nbsp;(Click) (Лоток)</A></TD>
     <TD width="50%">Возвращает или задает код для выполнения при нажатии элемента управления.</TD></TR>
@@ -46,6 +55,9 @@
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.MenuItemClickEvent.html">Нажатие&nbsp;(Click) (ЭлементМеню)</A></TD>
     <TD width="50%">Возвращает или задает код для выполнения при нажатии элемента меню.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementDragStartEvent.html">НачалоПеретаскивания&nbsp;(DragStart) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает код, когда начинается перетаскивание элемента.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.FileSelectionChangeEvent.html">ПриИзменении&nbsp;(Change) (ВыборФайла)</A></TD>
     <TD width="50%">Возвращает или задает код, когда пользователь произвел выбор файлов.</TD></TR>
@@ -59,8 +71,14 @@
     <TD width="50%"><A href="OSDForms.ElementChangeEvent.html">ПриИзменении&nbsp;(Change) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает код при изменении значения элемента формы.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementMouseDownEvent.html">ПриНажатииМыши&nbsp;(MouseDown) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает код для выполнения при нажатии кнопки мыши, когда указатель мыши находится на элементе.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementMouseUpEvent.html">ПриОтпусканииМыши&nbsp;(MouseUp) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает код для выполнения при отпускании кнопки мыши, когда указатель мыши находится на элементе.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementMouseMoveEvent.html">ПриПеремещенииМыши&nbsp;(MouseMove) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает код для выполнения, когда указатель мыши переместился.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.FormScrollEvent.html">ПриПрокручивании&nbsp;(Scroll) (Форма)</A></TD>
     <TD width="50%">Возвращает или задает код для выполнения, при перемещении ползунка полосы прокрутки, с помощью мыши или клавиатурой.</TD></TR>
@@ -75,4 +93,7 @@
     <TD width="50%">Возвращает или задает код для выполнения, когда элемент получает фокус.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementLostFocusEvent.html">ФокусПотерян&nbsp;(LostFocus) (Элемент)</A></TD>
-    <TD width="50%">Возвращает или задает код для выполнения, когда элемент теряет фокус.</TD></TR></TBODY></TABLE></DIV></DIV></BODY></HTML>
+    <TD width="50%">Возвращает или задает код для выполнения, когда элемент теряет фокус.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementDragLeaveEvent.html">ЦельПокинута&nbsp;(DragLeave) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает код для события, которое генерируется, когда элемент покидает целевую область.</TD></TR></TBODY></TABLE></DIV></DIV></BODY></HTML>

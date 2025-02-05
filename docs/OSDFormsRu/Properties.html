@@ -407,6 +407,15 @@
     <TD width="50%"><A href="OSDForms.PointYProperty.html">Игрек&nbsp;(Y) (Точка)</A></TD>
     <TD width="50%">Возвращает или задает y-координату.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsOffsetYProperty.html">ИгрекСмещение&nbsp;(OffsetY) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает смещение по оси Y указателя мыши от края целевого узла.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsPageYProperty.html">ИгрекФормы&nbsp;(PageY) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает координату Y относительно верхнего края всего документа.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsScreenYProperty.html">ИгрекЭкрана&nbsp;(ScreenY) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает вертикальную координату указателя мыши в экранных координатах.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementIdProperty.html">Идентификатор&nbsp;(Id) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает идентификатор элемента.</TD></TR>
   <TR vAlign=top>
@@ -454,6 +463,15 @@
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.PointXProperty.html">Икс&nbsp;(X) (Точка)</A></TD>
     <TD width="50%">Возвращает или задает x-координату.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsOffsetXProperty.html">ИксСмещение&nbsp;(OffsetX) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает смещение по оси X указателя мыши от края целевого узла.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsPageXProperty.html">ИксФормы&nbsp;(PageX) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает координату X относительно левого края всего документа.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsScreenXProperty.html">ИксЭкрана&nbsp;(ScreenX) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает горизонтальную координату указателя мыши в экранных координатах.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.ElementNameProperty.html">Имя&nbsp;(Name) (Элемент)</A></TD>
     <TD width="50%">Возвращает или задает имя элемента.</TD></TR>
@@ -884,6 +902,9 @@
     <TD width="50%"><A href="OSDForms.ActionParameterProperty.html">Параметр&nbsp;(Parameter) (Действие)</A></TD>
     <TD width="50%">Возвращает или задает объект, заданный при установке обработчика события, для передачи в обработчик события.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementMovableProperty.html">Перемещаемый&nbsp;(Movable) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает значение, возможно ли на форме переместить элемент мышью.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleFlexWrapProperty.html">ПереносГибких&nbsp;(FlexWrap) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает значение, должны ли переноситься гибкие элементы.</TD></TR>
   <TR vAlign=top>
@@ -904,6 +925,9 @@
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleTextOverflowProperty.html">ПереполнениеТекста&nbsp;(TextOverflow) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает то, что должно произойти, когда текст переполняет содержащий его элемент.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.ElementDraggableProperty.html">Перетаскиваемый&nbsp;(Draggable) (Элемент)</A></TD>
+    <TD width="50%">Возвращает или задает значение, возможно ли на форме перетащить элемент мышью.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.StyleTransitionProperty.html">Переход&nbsp;(Transition) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает свойства перехода в одном объявлении.</TD></TR>
@@ -1121,8 +1145,14 @@
     <TD width="50%"><A href="OSDForms.StyleTransformProperty.html">Сдвиг&nbsp;(Transform) (Стиль)</A></TD>
     <TD width="50%">Возвращает или задает 2D или 3D преобразование примененное к элементу.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsMovementYProperty.html">СдвигИгрек&nbsp;(MovementY) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает разницу в координате Y указателя мыши между заданным событием и предыдущим событием.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.MatrixTransformYProperty.html">СдвигИгрек&nbsp;(TransformY) (Матрица)</A></TD>
     <TD width="50%">Возвращает или задает деформацию (сдвиг) стороны элемента по оси Y, положительное значение - вверх, отрицательное - вниз.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><A href="OSDForms.EventArgsMovementXProperty.html">СдвигИкс&nbsp;(MovementX) (АргументыСобытия)</A></TD>
+    <TD width="50%">Возвращает разницу в координате X указателя мыши между заданным событием и предыдущим событием.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><A href="OSDForms.MatrixTransformXProperty.html">СдвигИкс&nbsp;(TransformX) (Матрица)</A></TD>
     <TD width="50%">Возвращает или задает деформацию (сдвиг) стороны элемента по оси X, положительное значение - влево, отрицательное - вправо.</TD></TR>

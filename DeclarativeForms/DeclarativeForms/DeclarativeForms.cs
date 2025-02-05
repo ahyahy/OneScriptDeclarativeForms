@@ -3442,6 +3442,9 @@ namespace osdf
                 {"Связь", new object[3] { "", true, "htmlFor" } },		
                 {"Гибкость", new object[3] { "", false, "flex" } },
                 {"ЗетИндекс", new object[3] { "", false, "zIndex" } },
+                {"Верх", new object[3] { "", false, "top" } },
+                {"Перетаскиваемый", new object[3] { "", true, "draggable" } },
+                {"Перемещаемый", new object[3] { "", true, "movable" } },
 		
         };
     }

@@ -46,6 +46,32 @@ function doEvent(event)
         '" + spacer + @"X=' + event.clientX + 
         '" + spacer + @"Y=' + event.clientY);
     }
+    else if (event.type == 'mousemove')
+    {
+        sendPost(
+        mapElKey.get(event.target) + 
+        '" + spacer + @"' + event.type + 
+        '" + spacer + @"ScreenX=' + event.screenX + 
+        '" + spacer + @"ScreenY=' + event.screenY + 
+        '" + spacer + @"OffsetX=' + event.offsetX + 
+        '" + spacer + @"OffsetY=' + event.offsetY + 
+        '" + spacer + @"MovementX=' + event.movementX + 
+        '" + spacer + @"MovementY=' + event.movementY + 
+        '" + spacer + @"PageX=' + event.pageX + 
+        '" + spacer + @"PageY=' + event.pageY);
+    }
+    else if (event.type == 'mousedown')
+    {
+        sendPost(
+        mapElKey.get(event.target) + 
+        '" + spacer + @"' + event.type + 
+        '" + spacer + @"ScreenX=' + event.screenX + 
+        '" + spacer + @"ScreenY=' + event.screenY + 
+        '" + spacer + @"OffsetX=' + event.offsetX + 
+        '" + spacer + @"OffsetY=' + event.offsetY + 
+        '" + spacer + @"PageX=' + event.pageX + 
+        '" + spacer + @"PageY=' + event.pageY);
+    }
     else if (event.type == 'input')
     {
         let value = event.target.value;
@@ -141,6 +167,10 @@ function doEvent(event)
             '" + spacer + @"Value=' + value);
         }
     }
+    else if (event.type == 'dragover')
+    {
+        event.preventDefault();
+    }
     else
     {
         sendPost(mapElKey.get(event.target) + '" + spacer + @"' + event.type);
@@ -169,7 +199,7 @@ function stopTimer(nameEl) {
 
 var mapKeyEl = new Map();
 var mapElKey = new Map();
-
+var mapKeyDraggableEl = new Map();
 document.addEventListener('DOMContentLoaded', function (event) { sendPost('mainForm' + '" + spacer + @"' + 'loaded'); });
 
 var sendClient = new WebSocket('ws://127.0.0.1:" + DeclarativeForms.portReceivingServer + @"/');

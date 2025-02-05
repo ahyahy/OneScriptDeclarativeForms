@@ -1,0 +1,121 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>MouseMove Event</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Элемент.ПриПеремещенииМыши&nbsp;(Element.MouseMove)&nbsp;Событие</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Использование</H4>
+<P>Чтение и запись.</P>
+<H4 class=dtH4>Значение</H4>
+<P>Тип: <A href="OSDForms.ActionConstructor.html">Действие&nbsp;(Action)</A>.</P>
+<P>Возвращает или задает код для выполнения, когда указатель мыши переместился.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Аргументы события</H4>
+<DIV class=tablediv>
+<TABLE class=dtTABLE cellSpacing=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsOffsetYProperty.html">ИгрекСмещение&nbsp;(OffsetY)</A></TD>
+    <TD width="50%">Возвращает смещение по оси Y указателя мыши от края целевого узла.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsPageYProperty.html">ИгрекФормы&nbsp;(PageY)</A></TD>
+    <TD width="50%">Возвращает координату Y относительно верхнего края всего документа.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsScreenYProperty.html">ИгрекЭкрана&nbsp;(ScreenY)</A></TD>
+    <TD width="50%">Возвращает вертикальную координату указателя мыши в экранных координатах.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsOffsetXProperty.html">ИксСмещение&nbsp;(OffsetX)</A></TD>
+    <TD width="50%">Возвращает смещение по оси X указателя мыши от края целевого узла.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsPageXProperty.html">ИксФормы&nbsp;(PageX)</A></TD>
+    <TD width="50%">Возвращает координату X относительно левого края всего документа.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsScreenXProperty.html">ИксЭкрана&nbsp;(ScreenX)</A></TD>
+    <TD width="50%">Возвращает горизонтальную координату указателя мыши в экранных координатах.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsMovementYProperty.html">СдвигИгрек&nbsp;(MovementY)</A></TD>
+    <TD width="50%">Возвращает разницу в координате Y указателя мыши между заданным событием и предыдущим событием.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OSDForms.EventArgsMovementXProperty.html">СдвигИкс&nbsp;(MovementX)</A></TD>
+    <TD width="50%">Возвращает разницу в координате X указателя мыши между заданным событием и предыдущим событием.</TD></TR></TBODY></TABLE></DIV>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Абзац1.ПриПеремещенииМыши = ДФ.Действие(ЭтотОбъект, "Абзац1_ПриПеремещенииМыши");
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем ДФ, Абзац1;
+
+Процедура Абзац1_ПриПеремещенииМыши() Экспорт
+	Абзац1.Текст = "
+|ИксЭкрана = " + ДФ.АргументыСобытия.ИксЭкрана + "
+|ИгрекЭкрана = " + ДФ.АргументыСобытия.ИгрекЭкрана + "
+|ИксСмещение = " + ДФ.АргументыСобытия.ИксСмещение + "
+|ИгрекСмещение = " + ДФ.АргументыСобытия.ИгрекСмещение + "
+|СдвигИкс = " + ДФ.АргументыСобытия.СдвигИкс + "
+|СдвигИгрек = " + ДФ.АргументыСобытия.СдвигИгрек + "
+|ИксФормы = " + ДФ.АргументыСобытия.ИксФормы + "
+|ИгрекФормы = " + ДФ.АргументыСобытия.ИгрекФормы + "
+|";
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.НачальнаяШирина = 500;
+Форма1.НачальнаяВысота = 300;
+Форма1.Заголовок = "Двигайте мышью";
+
+Абзац1 = Форма1.ДобавитьДочерний(ДФ.Абзац());
+Абзац1.Текст = "";
+Абзац1.Стиль.Высота = 200;
+Абзац1.Стиль.ЦветФона = ДФ.Цвет("НебесноГолубой");
+Абзац1.ПриПеремещенииМыши = ДФ.Действие(ЭтотОбъект, "Абзац1_ПриПеремещенииМыши");
+
+Форма1.Открыть();
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

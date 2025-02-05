@@ -183,6 +183,74 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
         }
 
+        public bool movable { get; set; }
+        [ContextProperty("Перемещаемый", "Movable")]
+        public bool Movable
+        {
+            get { return movable; }
+            set
+            {
+                movable = value;
+                string strFunc;
+                if (value)
+                {
+                    strFunc = "mapKeyEl.get('" + ItemKey + "')['movable'] = " + movable.ToString().ToLower() + ";";
+                    strFunc += @"
+mapKeyDraggableEl.set('" + ItemKey + "', mapKeyEl.get('" + ItemKey + @"'));
+function dragElement" + ItemKey + @"() {
+    let elmnt = mapKeyDraggableEl.get('" + ItemKey + @"');
+        //alert('' + elmnt);
+        if (elmnt != undefined)
+        {
+            var pos1 = 0;
+            var pos2 = 0;
+            var pos3 = 0;
+            var pos4 = 0;
+            elmnt.onmousedown = dragMouseDown;
+            function dragMouseDown(e)
+            {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+            function elementDrag(e)
+            {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
+            }
+            function closeDragElement()
+            {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+        else
+        {
+            mapKeyEl.get('" + ItemKey + @"').onmousedown = null;
+        }
+    }
+dragElement" + ItemKey + "();";
+                }
+                else
+                {
+                    strFunc = @"
+mapKeyDraggableEl.delete('" + ItemKey + @"');
+function dragElement" + ItemKey + @"() { mapKeyEl.get('" + ItemKey + @"').onmousedown = null; }
+dragElement" + ItemKey + "();";
+                }
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+
         public string wrap { get; set; }
         [ContextProperty("ПереносТекста", "TextWrap")]
         public string TextWrap
@@ -192,6 +260,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 wrap = value;
                 string strFunc = "mapKeyEl.get('" + ItemKey + "')['wrap'] = '" + wrap + "';";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+
+        public bool draggable { get; set; }
+        [ContextProperty("Перетаскиваемый", "Draggable")]
+        public bool Draggable
+        {
+            get { return draggable; }
+            set
+            {
+                draggable = value;
+                string strFunc = "mapKeyEl.get('" + ItemKey + "')['draggable'] = " + draggable.ToString().ToLower() + ";";
                 DeclarativeForms.SendStrFunc(strFunc);
             }
         }
@@ -334,6 +415,20 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             get { return children; }
         }
 
+        public DfAction drop  { get; set; }
+        [ContextProperty("Бросить", "Drop")]
+        public DfAction Drop
+        {
+            get { return drop; }
+            set
+            {
+                drop = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022drop\u0022, doEvent);";
+                strFunc += "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dragover\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+
         public DfAction input  { get; set; }
         [ContextProperty("Ввод", "Input")]
         public DfAction Input
@@ -356,6 +451,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 dblclick = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dblclick\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
+        public DfAction dragend  { get; set; }
+        [ContextProperty("КонецПеретаскивания", "DragEnd")]
+        public DfAction DragEnd
+        {
+            get { return dragend; }
+            set
+            {
+                dragend = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dragend\u0022, doEvent);";
                 DeclarativeForms.SendStrFunc(strFunc);
             }
         }
@@ -386,6 +494,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
         }
         
+        public DfAction dragenter  { get; set; }
+        [ContextProperty("НадЦелью", "DragEnter")]
+        public DfAction DragEnter
+        {
+            get { return dragenter; }
+            set
+            {
+                dragenter = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dragenter\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
         public DfAction click  { get; set; }
         [ContextProperty("Нажатие", "Click")]
         public DfAction Click
@@ -395,6 +516,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 click = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022click\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
+        public DfAction dragstart  { get; set; }
+        [ContextProperty("НачалоПеретаскивания", "DragStart")]
+        public DfAction DragStart
+        {
+            get { return dragstart; }
+            set
+            {
+                dragstart = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dragstart\u0022, doEvent);";
                 DeclarativeForms.SendStrFunc(strFunc);
             }
         }
@@ -412,6 +546,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
         }
         
+        public DfAction mousedown  { get; set; }
+        [ContextProperty("ПриНажатииМыши", "MouseDown")]
+        public DfAction MouseDown
+        {
+            get { return mousedown; }
+            set
+            {
+                mousedown = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mousedown\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
         public DfAction mouseup  { get; set; }
         [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
         public DfAction MouseUp
@@ -421,6 +568,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 mouseup = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseup\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
+        public DfAction mousemove  { get; set; }
+        [ContextProperty("ПриПеремещенииМыши", "MouseMove")]
+        public DfAction MouseMove
+        {
+            get { return mousemove; }
+            set
+            {
+                mousemove = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mousemove\u0022, doEvent);";
                 DeclarativeForms.SendStrFunc(strFunc);
             }
         }
@@ -447,6 +607,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 blur = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022blur\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
+        public DfAction dragleave  { get; set; }
+        [ContextProperty("ЦельПокинута", "DragLeave")]
+        public DfAction DragLeave
+        {
+            get { return dragleave; }
+            set
+            {
+                dragleave = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022dragleave\u0022, doEvent);";
                 DeclarativeForms.SendStrFunc(strFunc);
             }
         }

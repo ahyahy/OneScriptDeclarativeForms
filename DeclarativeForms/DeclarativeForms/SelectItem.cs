@@ -328,6 +328,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             }
         }
         
+        public DfAction mousedown  { get; set; }
+        [ContextProperty("ПриНажатииМыши", "MouseDown")]
+        public DfAction MouseDown
+        {
+            get { return mousedown; }
+            set
+            {
+                mousedown = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mousedown\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
         public DfAction mouseup  { get; set; }
         [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
         public DfAction MouseUp
@@ -337,6 +350,19 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             {
                 mouseup = value;
                 string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mouseup\u0022, doEvent);";
+                DeclarativeForms.SendStrFunc(strFunc);
+            }
+        }
+        
+        public DfAction mousemove  { get; set; }
+        [ContextProperty("ПриПеремещенииМыши", "MouseMove")]
+        public DfAction MouseMove
+        {
+            get { return mousemove; }
+            set
+            {
+                mousemove = value;
+                string strFunc = "mapKeyEl.get(\u0022" + ItemKey + "\u0022).addEventListener(\u0022mousemove\u0022, doEvent);";
                 DeclarativeForms.SendStrFunc(strFunc);
             }
         }

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>DragLeave Event</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Элемент.ЦельПокинута&nbsp;(Element.DragLeave)&nbsp;Событие</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Использование</H4>
+<P>Чтение и запись.</P>
+<H4 class=dtH4>Значение</H4>
+<P>Тип: <A href="OSDForms.ActionConstructor.html">Действие&nbsp;(Action)</A>.</P>
+<P>Возвращает или задает код для события, которое генерируется, когда элемент покидает целевую область.</P>
+<H4 class=dtH4>Примечание</H4>
+<P>Определяется для целевой области.</P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Цель.ЦельПокинута = ДФ.Действие(ЭтотОбъект, "ЦельПокинута");
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем ДФ, Блок;
+
+Процедура НадЦелью() Экспорт
+	Сообщить("НадЦелью " + ТекущаяУниверсальнаяДатаВМиллисекундах());
+КонецПроцедуры
+
+Процедура ЦельПокинута() Экспорт
+	Сообщить("ЦельПокинута " + ТекущаяУниверсальнаяДатаВМиллисекундах());
+КонецПроцедуры
+
+Процедура Бросить() Экспорт
+	Сообщить("Бросить " + ТекущаяУниверсальнаяДатаВМиллисекундах());
+	ДФ.АргументыСобытия.Отправитель.ДобавитьДочерний(Блок);
+КонецПроцедуры
+
+Процедура НачалоПеретаскивания() Экспорт
+	Сообщить("НачалоПеретаскивания " + ТекущаяУниверсальнаяДатаВМиллисекундах());
+КонецПроцедуры
+
+Процедура КонецПеретаскивания() Экспорт
+	Сообщить("КонецПеретаскивания " + ТекущаяУниверсальнаяДатаВМиллисекундах());
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
+ДФ = Новый ДекларативныеФормы();
+Форма1 = ДФ.Форма;
+Форма1.НачальнаяШирина = 500;
+Форма1.НачальнаяВысота = 480;
+
+Форма1.Контент.Стиль.РазмерШрифта = 30;
+Форма1.Контент.Стиль.ЖирностьШрифта = "700";
+Форма1.Контент.Стиль.СемействоШрифтов = "sans-serif";
+Форма1.Заголовок = "Перетащите мышью";
+
+Блок = Форма1.ДобавитьДочерний(ДФ.Блок());
+Блок.Текст = "Блок";
+Блок.Перетаскиваемый = Истина;
+Блок.Стиль.Ширина = 150;
+Блок.Стиль.Высота = 150;
+Фон1 = ДФ.Фон();
+Фон1.ЦветФона = ДФ.Цвет.Фиолетовый;
+Блок.Стиль.Фон = Фон1;
+Блок.Стиль.Отступ = ДФ.Отступ(10, 10, 10, 10, Истина);
+Блок.Стиль.ГоризонтальноеВыравниваниеТекста = ДФ.ГоризонтальноеВыравниваниеТекста.Центр;
+Блок.НачалоПеретаскивания = ДФ.Действие(ЭтотОбъект, "НачалоПеретаскивания");
+Блок.КонецПеретаскивания = ДФ.Действие(ЭтотОбъект, "КонецПеретаскивания");
+
+Форма1.ДобавитьДочерний(ДФ.Абзац());
+
+Цель = Форма1.ДобавитьДочерний(ДФ.Блок());
+Цель.Текст = "Перетащи блок сюда";
+Цель.Стиль.Ширина = 200;
+Цель.Стиль.Высота = 200;
+Цель.Стиль.Границы = ДФ.Границы(10, ДФ.СтильГраницы.Сплошная, ДФ.Цвет.Фиолетовый);
+Цель.Стиль.Отступ = ДФ.Отступ(30, 30, 30, 30, Истина);
+Цель.Стиль.Заполнение = ДФ.Заполнение(10, 10, 10, 10);
+Цель.НадЦелью = ДФ.Действие(ЭтотОбъект, "НадЦелью");
+Цель.ЦельПокинута = ДФ.Действие(ЭтотОбъект, "ЦельПокинута");
+Цель.Бросить = ДФ.Действие(ЭтотОбъект, "Бросить");
+
+Форма1.Открыть();
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>
