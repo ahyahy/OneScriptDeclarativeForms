@@ -31,6 +31,24 @@ mapElKey.set(mapKeyEl.get('" + ItemKey + "'), '" + ItemKey + "');";
             get { return this.GetType().GetProperty(p1); }
         }
 		
+        public string res_cssText { get; set; }
+        public string _cssText { get; set; }
+        [ContextProperty("cssТекст", "cssText")]
+        public string cssText
+        {
+            get { return _cssText; }
+            set
+            {
+                _cssText = value;
+                res_cssText = _cssText;
+                if (Owner != null)
+                {
+                    string strFunc = "mapKeyEl.get('" + ((dynamic)Owner).ItemKey + "').style['cssText'] = `" + res_cssText + "`;";
+                    DeclarativeForms.SendStrFunc(strFunc);
+                }
+            }
+        }
+		
         public string restransition { get; set; }
         public IValue transition { get; set; }
         [ContextProperty("Переход", "Transition")]

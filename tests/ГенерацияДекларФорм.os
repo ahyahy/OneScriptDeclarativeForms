@@ -2670,6 +2670,11 @@
 		|            }
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
+		|		
+		|            if (!DeclarativeForms.instance.OpenInBrowser)
+		|            {
+		|                File.WriteAllText(DeclarativeForms.pathStartupScript + DeclarativeForms.separator + ""mes.html"", Meshtml.meshtml, System.Text.Encoding.UTF8);
+		|            }
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -3067,6 +3072,11 @@
 		|        {
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
+		|		
+		|            if (!DeclarativeForms.instance.OpenInBrowser)
+		|            {
+		|                File.WriteAllText(DeclarativeForms.pathStartupScript + DeclarativeForms.separator + ""mes.html"", Meshtml.meshtml, System.Text.Encoding.UTF8);
+		|            }
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -3267,13 +3277,6 @@
 		|            if (fontFamily != """")
 		|            {
 		|                DfBalloon1.FontFamily = FontFamily;
-		|            }
-		|
-		|            if (!DeclarativeForms.instance.OpenInBrowser)
-		|            {
-		|                File.WriteAllText(DeclarativeForms.pathStartupScript + DeclarativeForms.separator + ""mes.html"",
-		|                    Meshtml.meshtml,
-		|                    System.Text.Encoding.UTF8);
 		|            }
 		|
 		|            // Создаем всплывающее уведомление.
@@ -8506,6 +8509,24 @@
 		|        public PropertyInfo this[string p1]
 		|        {
 		|            get { return this.GetType().GetProperty(p1); }
+		|        }
+		|		
+		|        public string res_cssText { get; set; }
+		|        public string _cssText { get; set; }
+		|        [ContextProperty(""cssТекст"", ""cssText"")]
+		|        public string cssText
+		|        {
+		|            get { return _cssText; }
+		|            set
+		|            {
+		|                _cssText = value;
+		|                res_cssText = _cssText;
+		|                if (Owner != null)
+		|                {
+		|                    string strFunc = ""mapKeyEl.get('"" + ((dynamic)Owner).ItemKey + ""').style['cssText'] = `"" + res_cssText + ""`;"";
+		|                    DeclarativeForms.SendStrFunc(strFunc);
+		|                }
+		|            }
 		|        }
 		|		
 		|        public string restransition { get; set; }
@@ -20434,6 +20455,7 @@
 		|                {""Верх"", new object[3] { """", false, ""top"" } },
 		|                {""Перетаскиваемый"", new object[3] { """", true, ""draggable"" } },
 		|                {""Перемещаемый"", new object[3] { """", true, ""movable"" } },
+		|                {""cssТекст"", new object[3] { """", false, ""cssText"" } },
 		|		
 		|        };
 		|    }

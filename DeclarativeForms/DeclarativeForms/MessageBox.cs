@@ -25,6 +25,11 @@ namespace osdf
             }
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             DeclarativeForms.AddToHashtable(ItemKey, this);
+		
+            if (!DeclarativeForms.instance.OpenInBrowser)
+            {
+                File.WriteAllText(DeclarativeForms.pathStartupScript + DeclarativeForms.separator + "mes.html", Meshtml.meshtml, System.Text.Encoding.UTF8);
+            }
         }
 
         public PropertyInfo this[string p1]

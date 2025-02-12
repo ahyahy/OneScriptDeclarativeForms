@@ -3445,6 +3445,7 @@ namespace osdf
                 {"Верх", new object[3] { "", false, "top" } },
                 {"Перетаскиваемый", new object[3] { "", true, "draggable" } },
                 {"Перемещаемый", new object[3] { "", true, "movable" } },
+                {"cssТекст", new object[3] { "", false, "cssText" } },
 		
         };
     }
