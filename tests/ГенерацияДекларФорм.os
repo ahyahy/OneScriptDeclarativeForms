@@ -3523,7 +3523,6 @@
 		|        {
 		|            ItemKey = ""d"" + Path.GetRandomFileName().Replace(""."", """");
 		|            DeclarativeForms.AddToHashtable(ItemKey, this);
-		|            Interval = 1000;
 		|        }
 		|
 		|        public PropertyInfo this[string p1]
@@ -3539,7 +3538,7 @@
 		|            private set { itemKey = value; }
 		|        }
 		|
-		|        private int interval;
+		|        public int interval { get; set; } = 1000;
 		|        [ContextProperty(""Интервал"", ""Interval"")]
 		|        public int Interval
 		|        {
@@ -3555,7 +3554,7 @@
 		|            private set { enabled = value; }
 		|        }
 		|
-		|        public DfAction tick;
+		|        public DfAction tick { get; set; }
 		|        [ContextProperty(""ПриСрабатыванииТаймера"", ""Tick"")]
 		|        public DfAction Tick
 		|        {
@@ -16589,7 +16588,7 @@
 		|                if (!isWin)
 		|                {
 		|                    process.StartInfo.FileName = DeclarativeForms._nw;
-		|                    process.StartInfo.Arguments = DeclarativeForms.pathStartupScript;		
+		|                    process.StartInfo.Arguments = ""\u0022"" + DeclarativeForms.pathStartupScript + ""\u0022"";
 		|                    System.Threading.Thread.Sleep(2000);
 		|                }
 		|                else

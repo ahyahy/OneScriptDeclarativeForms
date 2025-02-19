@@ -387,7 +387,7 @@ window.addEventListener('resize', function(event) {
                 if (!isWin)
                 {
                     process.StartInfo.FileName = DeclarativeForms._nw;
-                    process.StartInfo.Arguments = DeclarativeForms.pathStartupScript;		
+                    process.StartInfo.Arguments = "\u0022" + DeclarativeForms.pathStartupScript + "\u0022";
                     System.Threading.Thread.Sleep(2000);
                 }
                 else

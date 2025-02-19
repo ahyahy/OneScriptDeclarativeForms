@@ -11,7 +11,6 @@ namespace osdf
         {
             ItemKey = "d" + Path.GetRandomFileName().Replace(".", "");
             DeclarativeForms.AddToHashtable(ItemKey, this);
-            Interval = 1000;
         }
 
         public PropertyInfo this[string p1]
@@ -27,7 +26,7 @@ namespace osdf
             private set { itemKey = value; }
         }
 
-        private int interval;
+        public int interval { get; set; } = 1000;
         [ContextProperty("Интервал", "Interval")]
         public int Interval
         {
@@ -43,7 +42,7 @@ namespace osdf
             private set { enabled = value; }
         }
 
-        public DfAction tick;
+        public DfAction tick { get; set; }
         [ContextProperty("ПриСрабатыванииТаймера", "Tick")]
         public DfAction Tick
         {
