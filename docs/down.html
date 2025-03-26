@@ -1,372 +1,387 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-	<head>
-		<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
-		<link rel="stylesheet" type="text/css" href="theme.css">
-		<title>Скачать</title>
-	</head>
+<HTML>
+<HEAD>
+    <TITLE>Скачать</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="styleos.css">
+	<script defer src="mobil.js"></script>
+</HEAD>
 <body>
+    <header>
+        <section>
+            <div>
+                <div id="logo"><big><big><big>Декларативные формы<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></div>
+            </div>
+            <div style="direction: rtl; overflow:hidden; padding: 8px 0px 0px 0px; margin-top:-7px;">
+                <DIV id=div22>
+                    <input type="checkbox" id="toggle">
+                    <label id="label1" class="hamburger-icon" onclick="label1click()"><div></div><div></div><div></div></label>
+                </DIV>
+                <nav>
+                    <a onclick="navclick(event)" href="index.html">Главная</a>
+                    <a onclick="navclick(event)" href="screenshot.html">Скриншоты</a>
+                    <a onclick="navclick(event)" href="howworks.html">Как это работает</a>
+                    <a onclick="navclick(event)" href="doc.html">Документация</a>
+                    <a onclick="navclick(event)" href="down.html">Скачать</a>
+                    <a onclick="navclick(event)" href="kont.html">Контакты</a>
+                    <input type="checkbox" id="toggle2">
+                    <a id="mobil" onclick="mobilClick()">`</a>
+                </nav>
+            </div>
+        </section>
+    </header>
+    <section class="sectiondown">
 
-<table style="text-align: left; width: 1000px; height: 816px; margin-left: auto; margin-right: auto; background-color: white;" border="0" cellpadding="2" cellspacing="2">
-	<tbody>
-    <tr>
-		<td style="vertical-align: top; font-weight: bold; text-align: center; font-style: italic; color: rgb(51, 51, 153);"><big><big><big>Декларативные формы<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></td>
-		<td style="width: 70px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="index.html"><button type="button">Главная</button></a><small><br></small></td>
-		<td style="width: 90px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="screenshot.html"><button type="button">Скриншоты</button></a><br></td>
-		<td style="width: 130px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="howworks.html"><button type="button">Как это работает</button></a><small><br></small></td>
-		<td style="width: 110px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="doc.html"><button type="button">Документация</button></a><small><br></small></td>
-		<td style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="down.html"><button type="button">Скачать</button></a><small><br></small></td>
-		<th style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top; font-weight: normal;"><a href="kont.html"><button type="button">Контакты</button></a><small><br></small></th>
-    </tr>
-    <tr>
-		<td colspan="7" rowspan="1" style="vertical-align: top; height: 747px; background-color: white;">
-		<hr style="border-color: lightgray;">
-		<p style="margin-left: 40px;">Версия 0.3.0.0 библиотеки вышла 01 октября 2024 г. Её можно считать первой более менее наполненной версией.</p>
-		<p style="margin-left: 40px;">Справку к версиям можно найти в каталоге ..\OSDFormsRu\, скачав соответствующий релиз с <a href="https://github.com/ahyahy/OneScriptDeclarativeForms" target="_blank">GitHub.</a></p>
+		<p>Версия 0.3.0.0 библиотеки вышла 01 октября 2024 г. Её можно считать первой более менее наполненной версией.</p>
+		<p>Справку к версиям можно найти в каталоге ..\OSDFormsRu\, скачав соответствующий релиз с <a href="https://github.com/ahyahy/OneScriptDeclarativeForms" target="_blank">GitHub.</a></p>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 2.4.1.0 -&nbsp;<a href="OneScriptDeclarativeForms2_4_1_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;- Исправлена ошибка при использовании пробела в полном имени стартового сценария (для linux)
-					<br>&nbsp;&nbsp;&nbsp;- Исправлена ошибка обработки события <B>Таймер.ПриСрабатыванииТаймера&nbsp;(Timer.Tick)</B>
+		<hr> 
+		<p>Версия 2.4.1.0 -&nbsp;<a href="OneScriptDeclarativeForms2_4_1_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>- Исправлена ошибка при использовании пробела в полном имени стартового сценария (для linux)
+					<br>- Исправлена ошибка обработки события <B>Таймер.ПриСрабатыванииТаймера&nbsp;(Timer.Tick)</B>
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 2.4.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_4_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;- Исправлена ошибка создания файла-шаблона для классов Уведомления (Balloons) и ОкноСообщений (MessageBox)
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>Стиль.cssТекст&nbsp;(Style.cssText)</B>
+		<hr> 
+		<p>Версия 2.4.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_4_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>- Исправлена ошибка создания файла-шаблона для классов Уведомления (Balloons) и ОкноСообщений (MessageBox)
+					<br>- Добавлено свойство - <B>Стиль.cssТекст&nbsp;(Style.cssText)</B>
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 2.3.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_3_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено событие - <B>Бросить&nbsp;(Drop)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено событие - <B>КонецПеретаскивания&nbsp;(DragEnd)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено событие - <B>НадЦелью&nbsp;(DragEnter)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено событие - <B>НачалоПеретаскивания&nbsp;(DragStart)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено событие - <B>ЦельПокинута&nbsp;(DragLeave)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.ИгрекСмещение&nbsp;(EventArgs.OffsetY)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.ИгрекФормы&nbsp;(EventArgs.PageY)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.ИгрекЭкрана&nbsp;(EventArgs.ScreenY)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.ИксСмещение&nbsp;(EventArgs.OffsetX)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.ИксФормы&nbsp;(EventArgs.PageX)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.ИксЭкрана&nbsp;(EventArgs.ScreenX)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.СдвигИгрек&nbsp;(EventArgs.MovementY)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.СдвигИкс&nbsp;(EventArgs.MovementX)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>Перемещаемый&nbsp;(Movable)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>Перетаскиваемый&nbsp;(Draggable)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Изменения в тексте справки
+		<hr> 
+		<p>Версия 2.3.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_3_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>- Добавлено событие - <B>Бросить&nbsp;(Drop)</B>
+					<br>- Добавлено событие - <B>КонецПеретаскивания&nbsp;(DragEnd)</B>
+					<br>- Добавлено событие - <B>НадЦелью&nbsp;(DragEnter)</B>
+					<br>- Добавлено событие - <B>НачалоПеретаскивания&nbsp;(DragStart)</B>
+					<br>- Добавлено событие - <B>ЦельПокинута&nbsp;(DragLeave)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.ИгрекСмещение&nbsp;(EventArgs.OffsetY)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.ИгрекФормы&nbsp;(EventArgs.PageY)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.ИгрекЭкрана&nbsp;(EventArgs.ScreenY)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.ИксСмещение&nbsp;(EventArgs.OffsetX)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.ИксФормы&nbsp;(EventArgs.PageX)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.ИксЭкрана&nbsp;(EventArgs.ScreenX)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.СдвигИгрек&nbsp;(EventArgs.MovementY)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.СдвигИкс&nbsp;(EventArgs.MovementX)</B>
+					<br>- Добавлено свойство - <B>Перемещаемый&nbsp;(Movable)</B>
+					<br>- Добавлено свойство - <B>Перетаскиваемый&nbsp;(Draggable)</B>
+					<br>- Изменения в тексте справки
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 2.2.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_2_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;- Отменено всплытие события для объектов события в коде JavaScript
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено событие - <B>Форма.ПриПрокручивании&nbsp;(Form.Scroll)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>Форма.Прокручено&nbsp;(Form.ScrolledValue)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>АргументыСобытия.Прокручено&nbsp;(EventArgs.ScrolledValue)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>Стиль.ЗетИндекс&nbsp;(Style.ZIndex)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Изменения в тексте справки
+		<hr> 
+		<p>Версия 2.2.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_2_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>- Отменено всплытие события для объектов события в коде JavaScript
+					<br>- Добавлено событие - <B>Форма.ПриПрокручивании&nbsp;(Form.Scroll)</B>
+					<br>- Добавлено свойство - <B>Форма.Прокручено&nbsp;(Form.ScrolledValue)</B>
+					<br>- Добавлено свойство - <B>АргументыСобытия.Прокручено&nbsp;(EventArgs.ScrolledValue)</B>
+					<br>- Добавлено свойство - <B>Стиль.ЗетИндекс&nbsp;(Style.ZIndex)</B>
+					<br>- Изменения в тексте справки
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 2.1.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_1_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;- Добавлен класс - <B>ОкноСообщений&nbsp;(MessageBox)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено класс - <B>Уведомления&nbsp;(Balloons)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>ДекларативныеФормы.МаксимумУведомленийНаЭкране&nbsp;(DeclarativeForms.MaxBalloonsOnScreen)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Изменения в тексте справки
+		<hr> 
+		<p>Версия 2.1.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_1_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>- Добавлен класс - <B>ОкноСообщений&nbsp;(MessageBox)</B>
+					<br>- Добавлено класс - <B>Уведомления&nbsp;(Balloons)</B>
+					<br>- Добавлено свойство - <B>ДекларативныеФормы.МаксимумУведомленийНаЭкране&nbsp;(DeclarativeForms.MaxBalloonsOnScreen)</B>
+					<br>- Изменения в тексте справки
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 2.0.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_0_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;- Исправлена ошибка при использовании в сценарии один раз или многократно метода <B>ДекларативныеФормы.ЗагрузитьСценарии&nbsp;(DeclarativeForms.LoadScripts)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Для ОС Windows многопоточный TCP сервер (OneScriptClientServer) заменен на WebServer, что улучшило работу приложения и дало возможность запуска в установленном по умолчанию браузере
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>ДекларативныеФормы.ПортСервераОтправки&nbsp;(DeclarativeForms.PortSendServer)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>ДекларативныеФормы.ПортСервераПриема&nbsp;(DeclarativeForms.PortReceivingServer)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>ДекларативныеФормы.ВыводитьПредупреждениеПриЗапуске&nbsp;(DeclarativeForms.DisplayStartupWarning)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Удалено свойство - <B>ДекларативныеФормы.Порт&nbsp;(DeclarativeForms.Port)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Удалено свойство - <B>АргументыСобытия.ЭлементыСписка&nbsp;(EventArgs.ListItem)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Удалено свойство - <B>ДекларативныеФормы.ПриПолученииСвойства&nbsp;(DeclarativeForms.GettingProperty)</B>
-					<br>&nbsp;&nbsp;&nbsp;- Изменения в тексте справки
+		<hr> 
+		<p>Версия 2.0.0.0 -&nbsp;<a href="OneScriptDeclarativeForms2_0_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>- Исправлена ошибка при использовании в сценарии один раз или многократно метода <B>ДекларативныеФормы.ЗагрузитьСценарии&nbsp;(DeclarativeForms.LoadScripts)</B>
+					<br>- Для ОС Windows многопоточный TCP сервер (OneScriptClientServer) заменен на WebServer, что улучшило работу приложения и дало возможность запуска в установленном по умолчанию браузере
+					<br>- Добавлено свойство - <B>ДекларативныеФормы.ПортСервераОтправки&nbsp;(DeclarativeForms.PortSendServer)</B>
+					<br>- Добавлено свойство - <B>ДекларативныеФормы.ПортСервераПриема&nbsp;(DeclarativeForms.PortReceivingServer)</B>
+					<br>- Добавлено свойство - <B>ДекларативныеФормы.ВыводитьПредупреждениеПриЗапуске&nbsp;(DeclarativeForms.DisplayStartupWarning)</B>
+					<br>- Удалено свойство - <B>ДекларативныеФормы.Порт&nbsp;(DeclarativeForms.Port)</B>
+					<br>- Удалено свойство - <B>АргументыСобытия.ЭлементыСписка&nbsp;(EventArgs.ListItem)</B>
+					<br>- Удалено свойство - <B>ДекларативныеФормы.ПриПолученииСвойства&nbsp;(DeclarativeForms.GettingProperty)</B>
+					<br>- Изменения в тексте справки
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 1.1.0.0 -&nbsp;<a href="OneScriptDeclarativeForms1_1_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>ДекларативныеФормы.ОткрытьВБраузере&nbsp;(DeclarativeForms.OpenInBrowser)</B>
+		<hr> 
+		<p>Версия 1.1.0.0 -&nbsp;<a href="OneScriptDeclarativeForms1_1_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>- Добавлено свойство - <B>ДекларативныеФормы.ОткрытьВБраузере&nbsp;(DeclarativeForms.OpenInBrowser)</B>
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 1.0.0.0 -&nbsp;<a href="OneScriptDeclarativeForms1_0_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;В обновленной справке заполнены все примеры свойств и событий.
+		<hr> 
+		<p>Версия 1.0.0.0 -&nbsp;<a href="OneScriptDeclarativeForms1_0_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>В обновленной справке заполнены все примеры свойств и событий.
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 0.3.1.0 -&nbsp;<a href="OneScriptDeclarativeForms0_3_1_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
-					<br>&nbsp;&nbsp;&nbsp;Кроме того что TCP сервер внедрен в библиотеку декларативных форм, его запуск теперь осуществляется без записи файла OneScriptClientServer.dll на диск.
+		<hr> 
+		<p>Версия 0.3.1.0 -&nbsp;<a href="OneScriptDeclarativeForms0_3_1_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
+					<br>Кроме того что TCP сервер внедрен в библиотеку декларативных форм, его запуск теперь осуществляется без записи файла OneScriptClientServer.dll на диск.
 				</div>
 			</details>
 		</div>
 		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
-		<p style="margin-left: 40px;">Версия 0.3.0.0 -&nbsp;<a href="OneScriptDeclarativeForms0_3_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
-		<div style="margin-left: 40px;"></div>
-		<div style="margin-left: 40px;">
-			<details><summary>Описание</summary>
-				<div style="margin-left: 40px;">
+		<hr> 
+		<p>Версия 0.3.0.0 -&nbsp;<a href="OneScriptDeclarativeForms0_3_0_0.zip"><button style="font-size:100%;">скачать</button></a></p>
+		<div class=marginleft40></div>
+		<div class=marginleft40>
+			<details>
+				<summary>Описание</summary>
+				<div class=marginleft40>
 					В библиотеке присутствует 117 классов и 75 перечислений.  
-					<br>&nbsp;&nbsp;&nbsp;Список классов:
-					<br>&nbsp;&nbsp;&nbsp;- Абзац	(Paragraph)
-					<br>&nbsp;&nbsp;&nbsp;- Анимация	(Animation)
-					<br>&nbsp;&nbsp;&nbsp;- АргументыСобытия	(EventArgs)
-					<br>&nbsp;&nbsp;&nbsp;- Артикль	(Article)
-					<br>&nbsp;&nbsp;&nbsp;- Аудио	(Audio)
-					<br>&nbsp;&nbsp;&nbsp;- БезьеКуб	(CubicBezier)
-					<br>&nbsp;&nbsp;&nbsp;- Блок	(Div)
-					<br>&nbsp;&nbsp;&nbsp;- ВерхняяГраница	(BorderTop)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборВремени	(TimeSelection)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборДаты	(DateSelection)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборДатыВремени	(DateTimeSelection)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборМестнойДатыВремени	(DateTimeLocalSelection)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборМесяца	(MonthSelection)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборНедели	(WeekSelection)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборФайла	(FileSelection)
-					<br>&nbsp;&nbsp;&nbsp;- ВыборЦвета	(ColorSelection)
-					<br>&nbsp;&nbsp;&nbsp;- Границы	(Borders)
-					<br>&nbsp;&nbsp;&nbsp;- Группа	(Group)
-					<br>&nbsp;&nbsp;&nbsp;- ГруппаКолонок	(Colgroup)
-					<br>&nbsp;&nbsp;&nbsp;- ГруппировкаПоляСписка	(SelectGroup)
-					<br>&nbsp;&nbsp;&nbsp;- ДанныеРисунка	(ImageData)
-					<br>&nbsp;&nbsp;&nbsp;- Действие	(Action)
-					<br>&nbsp;&nbsp;&nbsp;- ДекларативныеФормы	(DeclarativeForms)
-					<br>&nbsp;&nbsp;&nbsp;- Диалог	(Dialog)
-					<br>&nbsp;&nbsp;&nbsp;- ДополнительныйБлок	(AdditionalDiv)
-					<br>&nbsp;&nbsp;&nbsp;- ЖирныйТекст	(BoldText)
-					<br>&nbsp;&nbsp;&nbsp;- Заголовок	(Caption)
-					<br>&nbsp;&nbsp;&nbsp;- Заголовок1	(H1)
-					<br>&nbsp;&nbsp;&nbsp;- Заголовок2	(H2)
-					<br>&nbsp;&nbsp;&nbsp;- Заголовок3	(H3)
-					<br>&nbsp;&nbsp;&nbsp;- Заголовок4	(H4)
-					<br>&nbsp;&nbsp;&nbsp;- Заголовок5	(H5)
-					<br>&nbsp;&nbsp;&nbsp;- Заголовок6	(H6)
-					<br>&nbsp;&nbsp;&nbsp;- ЗаголовокГруппы	(GroupTitle)
-					<br>&nbsp;&nbsp;&nbsp;- ЗаголовокРаскрываемогоБлока	(ExpandableDivHeader)
-					<br>&nbsp;&nbsp;&nbsp;- Заполнение	(Padding)
-					<br>&nbsp;&nbsp;&nbsp;- Изображение	(Image)
-					<br>&nbsp;&nbsp;&nbsp;- Индикатор	(Progress)
-					<br>&nbsp;&nbsp;&nbsp;- ИсточникПерспективы	(PerspectiveOrigin)
-					<br>&nbsp;&nbsp;&nbsp;- Итоги	(Outcome)
-					<br>&nbsp;&nbsp;&nbsp;- Кадры	(Frames)
-					<br>&nbsp;&nbsp;&nbsp;- Карта	(Map)
-					<br>&nbsp;&nbsp;&nbsp;- КартинкаГраницы	(BorderImage)
-					<br>&nbsp;&nbsp;&nbsp;- Кнопка	(Button)
-					<br>&nbsp;&nbsp;&nbsp;- Код	(Code)
-					<br>&nbsp;&nbsp;&nbsp;- Колонка	(Column)
-					<br>&nbsp;&nbsp;&nbsp;- КолонкиЭлемента	(Columns)
-					<br>&nbsp;&nbsp;&nbsp;- Колонтитул	(Header)
-					<br>&nbsp;&nbsp;&nbsp;- Контекст2d	(Context2d)
-					<br>&nbsp;&nbsp;&nbsp;- Контент	(Body)
-					<br>&nbsp;&nbsp;&nbsp;- Контур	(Outline)
-					<br>&nbsp;&nbsp;&nbsp;- Круг	(Circle)
-					<br>&nbsp;&nbsp;&nbsp;- КурсивТекст	(ItalicsText)
-					<br>&nbsp;&nbsp;&nbsp;- ЛеваяГраница	(BorderLeft)
-					<br>&nbsp;&nbsp;&nbsp;- ЛинейныйГрадиент	(LinearGradient)
-					<br>&nbsp;&nbsp;&nbsp;- Линия	(Line)
-					<br>&nbsp;&nbsp;&nbsp;- МаркированныйТекст	(MarkedText)
-					<br>&nbsp;&nbsp;&nbsp;- Масштаб	(Scale)
-					<br>&nbsp;&nbsp;&nbsp;- Масштаб3Д	(Scale3D)
-					<br>&nbsp;&nbsp;&nbsp;- МасштабЗет	(ScaleZ)
-					<br>&nbsp;&nbsp;&nbsp;- МасштабИгрек	(ScaleY)
-					<br>&nbsp;&nbsp;&nbsp;- МасштабИкс	(ScaleX)
-					<br>&nbsp;&nbsp;&nbsp;- Математика	(Math)
-					<br>&nbsp;&nbsp;&nbsp;- Матрица	(Matrix)
-					<br>&nbsp;&nbsp;&nbsp;- Матрица3Д	(Matrix3D)
-					<br>&nbsp;&nbsp;&nbsp;- МедиаГруппа	(MediaGroup)
-					<br>&nbsp;&nbsp;&nbsp;- МелкийТекст	(SmallText)
-					<br>&nbsp;&nbsp;&nbsp;- Меню	(Menu)
-					<br>&nbsp;&nbsp;&nbsp;- НадстрочныйТекст	(SupText)
-					<br>&nbsp;&nbsp;&nbsp;- Наклон	(Skew)
-					<br>&nbsp;&nbsp;&nbsp;- НаклонИгрек	(SkewY)
-					<br>&nbsp;&nbsp;&nbsp;- НаклонИкс	(SkewX)
-					<br>&nbsp;&nbsp;&nbsp;- НаправленныйТекст	(DirectedText)
-					<br>&nbsp;&nbsp;&nbsp;- НеупорядоченныйСписок	(UnorderedList)
-					<br>&nbsp;&nbsp;&nbsp;- НижнийКолонтитул	(Footer)
-					<br>&nbsp;&nbsp;&nbsp;- НижняяГраница	(BorderBottom)
-					<br>&nbsp;&nbsp;&nbsp;- Область	(Area)
-					<br>&nbsp;&nbsp;&nbsp;- ОбластьТаблицы	(TableBody)
-					<br>&nbsp;&nbsp;&nbsp;- ОбластьТекста	(TextArea)
-					<br>&nbsp;&nbsp;&nbsp;- ОписаниеМедиа	(CaptionMedia)
-					<br>&nbsp;&nbsp;&nbsp;- Определение	(Definition)
-					<br>&nbsp;&nbsp;&nbsp;- Отступ	(Margin)
-					<br>&nbsp;&nbsp;&nbsp;- ПараметрыАнимации	(AnimationOptions)
-					<br>&nbsp;&nbsp;&nbsp;- Перевод	(Translate)
-					<br>&nbsp;&nbsp;&nbsp;- Перевод3Д	(Translate3D)
-					<br>&nbsp;&nbsp;&nbsp;- ПереводЗет	(TranslateZ)
-					<br>&nbsp;&nbsp;&nbsp;- ПереводИгрек	(TranslateY)
-					<br>&nbsp;&nbsp;&nbsp;- ПереводИкс	(TranslateX)
-					<br>&nbsp;&nbsp;&nbsp;- Переключатель	(Radio)
-					<br>&nbsp;&nbsp;&nbsp;- Перенос	(Transfer)
-					<br>&nbsp;&nbsp;&nbsp;- Переход	(Transition)
-					<br>&nbsp;&nbsp;&nbsp;- Перспектива	(Perspective)
-					<br>&nbsp;&nbsp;&nbsp;- Поворот	(Rotate)
-					<br>&nbsp;&nbsp;&nbsp;- Поворот3Д	(Rotate3D)
-					<br>&nbsp;&nbsp;&nbsp;- ПоворотЗет	(RotateZ)
-					<br>&nbsp;&nbsp;&nbsp;- ПоворотИгрек	(RotateY)
-					<br>&nbsp;&nbsp;&nbsp;- ПоворотИкс	(RotateX)
-					<br>&nbsp;&nbsp;&nbsp;- Подпись	(Label)
-					<br>&nbsp;&nbsp;&nbsp;- ПодстрочныйТекст	(SubText)
-					<br>&nbsp;&nbsp;&nbsp;- ПодчеркнутыйТекст	(UnderlineText)
-					<br>&nbsp;&nbsp;&nbsp;- ПолеПароля	(PasswordField)
-					<br>&nbsp;&nbsp;&nbsp;- ПолеПоиска	(SearchField)
-					<br>&nbsp;&nbsp;&nbsp;- ПолеСписка	(Select)
-					<br>&nbsp;&nbsp;&nbsp;- ПолеТекста	(TextField)
-					<br>&nbsp;&nbsp;&nbsp;- ПолеЧисла	(NumberField)
-					<br>&nbsp;&nbsp;&nbsp;- Ползунок	(Range)
-					<br>&nbsp;&nbsp;&nbsp;- Полигон	(Polygon)
-					<br>&nbsp;&nbsp;&nbsp;- ПраваяГраница	(BorderRight)
-					<br>&nbsp;&nbsp;&nbsp;- Прямоугольник	(Rectangle)
-					<br>&nbsp;&nbsp;&nbsp;- РадиальныйГрадиент	(RadialGradient)
-					<br>&nbsp;&nbsp;&nbsp;- РадиусГраницы	(BorderRadius)
-					<br>&nbsp;&nbsp;&nbsp;- РазделительКолонок	(ColumnRule)
-					<br>&nbsp;&nbsp;&nbsp;- Размер	(Size)
-					<br>&nbsp;&nbsp;&nbsp;- РаскрываемыйБлок	(ExpandableDiv)
-					<br>&nbsp;&nbsp;&nbsp;- Результат	(Output)
-					<br>&nbsp;&nbsp;&nbsp;- СвойстваАнимации	(AnimationProperties)
-					<br>&nbsp;&nbsp;&nbsp;- Скрипт	(Script)
+					<br>Список классов:
+					<br>- Абзац	(Paragraph)
+					<br>- Анимация	(Animation)
+					<br>- АргументыСобытия	(EventArgs)
+					<br>- Артикль	(Article)
+					<br>- Аудио	(Audio)
+					<br>- БезьеКуб	(CubicBezier)
+					<br>- Блок	(Div)
+					<br>- ВерхняяГраница	(BorderTop)
+					<br>- ВыборВремени	(TimeSelection)
+					<br>- ВыборДаты	(DateSelection)
+					<br>- ВыборДатыВремени	(DateTimeSelection)
+					<br>- ВыборМестнойДатыВремени	(DateTimeLocalSelection)
+					<br>- ВыборМесяца	(MonthSelection)
+					<br>- ВыборНедели	(WeekSelection)
+					<br>- ВыборФайла	(FileSelection)
+					<br>- ВыборЦвета	(ColorSelection)
+					<br>- Границы	(Borders)
+					<br>- Группа	(Group)
+					<br>- ГруппаКолонок	(Colgroup)
+					<br>- ГруппировкаПоляСписка	(SelectGroup)
+					<br>- ДанныеРисунка	(ImageData)
+					<br>- Действие	(Action)
+					<br>- ДекларативныеФормы	(DeclarativeForms)
+					<br>- Диалог	(Dialog)
+					<br>- ДополнительныйБлок	(AdditionalDiv)
+					<br>- ЖирныйТекст	(BoldText)
+					<br>- Заголовок	(Caption)
+					<br>- Заголовок1	(H1)
+					<br>- Заголовок2	(H2)
+					<br>- Заголовок3	(H3)
+					<br>- Заголовок4	(H4)
+					<br>- Заголовок5	(H5)
+					<br>- Заголовок6	(H6)
+					<br>- ЗаголовокГруппы	(GroupTitle)
+					<br>- ЗаголовокРаскрываемогоБлока	(ExpandableDivHeader)
+					<br>- Заполнение	(Padding)
+					<br>- Изображение	(Image)
+					<br>- Индикатор	(Progress)
+					<br>- ИсточникПерспективы	(PerspectiveOrigin)
+					<br>- Итоги	(Outcome)
+					<br>- Кадры	(Frames)
+					<br>- Карта	(Map)
+					<br>- КартинкаГраницы	(BorderImage)
+					<br>- Кнопка	(Button)
+					<br>- Код	(Code)
+					<br>- Колонка	(Column)
+					<br>- КолонкиЭлемента	(Columns)
+					<br>- Колонтитул	(Header)
+					<br>- Контекст2d	(Context2d)
+					<br>- Контент	(Body)
+					<br>- Контур	(Outline)
+					<br>- Круг	(Circle)
+					<br>- КурсивТекст	(ItalicsText)
+					<br>- ЛеваяГраница	(BorderLeft)
+					<br>- ЛинейныйГрадиент	(LinearGradient)
+					<br>- Линия	(Line)
+					<br>- МаркированныйТекст	(MarkedText)
+					<br>- Масштаб	(Scale)
+					<br>- Масштаб3Д	(Scale3D)
+					<br>- МасштабЗет	(ScaleZ)
+					<br>- МасштабИгрек	(ScaleY)
+					<br>- МасштабИкс	(ScaleX)
+					<br>- Математика	(Math)
+					<br>- Матрица	(Matrix)
+					<br>- Матрица3Д	(Matrix3D)
+					<br>- МедиаГруппа	(MediaGroup)
+					<br>- МелкийТекст	(SmallText)
+					<br>- Меню	(Menu)
+					<br>- НадстрочныйТекст	(SupText)
+					<br>- Наклон	(Skew)
+					<br>- НаклонИгрек	(SkewY)
+					<br>- НаклонИкс	(SkewX)
+					<br>- НаправленныйТекст	(DirectedText)
+					<br>- НеупорядоченныйСписок	(UnorderedList)
+					<br>- НижнийКолонтитул	(Footer)
+					<br>- НижняяГраница	(BorderBottom)
+					<br>- Область	(Area)
+					<br>- ОбластьТаблицы	(TableBody)
+					<br>- ОбластьТекста	(TextArea)
+					<br>- ОписаниеМедиа	(CaptionMedia)
+					<br>- Определение	(Definition)
+					<br>- Отступ	(Margin)
+					<br>- ПараметрыАнимации	(AnimationOptions)
+					<br>- Перевод	(Translate)
+					<br>- Перевод3Д	(Translate3D)
+					<br>- ПереводЗет	(TranslateZ)
+					<br>- ПереводИгрек	(TranslateY)
+					<br>- ПереводИкс	(TranslateX)
+					<br>- Переключатель	(Radio)
+					<br>- Перенос	(Transfer)
+					<br>- Переход	(Transition)
+					<br>- Перспектива	(Perspective)
+					<br>- Поворот	(Rotate)
+					<br>- Поворот3Д	(Rotate3D)
+					<br>- ПоворотЗет	(RotateZ)
+					<br>- ПоворотИгрек	(RotateY)
+					<br>- ПоворотИкс	(RotateX)
+					<br>- Подпись	(Label)
+					<br>- ПодстрочныйТекст	(SubText)
+					<br>- ПодчеркнутыйТекст	(UnderlineText)
+					<br>- ПолеПароля	(PasswordField)
+					<br>- ПолеПоиска	(SearchField)
+					<br>- ПолеСписка	(Select)
+					<br>- ПолеТекста	(TextField)
+					<br>- ПолеЧисла	(NumberField)
+					<br>- Ползунок	(Range)
+					<br>- Полигон	(Polygon)
+					<br>- ПраваяГраница	(BorderRight)
+					<br>- Прямоугольник	(Rectangle)
+					<br>- РадиальныйГрадиент	(RadialGradient)
+					<br>- РадиусГраницы	(BorderRadius)
+					<br>- РазделительКолонок	(ColumnRule)
+					<br>- Размер	(Size)
+					<br>- РаскрываемыйБлок	(ExpandableDiv)
+					<br>- Результат	(Output)
+					<br>- СвойстваАнимации	(AnimationProperties)
+					<br>- Скрипт	(Script)
 					<br>
-					<br>&nbsp;&nbsp;&nbsp;Список перечислений:
-					<br>&nbsp;&nbsp;&nbsp;- БазоваяЛинияТекста	(TextBaseline)
-					<br>&nbsp;&nbsp;&nbsp;- ВариантШрифта	(FontVariant)
-					<br>&nbsp;&nbsp;&nbsp;- ВертикальноеВыравнивание	(VerticalAlign)
-					<br>&nbsp;&nbsp;&nbsp;- Видимость	(Visibility)
-					<br>&nbsp;&nbsp;&nbsp;- ВписываниеОбъекта	(ObjectFit)
-					<br>&nbsp;&nbsp;&nbsp;- ВыделениеПользователем	(UserSelect)
-					<br>&nbsp;&nbsp;&nbsp;- ВыравниваниеОтдельных	(AlignSelf)
-					<br>&nbsp;&nbsp;&nbsp;- ВыравниваниеСодержимого	(AlignContent)
-					<br>&nbsp;&nbsp;&nbsp;- ВыравниваниеТекста	(TextAlign)
-					<br>&nbsp;&nbsp;&nbsp;- ВыравниваниеЭлементов	(AlignItems)
-					<br>&nbsp;&nbsp;&nbsp;- ГоризонтальноеВыравнивание	(CssFloat)
-					<br>&nbsp;&nbsp;&nbsp;- ГоризонтальноеВыравниваниеТекста	(HorizontalTextAlign)
-					<br>&nbsp;&nbsp;&nbsp;- ГраницаСвернута	(BorderCollapse)
-					<br>&nbsp;&nbsp;&nbsp;- ЖирностьШрифта	(FontWeight)
-					<br>&nbsp;&nbsp;&nbsp;- ЗаливкаАнимации	(AnimationFillMode)
-					<br>&nbsp;&nbsp;&nbsp;- ЗаполнениеКолонок	(ColumnFill)
-					<br>&nbsp;&nbsp;&nbsp;- ИзменяемыйРазмер	(Resize)
-					<br>&nbsp;&nbsp;&nbsp;- Калибровка	(BoxSizing)
-					<br>&nbsp;&nbsp;&nbsp;- КнопкиМыши	(MouseButtons)
-					<br>&nbsp;&nbsp;&nbsp;- Композиция	(GlobalCompositeOperation)
-					<br>&nbsp;&nbsp;&nbsp;- Курсор	(Cursor)
-					<br>&nbsp;&nbsp;&nbsp;- МозаикаКартинки	(BackgroundRepeat)
-					<br>&nbsp;&nbsp;&nbsp;- МозаикаКартинкиГраницы	(BorderImageRepeat)
-					<br>&nbsp;&nbsp;&nbsp;- Назначение	(Target)
-					<br>&nbsp;&nbsp;&nbsp;- Направление	(Dir)
-					<br>&nbsp;&nbsp;&nbsp;- НаправлениеАнимации	(AnimationDirection)
-					<br>&nbsp;&nbsp;&nbsp;- НаправлениеЭлементов	(FlexDirection)
-					<br>&nbsp;&nbsp;&nbsp;- Несвободно	(Clear)
-					<br>&nbsp;&nbsp;&nbsp;- ОбластьКартинки	(BackgroundOrigin)
-					<br>&nbsp;&nbsp;&nbsp;- ОбластьРисования	(BackgroundClip)
-					<br>&nbsp;&nbsp;&nbsp;- Отображать	(Display)
-					<br>&nbsp;&nbsp;&nbsp;- ОформлениеТекстаЛиния	(TextDecorationLine)
-					<br>&nbsp;&nbsp;&nbsp;- ОформлениеТекстаСтиль	(TextDecorationStyle)
-					<br>&nbsp;&nbsp;&nbsp;- ПереносГибких	(FlexWrap)
-					<br>&nbsp;&nbsp;&nbsp;- ПереносСлов	(WordWrap)
-					<br>&nbsp;&nbsp;&nbsp;- ПереносТекста	(TextWrap)
-					<br>&nbsp;&nbsp;&nbsp;- Переполнение	(Overflow)
-					<br>&nbsp;&nbsp;&nbsp;- ПереполнениеТекста	(TextOverflow)
-					<br>&nbsp;&nbsp;&nbsp;- ПоведениеПрокрутки	(ScrollBehavior)
-					<br>&nbsp;&nbsp;&nbsp;- ПовторШаблона	(PatternRepeat)
-					<br>&nbsp;&nbsp;&nbsp;- Позиция	(Position)
-					<br>&nbsp;&nbsp;&nbsp;- ПозицияСтиляСписка	(ListStylePosition)
-					<br>&nbsp;&nbsp;&nbsp;- ПозицияФормы	(FormPosition)
-					<br>&nbsp;&nbsp;&nbsp;- ПоложениеЗаголовка	(CaptionSide)
-					<br>&nbsp;&nbsp;&nbsp;- ПоложениеКартинки	(BackgroundPosition)
-					<br>&nbsp;&nbsp;&nbsp;- Пробелы	(WhiteSpace)
-					<br>&nbsp;&nbsp;&nbsp;- ПрописныеТекста	(TextTransform)
-					<br>&nbsp;&nbsp;&nbsp;- ПустыеЯчейки	(EmptyCells)
-					<br>&nbsp;&nbsp;&nbsp;- Разлиновка	(Rules)
-					<br>&nbsp;&nbsp;&nbsp;- РазмерКартинки	(BackgroundSize)
-					<br>&nbsp;&nbsp;&nbsp;- РазмещениеВТаблице	(TableLayout)
-					<br>&nbsp;&nbsp;&nbsp;- РазрывСтраницыВнутри	(PageBreakInside)
-					<br>&nbsp;&nbsp;&nbsp;- РазрывСтраницыДо	(PageBreakBefore)
-					<br>&nbsp;&nbsp;&nbsp;- РазрывСтраницыПосле	(PageBreakAfter)
-					<br>&nbsp;&nbsp;&nbsp;- РасположениеСодержимого	(JustifyContent)
-					<br>&nbsp;&nbsp;&nbsp;- СвойствоПерехода	(TransitionProperty)
-					<br>&nbsp;&nbsp;&nbsp;- Состояние	(AnimationPlayState)
-					<br>&nbsp;&nbsp;&nbsp;- СтильГраницы	(BorderStyle)
-					<br>&nbsp;&nbsp;&nbsp;- СтильКонтура	(OutlineStyle)
-					<br>&nbsp;&nbsp;&nbsp;- СтильКонцовЛинии	(LineCap)
-					<br>&nbsp;&nbsp;&nbsp;- СтильРазделителяКолонок	(ColumnRuleStyle)
-					<br>&nbsp;&nbsp;&nbsp;- СтильСдвига	(TransformStyle)
-					<br>&nbsp;&nbsp;&nbsp;- СтильУглаПересечения	(LineJoin)
-					<br>&nbsp;&nbsp;&nbsp;- СтильШрифта	(FontStyle)
-					<br>&nbsp;&nbsp;&nbsp;- ТипВыбранногоФайла	(SelectedFileType)
-					<br>&nbsp;&nbsp;&nbsp;- ТипМаркера	(MarkerType)
-					<br>&nbsp;&nbsp;&nbsp;- ТипМеню	(MenuType)
-					<br>&nbsp;&nbsp;&nbsp;- ТипОтображения	(DisplayType)
-					<br>&nbsp;&nbsp;&nbsp;- ТипСтиляСписка	(ListStyleType)
-					<br>&nbsp;&nbsp;&nbsp;- ТипЭлементаМеню	(MenuItemType)
-					<br>&nbsp;&nbsp;&nbsp;- ФоновоеВложение	(BackgroundAttachment)
-					<br>&nbsp;&nbsp;&nbsp;- ФункцияПерехода	(TransitionTimingFunction)
-					<br>&nbsp;&nbsp;&nbsp;- ФункцияСинхронизации	(AnimationTimingFunction)
-					<br>&nbsp;&nbsp;&nbsp;- Цвет	(Color)
-					<br>&nbsp;&nbsp;&nbsp;- ШиринаГраницы	(BorderWidth)
-				</div>
-			</details>
-		</div>
-		
-		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;">
-		</td>
-    </tr>
-	</tbody>
-</table>
-<br>
-<br>
-</body></html>
+					<br>Список перечислений:
+					<br>- БазоваяЛинияТекста	(TextBaseline)
+					<br>- ВариантШрифта	(FontVariant)
+					<br>- ВертикальноеВыравнивание	(VerticalAlign)
+					<br>- Видимость	(Visibility)
+					<br>- ВписываниеОбъекта	(ObjectFit)
+					<br>- ВыделениеПользователем	(UserSelect)
+					<br>- ВыравниваниеОтдельных	(AlignSelf)
+					<br>- ВыравниваниеСодержимого	(AlignContent)
+					<br>- ВыравниваниеТекста	(TextAlign)
+					<br>- ВыравниваниеЭлементов	(AlignItems)
+					<br>- ГоризонтальноеВыравнивание	(CssFloat)
+					<br>- ГоризонтальноеВыравниваниеТекста	(HorizontalTextAlign)
+					<br>- ГраницаСвернута	(BorderCollapse)
+					<br>- ЖирностьШрифта	(FontWeight)
+					<br>- ЗаливкаАнимации	(AnimationFillMode)
+					<br>- ЗаполнениеКолонок	(ColumnFill)
+					<br>- ИзменяемыйРазмер	(Resize)
+					<br>- Калибровка	(BoxSizing)
+					<br>- КнопкиМыши	(MouseButtons)
+					<br>- Композиция	(GlobalCompositeOperation)
+					<br>- Курсор	(Cursor)
+					<br>- МозаикаКартинки	(BackgroundRepeat)
+					<br>- МозаикаКартинкиГраницы	(BorderImageRepeat)
+					<br>- Назначение	(Target)
+					<br>- Направление	(Dir)
+					<br>- НаправлениеАнимации	(AnimationDirection)
+					<br>- НаправлениеЭлементов	(FlexDirection)
+					<br>- Несвободно	(Clear)
+					<br>- ОбластьКартинки	(BackgroundOrigin)
+					<br>- ОбластьРисования	(BackgroundClip)
+					<br>- Отображать	(Display)
+					<br>- ОформлениеТекстаЛиния	(TextDecorationLine)
+					<br>- ОформлениеТекстаСтиль	(TextDecorationStyle)
+					<br>- ПереносГибких	(FlexWrap)
+					<br>- ПереносСлов	(WordWrap)
+					<br>- ПереносТекста	(TextWrap)
+					<br>- Переполнение	(Overflow)
+					<br>- ПереполнениеТекста	(TextOverflow)
+					<br>- ПоведениеПрокрутки	(ScrollBehavior)
+					<br>- ПовторШаблона	(PatternRepeat)
+					<br>- Позиция	(Position)
+					<br>- ПозицияСтиляСписка	(ListStylePosition)
+					<br>- ПозицияФормы	(FormPosition)
+					<br>- ПоложениеЗаголовка	(CaptionSide)
+					<br>- ПоложениеКартинки	(BackgroundPosition)
+					<br>- Пробелы	(WhiteSpace)
+					<br>- ПрописныеТекста	(TextTransform)
+					<br>- ПустыеЯчейки	(EmptyCells)
+					<br>- Разлиновка	(Rules)
+					<br>- РазмерКартинки	(BackgroundSize)
+					<br>- РазмещениеВТаблице	(TableLayout)
+					<br>- РазрывСтраницыВнутри	(PageBreakInside)
+					<br>- РазрывСтраницыДо	(PageBreakBefore)
+					<br>- РазрывСтраницыПосле	(PageBreakAfter)
+					<br>- РасположениеСодержимого	(JustifyContent)
+					<br>- СвойствоПерехода	(TransitionProperty)
+					<br>- Состояние	(AnimationPlayState)
+					<br>- СтильГраницы	(BorderStyle)
+					<br>- СтильКонтура	(OutlineStyle)
+					<br>- СтильКонцовЛинии	(LineCap)
+					<br>- СтильРазделителяКолонок	(ColumnRuleStyle)
+					<br>- СтильСдвига	(TransformStyle)
+					<br>- СтильУглаПересечения	(LineJoin)
+					<br>- СтильШрифта	(FontStyle)
+					<br>- ТипВыбранногоФайла	(SelectedFileType)
+					<br>- ТипМаркера	(MarkerType)
+					<br>- ТипМеню	(MenuType)
+					<br>- ТипОтображения	(DisplayType)
+					<br>- ТипСтиляСписка	(ListStyleType)
+					<br>- ТипЭлементаМеню	(MenuItemType)
+					<br>- ФоновоеВложение	(BackgroundAttachment)
+					<br>- ФункцияПерехода	(TransitionTimingFunction)
+					<br>- ФункцияСинхронизации	(AnimationTimingFunction)
+					<br>- Цвет	(Color)
+					<br>- ШиринаГраницы	(BorderWidth)
+                </div>
+            </details>
+        </div>
+    </section>
+</body>
+</HTML>

@@ -1,48 +1,61 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Margin Constructor</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>Margin Constructor</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>Отступ (Margin)&nbsp;Конструктор</H1></DIV></DIV>
-<DIV id=nstext>
-<H4 class=dtH4>Синтаксис</H4>
-<P>Отступ(&lt;ОтступСверху&gt;, &lt;ОтступСправа&gt;, &lt;ОтступСнизу&gt;, &lt;ОтступСлева&gt;, &lt;Авто&gt;)</P>
-<H4 class=dtH4>Параметры</H4>
-<DL>
-<DT><I>ОтступСверху</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Возвращает или задает верхний отступ для элемента.</DD>
-<DT><I>ОтступСправа</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Возвращает или задает правый отступ для элемента.</DD>
-<DT><I>ОтступСнизу</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Возвращает или задает нижний отступ для элемента.</DD>
-<DT><I>ОтступСлева</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Возвращает или задает левый отступ для элемента.</DD>
-<DT><I>Авто</I> (необязательный)</DT>
-<DD>Тип: Булево.</DD>
-<DD>Возвращает или задает возможность браузеру устанавливать поля (все четыре поля будут равны).</DD>
-</DL>
-<H4 class=dtH4>Описание</H4>
-<P>Создаёт новый экземпляр класса <B>Отступ&nbsp;(Margin)</B>.</P>
-<H4 class=dtH4>Примечание</H4>
-<P></P>
-<H4 class=dtH4>Пример</H4>
-<P><PRE class=code>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>Отступ (Margin)&nbsp;Конструктор</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>Отступ(&lt;ОтступСверху&gt;, &lt;ОтступСправа&gt;, &lt;ОтступСнизу&gt;, &lt;ОтступСлева&gt;, &lt;Авто&gt;)</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL>
+            <DT><I>ОтступСверху</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Возвращает или задает верхний отступ для элемента.</DD>
+            <DT><I>ОтступСправа</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Возвращает или задает правый отступ для элемента.</DD>
+            <DT><I>ОтступСнизу</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Возвращает или задает нижний отступ для элемента.</DD>
+            <DT><I>ОтступСлева</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Возвращает или задает левый отступ для элемента.</DD>
+            <DT><I>Авто</I> (необязательный)</DT>
+            <DD>Тип: Булево.</DD>
+            <DD>Возвращает или задает возможность браузеру устанавливать поля (все четыре поля будут равны).</DD>
+        </DL>
+        <H4 class=dtH4>Описание</H4>
+        <P>Создаёт новый экземпляр класса <B>Отступ&nbsp;(Margin)</B>.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
 Абзац2.Стиль.Отступ = ДФ.Отступ(20, 10, 20, 30);
 </PRE>
-<details><summary>Полный пример кода</summary>
-<P><PRE class=code>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
@@ -75,35 +88,37 @@
 Форма1.Открыть();
 </DIV>
 </PRE>
-</details>
-<P></P>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
-<script>
-window.onload = function () {
-    var a = document.getElementById('select1');
-    a.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta1 = document.getElementById('cont1'); 
-		var range1 = document.createRange();
-		range1.selectNode(ta1); 
-		window.getSelection().addRange(range1); 
-        return false;
-    }
-	
-    var b = document.getElementById('copy1');
-    b.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta2 = document.getElementById('cont1'); 
-		var range2 = document.createRange();
-		range2.selectNode(ta2); 
-		window.getSelection().addRange(range2);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range2);
-        return false;
-    }
-}
-</script>
-</BODY></HTML>
+            </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>

@@ -1,35 +1,1813 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-	<head>
-		<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
-		<title>Документация</title>
-	</head>
+<HTML>
+<HEAD>
+    <TITLE>Документация</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="styleos.css">
+	<script defer src="mobil.js"></script>
+</HEAD>
 <body>
+    <header>
+        <section>
+            <div>
+                <div id="logo"><big><big><big>Декларативные формы<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></div>
+            </div>
+            <div style="direction: rtl; overflow:hidden; padding: 8px 0px 0px 0px; margin-top:-7px;">
+                <DIV id=div22>
+                    <input type="checkbox" id="toggle">
+                    <label id="label1" class="hamburger-icon" onclick="label1click()"><div></div><div></div><div></div></label>
+                </DIV>
+                <nav>
+                    <a onclick="navclick(event)" href="index.html">Главная</a>
+                    <a onclick="navclick(event)" href="screenshot.html">Скриншоты</a>
+                    <a onclick="navclick(event)" href="howworks.html">Как это работает</a>
+                    <a onclick="navclick(event)" href="doc.html">Документация</a>
+                    <a onclick="navclick(event)" href="down.html">Скачать</a>
+                    <a onclick="navclick(event)" href="kont.html">Контакты</a>
+                    <input type="checkbox" id="toggle2">
+                    <a id="mobil" onclick="mobilClick()">`</a>
+                </nav>
+            </div>
+        </section>
+    </header>
+    <div class="cont1">
+        <!-- Секция переключателя -->
+        <input type="checkbox" id="toggle1">
+        <!-- Блок для затемнения справки -->
+        <div class="divmodal"></div>
+        <!-- Сама справка -->
+        <div class="divleft" id="divleftid" onclick="divleftClick(event)">
+            <div id="expandcollapse">
+                <div id="expand" onclick="expand()">развернуть</div>
+                <div id="separator">&nbsp;|&nbsp;</div>
+                <div id="collapse" onclick="collapse()">свернуть</div>
+            </div>
+			<details>
+                <summary class="menu"><a href="OSDFormsRu/Intro.html" target="right">Декларативные формы</a></summary>
+				<details>
+					<summary class="menu2"><a href="OSDFormsRu/OSDForms.html" target="right">Классы</a></summary>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Paragraph.html" target="right">Абзац (Paragraph)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ParagraphConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ParagraphEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ParagraphProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ParagraphMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Animation.html" target="right">Анимация (Animation)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AnimationMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.EventArgs.html" target="right">АргументыСобытия (EventArgs)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.EventArgsProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Article.html" target="right">Артикль (Article)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ArticleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ArticleEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ArticleProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ArticleMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Audio.html" target="right">Аудио (Audio)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AudioConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AudioEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AudioProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AudioMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.CubicBezier.html" target="right">БезьеКуб (CubicBezier)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CubicBezierConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CubicBezierProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Div.html" target="right">Блок (Div)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DivConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DivEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DivProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DivMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BorderTop.html" target="right">ВерхняяГраница (BorderTop)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderTopConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderTopProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TimeSelection.html" target="right">ВыборВремени (TimeSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimeSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimeSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimeSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimeSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.DateSelection.html" target="right">ВыборДаты (DateSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.DateTimeSelection.html" target="right">ВыборДатыВремени (DateTimeSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.DateTimeLocalSelection.html" target="right">ВыборМестнойДатыВремени (DateTimeLocalSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeLocalSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeLocalSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeLocalSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DateTimeLocalSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.MonthSelection.html" target="right">ВыборМесяца (MonthSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MonthSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MonthSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MonthSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MonthSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.WeekSelection.html" target="right">ВыборНедели (WeekSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.WeekSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.WeekSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.WeekSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.WeekSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.FileSelection.html" target="right">ВыборФайла (FileSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FileSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FileSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FileSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FileSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ColorSelection.html" target="right">ВыборЦвета (ColorSelection)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColorSelectionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColorSelectionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColorSelectionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColorSelectionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Borders.html" target="right">Границы (Borders)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Group.html" target="right">Группа (Group)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Colgroup.html" target="right">ГруппаКолонок (Colgroup)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColgroupConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColgroupEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColgroupProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColgroupMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SelectGroup.html" target="right">ГруппировкаПоляСписка (SelectGroup)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectGroupConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectGroupEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectGroupProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectGroupMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ImageData.html" target="right">ДанныеРисунка (ImageData)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ImageDataProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Action.html" target="right">Действие (Action)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ActionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ActionProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.DeclarativeForms.html" target="right">ДекларативныеФормы (DeclarativeForms)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DeclarativeFormsConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DeclarativeFormsProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DeclarativeFormsMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Dialog.html" target="right">Диалог (Dialog)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DialogConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DialogEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DialogProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DialogMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.AdditionalDiv.html" target="right">ДополнительныйБлок (AdditionalDiv)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AdditionalDivConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AdditionalDivEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AdditionalDivProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AdditionalDivMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BoldText.html" target="right">ЖирныйТекст (BoldText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BoldTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BoldTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BoldTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BoldTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Caption.html" target="right">Заголовок (Caption)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.H1.html" target="right">Заголовок1 (H1)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H1Constructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H1Events.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H1Properties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H1Methods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.H2.html" target="right">Заголовок2 (H2)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H2Constructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H2Events.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H2Properties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H2Methods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.H3.html" target="right">Заголовок3 (H3)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H3Constructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H3Events.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H3Properties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H3Methods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.H4.html" target="right">Заголовок4 (H4)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H4Constructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H4Events.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H4Properties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H4Methods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.H5.html" target="right">Заголовок5 (H5)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H5Constructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H5Events.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H5Properties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H5Methods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.H6.html" target="right">Заголовок6 (H6)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H6Constructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H6Events.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H6Properties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.H6Methods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.GroupTitle.html" target="right">ЗаголовокГруппы (GroupTitle)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupTitleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupTitleEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupTitleProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.GroupTitleMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ExpandableDivHeader.html" target="right">ЗаголовокРаскрываемогоБлока (ExpandableDivHeader)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivHeaderConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivHeaderEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivHeaderProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivHeaderMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Image.html" target="right">Изображение (Image)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ImageConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ImageEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ImageProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ImageMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Progress.html" target="right">Индикатор (Progress)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ProgressConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ProgressEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ProgressProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ProgressMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.PerspectiveOrigin.html" target="right">ИсточникПерспективы (PerspectiveOrigin)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PerspectiveOriginConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PerspectiveOriginProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Outcome.html" target="right">Итоги (Outcome)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutcomeConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutcomeEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutcomeProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutcomeMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Frames.html" target="right">Кадры (Frames)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FramesConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FramesProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FramesMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Map.html" target="right">Карта (Map)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MapConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MapEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MapProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MapMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BorderImage.html" target="right">КартинкаГраницы (BorderImage)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderImageConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderImageProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Button.html" target="right">Кнопка (Button)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ButtonConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ButtonEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ButtonProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ButtonMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Code.html" target="right">Код (Code)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CodeConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CodeEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CodeProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CodeMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Column.html" target="right">Колонка (Column)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Columns.html" target="right">КолонкиЭлемента (Columns)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnsConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnsProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Header.html" target="right">Колонтитул (Header)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.HeaderConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.HeaderEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.HeaderProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.HeaderMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Context2d.html" target="right">Контекст2d (Context2d)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Context2dProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Context2dMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Body.html" target="right">Контент (Body)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BodyEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BodyProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BodyMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Outline.html" target="right">Контур (Outline)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutlineConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutlineProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Circle.html" target="right">Круг (Circle)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CircleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CircleProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ItalicsText.html" target="right">КурсивТекст (ItalicsText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ItalicsTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ItalicsTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ItalicsTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ItalicsTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BorderLeft.html" target="right">ЛеваяГраница (BorderLeft)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderLeftConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderLeftProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.LinearGradient.html" target="right">ЛинейныйГрадиент (LinearGradient)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LinearGradientMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Line.html" target="right">Линия (Line)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LineConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LineEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LineProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LineMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Tray.html" target="right">Лоток (Tray)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TrayConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TrayEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TrayProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TrayMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.MarkedText.html" target="right">МаркированныйТекст (MarkedText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MarkedTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MarkedTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MarkedTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MarkedTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Scale.html" target="right">Масштаб (Scale)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Scale3D.html" target="right">Масштаб3Д (Scale3D)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Scale3DConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Scale3DProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ScaleZ.html" target="right">МасштабЗет (ScaleZ)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleZConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleZProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ScaleY.html" target="right">МасштабИгрек (ScaleY)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleYConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleYProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ScaleX.html" target="right">МасштабИкс (ScaleX)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleXConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScaleXProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Math.html" target="right">Математика (Math)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MathConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MathProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MathMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Matrix.html" target="right">Матрица (Matrix)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MatrixConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MatrixProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Matrix3D.html" target="right">Матрица3Д (Matrix3D)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Matrix3DConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Matrix3DProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.MediaGroup.html" target="right">МедиаГруппа (MediaGroup)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MediaGroupConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MediaGroupEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MediaGroupProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MediaGroupMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SmallText.html" target="right">МелкийТекст (SmallText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SmallTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SmallTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SmallTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SmallTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Menu.html" target="right">Меню (Menu)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MenuConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MenuProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MenuMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SupText.html" target="right">НадстрочныйТекст (SupText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SupTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SupTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SupTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SupTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Skew.html" target="right">Наклон (Skew)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SkewConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SkewProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SkewY.html" target="right">НаклонИгрек (SkewY)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SkewYConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SkewYProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SkewX.html" target="right">НаклонИкс (SkewX)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SkewXConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SkewXProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.DirectedText.html" target="right">НаправленныйТекст (DirectedText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DirectedTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DirectedTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DirectedTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DirectedTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.UnorderedList.html" target="right">НеупорядоченныйСписок (UnorderedList)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnorderedListConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnorderedListEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnorderedListProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnorderedListMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Footer.html" target="right">НижнийКолонтитул (Footer)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FooterConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FooterEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FooterProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FooterMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BorderBottom.html" target="right">НижняяГраница (BorderBottom)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderBottomConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderBottomProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Area.html" target="right">Область (Area)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AreaConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AreaEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AreaProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AreaMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TableBody.html" target="right">ОбластьТаблицы (TableBody)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableBodyConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableBodyEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableBodyProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableBodyMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TextArea.html" target="right">ОбластьТекста (TextArea)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextAreaConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextAreaEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextAreaProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextAreaMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.MessageBox.html" target="right">ОкноСообщений (MessageBox)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MessageBoxConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MessageBoxProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MessageBoxMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.CaptionMedia.html" target="right">ОписаниеМедиа (CaptionMedia)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionMediaConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionMediaEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionMediaProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CaptionMediaMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Definition.html" target="right">Определение (Definition)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DefinitionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DefinitionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DefinitionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DefinitionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Margin.html" target="right">Отступ (Margin)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MarginConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MarginProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.AnimationOptions.html" target="right">ПараметрыАнимации (AnimationOptions)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AnimationOptionsConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AnimationOptionsProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Translate.html" target="right">Перевод (Translate)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Translate3D.html" target="right">Перевод3Д (Translate3D)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Translate3DConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Translate3DProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TranslateZ.html" target="right">ПереводЗет (TranslateZ)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateZConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateZProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TranslateY.html" target="right">ПереводИгрек (TranslateY)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateYConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateYProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TranslateX.html" target="right">ПереводИкс (TranslateX)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateXConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TranslateXProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Radio.html" target="right">Переключатель (Radio)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RadioConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RadioEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RadioProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RadioMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Transfer.html" target="right">Перенос (Transfer)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransferConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransferEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransferProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransferMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Transition.html" target="right">Переход (Transition)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransitionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransitionProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Perspective.html" target="right">Перспектива (Perspective)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PerspectiveConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PerspectiveProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Rotate.html" target="right">Поворот (Rotate)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Rotate3D.html" target="right">Поворот3Д (Rotate3D)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Rotate3DConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.Rotate3DProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.RotateZ.html" target="right">ПоворотЗет (RotateZ)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateZConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateZProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.RotateY.html" target="right">ПоворотИгрек (RotateY)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateYConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateYProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.RotateX.html" target="right">ПоворотИкс (RotateX)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateXConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RotateXProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Label.html" target="right">Подпись (Label)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LabelConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LabelEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LabelProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LabelMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SubText.html" target="right">ПодстрочныйТекст (SubText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SubTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SubTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SubTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SubTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.UnderlineText.html" target="right">ПодчеркнутыйТекст (UnderlineText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnderlineTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnderlineTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnderlineTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.UnderlineTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.PasswordField.html" target="right">ПолеПароля (PasswordField)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PasswordFieldConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PasswordFieldEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PasswordFieldProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PasswordFieldMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SearchField.html" target="right">ПолеПоиска (SearchField)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SearchFieldConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SearchFieldEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SearchFieldProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SearchFieldMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Select.html" target="right">ПолеСписка (Select)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TextField.html" target="right">ПолеТекста (TextField)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextFieldConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextFieldEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextFieldProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TextFieldMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.NumberField.html" target="right">ПолеЧисла (NumberField)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.NumberFieldConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.NumberFieldEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.NumberFieldProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.NumberFieldMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Range.html" target="right">Ползунок (Range)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RangeConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RangeEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RangeProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RangeMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Polygon.html" target="right">Полигон (Polygon)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PolygonConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PolygonProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BorderRight.html" target="right">ПраваяГраница (BorderRight)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderRightConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderRightProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Rectangle.html" target="right">Прямоугольник (Rectangle)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RectangleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RectangleProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.RadialGradient.html" target="right">РадиальныйГрадиент (RadialGradient)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.RadialGradientMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BorderRadius.html" target="right">РадиусГраницы (BorderRadius)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderRadiusConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BorderRadiusProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ColumnRule.html" target="right">РазделительКолонок (ColumnRule)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnRuleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ColumnRuleProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Size.html" target="right">Размер (Size)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SizeConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SizeProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ExpandableDiv.html" target="right">РаскрываемыйБлок (ExpandableDiv)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ExpandableDivMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Output.html" target="right">Результат (Output)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutputConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutputEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutputProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OutputMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.AnimationProperties.html" target="right">СвойстваАнимации (AnimationProperties)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AnimationPropertiesConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.AnimationPropertiesProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Script.html" target="right">Скрипт (Script)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScriptConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ScriptProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ListDefinition.html" target="right">СписокОпределений (ListDefinition)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListDefinitionConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListDefinitionEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListDefinitionProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListDefinitionMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Link.html" target="right">Ссылка (Link)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LinkConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LinkEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LinkProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.LinkMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Style.html" target="right">Стиль (Style)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.StyleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.StyleProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.StyleMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BordersStyle.html" target="right">СтильГраниц (BordersStyle)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersStyleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersStyleProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ListStyle.html" target="right">СтильСписка (ListStyle)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListStyleConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListStyleProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TableRow.html" target="right">СтрокаТаблицы (TableRow)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableRowConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableRowEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableRowProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableRowMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Table.html" target="right">Таблица (Table)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Timer.html" target="right">Таймер (Timer)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimerConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimerEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimerProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TimerMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BoxShadow.html" target="right">Тень (BoxShadow)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BoxShadowConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BoxShadowProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Term.html" target="right">Термин (Term)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TermConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TermEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TermProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TermMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Point.html" target="right">Точка (Point)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PointConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PointProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TransformOrigin.html" target="right">ТочкаСдвига (TransformOrigin)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransformOriginConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TransformOriginProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Balloons.html" target="right">Уведомления (Balloons)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BalloonsConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BalloonsProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BalloonsMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.DeletedText.html" target="right">УдаленыйТекст (DeletedText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DeletedTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DeletedTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DeletedTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.DeletedTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.OrderedList.html" target="right">УпорядоченныйСписок (OrderedList)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OrderedListConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OrderedListEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OrderedListProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.OrderedListMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ImagesFilter.html" target="right">ФильтрИзображений (ImagesFilter)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ImagesFilterConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ImagesFilterProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.CheckBox.html" target="right">Флажок (CheckBox)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CheckBoxConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CheckBoxEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CheckBoxProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CheckBoxMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Background.html" target="right">Фон (Background)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BackgroundConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BackgroundProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Form.html" target="right">Форма (Form)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FormEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FormProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FormMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.PreformattedText.html" target="right">ФорматированныйТекст (PreformattedText)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PreformattedTextConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PreformattedTextEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PreformattedTextProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.PreformattedTextMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Frame.html" target="right">Фрейм (Frame)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FrameConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FrameEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FrameProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FrameMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Canvas.html" target="right">Холст (Canvas)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CanvasConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CanvasEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CanvasProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CanvasMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BordersColor.html" target="right">ЦветГраниц (BordersColor)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersColorConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersColorProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.TableHeader.html" target="right">ШапкаТаблицы (TableHeader)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableHeaderConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableHeaderEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableHeaderProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.TableHeaderMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.BordersWidth.html" target="right">ШиринаГраниц (BordersWidth)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersWidthConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.BordersWidthProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Meter.html" target="right">Шкала (Meter)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MeterConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MeterEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MeterProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MeterMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Font.html" target="right">Шрифт (Font)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FontConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.FontProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.MenuItem.html" target="right">ЭлементМеню (MenuItem)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MenuItemConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MenuItemEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.MenuItemProperties.html" target="right">Свойства</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.SelectItem.html" target="right">ЭлементПоляСписка (SelectItem)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectItemConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectItemEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectItemProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.SelectItemMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.ListItem.html" target="right">ЭлементСписка (ListItem)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListItemConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListItemEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListItemProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.ListItemMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.Cell.html" target="right">Ячейка (Cell)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CellConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CellEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CellProperties.html" target="right">Свойства</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.CellMethods.html" target="right">Методы</a></p>
+					</details>
+					<details>
+						<summary class="menu3"><a href="OSDFormsRu/OSDForms.HeaderCell.html" target="right">ЯчейкаЗаголовка (HeaderCell)</a></summary>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.HeaderCellConstructor.html" target="right">Конструктор</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.HeaderCellEvents.html" target="right">События</a></p>
+						<p class="prop"><a href="OSDFormsRu/OSDForms.HeaderCellProperties.html" target="right">Свойства</a></p>
+					</details>
+				</details>
+				<details>
+					<summary class="menu2"><a href="OSDFormsRu/Enumerations.html" target="right">Перечисления</a></summary>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextBaselineEnumeration.html" target="right">БазоваяЛинияТекста (TextBaseline)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontVariantEnumeration.html" target="right">ВариантШрифта (FontVariant)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.VerticalAlignEnumeration.html" target="right">ВертикальноеВыравнивание (VerticalAlign)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.VisibilityEnumeration.html" target="right">Видимость (Visibility)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ObjectFitEnumeration.html" target="right">ВписываниеОбъекта (ObjectFit)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.UserSelectEnumeration.html" target="right">ВыделениеПользователем (UserSelect)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AlignSelfEnumeration.html" target="right">ВыравниваниеОтдельных (AlignSelf)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AlignContentEnumeration.html" target="right">ВыравниваниеСодержимого (AlignContent)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextAlignEnumeration.html" target="right">ВыравниваниеТекста (TextAlign)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AlignItemsEnumeration.html" target="right">ВыравниваниеЭлементов (AlignItems)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CssFloatEnumeration.html" target="right">ГоризонтальноеВыравнивание (CssFloat)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.HorizontalTextAlignEnumeration.html" target="right">ГоризонтальноеВыравниваниеТекста (HorizontalTextAlign)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderCollapseEnumeration.html" target="right">ГраницаСвернута (BorderCollapse)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontWeightEnumeration.html" target="right">ЖирностьШрифта (FontWeight)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationFillModeEnumeration.html" target="right">ЗаливкаАнимации (AnimationFillMode)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnFillEnumeration.html" target="right">ЗаполнениеКолонок (ColumnFill)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ResizeEnumeration.html" target="right">ИзменяемыйРазмер (Resize)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BoxSizingEnumeration.html" target="right">Калибровка (BoxSizing)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MouseButtonsEnumeration.html" target="right">КнопкиМыши (MouseButtons)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.GlobalCompositeOperationEnumeration.html" target="right">Композиция (GlobalCompositeOperation)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CursorEnumeration.html" target="right">Курсор (Cursor)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundRepeatEnumeration.html" target="right">МозаикаКартинки (BackgroundRepeat)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderImageRepeatEnumeration.html" target="right">МозаикаКартинкиГраницы (BorderImageRepeat)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TargetEnumeration.html" target="right">Назначение (Target)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DirEnumeration.html" target="right">Направление (Dir)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationDirectionEnumeration.html" target="right">НаправлениеАнимации (AnimationDirection)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FlexDirectionEnumeration.html" target="right">НаправлениеЭлементов (FlexDirection)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ClearEnumeration.html" target="right">Несвободно (Clear)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundOriginEnumeration.html" target="right">ОбластьКартинки (BackgroundOrigin)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundClipEnumeration.html" target="right">ОбластьРисования (BackgroundClip)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DisplayEnumeration.html" target="right">Отображать (Display)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextDecorationLineEnumeration.html" target="right">ОформлениеТекстаЛиния (TextDecorationLine)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextDecorationStyleEnumeration.html" target="right">ОформлениеТекстаСтиль (TextDecorationStyle)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FlexWrapEnumeration.html" target="right">ПереносГибких (FlexWrap)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.WordWrapEnumeration.html" target="right">ПереносСлов (WordWrap)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextWrapEnumeration.html" target="right">ПереносТекста (TextWrap)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OverflowEnumeration.html" target="right">Переполнение (Overflow)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextOverflowEnumeration.html" target="right">ПереполнениеТекста (TextOverflow)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PatternRepeatEnumeration.html" target="right">ПовторШаблона (PatternRepeat)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PositionEnumeration.html" target="right">Позиция (Position)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ListStylePositionEnumeration.html" target="right">ПозицияСтиляСписка (ListStylePosition)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormPositionEnumeration.html" target="right">ПозицияФормы (FormPosition)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CaptionSideEnumeration.html" target="right">ПоложениеЗаголовка (CaptionSide)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundPositionEnumeration.html" target="right">ПоложениеКартинки (BackgroundPosition)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.WhiteSpaceEnumeration.html" target="right">Пробелы (WhiteSpace)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextTransformEnumeration.html" target="right">ПрописныеТекста (TextTransform)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EmptyCellsEnumeration.html" target="right">ПустыеЯчейки (EmptyCells)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RulesEnumeration.html" target="right">Разлиновка (Rules)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundSizeEnumeration.html" target="right">РазмерКартинки (BackgroundSize)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableLayoutEnumeration.html" target="right">РазмещениеВТаблице (TableLayout)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.JustifyContentEnumeration.html" target="right">РасположениеСодержимого (JustifyContent)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransitionPropertyEnumeration.html" target="right">СвойствоПерехода (TransitionProperty)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPlayStateEnumeration.html" target="right">Состояние (AnimationPlayState)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderStyleEnumeration.html" target="right">СтильГраницы (BorderStyle)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OutlineStyleEnumeration.html" target="right">СтильКонтура (OutlineStyle)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LineCapEnumeration.html" target="right">СтильКонцовЛинии (LineCap)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnRuleStyleEnumeration.html" target="right">СтильРазделителяКолонок (ColumnRuleStyle)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransformStyleEnumeration.html" target="right">СтильСдвига (TransformStyle)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LineJoinEnumeration.html" target="right">СтильУглаПересечения (LineJoin)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontStyleEnumeration.html" target="right">СтильШрифта (FontStyle)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectedFileTypeEnumeration.html" target="right">ТипВыбранногоФайла (SelectedFileType)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MarkerTypeEnumeration.html" target="right">ТипМаркера (MarkerType)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuTypeEnumeration.html" target="right">ТипМеню (MenuType)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DisplayTypeEnumeration.html" target="right">ТипОтображения (DisplayType)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ListStyleTypeEnumeration.html" target="right">ТипСтиляСписка (ListStyleType)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuItemTypeEnumeration.html" target="right">ТипЭлементаМеню (MenuItemType)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundAttachmentEnumeration.html" target="right">ФоновоеВложение (BackgroundAttachment)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransitionTimingFunctionEnumeration.html" target="right">ФункцияПерехода (TransitionTimingFunction)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationTimingFunctionEnumeration.html" target="right">ФункцияСинхронизации (AnimationTimingFunction)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColorEnumeration.html" target="right">Цвет (Color)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderWidthEnumeration.html" target="right">ШиринаГраницы (BorderWidth)</a></p>					
+				</details>
+				<details>
+					<summary class="menu2"><a href="OSDFormsRu/Events.html" target="right">События</a></summary>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDropEvent.html" target="right">Бросить (Drop) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementInputEvent.html" target="right">Ввод (Input) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDoubleClickEvent.html" target="right">ДвойноеНажатие (DoubleClick) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormLoadedEvent.html" target="right">Загружена (Loaded) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDragEndEvent.html" target="right">КонецПеретаскивания (DragEnd) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMouseOverEvent.html" target="right">МышьНадЭлементом (MouseOver) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMouseOutEvent.html" target="right">МышьПокинулаЭлемент (MouseOut) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDragEnterEvent.html" target="right">НадЦелью (DragEnter) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TrayClickEvent.html" target="right">Нажатие (Click) (Лоток)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementClickEvent.html" target="right">Нажатие (Click) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuItemClickEvent.html" target="right">Нажатие (Click) (ЭлементМеню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDragStartEvent.html" target="right">НачалоПеретаскивания (DragStart) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FileSelectionChangeEvent.html" target="right">ПриИзменении (Change) (ВыборФайла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectChangeEvent.html" target="right">ПриИзменении (Change) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CheckBoxChangeEvent.html" target="right">ПриИзменении (Change) (Флажок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementChangeEvent.html" target="right">ПриИзменении (Change) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMouseDownEvent.html" target="right">ПриНажатииМыши (MouseDown) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMouseUpEvent.html" target="right">ПриОтпусканииМыши (MouseUp) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMouseMoveEvent.html" target="right">ПриПеремещенииМыши (MouseMove) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormScrollEvent.html" target="right">ПриПрокручивании (Scroll) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimerTickEvent.html" target="right">ПриСрабатыванииТаймера (Tick) (Таймер)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormResizeEvent.html" target="right">РазмерИзменен (Resize) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementFocusedEvent.html" target="right">ФокусПолучен (Focused) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementLostFocusEvent.html" target="right">ФокусПотерян (LostFocus) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDragLeaveEvent.html" target="right">ЦельПокинута (DragLeave) (Элемент)</a></p>					
+				</details>
+				<details>
+					<summary class="menu2"><a href="OSDFormsRu/Properties.html" target="right">Свойства</a></summary>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormscssPathProperty.html" target="right">cssПуть (cssPath) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylecssTextProperty.html" target="right">cssТекст (cssText) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsNwPathProperty.html" target="right">nwПуть (NwPath) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsOscriptPathProperty.html" target="right">oscriptПуть (OscriptPath) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MarginAutoProperty.html" target="right">Авто (Auto) (Отступ)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementAutoFocusProperty.html" target="right">АвтоФокус (AutoFocus) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AreaHrefProperty.html" target="right">Адрес (Href) (Область)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LinkHrefProperty.html" target="right">Адрес (Href) (Ссылка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimerEnabledProperty.html" target="right">Активен (Enabled) (Таймер)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dGlobalAlphaProperty.html" target="right">Альфа (GlobalAlpha) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationProperty.html" target="right">Анимация (Animation) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsEventArgsProperty.html" target="right">АргументыСобытия (EventArgs ) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScriptAsyncProperty.html" target="right">Асинхронно (Async) (Скрипт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFlexBasisProperty.html" target="right">БазоваяДлина (FlexBasis) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dTextBaselineProperty.html" target="right">БазоваяЛинияТекста (TextBaseline) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioMutedProperty.html" target="right">Беззвучно (Muted) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxFontVariantProperty.html" target="right">ВариантШрифта (FontVariant) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFontVariantProperty.html" target="right">ВариантШрифта (FontVariant) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsFontVariantProperty.html" target="right">ВариантШрифта (FontVariant) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontFontVariantProperty.html" target="right">ВариантШрифта (FontVariant) (Шрифт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BoxShadowSpreadProperty.html" target="right">Величина (Spread) (Тень)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleVerticalAlignProperty.html" target="right">ВертикальноеВыравнивание (VerticalAlign) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementScrollTopProperty.html" target="right">ВертикальноеПрокручивание (ScrollTop) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTopProperty.html" target="right">Верх (Top) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderTopProperty.html" target="right">ВерхняяГраница (BorderTop) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleVisibilityProperty.html" target="right">Видимость (Visibility) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BoxShadowInsetProperty.html" target="right">Внутренняя (Inset) (Тень)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleObjectFitProperty.html" target="right">ВписываниеОбъекта (ObjectFit) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransitionTransitionDurationProperty.html" target="right">ВремяПерехода (TransitionDuration) (Переход)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransitionDurationProperty.html" target="right">ВремяПерехода (TransitionDuration) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectItemSelectedProperty.html" target="right">Выбран (Selected) (ЭлементПоляСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsDisplayStartupWarningProperty.html" target="right">ВыводитьПредупреждениеПриЗапуске (DisplayStartupWarning) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleUserSelectProperty.html" target="right">ВыделениеПользователем (UserSelect) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAlignSelfProperty.html" target="right">ВыравниваниеОтдельных (AlignSelf) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAlignContentProperty.html" target="right">ВыравниваниеСодержимого (AlignContent) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dTextAlignProperty.html" target="right">ВыравниваниеТекста (TextAlign) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAlignItemsProperty.html" target="right">ВыравниваниеЭлементов (AlignItems) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageDataHeightProperty.html" target="right">Высота (Height) (ДанныеРисунка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageHeightProperty.html" target="right">Высота (Height) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxHeightProperty.html" target="right">Высота (Height) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RectangleHeightProperty.html" target="right">Высота (Height) (Прямоугольник)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SizeHeightProperty.html" target="right">Высота (Height) (Размер)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleHeightProperty.html" target="right">Высота (Height) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsHeightProperty.html" target="right">Высота (Height) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CanvasHeightProperty.html" target="right">Высота (Height) (Холст)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsWindowHeightProperty.html" target="right">ВысотаОкна (WindowHeight) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxLineHeightProperty.html" target="right">ВысотаСтроки (LineHeight) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleLineHeightProperty.html" target="right">ВысотаСтроки (LineHeight) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsLineHeightProperty.html" target="right">ВысотаСтроки (LineHeight) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontLineHeightProperty.html" target="right">ВысотаСтроки (LineHeight) (Шрифт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFlexProperty.html" target="right">Гибкость (Flex) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleCssFloatProperty.html" target="right">ГоризонтальноеВыравнивание (CssFloat) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleHorizontalTextAlignProperty.html" target="right">ГоризонтальноеВыравниваниеТекста (HorizontalTextAlign) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementScrollLeftProperty.html" target="right">ГоризонтальноеПрокручивание (ScrollLeft) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderCollapseProperty.html" target="right">ГраницаСвернута (BorderCollapse) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBordersProperty.html" target="right">Границы (Borders) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioVolumeProperty.html" target="right">Громкость (Volume) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColgroupSpanProperty.html" target="right">Диапазон (Span) (ГруппаКолонок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnSpanProperty.html" target="right">Диапазон (Span) (Колонка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CellColSpanProperty.html" target="right">ДиапазонКолонок (ColSpan) (Ячейка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.HeaderCellColSpanProperty.html" target="right">ДиапазонКолонок (ColSpan) (ЯчейкаЗаголовка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnSpanProperty.html" target="right">ДиапазонКолонокЭлемента (ColumnSpan) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CellRowSpanProperty.html" target="right">ДиапазонСтрок (RowSpan) (Ячейка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.HeaderCellRowSpanProperty.html" target="right">ДиапазонСтрок (RowSpan) (ЯчейкаЗаголовка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTabSizeProperty.html" target="right">ДлинаТабуляции (TabSize) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioDurationProperty.html" target="right">Длительность (Duration) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationOptionsDurationProperty.html" target="right">Длительность (Duration) (ПараметрыАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationDurationProperty.html" target="right">ДлительностьАнимации (AnimationDuration) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationDurationProperty.html" target="right">ДлительностьАнимации (AnimationDuration) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuItemEnabledProperty.html" target="right">Доступность (Enabled) (ЭлементМеню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathEProperty.html" target="right">Е (E) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxFontWeightProperty.html" target="right">ЖирностьШрифта (FontWeight) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFontWeightProperty.html" target="right">ЖирностьШрифта (FontWeight) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsFontWeightProperty.html" target="right">ЖирностьШрифта (FontWeight) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontFontWeightProperty.html" target="right">ЖирностьШрифта (FontWeight) (Шрифт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioEndedProperty.html" target="right">Завершено (Ended) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CellHeadersProperty.html" target="right">Заголовки (Headers) (Ячейка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableCaptionProperty.html" target="right">Заголовок (Caption) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TrayTitleProperty.html" target="right">Заголовок (Title) (Лоток)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxTitleProperty.html" target="right">Заголовок (Title) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsTitleProperty.html" target="right">Заголовок (Title) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormTitleProperty.html" target="right">Заголовок (Title) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageCompleteProperty.html" target="right">Загружено (Complete) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationOptionsDelayProperty.html" target="right">Задержка (Delay) (ПараметрыАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationDelayProperty.html" target="right">ЗадержкаАнимации (AnimationDelay) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationDelayProperty.html" target="right">ЗадержкаАнимации (AnimationDelay) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransitionTransitionDelayProperty.html" target="right">ЗадержкаПерехода (TransitionDelay) (Переход)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransitionDelayProperty.html" target="right">ЗадержкаПерехода (TransitionDelay) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationOptionsEndDelayProperty.html" target="right">ЗадержкаПосле (EndDelay) (ПараметрыАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationOptionsFillProperty.html" target="right">Заливка (Fill) (ПараметрыАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationFillModeProperty.html" target="right">ЗаливкаАнимации (AnimationFillMode) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationFillModeProperty.html" target="right">ЗаливкаАнимации (AnimationFillMode) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePaddingProperty.html" target="right">Заполнение (Padding) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnFillProperty.html" target="right">ЗаполнениеКолонок (ColumnFill) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PaddingPaddingTopProperty.html" target="right">ЗаполнениеСверху (PaddingTop) (Заполнение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePaddingTopProperty.html" target="right">ЗаполнениеСверху (PaddingTop) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PaddingPaddingLeftProperty.html" target="right">ЗаполнениеСлева (PaddingLeft) (Заполнение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePaddingLeftProperty.html" target="right">ЗаполнениеСлева (PaddingLeft) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PaddingPaddingBottomProperty.html" target="right">ЗаполнениеСнизу (PaddingBottom) (Заполнение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePaddingBottomProperty.html" target="right">ЗаполнениеСнизу (PaddingBottom) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PaddingPaddingRightProperty.html" target="right">ЗаполнениеСправа (PaddingRight) (Заполнение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePaddingRightProperty.html" target="right">ЗаполнениеСправа (PaddingRight) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementPlaceholderProperty.html" target="right">Заполнитель (Placeholder) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Scale3DZProperty.html" target="right">Зет (Z) (Масштаб3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScaleZZProperty.html" target="right">Зет (Z) (МасштабЗет)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Translate3DZProperty.html" target="right">Зет (Z) (Перевод3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TranslateZZProperty.html" target="right">Зет (Z) (ПереводЗет)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Rotate3DZProperty.html" target="right">Зет (Z) (Поворот3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleZIndexProperty.html" target="right">ЗетИндекс (ZIndex) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsValueProperty.html" target="right">Значение (Value) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.NumberFieldValueProperty.html" target="right">Значение (Value) (ПолеЧисла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RangeValueProperty.html" target="right">Значение (Value) (Ползунок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementValueProperty.html" target="right">Значение (Value) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TrayIconProperty.html" target="right">Значок (Icon) (Лоток)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormIconProperty.html" target="right">Значок (Icon) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuItemIconProperty.html" target="right">Значок (Icon) (ЭлементМеню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsYProperty.html" target="right">Игрек (Y) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PerspectiveOriginYProperty.html" target="right">Игрек (Y) (ИсточникПерспективы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CircleYProperty.html" target="right">Игрек (Y) (Круг)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScaleYProperty.html" target="right">Игрек (Y) (Масштаб)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Scale3DYProperty.html" target="right">Игрек (Y) (Масштаб3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScaleYYProperty.html" target="right">Игрек (Y) (МасштабИгрек)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TranslateYProperty.html" target="right">Игрек (Y) (Перевод)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Translate3DYProperty.html" target="right">Игрек (Y) (Перевод3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TranslateYYProperty.html" target="right">Игрек (Y) (ПереводИгрек)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Rotate3DYProperty.html" target="right">Игрек (Y) (Поворот3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RectangleYProperty.html" target="right">Игрек (Y) (Прямоугольник)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BoxShadowYProperty.html" target="right">Игрек (Y) (Тень)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PointYProperty.html" target="right">Игрек (Y) (Точка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsOffsetYProperty.html" target="right">ИгрекСмещение (OffsetY) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsPageYProperty.html" target="right">ИгрекФормы (PageY) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsScreenYProperty.html" target="right">ИгрекЭкрана (ScreenY) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementIdProperty.html" target="right">Идентификатор (Id) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormResizableProperty.html" target="right">ИзменяемыйРазмер (Resizable) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleResizeProperty.html" target="right">ИзменяемыйРазмер (Resize) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsXProperty.html" target="right">Икс (X) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PerspectiveOriginXProperty.html" target="right">Икс (X) (ИсточникПерспективы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CircleXProperty.html" target="right">Икс (X) (Круг)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScaleXProperty.html" target="right">Икс (X) (Масштаб)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Scale3DXProperty.html" target="right">Икс (X) (Масштаб3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScaleXXProperty.html" target="right">Икс (X) (МасштабИкс)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TranslateXProperty.html" target="right">Икс (X) (Перевод)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Translate3DXProperty.html" target="right">Икс (X) (Перевод3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TranslateXXProperty.html" target="right">Икс (X) (ПереводИкс)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Rotate3DXProperty.html" target="right">Икс (X) (Поворот3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RectangleXProperty.html" target="right">Икс (X) (Прямоугольник)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BoxShadowXProperty.html" target="right">Икс (X) (Тень)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PointXProperty.html" target="right">Икс (X) (Точка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsOffsetXProperty.html" target="right">ИксСмещение (OffsetX) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsPageXProperty.html" target="right">ИксФормы (PageX) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsScreenXProperty.html" target="right">ИксЭкрана (ScreenX) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementNameProperty.html" target="right">Имя (Name) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationNameProperty.html" target="right">ИмяАнимации (AnimationName) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationNameProperty.html" target="right">ИмяАнимации (AnimationName) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageUseMapProperty.html" target="right">ИмяКарты (UseMap) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ActionMethodNameProperty.html" target="right">ИмяМетода (MethodName) (Действие)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterInvertProperty.html" target="right">Инверсия (Invert) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectItemIndexProperty.html" target="right">Индекс (Index) (ЭлементПоляСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectSelectedIndexProperty.html" target="right">ИндексВыбранного (SelectedIndex) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableRowRowIndexProperty.html" target="right">ИндексСтроки (RowIndex) (СтрокаТаблицы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableRowSectionRowIndexProperty.html" target="right">ИндексСтрокиВСекции (SectionRowIndex) (СтрокаТаблицы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CellCellIndexProperty.html" target="right">ИндексЯчейки (CellIndex) (Ячейка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.HeaderCellCellIndexProperty.html" target="right">ИндексЯчейки (CellIndex) (ЯчейкаЗаголовка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxIntervalProperty.html" target="right">Интервал (Interval) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimerIntervalProperty.html" target="right">Интервал (Interval) (Таймер)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsIntervalProperty.html" target="right">Интервал (Interval) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderSpacingProperty.html" target="right">ИнтервалГраницы (BorderSpacing) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnGapProperty.html" target="right">ИнтервалКолонок (ColumnGap) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleLetterSpacingProperty.html" target="right">ИнтервалСимволов (LetterSpacing) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleWordSpacingProperty.html" target="right">ИнтервалСлов (WordSpacing) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioSrcProperty.html" target="right">Источник (Src) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageSrcProperty.html" target="right">Источник (Src) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScriptSrcProperty.html" target="right">Источник (Src) (Скрипт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FrameSrcProperty.html" target="right">Источник (Src) (Фрейм)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderImageBorderImageSourceProperty.html" target="right">ИсточникКартинкиГраницы (BorderImageSource) (КартинкаГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderImageSourceProperty.html" target="right">ИсточникКартинкиГраницы (BorderImageSource) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePerspectiveOriginProperty.html" target="right">ИсточникПерспективы (PerspectiveOrigin) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageNaturalHeightProperty.html" target="right">ИсходнаяВысота (NaturalHeight) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageNaturalWidthProperty.html" target="right">ИсходнаяШирина (NaturalWidth) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableTFootProperty.html" target="right">Итоги (TFoot) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBoxSizingProperty.html" target="right">Калибровка (BoxSizing) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageIsMapProperty.html" target="right">Карта (IsMap) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderImageProperty.html" target="right">КартинкаГраницы (BorderImage) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleListStyleImageProperty.html" target="right">КартинкаСтиляСписка (ListStyleImage) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ListStyleListStyleImageProperty.html" target="right">КартинкаСтиляСписка (ListStyleImage) (СтильСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormKioskProperty.html" target="right">Киоск (Kiosk) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementAccessKeyProperty.html" target="right">КлавишаДоступа (AccessKey) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementClassProperty.html" target="right">Класс (Class) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementItemKeyProperty.html" target="right">КлючЭлемента (ItemKey) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsButtonProperty.html" target="right">Кнопка (Button) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectLengthProperty.html" target="right">Количество (Length) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnsColumnCountProperty.html" target="right">КоличествоКолонок (ColumnCount) (КолонкиЭлемента)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnCountProperty.html" target="right">КоличествоКолонок (ColumnCount) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationIterationCountProperty.html" target="right">КоличествоПовторов (AnimationIterationCount) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationIterationCountProperty.html" target="right">КоличествоПовторов (AnimationIterationCount) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationOptionsIterationsProperty.html" target="right">КоличествоПовторов (Iterations) (ПараметрыАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextAreaColsProperty.html" target="right">Колонки (Cols) (ОбластьТекста)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnsProperty.html" target="right">КолонкиЭлемента (Columns) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dGlobalCompositeOperationProperty.html" target="right">Композиция (GlobalCompositeOperation) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CanvasContext2dProperty.html" target="right">Контекст2d (Context2d) (Холст)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormBodyProperty.html" target="right">Контент (Body) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterContrastProperty.html" target="right">Контраст (Contrast) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioControlsProperty.html" target="right">Контролы (Controls) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOutlineProperty.html" target="right">Контур (Outline) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PolygonCoordinatesProperty.html" target="right">Координаты (Coordinates) (Полигон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleCursorProperty.html" target="right">Курсор (Cursor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderLeftProperty.html" target="right">ЛеваяГраница (BorderLeft) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleLeftProperty.html" target="right">Лево (Left) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderRadiusBorderTopLeftRadiusProperty.html" target="right">ЛевыйРадиусВерхнейГраницы (BorderTopLeftRadius) (РадиусГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderTopLeftRadiusProperty.html" target="right">ЛевыйРадиусВерхнейГраницы (BorderTopLeftRadius) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderRadiusBorderBottomLeftRadiusProperty.html" target="right">ЛевыйРадиусНижнейГраницы (BorderBottomLeftRadius) (РадиусГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderBottomLeftRadiusProperty.html" target="right">ЛевыйРадиусНижнейГраницы (BorderBottomLeftRadius) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMaxHeightProperty.html" target="right">МаксимальнаяВысота (MaxHeight) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormMaxHeightProperty.html" target="right">МаксимальнаяВысота (MaxHeight) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMaxLengthProperty.html" target="right">МаксимальнаяДлина (MaxLength) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMaxWidthProperty.html" target="right">МаксимальнаяШирина (MaxWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormMaxWidthProperty.html" target="right">МаксимальнаяШирина (MaxWidth) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMaxProperty.html" target="right">Максимум (Max) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsMaxBalloonsOnScreenProperty.html" target="right">МаксимумУведомленийНаЭкране (MaxBalloonsOnScreen) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MatrixScaleYProperty.html" target="right">МасштабИгрек (ScaleY) (Матрица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MatrixScaleXProperty.html" target="right">МасштабИкс (ScaleX) (Матрица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TrayMenuProperty.html" target="right">Меню (Menu) (Лоток)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormMenuProperty.html" target="right">Меню (Menu) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMinHeightProperty.html" target="right">МинимальнаяВысота (MinHeight) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormMinHeightProperty.html" target="right">МинимальнаяВысота (MinHeight) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMinWidthProperty.html" target="right">МинимальнаяШирина (MinWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormMinWidthProperty.html" target="right">МинимальнаяШирина (MinWidth) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMinProperty.html" target="right">Минимум (Min) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FileSelectionMultipleProperty.html" target="right">МножественныйВыбор (Multiple) (ВыборФайла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectMultipleProperty.html" target="right">МножественныйВыбор (Multiple) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PerspectiveRatioProperty.html" target="right">Множитель (Ratio) (Перспектива)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundRepeatProperty.html" target="right">МозаикаКартинки (BackgroundRepeat) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundRepeatProperty.html" target="right">МозаикаКартинки (BackgroundRepeat) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderImageBorderImageRepeatProperty.html" target="right">МозаикаКартинкиГраницы (BorderImageRepeat) (КартинкаГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderImageRepeatProperty.html" target="right">МозаикаКартинкиГраницы (BorderImageRepeat) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectGroupLabelProperty.html" target="right">Надпись (Label) (ГруппировкаПоляСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuItemLabelProperty.html" target="right">Надпись (Label) (ЭлементМеню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectItemLabelProperty.html" target="right">Надпись (Label) (ЭлементПоляСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LinkTargetProperty.html" target="right">Назначение (Target) (Ссылка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioPausedProperty.html" target="right">НаПаузе (Paused) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDirProperty.html" target="right">Направление (Dir) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationOptionsDirectionProperty.html" target="right">Направление (Direction) (ПараметрыАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationDirectionProperty.html" target="right">НаправлениеАнимации (AnimationDirection) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationDirectionProperty.html" target="right">НаправлениеАнимации (AnimationDirection) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dDirectionProperty.html" target="right">НаправлениеТекста (Direction) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFlexDirectionProperty.html" target="right">НаправлениеЭлементов (FlexDirection) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderImageBorderImageSliceProperty.html" target="right">НарезкаКартинкиГраницы (BorderImageSlice) (КартинкаГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderImageSliceProperty.html" target="right">НарезкаКартинкиГраницы (BorderImageSlice) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterSaturateProperty.html" target="right">Насыщенность (Saturate) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OrderedListStartProperty.html" target="right">Начало (Start) (УпорядоченныйСписок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormStartHeightProperty.html" target="right">НачальнаяВысота (StartHeight) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormStartWidthProperty.html" target="right">НачальнаяШирина (StartWidth) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFontStretchProperty.html" target="right">Начертание (FontStretch) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CheckBoxIndeterminateProperty.html" target="right">Неопределено (Indeterminate) (Флажок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOpacityProperty.html" target="right">Непрозрачность (Opacity) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterOpacityProperty.html" target="right">Непрозрачность (Opacity) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleClearProperty.html" target="right">Несвободно (Clear) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderBottomProperty.html" target="right">НижняяГраница (BorderBottom) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBottomProperty.html" target="right">Низ (Bottom) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MapAreasProperty.html" target="right">Области (Areas) (Карта)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableTBodiesProperty.html" target="right">ОбластиТаблицы (TBodies) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundOriginProperty.html" target="right">ОбластьКартинки (BackgroundOrigin) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundOriginProperty.html" target="right">ОбластьКартинки (BackgroundOrigin) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundClipProperty.html" target="right">ОбластьРисования (BackgroundClip) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundClipProperty.html" target="right">ОбластьРисования (BackgroundClip) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OrderedListReversedProperty.html" target="right">Обратный (Reversed) (УпорядоченныйСписок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleClipProperty.html" target="right">Обрезка (Clip) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsShareStructureProperty.html" target="right">ОбщаяСтруктура (ShareStructure) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageAltProperty.html" target="right">Описание (Alt) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AreaAltProperty.html" target="right">Описание (Alt) (Область)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MeterOptimumProperty.html" target="right">Оптимум (Optimum) (Шкала)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDisabledProperty.html" target="right">Отключено (Disabled) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DialogOpenProperty.html" target="right">Открыт (Open) (Диалог)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ExpandableDivOpenProperty.html" target="right">Открыт (Open) (РаскрываемыйБлок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsOpenInBrowserProperty.html" target="right">ОткрытьВБраузере (OpenInBrowser) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ScriptDeferProperty.html" target="right">Отложено (Defer) (Скрипт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleDisplayProperty.html" target="right">Отображать (Display) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsSenderProperty.html" target="right">Отправитель (Sender) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsSenderProperty.html" target="right">Отправитель (Sender) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMarginProperty.html" target="right">Отступ (Margin) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MarginMarginTopProperty.html" target="right">ОтступСверху (MarginTop) (Отступ)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMarginTopProperty.html" target="right">ОтступСверху (MarginTop) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MarginMarginLeftProperty.html" target="right">ОтступСлева (MarginLeft) (Отступ)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMarginLeftProperty.html" target="right">ОтступСлева (MarginLeft) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MarginMarginBottomProperty.html" target="right">ОтступСнизу (MarginBottom) (Отступ)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMarginBottomProperty.html" target="right">ОтступСнизу (MarginBottom) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MarginMarginRightProperty.html" target="right">ОтступСправа (MarginRight) (Отступ)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleMarginRightProperty.html" target="right">ОтступСправа (MarginRight) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextIndentProperty.html" target="right">ОтступТекста (TextIndent) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterGrayscaleProperty.html" target="right">ОттенкиСерого (Grayscale) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextDecorationLineProperty.html" target="right">ОформлениеТекстаЛиния (TextDecorationLine) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextDecorationStyleProperty.html" target="right">ОформлениеТекстаСтиль (TextDecorationStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextDecorationColorProperty.html" target="right">ОформлениеТекстаЦвет (TextDecorationColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsParameterProperty.html" target="right">Параметр (Parameter) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ActionParameterProperty.html" target="right">Параметр (Parameter) (Действие)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementMovableProperty.html" target="right">Перемещаемый (Movable) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextAreaWrapProperty.html" target="right">Перенос (Wrap) (ОбластьТекста)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFlexWrapProperty.html" target="right">ПереносГибких (FlexWrap) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleWordWrapProperty.html" target="right">ПереносСлов (WordWrap) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOverflowProperty.html" target="right">Переполнение (Overflow) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOverflowYProperty.html" target="right">ПереполнениеИгрек (OverflowY) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOverflowXProperty.html" target="right">ПереполнениеИкс (OverflowX) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextOverflowProperty.html" target="right">ПереполнениеТекста (TextOverflow) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDraggableProperty.html" target="right">Перетаскиваемый (Draggable) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransitionProperty.html" target="right">Переход (Transition) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePerspectiveProperty.html" target="right">Перспектива (Perspective) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathPIProperty.html" target="right">Пи (PI) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterHueRotateProperty.html" target="right">ПоворотОттенка (HueRotate) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioLoopProperty.html" target="right">Повтор (Loop) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuItemSubmenuProperty.html" target="right">Подменю (Submenu) (ЭлементМеню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LinkTitleProperty.html" target="right">Подсказка (Title) (Ссылка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TrayTooltipProperty.html" target="right">Подсказка (Tooltip) (Лоток)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ProgressPositionProperty.html" target="right">Позиция (Position) (Индикатор)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxPositionProperty.html" target="right">Позиция (Position) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePositionProperty.html" target="right">Позиция (Position) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormPositionProperty.html" target="right">Позиция (Position) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleObjectPositionProperty.html" target="right">ПозицияОбъекта (ObjectPosition) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleListStylePositionProperty.html" target="right">ПозицияСтиляСписка (ListStylePosition) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ListStyleListStylePositionProperty.html" target="right">ПозицияСтиляСписка (ListStylePosition) (СтильСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormShowProperty.html" target="right">Показать (Show) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormShowInTaskbarProperty.html" target="right">ПоказатьВПанели (ShowInTaskbar) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormFullscreenProperty.html" target="right">Полноэкранный (Fullscreen) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleCaptionSideProperty.html" target="right">ПоложениеЗаголовка (CaptionSide) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransformOriginAxisZProperty.html" target="right">ПоложениеЗет (AxisZ) (ТочкаСдвига)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransformOriginAxisYProperty.html" target="right">ПоложениеИгрек (AxisY) (ТочкаСдвига)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransformOriginAxisXProperty.html" target="right">ПоложениеИкс (AxisX) (ТочкаСдвига)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundPositionProperty.html" target="right">ПоложениеКартинки (BackgroundPosition) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundPositionProperty.html" target="right">ПоложениеКартинки (BackgroundPosition) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsCheckedProperty.html" target="right">Помечен (Checked) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RadioCheckedProperty.html" target="right">Помечен (Checked) (Переключатель)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CheckBoxCheckedProperty.html" target="right">Помечен (Checked) (Флажок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuItemCheckedProperty.html" target="right">Помечен (Checked) (ЭлементМеню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsPortSendServerProperty.html" target="right">ПортСервераОтправки (PortSendServer) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsPortReceivingServerProperty.html" target="right">ПортСервераПриема (PortReceivingServer) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOrderProperty.html" target="right">Порядок (Order) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementTabIndexProperty.html" target="right">ПорядокОбхода (TabIndex) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderRightProperty.html" target="right">ПраваяГраница (BorderRight) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleRightProperty.html" target="right">Право (Right) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderRadiusBorderTopRightRadiusProperty.html" target="right">ПравыйРадиусВерхнейГраницы (BorderTopRightRadius) (РадиусГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderTopRightRadiusProperty.html" target="right">ПравыйРадиусВерхнейГраницы (BorderTopRightRadius) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderRadiusBorderBottomRightRadiusProperty.html" target="right">ПравыйРадиусНижнейГраницы (BorderBottomRightRadius) (РадиусГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderBottomRightRadiusProperty.html" target="right">ПравыйРадиусНижнейГраницы (BorderBottomRightRadius) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dMiterLimitProperty.html" target="right">ПределСреза (MiterLimit) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FileSelectionAcceptProperty.html" target="right">Принимаемый (Accept) (ВыборФайла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleWhiteSpaceProperty.html" target="right">Пробелы (WhiteSpace) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormTransparentProperty.html" target="right">Прозрачный (Transparent) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsScrolledValueProperty.html" target="right">Прокручено (ScrolledValue) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormScrolledValueProperty.html" target="right">Прокручено (ScrolledValue) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextTransformProperty.html" target="right">ПрописныеТекста (TextTransform) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleEmptyCellsProperty.html" target="right">ПустыеЯчейки (EmptyCells) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CircleRadiusProperty.html" target="right">Радиус (Radius) (Круг)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderRadiusProperty.html" target="right">РадиусГраницы (BorderRadius) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnRuleProperty.html" target="right">РазделительКолонок (ColumnRule) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableRulesProperty.html" target="right">Разлиновка (Rules) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PasswordFieldSizeProperty.html" target="right">Размер (Size) (ПолеПароля)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SearchFieldSizeProperty.html" target="right">Размер (Size) (ПолеПоиска)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectSizeProperty.html" target="right">Размер (Size) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextFieldSizeProperty.html" target="right">Размер (Size) (ПолеТекста)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundSizeProperty.html" target="right">РазмерКартинки (BackgroundSize) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundSizeProperty.html" target="right">РазмерКартинки (BackgroundSize) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxFontSizeProperty.html" target="right">РазмерШрифта (FontSize) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFontSizeProperty.html" target="right">РазмерШрифта (FontSize) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsFontSizeProperty.html" target="right">РазмерШрифта (FontSize) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontFontSizeProperty.html" target="right">РазмерШрифта (FontSize) (Шрифт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTableLayoutProperty.html" target="right">РазмещениеВТаблице (TableLayout) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BoxShadowBlurProperty.html" target="right">Размытие (Blur) (Тень)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterBlurProperty.html" target="right">Размытие (Blur) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dShadowBlurProperty.html" target="right">РазмытиеТени (ShadowBlur) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePageBreakInsideProperty.html" target="right">РазрывСтраницыВнутри (PageBreakInside) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StylePageBreakBeforeProperty.html" target="right">РазрывСтраницыДо (PageBreakBefore) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleJustifyContentProperty.html" target="right">РасположениеСодержимого (JustifyContent) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementContentEditableProperty.html" target="right">Редактируемый (ContentEditable) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterSepiaProperty.html" target="right">Ретро (Sepia) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementParentProperty.html" target="right">Родитель (Parent) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransitionTransitionPropertyProperty.html" target="right">СвойствоПерехода (TransitionProperty) (Переход)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransitionPropertyProperty.html" target="right">СвойствоПерехода (TransitionProperty) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LabelHtmlForProperty.html" target="right">Связь (HtmlFor) (Подпись)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransformProperty.html" target="right">Сдвиг (Transform) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsMovementYProperty.html" target="right">СдвигИгрек (MovementY) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MatrixTransformYProperty.html" target="right">СдвигИгрек (TransformY) (Матрица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsMovementXProperty.html" target="right">СдвигИкс (MovementX) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MatrixTransformXProperty.html" target="right">СдвигИкс (TransformX) (Матрица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxFontFamilyProperty.html" target="right">СемействоШрифтов (FontFamily) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFontFamilyProperty.html" target="right">СемействоШрифтов (FontFamily) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsFontFamilyProperty.html" target="right">СемействоШрифтов (FontFamily) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontFontFamilyProperty.html" target="right">СемействоШрифтов (FontFamily) (Шрифт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LinkDownloadProperty.html" target="right">Скачать (Download) (Ссылка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioPlaybackRateProperty.html" target="right">Скорость (PlaybackRate) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOffsetProperty.html" target="right">Смещение (Offset) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementOffsetTopProperty.html" target="right">СмещениеВерх (OffsetTop) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementOffsetHeightProperty.html" target="right">СмещениеВысота (OffsetHeight) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MatrixOffsetYProperty.html" target="right">СмещениеИгрек (OffsetY) (Матрица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MatrixOffsetXProperty.html" target="right">СмещениеИкс (OffsetX) (Матрица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderImageBorderImageOutsetProperty.html" target="right">СмещениеКартинкиГраницы (BorderImageOutset) (КартинкаГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderImageOutsetProperty.html" target="right">СмещениеКартинкиГраницы (BorderImageOutset) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOutlineOffsetProperty.html" target="right">СмещениеКонтура (OutlineOffset) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementOffsetLeftProperty.html" target="right">СмещениеЛево (OffsetLeft) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dShadowOffsetYProperty.html" target="right">СмещениеТениИгрек (ShadowOffsetY) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dShadowOffsetXProperty.html" target="right">СмещениеТениИкс (ShadowOffsetX) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementOffsetWidthProperty.html" target="right">СмещениеШирина (OffsetWidth) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationPlayStateProperty.html" target="right">Состояние (AnimationPlayState) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationPlayStateProperty.html" target="right">Состояние (AnimationPlayState) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementStyleProperty.html" target="right">Стиль (Style) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderTopBorderTopStyleProperty.html" target="right">СтильВерхнейГраницы (BorderTopStyle) (ВерхняяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderTopStyleProperty.html" target="right">СтильВерхнейГраницы (BorderTopStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderStyleBorderTopStyleProperty.html" target="right">СтильВерхнейГраницы (BorderTopStyle) (СтильГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBordersStyleProperty.html" target="right">СтильГраниц (BordersStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersBorderStyleProperty.html" target="right">СтильГраницы (BorderStyle) (Границы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dFillStyleProperty.html" target="right">СтильЗаполнения (FillStyle) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OutlineOutlineStyleProperty.html" target="right">СтильКонтура (OutlineStyle) (Контур)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOutlineStyleProperty.html" target="right">СтильКонтура (OutlineStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dLineCapProperty.html" target="right">СтильКонцовЛинии (LineCap) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderLeftBorderLeftStyleProperty.html" target="right">СтильЛевойГраницы (BorderLeftStyle) (ЛеваяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderLeftStyleProperty.html" target="right">СтильЛевойГраницы (BorderLeftStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderStyleBorderLeftStyleProperty.html" target="right">СтильЛевойГраницы (BorderLeftStyle) (СтильГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderBottomBorderBottomStyleProperty.html" target="right">СтильНижнейГраницы (BorderBottomStyle) (НижняяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderBottomStyleProperty.html" target="right">СтильНижнейГраницы (BorderBottomStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderStyleBorderBottomStyleProperty.html" target="right">СтильНижнейГраницы (BorderBottomStyle) (СтильГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dStrokeStyleProperty.html" target="right">СтильОбводки (StrokeStyle) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderRightBorderRightStyleProperty.html" target="right">СтильПравойГраницы (BorderRightStyle) (ПраваяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderRightStyleProperty.html" target="right">СтильПравойГраницы (BorderRightStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderStyleBorderRightStyleProperty.html" target="right">СтильПравойГраницы (BorderRightStyle) (СтильГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnRuleColumnRuleStyleProperty.html" target="right">СтильРазделителяКолонок (ColumnRuleStyle) (РазделительКолонок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnRuleStyleProperty.html" target="right">СтильРазделителяКолонок (ColumnRuleStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransformStyleProperty.html" target="right">СтильСдвига (TransformStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleListStyleProperty.html" target="right">СтильСписка (ListStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dLineJoinProperty.html" target="right">СтильУглаПересечения (LineJoin) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxFontStyleProperty.html" target="right">СтильШрифта (FontStyle) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFontStyleProperty.html" target="right">СтильШрифта (FontStyle) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsFontStyleProperty.html" target="right">СтильШрифта (FontStyle) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FontFontStyleProperty.html" target="right">СтильШрифта (FontStyle) (Шрифт)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsFunctionStringProperty.html" target="right">СтрокаФункций (FunctionString) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextAreaRowsProperty.html" target="right">Строки (Rows) (ОбластьТекста)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableRowsProperty.html" target="right">Строки (Rows) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ActionScriptProperty.html" target="right">Сценарий (Script) (Действие)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxTextProperty.html" target="right">Текст (Text) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsTextProperty.html" target="right">Текст (Text) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementTextProperty.html" target="right">Текст (Text) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioCurrentTimeProperty.html" target="right">ТекущаяПозиция (CurrentTime) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBoxShadowProperty.html" target="right">Тень (BoxShadow) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterDropShadowProperty.html" target="right">Тень (DropShadow) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextShadowProperty.html" target="right">ТеньТекста (TextShadow) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OrderedListTypeProperty.html" target="right">ТипМаркера (Type) (УпорядоченныйСписок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleListStyleTypeProperty.html" target="right">ТипСтиляСписка (ListStyleType) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ListStyleListStyleTypeProperty.html" target="right">ТипСтиляСписка (ListStyleType) (СтильСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementReadOnlyProperty.html" target="right">ТолькоЧтение (ReadOnly) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransformOriginProperty.html" target="right">ТочкаСдвига (TransformOrigin) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFlexGrowProperty.html" target="right">Увеличение (FlexGrow) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SkewYAngleProperty.html" target="right">Угол (Angle) (НаклонИгрек)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SkewXAngleProperty.html" target="right">Угол (Angle) (НаклонИкс)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RotateAngleProperty.html" target="right">Угол (Angle) (Поворот)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Rotate3DAngleProperty.html" target="right">Угол (Angle) (Поворот3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RotateZAngleProperty.html" target="right">Угол (Angle) (ПоворотЗет)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RotateYAngleProperty.html" target="right">Угол (Angle) (ПоворотИгрек)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RotateXAngleProperty.html" target="right">Угол (Angle) (ПоворотИкс)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SkewAngleYProperty.html" target="right">УголИгрек (AngleY) (Наклон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SkewAngleXProperty.html" target="right">УголИкс (AngleX) (Наклон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFlexShrinkProperty.html" target="right">Уменьшение (FlexShrink) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsFilesProperty.html" target="right">Файлы (Files) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FileSelectionFilesProperty.html" target="right">Файлы (Files) (ВыборФайла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFilterProperty.html" target="right">Фильтр (Filter) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundProperty.html" target="right">Фон (Background) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundAttachmentProperty.html" target="right">ФоновоеВложение (BackgroundAttachment) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundAttachmentProperty.html" target="right">ФоновоеВложение (BackgroundAttachment) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundImageProperty.html" target="right">ФоновоеИзображение (BackgroundImage) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundImageProperty.html" target="right">ФоновоеИзображение (BackgroundImage) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsFormProperty.html" target="right">Форма (Form) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AreaShapeProperty.html" target="right">Форма (Shape) (Область)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormFrameProperty.html" target="right">Фрейм (Frame) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TransitionTransitionTimingFunctionProperty.html" target="right">ФункцияПерехода (TransitionTimingFunction) (Переход)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTransitionTimingFunctionProperty.html" target="right">ФункцияПерехода (TransitionTimingFunction) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPropertiesAnimationTimingFunctionProperty.html" target="right">ФункцияСинхронизации (AnimationTimingFunction) (СвойстваАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleAnimationTimingFunctionProperty.html" target="right">ФункцияСинхронизации (AnimationTimingFunction) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationOptionsEasingProperty.html" target="right">ФункцияСинхронизации (Easing) (ПараметрыАнимации)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageDataColorProperty.html" target="right">Цвет (Color) (ДанныеРисунка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BoxShadowColorProperty.html" target="right">Цвет (Color) (Тень)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderTopBorderTopColorProperty.html" target="right">ЦветВерхнейГраницы (BorderTopColor) (ВерхняяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderTopColorProperty.html" target="right">ЦветВерхнейГраницы (BorderTopColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersColorBorderTopColorProperty.html" target="right">ЦветВерхнейГраницы (BorderTopColor) (ЦветГраниц)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBordersColorProperty.html" target="right">ЦветГраниц (BordersColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersBorderColorProperty.html" target="right">ЦветГраницы (BorderColor) (Границы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxHeaderColorProperty.html" target="right">ЦветЗаголовка (HeaderColor) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsHeaderColorProperty.html" target="right">ЦветЗаголовка (HeaderColor) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OutlineOutlineColorProperty.html" target="right">ЦветКонтура (OutlineColor) (Контур)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOutlineColorProperty.html" target="right">ЦветКонтура (OutlineColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleCaretColorProperty.html" target="right">ЦветКурсора (CaretColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderLeftBorderLeftColorProperty.html" target="right">ЦветЛевойГраницы (BorderLeftColor) (ЛеваяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderLeftColorProperty.html" target="right">ЦветЛевойГраницы (BorderLeftColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersColorBorderLeftColorProperty.html" target="right">ЦветЛевойГраницы (BorderLeftColor) (ЦветГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderBottomBorderBottomColorProperty.html" target="right">ЦветНижнейГраницы (BorderBottomColor) (НижняяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderBottomColorProperty.html" target="right">ЦветНижнейГраницы (BorderBottomColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersColorBorderBottomColorProperty.html" target="right">ЦветНижнейГраницы (BorderBottomColor) (ЦветГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderRightBorderRightColorProperty.html" target="right">ЦветПравойГраницы (BorderRightColor) (ПраваяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderRightColorProperty.html" target="right">ЦветПравойГраницы (BorderRightColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersColorBorderRightColorProperty.html" target="right">ЦветПравойГраницы (BorderRightColor) (ЦветГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnRuleColumnRuleColorProperty.html" target="right">ЦветРазделителяКолонок (ColumnRuleColor) (РазделительКолонок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnRuleColorProperty.html" target="right">ЦветРазделителяКолонок (ColumnRuleColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxTextColorProperty.html" target="right">ЦветТекста (TextColor) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleTextColorProperty.html" target="right">ЦветТекста (TextColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsTextColorProperty.html" target="right">ЦветТекста (TextColor) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxHeaderTextColorProperty.html" target="right">ЦветТекстаЗаголовка (HeaderTextColor) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsHeaderTextColorProperty.html" target="right">ЦветТекстаЗаголовка (HeaderTextColor) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dShadowColorProperty.html" target="right">ЦветТени (ShadowColor) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxBackgroundColorProperty.html" target="right">ЦветФона (BackgroundColor) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBackgroundColorProperty.html" target="right">ЦветФона (BackgroundColor) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsBackgroundColorProperty.html" target="right">ЦветФона (BackgroundColor) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BackgroundBackgroundColorProperty.html" target="right">ЦветФона (BackgroundColor) (Фон)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CubicBezierNumber1Property.html" target="right">Число1 (Number1) (БезьеКуб)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber1Property.html" target="right">Число1 (Number1) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber10Property.html" target="right">Число10 (Number10) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber11Property.html" target="right">Число11 (Number11) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber12Property.html" target="right">Число12 (Number12) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber13Property.html" target="right">Число13 (Number13) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber14Property.html" target="right">Число14 (Number14) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber15Property.html" target="right">Число15 (Number15) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber16Property.html" target="right">Число16 (Number16) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CubicBezierNumber2Property.html" target="right">Число2 (Number2) (БезьеКуб)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber2Property.html" target="right">Число2 (Number2) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CubicBezierNumber3Property.html" target="right">Число3 (Number3) (БезьеКуб)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber3Property.html" target="right">Число3 (Number3) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CubicBezierNumber4Property.html" target="right">Число4 (Number4) (БезьеКуб)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber4Property.html" target="right">Число4 (Number4) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber5Property.html" target="right">Число5 (Number5) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber6Property.html" target="right">Число6 (Number6) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber7Property.html" target="right">Число7 (Number7) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber8Property.html" target="right">Число8 (Number8) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Matrix3DNumber9Property.html" target="right">Число9 (Number9) (Матрица3Д)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementStepProperty.html" target="right">Шаг (Step) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableTHeadProperty.html" target="right">ШапкаТаблицы (THead) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageDataWidthProperty.html" target="right">Ширина (Width) (ДанныеРисунка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImageWidthProperty.html" target="right">Ширина (Width) (Изображение)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxWidthProperty.html" target="right">Ширина (Width) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RectangleWidthProperty.html" target="right">Ширина (Width) (Прямоугольник)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SizeWidthProperty.html" target="right">Ширина (Width) (Размер)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleWidthProperty.html" target="right">Ширина (Width) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsWidthProperty.html" target="right">Ширина (Width) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.CanvasWidthProperty.html" target="right">Ширина (Width) (Холст)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderTopBorderTopWidthProperty.html" target="right">ШиринаВерхнейГраницы (BorderTopWidth) (ВерхняяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderTopWidthProperty.html" target="right">ШиринаВерхнейГраницы (BorderTopWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersWidthBorderTopWidthProperty.html" target="right">ШиринаВерхнейГраницы (BorderTopWidth) (ШиринаГраниц)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBordersWidthProperty.html" target="right">ШиринаГраниц (BordersWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersBorderWidthProperty.html" target="right">ШиринаГраницы (BorderWidth) (Границы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderImageBorderImageWidthProperty.html" target="right">ШиринаКартинкиГраницы (BorderImageWidth) (КартинкаГраницы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderImageWidthProperty.html" target="right">ШиринаКартинкиГраницы (BorderImageWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnsColumnWidthProperty.html" target="right">ШиринаКолонок (ColumnWidth) (КолонкиЭлемента)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnWidthProperty.html" target="right">ШиринаКолонок (ColumnWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.OutlineOutlineWidthProperty.html" target="right">ШиринаКонтура (OutlineWidth) (Контур)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleOutlineWidthProperty.html" target="right">ШиринаКонтура (OutlineWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderLeftBorderLeftWidthProperty.html" target="right">ШиринаЛевойГраницы (BorderLeftWidth) (ЛеваяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderLeftWidthProperty.html" target="right">ШиринаЛевойГраницы (BorderLeftWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersWidthBorderLeftWidthProperty.html" target="right">ШиринаЛевойГраницы (BorderLeftWidth) (ШиринаГраниц)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dLineWidthProperty.html" target="right">ШиринаЛинии (LineWidth) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderBottomBorderBottomWidthProperty.html" target="right">ШиринаНижнейГраницы (BorderBottomWidth) (НижняяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderBottomWidthProperty.html" target="right">ШиринаНижнейГраницы (BorderBottomWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersWidthBorderBottomWidthProperty.html" target="right">ШиринаНижнейГраницы (BorderBottomWidth) (ШиринаГраниц)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.EventArgsWindowWidthProperty.html" target="right">ШиринаОкна (WindowWidth) (АргументыСобытия)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BorderRightBorderRightWidthProperty.html" target="right">ШиринаПравойГраницы (BorderRightWidth) (ПраваяГраница)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleBorderRightWidthProperty.html" target="right">ШиринаПравойГраницы (BorderRightWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BordersWidthBorderRightWidthProperty.html" target="right">ШиринаПравойГраницы (BorderRightWidth) (ШиринаГраниц)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ColumnRuleColumnRuleWidthProperty.html" target="right">ШиринаРазделителяКолонок (ColumnRuleWidth) (РазделительКолонок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleColumnRuleWidthProperty.html" target="right">ШиринаРазделителяКолонок (ColumnRuleWidth) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dFontProperty.html" target="right">Шрифт (Font) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleFontProperty.html" target="right">Шрифт (Font) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormChildrenProperty.html" target="right">Элементы (Children) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementChildrenProperty.html" target="right">Элементы (Children) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectOptionsProperty.html" target="right">ЭлементыСписка (Options) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ImagesFilterBrightnessProperty.html" target="right">Яркость (Brightness) (ФильтрИзображений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableRowCellsProperty.html" target="right">Ячейки (Cells) (СтрокаТаблицы)</a></p>					
+				</details>
+				<details>
+					<summary class="menu2"><a href="OSDFormsRu/Methods.html" target="right">Методы</a></summary>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathAbsMethod.html" target="right">Абсолютное (Abs) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathAcosMethod.html" target="right">АКосинус (Acos) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementAnimationMethod.html" target="right">Анимация (Animation) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathAsinMethod.html" target="right">АСинус (Asin) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathAtanMethod.html" target="right">АТангенс (Atan) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathAtan2Method.html" target="right">АТангенс2 (Atan2) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathMaxMethod.html" target="right">Большее (Max) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsInjectGlobalPropertyMethod.html" target="right">ВвестиГлобальноеСвойство (InjectGlobalProperty) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioPlayMethod.html" target="right">Воспроизвести (Play) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dRestoreMethod.html" target="right">Восстановить (Restore) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuInsertMethod.html" target="right">Вставить (Insert) (Меню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableInsertRowMethod.html" target="right">ВставитьСтроку (InsertRow) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableRowInsertCellMethod.html" target="right">ВставитьЯчейку (InsertCell) (СтрокаТаблицы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimeSelectionSelectMethod.html" target="right">Выбрать (Select) (ВыборВремени)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DateSelectionSelectMethod.html" target="right">Выбрать (Select) (ВыборДаты)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DateTimeSelectionSelectMethod.html" target="right">Выбрать (Select) (ВыборДатыВремени)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MonthSelectionSelectMethod.html" target="right">Выбрать (Select) (ВыборМесяца)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.WeekSelectionSelectMethod.html" target="right">Выбрать (Select) (ВыборНедели)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextAreaSelectMethod.html" target="right">Выбрать (Select) (ОбластьТекста)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.PasswordFieldSelectMethod.html" target="right">Выбрать (Select) (ПолеПароля)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SearchFieldSelectMethod.html" target="right">Выбрать (Select) (ПолеПоиска)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TextFieldSelectMethod.html" target="right">Выбрать (Select) (ПолеТекста)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.NumberFieldSelectMethod.html" target="right">Выбрать (Select) (ПолеЧисла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsExecuteMethod.html" target="right">Выполнить (Execute) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathCoshMethod.html" target="right">ГКосинус (Cosh) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathSinhMethod.html" target="right">ГСинус (Sinh) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathTanhMethod.html" target="right">ГТангенс (Tanh) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementDoubleClickMethod.html" target="right">ДвойноеНажатие (DoubleClick) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FramesAddMethod.html" target="right">Добавить (Add) (Кадры)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectAddMethod.html" target="right">Добавить (Add) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuAppendMethod.html" target="right">Добавить (Append) (Меню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormAppendChildMethod.html" target="right">ДобавитьДочерний (AppendChild) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementAppendChildMethod.html" target="right">ДобавитьДочерний (AppendChild) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dQuadraticCurveToMethod.html" target="right">ДобавитьКвадратичнуюБизье (QuadraticCurveTo) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dBezierCurveToMethod.html" target="right">ДобавитьКубическуюБизье (BezierCurveTo) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.LinearGradientAddColorStopMethod.html" target="right">ДобавитьОстановкуГрадиента (AddColorStop) (ЛинейныйГрадиент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RadialGradientAddColorStopMethod.html" target="right">ДобавитьОстановкуГрадиента (AddColorStop) (РадиальныйГрадиент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dArcMethod.html" target="right">Дуга (Arc) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dArcToMethod.html" target="right">ДугаМежду (ArcTo) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationFinishMethod.html" target="right">Завершить (Finish) (Анимация)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsExitMethod.html" target="right">ЗавершитьРаботу (Exit) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsLoadScriptsMethod.html" target="right">ЗагрузитьСценарии (LoadScripts) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dClosePathMethod.html" target="right">ЗакончитьПуть (ClosePath) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DialogCloseMethod.html" target="right">Закрыть (Close) (Диалог)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dPaveMethod.html" target="right">Замостить (Pave) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dFillMethod.html" target="right">Заполнить (Fill) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dFillRectMethod.html" target="right">ЗаполнитьПрямоугольник (FillRect) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dFillTextMethod.html" target="right">ЗаполнитьТекст (FillText) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPlayMethod.html" target="right">Запустить (Play) (Анимация)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathSignMethod.html" target="right">Знак (Sign) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathSqrtMethod.html" target="right">ККорень (Sqrt) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.StyleCopyMethod.html" target="right">Копировать (Copy) (Стиль)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dCopyImageDataMethod.html" target="right">КопироватьДанныеРисунка (CopyImageData) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathCosMethod.html" target="right">Косинус (Cos) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dLineToMethod.html" target="right">Линия (LineTo) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathLogMethod.html" target="right">Логарифм (Log) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathLog10Method.html" target="right">Логарифм10 (Log10) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dScaleMethod.html" target="right">Масштабировать (Scale) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathMinMethod.html" target="right">Меньшее (Min) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementClickMethod.html" target="right">Нажатие (Click) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathFloorMethod.html" target="right">НаибольшееЦелое (Floor) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathCeilingMethod.html" target="right">НаименьшееЦелое (Ceiling) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsFindElementMethod.html" target="right">НайтиЭлемент (FindElement) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimerStartMethod.html" target="right">Начать (Start) (Таймер)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dBeginPathMethod.html" target="right">НачатьПуть (BeginPath) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dStrokeMethod.html" target="right">Начертить (Stroke) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dClipMethod.html" target="right">Обрезать (Clip) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathRoundMethod.html" target="right">Окр (Round) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimerStopMethod.html" target="right">Остановить (Stop) (Таймер)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathDivRemMethod.html" target="right">ОстатокДеления (DivRem) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormOpenMethod.html" target="right">Открыть (Open) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationCancelMethod.html" target="right">Отменить (Cancel) (Анимация)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dClearRectMethod.html" target="right">ОчиститьПрямоугольник (ClearRect) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AnimationPauseMethod.html" target="right">Пауза (Pause) (Анимация)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.AudioPauseMethod.html" target="right">Пауза (Pause) (Аудио)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dMoveToMethod.html" target="right">ПерейтиКТочке (MoveTo) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dRotateMethod.html" target="right">Повернуть (Rotate) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuPopupMethod.html" target="right">Показать (Popup) (Меню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DialogShowMethod.html" target="right">Показать (Show) (Диалог)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MessageBoxShowMethod.html" target="right">Показать (Show) (ОкноСообщений)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.BalloonsShowMethod.html" target="right">Показать (Show) (Уведомления)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DialogShowModalMethod.html" target="right">ПоказатьМодально (ShowModal) (Диалог)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsGetObjectPropertyMethod.html" target="right">ПолучитьСвойство (GetObjectProperty) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dPutImageDataMethod.html" target="right">ПоместитьДанныеРисунка (PutImageData) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dTranslateMethod.html" target="right">Преобразовать (Translate) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementScrollIntoViewMethod.html" target="right">ПрокрутитьДо (ScrollIntoView) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dRectMethod.html" target="right">Прямоугольник (Rect) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dDrawImageMethod.html" target="right">РисоватьИзображение (DrawImage) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dStrokeRectMethod.html" target="right">РисоватьПрямоугольник (StrokeRect) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dStrokeTextMethod.html" target="right">РисоватьТекст (StrokeText) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dTransformMethod.html" target="right">Сдвинуть (Transform) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathSinMethod.html" target="right">Синус (Sin) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathRandomMethod.html" target="right">Случайное (Random) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementBlurMethod.html" target="right">СнятьФокус (Blur) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dCreateImageDataMethod.html" target="right">СоздатьДанныеРисунка (CreateImageData) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dCreateLinearGradientMethod.html" target="right">СоздатьЛинейныйГрадиент (CreateLinearGradient) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dCreateRadialGradientMethod.html" target="right">СоздатьРадиальныйГрадиент (CreateRadialGradient) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsMessageToFormMethod.html" target="right">СообщениеФорме (MessageToForm) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dSaveMethod.html" target="right">Сохранить (Save) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathPowMethod.html" target="right">Степень (Pow) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathTanMethod.html" target="right">Тангенс (Tan) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TrayRemoveMethod.html" target="right">Удалить (Remove) (Лоток)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuRemoveMethod.html" target="right">Удалить (Remove) (Меню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementRemoveMethod.html" target="right">Удалить (Remove) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.FormRemoveChildMethod.html" target="right">УдалитьДочерний (RemoveChild) (Форма)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementRemoveChildMethod.html" target="right">УдалитьДочерний (RemoveChild) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableDeleteCaptionMethod.html" target="right">УдалитьЗаголовок (DeleteCaption) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.SelectRemoveFromListMethod.html" target="right">УдалитьИзСписка (RemoveFromList) (ПолеСписка)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableDeleteTFootMethod.html" target="right">УдалитьИтоги (DeleteTFoot) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MenuRemoveAtMethod.html" target="right">УдалитьПоИндексу (RemoveAt) (Меню)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableDeleteRowMethod.html" target="right">УдалитьСтроку (DeleteRow) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableDeleteTHeadMethod.html" target="right">УдалитьШапку (DeleteTHead) (Таблица)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TableRowDeleteCellMethod.html" target="right">УдалитьЯчейку (DeleteCell) (СтрокаТаблицы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.Context2dSetTransformMethod.html" target="right">УстановитьСдвиг (SetTransform) (Контекст2d)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.ElementFocusMethod.html" target="right">Фокус (Focus) (Элемент)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DeclarativeFormsColorMethod.html" target="right">Цвет (Color) (ДекларативныеФормы)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathTruncateMethod.html" target="right">Целое (Truncate) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathEvenMethod.html" target="right">Четное (Even) (Математика)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimeSelectionStepUpMethod.html" target="right">ШагВверх (StepUp) (ВыборВремени)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DateSelectionStepUpMethod.html" target="right">ШагВверх (StepUp) (ВыборДаты)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DateTimeLocalSelectionStepUpMethod.html" target="right">ШагВверх (StepUp) (ВыборМестнойДатыВремени)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MonthSelectionStepUpMethod.html" target="right">ШагВверх (StepUp) (ВыборМесяца)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.WeekSelectionStepUpMethod.html" target="right">ШагВверх (StepUp) (ВыборНедели)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.NumberFieldStepUpMethod.html" target="right">ШагВверх (StepUp) (ПолеЧисла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RangeStepUpMethod.html" target="right">ШагВверх (StepUp) (Ползунок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.TimeSelectionStepDownMethod.html" target="right">ШагВниз (StepDown) (ВыборВремени)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DateSelectionStepDownMethod.html" target="right">ШагВниз (StepDown) (ВыборДаты)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.DateTimeLocalSelectionStepDownMethod.html" target="right">ШагВниз (StepDown) (ВыборМестнойДатыВремени)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MonthSelectionStepDownMethod.html" target="right">ШагВниз (StepDown) (ВыборМесяца)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.WeekSelectionStepDownMethod.html" target="right">ШагВниз (StepDown) (ВыборНедели)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.NumberFieldStepDownMethod.html" target="right">ШагВниз (StepDown) (ПолеЧисла)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.RangeStepDownMethod.html" target="right">ШагВниз (StepDown) (Ползунок)</a></p>
+					<p class="konstr"><a href="OSDFormsRu/OSDForms.MathExpMethod.html" target="right">Экспонента (Exp) (Математика)</a></p>					
+				</details>
+			</details>
 
-<table style="text-align: left; width: 1000px; height: 816px; margin-left: auto; margin-right: auto; background-color: white;" border="0" cellpadding="2" cellspacing="2">
-	<tbody>
-    <tr>
-		<td style="vertical-align: top; font-weight: bold; text-align: center; font-style: italic; color: rgb(51, 51, 153);"><big><big><big>Декларативные формы<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></td>
-		<td style="width: 70px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="index.html"><button type="button">Главная</button></a><small><br></small></td>
-		<td style="width: 90px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="screenshot.html"><button type="button">Скриншоты</button></a><br></td>
-		<td style="width: 130px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="howworks.html"><button type="button">Как это работает</button></a><small><br></small></td>
-		<td style="width: 110px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="doc.html"><button type="button">Документация</button></a><small><br></small></td>
-		<td style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="down.html"><button type="button">Скачать</button></a><small><br></small></td>
-		<th style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top; font-weight: normal;"><a href="kont.html"><button type="button">Контакты</button></a><small><br></small></th>
-    </tr>
-    <tr>
-		<td colspan="7" rowspan="1" style="vertical-align: top; height: 747px; background-color: white;">
-		<hr style="border-color: lightgray;">
-		<div>
-			<iframe src="OSDFormsRu//index.html" height="600" width="984"></iframe>
-		</div>
-		<br>
-		<div style="text-align: right;"><a href="OSDFormsRu/index.html" target="_blank"><button type="button">Открыть отдельно</button></a><br></div>
-		<p style="margin-left: 40px;"></p>
-		</td>
-	</tr>
-	</tbody>
-</table>
-<br>
-<br>
-</body></html>
+            <details>
+                <summary class="menu"><a href="OSDFormsRu/OSDFormsAppendix.html" target="right">Дополнения</a></summary>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsAnimationButterfly.html" target="right">Анимация бабочки</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsAnimationCub.html" target="right">Анимация куба</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsVerticalPanel.html" target="right">Вертикальная панель значков</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsHorizontalPanel.html" target="right">Горизонтальная панель значков</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsDoubleАnimation.html" target="right">Двойная анимация</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsCircularScrollIndicator.html" target="right">Индикатор прокрутки круговой</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsScrollIndicator.html" target="right">Индикатор прокрутки</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsModalBox.html" target="right">Модальная коробка</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsMovableDiv.html" target="right">Перемещаемый блок</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsDraggableDiv.html" target="right">Перетаскиваемый блок</a></p>
+                <p class="konstr"><a href="OSDFormsRu/OSDFormsTests.html" target="right">Примеры тестирования</a></p>
+            </details>
+        </div>
+        <!-- Конец секции переключателя -->
+        <DIV id=nsbanner>
+            <DIV id=TitleRow>
+                <!-- Секция меню -->
+                <section class="menuFrame">
+                    <DIV id=div2 onclick="disableScroll()">
+                        <div id="menu1"></div>
+                        <label id="label2" for="toggle1" class="hamburger-icon1" onclick="label2click()"><div></div><div></div><div></div></label>
+                    </DIV>
+                    <DIV id=div3>
+                        <H1 class=dtH1 id="titlepage">Декларативные формы</H1>
+                    </DIV>
+                </section>
+                <!-- Конец секции меню -->
+            </DIV>
+        </DIV>
+        <div class="frameright">
+            <iframe name="right" id="iframeid" src="OSDFormsRu/Intro.html"></iframe>
+        </div>
+    </div>
+</body>
+</HTML>

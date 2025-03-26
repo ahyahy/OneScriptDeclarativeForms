@@ -1,52 +1,65 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Matrix Constructor</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>Matrix Constructor</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>Матрица (Matrix)&nbsp;Конструктор</H1></DIV></DIV>
-<DIV id=nstext>
-<H4 class=dtH4>Синтаксис</H4>
-<P>Матрица(&lt;МасштабИкс&gt;, &lt;СдвигИгрек&gt;, &lt;СдвигИкс&gt;, &lt;МасштабИгрек&gt;, &lt;СмещениеИкс&gt;, &lt;СмещениеИгрек&gt;)</P>
-<H4 class=dtH4>Параметры</H4>
-<DL>
-<DT><I>МасштабИкс</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Определяет масштабирование по горизонтали. Значение от 0 до 1 уменьшает элемент, больше 1 - увеличивает.</DD>
-<DT><I>СдвигИгрек</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Определяет деформацию (сдвиг) стороны элемента по оси Y, положительное значение - вверх, отрицательное - вниз.</DD>
-<DT><I>СдвигИкс</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Определяет деформацию (сдвиг) стороны элемента по оси X, положительное значение - влево, отрицательное - вправо.</DD>
-<DT><I>МасштабИгрек</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Определяет масштабирование по горизонтали. Значение меньше 1 уменьшает элемент, больше 1 - увеличивает.</DD>
-<DT><I>СмещениеИкс</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Определяет смещение по горизонтали. Положительное значение - вправо, отрицательное - влево.</DD>
-<DT><I>СмещениеИгрек</I> (необязательный)</DT>
-<DD>Тип: Число.</DD>
-<DD>Определяет смещение по вертикали. Положительное значение - вниз, отрицательное - вверх.</DD>
-</DL>
-<H4 class=dtH4>Описание</H4>
-<P>Создаёт новый экземпляр класса <B>Матрица&nbsp;(Matrix)</B>.</P>
-<H4 class=dtH4>Примечание</H4>
-<P></P>
-<H4 class=dtH4>Пример</H4>
-<P><PRE class=code>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>Матрица (Matrix)&nbsp;Конструктор</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>Матрица(&lt;МасштабИкс&gt;, &lt;СдвигИгрек&gt;, &lt;СдвигИкс&gt;, &lt;МасштабИгрек&gt;, &lt;СмещениеИкс&gt;, &lt;СмещениеИгрек&gt;)</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL>
+            <DT><I>МасштабИкс</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Определяет масштабирование по горизонтали. Значение от 0 до 1 уменьшает элемент, больше 1 - увеличивает.</DD>
+            <DT><I>СдвигИгрек</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Определяет деформацию (сдвиг) стороны элемента по оси Y, положительное значение - вверх, отрицательное - вниз.</DD>
+            <DT><I>СдвигИкс</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Определяет деформацию (сдвиг) стороны элемента по оси X, положительное значение - влево, отрицательное - вправо.</DD>
+            <DT><I>МасштабИгрек</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Определяет масштабирование по горизонтали. Значение меньше 1 уменьшает элемент, больше 1 - увеличивает.</DD>
+            <DT><I>СмещениеИкс</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Определяет смещение по горизонтали. Положительное значение - вправо, отрицательное - влево.</DD>
+            <DT><I>СмещениеИгрек</I> (необязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Определяет смещение по вертикали. Положительное значение - вниз, отрицательное - вверх.</DD>
+        </DL>
+        <H4 class=dtH4>Описание</H4>
+        <P>Создаёт новый экземпляр класса <B>Матрица&nbsp;(Matrix)</B>.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
 Матрица1 = ДФ.Матрица();
 Матрица2 = ДФ.Матрица(1.4, -2.0, 2.0, 1.8, -3.0, 3.0);
 </PRE>
-<details><summary>Полный пример кода</summary>
-<P><PRE class=code>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
@@ -78,35 +91,37 @@
 Форма1.Открыть();
 </DIV>
 </PRE>
-</details>
-<P></P>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
-<script>
-window.onload = function () {
-    var a = document.getElementById('select1');
-    a.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta1 = document.getElementById('cont1'); 
-		var range1 = document.createRange();
-		range1.selectNode(ta1); 
-		window.getSelection().addRange(range1); 
-        return false;
-    }
-	
-    var b = document.getElementById('copy1');
-    b.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta2 = document.getElementById('cont1'); 
-		var range2 = document.createRange();
-		range2.selectNode(ta2); 
-		window.getSelection().addRange(range2);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range2);
-        return false;
-    }
-}
-</script>
-</BODY></HTML>
+            </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>

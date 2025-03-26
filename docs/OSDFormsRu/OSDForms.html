@@ -1,474 +1,640 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>DeclarativeForms</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<META name="keywords" content="OneScript, DeclarativeForms, 1С">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+<HTML>
+<HEAD>
+    <TITLE>DeclarativeForms</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <META name="keywords" content="OneScript, DeclarativeForms, 1С">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
 </HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>Библиотека DeclarativeForms Классы</H1></DIV></DIV>
-<DIV id=nstext>
-<H3 class=dtH3>Классы</H3>
-<DIV class=tablediv>
-<TABLE class=dtTABLE cellSpacing=0>
-  <TBODY>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Paragraph.html">Абзац&nbsp;(Paragraph)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;p&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Animation.html">Анимация&nbsp;(Animation)</A></TD>
-    <TD width="50%">Представляет класс, содержащий методы анимации элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.EventArgs.html">АргументыСобытия&nbsp;(EventArgs)</A></TD>
-    <TD width="50%">Представляет класс, содержащий данные событий.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Article.html">Артикль&nbsp;(Article)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;article&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Audio.html">Аудио&nbsp;(Audio)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;audio&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.CubicBezier.html">БезьеКуб&nbsp;(CubicBezier)</A></TD>
-    <TD width="50%">Функция кубического Безье.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Div.html">Блок&nbsp;(Div)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;div&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BorderTop.html">ВерхняяГраница&nbsp;(BorderTop)</A></TD>
-    <TD width="50%">Представляет все свойства для верхней границы в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TimeSelection.html">ВыборВремени&nbsp;(TimeSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>time</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateSelection.html">ВыборДаты&nbsp;(DateSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>date</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateTimeSelection.html">ВыборДатыВремени&nbsp;(DateTimeSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>datetime</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateTimeLocalSelection.html">ВыборМестнойДатыВремени&nbsp;(DateTimeLocalSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>datetime-local</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MonthSelection.html">ВыборМесяца&nbsp;(MonthSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>month</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.WeekSelection.html">ВыборНедели&nbsp;(WeekSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>week</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.FileSelection.html">ВыборФайла&nbsp;(FileSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>file</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ColorSelection.html">ВыборЦвета&nbsp;(ColorSelection)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>color</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Borders.html">Границы&nbsp;(Borders)</A></TD>
-    <TD width="50%">Представляет свойства границ в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Group.html">Группа&nbsp;(Group)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;fieldset&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Colgroup.html">ГруппаКолонок&nbsp;(Colgroup)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;colgroup&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SelectGroup.html">ГруппировкаПоляСписка&nbsp;(SelectGroup)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;optgroup&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ImageData.html">ДанныеРисунка&nbsp;(ImageData)</A></TD>
-    <TD width="50%">Представляет объект, который копирует данные пикселей для указанного прямоугольника на холсте.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Action.html">Действие&nbsp;(Action)</A></TD>
-    <TD width="50%">Задает обработчик события.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.OSDForms.html">ДекларативныеФормы&nbsp;(DeclarativeForms)</A></TD>
-    <TD width="50%">Объект <B>ДекларативныеФормы&nbsp;(DeclarativeForms)</B> содержит свойства и методы для создания и управления декларативными формами.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Dialog.html">Диалог&nbsp;(Dialog)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;dialog&gt;</B> (всплывающее окно или диалог).</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AdditionalDiv.html">ДополнительныйБлок&nbsp;(AdditionalDiv)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;aside&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BoldText.html">ЖирныйТекст&nbsp;(BoldText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;b&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Caption.html">Заголовок&nbsp;(Caption)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;caption&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.H1.html">Заголовок1&nbsp;(H1)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;h1&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.H2.html">Заголовок2&nbsp;(H2)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;h2&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.H3.html">Заголовок3&nbsp;(H3)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;h3&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.H4.html">Заголовок4&nbsp;(H4)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;h4&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.H5.html">Заголовок5&nbsp;(H5)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;h5&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.H6.html">Заголовок6&nbsp;(H6)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;h6&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.GroupTitle.html">ЗаголовокГруппы&nbsp;(GroupTitle)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;legend&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ExpandableDivHeader.html">ЗаголовокРаскрываемогоБлока&nbsp;(ExpandableDivHeader)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;summary&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Padding.html">Заполнение&nbsp;(Padding)</A></TD>
-    <TD width="50%">Представляет заполнение для элемента в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Image.html">Изображение&nbsp;(Image)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;img&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Progress.html">Индикатор&nbsp;(Progress)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;progress&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.PerspectiveOrigin.html">ИсточникПерспективы&nbsp;(PerspectiveOrigin)</A></TD>
-    <TD width="50%">Предоставляет данные для определения, где находится 3D-элемент по осям x и y.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Outcome.html">Итоги&nbsp;(Outcome)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;tfoot&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Frames.html">Кадры&nbsp;(Frames)</A></TD>
-    <TD width="50%">Представляет массив, содержащий кадры для анимации.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Map.html">Карта&nbsp;(Map)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;map&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BorderImage.html">КартинкаГраницы&nbsp;(BorderImage)</A></TD>
-    <TD width="50%">Представляет все свойства для картинки границы в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Button.html">Кнопка&nbsp;(Button)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;button&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Code.html">Код&nbsp;(Code)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;code&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Column.html">Колонка&nbsp;(Column)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;col&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Columns.html">КолонкиЭлемента&nbsp;(Columns)</A></TD>
-    <TD width="50%">Представляет в одном объявлении ширину и количество колонок.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Header.html">Колонтитул&nbsp;(Header)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;header&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2d.html">Контекст2d&nbsp;(Context2d)</A></TD>
-    <TD width="50%">Предоставляет объекты, методы и свойства 2D-контекста для рисования и управления графикой на поверхности рисования холста.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Body.html">Контент&nbsp;(Body)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;body&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Outline.html">Контур&nbsp;(Outline)</A></TD>
-    <TD width="50%">Представляет все свойства контура в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Circle.html">Круг&nbsp;(Circle)</A></TD>
-    <TD width="50%">Представляет координаты центра круга и радиус.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ItalicsText.html">КурсивТекст&nbsp;(ItalicsText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;cite&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BorderLeft.html">ЛеваяГраница&nbsp;(BorderLeft)</A></TD>
-    <TD width="50%">Представляет все свойства для левой границы в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.LinearGradient.html">ЛинейныйГрадиент&nbsp;(LinearGradient)</A></TD>
-    <TD width="50%">Представляет линейный градиент для заливки прямоугольников, кругов, линий, текста и т. д.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Line.html">Линия&nbsp;(Line)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;hr&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Tray.html">Лоток&nbsp;(Tray)</A></TD>
-    <TD width="50%">Указывает элемент управления, который создает значок в области уведомлений.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MarkedText.html">МаркированныйТекст&nbsp;(MarkedText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;mark&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Scale.html">Масштаб&nbsp;(Scale)</A></TD>
-    <TD width="50%">Представляет преобразование 2D-масштаба.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Scale3D.html">Масштаб3Д&nbsp;(Scale3D)</A></TD>
-    <TD width="50%">Представляет преобразование 3D-масштаба.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ScaleZ.html">МасштабЗет&nbsp;(ScaleZ)</A></TD>
-    <TD width="50%">Представляет преобразование 3D-масштаба, задавая значение для оси Z.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ScaleY.html">МасштабИгрек&nbsp;(ScaleY)</A></TD>
-    <TD width="50%">Представляет преобразование масштаба, задавая значение для оси Y.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ScaleX.html">МасштабИкс&nbsp;(ScaleX)</A></TD>
-    <TD width="50%">Представляет преобразование масштаба, задавая значение для оси X.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Math.html">Математика&nbsp;(Math)</A></TD>
-    <TD width="50%">Предоставляет константы и статические методы для тригонометрических, логарифмических и других общих математических функций.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Matrix.html">Матрица&nbsp;(Matrix)</A></TD>
-    <TD width="50%">Представляет 2D-преобразование, используя матрицу из шести значений.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Matrix3D.html">Матрица3Д&nbsp;(Matrix3D)</A></TD>
-    <TD width="50%">Представляет 3D-преобразование с использованием матрицы 4x4 из 16 значений.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MediaGroup.html">МедиаГруппа&nbsp;(MediaGroup)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;figure&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SmallText.html">МелкийТекст&nbsp;(SmallText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;small&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Menu.html">Меню&nbsp;(Menu)</A></TD>
-    <TD width="50%">Представляет структуру меню формы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SupText.html">НадстрочныйТекст&nbsp;(SupText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;sup&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Skew.html">Наклон&nbsp;(Skew)</A></TD>
-    <TD width="50%">Представляет 2D преобразование наклона вдоль осей X и Y.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SkewY.html">НаклонИгрек&nbsp;(SkewY)</A></TD>
-    <TD width="50%">Представляет 2D-преобразование наклона вдоль оси Y.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SkewX.html">НаклонИкс&nbsp;(SkewX)</A></TD>
-    <TD width="50%">Представляет преобразование 2D-перекоса вдоль оси X.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DirectedText.html">НаправленныйТекст&nbsp;(DirectedText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;bdo&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.UnorderedList.html">НеупорядоченныйСписок&nbsp;(UnorderedList)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;ul&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Footer.html">НижнийКолонтитул&nbsp;(Footer)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;footer&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BorderBottom.html">НижняяГраница&nbsp;(BorderBottom)</A></TD>
-    <TD width="50%">Представляет все свойства для нижней границы в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Area.html">Область&nbsp;(Area)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;area&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableBody.html">ОбластьТаблицы&nbsp;(TableBody)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;tbody&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TextArea.html">ОбластьТекста&nbsp;(TextArea)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;textarea&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MessageBox.html">ОкноСообщений&nbsp;(MessageBox)</A></TD>
-    <TD width="50%">Отображает настраиваемое окно сообщений которое информирует и инструктирует пользователя.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.CaptionMedia.html">ОписаниеМедиа&nbsp;(CaptionMedia)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;figcaption&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Definition.html">Определение&nbsp;(Definition)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;dd&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Margin.html">Отступ&nbsp;(Margin)</A></TD>
-    <TD width="50%">Представляет отступы для элемента в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AnimationOptions.html">ПараметрыАнимации&nbsp;(AnimationOptions)</A></TD>
-    <TD width="50%">Представляет класс, содержащий параметры анимации элемента созданной с помощью API веб-анимации.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Translate.html">Перевод&nbsp;(Translate)</A></TD>
-    <TD width="50%">Представляет преобразование 2D-перевод.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Translate3D.html">Перевод3Д&nbsp;(Translate3D)</A></TD>
-    <TD width="50%">Представляет преобразование 3D-перевод.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TranslateZ.html">ПереводЗет&nbsp;(TranslateZ)</A></TD>
-    <TD width="50%">Представляет преобразование 3D-перевод, используя только значение оси Z.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TranslateY.html">ПереводИгрек&nbsp;(TranslateY)</A></TD>
-    <TD width="50%">Представляет преобразование перевод, используя только значение для оси Y.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TranslateX.html">ПереводИкс&nbsp;(TranslateX)</A></TD>
-    <TD width="50%">Представляет преобразование перевод, используя только значение для оси X.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Radio.html">Переключатель&nbsp;(Radio)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>radio</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Transfer.html">Перенос&nbsp;(Transfer)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;br&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Transition.html">Переход&nbsp;(Transition)</A></TD>
-    <TD width="50%">Представляет свойства перехода в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Perspective.html">Перспектива&nbsp;(Perspective)</A></TD>
-    <TD width="50%">Представляет вид в перспективе для преобразованного в 3D элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Rotate.html">Поворот&nbsp;(Rotate)</A></TD>
-    <TD width="50%">Представляет преобразование 2D вращения.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Rotate3D.html">Поворот3Д&nbsp;(Rotate3D)</A></TD>
-    <TD width="50%">Представляет преобразование 3D-вращение.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.RotateZ.html">ПоворотЗет&nbsp;(RotateZ)</A></TD>
-    <TD width="50%">Представляет преобразование 3D вращения вдоль оси Z.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.RotateY.html">ПоворотИгрек&nbsp;(RotateY)</A></TD>
-    <TD width="50%">Представляет преобразование 3D вращения вдоль оси Y.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.RotateX.html">ПоворотИкс&nbsp;(RotateX)</A></TD>
-    <TD width="50%">Представляет преобразование 3D вращения вдоль оси X.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Label.html">Подпись&nbsp;(Label)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>label</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SubText.html">ПодстрочныйТекст&nbsp;(SubText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;sub&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.UnderlineText.html">ПодчеркнутыйТекст&nbsp;(UnderlineText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;u&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.PasswordField.html">ПолеПароля&nbsp;(PasswordField)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>password</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SearchField.html">ПолеПоиска&nbsp;(SearchField)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>search</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Select.html">ПолеСписка&nbsp;(Select)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;select&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TextField.html">ПолеТекста&nbsp;(TextField)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>text</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.NumberField.html">ПолеЧисла&nbsp;(NumberField)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>number</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Range.html">Ползунок&nbsp;(Range)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>range</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Polygon.html">Полигон&nbsp;(Polygon)</A></TD>
-    <TD width="50%">Представляет координаты краев многоугольника.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BorderRight.html">ПраваяГраница&nbsp;(BorderRight)</A></TD>
-    <TD width="50%">Представляет все свойства для правой границы в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Rectangle.html">Прямоугольник&nbsp;(Rectangle)</A></TD>
-    <TD width="50%">Сохраняет местоположение и размер прямоугольной области.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.RadialGradient.html">РадиальныйГрадиент&nbsp;(RadialGradient)</A></TD>
-    <TD width="50%">Представляет радиальный градиент для заливки прямоугольников, кругов, линий, текста и т. д.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BorderRadius.html">РадиусГраницы&nbsp;(BorderRadius)</A></TD>
-    <TD width="50%">Представляет радиус границы в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ColumnRule.html">РазделительКолонок&nbsp;(ColumnRule)</A></TD>
-    <TD width="50%">Представляет все свойства для разделителя колонок  в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Size.html">Размер&nbsp;(Size)</A></TD>
-    <TD width="50%">Сохраняет упорядоченную пару целых чисел, указывающих высоту и ширину.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ExpandableDiv.html">РаскрываемыйБлок&nbsp;(ExpandableDiv)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;details&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Output.html">Результат&nbsp;(Output)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;output&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AnimationProperties.html">СвойстваАнимации&nbsp;(AnimationProperties)</A></TD>
-    <TD width="50%">Представляет класс, содержащий свойства анимации элемента созданной с помощью стилей.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Script.html">Скрипт&nbsp;(Script)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;script&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ListDefinition.html">СписокОпределений&nbsp;(ListDefinition)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;dl&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Link.html">Ссылка&nbsp;(Link)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;a&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Style.html">Стиль&nbsp;(Style)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;style&gt;</B></TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BordersStyle.html">СтильГраниц&nbsp;(BordersStyle)</A></TD>
-    <TD width="50%">Представляет стиль границ в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ListStyle.html">СтильСписка&nbsp;(ListStyle)</A></TD>
-    <TD width="50%">Представляет свойства списка в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableRow.html">СтрокаТаблицы&nbsp;(TableRow)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;tr&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Table.html">Таблица&nbsp;(Table)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;table&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Timer.html">Таймер&nbsp;(Timer)</A></TD>
-    <TD width="50%">Создает событие после заданного интервала с возможностью создания повторяющихся событий.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BoxShadow.html">Тень&nbsp;(BoxShadow)</A></TD>
-    <TD width="50%">Представляет тень элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Term.html">Термин&nbsp;(Term)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;dt&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Point.html">Точка&nbsp;(Point)</A></TD>
-    <TD width="50%">Представляет упорядоченную пару целых x- и y-координат которая определяет точку на двумерной плоскости.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TransformOrigin.html">ТочкаСдвига&nbsp;(TransformOrigin)</A></TD>
-    <TD width="50%">Представляет положение относительно которого преобразуется элемент.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Balloons.html">Уведомления&nbsp;(Balloons)</A></TD>
-    <TD width="50%">Представляет шаблон для окна уведомления с указанным заголовком и текстом.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeletedText.html">УдаленыйТекст&nbsp;(DeletedText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;del&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.OrderedList.html">УпорядоченныйСписок&nbsp;(OrderedList)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;ol&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ImagesFilter.html">ФильтрИзображений&nbsp;(ImagesFilter)</A></TD>
-    <TD width="50%">Представляет визуальные эффекты, добавляемые к изображениям.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.CheckBox.html">Флажок&nbsp;(CheckBox)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>checkbox</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Background.html">Фон&nbsp;(Background)</A></TD>
-    <TD width="50%">Представляет свойства фона элемента в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Form.html">Форма&nbsp;(Form)</A></TD>
-    <TD width="50%">Представляет окно, которое составляет пользовательский интерфейс приложения.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.PreformattedText.html">ФорматированныйТекст&nbsp;(PreformattedText)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;pre&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Frame.html">Фрейм&nbsp;(Frame)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;iframe&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Canvas.html">Холст&nbsp;(Canvas)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;canvas&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BordersColor.html">ЦветГраниц&nbsp;(BordersColor)</A></TD>
-    <TD width="50%">Представляет цвет границ элемента в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableHeader.html">ШапкаТаблицы&nbsp;(TableHeader)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;thead&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BordersWidth.html">ШиринаГраниц&nbsp;(BordersWidth)</A></TD>
-    <TD width="50%">Представляет ширину границ элемента в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Meter.html">Шкала&nbsp;(Meter)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;meter&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Font.html">Шрифт&nbsp;(Font)</A></TD>
-    <TD width="50%">Представляет свойства шрифта в одном объявлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MenuItem.html">ЭлементМеню&nbsp;(MenuItem)</A></TD>
-    <TD width="50%">Представляет отдельный элемент меню.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SelectItem.html">ЭлементПоляСписка&nbsp;(SelectItem)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;option&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ListItem.html">ЭлементСписка&nbsp;(ListItem)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;li&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Cell.html">Ячейка&nbsp;(Cell)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;td&gt;</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.HeaderCell.html">ЯчейкаЗаголовка&nbsp;(HeaderCell)</A></TD>
-    <TD width="50%">Представляет элемент HTML <B>&lt;th&gt;</B>.</TD></TR></TBODY></TABLE></DIV></DIV></BODY></HTML>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>Библиотека DeclarativeForms Классы</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H3 class=dtH3>Классы</H3>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Paragraph.html">Абзац&nbsp;(Paragraph)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;p&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Animation.html">Анимация&nbsp;(Animation)</A></TD>
+                        <TD width="50%">Представляет класс, содержащий методы анимации элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.EventArgs.html">АргументыСобытия&nbsp;(EventArgs)</A></TD>
+                        <TD width="50%">Представляет класс, содержащий данные событий.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Article.html">Артикль&nbsp;(Article)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;article&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Audio.html">Аудио&nbsp;(Audio)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;audio&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.CubicBezier.html">БезьеКуб&nbsp;(CubicBezier)</A></TD>
+                        <TD width="50%">Функция кубического Безье.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Div.html">Блок&nbsp;(Div)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;div&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BorderTop.html">ВерхняяГраница&nbsp;(BorderTop)</A></TD>
+                        <TD width="50%">Представляет все свойства для верхней границы в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TimeSelection.html">ВыборВремени&nbsp;(TimeSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>time</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateSelection.html">ВыборДаты&nbsp;(DateSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>date</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateTimeSelection.html">ВыборДатыВремени&nbsp;(DateTimeSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>datetime</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateTimeLocalSelection.html">ВыборМестнойДатыВремени&nbsp;(DateTimeLocalSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>datetime-local</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MonthSelection.html">ВыборМесяца&nbsp;(MonthSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>month</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.WeekSelection.html">ВыборНедели&nbsp;(WeekSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>week</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.FileSelection.html">ВыборФайла&nbsp;(FileSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>file</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ColorSelection.html">ВыборЦвета&nbsp;(ColorSelection)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>color</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Borders.html">Границы&nbsp;(Borders)</A></TD>
+                        <TD width="50%">Представляет свойства границ в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Group.html">Группа&nbsp;(Group)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;fieldset&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Colgroup.html">ГруппаКолонок&nbsp;(Colgroup)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;colgroup&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SelectGroup.html">ГруппировкаПоляСписка&nbsp;(SelectGroup)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;optgroup&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ImageData.html">ДанныеРисунка&nbsp;(ImageData)</A></TD>
+                        <TD width="50%">Представляет объект, который копирует данные пикселей для указанного прямоугольника на холсте.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Action.html">Действие&nbsp;(Action)</A></TD>
+                        <TD width="50%">Задает обработчик события.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.OSDForms.html">ДекларативныеФормы&nbsp;(DeclarativeForms)</A></TD>
+                        <TD width="50%">Объект <B>ДекларативныеФормы&nbsp;(DeclarativeForms)</B> содержит свойства и методы для создания и управления декларативными формами.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Dialog.html">Диалог&nbsp;(Dialog)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;dialog&gt;</B> (всплывающее окно или диалог).</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AdditionalDiv.html">ДополнительныйБлок&nbsp;(AdditionalDiv)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;aside&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BoldText.html">ЖирныйТекст&nbsp;(BoldText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;b&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Caption.html">Заголовок&nbsp;(Caption)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;caption&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.H1.html">Заголовок1&nbsp;(H1)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;h1&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.H2.html">Заголовок2&nbsp;(H2)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;h2&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.H3.html">Заголовок3&nbsp;(H3)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;h3&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.H4.html">Заголовок4&nbsp;(H4)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;h4&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.H5.html">Заголовок5&nbsp;(H5)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;h5&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.H6.html">Заголовок6&nbsp;(H6)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;h6&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.GroupTitle.html">ЗаголовокГруппы&nbsp;(GroupTitle)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;legend&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ExpandableDivHeader.html">ЗаголовокРаскрываемогоБлока&nbsp;(ExpandableDivHeader)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;summary&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Padding.html">Заполнение&nbsp;(Padding)</A></TD>
+                        <TD width="50%">Представляет заполнение для элемента в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Image.html">Изображение&nbsp;(Image)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;img&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Progress.html">Индикатор&nbsp;(Progress)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;progress&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.PerspectiveOrigin.html">ИсточникПерспективы&nbsp;(PerspectiveOrigin)</A></TD>
+                        <TD width="50%">Предоставляет данные для определения, где находится 3D-элемент по осям x и y.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Outcome.html">Итоги&nbsp;(Outcome)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;tfoot&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Frames.html">Кадры&nbsp;(Frames)</A></TD>
+                        <TD width="50%">Представляет массив, содержащий кадры для анимации.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Map.html">Карта&nbsp;(Map)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;map&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BorderImage.html">КартинкаГраницы&nbsp;(BorderImage)</A></TD>
+                        <TD width="50%">Представляет все свойства для картинки границы в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Button.html">Кнопка&nbsp;(Button)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;button&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Code.html">Код&nbsp;(Code)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;code&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Column.html">Колонка&nbsp;(Column)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;col&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Columns.html">КолонкиЭлемента&nbsp;(Columns)</A></TD>
+                        <TD width="50%">Представляет в одном объявлении ширину и количество колонок.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Header.html">Колонтитул&nbsp;(Header)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;header&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2d.html">Контекст2d&nbsp;(Context2d)</A></TD>
+                        <TD width="50%">Предоставляет объекты, методы и свойства 2D-контекста для рисования и управления графикой на поверхности рисования холста.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Body.html">Контент&nbsp;(Body)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;body&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Outline.html">Контур&nbsp;(Outline)</A></TD>
+                        <TD width="50%">Представляет все свойства контура в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Circle.html">Круг&nbsp;(Circle)</A></TD>
+                        <TD width="50%">Представляет координаты центра круга и радиус.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ItalicsText.html">КурсивТекст&nbsp;(ItalicsText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;cite&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BorderLeft.html">ЛеваяГраница&nbsp;(BorderLeft)</A></TD>
+                        <TD width="50%">Представляет все свойства для левой границы в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.LinearGradient.html">ЛинейныйГрадиент&nbsp;(LinearGradient)</A></TD>
+                        <TD width="50%">Представляет линейный градиент для заливки прямоугольников, кругов, линий, текста и т. д.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Line.html">Линия&nbsp;(Line)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;hr&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Tray.html">Лоток&nbsp;(Tray)</A></TD>
+                        <TD width="50%">Указывает элемент управления, который создает значок в области уведомлений.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MarkedText.html">МаркированныйТекст&nbsp;(MarkedText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;mark&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Scale.html">Масштаб&nbsp;(Scale)</A></TD>
+                        <TD width="50%">Представляет преобразование 2D-масштаба.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Scale3D.html">Масштаб3Д&nbsp;(Scale3D)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D-масштаба.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ScaleZ.html">МасштабЗет&nbsp;(ScaleZ)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D-масштаба, задавая значение для оси Z.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ScaleY.html">МасштабИгрек&nbsp;(ScaleY)</A></TD>
+                        <TD width="50%">Представляет преобразование масштаба, задавая значение для оси Y.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ScaleX.html">МасштабИкс&nbsp;(ScaleX)</A></TD>
+                        <TD width="50%">Представляет преобразование масштаба, задавая значение для оси X.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Math.html">Математика&nbsp;(Math)</A></TD>
+                        <TD width="50%">Предоставляет константы и статические методы для тригонометрических, логарифмических и других общих математических функций.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Matrix.html">Матрица&nbsp;(Matrix)</A></TD>
+                        <TD width="50%">Представляет 2D-преобразование, используя матрицу из шести значений.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Matrix3D.html">Матрица3Д&nbsp;(Matrix3D)</A></TD>
+                        <TD width="50%">Представляет 3D-преобразование с использованием матрицы 4x4 из 16 значений.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MediaGroup.html">МедиаГруппа&nbsp;(MediaGroup)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;figure&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SmallText.html">МелкийТекст&nbsp;(SmallText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;small&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Menu.html">Меню&nbsp;(Menu)</A></TD>
+                        <TD width="50%">Представляет структуру меню формы.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SupText.html">НадстрочныйТекст&nbsp;(SupText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;sup&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Skew.html">Наклон&nbsp;(Skew)</A></TD>
+                        <TD width="50%">Представляет 2D преобразование наклона вдоль осей X и Y.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SkewY.html">НаклонИгрек&nbsp;(SkewY)</A></TD>
+                        <TD width="50%">Представляет 2D-преобразование наклона вдоль оси Y.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SkewX.html">НаклонИкс&nbsp;(SkewX)</A></TD>
+                        <TD width="50%">Представляет преобразование 2D-перекоса вдоль оси X.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DirectedText.html">НаправленныйТекст&nbsp;(DirectedText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;bdo&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.UnorderedList.html">НеупорядоченныйСписок&nbsp;(UnorderedList)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;ul&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Footer.html">НижнийКолонтитул&nbsp;(Footer)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;footer&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BorderBottom.html">НижняяГраница&nbsp;(BorderBottom)</A></TD>
+                        <TD width="50%">Представляет все свойства для нижней границы в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Area.html">Область&nbsp;(Area)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;area&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableBody.html">ОбластьТаблицы&nbsp;(TableBody)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;tbody&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TextArea.html">ОбластьТекста&nbsp;(TextArea)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;textarea&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MessageBox.html">ОкноСообщений&nbsp;(MessageBox)</A></TD>
+                        <TD width="50%">Отображает настраиваемое окно сообщений которое информирует и инструктирует пользователя.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.CaptionMedia.html">ОписаниеМедиа&nbsp;(CaptionMedia)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;figcaption&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Definition.html">Определение&nbsp;(Definition)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;dd&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Margin.html">Отступ&nbsp;(Margin)</A></TD>
+                        <TD width="50%">Представляет отступы для элемента в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AnimationOptions.html">ПараметрыАнимации&nbsp;(AnimationOptions)</A></TD>
+                        <TD width="50%">Представляет класс, содержащий параметры анимации элемента созданной с помощью API веб-анимации.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Translate.html">Перевод&nbsp;(Translate)</A></TD>
+                        <TD width="50%">Представляет преобразование 2D-перевод.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Translate3D.html">Перевод3Д&nbsp;(Translate3D)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D-перевод.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TranslateZ.html">ПереводЗет&nbsp;(TranslateZ)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D-перевод, используя только значение оси Z.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TranslateY.html">ПереводИгрек&nbsp;(TranslateY)</A></TD>
+                        <TD width="50%">Представляет преобразование перевод, используя только значение для оси Y.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TranslateX.html">ПереводИкс&nbsp;(TranslateX)</A></TD>
+                        <TD width="50%">Представляет преобразование перевод, используя только значение для оси X.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Radio.html">Переключатель&nbsp;(Radio)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>radio</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Transfer.html">Перенос&nbsp;(Transfer)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;br&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Transition.html">Переход&nbsp;(Transition)</A></TD>
+                        <TD width="50%">Представляет свойства перехода в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Perspective.html">Перспектива&nbsp;(Perspective)</A></TD>
+                        <TD width="50%">Представляет вид в перспективе для преобразованного в 3D элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Rotate.html">Поворот&nbsp;(Rotate)</A></TD>
+                        <TD width="50%">Представляет преобразование 2D вращения.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Rotate3D.html">Поворот3Д&nbsp;(Rotate3D)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D-вращение.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.RotateZ.html">ПоворотЗет&nbsp;(RotateZ)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D вращения вдоль оси Z.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.RotateY.html">ПоворотИгрек&nbsp;(RotateY)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D вращения вдоль оси Y.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.RotateX.html">ПоворотИкс&nbsp;(RotateX)</A></TD>
+                        <TD width="50%">Представляет преобразование 3D вращения вдоль оси X.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Label.html">Подпись&nbsp;(Label)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>label</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SubText.html">ПодстрочныйТекст&nbsp;(SubText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;sub&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.UnderlineText.html">ПодчеркнутыйТекст&nbsp;(UnderlineText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;u&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.PasswordField.html">ПолеПароля&nbsp;(PasswordField)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>password</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SearchField.html">ПолеПоиска&nbsp;(SearchField)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>search</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Select.html">ПолеСписка&nbsp;(Select)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;select&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TextField.html">ПолеТекста&nbsp;(TextField)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>text</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.NumberField.html">ПолеЧисла&nbsp;(NumberField)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>number</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Range.html">Ползунок&nbsp;(Range)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>range</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Polygon.html">Полигон&nbsp;(Polygon)</A></TD>
+                        <TD width="50%">Представляет координаты краев многоугольника.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BorderRight.html">ПраваяГраница&nbsp;(BorderRight)</A></TD>
+                        <TD width="50%">Представляет все свойства для правой границы в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Rectangle.html">Прямоугольник&nbsp;(Rectangle)</A></TD>
+                        <TD width="50%">Сохраняет местоположение и размер прямоугольной области.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.RadialGradient.html">РадиальныйГрадиент&nbsp;(RadialGradient)</A></TD>
+                        <TD width="50%">Представляет радиальный градиент для заливки прямоугольников, кругов, линий, текста и т. д.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BorderRadius.html">РадиусГраницы&nbsp;(BorderRadius)</A></TD>
+                        <TD width="50%">Представляет радиус границы в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ColumnRule.html">РазделительКолонок&nbsp;(ColumnRule)</A></TD>
+                        <TD width="50%">Представляет все свойства для разделителя колонок  в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Size.html">Размер&nbsp;(Size)</A></TD>
+                        <TD width="50%">Сохраняет упорядоченную пару целых чисел, указывающих высоту и ширину.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ExpandableDiv.html">РаскрываемыйБлок&nbsp;(ExpandableDiv)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;details&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Output.html">Результат&nbsp;(Output)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;output&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AnimationProperties.html">СвойстваАнимации&nbsp;(AnimationProperties)</A></TD>
+                        <TD width="50%">Представляет класс, содержащий свойства анимации элемента созданной с помощью стилей.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Script.html">Скрипт&nbsp;(Script)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;script&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ListDefinition.html">СписокОпределений&nbsp;(ListDefinition)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;dl&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Link.html">Ссылка&nbsp;(Link)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;a&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Style.html">Стиль&nbsp;(Style)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;style&gt;</B></TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BordersStyle.html">СтильГраниц&nbsp;(BordersStyle)</A></TD>
+                        <TD width="50%">Представляет стиль границ в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ListStyle.html">СтильСписка&nbsp;(ListStyle)</A></TD>
+                        <TD width="50%">Представляет свойства списка в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableRow.html">СтрокаТаблицы&nbsp;(TableRow)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;tr&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Table.html">Таблица&nbsp;(Table)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;table&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Timer.html">Таймер&nbsp;(Timer)</A></TD>
+                        <TD width="50%">Создает событие после заданного интервала с возможностью создания повторяющихся событий.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BoxShadow.html">Тень&nbsp;(BoxShadow)</A></TD>
+                        <TD width="50%">Представляет тень элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Term.html">Термин&nbsp;(Term)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;dt&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Point.html">Точка&nbsp;(Point)</A></TD>
+                        <TD width="50%">Представляет упорядоченную пару целых x- и y-координат которая определяет точку на двумерной плоскости.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TransformOrigin.html">ТочкаСдвига&nbsp;(TransformOrigin)</A></TD>
+                        <TD width="50%">Представляет положение относительно которого преобразуется элемент.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Balloons.html">Уведомления&nbsp;(Balloons)</A></TD>
+                        <TD width="50%">Представляет шаблон для окна уведомления с указанным заголовком и текстом.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeletedText.html">УдаленыйТекст&nbsp;(DeletedText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;del&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.OrderedList.html">УпорядоченныйСписок&nbsp;(OrderedList)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;ol&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ImagesFilter.html">ФильтрИзображений&nbsp;(ImagesFilter)</A></TD>
+                        <TD width="50%">Представляет визуальные эффекты, добавляемые к изображениям.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.CheckBox.html">Флажок&nbsp;(CheckBox)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;input&gt;</B> с типом <B>checkbox</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Background.html">Фон&nbsp;(Background)</A></TD>
+                        <TD width="50%">Представляет свойства фона элемента в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Form.html">Форма&nbsp;(Form)</A></TD>
+                        <TD width="50%">Представляет окно, которое составляет пользовательский интерфейс приложения.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.PreformattedText.html">ФорматированныйТекст&nbsp;(PreformattedText)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;pre&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Frame.html">Фрейм&nbsp;(Frame)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;iframe&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Canvas.html">Холст&nbsp;(Canvas)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;canvas&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BordersColor.html">ЦветГраниц&nbsp;(BordersColor)</A></TD>
+                        <TD width="50%">Представляет цвет границ элемента в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableHeader.html">ШапкаТаблицы&nbsp;(TableHeader)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;thead&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BordersWidth.html">ШиринаГраниц&nbsp;(BordersWidth)</A></TD>
+                        <TD width="50%">Представляет ширину границ элемента в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Meter.html">Шкала&nbsp;(Meter)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;meter&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Font.html">Шрифт&nbsp;(Font)</A></TD>
+                        <TD width="50%">Представляет свойства шрифта в одном объявлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MenuItem.html">ЭлементМеню&nbsp;(MenuItem)</A></TD>
+                        <TD width="50%">Представляет отдельный элемент меню.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SelectItem.html">ЭлементПоляСписка&nbsp;(SelectItem)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;option&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ListItem.html">ЭлементСписка&nbsp;(ListItem)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;li&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Cell.html">Ячейка&nbsp;(Cell)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;td&gt;</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.HeaderCell.html">ЯчейкаЗаголовка&nbsp;(HeaderCell)</A></TD>
+                        <TD width="50%">Представляет элемент HTML <B>&lt;th&gt;</B>.</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+    </DIV>
+</BODY>
+</HTML>

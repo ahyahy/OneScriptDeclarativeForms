@@ -1,50 +1,64 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Color Method</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>Color Method</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>ДекларативныеФормы.Цвет (DeclarativeForms.Color)&nbsp;Метод</H1></DIV></DIV>
-<DIV id=nstext>
-<H4 class=dtH4>Синтаксис</H4>
-<P>Цвет()</P>
-<P>Цвет(&lt;ИмяЦвета&gt;)</P>
-<P>Цвет(&lt;Красный&gt;, &lt;Зеленый&gt;, &lt;Синий&gt;)</P>
-<H4 class=dtH4>Параметры</H4>
-<DL>
-<DT><I>ИмяЦвета</I></DT>
-<DD>Тип: Строка.</DD>
-<DD>Название цвета.</DD>
-<DT><I>Красный</I></DT>
-<DD>Тип: Число.</DD>
-<DD>Значение красной составляющей цвета.</DD>
-<DT><I>Зеленый</I></DT>
-<DD>Тип: Число.</DD>
-<DD>Значение зеленой составляющей цвета.</DD>
-<DT><I>Синий</I></DT>
-<DD>Тип: Число.</DD>
-<DD>Значение синей составляющей цвета.</DD></DL>
-<H4 class=dtH4>Возвращаемое значение</H4>
-<P>Тип: Произвольный.</P>
-<H4 class=dtH4>Описание</H4>
-<P>Возвращает значение цвета в виде строки.</P>
-<H4 class=dtH4>Примечание</H4>
-<P></P>
-<H4 class=dtH4>Пример</H4>
-<P><PRE class=code>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ДекларативныеФормы.Цвет (DeclarativeForms.Color)&nbsp;Метод</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>Цвет()</P>
+        <P>Цвет(&lt;ИмяЦвета&gt;)</P>
+        <P>Цвет(&lt;Красный&gt;, &lt;Зеленый&gt;, &lt;Синий&gt;)</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL>
+            <DT><I>ИмяЦвета</I></DT>
+            <DD>Тип: Строка.</DD>
+            <DD>Название цвета.</DD>
+            <DT><I>Красный</I></DT>
+            <DD>Тип: Число.</DD>
+            <DD>Значение красной составляющей цвета.</DD>
+            <DT><I>Зеленый</I></DT>
+            <DD>Тип: Число.</DD>
+            <DD>Значение зеленой составляющей цвета.</DD>
+            <DT><I>Синий</I></DT>
+            <DD>Тип: Число.</DD>
+            <DD>Значение синей составляющей цвета.</DD>
+        </DL>
+        <H4 class=dtH4>Возвращаемое значение</H4>
+        <P>Тип: Произвольный.</P>
+        <H4 class=dtH4>Описание</H4>
+        <P>Возвращает значение цвета в виде строки.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
 Цвет1 = ДФ.Цвет("БледноБирюзовый");
 Цвет2 = ДФ.Цвет();
 Цвет3 = ДФ.Цвет(175, 238, 238);
 </PRE>
-<details><summary>Полный пример кода</summary>
-<P><PRE class=code>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 ПодключитьВнешнююКомпоненту("C:\444\111\DeclarativeForms\DeclarativeForms\bin\Debug\DeclarativeForms.dll");
@@ -67,35 +81,37 @@
 Форма1.Открыть();
 </DIV>
 </PRE>
-</details>
-<P></P>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P></DIV>
-<script>
-window.onload = function () {
-    var a = document.getElementById('select1');
-    a.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta1 = document.getElementById('cont1'); 
-		var range1 = document.createRange();
-		range1.selectNode(ta1); 
-		window.getSelection().addRange(range1); 
-        return false;
-    }
-	
-    var b = document.getElementById('copy1');
-    b.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta2 = document.getElementById('cont1'); 
-		var range2 = document.createRange();
-		range2.selectNode(ta2); 
-		window.getSelection().addRange(range2);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range2);
-        return false;
-    }
-}
-</script>
-</BODY></HTML>
+            </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OSDForms.html">Библиотека&nbsp;DeclarativeForms</A> | <A href="OSDFormsTests.html">Примеры тестирования</A></P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>

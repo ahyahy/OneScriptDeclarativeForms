@@ -1,423 +1,572 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>DeclarativeForms</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<META name="keywords" content="OneScript, DeclarativeForms, 1С">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+<HTML>
+<HEAD>
+    <TITLE>DeclarativeForms</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <META name="keywords" content="OneScript, DeclarativeForms, 1С">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
 </HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>Библиотека DeclarativeForms Методы</H1></DIV></DIV>
-<DIV id=nstext>
-<H3 class=dtH3>Методы</H3>
-<DIV class=tablediv>
-<TABLE class=dtTABLE cellSpacing=0>
-  <TBODY>
-  <TR vAlign=top>
-    <TH width="50%">Методы (Methods)</TH>
-    <TH width="50%">Описание</TH></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathAbsMethod.html">Абсолютное&nbsp;(Abs) (Математика)</A></TD>
-    <TD width="50%">Возвращает абсолютное значение числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathAcosMethod.html">АКосинус&nbsp;(Acos) (Математика)</A></TD>
-    <TD width="50%">Возвращает числовое значение между 0 и Пи радианами для значения x, лежащего в диапазоне от -1 до 1.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementAnimationMethod.html">Анимация&nbsp;(Animation) (Элемент)</A></TD>
-    <TD width="50%">Позволяет определять и управлять анимациями элементов.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathAsinMethod.html">АСинус&nbsp;(Asin) (Математика)</A></TD>
-    <TD width="50%">Возвращает числовое значение между -Пи/2 и Пи/2 радианами для значения x, лежащего в диапазоне от -1 до 1.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathAtanMethod.html">АТангенс&nbsp;(Atan) (Математика)</A></TD>
-    <TD width="50%">Возвращает числовое значение между -Пи/2 и Пи/2 радианами.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathAtan2Method.html">АТангенс2&nbsp;(Atan2) (Математика)</A></TD>
-    <TD width="50%">Возвращает числовое значение от -Пи до Пи, представляющее угол точки (x, y). Это выраженный в радианах угол, отсчитываемый против часовой стрелки от положительного направления оси X до точки (x, y). Обратите внимание, что первой в метод передаётся координата y, а только второй - координата x.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathMaxMethod.html">Большее&nbsp;(Max) (Математика)</A></TD>
-    <TD width="50%">Возвращает большее из двух сравниваемых чисел.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsInjectGlobalPropertyMethod.html">ВвестиГлобальноеСвойство&nbsp;(InjectGlobalProperty) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Вводит глобальное свойство в область видимости загружаемых скриптов.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AudioPlayMethod.html">Воспроизвести&nbsp;(Play) (Аудио)</A></TD>
-    <TD width="50%">Начинает воспроизведение.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dRestoreMethod.html">Восстановить&nbsp;(Restore) (Контекст2d)</A></TD>
-    <TD width="50%">Восстанавливает ранее сохраненное состояние и атрибуты.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MenuInsertMethod.html">Вставить&nbsp;(Insert) (Меню)</A></TD>
-    <TD width="50%">Вставляет элемент меню в указанную позицию меню. Индекс начинается с <B>0</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableInsertRowMethod.html">ВставитьСтроку&nbsp;(InsertRow) (Таблица)</A></TD>
-    <TD width="50%">Создает пустую строку и добавляет её в таблицу.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableRowInsertCellMethod.html">ВставитьЯчейку&nbsp;(InsertCell) (СтрокаТаблицы)</A></TD>
-    <TD width="50%">Вставляет ячейку в текущую строку таблицы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TimeSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборВремени)</A></TD>
-    <TD width="50%">Выбирает содержимое текстового поля времени.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборДаты)</A></TD>
-    <TD width="50%">Выбирает содержимое текстового поля даты.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateTimeSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборДатыВремени)</A></TD>
-    <TD width="50%">Выбирает содержимое текстового поля даты и времени.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MonthSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборМесяца)</A></TD>
-    <TD width="50%">Выбирает содержимое текстового поля месяца.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.WeekSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборНедели)</A></TD>
-    <TD width="50%">Выбирает содержимое текстового поля недели.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TextAreaSelectMethod.html">Выбрать&nbsp;(Select) (ОбластьТекста)</A></TD>
-    <TD width="50%">Выделяет все содержимое области текста.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.PasswordFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеПароля)</A></TD>
-    <TD width="50%">Выделяет все содержимое поля пароля.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SearchFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеПоиска)</A></TD>
-    <TD width="50%">Выделяет все содержимое поля поиска.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TextFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеТекста)</A></TD>
-    <TD width="50%">Выделяет все содержимое поля текста.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.NumberFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеЧисла)</A></TD>
-    <TD width="50%">Выбирает все содержимое поля числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsExecuteMethod.html">Выполнить&nbsp;(Execute) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Вызывает заданный метод.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathCoshMethod.html">ГКосинус&nbsp;(Cosh) (Математика)</A></TD>
-    <TD width="50%">Возвращает гиперболический косинус указанного угла.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathSinhMethod.html">ГСинус&nbsp;(Sinh) (Математика)</A></TD>
-    <TD width="50%">Возвращает гиперболический синус указанного угла.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathTanhMethod.html">ГТангенс&nbsp;(Tanh) (Математика)</A></TD>
-    <TD width="50%">Возвращает гиперболический тангенс заданного угла.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementDoubleClickMethod.html">ДвойноеНажатие&nbsp;(DoubleClick) (Элемент)</A></TD>
-    <TD width="50%">Вызывает событие когда элемент  дважды щелкнут.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.FramesAddMethod.html">Добавить&nbsp;(Add) (Кадры)</A></TD>
-    <TD width="50%">Добавляет стиль в конец набора кадров анимации.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SelectAddMethod.html">Добавить&nbsp;(Add) (ПолеСписка)</A></TD>
-    <TD width="50%">Добавляет элемент в поле списка.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MenuAppendMethod.html">Добавить&nbsp;(Append) (Меню)</A></TD>
-    <TD width="50%">Добавляет элемент в конец меню.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.FormAppendChildMethod.html">ДобавитьДочерний&nbsp;(AppendChild) (Форма)</A></TD>
-    <TD width="50%">Добавляет элемент в качестве последнего дочернего элемента элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementAppendChildMethod.html">ДобавитьДочерний&nbsp;(AppendChild) (Элемент)</A></TD>
-    <TD width="50%">Добавляет элемент в качестве последнего дочернего элемента элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dQuadraticCurveToMethod.html">ДобавитьКвадратичнуюБизье&nbsp;(QuadraticCurveTo) (Контекст2d)</A></TD>
-    <TD width="50%">Добавляет кубическую кривую Безье.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dBezierCurveToMethod.html">ДобавитьКубическуюБизье&nbsp;(BezierCurveTo) (Контекст2d)</A></TD>
-    <TD width="50%">Добавляет кубическую кривую Безье.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.LinearGradientAddColorStopMethod.html">ДобавитьОстановкуГрадиента&nbsp;(AddColorStop) (ЛинейныйГрадиент)</A></TD>
-    <TD width="50%">Определяет цвет и положение в объекте градиента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.RadialGradientAddColorStopMethod.html">ДобавитьОстановкуГрадиента&nbsp;(AddColorStop) (РадиальныйГрадиент)</A></TD>
-    <TD width="50%">Определяет цвет и положение в объекте градиента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dArcMethod.html">Дуга&nbsp;(Arc) (Контекст2d)</A></TD>
-    <TD width="50%">Добавляет дугу или кривую (круг или части круга).</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dArcToMethod.html">ДугаМежду&nbsp;(ArcTo) (Контекст2d)</A></TD>
-    <TD width="50%">Добавляет дугу или кривую между двумя касательными.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AnimationFinishMethod.html">Завершить&nbsp;(Finish) (Анимация)</A></TD>
-    <TD width="50%">Завершает анимацию.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsExitMethod.html">ЗавершитьРаботу&nbsp;(Exit) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Завершает работу приложения.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsLoadScriptsMethod.html">ЗагрузитьСценарии&nbsp;(LoadScripts) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Находит файлы сценария по указанному пути, вставляет их в структуру, которую подключает к текущей системе типов.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dClosePathMethod.html">ЗакончитьПуть&nbsp;(ClosePath) (Контекст2d)</A></TD>
-    <TD width="50%">Добавляет линию от текущей точки до начальной.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DialogCloseMethod.html">Закрыть&nbsp;(Close) (Диалог)</A></TD>
-    <TD width="50%">Закрывает диалог.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dPaveMethod.html">Замостить&nbsp;(Pave) (Контекст2d)</A></TD>
-    <TD width="50%">Повторяет указанный элемент в указанном направлении.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dFillMethod.html">Заполнить&nbsp;(Fill) (Контекст2d)</A></TD>
-    <TD width="50%">Заполняет текущий путь.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dFillRectMethod.html">ЗаполнитьПрямоугольник&nbsp;(FillRect) (Контекст2d)</A></TD>
-    <TD width="50%">Рисует прямоугольник с заливкой.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dFillTextMethod.html">ЗаполнитьТекст&nbsp;(FillText) (Контекст2d)</A></TD>
-    <TD width="50%">Рисует залитый текст на холсте.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AnimationPlayMethod.html">Запустить&nbsp;(Play) (Анимация)</A></TD>
-    <TD width="50%">Возобновляет анимацию.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathSignMethod.html">Знак&nbsp;(Sign) (Математика)</A></TD>
-    <TD width="50%">Возвращает целое число, указывающее знак переданного в параметре числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathSqrtMethod.html">ККорень&nbsp;(Sqrt) (Математика)</A></TD>
-    <TD width="50%">Возвращает квадратный корень из указанного числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.StyleCopyMethod.html">Копировать&nbsp;(Copy) (Стиль)</A></TD>
-    <TD width="50%">Копирует все свойства указанного в параметре стиля.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dCopyImageDataMethod.html">КопироватьДанныеРисунка&nbsp;(CopyImageData) (Контекст2d)</A></TD>
-    <TD width="50%">Копирует указанную прямоугольную область холста, располагая верхний левый угол области по указанной координате.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathCosMethod.html">Косинус&nbsp;(Cos) (Математика)</A></TD>
-    <TD width="50%">Возвращает косинус указанного угла.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dLineToMethod.html">Линия&nbsp;(LineTo) (Контекст2d)</A></TD>
-    <TD width="50%">Добавляет линию от последней точки к новой точке.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathLogMethod.html">Логарифм&nbsp;(Log) (Математика)</A></TD>
-    <TD width="50%">Возвращает натуральный (по основанию e) логарифм заданного числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathLog10Method.html">Логарифм10&nbsp;(Log10) (Математика)</A></TD>
-    <TD width="50%">Возвращает десятичный (по основанию 10) логарифм числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dScaleMethod.html">Масштабировать&nbsp;(Scale) (Контекст2d)</A></TD>
-    <TD width="50%">Масштабирует текущий рисунок увеличивая или уменьшая.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathMinMethod.html">Меньшее&nbsp;(Min) (Математика)</A></TD>
-    <TD width="50%">Возвращает меньшее из двух сравниваемых чисел.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementClickMethod.html">Нажатие&nbsp;(Click) (Элемент)</A></TD>
-    <TD width="50%">Вызывает событие когда элемент  щелкнут.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathFloorMethod.html">НаибольшееЦелое&nbsp;(Floor) (Математика)</A></TD>
-    <TD width="50%">Возвращает наибольшее целое число, меньшее или равное указанному числу.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathCeilingMethod.html">НаименьшееЦелое&nbsp;(Ceiling) (Математика)</A></TD>
-    <TD width="50%">Возвращает наименьшее целое число, большее или равное указанному числу.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsFindElementMethod.html">НайтиЭлемент&nbsp;(FindElement) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Возвращает элемент управления формы, найденный по его имени.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TimerStartMethod.html">Начать&nbsp;(Start) (Таймер)</A></TD>
-    <TD width="50%">Запускает Таймер.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dBeginPathMethod.html">НачатьПуть&nbsp;(BeginPath) (Контекст2d)</A></TD>
-    <TD width="50%">Начинает новый рисунок или сбрасывает текущий.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dStrokeMethod.html">Начертить&nbsp;(Stroke) (Контекст2d)</A></TD>
-    <TD width="50%">Рисует заданные объекты.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dClipMethod.html">Обрезать&nbsp;(Clip) (Контекст2d)</A></TD>
-    <TD width="50%">Вырезает область любой формы и размера из исходного холста.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathRoundMethod.html">Окр&nbsp;(Round) (Математика)</A></TD>
-    <TD width="50%">Округляет десятичное значение до указанного числа знаков после запятой; значения посередине округляются до ближайшего четного числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TimerStopMethod.html">Остановить&nbsp;(Stop) (Таймер)</A></TD>
-    <TD width="50%">Останавливает Таймер.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathDivRemMethod.html">ОстатокДеления&nbsp;(DivRem) (Математика)</A></TD>
-    <TD width="50%">Возвращает остаток от деления двух указанных значений.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.FormOpenMethod.html">Открыть&nbsp;(Open) (Форма)</A></TD>
-    <TD width="50%">Открывает форму.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AnimationCancelMethod.html">Отменить&nbsp;(Cancel) (Анимация)</A></TD>
-    <TD width="50%">Отменяет анимацию.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dClearRectMethod.html">ОчиститьПрямоугольник&nbsp;(ClearRect) (Контекст2d)</A></TD>
-    <TD width="50%">Очищает указанные пиксели внутри прямоугольника.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AnimationPauseMethod.html">Пауза&nbsp;(Pause) (Анимация)</A></TD>
-    <TD width="50%">Приостанавливает анимацию.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.AudioPauseMethod.html">Пауза&nbsp;(Pause) (Аудио)</A></TD>
-    <TD width="50%">Постановка на паузу.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dMoveToMethod.html">ПерейтиКТочке&nbsp;(MoveTo) (Контекст2d)</A></TD>
-    <TD width="50%">Перемещает к точке на холсте без рисования.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dRotateMethod.html">Повернуть&nbsp;(Rotate) (Контекст2d)</A></TD>
-    <TD width="50%">Поворачивает текущий рисунок.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MenuPopupMethod.html">Показать&nbsp;(Popup) (Меню)</A></TD>
-    <TD width="50%">Показывает контекстное меню по привязке <B>(x, y)</B> в текущем окне.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DialogShowMethod.html">Показать&nbsp;(Show) (Диалог)</A></TD>
-    <TD width="50%">Показывает диалог.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MessageBoxShowMethod.html">Показать&nbsp;(Show) (ОкноСообщений)</A></TD>
-    <TD width="50%">Отображает окно сообщений.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.BalloonsShowMethod.html">Показать&nbsp;(Show) (Уведомления)</A></TD>
-    <TD width="50%">Отображает окно уведомления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DialogShowModalMethod.html">ПоказатьМодально&nbsp;(ShowModal) (Диалог)</A></TD>
-    <TD width="50%">Показывает диалог модально.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsGetObjectPropertyMethod.html">ПолучитьСвойство&nbsp;(GetObjectProperty) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Получает  для указанного элемента указанное свойство, которое будет доступно для обработки в обработчике события переданном в параметре <B>Обработчик</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dPutImageDataMethod.html">ПоместитьДанныеРисунка&nbsp;(PutImageData) (Контекст2d)</A></TD>
-    <TD width="50%">Помещает данные изображения из указанного объекта <B>ДанныеРисунка (ImageData)</B> обратно на холст.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dTranslateMethod.html">Преобразовать&nbsp;(Translate) (Контекст2d)</A></TD>
-    <TD width="50%">Переназначает позицию рисунка.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementScrollIntoViewMethod.html">ПрокрутитьДо&nbsp;(ScrollIntoView) (Элемент)</A></TD>
-    <TD width="50%">Прокручивает элемент в видимую область окна браузера.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dRectMethod.html">Прямоугольник&nbsp;(Rect) (Контекст2d)</A></TD>
-    <TD width="50%">Добавляет прямоугольник.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dDrawImageMethod.html">РисоватьИзображение&nbsp;(DrawImage) (Контекст2d)</A></TD>
-    <TD width="50%">Рисует изображение, холст или видео на холсте.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dStrokeRectMethod.html">РисоватьПрямоугольник&nbsp;(StrokeRect) (Контекст2d)</A></TD>
-    <TD width="50%">Рисует прямоугольник без заливки.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dStrokeTextMethod.html">РисоватьТекст&nbsp;(StrokeText) (Контекст2d)</A></TD>
-    <TD width="50%">Рисует текст на холсте.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dTransformMethod.html">Сдвинуть&nbsp;(Transform) (Контекст2d)</A></TD>
-    <TD width="50%">Заменяет текущую матрицу преобразования рисунка.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathSinMethod.html">Синус&nbsp;(Sin) (Математика)</A></TD>
-    <TD width="50%">Возвращает синус указанного угла.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathRandomMethod.html">Случайное&nbsp;(Random) (Математика)</A></TD>
-    <TD width="50%">Возвращает псевдослучайное число между 0 и 1.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementBlurMethod.html">СнятьФокус&nbsp;(Blur) (Элемент)</A></TD>
-    <TD width="50%">Удаляет фокус с элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dCreateImageDataMethod.html">СоздатьДанныеРисунка&nbsp;(CreateImageData) (Контекст2d)</A></TD>
-    <TD width="50%">Создает новый пустой объект <B>ДанныеРисунка (ImageData)</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dCreateLinearGradientMethod.html">СоздатьЛинейныйГрадиент&nbsp;(CreateLinearGradient) (Контекст2d)</A></TD>
-    <TD width="50%">Создает линейный градиент для использования в содержимом холста.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dCreateRadialGradientMethod.html">СоздатьРадиальныйГрадиент&nbsp;(CreateRadialGradient) (Контекст2d)</A></TD>
-    <TD width="50%">Создает радиальный или круговой градиент.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsMessageToFormMethod.html">СообщениеФорме&nbsp;(MessageToForm) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Посылает сообщение форме через постоянно подключенного клиента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dSaveMethod.html">Сохранить&nbsp;(Save) (Контекст2d)</A></TD>
-    <TD width="50%">Сохраняет состояние текущего контекста рисования и всех его атрибутов.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathPowMethod.html">Степень&nbsp;(Pow) (Математика)</A></TD>
-    <TD width="50%">Возвращает результат возведения указанного числа, в указанную степень.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathTanMethod.html">Тангенс&nbsp;(Tan) (Математика)</A></TD>
-    <TD width="50%">Возвращает тангенс указанного угла.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TrayRemoveMethod.html">Удалить&nbsp;(Remove) (Лоток)</A></TD>
-    <TD width="50%">Удаляет элемент управления <B>Лоток&nbsp;(Tray)</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MenuRemoveMethod.html">Удалить&nbsp;(Remove) (Меню)</A></TD>
-    <TD width="50%">Удаляет пункт из меню.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementRemoveMethod.html">Удалить&nbsp;(Remove) (Элемент)</A></TD>
-    <TD width="50%">Удаляет элемент.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.FormRemoveChildMethod.html">УдалитьДочерний&nbsp;(RemoveChild) (Форма)</A></TD>
-    <TD width="50%">Удаляет дочерний элемент элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementRemoveChildMethod.html">УдалитьДочерний&nbsp;(RemoveChild) (Элемент)</A></TD>
-    <TD width="50%">Удаляет дочерний элемент элемента.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableDeleteCaptionMethod.html">УдалитьЗаголовок&nbsp;(DeleteCaption) (Таблица)</A></TD>
-    <TD width="50%">Удаляет первый объект <B>Заголовок (Caption)</B> из таблицы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.SelectRemoveFromListMethod.html">УдалитьИзСписка&nbsp;(RemoveFromList) (ПолеСписка)</A></TD>
-    <TD width="50%">Удаляет элемент из поля списка.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableDeleteTFootMethod.html">УдалитьИтоги&nbsp;(DeleteTFoot) (Таблица)</A></TD>
-    <TD width="50%">Удаляет объект <B>Итоги (Outcome)</B> из таблицы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MenuRemoveAtMethod.html">УдалитьПоИндексу&nbsp;(RemoveAt) (Меню)</A></TD>
-    <TD width="50%">Удаляет пункт из меню.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableDeleteRowMethod.html">УдалитьСтроку&nbsp;(DeleteRow) (Таблица)</A></TD>
-    <TD width="50%">Удаляет строку из таблицы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableDeleteTHeadMethod.html">УдалитьШапку&nbsp;(DeleteTHead) (Таблица)</A></TD>
-    <TD width="50%">Удаляет объект <B>ШапкаТаблицы (TableHeader)</B> из таблицы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TableRowDeleteCellMethod.html">УдалитьЯчейку&nbsp;(DeleteCell) (СтрокаТаблицы)</A></TD>
-    <TD width="50%">Удаляет ячейку из текущей строки таблицы.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.Context2dSetTransformMethod.html">УстановитьСдвиг&nbsp;(SetTransform) (Контекст2d)</A></TD>
-    <TD width="50%">Сбрасывает текущее преобразование в единичную матрицу. Затем запускает преобразование.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.ElementFocusMethod.html">Фокус&nbsp;(Focus) (Элемент)</A></TD>
-    <TD width="50%">Устанавливает фокус на элементе.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DeclarativeFormsColorMethod.html">Цвет&nbsp;(Color) (ДекларативныеФормы)</A></TD>
-    <TD width="50%">Возвращает значение цвета в виде строки.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathTruncateMethod.html">Целое&nbsp;(Truncate) (Математика)</A></TD>
-    <TD width="50%">Вычисляет целую часть заданного числа.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathEvenMethod.html">Четное&nbsp;(Even) (Математика)</A></TD>
-    <TD width="50%">Возвращает значение, которое показывает, является ли проверяемое число четным.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TimeSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборВремени)</A></TD>
-    <TD width="50%">Увеличивает значение поля времени на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборДаты)</A></TD>
-    <TD width="50%">Увеличивает значение поля даты на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateTimeLocalSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборМестнойДатыВремени)</A></TD>
-    <TD width="50%">Увеличивает значение поля местной даты и времени на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MonthSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборМесяца)</A></TD>
-    <TD width="50%">Увеличивает значение поля месяца на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.WeekSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборНедели)</A></TD>
-    <TD width="50%">Увеличивает значение поля недели на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.NumberFieldStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ПолеЧисла)</A></TD>
-    <TD width="50%">Увеличивает значение поля числа на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.RangeStepUpMethod.html">ШагВверх&nbsp;(StepUp) (Ползунок)</A></TD>
-    <TD width="50%">Увеличивает значение ползунка на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.TimeSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборВремени)</A></TD>
-    <TD width="50%">Уменьшает значение поля времени на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборДаты)</A></TD>
-    <TD width="50%">Уменьшает значение поля даты на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.DateTimeLocalSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборМестнойДатыВремени)</A></TD>
-    <TD width="50%">Уменьшает значение поля местной даты и времени на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MonthSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборМесяца)</A></TD>
-    <TD width="50%">Уменьшает значение поля месяца на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.WeekSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборНедели)</A></TD>
-    <TD width="50%">Уменьшает значение поля недели на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.NumberFieldStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ПолеЧисла)</A></TD>
-    <TD width="50%">Уменьшает значение поля числа на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.RangeStepDownMethod.html">ШагВниз&nbsp;(StepDown) (Ползунок)</A></TD>
-    <TD width="50%">Уменьшает значение ползунка на указанное число.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><A href="OSDForms.MathExpMethod.html">Экспонента&nbsp;(Exp) (Математика)</A></TD>
-    <TD width="50%">Возвращает значение e, возведенное в указанную степень.</TD></TR></TBODY></TABLE></DIV></DIV></BODY></HTML>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>Библиотека DeclarativeForms Методы</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H3 class=dtH3>Методы</H3>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TH width="50%">Методы (Methods)</TH>
+                        <TH width="50%">Описание</TH>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathAbsMethod.html">Абсолютное&nbsp;(Abs) (Математика)</A></TD>
+                        <TD width="50%">Возвращает абсолютное значение числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathAcosMethod.html">АКосинус&nbsp;(Acos) (Математика)</A></TD>
+                        <TD width="50%">Возвращает числовое значение между 0 и Пи радианами для значения x, лежащего в диапазоне от -1 до 1.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementAnimationMethod.html">Анимация&nbsp;(Animation) (Элемент)</A></TD>
+                        <TD width="50%">Позволяет определять и управлять анимациями элементов.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathAsinMethod.html">АСинус&nbsp;(Asin) (Математика)</A></TD>
+                        <TD width="50%">Возвращает числовое значение между -Пи/2 и Пи/2 радианами для значения x, лежащего в диапазоне от -1 до 1.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathAtanMethod.html">АТангенс&nbsp;(Atan) (Математика)</A></TD>
+                        <TD width="50%">Возвращает числовое значение между -Пи/2 и Пи/2 радианами.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathAtan2Method.html">АТангенс2&nbsp;(Atan2) (Математика)</A></TD>
+                        <TD width="50%">Возвращает числовое значение от -Пи до Пи, представляющее угол точки (x, y). Это выраженный в радианах угол, отсчитываемый против часовой стрелки от положительного направления оси X до точки (x, y). Обратите внимание, что первой в метод передаётся координата y, а только второй - координата x.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathMaxMethod.html">Большее&nbsp;(Max) (Математика)</A></TD>
+                        <TD width="50%">Возвращает большее из двух сравниваемых чисел.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsInjectGlobalPropertyMethod.html">ВвестиГлобальноеСвойство&nbsp;(InjectGlobalProperty) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Вводит глобальное свойство в область видимости загружаемых скриптов.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AudioPlayMethod.html">Воспроизвести&nbsp;(Play) (Аудио)</A></TD>
+                        <TD width="50%">Начинает воспроизведение.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dRestoreMethod.html">Восстановить&nbsp;(Restore) (Контекст2d)</A></TD>
+                        <TD width="50%">Восстанавливает ранее сохраненное состояние и атрибуты.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MenuInsertMethod.html">Вставить&nbsp;(Insert) (Меню)</A></TD>
+                        <TD width="50%">Вставляет элемент меню в указанную позицию меню. Индекс начинается с <B>0</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableInsertRowMethod.html">ВставитьСтроку&nbsp;(InsertRow) (Таблица)</A></TD>
+                        <TD width="50%">Создает пустую строку и добавляет её в таблицу.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableRowInsertCellMethod.html">ВставитьЯчейку&nbsp;(InsertCell) (СтрокаТаблицы)</A></TD>
+                        <TD width="50%">Вставляет ячейку в текущую строку таблицы.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TimeSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборВремени)</A></TD>
+                        <TD width="50%">Выбирает содержимое текстового поля времени.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборДаты)</A></TD>
+                        <TD width="50%">Выбирает содержимое текстового поля даты.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateTimeSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборДатыВремени)</A></TD>
+                        <TD width="50%">Выбирает содержимое текстового поля даты и времени.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MonthSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборМесяца)</A></TD>
+                        <TD width="50%">Выбирает содержимое текстового поля месяца.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.WeekSelectionSelectMethod.html">Выбрать&nbsp;(Select) (ВыборНедели)</A></TD>
+                        <TD width="50%">Выбирает содержимое текстового поля недели.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TextAreaSelectMethod.html">Выбрать&nbsp;(Select) (ОбластьТекста)</A></TD>
+                        <TD width="50%">Выделяет все содержимое области текста.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.PasswordFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеПароля)</A></TD>
+                        <TD width="50%">Выделяет все содержимое поля пароля.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SearchFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеПоиска)</A></TD>
+                        <TD width="50%">Выделяет все содержимое поля поиска.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TextFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеТекста)</A></TD>
+                        <TD width="50%">Выделяет все содержимое поля текста.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.NumberFieldSelectMethod.html">Выбрать&nbsp;(Select) (ПолеЧисла)</A></TD>
+                        <TD width="50%">Выбирает все содержимое поля числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsExecuteMethod.html">Выполнить&nbsp;(Execute) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Вызывает заданный метод.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathCoshMethod.html">ГКосинус&nbsp;(Cosh) (Математика)</A></TD>
+                        <TD width="50%">Возвращает гиперболический косинус указанного угла.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathSinhMethod.html">ГСинус&nbsp;(Sinh) (Математика)</A></TD>
+                        <TD width="50%">Возвращает гиперболический синус указанного угла.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathTanhMethod.html">ГТангенс&nbsp;(Tanh) (Математика)</A></TD>
+                        <TD width="50%">Возвращает гиперболический тангенс заданного угла.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementDoubleClickMethod.html">ДвойноеНажатие&nbsp;(DoubleClick) (Элемент)</A></TD>
+                        <TD width="50%">Вызывает событие когда элемент  дважды щелкнут.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.FramesAddMethod.html">Добавить&nbsp;(Add) (Кадры)</A></TD>
+                        <TD width="50%">Добавляет стиль в конец набора кадров анимации.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SelectAddMethod.html">Добавить&nbsp;(Add) (ПолеСписка)</A></TD>
+                        <TD width="50%">Добавляет элемент в поле списка.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MenuAppendMethod.html">Добавить&nbsp;(Append) (Меню)</A></TD>
+                        <TD width="50%">Добавляет элемент в конец меню.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.FormAppendChildMethod.html">ДобавитьДочерний&nbsp;(AppendChild) (Форма)</A></TD>
+                        <TD width="50%">Добавляет элемент в качестве последнего дочернего элемента элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementAppendChildMethod.html">ДобавитьДочерний&nbsp;(AppendChild) (Элемент)</A></TD>
+                        <TD width="50%">Добавляет элемент в качестве последнего дочернего элемента элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dQuadraticCurveToMethod.html">ДобавитьКвадратичнуюБизье&nbsp;(QuadraticCurveTo) (Контекст2d)</A></TD>
+                        <TD width="50%">Добавляет кубическую кривую Безье.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dBezierCurveToMethod.html">ДобавитьКубическуюБизье&nbsp;(BezierCurveTo) (Контекст2d)</A></TD>
+                        <TD width="50%">Добавляет кубическую кривую Безье.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.LinearGradientAddColorStopMethod.html">ДобавитьОстановкуГрадиента&nbsp;(AddColorStop) (ЛинейныйГрадиент)</A></TD>
+                        <TD width="50%">Определяет цвет и положение в объекте градиента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.RadialGradientAddColorStopMethod.html">ДобавитьОстановкуГрадиента&nbsp;(AddColorStop) (РадиальныйГрадиент)</A></TD>
+                        <TD width="50%">Определяет цвет и положение в объекте градиента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dArcMethod.html">Дуга&nbsp;(Arc) (Контекст2d)</A></TD>
+                        <TD width="50%">Добавляет дугу или кривую (круг или части круга).</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dArcToMethod.html">ДугаМежду&nbsp;(ArcTo) (Контекст2d)</A></TD>
+                        <TD width="50%">Добавляет дугу или кривую между двумя касательными.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AnimationFinishMethod.html">Завершить&nbsp;(Finish) (Анимация)</A></TD>
+                        <TD width="50%">Завершает анимацию.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsExitMethod.html">ЗавершитьРаботу&nbsp;(Exit) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Завершает работу приложения.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsLoadScriptsMethod.html">ЗагрузитьСценарии&nbsp;(LoadScripts) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Находит файлы сценария по указанному пути, вставляет их в структуру, которую подключает к текущей системе типов.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dClosePathMethod.html">ЗакончитьПуть&nbsp;(ClosePath) (Контекст2d)</A></TD>
+                        <TD width="50%">Добавляет линию от текущей точки до начальной.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DialogCloseMethod.html">Закрыть&nbsp;(Close) (Диалог)</A></TD>
+                        <TD width="50%">Закрывает диалог.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dPaveMethod.html">Замостить&nbsp;(Pave) (Контекст2d)</A></TD>
+                        <TD width="50%">Повторяет указанный элемент в указанном направлении.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dFillMethod.html">Заполнить&nbsp;(Fill) (Контекст2d)</A></TD>
+                        <TD width="50%">Заполняет текущий путь.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dFillRectMethod.html">ЗаполнитьПрямоугольник&nbsp;(FillRect) (Контекст2d)</A></TD>
+                        <TD width="50%">Рисует прямоугольник с заливкой.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dFillTextMethod.html">ЗаполнитьТекст&nbsp;(FillText) (Контекст2d)</A></TD>
+                        <TD width="50%">Рисует залитый текст на холсте.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AnimationPlayMethod.html">Запустить&nbsp;(Play) (Анимация)</A></TD>
+                        <TD width="50%">Возобновляет анимацию.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathSignMethod.html">Знак&nbsp;(Sign) (Математика)</A></TD>
+                        <TD width="50%">Возвращает целое число, указывающее знак переданного в параметре числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathSqrtMethod.html">ККорень&nbsp;(Sqrt) (Математика)</A></TD>
+                        <TD width="50%">Возвращает квадратный корень из указанного числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.StyleCopyMethod.html">Копировать&nbsp;(Copy) (Стиль)</A></TD>
+                        <TD width="50%">Копирует все свойства указанного в параметре стиля.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dCopyImageDataMethod.html">КопироватьДанныеРисунка&nbsp;(CopyImageData) (Контекст2d)</A></TD>
+                        <TD width="50%">Копирует указанную прямоугольную область холста, располагая верхний левый угол области по указанной координате.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathCosMethod.html">Косинус&nbsp;(Cos) (Математика)</A></TD>
+                        <TD width="50%">Возвращает косинус указанного угла.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dLineToMethod.html">Линия&nbsp;(LineTo) (Контекст2d)</A></TD>
+                        <TD width="50%">Добавляет линию от последней точки к новой точке.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathLogMethod.html">Логарифм&nbsp;(Log) (Математика)</A></TD>
+                        <TD width="50%">Возвращает натуральный (по основанию e) логарифм заданного числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathLog10Method.html">Логарифм10&nbsp;(Log10) (Математика)</A></TD>
+                        <TD width="50%">Возвращает десятичный (по основанию 10) логарифм числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dScaleMethod.html">Масштабировать&nbsp;(Scale) (Контекст2d)</A></TD>
+                        <TD width="50%">Масштабирует текущий рисунок увеличивая или уменьшая.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathMinMethod.html">Меньшее&nbsp;(Min) (Математика)</A></TD>
+                        <TD width="50%">Возвращает меньшее из двух сравниваемых чисел.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementClickMethod.html">Нажатие&nbsp;(Click) (Элемент)</A></TD>
+                        <TD width="50%">Вызывает событие когда элемент  щелкнут.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathFloorMethod.html">НаибольшееЦелое&nbsp;(Floor) (Математика)</A></TD>
+                        <TD width="50%">Возвращает наибольшее целое число, меньшее или равное указанному числу.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathCeilingMethod.html">НаименьшееЦелое&nbsp;(Ceiling) (Математика)</A></TD>
+                        <TD width="50%">Возвращает наименьшее целое число, большее или равное указанному числу.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsFindElementMethod.html">НайтиЭлемент&nbsp;(FindElement) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Возвращает элемент управления формы, найденный по его имени.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TimerStartMethod.html">Начать&nbsp;(Start) (Таймер)</A></TD>
+                        <TD width="50%">Запускает Таймер.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dBeginPathMethod.html">НачатьПуть&nbsp;(BeginPath) (Контекст2d)</A></TD>
+                        <TD width="50%">Начинает новый рисунок или сбрасывает текущий.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dStrokeMethod.html">Начертить&nbsp;(Stroke) (Контекст2d)</A></TD>
+                        <TD width="50%">Рисует заданные объекты.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dClipMethod.html">Обрезать&nbsp;(Clip) (Контекст2d)</A></TD>
+                        <TD width="50%">Вырезает область любой формы и размера из исходного холста.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathRoundMethod.html">Окр&nbsp;(Round) (Математика)</A></TD>
+                        <TD width="50%">Округляет десятичное значение до указанного числа знаков после запятой; значения посередине округляются до ближайшего четного числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TimerStopMethod.html">Остановить&nbsp;(Stop) (Таймер)</A></TD>
+                        <TD width="50%">Останавливает Таймер.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathDivRemMethod.html">ОстатокДеления&nbsp;(DivRem) (Математика)</A></TD>
+                        <TD width="50%">Возвращает остаток от деления двух указанных значений.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.FormOpenMethod.html">Открыть&nbsp;(Open) (Форма)</A></TD>
+                        <TD width="50%">Открывает форму.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AnimationCancelMethod.html">Отменить&nbsp;(Cancel) (Анимация)</A></TD>
+                        <TD width="50%">Отменяет анимацию.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dClearRectMethod.html">ОчиститьПрямоугольник&nbsp;(ClearRect) (Контекст2d)</A></TD>
+                        <TD width="50%">Очищает указанные пиксели внутри прямоугольника.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AnimationPauseMethod.html">Пауза&nbsp;(Pause) (Анимация)</A></TD>
+                        <TD width="50%">Приостанавливает анимацию.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.AudioPauseMethod.html">Пауза&nbsp;(Pause) (Аудио)</A></TD>
+                        <TD width="50%">Постановка на паузу.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dMoveToMethod.html">ПерейтиКТочке&nbsp;(MoveTo) (Контекст2d)</A></TD>
+                        <TD width="50%">Перемещает к точке на холсте без рисования.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dRotateMethod.html">Повернуть&nbsp;(Rotate) (Контекст2d)</A></TD>
+                        <TD width="50%">Поворачивает текущий рисунок.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MenuPopupMethod.html">Показать&nbsp;(Popup) (Меню)</A></TD>
+                        <TD width="50%">Показывает контекстное меню по привязке <B>(x, y)</B> в текущем окне.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DialogShowMethod.html">Показать&nbsp;(Show) (Диалог)</A></TD>
+                        <TD width="50%">Показывает диалог.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MessageBoxShowMethod.html">Показать&nbsp;(Show) (ОкноСообщений)</A></TD>
+                        <TD width="50%">Отображает окно сообщений.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.BalloonsShowMethod.html">Показать&nbsp;(Show) (Уведомления)</A></TD>
+                        <TD width="50%">Отображает окно уведомления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DialogShowModalMethod.html">ПоказатьМодально&nbsp;(ShowModal) (Диалог)</A></TD>
+                        <TD width="50%">Показывает диалог модально.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsGetObjectPropertyMethod.html">ПолучитьСвойство&nbsp;(GetObjectProperty) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Получает  для указанного элемента указанное свойство, которое будет доступно для обработки в обработчике события переданном в параметре <B>Обработчик</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dPutImageDataMethod.html">ПоместитьДанныеРисунка&nbsp;(PutImageData) (Контекст2d)</A></TD>
+                        <TD width="50%">Помещает данные изображения из указанного объекта <B>ДанныеРисунка (ImageData)</B> обратно на холст.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dTranslateMethod.html">Преобразовать&nbsp;(Translate) (Контекст2d)</A></TD>
+                        <TD width="50%">Переназначает позицию рисунка.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementScrollIntoViewMethod.html">ПрокрутитьДо&nbsp;(ScrollIntoView) (Элемент)</A></TD>
+                        <TD width="50%">Прокручивает элемент в видимую область окна браузера.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dRectMethod.html">Прямоугольник&nbsp;(Rect) (Контекст2d)</A></TD>
+                        <TD width="50%">Добавляет прямоугольник.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dDrawImageMethod.html">РисоватьИзображение&nbsp;(DrawImage) (Контекст2d)</A></TD>
+                        <TD width="50%">Рисует изображение, холст или видео на холсте.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dStrokeRectMethod.html">РисоватьПрямоугольник&nbsp;(StrokeRect) (Контекст2d)</A></TD>
+                        <TD width="50%">Рисует прямоугольник без заливки.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dStrokeTextMethod.html">РисоватьТекст&nbsp;(StrokeText) (Контекст2d)</A></TD>
+                        <TD width="50%">Рисует текст на холсте.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dTransformMethod.html">Сдвинуть&nbsp;(Transform) (Контекст2d)</A></TD>
+                        <TD width="50%">Заменяет текущую матрицу преобразования рисунка.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathSinMethod.html">Синус&nbsp;(Sin) (Математика)</A></TD>
+                        <TD width="50%">Возвращает синус указанного угла.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathRandomMethod.html">Случайное&nbsp;(Random) (Математика)</A></TD>
+                        <TD width="50%">Возвращает псевдослучайное число между 0 и 1.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementBlurMethod.html">СнятьФокус&nbsp;(Blur) (Элемент)</A></TD>
+                        <TD width="50%">Удаляет фокус с элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dCreateImageDataMethod.html">СоздатьДанныеРисунка&nbsp;(CreateImageData) (Контекст2d)</A></TD>
+                        <TD width="50%">Создает новый пустой объект <B>ДанныеРисунка (ImageData)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dCreateLinearGradientMethod.html">СоздатьЛинейныйГрадиент&nbsp;(CreateLinearGradient) (Контекст2d)</A></TD>
+                        <TD width="50%">Создает линейный градиент для использования в содержимом холста.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dCreateRadialGradientMethod.html">СоздатьРадиальныйГрадиент&nbsp;(CreateRadialGradient) (Контекст2d)</A></TD>
+                        <TD width="50%">Создает радиальный или круговой градиент.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsMessageToFormMethod.html">СообщениеФорме&nbsp;(MessageToForm) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Посылает сообщение форме через постоянно подключенного клиента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dSaveMethod.html">Сохранить&nbsp;(Save) (Контекст2d)</A></TD>
+                        <TD width="50%">Сохраняет состояние текущего контекста рисования и всех его атрибутов.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathPowMethod.html">Степень&nbsp;(Pow) (Математика)</A></TD>
+                        <TD width="50%">Возвращает результат возведения указанного числа, в указанную степень.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathTanMethod.html">Тангенс&nbsp;(Tan) (Математика)</A></TD>
+                        <TD width="50%">Возвращает тангенс указанного угла.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TrayRemoveMethod.html">Удалить&nbsp;(Remove) (Лоток)</A></TD>
+                        <TD width="50%">Удаляет элемент управления <B>Лоток&nbsp;(Tray)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MenuRemoveMethod.html">Удалить&nbsp;(Remove) (Меню)</A></TD>
+                        <TD width="50%">Удаляет пункт из меню.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementRemoveMethod.html">Удалить&nbsp;(Remove) (Элемент)</A></TD>
+                        <TD width="50%">Удаляет элемент.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.FormRemoveChildMethod.html">УдалитьДочерний&nbsp;(RemoveChild) (Форма)</A></TD>
+                        <TD width="50%">Удаляет дочерний элемент элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementRemoveChildMethod.html">УдалитьДочерний&nbsp;(RemoveChild) (Элемент)</A></TD>
+                        <TD width="50%">Удаляет дочерний элемент элемента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableDeleteCaptionMethod.html">УдалитьЗаголовок&nbsp;(DeleteCaption) (Таблица)</A></TD>
+                        <TD width="50%">Удаляет первый объект <B>Заголовок (Caption)</B> из таблицы.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.SelectRemoveFromListMethod.html">УдалитьИзСписка&nbsp;(RemoveFromList) (ПолеСписка)</A></TD>
+                        <TD width="50%">Удаляет элемент из поля списка.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableDeleteTFootMethod.html">УдалитьИтоги&nbsp;(DeleteTFoot) (Таблица)</A></TD>
+                        <TD width="50%">Удаляет объект <B>Итоги (Outcome)</B> из таблицы.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MenuRemoveAtMethod.html">УдалитьПоИндексу&nbsp;(RemoveAt) (Меню)</A></TD>
+                        <TD width="50%">Удаляет пункт из меню.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableDeleteRowMethod.html">УдалитьСтроку&nbsp;(DeleteRow) (Таблица)</A></TD>
+                        <TD width="50%">Удаляет строку из таблицы.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableDeleteTHeadMethod.html">УдалитьШапку&nbsp;(DeleteTHead) (Таблица)</A></TD>
+                        <TD width="50%">Удаляет объект <B>ШапкаТаблицы (TableHeader)</B> из таблицы.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TableRowDeleteCellMethod.html">УдалитьЯчейку&nbsp;(DeleteCell) (СтрокаТаблицы)</A></TD>
+                        <TD width="50%">Удаляет ячейку из текущей строки таблицы.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.Context2dSetTransformMethod.html">УстановитьСдвиг&nbsp;(SetTransform) (Контекст2d)</A></TD>
+                        <TD width="50%">Сбрасывает текущее преобразование в единичную матрицу. Затем запускает преобразование.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.ElementFocusMethod.html">Фокус&nbsp;(Focus) (Элемент)</A></TD>
+                        <TD width="50%">Устанавливает фокус на элементе.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DeclarativeFormsColorMethod.html">Цвет&nbsp;(Color) (ДекларативныеФормы)</A></TD>
+                        <TD width="50%">Возвращает значение цвета в виде строки.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathTruncateMethod.html">Целое&nbsp;(Truncate) (Математика)</A></TD>
+                        <TD width="50%">Вычисляет целую часть заданного числа.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathEvenMethod.html">Четное&nbsp;(Even) (Математика)</A></TD>
+                        <TD width="50%">Возвращает значение, которое показывает, является ли проверяемое число четным.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TimeSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборВремени)</A></TD>
+                        <TD width="50%">Увеличивает значение поля времени на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборДаты)</A></TD>
+                        <TD width="50%">Увеличивает значение поля даты на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateTimeLocalSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборМестнойДатыВремени)</A></TD>
+                        <TD width="50%">Увеличивает значение поля местной даты и времени на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MonthSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборМесяца)</A></TD>
+                        <TD width="50%">Увеличивает значение поля месяца на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.WeekSelectionStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ВыборНедели)</A></TD>
+                        <TD width="50%">Увеличивает значение поля недели на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.NumberFieldStepUpMethod.html">ШагВверх&nbsp;(StepUp) (ПолеЧисла)</A></TD>
+                        <TD width="50%">Увеличивает значение поля числа на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.RangeStepUpMethod.html">ШагВверх&nbsp;(StepUp) (Ползунок)</A></TD>
+                        <TD width="50%">Увеличивает значение ползунка на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.TimeSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборВремени)</A></TD>
+                        <TD width="50%">Уменьшает значение поля времени на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборДаты)</A></TD>
+                        <TD width="50%">Уменьшает значение поля даты на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.DateTimeLocalSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборМестнойДатыВремени)</A></TD>
+                        <TD width="50%">Уменьшает значение поля местной даты и времени на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MonthSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборМесяца)</A></TD>
+                        <TD width="50%">Уменьшает значение поля месяца на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.WeekSelectionStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ВыборНедели)</A></TD>
+                        <TD width="50%">Уменьшает значение поля недели на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.NumberFieldStepDownMethod.html">ШагВниз&nbsp;(StepDown) (ПолеЧисла)</A></TD>
+                        <TD width="50%">Уменьшает значение поля числа на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.RangeStepDownMethod.html">ШагВниз&nbsp;(StepDown) (Ползунок)</A></TD>
+                        <TD width="50%">Уменьшает значение ползунка на указанное число.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OSDForms.MathExpMethod.html">Экспонента&nbsp;(Exp) (Математика)</A></TD>
+                        <TD width="50%">Возвращает значение e, возведенное в указанную степень.</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+    </DIV>
+</BODY>
+</HTML>
