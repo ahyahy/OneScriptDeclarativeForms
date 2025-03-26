@@ -486,3 +486,37 @@ img {
         text-decoration: none;
         cursor: pointer;
     }
+
+pre.code {
+    background-color: lightgray;
+    padding: 4px 6px 4px 6px;
+    border-left: 5px solid #999999;
+}
+
+pre, div.syntax {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+pre, code, .code, div.syntax {
+    font: 100% Monospace, Courier New, Courier;
+    color: #000066;
+}
+
+    pre b, code b {
+        letter-spacing: .1em;
+    }
+
+    pre.syntax, div.syntax {
+        background: #cccccc;
+        padding: 4px 8px;
+        cursor: text;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        color: #000000;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #999999;
+        font-weight: bolder;
+        letter-spacing: .1em;
+    }
